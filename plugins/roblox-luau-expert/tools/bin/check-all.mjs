@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // Run every gate in this repository, in order, and report one verdict.
 //
-// There are twenty-one of them now. Remembering sixteen commands is how seven get
+// There are twenty-four of them now. Remembering sixteen commands is how seven get
 // run and four get skipped, and the ones that get skipped are the ones that
 // were added most recently - which is to say the ones nobody has habits about
 // yet.
@@ -33,7 +33,7 @@ const EXECUTOR_ASSETS = join(REPO_ROOT, ".claude", "skills", "roblox-executor", 
 const GATES = [
   {
     name: "portable package and verdict tests",
-    argv: ["--test", ...["check-all", "portable-package", "install", "luau-compile", "dump-index"].map((name) => join(REPO_ROOT, "tools", "tests", `${name}.test.mjs`))],
+    argv: ["--test", ...["check-all", "portable-package", "install", "luau-compile", "register-budget", "dump-index"].map((name) => join(REPO_ROOT, "tools", "tests", `${name}.test.mjs`))],
   },
   {
     name: "prose vs the API dump",
@@ -112,6 +112,10 @@ const GATES = [
   {
     name: "format rubric over the executor assets",
     argv: [bin("lint-luau-format.mjs"), EXECUTOR_ASSETS],
+  },
+  {
+    name: "register and local headroom",
+    argv: [bin("check-registers.mjs"), join(REPO_ROOT, "library", "src"), EXEMPLARS, RECIPES, EXECUTOR_ASSETS],
   },
   {
     name: "asset ids are real images",

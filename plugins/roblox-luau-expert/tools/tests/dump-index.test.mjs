@@ -56,3 +56,16 @@ test("a folder with nothing readable exits 2", () => {
   const result = spawnSync("python", [TOOL, join(REPO_ROOT, "tools", "api-dump", "datatypes")], { encoding: "utf8" });
   assert.equal(result.status, 2);
 });
+
+test("the inventory lists only what the dump shows, each with its line", () => {
+  const result = spawnSync("python", [TOOL, DUMP, "--inventory", "--json"], { encoding: "utf8" });
+  assert.equal(result.status, 0);
+  const report = JSON.parse(result.stdout);
+  assert.deepEqual(report.actions.map((action) => action.remote).sort(), ["CastRod", "CollectCoin", "SetSetting"]);
+  const collect = report.actions.find((action) => action.remote === "CollectCoin");
+  assert.equal(collect.calls[0].count, 2);
+  assert.ok(collect.calls.every((call) => call.line > 0));
+  assert.deepEqual(report.tunables.map((entry) => `${entry.name}=${entry.value}`), ["SprintSpeed=24"]);
+  assert.ok(report.interactions.some((entry) => entry.event === "Touched"));
+  assert.ok(report.failed_markers >= 1);
+});

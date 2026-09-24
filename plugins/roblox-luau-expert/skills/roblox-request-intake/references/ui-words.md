@@ -18,16 +18,16 @@ The guide's "Point at it" diagram numbers these parts, so a user can answer
 | W4 | "the dash", "hide button", "make it small" | minimise button | same size as close; collapses to the launcher |
 | W5 | "the bit you grab to move it", "drag bar" | drag handle | whole header drags; grip icon optional |
 | W6 | "the side menu", "list on the left" | sidebar / tab rail | vertical tabs; selection persists |
-| W7 | "the pages", "sections", "categories" | tabs | see S1–S3 |
+| W7 | "the pages", "sections", "categories" | tabs | see S1–S12 |
 | W8 | "the little titles", "group names" | section heading | 12 px caption, muted, above a group |
-| W9 | "on/off thing", "switch", "tick" | toggle | see T1–T6 |
+| W9 | "on/off thing", "switch", "tick" | toggle | see T1–T20; a plain checkbox is C1–C10 |
 | W10 | "the bar you drag", "number bar", "range" | slider | shows its value; arrow keys and gamepad step it |
-| W11 | "list that opens", "picker", "choose one" | dropdown | closes on outside tap; long lists scroll |
+| W11 | "list that opens", "picker", "choose one" | dropdown | closes on outside tap; long lists scroll; see D1–D12 |
 | W12 | "the button" | button | label names the action: `Teleport to spawn` |
 | W13 | "key box", "hotkey", "bind" | keybind chip | shows the key; press to rebind; Escape cancels |
-| W14 | "search bar", "find box" | search box | filters as they type; clear button |
+| W14 | "search bar", "find box" | search box | filters as they type; clear button; D5 or D11 |
 | W15 | "typing box", "where I put the name" | text box | placeholder, focus ring, inline error (N3) |
-| W16 | "popup message", "alert", "notification" | toast / notice | see N1–N6 |
+| W16 | "popup message", "alert", "notification" | toast / notice | see N1–N20 |
 | W17 | "the hint when I hover" | tooltip | never the only place information lives; phones have no hover |
 | W18 | "scroll thing" | scrollbar | thin, only where content overflows |
 | W19 | "dark background behind the popup" | backdrop / scrim | dims the game; a tap on it cancels |

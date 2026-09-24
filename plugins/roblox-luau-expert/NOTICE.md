@@ -25,6 +25,7 @@ These keep their own licenses and are not covered by the terms above.
 | `tools/api-dump/API-Dump.txt`, `FVariables.txt`, `LuauTypes.d.luau`, `version.txt` | [MaximumADHD/Roblox-Client-Tracker](https://github.com/MaximumADHD/Roblox-Client-Tracker), generated from the Roblox client | None stated by the source |
 | `tools/api-dump/datatypes/` | [Roblox/creator-docs](https://github.com/Roblox/creator-docs) | CC-BY-4.0 |
 | `tools/runtime/` | [luau-lang/luau](https://github.com/luau-lang/luau) release binaries | MIT, in `tools/runtime/LICENSE-Luau.txt` |
+| Icon shapes in `docs/visual-guide/index.html` and `designer.html`; icon names and tags in `.claude/skills/roblox-ui-components/references/icon-ids.txt` | [lucide-icons/lucide](https://github.com/lucide-icons/lucide) (Roblox uploads by [icons.rest](https://icons.rest)) | ISC, in `docs/visual-guide/LICENSE-Lucide.txt` |
 | `docs/portability/gpt/UIs/gallery/windui-window.png` | [Footagesus/WindUI](https://github.com/Footagesus/WindUI) | MIT |
 | `docs/portability/gpt/UIs/gallery/obsidian-window.png` | [deividcomsono/Obsidian](https://github.com/deividcomsono/Obsidian) | MIT |
 

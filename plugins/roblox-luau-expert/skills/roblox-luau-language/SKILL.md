@@ -14,7 +14,7 @@ not are where the bugs live.
 | Question | File |
 |---|---|
 | type errors, generics, refinements, `--!strict` | `references/type-system.md` |
-| "too many local variables", won't compile | `references/compiler-limits.md` |
+| "too many local variables", "Out of local registers", won't compile, or a script growing past a few hundred lines | `references/compiler-limits.md`; measure with `node tools/bin/check-registers.mjs` |
 | classes, inheritance, `__index`, `setmetatable` | `references/oop-and-metatables.md` |
 | `table.*`, `string.*`, `buffer`, `vector`, `os.clock` | `references/stdlib.md` |
 

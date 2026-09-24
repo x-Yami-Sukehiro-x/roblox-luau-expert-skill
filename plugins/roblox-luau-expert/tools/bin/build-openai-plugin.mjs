@@ -4,7 +4,7 @@
 // OpenAI retires custom GPTs on 11 December 2026. Its built-in "Migrate to
 // plugin" turns the GPT's 8,000-character instructions into one skill and copies
 // the knowledge files beside it. This builds the better replacement: all
-// eighteen skills with their references, each loaded in full when its
+// nineteen skills with their references, each loaded in full when its
 // description matches, plus the tools, library and guide the skills point at.
 //
 // Output (gitignored, rebuilt from source):
@@ -55,9 +55,13 @@ as \`tools/py/roblox_lint.py\` or \`.claude/skills/roblox-ui/...\` from there:
 \`.claude/skills/<name>/\` in this repository is \`skills/<name>/\` here. Run the
 Python checkers when Node is unavailable; a checker that cannot run is reported
 as not run, never as passed. \`python tools/py/dump_index.py <dump> --feature
-"<words>"\` searches a decompiled dump for a feature. The style picker page is
-\`skills/roblox-request-intake/assets/roblox-ui-style-picker.html\`; attach it
-when the hosted link does not open.
+"<words>"\` searches a decompiled dump for a feature, and \`--inventory\` lists
+what the dump shows for feature ideas. \`node tools/bin/check-registers.mjs
+<file>\` (no Node: \`python tools/py/register_budget.py\`) compiles a script and
+reports how close each function is to the local-register limit. The style
+picker page is \`skills/roblox-request-intake/assets/roblox-ui-style-picker.html\`;
+attach it when the hosted link does not open. The UI designer is
+\`docs/visual-guide/designer.html\`, hosted beside the picker as \`designer.html\`.
 `;
 
 function version() {
@@ -109,9 +113,9 @@ function main() {
           displayName: "Roblox Luau Expert",
           shortDescription: "Roblox scripts, clean UI and executor work, checked rather than guessed",
           longDescription:
-            "Eighteen Roblox skills in one plugin. UI requests start from a playable style picker with " +
-            "labeled toggles, menu animations and notifications, and every picked code has a tested " +
-            "recipe. Decompiled source is searched for the requested feature; when it is missing, a " +
+            "Nineteen Roblox skills in one plugin. UI requests start from a playable style picker with " +
+            "labeled toggles, checkboxes, dropdowns, menu animations and notifications, and every picked " +
+            "code has a tested recipe; a drag-and-drop UI designer copies whole screens for exact rebuilds. Decompiled source is searched for the requested feature; when it is missing, a " +
             "read-only runtime probe collects the evidence instead of guessed names. Every " +
             "Roblox API is checked against a vendored API dump, and bundled Python checkers count the " +
             "anti-slop and UI rules on the final file.",

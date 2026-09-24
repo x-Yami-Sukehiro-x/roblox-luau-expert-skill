@@ -40,10 +40,12 @@ local function check(name, ok) table.insert(results, (ok and "PASS " or "FAIL ")
 local function newPanel()
 	local panel = Instance.new("CanvasGroup")
 	panel.Position = UDim2.new(0.5, 0, 0.5, 0)
+	panel.AnchorPoint = Vector2.new(0.5, 0.5)
+	panel.Size = UDim2.new(0, 320, 0, 44)
 	return panel
 end
 
-for _, style in { "M1", "M2", "M3", "M4", "M5", "M6", "M7", "M8", "M9", "M10", "M11", "M12" } do
+for _, style in { "M1", "M2", "M3", "M4", "M5", "M6", "M7", "M8", "M9", "M10", "M11", "M12", "M13", "M14", "M15", "M16", "M17", "M18", "M20", "M21", "M22", "M23", "M24" } do
 	local panel = newPanel()
 	local presenter = createPresenter(panel, style)
 	check(style .. " starts hidden", panel.Visible == false and presenter.isOpen() == false)
@@ -141,6 +143,83 @@ do
 	HARNESS.drain()
 	finishAll()
 	check("M12 reopen reveals rows again", rows[2].GroupTransparency == 0)
+	presenter.destroy()
+end
+do
+	local panel = newPanel()
+	local presenter = createPresenter(panel, "M13")
+	presenter.open()
+	check("M13 starts 24 px to the left", panel.Position.X.Offset == -24)
+	finishAll()
+	presenter.close()
+	check("M13 leaves 12 px to the left", pending[#pending].goals.Position.X.Offset == -12)
+	finishAll()
+	presenter.destroy()
+end
+do
+	local panel = newPanel()
+	local presenter = createPresenter(panel, "M16")
+	presenter.open()
+	check("M16 starts tilted", panel.Rotation == -4)
+	finishAll()
+	check("M16 settles upright", panel.Rotation == 0)
+	presenter.close()
+	finishAll()
+	check("M16 resets rotation when hidden", panel.Rotation == 0 and panel.Visible == false)
+	presenter.destroy()
+end
+do
+	local panel = newPanel()
+	local presenter = createPresenter(panel, "M17")
+	presenter.open()
+	check("M17 starts rolled up with its top edge in place", panel.Size.Y.Offset == 0 and panel.Position.Y.Offset == -22)
+	finishAll()
+	check("M17 unrolls to full height", panel.Size.Y.Offset == 44 and panel.Position.Y.Offset == 0)
+	presenter.close()
+	finishAll()
+	check("M17 hidden with its size restored", panel.Visible == false and panel.Size.Y.Offset == 44)
+	presenter.destroy()
+end
+do
+	local panel = newPanel()
+	panel.AnchorPoint = Vector2.new(0, 0.5)
+	local presenter = createPresenter(panel, "M18")
+	presenter.open()
+	check("M18 starts as a line at the centre", panel.Size.X.Offset == 0 and panel.Position.X.Offset == 160)
+	finishAll()
+	check("M18 stretches to full width", panel.Size.X.Offset == 320 and panel.Position.X.Offset == 0)
+	presenter.destroy()
+end
+do
+	local panel = newPanel()
+	local ok = pcall(createPresenter, panel, "M19")
+	check("M19 without a scrim is refused", not ok)
+	local scrim = Instance.new("Frame")
+	local presenter = createPresenter(newPanel(), "M19", { scrim = scrim })
+	check("M19 scrim starts hidden", scrim.Visible == false and scrim.BackgroundTransparency == 1)
+	presenter.open()
+	finishAll()
+	check("M19 dims the game while open", scrim.Visible == true and scrim.BackgroundTransparency == 0.5)
+	presenter.close()
+	finishAll()
+	check("M19 clears the dim when closed", scrim.Visible == false and scrim.BackgroundTransparency == 1)
+	presenter.destroy()
+end
+do
+	local panel = newPanel()
+	local presenter = createPresenter(panel, "M21")
+	presenter.open()
+	check("M21 drops from 40 px above", panel.Position.Y.Offset == -40)
+	finishAll()
+	presenter.destroy()
+end
+do
+	local panel = newPanel()
+	local presenter = createPresenter(panel, "M22")
+	presenter.open()
+	check("M22 pops from 80 %", panel.OpenScale.Scale == 0.8)
+	finishAll()
+	check("M22 rests at full size", panel.OpenScale.Scale == 1)
 	presenter.destroy()
 end
 local failed = 0

@@ -139,6 +139,90 @@ do
 	notifier.destroy()
 end
 
+do
+	local screen = Instance.new("ScreenGui")
+	local notifier = createNotifier(screen, "N11")
+	local stack = screen.Notifications
+	check("N11 stack inset from the left edge", stack.Position.X.Offset == 16 and stack.AnchorPoint.X == 0)
+	notifier.push("Quest updated", "info")
+	check("N11 corner stack shows a time-left bar", stack.Toast.TimeLeft ~= nil)
+	notifier.destroy()
+end
+
+do
+	local screen = Instance.new("ScreenGui")
+	local notifier = createNotifier(screen, "N12")
+	notifier.push("Saved", "success")
+	local toast = screen.Notifications.Toast
+	check("N12 pill sizes to its words", toast.AutomaticSize == Enum.AutomaticSize.XY and toast.UICorner.CornerRadius.Scale == 0.5)
+	check("N12 pill text stays on one line", toast.Content.Message.TextWrapped == false and toast.TimeLeft == nil)
+	notifier.destroy()
+end
+
+do
+	local screen = Instance.new("ScreenGui")
+	local notifier = createNotifier(screen, "N13")
+	notifier.push("You reached level 12", "success", nil, "Level up")
+	local words = screen.Notifications.Toast.Content.Words
+	check("N13 title over the message", words.Title.Text == "Level up" and words.Message.Text == "You reached level 12")
+	notifier.push("No title given", "info")
+	check("N13 without a title falls back to one line", screen.Notifications.Toast.Content.Message ~= nil)
+	notifier.destroy()
+end
+
+do
+	local screen = Instance.new("ScreenGui")
+	local notifier = createNotifier(screen, "N14")
+	notifier.push("Low health", "warning")
+	local toast = screen.Notifications.Toast
+	check("N14 coloured edge on the card", toast.Edge.Size.X.Offset == 4 and toast.Content.UIPadding.PaddingLeft.Offset == 16)
+	notifier.destroy()
+end
+
+do
+	local cards = {}
+	local rawNew = Instance.new
+	Instance.new = function(className)
+		local inst = rawNew(className)
+		if className == "CanvasGroup" then table.insert(cards, inst) end
+		return inst
+	end
+	local screen = rawNew("ScreenGui")
+	local notifier = createNotifier(screen, "N19")
+	notifier.push("One", "info")
+	notifier.push("Two", "info")
+	notifier.push("Three", "info")
+	Instance.new = rawNew
+	frames(1, 0.01)
+	check("N19 newest card in front", cards[3].ZIndex > cards[1].ZIndex and cards[3].Depth.Scale == 1)
+	check("N19 older cards shrink behind", cards[1].Depth.Scale < cards[2].Depth.Scale)
+	check("N19 older cards peek 8 px per step", cards[1].Position.Y.Offset == -16 and cards[2].Position.Y.Offset == -8)
+	cards[3].MouseEnter:Fire()
+	frames(1, 0.01)
+	check("N19 hovering spreads the deck into a list", cards[1].Depth.Scale == 1 and cards[2].Position.Y.Offset < -8)
+	cards[3].MouseLeave:Fire()
+	frames(1, 0.01)
+	check("N19 leaving folds it again", cards[1].Depth.Scale < 1)
+	notifier.destroy()
+end
+
+do
+	local screen = Instance.new("ScreenGui")
+	local notifier = createNotifier(screen, "N4")
+	local zeroes = 0
+	notifier.countdown("Server restarts in", 3, function() zeroes += 1 end)
+	local toast = screen.Notifications.Toast
+	check("N17 shows the seconds left at once", toast.Content.Message.Text == "Server restarts in 3s")
+	toast.MouseEnter:Fire()
+	frames(12, 0.1)
+	check("N17 counts down while hovered", toast.Content.Message.Text == "Server restarts in 2s")
+	frames(20, 0.1)
+	check("N17 reaches zero once and leaves", zeroes == 1 and toast.GroupTransparency == 1)
+	frames(10, 0.1)
+	check("N17 never fires twice", zeroes == 1)
+	notifier.destroy()
+end
+
 local failed = 0
 for _, line in results do print(line) if line:sub(1,4) == "FAIL" then failed += 1 end end
 print(#results - failed .. " passed, " .. failed .. " failed")

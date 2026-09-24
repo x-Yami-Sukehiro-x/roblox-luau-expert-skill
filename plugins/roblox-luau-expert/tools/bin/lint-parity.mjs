@@ -33,6 +33,10 @@ const PAIRS = {
     node: join(REPO_ROOT, "tools", "bin", "lint-luau-format.mjs"),
     python: join(REPO_ROOT, "tools", "py", "format_lint.py"),
   },
+  registers: {
+    node: join(REPO_ROOT, "tools", "bin", "check-registers.mjs"),
+    python: join(REPO_ROOT, "tools", "py", "register_budget.py"),
+  },
 };
 
 // Where Luau that the linters are calibrated against lives. Skipping the rest

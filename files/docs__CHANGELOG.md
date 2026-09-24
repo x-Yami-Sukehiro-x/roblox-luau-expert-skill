@@ -1,5 +1,100 @@
 # Changelog
 
+## 5.4.0 — 2026-09-24
+
+A drag-and-drop UI designer, twice as many picker styles, working replays,
+knowledge for building good screens without being told how, and three new
+guards: the local-register budget, evidence-only feature ideas from a dump,
+and replies that paste cleanly.
+
+### Added — the UI designer
+
+`docs/visual-guide/designer.html`, hosted beside the picker as `designer.html`.
+Drag windows, cards, rows, columns, grids, scroll lists, text, buttons, inputs,
+icons and every picker control onto a Roblox screen (computer, laptop, tablet
+and phone sizes, with or without the top bar). Move and resize with snapping
+and centre guides, edit every property (position and size in scale or pixels,
+anchor, automatic size, colours from the chosen direction, corners, outline,
+gradient, padding, list and grid layouts, fill, min and max size, aspect,
+text font, weight, size and alignment), reorder in Layers, undo and redo.
+Seven starting screens: script hub, settings, shop, HUD, main menu, daily
+reward, empty. The icon browser holds 1,559 Lucide icons already uploaded to
+Roblox, each id checked as a real image. Checks flag small text and targets,
+low contrast, long text, filler words, off-screen parts, pixel-only windows,
+off-scale padding and too many radii or text sizes, with one-click fixes.
+
+**Copy for AI** exports `roblox-ui-design` v1: real Roblox property values, a
+`THEME` of only the colours used, modifiers, controls with their style code,
+and a `Does` line per control. `roblox-ui/references/design-spec.md` tells a
+model to build it exactly and wire `Does`. Paste a design back in to keep
+editing; export and import are exact inverses.
+
+### Added — picker styles, 123 codes, all with tested recipes
+
+- Toggles T11–T20, checkboxes and choice groups C1–C10 (new
+  `checkboxes.luau`), dropdowns D1–D12 including search fields, multi-select,
+  a player picker and a command palette (new `dropdowns.luau`).
+- Menu movement M13–M24, notifications N11–N20 (new `announcements.luau` for
+  achievement, announcer, snackbar and feed), hide and bring back O6–O12,
+  button feel P4–P12, tab switch S4–S12.
+- `run-recipe-tests.mjs`: 705 assertions over ten recipes, up from 262 over six.
+
+### Fixed — replays
+
+Menu movement, notifications and hide-and-bring-back demos stopped replaying:
+Web Animations were handed `var()` easings, which throw, and some demos were
+never reset. Every demo now uses literal easings, resets before it plays, and
+was checked in a browser.
+
+### Added — knowledge for good UI without direction
+
+In `roblox-ui/references/`: `screen-archetypes.md` (twelve whole screens with a
+hero, skeleton, states and phone variant), `layout-ux.md` (sizes that are not
+too small or big, which tab layout for how many tabs, and a five-change
+procedure for improving an existing UI), `crisp-ui.md` (blurry icons, soft
+CanvasGroups, clipped dropdowns and other broken UI, each with its cause),
+`image-to-ui.md` (measure, spec, build, compare from a screenshot) and
+`ui-copy.md` (lengths and filler words for labels, descriptions and
+notifications). `roblox-ui-components/references/icon-meaning.md` maps tabs and
+features to icons with their ids; `icon-ids.txt` lists all 1,559
+(`tools/bin/update-icons.mjs` regenerates and re-verifies it).
+
+### Added — the local-register budget
+
+`tools/bin/check-registers.mjs` (Python: `tools/py/register_budget.py`)
+compiles a file at `-O0` and reports each function's peak register use, where
+it peaks and its upvalues, failing a function at 160 or more before it reaches
+"Out of local registers". Compile errors come back with the limit named and the
+fix. `compiler-limits.md` now lists six compiler errors, measured behaviour
+from Luau 0.739 (constant locals fold away at `-O1`, 190 locals plus a
+71-argument call fails), and a write-under-budget playbook: handles in the main
+chunk, one table per family, one local function per tab. Gate and parity pair
+added.
+
+### Added — feature ideas from a dump
+
+`dump_index.py --inventory` lists what a dump shows: remotes the client fires
+with their call sites, prompts, clicks and touches, tunable numbers in client
+code, tags and attributes, and the engine routes. `feature-ideas.md` turns it
+into suggestions that each cite a line, say what the dump cannot show, and
+never offer server-owned values.
+
+### Added — `roblox-reply-craft`, the nineteenth skill
+
+Faster replies (read less, write less, check once), code blocks that paste
+(one whole file per block, no line numbers, entities or blank-line runs),
+short file names, and replies without filler.
+
+### Changed
+
+- P0: the check list compiles with `check-registers`; the final script is
+  pasted whole in one block; over 150 locals in a function means tables.
+- The picker: a designer card in the header, a one-row picks bar on phones, an
+  answer box that shows every line.
+- Plugin 5.4.0 with nineteen skills and the designer.
+
+`check-all.mjs`: 24 gates.
+
 ## 5.3.0 — 2026-09-23
 
 More styles to point at, open and close picked separately, a whole-window hide

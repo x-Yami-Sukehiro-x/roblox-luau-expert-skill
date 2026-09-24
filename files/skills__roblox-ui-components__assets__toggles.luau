@@ -13,6 +13,7 @@ local THEME = {
 	accent = Color3.fromRGB(46, 160, 127),
 	accentDim = Color3.fromRGB(28, 88, 74),
 	focus = Color3.fromRGB(72, 201, 162),
+	keyBase = Color3.fromRGB(19, 21, 26),
 }
 
 local ICON = {
@@ -20,12 +21,24 @@ local ICON = {
 	cross = "rbxassetid://116396312853810",
 	eye = "rbxassetid://127234874352422",
 	eyeOff = "rbxassetid://85207295981701",
+	power = "rbxassetid://89331085993646",
+	feature = "rbxassetid://109718589733073",
 }
 
 local STATE_MOTION = TweenInfo.new(0.12, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)
 local NO_MOTION = TweenInfo.new(0)
+-- Plays forward then back, so the knob is wide only mid-travel.
+local STRETCH = TweenInfo.new(0.06, Enum.EasingStyle.Quad, Enum.EasingDirection.Out, 0, true)
 
-export type ToggleStyle = "T1" | "T2" | "T3" | "T4" | "T5" | "T6" | "T7" | "T8" | "T9" | "T10"
+type FirstTen = "T1" | "T2" | "T3" | "T4" | "T5" | "T6" | "T7" | "T8" | "T9" | "T10"
+type SecondTen = "T11" | "T12" | "T13" | "T14" | "T15" | "T16" | "T17" | "T18" | "T19" | "T20"
+export type ToggleStyle = FirstTen | SecondTen
+
+-- T19 reads `description`, T20 reads `icon`; the other styles ignore both.
+export type ToggleDetails = {
+	description: string?,
+	icon: string?,
+}
 
 export type Toggle = {
 	row: TextButton,
@@ -48,10 +61,22 @@ local function animate(instance: Instance, goals: { [string]: any })
 	TweenService:Create(instance, timing, goals):Play()
 end
 
-local function round(target: GuiObject, radius: UDim)
+local function round(target: GuiObject, radius: UDim): UICorner
 	local corner = Instance.new("UICorner")
 	corner.CornerRadius = radius
 	corner.Parent = target
+	return corner
+end
+
+local function newIcon(name: string, size: number, image: string): ImageLabel
+	local icon = Instance.new("ImageLabel")
+	icon.Name = name
+	icon.AnchorPoint = Vector2.new(0.5, 0.5)
+	icon.Position = UDim2.fromScale(0.5, 0.5)
+	icon.Size = UDim2.fromOffset(size, size)
+	icon.BackgroundTransparency = 1
+	icon.Image = image
+	return icon
 end
 
 local function newFrame(name: string, size: UDim2, colour: Color3): Frame
@@ -270,6 +295,256 @@ local function roundTickSkin(row: TextButton): (boolean) -> ()
 	end
 end
 
+-- T11: a thin rail with a knob that overhangs it, as on Android.
+local function railSkin(row: TextButton): (boolean) -> ()
+	local track = newFrame("Track", UDim2.fromOffset(36, 14), THEME.track)
+	track.LayoutOrder = 2
+	round(track, UDim.new(0.5, 0))
+	track.Parent = row
+
+	local knob = newFrame("Knob", UDim2.fromOffset(20, 20), THEME.knob)
+	knob.AnchorPoint = Vector2.new(0, 0.5)
+	round(knob, UDim.new(0.5, 0))
+	knob.Parent = track
+
+	return function(on: boolean)
+		animate(knob, {
+			Position = UDim2.new(0, if on then 19 else -3, 0.5, 0),
+			BackgroundColor3 = if on then THEME.accent else THEME.knob,
+		})
+		animate(track, { BackgroundColor3 = if on then THEME.accentDim else THEME.track })
+	end
+end
+
+-- T12: a hollow track; the outline and the knob take the accent together.
+local function outlineSkin(row: TextButton): (boolean) -> ()
+	local track = newFrame("Track", UDim2.fromOffset(44, 24), THEME.row)
+	track.LayoutOrder = 2
+	track.BackgroundTransparency = 1
+	round(track, UDim.new(0.5, 0))
+	track.Parent = row
+
+	local outline = Instance.new("UIStroke")
+	outline.Color = THEME.track
+	outline.Thickness = 2
+	outline.Parent = track
+
+	local knob = newFrame("Knob", UDim2.fromOffset(14, 14), THEME.textMuted)
+	knob.AnchorPoint = Vector2.new(0, 0.5)
+	round(knob, UDim.new(0.5, 0))
+	knob.Parent = track
+
+	return function(on: boolean)
+		animate(knob, {
+			Position = UDim2.new(0, if on then 25 else 5, 0.5, 0),
+			BackgroundColor3 = if on then THEME.accent else THEME.textMuted,
+		})
+		animate(outline, { Color = if on then THEME.accent else THEME.track })
+	end
+end
+
+-- T13: T1 at thumb size for touch-first screens.
+local function bigSwitchSkin(row: TextButton): (boolean) -> ()
+	local track = newFrame("Track", UDim2.fromOffset(56, 32), THEME.track)
+	track.LayoutOrder = 2
+	round(track, UDim.new(0.5, 0))
+	track.Parent = row
+
+	local knob = newFrame("Knob", UDim2.fromOffset(26, 26), THEME.knob)
+	knob.AnchorPoint = Vector2.new(0, 0.5)
+	round(knob, UDim.new(0.5, 0))
+	knob.Parent = track
+
+	return function(on: boolean)
+		animate(knob, { Position = UDim2.new(0, if on then 27 else 3, 0.5, 0) })
+		animate(track, { BackgroundColor3 = if on then THEME.accent else THEME.track })
+	end
+end
+
+-- T14: the whole row is a pill chip; a tick appears before the label when on.
+local function chipSkin(row: TextButton, rowCorner: UICorner): (boolean) -> ()
+	rowCorner.CornerRadius = UDim.new(0.5, 0)
+	local tick = newIcon("Tick", 16, ICON.check)
+	tick.LayoutOrder = 0
+	tick.ImageColor3 = THEME.focus
+	tick.Parent = row
+
+	return function(on: boolean)
+		tick.Visible = on
+	end
+end
+
+-- T15: a round power button, with the state spelled out beside it.
+local function powerSkin(row: TextButton): (boolean) -> ()
+	local word = Instance.new("TextLabel")
+	word.Name = "Status"
+	word.LayoutOrder = 2
+	word.AutomaticSize = Enum.AutomaticSize.X
+	word.Size = UDim2.fromScale(0, 1)
+	word.BackgroundTransparency = 1
+	word.FontFace = Font.fromEnum(Enum.Font.GothamBold)
+	word.TextSize = 12
+	word.Text = "OFF"
+	word.Parent = row
+
+	local button = newFrame("Power", UDim2.fromOffset(32, 32), THEME.track)
+	button.LayoutOrder = 3
+	round(button, UDim.new(0.5, 0))
+	button.Parent = row
+
+	local glyph = newIcon("Glyph", 16, ICON.power)
+	glyph.Parent = button
+
+	return function(on: boolean)
+		word.Text = if on then "ON" else "OFF"
+		animate(word, { TextColor3 = if on then THEME.focus else THEME.textMuted })
+		animate(button, { BackgroundColor3 = if on then THEME.accent else THEME.track })
+		animate(glyph, { ImageColor3 = if on then THEME.knob else THEME.textMuted })
+	end
+end
+
+-- T16: T1 whose knob stretches while it travels and is round again on arrival.
+local function stretchSkin(row: TextButton): (boolean) -> ()
+	local track = newFrame("Track", UDim2.fromOffset(44, 24), THEME.track)
+	track.LayoutOrder = 2
+	round(track, UDim.new(0.5, 0))
+	track.Parent = row
+
+	local knob = newFrame("Knob", UDim2.fromOffset(18, 18), THEME.knob)
+	knob.AnchorPoint = Vector2.new(0, 0.5)
+	round(knob, UDim.new(0.5, 0))
+	knob.Parent = track
+
+	return function(on: boolean)
+		animate(knob, { Position = UDim2.new(0, if on then 23 else 3, 0.5, 0) })
+		animate(track, { BackgroundColor3 = if on then THEME.accent else THEME.track })
+		if knob:IsDescendantOf(game) and not GuiService.ReducedMotionEnabled then
+			TweenService:Create(knob, STRETCH, { Size = UDim2.fromOffset(26, 18) }):Play()
+		end
+	end
+end
+
+-- T17: a tick and a cross live in the track; the knob covers the one not chosen.
+local function trackIconSkin(row: TextButton): (boolean) -> ()
+	local track = newFrame("Track", UDim2.fromOffset(56, 28), THEME.track)
+	track.LayoutOrder = 2
+	round(track, UDim.new(0.5, 0))
+	track.Parent = row
+
+	local yes = newIcon("Yes", 14, ICON.check)
+	yes.Position = UDim2.new(0, 14, 0.5, 0)
+	yes.Parent = track
+
+	local no = newIcon("No", 14, ICON.cross)
+	no.Position = UDim2.new(1, -14, 0.5, 0)
+	no.ImageColor3 = THEME.textMuted
+	no.Parent = track
+
+	local knob = newFrame("Knob", UDim2.fromOffset(22, 22), THEME.knob)
+	knob.AnchorPoint = Vector2.new(0, 0.5)
+	knob.ZIndex = 2
+	round(knob, UDim.new(0.5, 0))
+	knob.Parent = track
+
+	return function(on: boolean)
+		animate(knob, { Position = UDim2.new(0, if on then 31 else 3, 0.5, 0) })
+		animate(track, { BackgroundColor3 = if on then THEME.accent else THEME.track })
+		yes.ImageColor3 = if on then THEME.knob else THEME.textMuted
+	end
+end
+
+-- T18: a key that sinks onto its base and stays down while on.
+local function keySkin(row: TextButton): (boolean) -> ()
+	local key = newFrame("Key", UDim2.fromOffset(52, 36), THEME.row)
+	key.LayoutOrder = 2
+	key.BackgroundTransparency = 1
+	key.Parent = row
+
+	local base = newFrame("Base", UDim2.new(1, 0, 0, 32), THEME.keyBase)
+	base.Position = UDim2.fromOffset(0, 4)
+	base.ZIndex = 1
+	round(base, UDim.new(0, 6))
+	base.Parent = key
+
+	local cap = Instance.new("TextLabel")
+	cap.Name = "Cap"
+	cap.Size = UDim2.new(1, 0, 0, 32)
+	cap.BackgroundColor3 = THEME.rowHover
+	cap.BorderSizePixel = 0
+	cap.ZIndex = 2
+	cap.FontFace = Font.fromEnum(Enum.Font.GothamBold)
+	cap.TextSize = 12
+	cap.Text = "OFF"
+	round(cap, UDim.new(0, 6))
+	cap.Parent = key
+
+	return function(on: boolean)
+		cap.Text = if on then "ON" else "OFF"
+		animate(cap, {
+			Position = UDim2.fromOffset(0, if on then 3 else 0),
+			BackgroundColor3 = if on then THEME.accent else THEME.rowHover,
+			TextColor3 = if on then THEME.knob else THEME.textMuted,
+		})
+	end
+end
+
+-- T19: the label gains one short line underneath; the row grows to fit it.
+local function describedSkin(
+	row: TextButton,
+	label: TextLabel,
+	description: string
+): (boolean) -> ()
+	row.Size = UDim2.new(1, 0, 0, 56)
+
+	local column = newFrame("Labels", UDim2.fromScale(0, 1), THEME.row)
+	column.LayoutOrder = 1
+	column.BackgroundTransparency = 1
+	column.Parent = row
+
+	local grow = Instance.new("UIFlexItem")
+	grow.FlexMode = Enum.UIFlexMode.Fill
+	grow.Parent = column
+
+	local stack = Instance.new("UIListLayout")
+	stack.SortOrder = Enum.SortOrder.LayoutOrder
+	stack.VerticalAlignment = Enum.VerticalAlignment.Center
+	stack.Padding = UDim.new(0, 4)
+	stack.Parent = column
+
+	label.Size = UDim2.new(1, 0, 0, 16)
+	label.Parent = column
+
+	local detail = Instance.new("TextLabel")
+	detail.Name = "Description"
+	detail.LayoutOrder = 2
+	detail.Size = UDim2.new(1, 0, 0, 16)
+	detail.BackgroundTransparency = 1
+	detail.FontFace = Font.fromEnum(Enum.Font.Gotham)
+	detail.TextSize = 12
+	detail.TextColor3 = THEME.textMuted
+	detail.TextXAlignment = Enum.TextXAlignment.Left
+	detail.TextTruncate = Enum.TextTruncate.AtEnd
+	detail.Text = description
+	detail.Parent = column
+
+	return switchSkin(row, UDim.new(0.5, 0), UDim.new(0.5, 0))
+end
+
+-- T20: a feature icon leads the row and takes the accent while the switch is on.
+local function iconRowSkin(row: TextButton, image: string): (boolean) -> ()
+	local lead = newIcon("Lead", 20, image)
+	lead.AnchorPoint = Vector2.zero
+	lead.Position = UDim2.fromScale(0, 0)
+	lead.LayoutOrder = 0
+	lead.Parent = row
+
+	local paintSwitch = switchSkin(row, UDim.new(0.5, 0), UDim.new(0.5, 0))
+	return function(on: boolean)
+		animate(lead, { ImageColor3 = if on then THEME.accent else THEME.textMuted })
+		paintSwitch(on)
+	end
+end
+
 -- T4 shows both words; each half is its own button so pressing the half that is
 -- already selected leaves the value alone instead of flipping it.
 local function segmentSkin(
@@ -322,7 +597,8 @@ local function createToggle(
 	labelText: string,
 	style: ToggleStyle,
 	initial: boolean,
-	onChanged: (boolean) -> ()
+	onChanged: (boolean) -> (),
+	details: ToggleDetails?
 ): Toggle
 	local value = initial
 	local enabled = true
@@ -336,7 +612,7 @@ local function createToggle(
 	row.Size = UDim2.new(1, 0, 0, 44)
 	row.BackgroundColor3 = THEME.row
 	row.BorderSizePixel = 0
-	round(row, UDim.new(0, 6))
+	local rowCorner = round(row, UDim.new(0, 6))
 
 	local padding = Instance.new("UIPadding")
 	padding.PaddingLeft = UDim.new(0, 12)
@@ -370,7 +646,7 @@ local function createToggle(
 	local edge = Instance.new("UIStroke")
 	edge.Name = "Edge"
 	edge.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-	edge.Enabled = style == "T5"
+	edge.Enabled = style == "T5" or style == "T14"
 	edge.Parent = row
 
 	local focusRing = Instance.new("UIStroke")
@@ -381,11 +657,11 @@ local function createToggle(
 	focusRing.Enabled = false
 	focusRing.Parent = row
 
-	-- T5 is the only style whose whole row is the "on" signal, so its lit
-	-- colour outranks hover; the other styles leave the row neutral.
+	-- T5 and T14 light the whole row as the "on" signal, so their lit colour
+	-- outranks hover; the other styles leave the row neutral.
 	local function paintRow()
 		label.TextColor3 = if enabled then THEME.text else THEME.textMuted
-		local lit = style == "T5" and value
+		local lit = (style == "T5" or style == "T14") and value
 		local surface = if lit then THEME.accentDim
 			elseif pressed then THEME.row
 			elseif hovered then THEME.rowHover
@@ -455,8 +731,32 @@ local function createToggle(
 		paintValue = wordSwitchSkin(row)
 	elseif style == "T9" then
 		paintValue = statusDotSkin(row)
-	else
+	elseif style == "T10" then
 		paintValue = roundTickSkin(row)
+	end
+
+	if style == "T11" then
+		paintValue = railSkin(row)
+	elseif style == "T12" then
+		paintValue = outlineSkin(row)
+	elseif style == "T13" then
+		paintValue = bigSwitchSkin(row)
+	elseif style == "T14" then
+		paintValue = chipSkin(row, rowCorner)
+	elseif style == "T15" then
+		paintValue = powerSkin(row)
+	elseif style == "T16" then
+		paintValue = stretchSkin(row)
+	elseif style == "T17" then
+		paintValue = trackIconSkin(row)
+	elseif style == "T18" then
+		paintValue = keySkin(row)
+	elseif style == "T19" then
+		local description = if details and details.description then details.description else ""
+		paintValue = describedSkin(row, label, description)
+	elseif style == "T20" then
+		local image = if details and details.icon then details.icon else ICON.feature
+		paintValue = iconRowSkin(row, image)
 	end
 
 	if style ~= "T4" then

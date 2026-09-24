@@ -9,7 +9,7 @@ For new or redesigned UI with unresolved motion preferences, use
 `roblox-request-intake/references/visual-choices.md`: show the interactive guide
 and ask in everyday words. Match an existing choice instead of asking again.
 The preference chooses the visible effect; this skill chooses implementation,
-interruption handling and reduced-motion behavior. Each menu code M0–M6 has a
+interruption handling and reduced-motion behavior. Each menu code M0–M24 has a
 tested presenter in `../roblox-ui-components/assets/menus.luau`, specified in
 `../roblox-ui-components/references/style-recipes.md`.
 

@@ -4,6 +4,7 @@
     python tools/py/dump_index.py <dump> --feature "auto farm"
     python tools/py/dump_index.py <dump> --feature "speed" --terms stamina,dash
     python tools/py/dump_index.py <dump> --feature "fly" --json
+    python tools/py/dump_index.py <dump> --inventory
 
 A dump is any mix of .lua, .luau and .txt files, a folder of them, or a
 saveinstance .rbxlx / .rbxmx (script sources are read out of the XML).
@@ -24,7 +25,13 @@ Fly, noclip, speed, jump, ESP, teleport and aim are engine routes: they are buil
 on the player's own character or camera, so their absence from the dump is
 expected and the output names the engine members to build on instead.
 
-Exit 0 FOUND or --summary, 3 PARTIAL, 4 NOT FOUND, 2 nothing readable.
+Inventory mode answers "what could a script for this game do?". It lists only
+what the dump shows: the remotes the client already fires and where, the
+prompts, clicks and touches it listens to, the tunable numbers in client code,
+the tags and attributes it reads, and the engine features that need no game
+code. Every suggestion made from it cites a line it printed.
+
+Exit 0 FOUND, --summary or --inventory, 3 PARTIAL, 4 NOT FOUND, 2 nothing readable.
 """
 
 import json
@@ -123,6 +130,17 @@ LABEL = re.compile(r"\.(?:Text|Name|PlaceholderText|Title)\s*=\s*[\"']([^\"']+)[
 MECHANISM = re.compile(r"\.(Touched|Triggered|MouseClick|Activated|Heartbeat|RenderStepped|Stepped|PreRender|CharacterAdded|ChildAdded)\b")
 TOKEN = re.compile(r"[A-Za-z_][A-Za-z0-9_]*")
 ASSIGNMENT = re.compile(r"^\s*(?:local\s+)?([A-Za-z_]\w*)\s*=\s*(.+)$")
+TUNABLE = re.compile(
+    r"\b([A-Za-z_]\w*?(?:Cooldown|Delay|Speed|Range|Damage|Radius|Distance|Duration|Interval|Multiplier|Chance|Reach|Rate))"
+    r"\s*=\s*(-?\d+(?:\.\d+)?)\b", re.IGNORECASE)
+
+# Path words that name where a remote lives, not what it does.
+REMOTE_NOISE = {
+    "game", "workspace", "script", "parent", "replicatedstorage", "getservice", "waitforchild",
+    "findfirstchild", "remotes", "remote", "events", "event", "network", "networking", "remoteevent",
+    "remotefunction", "functions", "shared", "modules", "packages", "net", "comm", "fireserver",
+    "invokeserver",
+}
 
 
 def read(path):
@@ -207,7 +225,7 @@ def index_unit(label, text):
     info = {
         "label": label, "lines": len(lines), "failed": 0, "remotes": [], "listeners": [],
         "children": [], "functions": [], "attributes": [], "tags": [], "requires": [],
-        "labels": [], "mechanisms": [], "strings": [], "aliases": {},
+        "labels": [], "mechanisms": [], "strings": [], "tunables": [], "aliases": {},
     }
     for number, line in enumerate(lines, 1):
         if FAILED_REGION.search(line):
@@ -241,6 +259,8 @@ def index_unit(label, text):
             info["labels"].append({"line": number, "text": match.group(1)})
         for match in MECHANISM.finditer(line):
             info["mechanisms"].append({"line": number, "event": match.group(1)})
+        for match in TUNABLE.finditer(line):
+            info["tunables"].append({"line": number, "name": match.group(1), "value": match.group(2)})
         for match in STRING.finditer(line):
             value = match.group(1) if match.group(1) is not None else match.group(2)
             if value and len(value) <= 80:
@@ -380,6 +400,99 @@ def summary(indexed):
             print("\n%s: %s" % (title, ", ".join(names[:60])))
 
 
+def remote_name(call):
+    """The last meaningful name on the path to a remote: `Remotes:WaitForChild("ClaimReward")`
+    is ClaimReward. Decompiler labels such as v14 name nothing."""
+    for text in (call["source"], call["receiver"]):
+        names = [t for t in TOKEN.findall(text)
+                 if t.lower() not in REMOTE_NOISE and not re.fullmatch(r"[vupla]\d+", t)]
+        if names:
+            return names[-1]
+    return call["receiver"]
+
+
+def words_of(name):
+    return " ".join(part.lower() for part in re.findall(r"[A-Z]?[a-z]+|[A-Z]+(?![a-z])|\d+", name))
+
+
+INTERACTIONS = {
+    "Triggered": "a ProximityPrompt: fireproximityprompt, if the executor has it",
+    "MouseClick": "a ClickDetector: fireclickdetector, if the executor has it",
+    "Touched": "a touch part: firetouchinterest, if the executor has it",
+}
+
+
+def inventory(indexed, as_json):
+    actions = {}
+    for info in indexed:
+        for call in info["remotes"]:
+            name = remote_name(call)
+            entry = actions.setdefault(name, {"remote": name, "idea": words_of(name), "calls": []})
+            entry["calls"].append({
+                "script": info["label"], "line": call["line"], "method": call["method"],
+                "function": enclosing_function(info["functions"], call["line"]),
+                "args": call["args"], "count": call["count"], "source": call["source"],
+            })
+    interactions = [
+        {"script": i["label"], "line": m["line"], "event": m["event"], "route": INTERACTIONS[m["event"]],
+         "function": enclosing_function(i["functions"], m["line"])}
+        for i in indexed for m in i["mechanisms"] if m["event"] in INTERACTIONS
+    ]
+    tunables = [
+        {"script": i["label"], "line": t["line"], "name": t["name"], "value": t["value"],
+         "function": enclosing_function(i["functions"], t["line"])}
+        for i in indexed for t in i["tunables"]
+    ]
+    tags = sorted({e["name"] for i in indexed for e in i["tags"]})
+    attributes = sorted({e["name"] for i in indexed for e in i["attributes"]})
+    failed = sum(i["failed"] for i in indexed)
+    engine = sorted({route for route in ENGINE_ROUTE.values()})
+
+    if as_json:
+        print(json.dumps({"actions": list(actions.values()), "interactions": interactions,
+                          "tunables": tunables, "tags": tags, "attributes": attributes,
+                          "engine_routes": engine, "failed_markers": failed}, indent=1))
+        return 0
+
+    print("inventory of %d script(s); failed-to-decompile markers: %d" % (len(indexed), failed))
+    print("\n1. Actions the client already sends (remote call sites). Feasible to repeat or")
+    print("   automate by calling them as these lines do; the server decides whether it counts.")
+    for entry in sorted(actions.values(), key=lambda e: (-len(e["calls"]), e["remote"])):
+        print("  %s  (%s)" % (entry["remote"], entry["idea"] or "unnamed"))
+        for call in entry["calls"][:4]:
+            count = call["count"] if call["count"] is not None else "?"
+            print("    %s:%d  in %s  %s(%s)  %s arg(s)" % (call["script"], call["line"], call["function"],
+                                                         call["method"], ", ".join(call["args"])[:90], count))
+        if len(entry["calls"]) > 4:
+            print("    ... %d more call site(s)" % (len(entry["calls"]) - 4))
+    if not actions:
+        print("  none: this dump fires no remotes from client code")
+    print("\n2. Interactions the game listens for (auto-interact candidates).")
+    for entry in interactions[:30]:
+        print("  %s:%d  in %s  .%s  -> %s" % (entry["script"], entry["line"], entry["function"],
+                                             entry["event"], entry["route"]))
+    if not interactions:
+        print("  none found")
+    print("\n3. Numbers in client code. Changing one changes only this client's copy; if the")
+    print("   server checks the same rule, the change does nothing or gets noticed.")
+    for entry in tunables[:40]:
+        print("  %s:%d  in %s  %s = %s" % (entry["script"], entry["line"], entry["function"],
+                                           entry["name"], entry["value"]))
+    if not tunables:
+        print("  none found")
+    print("\n4. Tags and attributes the client reads (ESP, collect and teleport targets).")
+    print("  tags: %s" % (", ".join(tags[:40]) or "none"))
+    print("  attributes: %s" % (", ".join(attributes[:40]) or "none"))
+    print("\n5. Engine features that need no game code:")
+    for route in engine:
+        print("  " + route)
+    print("\nnext: suggest only what these sections show, cite each file:line, and say for each")
+    print("      what the dump cannot show: whether the server accepts it.")
+    if failed:
+        print("      %d region(s) failed to decompile; features there are unknown, not absent." % failed)
+    return 0
+
+
 def main(argv):
     args = argv[1:]
     as_json = "--json" in args
@@ -388,6 +501,7 @@ def main(argv):
         print(__doc__)
         return 2
     target = args[0]
+    wants_inventory = "--inventory" in args
     feature = None
     extra = []
     if "--feature" in args:
@@ -401,6 +515,9 @@ def main(argv):
         return 2
     indexed = [index_unit(label, text) for label, text in units]
     failed = sum(i["failed"] for i in indexed)
+
+    if wants_inventory:
+        return inventory(indexed, as_json)
 
     if feature is None:
         if as_json:

@@ -1,6 +1,6 @@
 ---
 name: roblox-ui-components
-description: Building individual Roblox UI components properly — toast and notification systems with queueing, stacking and reflow; outlines with UIStroke BorderStrokePosition and layered strokes; 9-slice panels and shadows; dividers and separation without lines; interaction states (rest, hover, press, focus, disabled, selected) plus loading; native UIShadow and an elevation scale; draggable and resizable windows with UIDragDetector; ScrollingFrame configuration and virtualised long lists; a catalog covering buttons, toggles, sliders, dropdowns, modals, tooltips, tabs, progress and text input; and tested recipes for every style-picker code (T1–T6 toggles, M0–M6 menu motion, N1–N6 notifications, P1–P3 press feel, S1–S3 tabs). Use when building or reviewing any specific UI control, notification, popup or panel, or when the user picked a style code.
+description: Building individual Roblox UI components properly — toast and notification systems with queueing, stacking and reflow; outlines with UIStroke BorderStrokePosition and layered strokes; 9-slice panels and shadows; dividers and separation without lines; interaction states (rest, hover, press, focus, disabled, selected) plus loading; native UIShadow and an elevation scale; draggable and resizable windows with UIDragDetector; ScrollingFrame configuration and virtualised long lists; a catalog covering buttons, toggles, sliders, dropdowns, modals, tooltips, tabs, progress and text input; tested recipes for every style-picker code (T1–T20 toggles, C1–C10 checkboxes, D1–D12 dropdowns including search fields, M0–M24 menu motion, N1–N20 notifications, O1–O12 hide and bring back, P1–P12 button feel, S1–S12 tabs); and which Lucide icon means what, with 1,559 verified Roblox ids. Use when building or reviewing any specific UI control, notification, popup or panel, or when the user picked a style code.
 ---
 
 # UI components
@@ -13,6 +13,7 @@ and the details that make them feel built rather than assembled.
 | **a user picked a code such as T2, M4 or N4** | `references/style-recipes.md` |
 | notifications, toasts, popups | `references/toasts.md` |
 | icons, lucide asset ids, `getcustomasset`, drawing a glyph without one | `references/icons.md` |
+| which icon means Combat, Visuals, Shop, Teleports; icon ids for 1,559 Lucide icons | `references/icon-meaning.md`, `references/icon-ids.txt` |
 | borders, strokes, shadows, dividers, separation | `references/outlines-and-dividers.md` |
 | hover / press / focus / disabled / selected / loading | `references/component-states.md` |
 | button, toggle, slider, dropdown, modal, tooltip, tabs, progress, input | `references/catalog.md` |

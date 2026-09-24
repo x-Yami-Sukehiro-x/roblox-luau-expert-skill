@@ -1,6 +1,6 @@
 ---
 name: roblox-ui
-description: Roblox UI layout, responsiveness and design taste — recognising and removing generic AI-generated UI, ScreenGui and GuiObject layout, scale versus offset, UIListLayout with Wraps and flex alignment, UIFlexItem, StyleSheet cascade, safe areas and the GUI inset, design tokens for re-skinnable UI, config persistence for feature-heavy menus, viewport and DPI scaling with UIScale, typography and rich text, gradients including radial and conical, input across mouse, touch, gamepad and console, and the three surfaces (game HUD, executor hub, Studio plugin). Use for building or reviewing any GUI, menu, HUD, hub or script UI, when UI breaks on mobile, or when a design "looks AI-generated".
+description: Roblox UI layout, responsiveness and design taste — recognising and removing generic AI-generated UI, ScreenGui and GuiObject layout, scale versus offset, UIListLayout with Wraps and flex alignment, UIFlexItem, StyleSheet cascade, safe areas and the GUI inset, design tokens for re-skinnable UI, config persistence for feature-heavy menus, viewport and DPI scaling with UIScale, typography and rich text, gradients including radial and conical, input across mouse, touch, gamepad and console, the three surfaces (game HUD, executor hub, Studio plugin), whole-screen defaults (shop, hub, settings, HUD, inventory), sizes and tab layouts, blurry or broken UI, rebuilding a UI from a screenshot, building from a UI designer export, and short UI copy. Use for building, reviewing or improving any GUI, menu, HUD, hub or script UI, when UI breaks on mobile or looks blurry, when the user sends a UI picture or a roblox-ui-design export, or when a design "looks AI-generated".
 ---
 
 # Roblox UI
@@ -36,6 +36,13 @@ This skill owns **layout, responsiveness and taste**. Two siblings own the rest:
 | UI too big or too small on a device, `UIScale`, insets, notches | `references/scaling-and-dpi.md` |
 | gradients, radial and conical, depth, blur behind a modal | `references/gradients-and-depth.md` |
 | mouse vs touch vs gamepad vs console, focus, gestures | `references/input-surfaces.md` |
+| **a whole screen from a one-line request** — shop, hub, settings, HUD, inventory | `references/screen-archetypes.md` |
+| sizes, tab layout (top, side, bottom), improving an existing UI | `references/layout-ux.md` |
+| blurry icons or panels, cut-off dropdowns, "it's bugged" | `references/crisp-ui.md` |
+| the user sent a picture of a UI to recreate | `references/image-to-ui.md` |
+| labels, row descriptions, subtitles, button text, empty states | `references/ui-copy.md` |
+| a pasted `roblox-ui-design` export from the UI designer | `references/design-spec.md` |
+| which icon fits a tab or feature | `../roblox-ui-components/references/icon-meaning.md` |
 
 ## The four files that decide the outcome
 
