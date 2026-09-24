@@ -46,7 +46,8 @@ const ALIAS_WORDS =
   /\b(alias|aliases|same (event|point|thing|frame)|renamed|new name|supersed\w*|current names?|two names|identical)\b/i;
 
 const ISO_DATE = /\b20\d{2}-\d{2}-\d{2}\b/;
-const STAR_FIGURE = /(?:★|⭐|\bstars?\b)/i;
+// A count beside the star: "12k stars", "★ 4,100". "Star rating (C17)" is not one.
+const STAR_FIGURE = /\d[\d,.]*\s*[km]?\+?\s*(?:★|⭐|\bstars?\b)|(?:★|⭐|\bstars?\b):?\s*\d/i;
 
 function loadAllowlist() {
   const allow = new Map();
@@ -283,7 +284,7 @@ function lintFile(path, dump, allow, findings) {
   // ---- Undated popularity figures -----------------------------------------
   if (!fileHasDate) {
     for (const [i, line] of lines.entries()) {
-      if (STAR_FIGURE.test(line) && /\d/.test(line)) {
+      if (STAR_FIGURE.test(line)) {
         findings.push({
           code: "W-UNDATED",
           file: rel,

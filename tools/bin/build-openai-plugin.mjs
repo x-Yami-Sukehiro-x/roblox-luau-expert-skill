@@ -114,8 +114,10 @@ function main() {
           shortDescription: "Roblox scripts, clean UI and executor work, checked rather than guessed",
           longDescription:
             "Twenty-one Roblox skills in one plugin. UI requests start from a playable style picker with " +
-            "labeled toggles, checkboxes, dropdowns, menu animations and notifications, and every picked " +
-            "code has a tested recipe; a drag-and-drop UI designer copies whole screens for exact rebuilds. Decompiled source is searched for the requested feature; when it is missing, a " +
+            "labeled toggles, checkboxes, dropdowns, menu animations, notifications and tooltips, and every " +
+            "picked code has a tested recipe; a drag-and-drop UI designer copies whole screens for exact " +
+            "rebuilds. Fly, noclip, ESP and other character features ship as tested scripts. Decompiled " +
+            "source is searched for the requested feature; when it is missing, a " +
             "read-only runtime probe collects the evidence instead of guessed names. Every " +
             "Roblox API is checked against a vendored API dump, and bundled Python checkers count the " +
             "anti-slop and UI rules on the final file.",

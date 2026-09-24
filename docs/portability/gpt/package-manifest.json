@@ -1,6 +1,6 @@
 {
   "format": 1,
-  "archiveSha256": "e3eb39db96a651f790f549fa864a2784c3fbd474df49a8199727efe1cf8e6d14",
+  "archiveSha256": "25604b737898e1ef894f3d729397253439eaae526bda42e29d2fc1a40e9eb992",
   "files": [
     {
       "path": ".claude/skills/roblox-architecture/SKILL.md",
@@ -769,13 +769,13 @@
     },
     {
       "path": "README.md",
-      "bytes": 18953,
-      "sha256": "be38791dc676cbbf1e9f7cc4ecdb1b07bce6b1c27101f59348c3d865008bcd93"
+      "bytes": 19322,
+      "sha256": "43d81519f4c00c6360415b0618d95b681851898890571e527125e6505d135352"
     },
     {
       "path": "docs/CHANGELOG.md",
-      "bytes": 69133,
-      "sha256": "bac01b9ac7038d9cde255d23a6726c7440e7b73037124796f5a7cf8ba7a795cc"
+      "bytes": 72957,
+      "sha256": "c01137ddf15d97a5a686f7916afbc6dceb826933b8b499f0e0a93f4cacb27e9d"
     },
     {
       "path": "docs/SOURCES.md",
@@ -999,8 +999,8 @@
     },
     {
       "path": "evals/triggers.md",
-      "bytes": 30786,
-      "sha256": "2be9737e08b66d158f953eb5916802469cc378fa290f3457867b00319fdedc20"
+      "bytes": 32467,
+      "sha256": "57b1268ab325625af8b1f3b19a5ea51573a587e925d31f8d564c0b7674400c42"
     },
     {
       "path": "evals/ui-behavior.md",
@@ -1464,8 +1464,8 @@
     },
     {
       "path": "tools/bin/build-openai-plugin.mjs",
-      "bytes": 6570,
-      "sha256": "d288a443d602d997dfe7de19d00a94d030ca675394e28567c8d682ef41b2cd4b"
+      "bytes": 6684,
+      "sha256": "29e7777749907f1051085d08da2571db39b788bf060213b5738e221b7e5a05b5"
     },
     {
       "path": "tools/bin/build-plugin-branch.mjs",
@@ -1621,6 +1621,11 @@
       "path": "tools/bin/verify-executor-api.mjs",
       "bytes": 10909,
       "sha256": "e2ee1a7c9b9d2fa0d4f12353ef6379f9563cd12b17e065564d9dd6698595069d"
+    },
+    {
+      "path": "tools/bin/web-plugin-update.mjs",
+      "bytes": 2376,
+      "sha256": "233485d1de674893b64802ec62ee3ad34e057719eecba984e14b120528d6d5f5"
     },
     {
       "path": "tools/lint-allow.txt",
