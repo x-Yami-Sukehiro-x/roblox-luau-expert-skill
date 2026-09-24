@@ -133,7 +133,6 @@ function analyse(rawSource, rel) {
   }
 
   const created = new Set(elements.map((e) => e.class));
-  const buildsScreenGui = elements.some((e) => LAYER_COLLECTORS.has(e.class));
 
   const buttons = elements.filter(
     (e) => /^(TextButton|ImageButton)$/.test(e.class) && !(e.variable && ABSORBER_NAMES.test(e.variable))
@@ -258,8 +257,10 @@ function analyse(rawSource, rel) {
   }
 
   // --- responsiveness -----------------------------------------------------
-  if (buildsScreenGui) {
-    const root = elements.find((e) => LAYER_COLLECTORS.has(e.class));
+  // A BillboardGui or SurfaceGui is sized in the world, not on the screen, and
+  // has no ScreenInsets, so these rules belong to the ScreenGui alone.
+  const root = elements.find((e) => e.class === "ScreenGui");
+  if (root) {
     if (!created.has("UISizeConstraint") && !created.has("UIAspectRatioConstraint")) {
       add("E-UNBOUNDED", root.line, "a screen with no UISizeConstraint - absurd on ultrawide, unusable on a phone (build-order.md step 3)");
     }

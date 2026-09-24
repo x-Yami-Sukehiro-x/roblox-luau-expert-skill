@@ -150,6 +150,7 @@ varies per executor and per update.
 | which icon for a tab or feature | `roblox-ui-components/references/icon-meaning.md` |
 | animating UI, tweens, springs, janky motion | `roblox-ui-motion` |
 | toast, notification, popup, button, slider, modal, divider, outline | `roblox-ui-components` |
+| tooltip, hover text, slider number, hint under a field, "why is it locked", H codes | `roblox-ui-tooltips` |
 | icons, lucide, `rbxassetid`, an icon renders blank, `getcustomasset` | `roblox-ui-components/references/icons.md` |
 | "the close button / title is positioned wrong" | `roblox-ui/references/blueprints.md` B1a |
 | "the notification does not match my UI" | `roblox-ui-components/references/shadows-and-elevation.md` |
@@ -169,7 +170,8 @@ varies per executor and per update.
 | "too many comments", "stop over-explaining", obvious comments | `roblox-code-craft` → `roblox-code-craft/references/anti-slop-code.md` |
 | "the formatting is clustered", breaks on lines that do not need them | `roblox-code-craft` → `roblox-code-craft/references/formatting.md` |
 | a draft buried in capability checks, `pcall`s and prose errors | `roblox-code-craft` → `roblox-code-craft/references/anti-slop-code.md` |
-| executor, sUNC, `hookfunction`, `getgc`, ESP, script hub | `roblox-executor` |
+| executor, sUNC, `hookfunction`, `getgc`, script hub | `roblox-executor` |
+| fly, noclip, speed, infinite jump, ESP, click teleport, anti-AFK, fullbright | `roblox-executor-features` (tested assets) |
 | "it resets when I change it" (client-side) | `roblox-executor` → `roblox-executor/references/technique/value-persistence.md` |
 | "where is this game's anti-cheat" | `roblox-executor` → `roblox-executor/references/recon/anticheat-recon.md` |
 | user pasted decompiled source, a dump, or the game's scripts | `roblox-executor` → `roblox-executor/references/technique/decompiled-source.md` |

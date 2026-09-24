@@ -65,7 +65,8 @@ Ten tested looks, C1–C10, are in `../assets/checkboxes.luau`.
 
 ## Slider
 
-The fiddliest control to get right on touch.
+The fiddliest control to get right on touch. Its number is H3, H4 or H5
+(`../../roblox-ui-tooltips/references/slider-values.md`).
 
 ```lua
 -- drag maths: convert absolute mouse X to a 0-1 alpha along the track
@@ -131,6 +132,9 @@ centred box with two identical buttons.
 - Position with edge detection: flip to the other side when it would leave the screen.
   Compare against `workspace.CurrentCamera.ViewportSize`.
 - Never interactive. If it needs a button, it is a popover.
+- Tested styles H1–H12 (hover, arrow bubble, info button, locked reason,
+  helper line, coach mark and slider values) are in `../assets/tooltips.luau`;
+  choosing between them is `../../roblox-ui-tooltips/SKILL.md`.
 
 ---
 

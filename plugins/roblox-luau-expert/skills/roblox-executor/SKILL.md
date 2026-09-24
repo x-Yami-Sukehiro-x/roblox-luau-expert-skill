@@ -51,6 +51,7 @@ next game update.
 
 | Symptom | Load |
 |---|---|
+| fly, noclip, speed, infinite jump, ESP, click teleport, anti-AFK, fullbright | `../roblox-executor-features/SKILL.md`: tested assets, paste whole |
 | **the user pasted decompiled source or a dump** | `references/technique/feature-search.md`, `references/technique/decompiled-source.md`, then `references/technique/source-to-api.md` |
 | the dump does not contain the requested feature | `references/technique/feature-search.md` → `assets/runtime-probe.luau` |
 | "find the code for X in this dump", "where is the sell remote" | `references/technique/feature-search.md` |

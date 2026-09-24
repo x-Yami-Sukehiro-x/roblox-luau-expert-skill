@@ -1,12 +1,12 @@
 {
   "repository": "x-Yami-Sukehiro-x/roblox-luau-expert-skill",
-  "source": "c57a84a1e2d3979461685430f9da66824cf17757",
-  "version": "5.4.0+gc57a84a",
+  "source": "49d3e71a1d1edc393d0d967bf31e0456be912401",
+  "version": "5.5.0+g49d3e71",
   "files": [
     {
       "name": "AGENTS.md",
       "path": "AGENTS.md",
-      "bytes": 27569
+      "bytes": 27674
     },
     {
       "name": "docs__CHANGELOG.md",
@@ -154,9 +154,19 @@
       "bytes": 7669
     },
     {
+      "name": "library__tests__recipes__anti-afk.luau",
+      "path": "library/tests/recipes/anti-afk.luau",
+      "bytes": 917
+    },
+    {
       "name": "library__tests__recipes__checkboxes.luau",
       "path": "library/tests/recipes/checkboxes.luau",
       "bytes": 9136
+    },
+    {
+      "name": "library__tests__recipes__click-teleport.luau",
+      "path": "library/tests/recipes/click-teleport.luau",
+      "bytes": 2061
     },
     {
       "name": "library__tests__recipes__dropdowns.luau",
@@ -164,9 +174,34 @@
       "bytes": 17583
     },
     {
+      "name": "library__tests__recipes__esp.luau",
+      "path": "library/tests/recipes/esp.luau",
+      "bytes": 3492
+    },
+    {
+      "name": "library__tests__recipes__fly.luau",
+      "path": "library/tests/recipes/fly.luau",
+      "bytes": 4050
+    },
+    {
+      "name": "library__tests__recipes__fullbright.luau",
+      "path": "library/tests/recipes/fullbright.luau",
+      "bytes": 1557
+    },
+    {
+      "name": "library__tests__recipes__infinite-jump.luau",
+      "path": "library/tests/recipes/infinite-jump.luau",
+      "bytes": 1702
+    },
+    {
       "name": "library__tests__recipes__menus.luau",
       "path": "library/tests/recipes/menus.luau",
       "bytes": 11466
+    },
+    {
+      "name": "library__tests__recipes__noclip.luau",
+      "path": "library/tests/recipes/noclip.luau",
+      "bytes": 1887
     },
     {
       "name": "library__tests__recipes__notices.luau",
@@ -182,6 +217,11 @@
       "name": "library__tests__recipes__runtime-probe.luau",
       "path": "library/tests/recipes/runtime-probe.luau",
       "bytes": 5119
+    },
+    {
+      "name": "library__tests__recipes__speed.luau",
+      "path": "library/tests/recipes/speed.luau",
+      "bytes": 1982
     },
     {
       "name": "library__tests__recipes__toasts.luau",
@@ -206,7 +246,7 @@
     {
       "name": "library__tests__stubs.luau",
       "path": "library/tests/stubs.luau",
-      "bytes": 11354
+      "bytes": 19533
     },
     {
       "name": "skills__roblox-architecture__SKILL.md",
@@ -294,9 +334,64 @@
       "bytes": 8452
     },
     {
+      "name": "skills__roblox-executor-features__SKILL.md",
+      "path": "skills/roblox-executor-features/SKILL.md",
+      "bytes": 4398
+    },
+    {
+      "name": "skills__roblox-executor-features__assets__anti-afk.luau",
+      "path": "skills/roblox-executor-features/assets/anti-afk.luau",
+      "bytes": 828
+    },
+    {
+      "name": "skills__roblox-executor-features__assets__click-teleport.luau",
+      "path": "skills/roblox-executor-features/assets/click-teleport.luau",
+      "bytes": 2382
+    },
+    {
+      "name": "skills__roblox-executor-features__assets__esp.luau",
+      "path": "skills/roblox-executor-features/assets/esp.luau",
+      "bytes": 4456
+    },
+    {
+      "name": "skills__roblox-executor-features__assets__fly.luau",
+      "path": "skills/roblox-executor-features/assets/fly.luau",
+      "bytes": 3980
+    },
+    {
+      "name": "skills__roblox-executor-features__assets__fullbright.luau",
+      "path": "skills/roblox-executor-features/assets/fullbright.luau",
+      "bytes": 1796
+    },
+    {
+      "name": "skills__roblox-executor-features__assets__infinite-jump.luau",
+      "path": "skills/roblox-executor-features/assets/infinite-jump.luau",
+      "bytes": 1551
+    },
+    {
+      "name": "skills__roblox-executor-features__assets__noclip.luau",
+      "path": "skills/roblox-executor-features/assets/noclip.luau",
+      "bytes": 1842
+    },
+    {
+      "name": "skills__roblox-executor-features__assets__speed.luau",
+      "path": "skills/roblox-executor-features/assets/speed.luau",
+      "bytes": 2807
+    },
+    {
+      "name": "skills__roblox-executor-features__references__feature-catalog.md",
+      "path": "skills/roblox-executor-features/references/feature-catalog.md",
+      "bytes": 4313
+    },
+    {
+      "name": "skills__roblox-executor-features__references__feature-quality.md",
+      "path": "skills/roblox-executor-features/references/feature-quality.md",
+      "bytes": 3051
+    },
+    {
       "name": "skills__roblox-executor__SKILL.md",
       "path": "skills/roblox-executor/SKILL.md",
-      "bytes": 12027
+      "bytes": 12177
     },
     {
       "name": "skills__roblox-executor__assets__runtime-probe.luau",
@@ -416,7 +511,7 @@
     {
       "name": "skills__roblox-executor__references__templates__script-templates.md",
       "path": "skills/roblox-executor/references/templates/script-templates.md",
-      "bytes": 7092
+      "bytes": 7248
     },
     {
       "name": "skills__roblox-executor__references__ui__ui-libraries.md",
@@ -436,7 +531,7 @@
     {
       "name": "skills__roblox-luau-expert__SKILL.md",
       "path": "skills/roblox-luau-expert/SKILL.md",
-      "bytes": 19460
+      "bytes": 19692
     },
     {
       "name": "skills__roblox-luau-expert__references__common-mistakes.md",
@@ -551,7 +646,7 @@
     {
       "name": "skills__roblox-reply-craft__SKILL.md",
       "path": "skills/roblox-reply-craft/SKILL.md",
-      "bytes": 3108
+      "bytes": 3315
     },
     {
       "name": "skills__roblox-reply-craft__references__code-output.md",
@@ -559,9 +654,14 @@
       "bytes": 3091
     },
     {
+      "name": "skills__roblox-reply-craft__references__fast-path.md",
+      "path": "skills/roblox-reply-craft/references/fast-path.md",
+      "bytes": 2582
+    },
+    {
       "name": "skills__roblox-reply-craft__references__fast-replies.md",
       "path": "skills/roblox-reply-craft/references/fast-replies.md",
-      "bytes": 2846
+      "bytes": 3026
     },
     {
       "name": "skills__roblox-reply-craft__references__file-names.md",
@@ -596,7 +696,7 @@
     {
       "name": "skills__roblox-request-intake__references__ui-words.md",
       "path": "skills/roblox-request-intake/references/ui-words.md",
-      "bytes": 4814
+      "bytes": 4824
     },
     {
       "name": "skills__roblox-request-intake__references__vague-to-spec.md",
@@ -606,7 +706,7 @@
     {
       "name": "skills__roblox-request-intake__references__visual-choices.md",
       "path": "skills/roblox-request-intake/references/visual-choices.md",
-      "bytes": 9651
+      "bytes": 13198
     },
     {
       "name": "skills__roblox-toolchain__SKILL.md",
@@ -621,7 +721,7 @@
     {
       "name": "skills__roblox-ui-components__SKILL.md",
       "path": "skills/roblox-ui-components/SKILL.md",
-      "bytes": 6436
+      "bytes": 6473
     },
     {
       "name": "skills__roblox-ui-components__assets__announcements.luau",
@@ -676,7 +776,7 @@
     {
       "name": "skills__roblox-ui-components__references__catalog.md",
       "path": "skills/roblox-ui-components/references/catalog.md",
-      "bytes": 9628
+      "bytes": 9931
     },
     {
       "name": "skills__roblox-ui-components__references__component-states.md",
@@ -711,7 +811,7 @@
     {
       "name": "skills__roblox-ui-components__references__style-recipes.md",
       "path": "skills/roblox-ui-components/references/style-recipes.md",
-      "bytes": 21244
+      "bytes": 33707
     },
     {
       "name": "skills__roblox-ui-components__references__toasts.md",
@@ -742,6 +842,21 @@
       "name": "skills__roblox-ui-motion__references__springs-and-smoothdamp.md",
       "path": "skills/roblox-ui-motion/references/springs-and-smoothdamp.md",
       "bytes": 5520
+    },
+    {
+      "name": "skills__roblox-ui-tooltips__SKILL.md",
+      "path": "skills/roblox-ui-tooltips/SKILL.md",
+      "bytes": 4770
+    },
+    {
+      "name": "skills__roblox-ui-tooltips__references__slider-values.md",
+      "path": "skills/roblox-ui-tooltips/references/slider-values.md",
+      "bytes": 2387
+    },
+    {
+      "name": "skills__roblox-ui-tooltips__references__tooltip-patterns.md",
+      "path": "skills/roblox-ui-tooltips/references/tooltip-patterns.md",
+      "bytes": 3495
     },
     {
       "name": "skills__roblox-ui__SKILL.md",

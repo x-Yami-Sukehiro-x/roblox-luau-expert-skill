@@ -605,7 +605,6 @@ def analyse(raw_source, rel, gui):
         return findings, None, True
 
     created = set(element.cls for element in elements)
-    builds_screen_gui = any(element.cls in gui["LayerCollector"] for element in elements)
 
     buttons = [e for e in elements
                if e.cls in ("TextButton", "ImageButton")
@@ -719,8 +718,10 @@ def analyse(raw_source, rel, gui):
             "%s() is deprecated - use task.%s" % (match.group(1), match.group(1)))
 
     # --- responsiveness ---------------------------------------------------
-    if builds_screen_gui:
-        root = next(e for e in elements if e.cls in gui["LayerCollector"])
+    # A BillboardGui or SurfaceGui is sized in the world, not on the screen, and
+    # has no ScreenInsets, so these rules belong to the ScreenGui alone.
+    root = next((e for e in elements if e.cls == "ScreenGui"), None)
+    if root:
         if "UISizeConstraint" not in created and "UIAspectRatioConstraint" not in created:
             add("E-UNBOUNDED", root.line,
                 "a screen with no UISizeConstraint - absurd on ultrawide, unusable on a phone "

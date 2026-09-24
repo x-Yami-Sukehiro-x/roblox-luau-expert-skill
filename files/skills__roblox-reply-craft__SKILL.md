@@ -8,7 +8,8 @@ description: How a Roblox reply is delivered - fast, short and ready to paste. C
 The user sees the reply, not the reasoning. Four things decide whether it
 works for them, and none is about the code's correctness:
 
-1. **How long they waited.** → `references/fast-replies.md`
+1. **How long they waited.** → `references/fast-replies.md`, and the
+   request-to-files routes in `references/fast-path.md`
 2. **Whether the code pastes and runs.** → `references/code-output.md`
 3. **Whether the file is easy to find and name.** → `references/file-names.md`
 4. **Whether the words around it are worth reading.** → `references/reply-length.md`
@@ -22,8 +23,10 @@ Words inside the UI itself (labels, subtitles, notifications) are
 
 **Speed.** Read the router and only the references the task needs. Run
 independent reads and checks together. Start from a tested recipe instead of
-writing a component from nothing. Write the file once; do not print drafts.
-Skip preamble and the closing summary.
+writing a component from nothing: `python tools/py/recipe.py <codes>` names the
+row and the file. Check the final file in one call with
+`node tools/bin/check-file.mjs <file>`. Write the file once; do not print
+drafts. Skip preamble and the closing summary.
 
 **Code blocks.**
 

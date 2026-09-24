@@ -23,8 +23,10 @@ another. Cut those and the same answer arrives sooner.
 ## Write less
 
 1. **Start from a recipe.** A picked code (T1, M4, D2) has a tested
-   implementation in `style-pack.md` / `roblox-ui-components/assets/`; paste it
-   with the THEME changed. Writing a toggle from nothing is slower and worse.
+   implementation in `style-pack.md` / `roblox-ui-components/assets/`, and fly,
+   ESP and the other character features are assets in
+   `roblox-executor-features`. `python tools/py/recipe.py T1 M4 fly` names the
+   files; paste them with the THEME or constants changed.
 2. **No drafts in the reply.** Work out the design, then write the file once.
    Showing a first version and then "here is an improved version" doubles the
    length and the wait.
@@ -39,12 +41,15 @@ another. Cut those and the same answer arrives sooner.
 
 ## Check in parallel, once
 
-Run the lints on the final file together, in one step, and report their
-output. Do not run a check on a draft you are about to change.
+Run every check on the final file in one call and report what it prints. Do
+not run a check on a draft you are about to change.
 
 ```bash
-node tools/bin/lint-luau-slop.mjs F; node tools/bin/lint-luau-format.mjs F; node tools/bin/lint-roblox-ui.mjs F; node tools/bin/check-registers.mjs F
+node tools/bin/check-file.mjs F      # slop, format, UI, API, compile, registers
+python tools/py/check_file.py F      # the same where there is no Node
 ```
+
+The request-to-files routes and the lookup tool are in `fast-path.md`.
 
 ## Ask at most one question, and only when it saves a rebuild
 
