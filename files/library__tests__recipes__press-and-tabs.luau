@@ -302,6 +302,101 @@ do
 	button.Activated:Fire()
 	check("P20 runs once allowed", runs == 1 and button.Rotation == 0)
 end
+for _, style in { "S13", "S14", "S16", "S17", "S19", "S20" } do
+	local parent = Instance.new("Frame")
+	local picked = {}
+	local tabs = feel.createTabs(parent, { "Combat", "Movement", "Visuals" }, style, function(name) table.insert(picked, name) end)
+	local bar = parent.Tabs
+	bar.Row.Movement.Activated:Fire()
+	check(style .. " activation selects", tabs.selected() == "Movement" and picked[1] == "Movement")
+	bar.Row.Movement.Activated:Fire()
+	check(style .. " reselecting is a no-op", #picked == 1)
+	tabs.destroy()
+	check(style .. " destroy", parent.Tabs == nil)
+end
+do
+	local parent = Instance.new("Frame")
+	feel.createTabs(parent, { "Home", "Shop", "Pets" }, "S13", function() end)
+	check("S13 a 56 px bar with icons and labels", parent.Tabs.Size.Y.Offset == 56 and parent.Tabs.Row.Shop.Glyph ~= nil and parent.Tabs.Row.Shop.Label.Text == "Shop")
+	check("S13 marker is a line on the top edge", parent.Tabs.Marker.Size.Y.Offset == 2 and parent.Tabs.Marker.Position.Y.Offset == 0)
+end
+do
+	local parent = Instance.new("Frame")
+	feel.createTabs(parent, { "Inbox", "Trades" }, "S14", function() end, { counts = { Inbox = 3 } })
+	check("S14 counts sit on their tabs", parent.Tabs.Row.Inbox.Count.Text == "3" and parent.Tabs.Row.Trades:FindFirstChild("Count") == nil)
+end
+do
+	local parent = Instance.new("Frame")
+	local tabs = feel.createTabs(parent, { "Pick", "Pay", "Done" }, "S15", function() end)
+	local row = parent.Tabs.Row
+	check("S15 steps are numbered", row.Pick.Step.Text == "1" and row.Pay.Step.Text == "2")
+	tabs.select("Done")
+	check("S15 earlier steps show a tick", row.Pick.Step.Tick.Visible == true and row.Pay.Step.Tick.Visible == true and row.Done.Step.Text == "3")
+end
+do
+	local parent = Instance.new("Frame")
+	feel.createTabs(parent, { "Main", "Misc" }, "S16", function() end)
+	check("S16 the chosen tab reaches down to join the page", parent.Tabs.Marker.Size.Y.Offset == 44 + 6)
+end
+do
+	local parent = Instance.new("Frame")
+	local tabs = feel.createTabs(parent, { "Home", "Shop" }, "S17", function() end)
+	local row = parent.Tabs.Row
+	check("S17 only the chosen tab shows its name", row.Home.Label.Visible == true and row.Shop.Label.Visible == false)
+	tabs.select("Shop")
+	check("S17 the name moves with the choice", row.Home.Label.Visible == false and row.Shop.Label.Visible == true)
+end
+do
+	local parent = Instance.new("Frame")
+	local groups = { Aimbot = "Combat", ESP = "Combat", Fly = "Movement" }
+	feel.createTabs(parent, { "Aimbot", "ESP", "Fly" }, "S18", function() end, { groups = groups })
+	local row = parent.Tabs.Row
+	check("S18 a heading above each group", row.CombatHeading.Text == "COMBAT" and row.MovementHeading.LayoutOrder < row.Fly.LayoutOrder and row.CombatHeading.LayoutOrder < row.Aimbot.LayoutOrder)
+end
+do
+	local parent = Instance.new("Frame")
+	local tabs = feel.createTabs(parent, { "Main", "Misc" }, "S19", function() end)
+	check("S19 the chosen tab is bigger", parent.Tabs.Row.Main.TextSize == 20 and parent.Tabs.Row.Misc.TextSize == 14)
+	tabs.select("Misc")
+	check("S19 size follows the choice", parent.Tabs.Row.Main.TextSize == 14 and parent.Tabs.Row.Misc.TextSize == 20)
+end
+do
+	local parent = Instance.new("Frame")
+	local names = { "Main", "Combat", "Visuals", "World", "Misc", "Credits" }
+	local tabs = feel.createTabs(parent, names, "S20", function() end, { visible = 3 })
+	local bar = parent.Tabs
+	check("S20 extra tabs wait under More", bar.Row.More ~= nil and bar.MoreList.Misc ~= nil and bar.Row:FindFirstChild("Misc") == nil)
+	bar.Row.More.Activated:Fire()
+	check("S20 More opens the list", bar.MoreList.Visible == true)
+	bar.MoreList.Credits.Activated:Fire()
+	check("S20 choosing from More selects it and closes the list", tabs.selected() == "Credits" and bar.MoreList.Visible == false)
+end
+do
+	local parent = Instance.new("Frame")
+	local tabs = feel.createTabs(parent, { "Page 1", "Page 2", "Page 3" }, "S21", function() end)
+	local row = parent.Tabs.Row
+	check("S21 shows one name at a time", row["Page 1"].Visible == true and row["Page 2"].Visible == false)
+	row.Next.Activated:Fire()
+	check("S21 next moves on", tabs.selected() == "Page 2" and row["Page 2"].Visible == true)
+	row.Previous.Activated:Fire()
+	row.Previous.Activated:Fire()
+	check("S21 previous wraps to the end", tabs.selected() == "Page 3")
+end
+do
+	local parent = Instance.new("Frame")
+	local pages = {}
+	for _, name in { "Farming", "Movement" } do
+		local page = Instance.new("CanvasGroup")
+		page.Name = name .. "Page"
+		pages[name] = page
+	end
+	local tabs = feel.createTabs(parent, { "Farming", "Movement" }, "S22", function() end, { pages = pages })
+	local row = parent.Tabs.Row
+	check("S22 sections sit under their headers", pages.Farming.Parent == row and pages.Farming.LayoutOrder == row.Farming.LayoutOrder + 1)
+	check("S22 only the chosen section is open", pages.Farming.Visible == true and pages.Movement.Visible == false and row.Farming.Glyph.Rotation == 180)
+	tabs.select("Movement")
+	check("S22 opening one closes the other", pages.Farming.Visible == false and pages.Movement.Visible == true and row.Movement.Glyph.Rotation == 180)
+end
 local failed = 0
 for _, line in results do print(line) if line:sub(1,4) == "FAIL" then failed += 1 end end
 print(#results - failed .. " passed, " .. failed .. " failed")

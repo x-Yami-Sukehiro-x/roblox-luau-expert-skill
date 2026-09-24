@@ -60,6 +60,7 @@ nav.sections .wrap{display:flex;flex-wrap:wrap;gap:4px 18px;align-items:center}
 nav.sections a{font-weight:700;font-size:14px;text-decoration:none;color:var(--muted);padding:6px 0}
 nav.sections a:hover{color:var(--ink)}
 nav.sections a.cta{color:var(--pick)}
+@media (max-width:640px){nav.sections .wrap{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;mask-image:linear-gradient(90deg,#000 85%,transparent)}nav.sections .wrap::-webkit-scrollbar{display:none}nav.sections a{white-space:nowrap;flex:none;padding:12px 0}}
 section.group{padding-block:48px 8px;border-bottom:1px solid var(--line)}
 .group-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px;align-items:end;margin-bottom:24px}
 .group-head p{color:var(--muted);margin:0}
@@ -422,6 +423,22 @@ svg.i{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;stroke
 .press[data-style="P11"] svg{transition:transform .12s var(--quad)}
 .press[data-style="P11"].hover svg{transform:translateX(4px)}
 .press-count{position:absolute;bottom:12px;font:500 12px var(--roblox);color:var(--s-muted)}
+.press[data-style="P13"],.press[data-style="P13"].hover{background:transparent;box-shadow:inset 0 0 0 1px var(--r-accent)}
+.press[data-style="P13"].hover{background:var(--r-dim)}
+.press[data-style="P13"].down{background:var(--r-accent)}
+.press[data-style="P14"]{display:inline-flex;align-items:center;gap:8px}
+.press[data-style="P15"].hover{background:linear-gradient(90deg,var(--s-overlay),var(--r-dim),var(--s-overlay)) 0 0/200% 100%;animation:shimmer 1.5s linear infinite}
+@keyframes shimmer{from{background-position:200% 0}to{background-position:0 0}}
+.press.busy{opacity:.6;cursor:default}
+.press.ok{background:var(--r-accent)}
+.press.warn{background:var(--r-danger)}
+.press[data-style="P18"]::after{content:"";position:absolute;left:0;top:0;bottom:0;width:var(--left,0%);background:#ffffff26}
+.press[data-style="P18"].cooling::after{transition:width 3s linear}
+.press[data-style="P18"] span{position:relative}
+.press[data-style="P21"]{transition:transform .3s var(--back),background-color .12s var(--quad)}
+.press[data-style="P21"].hover{transform:scale(1.06)}
+.press[data-style="P21"].down{transform:scale(.98);transition-duration:.08s}
+.press[data-style="P22"].down{transform:rotate(-2deg)}
 .ripple{position:absolute;border-radius:50%;background:#ffffff40;pointer-events:none;transform:translate(-50%,-50%)}
 
 /* Tabs */
@@ -452,6 +469,70 @@ svg.i{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;stroke
 .tabbar.vertical.rail{width:44px}
 .tabbar.vertical.rail button{width:44px;padding:0;justify-content:center}
 .vtabs .tabpage{margin:0;height:auto}
+.tabs.bottom{display:flex;flex-direction:column-reverse}
+.tabs.bottom .tabpage{margin:0 0 8px}
+.tabbar[data-mark="top"] .mark{height:2px;background:var(--r-accent)}
+.tabbar .count{position:absolute;top:4px;right:6px;min-width:16px;height:16px;border-radius:8px;background:var(--r-accent);font:700 10px/16px var(--roblox);color:var(--s-text);padding:0 4px}
+.tabbar .step{width:22px;height:22px;border-radius:11px;background:var(--s-overlay);display:grid;place-items:center;font:700 11px var(--roblox);font-style:normal;color:var(--s-text);flex:none}
+.tabbar .step svg{width:12px;height:12px;display:none}
+.tabbar button[aria-selected="true"] .step,.tabbar button.done .step{background:var(--r-accent)}
+.tabbar button.done .step b{display:none}
+.tabbar button.done .step svg{display:block}
+.tabbar[data-mark="folder"] .mark{background:var(--s-panel);border-radius:6px 6px 0 0;height:calc(100% + 12px)}
+.tabs.folder .tabpage{border-radius:0 6px 6px 6px}
+.tabbar.expand{justify-content:flex-start;gap:4px}
+.tabbar.expand button{flex:none;padding:0 12px}
+.tabbar.expand button .lbl{display:none}
+.tabbar.expand button[aria-selected="true"] .lbl{display:inline}
+.tabbar .grp{font:700 10px var(--roblox);letter-spacing:.08em;color:var(--s-faint);padding:6px 0 0 12px}
+.tabbar[data-style="S19"] button{transition:font-size .15s var(--out)}
+.tabbar[data-style="S19"] button[aria-selected="true"]{font-size:20px}
+.tabbar .more-list{position:absolute;right:0;top:48px;width:132px;background:var(--s-raised);border-radius:6px;box-shadow:0 0 0 1px var(--s-overlay),0 8px 18px #0008;display:none;flex-direction:column;z-index:3;padding:4px}
+.tabbar .more-list.open{display:flex}
+.tabbar .more-list button{flex:none;height:36px;justify-content:flex-start;padding:0 10px}
+.tabbar .cycle{flex:1;display:grid;place-items:center;font:700 14px var(--roblox)}
+.acc{width:252px;display:grid;gap:4px;font-family:var(--roblox)}
+.acc-head{height:40px;border:0;border-radius:6px;background:var(--s-panel);color:var(--s-text);font:700 13px var(--roblox);display:flex;align-items:center;justify-content:space-between;padding:0 12px}
+.acc-head svg{transition:transform .2s var(--out);color:var(--s-muted)}
+.acc-head[aria-expanded="true"] svg{transform:rotate(180deg)}
+.acc-body{display:none;padding:6px 12px;font:500 12px var(--roblox);color:var(--s-muted)}
+.acc-head[aria-expanded="true"]+.acc-body{display:block}
+/* Tooltips */
+.tip-target{position:relative;min-height:44px;padding:0 16px;border-radius:6px;border:0;background:var(--s-raised);color:var(--s-text);font:700 14px var(--roblox);display:inline-flex;align-items:center;gap:8px;touch-action:none;user-select:none}
+.tip-target:disabled,.tip-target.off{opacity:.45;cursor:not-allowed}
+.tipb{position:absolute;z-index:6;max-width:220px;width:max-content;background:#090a0d;border:1px solid var(--s-overlay);border-radius:6px;padding:8px 12px;font:500 13px/1.35 var(--roblox);color:var(--s-text);text-align:left;pointer-events:none;opacity:0;visibility:hidden;transition:opacity .12s var(--quad),visibility 0s .12s}
+.tipb.on{opacity:1;visibility:visible;transition:opacity .12s var(--quad)}
+.tipb b{display:block;font:700 13px var(--roblox);margin-bottom:2px}
+.tipb small{display:block;color:var(--s-muted);font:500 12px/1.35 var(--roblox)}
+.tipb kbd{display:inline-block;margin-top:6px;background:var(--s-panel);border-radius:4px;padding:1px 6px;font:700 11px var(--roblox)}
+.tipb.below{top:calc(100% + 8px);left:50%;transform:translateX(-50%)}
+.tipb.above{bottom:calc(100% + 8px);left:50%;transform:translateX(-50%)}
+.tipb.above::after{content:"";position:absolute;left:calc(50% - 5px);bottom:-6px;width:10px;height:10px;background:#090a0d;border:solid var(--s-overlay);border-width:0 1px 1px 0;transform:rotate(45deg)}
+.tipb.locked{border-color:var(--r-danger)}
+.tipb .lock{display:inline-grid;vertical-align:-3px;margin-right:6px;color:var(--r-danger)}
+.tipb .lock svg{width:14px;height:14px}
+.slider-demo{width:220px;position:relative;font-family:var(--roblox)}
+.slider-demo input{width:100%;accent-color:var(--r-accent);height:24px}
+.slider-demo .val-tag{position:absolute;top:-24px;transform:translateX(-50%);background:#090a0d;border-radius:4px;padding:1px 6px;font:700 11px var(--roblox);pointer-events:none}
+.slider-demo .ends{display:flex;justify-content:space-between;font:500 11px var(--roblox);color:var(--s-muted)}
+.slider-demo.with-value{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:start}
+.slider-demo .readout{font:700 14px var(--roblox);min-width:28px;padding-top:2px}
+.slider-demo .tipb{top:-44px;bottom:auto;transform:translateX(-50%)}
+.info-row{display:flex;align-items:center;gap:4px;font:500 14px var(--roblox);position:relative}
+.info-btn{width:44px;height:44px;border:0;background:transparent;color:var(--s-muted);display:grid;place-items:center;border-radius:6px}
+.info-btn[aria-expanded="true"]{color:var(--r-bright)}
+.follow-box{width:220px;height:110px;border-radius:10px;background:var(--s-panel);display:grid;place-items:center;font:500 12px var(--roblox);color:var(--s-muted);position:relative;overflow:visible}
+.field-demo{width:220px;display:grid;gap:6px;font-family:var(--roblox)}
+.field-demo input{height:44px;border-radius:6px;border:0;background:var(--s-panel);box-shadow:inset 0 0 0 1px var(--s-overlay);color:var(--s-text);padding:0 12px;font:500 14px var(--roblox)}
+.field-demo input.bad{box-shadow:inset 0 0 0 2px var(--r-danger)}
+.field-demo .help{font:500 12px var(--roblox);color:var(--s-muted);display:flex;gap:6px;align-items:center}
+.field-demo .help.bad{color:var(--r-danger)}
+.field-demo .help svg{width:14px;height:14px;display:none}
+.field-demo .help.bad svg{display:block}
+.coach-ring{position:absolute;inset:-5px;border-radius:10px;box-shadow:0 0 0 2px var(--r-bright);pointer-events:none;opacity:0}
+.coach-ring.on{opacity:1}
+.tipb.coach{pointer-events:auto}
+.tipb.coach button{margin-top:8px;min-height:36px;border:0;border-radius:6px;background:var(--r-accent);color:var(--s-text);font:700 13px var(--roblox);padding:0 12px}
 
 /* Dropdowns */
 .dd{position:absolute;left:16px;right:16px;top:16px;font-family:var(--roblox);font-size:14px}
@@ -579,6 +660,8 @@ footer{padding-block:0 120px;color:var(--muted);font-size:13px}
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><rect width="18" height="11" x="3" y="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></symbol>
+  <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M8 16H3v5"/></symbol>
   <symbol id="i-chevron-up" viewBox="0 0 24 24"><path d="m18 15-6-6-6 6"/></symbol>
   <symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></symbol>
   <symbol id="i-plus" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5v14"/></symbol>
@@ -640,7 +723,7 @@ footer{padding-block:0 120px;color:var(--muted);font-size:13px}
 </header>
 
 <nav class="sections" aria-label="Guide sections"><div class="wrap">
-  <a href="#parts">Point at it</a><a href="#toggles">Toggles</a><a href="#checks">Checkboxes</a><a href="#dropdowns">Dropdowns</a><a href="#menus">Menu movement</a><a href="#notifications">Notifications</a><a href="#hiding">Hide &amp; bring back</a><a href="#buttons">Button feel</a><a href="#tabs">Tab switch</a><a href="#picks">Your picks</a><a class="cta" href="designer.html">UI designer</a>
+  <a href="#parts">Point at it</a><a href="#toggles">Toggles</a><a href="#checks">Checkboxes</a><a href="#dropdowns">Dropdowns</a><a href="#menus">Menu movement</a><a href="#notifications">Notifications</a><a href="#hiding">Hide &amp; bring back</a><a href="#buttons">Button feel</a><a href="#tabs">Tab switch</a><a href="#tooltips">Tooltips</a><a href="#picks">Your picks</a><a class="cta" href="designer.html">UI designer</a>
 </div></nav>
 
 <main class="wrap">
@@ -749,11 +832,19 @@ footer{padding-block:0 120px;color:var(--muted);font-size:13px}
   <div class="grid" id="tab-grid"></div>
 </section>
 
+<section class="group" id="tooltips" aria-labelledby="tooltips-h">
+  <div class="group-head">
+    <div><h2 id="tooltips-h">Tooltips</h2><p>Small explanations: over buttons, on sliders, behind an info mark, under a field. Hover, hold or drag each one.</p></div>
+    <p>None of them needs a mouse: a long press, a tap on the info mark, or keyboard focus opens every one, because phones have no hover.</p>
+  </div>
+  <div class="grid" id="tooltip-grid"></div>
+</section>
+
 <section class="picks" id="picks" aria-labelledby="picks-h">
   <div>
     <h2 id="picks-h">Your picks</h2>
     <p>Paste this into your chat. You can also mix and describe: “T1 but square”, “pop in, fade out”, “like N4 but at the top”.</p>
-    <p class="note">Skipped a group? Your AI uses its default for it and tells you which one: T1, C1, D1 (D2 for long lists, D10 to pick a player), M1 to open and close, N1 (N4 for a script hub), O1, P1 and S1.</p>
+    <p class="note">Skipped a group? Your AI uses its default for it and tells you which one: T1, C1, D1 (D2 for long lists, D10 to pick a player), M1 to open and close, N1 (N4 for a script hub), O1, P1, S1 and H1 (H3 on sliders).</p>
     <p class="note">Want to arrange a whole screen yourself? Use the <a href="designer.html">UI designer</a>; it copies a layout your AI can rebuild exactly.</p>
     <label for="notes">Anything else, in your own words (optional)</label>
     <textarea id="notes" placeholder="Example: use purple instead of green, and make the close button bigger"></textarea>
@@ -785,9 +876,9 @@ const EASE={
 };
 if(!(window.CSS&&CSS.supports('animation-timing-function','linear(0, 1)'))){EASE.bounce=EASE.back;EASE.elastic=EASE.back}
 
-const GROUPS=[['toggle','Toggle','T'],['check','Checkbox','C'],['dropdown','Dropdown','D'],['open','Opening','M'],['close','Closing','M'],['notice','Notifications','N'],['window','Hide & bring back','O'],['press','Button feel','P'],['tabs','Tab switch','S']];
+const GROUPS=[['toggle','Toggle','T'],['check','Checkbox','C'],['dropdown','Dropdown','D'],['open','Opening','M'],['close','Closing','M'],['notice','Notifications','N'],['window','Hide & bring back','O'],['press','Button feel','P'],['tabs','Tab switch','S'],['tooltip','Tooltip','H']];
 const NAMES={};
-const GROUP_OF=code=>({T:'toggle',C:'check',D:'dropdown',N:'notice',O:'window',P:'press',S:'tabs'})[code[0]];
+const GROUP_OF=code=>({T:'toggle',C:'check',D:'dropdown',N:'notice',O:'window',P:'press',S:'tabs',H:'tooltip'})[code[0]];
 const PARTS=[['W1','Header','the bar at the top'],['W2','Title','the name at the top'],['W3','Close button','the X'],['W4','Minimise button','the dash, hide button'],['W5','Drag handle','the bit you grab to move it'],['W6','Sidebar','the side menu, list on the left'],['W7','Tab','the pages, sections (see S codes)'],['W8','Section heading','the little titles'],['W9','Toggle','the on/off thing (see T codes)'],['W10','Slider','the bar you drag'],['W11','Dropdown','the list that opens (see D codes)'],['W12','Button','the button (see P codes)'],['W13','Keybind','the key box, hotkey'],['W14','Search box','search bar (see D5)'],['W15','Text box','the typing box'],['W16','Notification','the popup message (see N codes)'],['W17','Tooltip','the hint when you hover'],['W18','Scrollbar','the scroll thing'],['W20','Launcher','the button that opens the menu (see O codes)'],['W22','Badge','the little tag']];
 
 const reduce=document.getElementById('reduce');
@@ -803,7 +894,7 @@ const escHTML=text=>String(text).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','
 const icon=(id,cls='')=>`<svg class="i ${cls}" aria-hidden="true"><use href="#i-${id}"/></svg>`;
 const says=list=>list.map(w=>`<q>${w}</q>`).join(', ');
 const pickButton=(group,code,cls='')=>`<button class="btn pick ${cls}" type="button" data-group="${group}" data-value="${code}" aria-pressed="false"></button>`;
-const isNew=code=>{const n=parseInt(code.slice(1),10);return ({T:n>10,C:true,D:true,M:n>12,N:n>10,O:n>5,P:n>3,S:n>3})[code[0]]};
+const isNew=code=>{const n=parseInt(code.slice(1),10);return ({T:n>20,C:n>10,D:n>12,M:n>24,N:n>20,O:n>12,P:n>12,S:n>12,H:true})[code[0]]};
 function card(code,title,words,use,stage,extra='',buttons=pickButton(GROUP_OF(code),code)){NAMES[code]=title;return `<article class="card" data-code="${code}"><div class="stage">${stage}</div><div class="card-body"><div class="code-line"><span class="code">${code}</span><h3>${title}</h3>${isNew(code)?'<span class="new">New</span>':''}</div><p class="says">People say ${says(words)}</p><p class="use">${use}</p><div class="actions">${extra}${buttons}</div></div></article>`}
 
 /* Motion: every run owns its element; a newer run cancels the older one. */
@@ -1516,9 +1607,19 @@ const PRESSES=[
   ['P9','Shine',['shiny sweep'],'A light passes across the button on hover.','Teleport to spawn'],
   ['P10','Hold to confirm',['hold down to do it','for dangerous buttons'],'Fills while held and only acts when full. For resets and deletes.','Hold to reset stats'],
   ['P11','Arrow nudge',['arrow moves when I hover'],'An arrow nudges forward on hover. For “next” and “continue”.','Continue'],
-  ['P12','Click pop',['pops when clicked'],'A quick pop and edge flash confirm the click.','Claim reward']
+  ['P12','Click pop',['pops when clicked'],'A quick pop and edge flash confirm the click.','Claim reward'],
+  ['P13','Outline fill',['empty until I hover','outline button'],'An outline that fills with colour on hover and press.','Teleport to spawn'],
+  ['P14','Icon spin',['the icon spins','refresh button'],'Its icon spins once when pressed. For refresh and reload.','Refresh servers'],
+  ['P15','Shimmer',['colour moves across it','shiny hover'],'Colour drifts across the button while the pointer is on it.','Open shop'],
+  ['P16','Shows it is working',['loading after click','spinner button'],'Says “Working…” and cannot be pressed again until it is done.','Save config'],
+  ['P17','Turns into Done',['turns green with a tick','success button'],'Shows “Done” for a moment after it works, then goes back.','Redeem code'],
+  ['P18','Cooldown',['timer before I can press again'],'Counts down and blocks presses until it is ready again.','Collect coins'],
+  ['P19','Press twice to confirm',['click again to be sure','are you sure button'],'The first press asks; the second, within three seconds, does it.','Reset stats'],
+  ['P20','Shakes when blocked',['wiggles if I can’t','no money shake'],'A small shake says no, such as when you cannot afford it.','Buy for 500 coins'],
+  ['P21','Bouncy hover',['grows with a bounce'],'Grows on hover with a small overshoot. Playful games.','Play'],
+  ['P22','Tilt on press',['tilts when I press it'],'Tips slightly while held, like a physical key.','Jump']
 ];
-for(const [code,title,words,use,label] of PRESSES){pressGrid.insertAdjacentHTML('beforeend',card(code,title,words,use,`<button class="press" type="button" data-style="${code}"><span>${label}</span>${code==='P11'?icon('arrow-right'):''}</button><span class="press-count" aria-live="polite"></span>`))}
+for(const [code,title,words,use,label] of PRESSES){pressGrid.insertAdjacentHTML('beforeend',card(code,title,words,use,`<button class="press" type="button" data-style="${code}">${code==='P14'?icon('refresh'):''}<span>${label}</span>${code==='P11'?icon('arrow-right'):''}</button><span class="press-count" aria-live="polite"></span>`))}
 pressGrid.querySelectorAll('.press').forEach(button=>{
   let presses=0;let holdTimer=null;const count=button.parentElement.querySelector('.press-count');const style=button.dataset.style;
   const release=()=>{button.classList.remove('down','holding');clearTimeout(holdTimer)};
@@ -1532,8 +1633,19 @@ pressGrid.querySelectorAll('.press').forEach(button=>{
   for(const type of ['pointerup','pointercancel'])button.addEventListener(type,release);
   button.addEventListener('keydown',e=>{if(e.key===' '||e.key==='Enter')button.classList.add('down')});
   button.addEventListener('keyup',()=>button.classList.remove('down'));
+  const words=button.querySelector('span');const label=words.textContent;let armed=0;
+  const back=()=>{button.classList.remove('busy','ok','warn');words.textContent=label;button.disabled=false};
   button.addEventListener('click',()=>{
     if(style==='P10')return;
+    if(style==='P16'){button.classList.add('busy');button.disabled=true;words.textContent='Working…';setTimeout(()=>{back();count.textContent='Saved'},1400);return}
+    if(style==='P17'){button.classList.add('ok');words.textContent='Done';setTimeout(back,1200);return}
+    if(style==='P18'){let left=3;button.disabled=true;button.classList.add('busy');button.style.setProperty('--left','100%');words.textContent=`${label} ${left}s`;count.textContent='+100 coins';
+      requestAnimationFrame(()=>requestAnimationFrame(()=>{button.classList.add('cooling');button.style.setProperty('--left','0%')}));
+      const tick=setInterval(()=>{left-=1;if(left<=0){clearInterval(tick);back();button.classList.remove('cooling');button.style.removeProperty('--left')}else words.textContent=`${label} ${left}s`},1000);return}
+    if(style==='P19'){if(!armed){armed=setTimeout(()=>{armed=0;back()},3000);button.classList.add('warn');words.textContent='Press again to confirm';return}
+      clearTimeout(armed);armed=0;back();count.textContent='Stats reset';return}
+    if(style==='P20'){count.textContent='You have 250 coins';if(!reduced())button.animate([{transform:'rotate(0)'},{transform:'rotate(4deg)'},{transform:'rotate(-4deg)'},{transform:'rotate(4deg)'},{transform:'rotate(0)'}],{duration:240});return}
+    if(style==='P14'&&!reduced())button.querySelector('svg').animate([{transform:'rotate(0)'},{transform:'rotate(360deg)'}],{duration:400,easing:EASE.out});
     presses+=1;count.textContent=`Pressed ${presses} time${presses===1?'':'s'}`;
     if(style==='P12'&&!reduced())button.animate([{transform:'scale(1)',boxShadow:'0 0 0 2px #48c9a2'},{transform:'scale(1.05)',boxShadow:'0 0 0 2px #48c9a2'},{transform:'scale(1)',boxShadow:'0 0 0 2px #48c9a200'}],{duration:220,easing:EASE.quad});
   });
@@ -1556,18 +1668,39 @@ const TABSTYLES=[
   ['S9','Page slide',['pages slide sideways'],'The page slides toward the tab you picked.',{mark:'line',pages:'slide'}],
   ['S10','Page fade',['pages fade'],'The old page fades out, then the new one fades in.',{mark:'line',pages:'fade'}],
   ['S11','Dot marker',['little dot under the tab'],'A small dot slides under the chosen tab.',{mark:'dot'}],
-  ['S12','Scrolling tabs',['lots of tabs that scroll','swipe the tabs'],'Many tabs in one row that scrolls; the chosen tab slides into view.',{mark:'pill',scroll:true}]
+  ['S12','Scrolling tabs',['lots of tabs that scroll','swipe the tabs'],'Many tabs in one row that scrolls; the chosen tab slides into view.',{mark:'pill',scroll:true}],
+  ['S13','Bottom tab bar',['tabs at the bottom','like a phone app'],'Icons with names along the bottom, with a line on top of the chosen one.',{mark:'top',icons:true,bottom:true}],
+  ['S14','Tabs with counts',['numbers on the tabs','how many new'],'A small count on a tab says how many new things wait there.',{mark:'line',counts:{Combat:2,Visuals:5}}],
+  ['S15','Numbered steps',['step 1, step 2','wizard'],'Numbered steps; the ones behind the chosen step show a tick.',{mark:'none',steps:true}],
+  ['S16','Folder tabs',['tabs like folders','joined to the page'],'The chosen tab joins the page under it, like a folder tab.',{mark:'folder',folder:true}],
+  ['S17','Icon that grows a name',['icons that show a name when picked'],'Icons only, and the chosen one grows to show its name.',{mark:'pill',expand:true}],
+  ['S18','Side list with groups',['sidebar with headings'],'Tabs down the side under small group headings.',{mark:'side',vertical:true,groups:true}],
+  ['S19','Bigger when chosen',['chosen tab gets big','large title tab'],'The chosen tab’s name grows larger; nothing slides.',{mark:'none'}],
+  ['S20','More menu',['extra tabs under More','too many tabs'],'The first tabs show; the rest wait in a More menu.',{mark:'line',more:true}],
+  ['S21','Arrows between pages',['left and right arrows','one page at a time'],'One name at a time with arrows either side that wrap round.',{mark:'none',cycle:true}],
+  ['S22','Sections that open',['accordion','fold out sections'],'Each tab is a heading that opens its section under it; one at a time.',{accordion:true}]
 ];
 for(const [code,title,words,use,spec] of TABSTYLES){
+  if(spec.accordion){tabGrid.insertAdjacentHTML('beforeend',card(code,title,words,use,`<div class="acc">${Object.entries(PAGES).map(([name,text],i)=>`<button class="acc-head" type="button" aria-expanded="${i===0}" data-acc>${name}${icon('down')}</button><div class="acc-body">${text}</div>`).join('')}</div>`));continue}
+  if(spec.cycle){tabGrid.insertAdjacentHTML('beforeend',card(code,title,words,use,`<div class="tabs"><div class="tabbar" data-style="${code}" data-mark="none" data-cycle="0"><button type="button" data-cycle-step="-1" aria-label="Previous page">${icon('chevron-left')}</button><span class="cycle">${Object.keys(PAGES)[0]}</span><button type="button" data-cycle-step="1" aria-label="Next page">${icon('right')}</button></div><div class="tabpage"><div class="page-text">${Object.values(PAGES)[0]}</div></div></div>`));continue}
+  if(spec.more){const names=Object.keys(MORE);const shown=names.slice(0,3),rest=names.slice(3);
+    tabGrid.insertAdjacentHTML('beforeend',card(code,title,words,use,`<div class="tabs"><div class="tabbar" role="tablist" aria-label="Demo tabs" data-style="${code}" data-mark="line" data-pages-from="more"><span class="mark"></span>${shown.map((name,i)=>`<button type="button" role="tab" aria-selected="${i===0}" data-tab="${name}">${name}</button>`).join('')}<button type="button" data-more aria-haspopup="true">More ${icon('down')}</button><div class="more-list">${rest.map(name=>`<button type="button" role="tab" aria-selected="false" data-tab="${name}">${name}</button>`).join('')}</div></div><div class="tabpage"><div class="page-text">${Object.values(MORE)[0]}</div></div></div>`));continue}
   const pages=spec.scroll?MORE:PAGES;
-  const buttons=Object.keys(pages).map((name,i)=>`<button type="button" role="tab" aria-selected="${i===0}" data-tab="${name}"${spec.rail?` aria-label="${name}"`:''}>${spec.icons||spec.rail?icon(TAB_ICONS[name]):''}${spec.rail?'':name}</button>`).join('');
-  const cls=['tabbar',spec.vertical?'vertical':'',spec.rail?'rail':'',spec.icons?'icons':'',spec.seg?'seg':'',spec.scroll?'scroll':''].join(' ');
+  const GROUP_OF_TAB={Combat:'Fighting',Movement:'Fighting',Visuals:'Seeing'};let lastGroup='';
+  const buttons=Object.keys(pages).map((name,i)=>{
+    const head=spec.groups&&GROUP_OF_TAB[name]!==lastGroup?`<span class="grp">${(lastGroup=GROUP_OF_TAB[name]).toUpperCase()}</span>`:'';
+    const inner=spec.steps?`<i class="step"><b>${i+1}</b>${icon('check')}</i>${name}`:spec.expand?`${icon(TAB_ICONS[name])}<span class="lbl">${name}</span>`:`${spec.icons||spec.rail?icon(TAB_ICONS[name]):''}${spec.rail?'':name}`;
+    const count=spec.counts?.[name]?`<span class="count">${spec.counts[name]}</span>`:'';
+    return `${head}<button type="button" role="tab" aria-selected="${i===0}" data-tab="${name}"${spec.rail||spec.expand?` aria-label="${name}"`:''}>${inner}${count}</button>`}).join('');
+  const cls=['tabbar',spec.vertical?'vertical':'',spec.rail?'rail':'',spec.icons?'icons':'',spec.seg?'seg':'',spec.scroll?'scroll':'',spec.expand?'expand':''].join(' ');
   const bar=`<div class="${cls}" role="tablist" aria-label="Demo tabs" data-style="${code}" data-mark="${spec.mark}"${spec.pages?` data-pages="${spec.pages}"`:''}><span class="mark"></span>${buttons}</div>`;
   const page=`<div class="tabpage" role="tabpanel"><div class="page-text">${Object.values(pages)[0]}</div></div>`;
-  tabGrid.insertAdjacentHTML('beforeend',card(code,title,words,use,spec.vertical?`<div class="vtabs">${bar}${page}</div>`:`<div class="tabs">${bar}${page}</div>`));
+  tabGrid.insertAdjacentHTML('beforeend',card(code,title,words,use,spec.vertical?`<div class="vtabs">${bar}${page}</div>`:`<div class="tabs${spec.bottom?' bottom':''}${spec.folder?' folder':''}">${bar}${page}</div>`));
 }
 function placeMark(bar){
-  const chosen=bar.querySelector('[aria-selected="true"]');const mark=bar.querySelector('.mark');const kind=bar.dataset.mark;
+  const mark=bar.querySelector('.mark');if(!mark)return;
+  let chosen=bar.querySelector('[aria-selected="true"]');if(chosen?.closest('.more-list'))chosen=bar.querySelector('[data-more]');
+  const kind=bar.dataset.mark;
   if(kind==='dot'){mark.style.transform=`translateX(${chosen.offsetLeft+chosen.offsetWidth/2-3}px)`;return}
   if(bar.classList.contains('vertical')){mark.style.width=kind==='side'?'3px':`${chosen.offsetWidth}px`;mark.style.height=`${chosen.offsetHeight}px`;mark.style.transform=`translateY(${chosen.offsetTop}px)`;return}
   mark.style.width=`${chosen.offsetWidth}px`;mark.style.transform=`translateX(${chosen.offsetLeft}px)`;
@@ -1577,9 +1710,10 @@ tabGrid.querySelectorAll('.tabbar').forEach(bar=>{
   bar.addEventListener('click',async e=>{
     const tab=e.target.closest('[data-tab]');if(!tab||tab.getAttribute('aria-selected')==='true')return;
     const tabs=[...bar.querySelectorAll('[data-tab]')];const before=tabs.findIndex(t=>t.getAttribute('aria-selected')==='true');const after=tabs.indexOf(tab);
-    tabs.forEach(t=>t.setAttribute('aria-selected',String(t===tab)));placeMark(bar);
+    tabs.forEach(t=>t.setAttribute('aria-selected',String(t===tab)));
+    tabs.forEach((t,i)=>t.classList.toggle('done',i<after));bar.querySelector('.more-list')?.classList.remove('open');placeMark(bar);
     if(bar.classList.contains('scroll'))tab.scrollIntoView({behavior:reduced()?'auto':'smooth',block:'nearest',inline:'center'});
-    const text=bar.parentElement.querySelector('.page-text');const words=(bar.classList.contains('scroll')?MORE:PAGES)[tab.dataset.tab];
+    const text=bar.parentElement.querySelector('.page-text');const words=(bar.classList.contains('scroll')||bar.dataset.pagesFrom==='more'?MORE:PAGES)[tab.dataset.tab];
     if(reduced()||!bar.dataset.pages){text.textContent=words;if(!reduced())text.animate([{opacity:.3},{opacity:1}],{duration:150,easing:'ease-out'});return}
     const shift=bar.dataset.pages==='slide'?(after>before?24:-24):0;
     await run(text,{opacity:0,transform:`translateX(${-shift}px)`},100,EASE.in);
@@ -1588,6 +1722,67 @@ tabGrid.querySelectorAll('.tabbar').forEach(bar=>{
   });
 });
 addEventListener('resize',()=>tabGrid.querySelectorAll('.tabbar').forEach(placeMark));
+tabGrid.addEventListener('click',e=>{
+  const more=e.target.closest('[data-more]');if(more){more.parentElement.querySelector('.more-list').classList.toggle('open');return}
+  const step=e.target.closest('[data-cycle-step]');
+  if(step){const bar=step.closest('.tabbar');const names=Object.keys(PAGES);const at=(Number(bar.dataset.cycle)+Number(step.dataset.cycleStep)+names.length)%names.length;
+    bar.dataset.cycle=String(at);bar.querySelector('.cycle').textContent=names[at];bar.parentElement.querySelector('.page-text').textContent=PAGES[names[at]];return}
+  const head=e.target.closest('[data-acc]');
+  if(head){const open=head.getAttribute('aria-expanded')!=='true';head.parentElement.querySelectorAll('[data-acc]').forEach(h=>h.setAttribute('aria-expanded',String(h===head&&open)))}
+});
+
+/* Tooltips */
+const tipGrid=document.getElementById('tooltip-grid');
+const tipBubble=(text,cls='below',extra='')=>`<span class="tipb ${cls}" role="tooltip">${extra}${text}</span>`;
+const TIPS=[
+  ['H1','Hover tooltip',['words when I hover','little popup over a button'],'Appears under the button after a short rest; a long press opens it on a phone.',`<button class="tip-target" type="button" data-tip="hover">Auto farm${tipBubble('Collects drops within 30 studs')}</button>`],
+  ['H2','Bubble with an arrow',['speech bubble','points at the button'],'Sits above the button with a small arrow pointing at it.',`<button class="tip-target" type="button" data-tip="hover">Teleport${tipBubble('Takes you to spawn','above')}</button>`],
+  ['H3','Slider value while dragging',['number pops up when I drag'],'The value floats over the knob only while you drag it.',`<div class="slider-demo" data-slider="drag"><input type="range" min="16" max="100" value="32" aria-label="Walk speed">${tipBubble('32','above')}</div>`],
+  ['H4','Value on the knob',['number above the slider knob'],'The value always rides above the knob.',`<div class="slider-demo" data-slider="tag"><input type="range" min="0" max="10" value="7" aria-label="Volume"><span class="val-tag">7</span></div>`],
+  ['H5','Ends and value',['min and max under it','number at the end'],'The lowest and highest values sit under the ends; the current one follows the slider.',`<div class="slider-demo with-value" data-slider="ends"><div><input type="range" min="0" max="100" value="42" aria-label="Field of view"><div class="ends"><span>0</span><span>100</span></div></div><span class="readout">42</span></div>`],
+  ['H6','Info button',['little i button','tap for more info'],'A small info mark; tap it to read, tap anywhere else to close. Works on phones.',`<div class="info-row">Shiny chance<button class="info-btn" type="button" aria-expanded="false" aria-label="About shiny chance" data-info>${icon('info')}</button>${tipBubble('1 in 500 eggs hatches shiny. Luck boosts raise it.')}</div>`],
+  ['H7','Title, words and key',['tooltip with a title','shows the hotkey'],'A bold title, a short line, and the key that does it.',`<button class="tip-target" type="button" data-tip="hover">Fly${tipBubble('<small>Flies where the camera looks</small><kbd>F</kbd>','below','<b>Fly</b>')}</button>`],
+  ['H8','Follows the pointer',['tooltip follows my mouse'],'The words follow the pointer around the thing you are over.',`<div class="follow-box" data-follow>Move over the map${tipBubble('Volcano · level 30+','','')}</div>`],
+  ['H9','Why it is locked',['tells me why I can’t press it','locked reason'],'Hover or tap a locked button to see what unlocks it.',`<span class="tip-hold" data-tip="hover" style="position:relative;display:inline-block"><button class="tip-target off" type="button" aria-disabled="true">${icon('lock')}Rebirth</button>${tipBubble('Unlocks at level 10','below locked','<span class="lock">'+icon('lock')+'</span>')}</span>`],
+  ['H10','Press and hold',['hold to see','peek while pressing'],'Nothing on hover: press and hold to read, let go to hide.',`<button class="tip-target" type="button" data-tip="hold">Hold me${tipBubble('Shows while you hold')}</button>`],
+  ['H11','Helper line',['text under the box','hint under the field'],'A short hint under a field turns into the error when the entry is wrong. Type <b>admin</b>.',`<div class="field-demo"><input type="text" placeholder="Pet name" aria-label="Pet name" data-helper><span class="help">${icon('err')}<span>3 to 20 letters</span></span></div>`],
+  ['H12','First-time pointer',['points at something new','Got it tip'],'Shown once to point at something new; Got it closes it for good.',`<div style="position:relative;display:inline-block"><button class="tip-target" type="button">Auto sell</button><span class="coach-ring on"></span><span class="tipb below coach on" role="dialog" aria-label="New feature">New: sells items when your bag is full<br><button type="button" data-coach>Got it</button></span></div>`]
+];
+for(const [code,title,words,use,stage] of TIPS)tipGrid.insertAdjacentHTML('beforeend',card(code,title,words,use,stage,code==='H12'?'<button class="btn" type="button" data-coach-replay>Replay</button>':''));
+{
+  const showTip=(host,on)=>host.querySelector('.tipb')?.classList.toggle('on',on);
+  tipGrid.querySelectorAll('[data-tip]').forEach(host=>{
+    let timer=0;const hold=host.dataset.tip==='hold';
+    host.addEventListener('pointerenter',e=>{if(hold||e.pointerType!=='mouse')return;clearTimeout(timer);timer=setTimeout(()=>showTip(host,true),reduced()?0:400)});
+    host.addEventListener('pointerleave',()=>{clearTimeout(timer);showTip(host,false)});
+    host.addEventListener('pointerdown',e=>{if(!hold&&e.pointerType==='mouse')return;clearTimeout(timer);timer=setTimeout(()=>showTip(host,true),500)});
+    host.addEventListener('pointerup',e=>{if(!hold&&e.pointerType==='mouse')return;clearTimeout(timer);if(hold)showTip(host,false);else timer=setTimeout(()=>showTip(host,false),1500)});
+    host.addEventListener('focus',()=>showTip(host,true));host.addEventListener('blur',()=>showTip(host,false));
+  });
+  tipGrid.querySelectorAll('[data-slider]').forEach(box=>{
+    const input=box.querySelector('input');const kind=box.dataset.slider;
+    const place=el=>{const f=(input.value-input.min)/(input.max-input.min);el.style.left=`calc(${f*100}% + ${8-f*16}px)`};
+    const update=()=>{const tag=box.querySelector('.val-tag,.tipb');if(tag){tag.textContent=input.value;place(tag)}const out=box.querySelector('.readout');if(out)out.textContent=input.value};
+    input.addEventListener('input',update);update();
+    if(kind==='drag'){const bubble=box.querySelector('.tipb');input.addEventListener('pointerdown',()=>bubble.classList.add('on'));
+      for(const type of ['pointerup','pointercancel','blur'])input.addEventListener(type,()=>bubble.classList.remove('on'));input.addEventListener('keydown',()=>bubble.classList.add('on'))}
+  });
+  const info=tipGrid.querySelector('[data-info]');const infoTip=info.parentElement.querySelector('.tipb');
+  const setInfo=open=>{info.setAttribute('aria-expanded',String(open));infoTip.classList.toggle('on',open)};
+  info.addEventListener('click',e=>{e.stopPropagation();setInfo(info.getAttribute('aria-expanded')!=='true')});
+  document.addEventListener('click',()=>setInfo(false));document.addEventListener('keydown',e=>{if(e.key==='Escape')setInfo(false)});
+  const follow=tipGrid.querySelector('[data-follow]');const followTip=follow.querySelector('.tipb');
+  follow.addEventListener('pointermove',e=>{const r=follow.getBoundingClientRect();followTip.style.left=`${e.clientX-r.left+16}px`;followTip.style.top=`${e.clientY-r.top+16}px`;followTip.classList.add('on')});
+  follow.addEventListener('pointerleave',()=>followTip.classList.remove('on'));
+  const field=tipGrid.querySelector('[data-helper]');const help=field.parentElement.querySelector('.help');const helpText=help.querySelector('span');
+  field.addEventListener('input',()=>{const bad=field.value.trim().toLowerCase()==='admin';const short=field.value.length>0&&field.value.length<3;
+    field.classList.toggle('bad',bad||short);help.classList.toggle('bad',bad||short);helpText.textContent=bad?'That name is taken':short?'Too short: at least 3 letters':'3 to 20 letters'});
+  const coach=tipGrid.querySelector('[data-coach]').closest('.tipb');const ring=coach.parentElement.querySelector('.coach-ring');
+  tipGrid.addEventListener('click',e=>{
+    if(e.target.closest('[data-coach]')){coach.classList.remove('on');ring.classList.remove('on')}
+    if(e.target.closest('[data-coach-replay]')){coach.classList.add('on');ring.classList.add('on')}
+  });
+}
 
 /* Point at it */
 const legend=document.getElementById('legend');

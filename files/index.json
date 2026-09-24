@@ -1,7 +1,7 @@
 {
   "repository": "x-Yami-Sukehiro-x/roblox-luau-expert-skill",
-  "source": "156737bf76fbfb586de39fb05104d51640954d1c",
-  "version": "5.4.0+g156737b",
+  "source": "c57a84a1e2d3979461685430f9da66824cf17757",
+  "version": "5.4.0+gc57a84a",
   "files": [
     {
       "name": "AGENTS.md",
@@ -176,7 +176,7 @@
     {
       "name": "library__tests__recipes__press-and-tabs.luau",
       "path": "library/tests/recipes/press-and-tabs.luau",
-      "bytes": 13053
+      "bytes": 18126
     },
     {
       "name": "library__tests__recipes__runtime-probe.luau",
@@ -194,6 +194,11 @@
       "bytes": 10353
     },
     {
+      "name": "library__tests__recipes__tooltips.luau",
+      "path": "library/tests/recipes/tooltips.luau",
+      "bytes": 10163
+    },
+    {
       "name": "library__tests__recipes__windows.luau",
       "path": "library/tests/recipes/windows.luau",
       "bytes": 17506
@@ -201,7 +206,7 @@
     {
       "name": "library__tests__stubs.luau",
       "path": "library/tests/stubs.luau",
-      "bytes": 11318
+      "bytes": 11354
     },
     {
       "name": "skills__roblox-architecture__SKILL.md",
@@ -646,7 +651,7 @@
     {
       "name": "skills__roblox-ui-components__assets__press-and-tabs.luau",
       "path": "skills/roblox-ui-components/assets/press-and-tabs.luau",
-      "bytes": 26487
+      "bytes": 35130
     },
     {
       "name": "skills__roblox-ui-components__assets__toasts.luau",
@@ -657,6 +662,11 @@
       "name": "skills__roblox-ui-components__assets__toggles.luau",
       "path": "skills/roblox-ui-components/assets/toggles.luau",
       "bytes": 33413
+    },
+    {
+      "name": "skills__roblox-ui-components__assets__tooltips.luau",
+      "path": "skills/roblox-ui-components/assets/tooltips.luau",
+      "bytes": 20278
     },
     {
       "name": "skills__roblox-ui-components__assets__windows.luau",
@@ -857,11 +867,11 @@
   "tooLargeForAnAction": [
     {
       "path": "docs/visual-guide/designer.html",
-      "bytes": 469660
+      "bytes": 474205
     },
     {
       "path": "docs/visual-guide/index.html",
-      "bytes": 169577
+      "bytes": 193653
     },
     {
       "path": "skills/roblox-luau-expert/references/verified/api-index.txt",
@@ -877,7 +887,7 @@
     },
     {
       "path": "skills/roblox-request-intake/assets/roblox-ui-style-picker.html",
-      "bytes": 169577
+      "bytes": 193653
     },
     {
       "path": "skills/roblox-ui-components/references/icon-ids.txt",

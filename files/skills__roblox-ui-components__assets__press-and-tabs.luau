@@ -19,7 +19,9 @@ export type ActionSpec = {
 	allowed: (() -> boolean)?,
 }
 type FirstTabs = "S1" | "S2" | "S3" | "S4" | "S5" | "S6"
-export type TabStyle = FirstTabs | "S7" | "S8" | "S9" | "S10" | "S11" | "S12"
+type SecondTabs = "S7" | "S8" | "S9" | "S10" | "S11" | "S12"
+type LaterTabs = "S13" | "S14" | "S15" | "S16" | "S17" | "S18" | "S19" | "S20" | "S21" | "S22"
+export type TabStyle = FirstTabs | SecondTabs | LaterTabs
 
 local THEME = {
 	control = Color3.fromRGB(44, 48, 57),
@@ -40,6 +42,10 @@ local THEME = {
 local ICON = {
 	arrow = "rbxassetid://134908902120212",
 	tab = "rbxassetid://89644754139307",
+	check = "rbxassetid://86817768619372",
+	previous = "rbxassetid://102314312897830",
+	next = "rbxassetid://101007429951147",
+	open = "rbxassetid://71457658246709",
 }
 
 local QUICK = TweenInfo.new(0.08, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)
@@ -53,7 +59,7 @@ local DRAIN = TweenInfo.new(0.15, Enum.EasingStyle.Quad, Enum.EasingDirection.Ou
 -- Plays forward then back: one quick pop that returns to rest on its own.
 local POP = TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out, 0, true)
 local SLIDE = TweenInfo.new(0.2, Enum.EasingStyle.Cubic, Enum.EasingDirection.Out)
-local SPIN = TweenInfo.new(0.4, Enum.EasingStyle.Cubic, Enum.EasingDirection.Out)
+local SPIN = TweenInfo.new(RIPPLE.Time, Enum.EasingStyle.Cubic, Enum.EasingDirection.Out)
 -- Turns for as long as the pointer stays; cancelled when it leaves.
 local SHIMMER = TweenInfo.new(1.5, Enum.EasingStyle.Linear, Enum.EasingDirection.In, -1)
 -- Three quick wiggles that end where they started.
@@ -354,6 +360,7 @@ local function attachPress(button: GuiButton, style: PressStyle, onHold: (() -> 
 			turning:Play()
 		end
 	end))
+
 	table.insert(connections, button.MouseLeave:Connect(function()
 		hovered, pressed = false, false
 		paint()
@@ -366,6 +373,7 @@ local function attachPress(button: GuiButton, style: PressStyle, onHold: (() -> 
 			shimmer.Enabled = false
 		end
 	end))
+
 	if spinner then
 		local icon = spinner
 		table.insert(connections, button.Activated:Connect(function()
@@ -532,9 +540,15 @@ local function attachAction(button: TextButton, style: ActionStyle, spec: Action
 	end
 end
 
+-- S6, S7, S13 and S17 read `icons`; S9, S10 and S22 turn `pages`; S14 shows
+-- `counts`; S18 puts tabs under `groups` headings; S20 shows `visible` tabs
+-- (default 4) and moves the rest into More.
 export type TabOptions = {
 	icons: { [string]: string }?,
 	pages: { [string]: CanvasGroup }?,
+	counts: { [string]: number }?,
+	groups: { [string]: string }?,
+	visible: number?,
 }
 
 export type Tabs = {
@@ -543,7 +557,7 @@ export type Tabs = {
 	destroy: () -> (),
 }
 
-type Marker = "line" | "pill" | "side" | "dot" | "none"
+type Marker = "line" | "pill" | "side" | "dot" | "top" | "folder" | "none"
 
 -- What marks the chosen tab in each style.
 local MARKER: { [TabStyle]: Marker } = {
@@ -559,7 +573,20 @@ local MARKER: { [TabStyle]: Marker } = {
 	S10 = "line",
 	S11 = "dot",
 	S12 = "pill",
+	S13 = "top",
+	S14 = "line",
+	S15 = "none",
+	S16 = "folder",
+	S17 = "pill",
+	S18 = "side",
+	S19 = "none",
+	S20 = "line",
+	S21 = "none",
+	S22 = "none",
 }
+
+-- S16's chosen tab reaches this far below the bar, joining the page under it.
+local FOLDER_JOIN = 6
 
 -- S9 and S10 move the pages too: S9 slides them toward the side the new tab is
 -- on, S10 fades the old page out before the new one fades in.
@@ -584,9 +611,15 @@ local function turnPage(style: TabStyle, from: CanvasGroup?, to: CanvasGroup?, f
 	end
 end
 
-local function label(parent: GuiObject, text: string, size: number, order: number): TextLabel
+local function label(
+	parent: GuiObject,
+	text: string,
+	size: number,
+	order: number,
+	name: string?
+): TextLabel
 	local words = Instance.new("TextLabel")
-	words.Name = "Label"
+	words.Name = name or "Label"
 	words.LayoutOrder = order
 	words.Size = UDim2.new(1, 0, 0, 16)
 	words.BackgroundTransparency = 1
@@ -594,6 +627,84 @@ local function label(parent: GuiObject, text: string, size: number, order: numbe
 	words.Text = text
 	words.Parent = parent
 	return words
+end
+
+-- S6, S7, S13 and S17: the icon, with the name under it (S6, S13), beside it
+-- (S17, shown only while chosen) or not at all (S7).
+local function iconContent(
+	cell: TextButton,
+	name: string,
+	image: string,
+	style: TabStyle
+): (ImageLabel, TextLabel?)
+	cell.Text = ""
+	local glyph = Instance.new("ImageLabel")
+	glyph.Name = "Glyph"
+	glyph.LayoutOrder = 1
+	glyph.Size = UDim2.fromOffset(20, 20)
+	glyph.BackgroundTransparency = 1
+	glyph.Image = image
+	glyph.Parent = cell
+
+	local stack = Instance.new("UIListLayout")
+	stack.SortOrder = Enum.SortOrder.LayoutOrder
+	stack.HorizontalAlignment = Enum.HorizontalAlignment.Center
+	stack.VerticalAlignment = Enum.VerticalAlignment.Center
+	stack.Padding = UDim.new(0, 4)
+	stack.Parent = cell
+
+	if style == "S7" then
+		cell.Size = UDim2.fromOffset(44, 44)
+		return glyph, nil
+	end
+	if style == "S17" then
+		stack.FillDirection = Enum.FillDirection.Horizontal
+		local caption = label(cell, name, 14, 2)
+		caption.AutomaticSize = Enum.AutomaticSize.X
+		caption.Size = UDim2.fromOffset(0, 16)
+		return glyph, caption
+	end
+	return glyph, label(cell, name, 12, 2)
+end
+
+-- S15: a numbered circle before the name; a tick replaces the number once
+-- the step is behind the chosen one.
+local function stepContent(
+	cell: TextButton,
+	name: string,
+	index: number
+): (TextLabel, ImageLabel, TextLabel)
+	cell.Text = ""
+	local sequence = Instance.new("UIListLayout")
+	sequence.FillDirection = Enum.FillDirection.Horizontal
+	sequence.SortOrder = Enum.SortOrder.LayoutOrder
+	sequence.HorizontalAlignment = Enum.HorizontalAlignment.Center
+	sequence.VerticalAlignment = Enum.VerticalAlignment.Center
+	sequence.Padding = UDim.new(0, 8)
+	sequence.Parent = cell
+
+	local numeral = label(cell, tostring(index), 12, 1, "Step")
+	numeral.Size = UDim2.fromOffset(24, 24)
+	numeral.BackgroundTransparency = 0
+	numeral.TextColor3 = THEME.text
+	local disc = Instance.new("UICorner")
+	disc.CornerRadius = UDim.new(0.5, 0)
+	disc.Parent = numeral
+
+	local done = Instance.new("ImageLabel")
+	done.Name = "Tick"
+	done.AnchorPoint = Vector2.new(0.5, 0.5)
+	done.Position = UDim2.fromScale(0.5, 0.5)
+	done.Size = UDim2.fromOffset(14, 14)
+	done.BackgroundTransparency = 1
+	done.Image = ICON.check
+	done.ImageColor3 = THEME.text
+	done.Parent = numeral
+
+	local caption = label(cell, name, 14, 2)
+	caption.AutomaticSize = Enum.AutomaticSize.X
+	caption.Size = UDim2.fromOffset(0, 16)
+	return numeral, done, caption
 end
 
 -- The marker is a sibling of the tab row, not a child of its UIListLayout, so
@@ -614,9 +725,23 @@ local function createTabs(
 	local hovered: string? = nil
 	local icons = if options and options.icons then options.icons else {}
 	local pages = if options and options.pages then options.pages else {}
-	local vertical = style == "S4" or style == "S5" or style == "S7"
+	local counts = if options and options.counts then options.counts else {}
+	local groups = if options and options.groups then options.groups else {}
+	local limit = if options and options.visible then options.visible else 4
+	local vertical = style == "S4"
+		or style == "S5"
+		or style == "S7"
+		or style == "S18"
+		or style == "S22"
 	local marker = MARKER[style]
 	local scrolls = style == "S12"
+	local stacked = style == "S6" or style == "S13"
+	-- S15 steps and S21's arrows need the order; S20's extra tabs live in More.
+	local circles: { [string]: TextLabel } = {}
+	local ticks: { [string]: ImageLabel } = {}
+	local overflow: { [string]: boolean } = {}
+	local moreButton: TextButton? = nil
+	local moreList: Frame? = nil
 
 	local bar: Frame | ScrollingFrame
 	if scrolls then
@@ -634,7 +759,7 @@ local function createTabs(
 	bar.Name = "Tabs"
 	bar.Size = if vertical
 		then UDim2.fromScale(1, 1)
-		else UDim2.new(1, 0, 0, if style == "S6" then 56 else 44)
+		else UDim2.new(1, 0, 0, if stacked then 56 else 44)
 	bar.BackgroundColor3 = THEME.track
 	bar.BackgroundTransparency = if style == "S8" then 0 else 1
 	bar.Parent = parent
@@ -680,7 +805,10 @@ local function createTabs(
 	end
 
 	local function moveMarker(instant: boolean)
-		local tab = buttons[current]
+		local tab: GuiObject = buttons[current]
+		if overflow[current] and moreButton then
+			tab = moreButton
+		end
 		local origin = bar.AbsolutePosition
 		local canvas = if scrolls then (bar :: ScrollingFrame).CanvasPosition else Vector2.zero
 		local x = tab.AbsolutePosition.X - origin.X + canvas.X
@@ -694,25 +822,54 @@ local function createTabs(
 		elseif marker == "dot" then
 			position = UDim2.fromOffset(x + width / 2 - 3, y + height - 8)
 			size = UDim2.fromOffset(6, 6)
+		elseif marker == "top" then
+			size = UDim2.fromOffset(width, 2)
+		elseif marker == "folder" then
+			size = UDim2.fromOffset(width, height + FOLDER_JOIN)
 		end
 		animate(mark, if instant then INSTANT else SLIDE, { Position = position, Size = size })
 	end
 
 	local function paint()
+		local at = table.find(names, current) or 1
 		for name, tab in buttons do
 			local chosen = name == current
 			local colour = if chosen or name == hovered then THEME.text else THEME.textMuted
 			local weight = if chosen then Enum.Font.GothamBold else Enum.Font.GothamMedium
 			tab.TextColor3 = colour
 			tab.FontFace = Font.fromEnum(weight)
+
 			local caption = words[name]
 			if caption then
 				caption.TextColor3 = colour
 				caption.FontFace = Font.fromEnum(weight)
+				-- S17 names only the chosen tab; the rest show just their icon.
+				if style == "S17" then
+					caption.Visible = chosen
+				end
 			end
 			local glyph = glyphs[name]
 			if glyph then
 				glyph.ImageColor3 = if chosen then THEME.focus else colour
+				if style == "S22" then
+					glyph.Rotation = if chosen then 180 else 0
+				end
+			end
+
+			if style == "S19" then
+				tab.TextSize = if chosen then 20 else 14
+			elseif style == "S21" then
+				tab.Visible = chosen
+			elseif style == "S22" and pages[name] then
+				pages[name].Visible = chosen
+			end
+			-- S15: steps before this one are done and show a tick.
+			local numeral, done = circles[name], ticks[name]
+			if numeral and done then
+				local index = table.find(names, name) or 0
+				numeral.BackgroundColor3 = if index <= at then THEME.accent else THEME.controlHover
+				numeral.Text = if index < at then "" else tostring(index)
+				done.Visible = index < at
 			end
 		end
 	end
@@ -723,7 +880,12 @@ local function createTabs(
 		end
 		local before = table.find(names, current) or 0
 		local after = table.find(names, name) or 0
-		turnPage(style, pages[current], pages[name], after > before)
+		if style ~= "S22" then
+			turnPage(style, pages[current], pages[name], after > before)
+		end
+		if moreList then
+			moreList.Visible = false
+		end
 		current = name
 		paint()
 		moveMarker(false)
@@ -739,17 +901,78 @@ local function createTabs(
 		onSelect(name)
 	end
 
+	-- S20: tabs past the limit wait in a list under a More tab.
+	if style == "S20" and #names > limit then
+		local more = Instance.new("TextButton")
+		more.Name = "More"
+		more.LayoutOrder = limit + 1
+		more.AutoButtonColor = false
+		more.BackgroundTransparency = 1
+		more.Size = UDim2.fromScale(0, 1)
+		more.FontFace = Font.fromEnum(Enum.Font.GothamMedium)
+		more.TextSize = 14
+		more.TextColor3 = THEME.textMuted
+		more.Text = "More"
+		more.Parent = row
+		local share = Instance.new("UIFlexItem")
+		share.FlexMode = Enum.UIFlexMode.Fill
+		share.Parent = more
+		moreButton = more
+
+		local list = newFrame("MoreList", THEME.control)
+		list.AnchorPoint = Vector2.new(1, 0)
+		list.Position = UDim2.new(1, 0, 1, 4)
+		list.AutomaticSize = Enum.AutomaticSize.Y
+		list.Size = UDim2.fromOffset(160, 0)
+		list.Visible = false
+		list.ZIndex = 3
+		list.Parent = bar
+		local round = Instance.new("UICorner")
+		round.CornerRadius = UDim.new(0, 6)
+		round.Parent = list
+		local column = Instance.new("UIListLayout")
+		column.SortOrder = Enum.SortOrder.LayoutOrder
+		column.Parent = list
+		moreList = list
+
+		table.insert(connections, more.Activated:Connect(function()
+			list.Visible = not list.Visible
+		end))
+	end
+
+	local lastGroup: string? = nil
 	for index, name in names do
+		-- S18: a heading above the first tab of each group.
+		local section = groups[name]
+		if style == "S18" and section and section ~= lastGroup then
+			lastGroup = section
+			local heading = label(row, section:upper(), 12, index * 2 - 1, `{section}Heading`)
+			heading.TextColor3 = THEME.textMuted
+			heading.TextXAlignment = Enum.TextXAlignment.Left
+		end
+
 		local tab = Instance.new("TextButton")
 		tab.Name = name
-		tab.LayoutOrder = index
+		tab.LayoutOrder = if style == "S18" or style == "S22" then index * 2 else index
 		tab.AutoButtonColor = false
 		tab.BackgroundTransparency = 1
 		tab.TextSize = 14
 		tab.Text = name
-		tab.Parent = row
+		local spare = moreList
+		if style == "S20" and index > limit and spare then
+			overflow[name] = true
+			tab.Size = UDim2.new(1, 0, 0, 44)
+			tab.Parent = spare
+		else
+			tab.Parent = row
+		end
 
-		if vertical then
+		if overflow[name] then
+			tab.TextXAlignment = Enum.TextXAlignment.Left
+			local inset = Instance.new("UIPadding")
+			inset.PaddingLeft = UDim.new(0, 12)
+			inset.Parent = tab
+		elseif vertical then
 			tab.Size = UDim2.new(1, 0, 0, 44)
 			tab.TextXAlignment = Enum.TextXAlignment.Left
 			local inset = Instance.new("UIPadding")
@@ -769,29 +992,54 @@ local function createTabs(
 			share.Parent = tab
 		end
 
-		-- S6 stacks an icon over a small label; S7 shows the icon alone.
-		if style == "S6" or style == "S7" then
-			tab.Text = ""
-			local glyph = Instance.new("ImageLabel")
-			glyph.Name = "Glyph"
-			glyph.LayoutOrder = 1
-			glyph.Size = UDim2.fromOffset(20, 20)
-			glyph.BackgroundTransparency = 1
-			glyph.Image = icons[name] or ICON.tab
-			glyph.Parent = tab
-			glyphs[name] = glyph
+		-- S14: a count in the tab's top corner, placed outside any layout.
+		local count = counts[name]
+		if style == "S14" and count then
+			local badge = Instance.new("TextLabel")
+			badge.Name = "Count"
+			badge.AnchorPoint = Vector2.new(1, 0)
+			badge.Position = UDim2.new(1, -4, 0, 4)
+			badge.AutomaticSize = Enum.AutomaticSize.X
+			badge.Size = UDim2.fromOffset(16, 16)
+			badge.BackgroundColor3 = THEME.accent
+			badge.FontFace = Font.fromEnum(Enum.Font.GothamBold)
+			badge.TextSize = 12
+			badge.TextColor3 = THEME.text
+			badge.Text = tostring(count)
+			badge.Parent = tab
+			local pill = Instance.new("UICorner")
+			pill.CornerRadius = UDim.new(0.5, 0)
+			pill.Parent = badge
+		end
 
-			local stack = Instance.new("UIListLayout")
-			stack.SortOrder = Enum.SortOrder.LayoutOrder
-			stack.HorizontalAlignment = Enum.HorizontalAlignment.Center
-			stack.VerticalAlignment = Enum.VerticalAlignment.Center
-			stack.Padding = UDim.new(0, 4)
-			stack.Parent = tab
-			if style == "S7" then
-				tab.Size = UDim2.fromOffset(44, 44)
-			else
-				words[name] = label(tab, name, 12, 2)
+		if style == "S15" then
+			local numeral, done, caption = stepContent(tab, name, index)
+			circles[name], ticks[name], words[name] = numeral, done, caption
+		end
+
+		-- S22: each tab heads its own section, with an arrow that turns open.
+		if style == "S22" then
+			tab.TextXAlignment = Enum.TextXAlignment.Left
+			local chevron = Instance.new("ImageLabel")
+			chevron.Name = "Glyph"
+			chevron.AnchorPoint = Vector2.new(1, 0.5)
+			chevron.Position = UDim2.new(1, -12, 0.5, 0)
+			chevron.Size = UDim2.fromOffset(16, 16)
+			chevron.BackgroundTransparency = 1
+			chevron.Image = ICON.open
+			chevron.Parent = tab
+			glyphs[name] = chevron
+			local page = pages[name]
+			if page then
+				page.LayoutOrder = index * 2 + 1
+				page.Parent = row
 			end
+		end
+
+		if stacked or style == "S7" or style == "S17" then
+			local glyph, caption = iconContent(tab, name, icons[name] or ICON.tab, style)
+			glyphs[name] = glyph
+			words[name] = caption
 		end
 
 		local ring = Instance.new("UIStroke")
@@ -821,6 +1069,25 @@ local function createTabs(
 		table.insert(connections, tab.SelectionLost:Connect(function()
 			ring.Enabled = false
 		end))
+	end
+
+	-- S21: one tab name at a time, with arrows either side that wrap.
+	if style == "S21" then
+		for order, step in { -1, 1 } do
+			local stepper = Instance.new("ImageButton")
+			stepper.Name = if step < 0 then "Previous" else "Next"
+			stepper.LayoutOrder = if order == 1 then 0 else #names + 1
+			stepper.Size = UDim2.fromOffset(44, 44)
+			stepper.AutoButtonColor = false
+			stepper.BackgroundTransparency = 1
+			stepper.Image = if step < 0 then ICON.previous else ICON.next
+			stepper.ImageColor3 = THEME.textMuted
+			stepper.Parent = row
+			table.insert(connections, stepper.Activated:Connect(function()
+				local at = table.find(names, current) or 1
+				select(names[(at - 1 + step) % #names + 1])
+			end))
+		end
 	end
 
 	for name, page in pages do
