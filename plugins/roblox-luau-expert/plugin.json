@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "roblox-luau-expert",
-  "version": "5.4.0+ga5d5a87",
+  "version": "5.4.0+gc4db9a2",
   "description": "Roblox and Luau expertise: verified engine APIs, clean UI with a labeled style picker and tested recipes, decompiled-source to executor scripts, networking, DataStores, performance and security.",
   "author": {
     "name": "x-Yami-Sukehiro-x"
