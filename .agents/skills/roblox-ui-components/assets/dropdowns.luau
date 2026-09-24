@@ -6,11 +6,14 @@ local TweenService = game:GetService("TweenService")
 local UserInputService = game:GetService("UserInputService")
 
 type FirstSix = "D1" | "D2" | "D3" | "D4" | "D5" | "D6"
-export type DropdownStyle = FirstSix | "D7" | "D8" | "D9" | "D10" | "D11" | "D12"
+type SecondSix = "D7" | "D8" | "D9" | "D10" | "D11" | "D12"
+type LaterStyles = "D13" | "D14" | "D15" | "D16" | "D17" | "D18" | "D19" | "D20" | "D21" | "D22"
+export type DropdownStyle = FirstSix | SecondSix | LaterStyles
 
 -- `text` is the value handed to onChanged; `display` is what the row shows
 -- when it should differ (D10 shows a display name for a unique username).
--- D8 reads `group`, D9 `icon`, D12 `colour`; D10 fills `image` itself.
+-- D8 reads `group`, D9 and D18 `icon`, D12 `colour`, D13 `detail` and D21
+-- `children`; D10 fills `image` itself.
 export type Choice = {
 	text: string,
 	display: string?,
@@ -19,15 +22,19 @@ export type Choice = {
 	image: string?,
 	group: string?,
 	colour: Color3?,
+	children: { string | Choice }?,
 }
 
 -- `label` names what the field is for and is its placeholder. `host` is the
--- ScreenGui the list opens above; by default the field's own ScreenGui.
+-- ScreenGui the list opens above; by default the field's own ScreenGui. D19
+-- calls `onRun` with the chosen value; D22 calls `onCreate` with a new one.
 export type DropdownSpec = {
 	label: string,
 	options: { string | Choice },
 	chosen: { string }?,
 	onChanged: (chosen: { string }) -> (),
+	onRun: ((chosen: string) -> ())?,
+	onCreate: ((text: string) -> ())?,
 	host: ScreenGui?,
 }
 
@@ -52,6 +59,7 @@ local THEME = {
 	accent = Color3.fromRGB(46, 160, 127),
 	accentDim = Color3.fromRGB(28, 88, 74),
 	focus = Color3.fromRGB(72, 201, 162),
+	scrim = Color3.fromRGB(0, 0, 0),
 }
 
 local ICON = {
@@ -60,9 +68,15 @@ local ICON = {
 	chevronRight = "rbxassetid://101007429951147",
 	check = "rbxassetid://86817768619372",
 	search = "rbxassetid://72296609649861",
+	plus = "rbxassetid://101123124881873",
 }
 
 local ROW = 44
+local TWO_LINE_ROW = 56
+local GRID_CELL = 72
+local GRID_COLUMNS = 3
+local RECENT_LIMIT = 3
+local SCRIM_TRANSPARENCY = 0.5
 local VISIBLE_ROWS = 5
 local LIST_GAP = 4
 local SUGGESTIONS = 6
@@ -72,7 +86,15 @@ local SHUT = TweenInfo.new(0.15, Enum.EasingStyle.Cubic, Enum.EasingDirection.In
 local INSTANT = TweenInfo.new(0)
 
 -- The styles that let the player pick several at once.
-local MULTI = { D3 = true, D4 = true }
+local MULTI = { D3 = true, D4 = true, D20 = true }
+
+-- The styles whose field is a text box the player types into.
+local TYPED = { D2 = true, D5 = true, D17 = true, D22 = true }
+
+-- Rich text treats these as markup; a typed "<" must show as itself.
+local function escape(text: string): string
+	return (text:gsub("&", "&amp;"):gsub("<", "&lt;"):gsub(">", "&gt;"))
+end
 
 local function animate(target: Instance, timing: TweenInfo, goals: { [string]: any }): Tween
 	local chosen = if GuiService.ReducedMotionEnabled then INSTANT else timing
@@ -254,14 +276,25 @@ local function createDropdown(parent: GuiObject, style: DropdownStyle, spec: Dro
 		return table.find(chosen, text) ~= nil
 	end
 
-	local function choiceFor(text: string): Choice?
-		for _, choice in choices do
+	local function choiceFor(text: string, within: { string | Choice }?): Choice?
+		for _, option in within or choices do
+			local choice = toChoice(option)
 			if choice.text == text then
 				return choice
+			end
+			local nested = if choice.children then choiceFor(text, choice.children) else nil
+			if nested then
+				return nested
 			end
 		end
 		return nil
 	end
+
+	-- D14 remembers the last few picks; D20 holds picks until Apply; D21 keeps
+	-- the path of open sub-menus.
+	local recent: { string } = {}
+	local pending: { string }? = nil
+	local trail: { Choice } = {}
 
 	-- The field. Most styles are one button; the typed styles hold a TextBox,
 	-- D7 holds two arrows, and D4 grows to fit its chips.
@@ -274,7 +307,8 @@ local function createDropdown(parent: GuiObject, style: DropdownStyle, spec: Dro
 	local chips: Frame? = nil
 	local chevron: ImageLabel? = nil
 
-	if style == "D2" or style == "D5" then
+	local ghost: TextLabel? = nil
+	if TYPED[style] then
 		local frame = Instance.new("Frame")
 		frame.Size = UDim2.new(1, 0, 0, ROW)
 		field = frame
@@ -285,7 +319,17 @@ local function createDropdown(parent: GuiObject, style: DropdownStyle, spec: Dro
 		local entry = newBox("Search", spec.label, 1)
 		entry.Parent = frame
 		box = entry
-	elseif style == "D7" then
+
+		-- D17 shows the rest of the first match behind the typing, in grey.
+		if style == "D17" then
+			local hint = newText("Ghost", "", 14, 0)
+			hint.Size = UDim2.fromScale(1, 1)
+			hint.RichText = true
+			hint.TextColor3 = THEME.textMuted
+			hint.Parent = entry
+			ghost = hint
+		end
+	elseif style == "D7" or style == "D19" then
 		local frame = Instance.new("Frame")
 		frame.Size = UDim2.new(1, 0, 0, ROW)
 		field = frame
@@ -306,7 +350,7 @@ local function createDropdown(parent: GuiObject, style: DropdownStyle, spec: Dro
 	field.Parent = root
 	round(field, 6)
 	outline(field)
-	pad(field, if style == "D4" then 4 else 0, if style == "D7" then 0 else 12)
+	pad(field, if style == "D4" then 4 else 0, if style == "D7" or style == "D19" then 0 else 12)
 	lineUp(field, Enum.FillDirection.Horizontal, 8)
 
 	if style == "D9" or style == "D10" or style == "D11" then
@@ -350,6 +394,44 @@ local function createDropdown(parent: GuiObject, style: DropdownStyle, spec: Dro
 		local mark = newIcon("Chevron", ICON.chevronDown, 16, 2)
 		mark.Parent = field
 		chevron = mark
+	end
+
+	-- D19: the value is a button that runs it; only the arrow opens the list.
+	local runButton: TextButton? = nil
+	local moreButton: TextButton? = nil
+	if style == "D19" then
+		local run = Instance.new("TextButton")
+		run.Name = "Run"
+		run.LayoutOrder = 1
+		run.AutoButtonColor = false
+		run.Text = ""
+		run.Size = UDim2.fromScale(0, 1)
+		run.BackgroundColor3 = THEME.field
+		run.Parent = field
+		round(run, 6)
+		pad(run, 0, 12)
+		lineUp(run, Enum.FillDirection.Horizontal, 8)
+		fill(run)
+		if value then
+			value.Parent = run
+		end
+		runButton = run
+
+		local more = Instance.new("TextButton")
+		more.Name = "More"
+		more.LayoutOrder = 2
+		more.AutoButtonColor = false
+		more.Text = ""
+		more.Size = UDim2.fromOffset(ROW, ROW)
+		more.BackgroundColor3 = THEME.field
+		more.Parent = field
+		round(more, 6)
+		local centre = lineUp(more, Enum.FillDirection.Horizontal, 0)
+		centre.HorizontalAlignment = Enum.HorizontalAlignment.Center
+		if chevron then
+			chevron.Parent = more
+		end
+		moreButton = more
 	end
 
 	-- The list: under the field for D6; for the rest, a layer of its own above
@@ -419,6 +501,24 @@ local function createDropdown(parent: GuiObject, style: DropdownStyle, spec: Dro
 
 	list.Parent = if catcher then catcher else root
 
+	-- D20 commits nothing until this is pressed.
+	local applyButton: TextButton? = nil
+	if style == "D20" then
+		local apply = Instance.new("TextButton")
+		apply.Name = "Apply"
+		apply.LayoutOrder = 2
+		apply.AutoButtonColor = false
+		apply.Size = UDim2.new(1, 0, 0, ROW)
+		apply.BackgroundColor3 = THEME.accent
+		apply.FontFace = Font.fromEnum(Enum.Font.GothamBold)
+		apply.TextSize = 14
+		apply.TextColor3 = THEME.text
+		apply.Text = "Apply"
+		apply.Parent = list
+		round(apply, 6)
+		applyButton = apply
+	end
+
 	local rows = Instance.new("ScrollingFrame")
 	rows.Name = "Rows"
 	rows.LayoutOrder = 1
@@ -430,7 +530,15 @@ local function createDropdown(parent: GuiObject, style: DropdownStyle, spec: Dro
 	rows.AutomaticCanvasSize = Enum.AutomaticSize.Y
 	rows.CanvasSize = UDim2.new()
 	rows.Parent = list
-	lineUp(rows, Enum.FillDirection.Vertical, 0)
+	if style == "D18" then
+		local grid = Instance.new("UIGridLayout")
+		grid.CellSize = UDim2.new(1 / GRID_COLUMNS, -LIST_GAP, 0, GRID_CELL)
+		grid.CellPadding = UDim2.fromOffset(LIST_GAP, LIST_GAP)
+		grid.SortOrder = Enum.SortOrder.LayoutOrder
+		grid.Parent = rows
+	else
+		lineUp(rows, Enum.FillDirection.Vertical, 0)
+	end
 
 	local refreshField: () -> ()
 	local rebuild: () -> ()
@@ -440,7 +548,40 @@ local function createDropdown(parent: GuiObject, style: DropdownStyle, spec: Dro
 		spec.onChanged(table.clone(chosen))
 	end
 
+	local function remember(text: string)
+		local at = table.find(recent, text)
+		if at then
+			table.remove(recent, at)
+		end
+		table.insert(recent, 1, text)
+		if #recent > RECENT_LIMIT then
+			table.remove(recent)
+		end
+	end
+
 	local function choose(text: string)
+		local level = if #trail > 0 then trail[#trail].children else nil
+		local picked = choiceFor(text, level)
+		if style == "D21" and picked and picked.children then
+			table.insert(trail, picked)
+			rebuild()
+			return
+		end
+
+		if style == "D20" and pending then
+			local at = table.find(pending, text)
+			if at then
+				table.remove(pending, at)
+			else
+				table.insert(pending, text)
+			end
+			rebuild()
+			return
+		end
+		if style == "D14" then
+			remember(text)
+		end
+
 		if multi then
 			local at = table.find(chosen, text)
 			if at then
@@ -464,7 +605,12 @@ local function createDropdown(parent: GuiObject, style: DropdownStyle, spec: Dro
 
 	local function visibleChoices(): { Choice }
 		local shown = {}
-		for _, choice in choices do
+		local level: { string | Choice } = choices
+		if #trail > 0 then
+			level = trail[#trail].children or {}
+		end
+		for _, option in level do
+			local choice = toChoice(option)
 			if matches(choice, query) then
 				table.insert(shown, choice)
 			end
@@ -475,21 +621,38 @@ local function createDropdown(parent: GuiObject, style: DropdownStyle, spec: Dro
 		return shown
 	end
 
-	local function addRow(choice: Choice, order: number): TextButton
+	-- `name` and `onPick` let D14, D21 and D22 add rows that are not options:
+	-- a repeat of a recent pick, a way back, a way to create one.
+	local function addRow(
+		choice: Choice,
+		order: number,
+		name: string?,
+		onPick: (() -> ())?
+	): TextButton
 		local row = Instance.new("TextButton")
-		row.Name = choice.text
+		row.Name = name or choice.text
 		row.LayoutOrder = order
 		row.AutoButtonColor = false
 		row.Text = ""
-		row.Size = UDim2.new(1, 0, 0, ROW)
+		row.Size = UDim2.new(1, 0, 0, if style == "D13" then TWO_LINE_ROW else ROW)
 		row.BackgroundColor3 = THEME.surface
 		row.BackgroundTransparency = 0
 		row.Parent = rows
 		round(row, 6)
-		pad(row, 0, 12)
-		lineUp(row, Enum.FillDirection.Horizontal, 12)
+		pad(row, 0, if style == "D18" then 4 else 12)
+		local rowLayout = lineUp(
+			row,
+			if style == "D18" then Enum.FillDirection.Vertical else Enum.FillDirection.Horizontal,
+			if style == "D18" then 4 else 12
+		)
+		if style == "D18" then
+			rowLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
+		end
 
 		local picked = isChosen(choice.text)
+		if pending then
+			picked = table.find(pending, choice.text) ~= nil
+		end
 		if multi then
 			local tickBox = Instance.new("Frame")
 			tickBox.Name = "Box"
@@ -513,14 +676,41 @@ local function createDropdown(parent: GuiObject, style: DropdownStyle, spec: Dro
 			chip.Parent = row
 			round(chip, 6)
 		elseif choice.icon or choice.image then
-			local size = if choice.image then 24 else 16
+			local size = if choice.image or style == "D18" then 24 else 16
 			newIcon("Icon", choice.image or choice.icon or "", size, 0).Parent = row
 		end
 
 		local words = newText("Label", choice.display or choice.text, 14, 1)
 		words.Parent = row
-		fill(words)
-		if choice.detail then
+		if style == "D18" then
+			words.TextSize = 12
+			words.TextXAlignment = Enum.TextXAlignment.Center
+			words.Size = UDim2.new(1, 0, 0, 16)
+		elseif style == "D13" then
+			-- Two lines: the label over its detail, both left aligned.
+			local column = Instance.new("Frame")
+			column.Name = "Lines"
+			column.LayoutOrder = 1
+			column.Size = UDim2.fromScale(0, 1)
+			column.BackgroundTransparency = 1
+			column.Parent = row
+			fill(column)
+			lineUp(column, Enum.FillDirection.Vertical, 4)
+
+			words.Size = UDim2.new(1, 0, 0, 16)
+			words.Parent = column
+			local under = newText("Detail", choice.detail or "", 12, 2)
+			under.Size = UDim2.new(1, 0, 0, 16)
+			under.TextColor3 = THEME.textMuted
+			under.Parent = column
+		else
+			fill(words)
+		end
+		if choice.children then
+			newIcon("Deeper", ICON.chevronRight, 16, 3).Parent = row
+		end
+
+		if choice.detail and style ~= "D13" and style ~= "D18" then
 			local extra = newText("Detail", choice.detail, 12, 2)
 			extra.AutomaticSize = Enum.AutomaticSize.X
 			extra.TextColor3 = THEME.textMuted
@@ -536,7 +726,11 @@ local function createDropdown(parent: GuiObject, style: DropdownStyle, spec: Dro
 			return THEME.surface
 		end)
 		table.insert(rowConnections, row.Activated:Connect(function()
-			choose(choice.text)
+			if onPick then
+				onPick()
+			else
+				choose(choice.text)
+			end
 		end))
 		return row
 	end
@@ -564,6 +758,29 @@ local function createDropdown(parent: GuiObject, style: DropdownStyle, spec: Dro
 
 		local shown = visibleChoices()
 		local order, group = 0, nil
+		if style == "D14" and query == "" and #recent > 0 then
+			order += 1
+			addNote("RECENT", "RECENT", order)
+			for _, text in recent do
+				local choice = choiceFor(text)
+				if choice then
+					order += 1
+					addRow(choice, order, `Recent {text}`)
+				end
+			end
+			order += 1
+			addNote("ALL", "ALL", order)
+		end
+
+		if #trail > 0 then
+			order += 1
+			local above = trail[#trail]
+			local back = { text = "Back", display = `Back to {above.display or above.text}` }
+			addRow(back, order, "Back", function()
+				table.remove(trail)
+				rebuild()
+			end)
+		end
 		for _, choice in shown do
 			if style == "D8" and choice.group and choice.group ~= group then
 				group = choice.group
@@ -574,11 +791,31 @@ local function createDropdown(parent: GuiObject, style: DropdownStyle, spec: Dro
 			order += 1
 			addRow(choice, order)
 		end
-		if #shown == 0 then
+
+		-- D22: nothing matches exactly, so offer to add what was typed.
+		local exact = choiceFor(query) ~= nil
+		if style == "D22" and query ~= "" and not exact then
+			order += 1
+			local typed = query
+			local offer = { text = typed, display = `Add "{typed}"`, icon = ICON.plus }
+			addRow(offer, order, "Create", function()
+				table.insert(choices, { text = typed })
+				if spec.onCreate then
+					spec.onCreate(typed)
+				end
+				choose(typed)
+			end)
+		elseif #shown == 0 then
 			addNote("Empty", if #choices == 0 then "Nothing to choose yet" else "No matches", 1)
 		end
-		local lines = math.clamp(order, 1, VISIBLE_ROWS)
-		rows.Size = UDim2.new(1, 0, 0, lines * ROW)
+
+		if style == "D18" then
+			local lines = math.clamp(math.ceil(order / GRID_COLUMNS), 1, 3)
+			rows.Size = UDim2.new(1, 0, 0, lines * (GRID_CELL + LIST_GAP))
+		else
+			local height = if style == "D13" then TWO_LINE_ROW else ROW
+			rows.Size = UDim2.new(1, 0, 0, math.clamp(order, 1, VISIBLE_ROWS) * height)
+		end
 	end
 
 	-- D4: one chip per chosen value, or the label while nothing is chosen.
@@ -636,11 +873,21 @@ local function createDropdown(parent: GuiObject, style: DropdownStyle, spec: Dro
 		if style == "D11" then
 			return
 		end
-		local height = rows.Size.Y.Offset + LIST_GAP * 2
+		local extra = if applyButton then ROW + LIST_GAP else 0
+		local height = rows.Size.Y.Offset + LIST_GAP * 2 + extra
+		-- D16 is a sheet along the bottom edge instead of a list at the field.
+		if style == "D16" then
+			list.AnchorPoint = Vector2.new(0.5, 1)
+			list.Size = UDim2.fromOffset(math.min(overlay.AbsoluteSize.X, PALETTE_WIDTH), height)
+			list.Position = UDim2.new(0.5, 0, 1, 0)
+			return
+		end
 		local top = field.AbsolutePosition - overlay.AbsolutePosition
 		local below = top.Y + field.AbsoluteSize.Y + LIST_GAP
+		local above = top.Y - height - LIST_GAP
 		local fits = below + height <= overlay.AbsoluteSize.Y
-		local y = if fits then below else top.Y - height - LIST_GAP
+		-- D15 opens upward whenever there is room, for fields near the bottom.
+		local y = if style == "D15" and above >= 0 then above elseif fits then below else above
 		list.Size = UDim2.fromOffset(field.AbsoluteSize.X, height)
 		list.Position = UDim2.fromOffset(top.X, y)
 	end
@@ -651,7 +898,11 @@ local function createDropdown(parent: GuiObject, style: DropdownStyle, spec: Dro
 		end
 		isOpen = true
 		ticket += 1
+		if style == "D20" then
+			pending = table.clone(chosen)
+		end
 		rebuild()
+
 		local overlay = layer
 		if overlay then
 			local host = spec.host or field:FindFirstAncestorWhichIsA("ScreenGui")
@@ -664,6 +915,13 @@ local function createDropdown(parent: GuiObject, style: DropdownStyle, spec: Dro
 		end
 		list.Visible = true
 		animate(list, OPEN, { GroupTransparency = 0 })
+
+		if style == "D16" and catcher then
+			catcher.BackgroundColor3 = THEME.scrim
+			animate(catcher, OPEN, { BackgroundTransparency = SCRIM_TRANSPARENCY })
+			list.Position = UDim2.new(0.5, 0, 1, list.Size.Y.Offset)
+			animate(list, OPEN, { Position = UDim2.new(0.5, 0, 1, 0) })
+		end
 		if chevron then
 			animate(chevron, OPEN, { Rotation = 180 })
 		end
@@ -685,6 +943,12 @@ local function createDropdown(parent: GuiObject, style: DropdownStyle, spec: Dro
 		local overlay = layer
 		if chevron then
 			animate(chevron, SHUT, { Rotation = 0 })
+		end
+		pending = nil
+		table.clear(trail)
+		if style == "D16" and catcher then
+			animate(catcher, SHUT, { BackgroundTransparency = 1 })
+			animate(list, SHUT, { Position = UDim2.new(0.5, 0, 1, list.Size.Y.Offset) })
 		end
 		animate(list, SHUT, { GroupTransparency = 1 }).Completed:Once(function()
 			if mine == ticket then
@@ -766,6 +1030,29 @@ local function createDropdown(parent: GuiObject, style: DropdownStyle, spec: Dro
 		end)
 		table.insert(connections, fieldButton.Activated:Connect(toggle))
 	end
+	if runButton and moreButton then
+		for _, button in { runButton, moreButton } do
+			watch(button, connections, function()
+				return THEME.field
+			end)
+		end
+		table.insert(connections, moreButton.Activated:Connect(toggle))
+		table.insert(connections, runButton.Activated:Connect(function()
+			if spec.onRun and chosen[1] then
+				spec.onRun(chosen[1])
+			end
+		end))
+	end
+	if applyButton then
+		table.insert(connections, applyButton.Activated:Connect(function()
+			if pending then
+				chosen = table.clone(pending)
+			end
+			refreshField()
+			close()
+			report()
+		end))
+	end
 	if catcher then
 		table.insert(connections, catcher.Activated:Connect(close))
 	end
@@ -774,8 +1061,27 @@ local function createDropdown(parent: GuiObject, style: DropdownStyle, spec: Dro
 	local typing = box or paletteBox
 	if typing then
 		local entry = typing
+		-- D17: the grey rest of the first option that starts with the typing.
+		local function suggest()
+			local hint = ghost
+			if not hint then
+				return
+			end
+			local lowered = query:lower()
+			for _, choice in visibleChoices() do
+				local word = choice.display or choice.text
+				if query ~= "" and word:lower():sub(1, #query) == lowered then
+					local rest = escape(word:sub(#query + 1))
+					hint.Text = `<font transparency="1">{escape(query)}</font>{rest}`
+					return
+				end
+			end
+			hint.Text = ""
+		end
+
 		table.insert(connections, entry:GetPropertyChangedSignal("Text"):Connect(function()
 			query = entry.Text
+			suggest()
 			if style == "D5" and query == "" then
 				close()
 				return
@@ -798,7 +1104,7 @@ local function createDropdown(parent: GuiObject, style: DropdownStyle, spec: Dro
 				choose(first.text)
 			end
 		end))
-		if style == "D2" then
+		if style == "D2" or style == "D17" or style == "D22" then
 			table.insert(connections, entry.Focused:Connect(open))
 		end
 	end
@@ -806,6 +1112,14 @@ local function createDropdown(parent: GuiObject, style: DropdownStyle, spec: Dro
 	table.insert(connections, UserInputService.InputBegan:Connect(function(input: InputObject)
 		if isOpen and input.KeyCode == Enum.KeyCode.Escape then
 			close()
+		end
+		-- D17: Tab accepts the grey completion.
+		local entry = box
+		if style == "D17" and entry and input.KeyCode == Enum.KeyCode.Tab and entry:IsFocused() then
+			local first = visibleChoices()[1]
+			if first then
+				entry.Text = first.display or first.text
+			end
 		end
 	end))
 

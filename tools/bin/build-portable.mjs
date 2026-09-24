@@ -58,6 +58,9 @@ const WORKFLOW_SOURCES = [
   "roblox-luau-language/references/compiler-limits.md",
   "roblox-reply-craft/SKILL.md",
   "roblox-reply-craft/references/code-output.md",
+  "roblox-reply-craft/references/fast-path.md",
+  "roblox-executor-features/SKILL.md",
+  "roblox-executor-features/references/feature-quality.md",
 ];
 
 // Everything a picked style code needs, in one retrievable file: the question,
@@ -68,12 +71,14 @@ const STYLE_SOURCES = [
   "roblox-request-intake/references/ui-words.md",
   "roblox-ui-components/references/style-recipes.md",
   "roblox-ui-components/references/icon-meaning.md",
+  "roblox-ui-tooltips/SKILL.md",
 ];
 const STYLE_RECIPES_DIR = join(SKILLS_DIR, "roblox-ui-components", "assets");
 
 // Scripts a reply hands over unchanged but for one config line, in full, so a
 // GPT pastes the tested file instead of writing its own from the description.
 const EXECUTOR_ASSETS_DIR = join(SKILLS_DIR, "roblox-executor", "assets");
+const FEATURE_ASSETS_DIR = join(SKILLS_DIR, "roblox-executor-features", "assets");
 
 // The style picker page itself. The hosted copy is private until its owner
 // shares it, so the GPT carries the page and can hand it over as a file.
@@ -377,9 +382,11 @@ function buildWorkflowPack() {
     const content = readFileSync(join(SKILLS_DIR, source), "utf8").trim();
     return `## Source: .claude/skills/${source}\n\n${content}`;
   });
-  for (const name of readdirSync(EXECUTOR_ASSETS_DIR).filter((file) => file.endsWith(".luau")).sort()) {
-    const code = readFileSync(join(EXECUTOR_ASSETS_DIR, name), "utf8").trimEnd();
-    sections.push(`## Asset: .claude/skills/roblox-executor/assets/${name}\n\n\`\`\`lua\n${code}\n\`\`\``);
+  for (const [dir, skill] of [[EXECUTOR_ASSETS_DIR, "roblox-executor"], [FEATURE_ASSETS_DIR, "roblox-executor-features"]]) {
+    for (const name of readdirSync(dir).filter((file) => file.endsWith(".luau")).sort()) {
+      const code = readFileSync(join(dir, name), "utf8").trimEnd();
+      sections.push(`## Asset: .claude/skills/${skill}/assets/${name}\n\n\`\`\`lua\n${code}\n\`\`\``);
+    }
   }
   return `${BANNER(".claude/skills/ (source paths below)")}\n\n# Task workflow pack\n\n` +
     "Retrieve the relevant task contract, UI workflow or source-to-executor workflow before drafting. " +
@@ -401,7 +408,8 @@ function buildStylePack() {
     });
   return `${BANNER(".claude/skills/ (source paths below)")}\n\n# Style pack\n\n` +
     "Read this before building or restyling UI. It holds the style picker question, " +
-    "the everyday words users say, what each picked code (T1-T10, M0-M12, N1-N10, O1-O5, P1-P3, S1-S3) " +
+    "the everyday words users say, what each picked code (T1-T30, C1-C20, D1-D22, M0-M36, N1-N30, " +
+    "O1-O20, P1-P22, S1-S22, H1-H12) " +
     "builds, and the tested recipe for every code in full. Recolour a recipe only through " +
     "its THEME block.\n\n" +
     [...guides, ...recipes].join("\n\n---\n\n") + "\n";

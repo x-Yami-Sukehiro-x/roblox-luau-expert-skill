@@ -1,6 +1,6 @@
 # Roblox Luau Expert
 
-A 19-skill stack covering Roblox and Luau at depth — ordinary game development
+A 21-skill stack covering Roblox and Luau at depth — ordinary game development
 **and** client/executor scripting — with a verification layer so Roblox APIs are
 **checked against ground truth rather than recalled**, and linters that hold the
 stack's own prose, examples and colour palettes to that same standard.
@@ -12,9 +12,11 @@ GPTs retire on 11 December 2026.
 For UI, users pick styles by looking rather than by knowing the words: the
 [Roblox UI style picker](https://x-yami-sukehiro-x.github.io/roblox-luau-expert-skill/)
 (offline copy `docs/visual-guide/index.html`) labels every toggle, checkbox,
-dropdown, menu movement, notification, hide style, button feel and tab switch
-with a code (123 of them), and each code has a tested recipe in
-`.claude/skills/roblox-ui-components/assets/`. The
+dropdown, menu movement, notification, hide style, button feel, tab switch and
+tooltip with a code (215 of them), and each code has a tested recipe in
+`.claude/skills/roblox-ui-components/assets/`. Fly, noclip, speed, ESP and the
+other character features are tested, paste-whole scripts in
+`.claude/skills/roblox-executor-features/assets/`. The
 [UI designer](https://x-yami-sukehiro-x.github.io/roblox-luau-expert-skill/designer.html)
 lets them drag a whole screen together from windows, rows, controls and 1,559
 verified Roblox icons, then copy it for their AI to rebuild exactly.
@@ -171,6 +173,7 @@ One thin router loads always; the rest load on demand.
 | **roblox-ui** | The **build order** (ten gated steps), **six fully specified design directions**, **nine blueprints**, the **countable self-review**, whole-screen archetypes, layout and tab-layout rules, blurry and broken UI fixes, rebuilding from a screenshot or a designer export, UI copy, plus scale vs offset, flex and wrapping, StyleSheet cascade, safe areas and the anti-slop catalog (R1–R17) |
 | **roblox-ui-motion** | Intent-to-easing mapping, duration bands, **`SmoothDamp` springs** for interruptible motion, choreography and stagger, reduced motion |
 | **roblox-ui-components** | **Tested recipes for every picker code**, toast/notification system, outlines and dividers, 9-slice panels, the six interaction states, a control catalog, and which icon means what |
+| **roblox-ui-tooltips** | Which words-around-a-control to use (tooltip, info button, helper line, locked reason, coach mark), placement and flipping, touch and gamepad access, **slider value readouts**, and the tested H1–H12 recipes |
 | **roblox-game-security** | The realistic client threat model, remote hardening, server-side sanity checks, detection vs enforcement, obfuscation reality check, audit checklist |
 | **roblox-toolchain** | Rojo, Rokit, Wally, selene, StyLua, luau-lsp with sourcemaps, Lune, jest-roblox, CI, Studio MCP |
 | **roblox-code-craft** | Naming, error and warning design, `pcall` discipline, comment policy, matching an existing file, AI-generated tells |
@@ -178,7 +181,8 @@ One thin router loads always; the rest load on demand.
 | **roblox-vfx-animation** | `AnimationTrack` lifecycle, priority and blending, markers, particles, beams, trails, highlights, pooling |
 | **roblox-audio** | Legacy `Sound` vs the `AudioPlayer`/`Wire` graph, buses and mixing, rolloff, preloading, per-player output |
 | **roblox-executor** | sUNC API surface, hooking, memory search, thread identity and capabilities, anti-cheat recon, detection surface, RakNet, saveinstance, **working from decompiled source**, hub UI libraries, **feature ideas from a dump** (`dump_index.py --inventory`) |
-| **roblox-reply-craft** | Replies that arrive faster, code blocks that paste cleanly, short file names, and no AI filler around the code |
+| **roblox-executor-features** | **Tested, paste-whole feature scripts**: fly (`LinearVelocity`), noclip, speed and jump, infinite jump, ESP, click teleport, anti-AFK, fullbright; the quality bar for mobile input, respawn, rerun and unload |
+| **roblox-reply-craft** | Replies that arrive faster (**`check-file.mjs`** runs every check in one call, **`recipe.py`** names the file for a code), code blocks that paste cleanly, short file names, and no AI filler around the code |
 
 `roblox-game-security` and `roblox-executor` are deliberate mirrors. Knowing
 what a client can actually do is what makes the defence proportionate rather

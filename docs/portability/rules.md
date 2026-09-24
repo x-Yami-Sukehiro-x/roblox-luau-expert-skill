@@ -37,8 +37,9 @@ archive for references and `tools/py/`, and name what you read.
 Before UI code, unless the user already chose or said to decide, end your reply
 with <https://x-yami-sukehiro-x.github.io/roblox-luau-expert-skill/> and one question for
 toggle, menu and notification picks, codes or plain words (`visual-choices.md`).
-Paste each picked code's tested recipe from `style-pack.md` unchanged but for
-THEME. No invented links.
+Paste each picked code's tested recipe (`python tools/py/recipe.py T2 M4` names
+it) unchanged but for THEME; fly, ESP and the like are tested assets in
+`roblox-executor-features`. No invented links.
 
 Record the task, source facts, unknowns and acceptance checks before building.
 Save confirmed picks and corrections to memory, else a project
@@ -51,14 +52,11 @@ Report checks run and their outputs; never invent a passing score.
 Paste the final script whole in one code block; downloads can fail.
 
 ```bash
-node tools/bin/lint-luau-slop.mjs <file>     # no Node: roblox_lint.py
-node tools/bin/lint-luau-format.mjs <file>   # no Node: format_lint.py
-node tools/bin/lint-roblox-ui.mjs <file>     # no Node: ui_lint.py
-python tools/py/verify_api.py --scan <file>
-node tools/bin/check-registers.mjs <file>   # compiles; no Node: register_budget.py
+node tools/bin/check-file.mjs <file>   # slop, format, UI, API, compile, registers
+python tools/py/check_file.py <file>   # the same without Node
 ```
 
-For edits add `--compare <before> <after>` and the diff; equal counts can hide
+For edits use `--compare <before> <after>` and give the diff; equal counts can hide
 a behavior change. Lint, API lookup, mocked tests and Roblox runtime are
 different evidence; name skipped checks. No lint score proves good UX or a
 working executor. Fix observed failures before claiming done. UI: run callbacks

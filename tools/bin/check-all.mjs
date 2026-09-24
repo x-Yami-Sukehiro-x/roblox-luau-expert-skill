@@ -30,6 +30,9 @@ const RECIPES = join(REPO_ROOT, ".claude", "skills", "roblox-ui-components", "as
 // Scripts a reply hands to the user unchanged, such as the runtime probe.
 const EXECUTOR_ASSETS = join(REPO_ROOT, ".claude", "skills", "roblox-executor", "assets");
 
+// The feature scripts (fly, ESP, ...) a reply pastes whole.
+const FEATURE_ASSETS = join(REPO_ROOT, ".claude", "skills", "roblox-executor-features", "assets");
+
 const GATES = [
   {
     name: "portable package and verdict tests",
@@ -114,8 +117,20 @@ const GATES = [
     argv: [bin("lint-luau-format.mjs"), EXECUTOR_ASSETS],
   },
   {
+    name: "slop rubric over the feature assets",
+    argv: [bin("lint-luau-slop.mjs"), FEATURE_ASSETS],
+  },
+  {
+    name: "format rubric over the feature assets",
+    argv: [bin("lint-luau-format.mjs"), FEATURE_ASSETS],
+  },
+  {
+    name: "UI rubric over the feature assets",
+    argv: [bin("lint-roblox-ui.mjs"), FEATURE_ASSETS],
+  },
+  {
     name: "register and local headroom",
-    argv: [bin("check-registers.mjs"), join(REPO_ROOT, "library", "src"), EXEMPLARS, RECIPES, EXECUTOR_ASSETS],
+    argv: [bin("check-registers.mjs"), join(REPO_ROOT, "library", "src"), EXEMPLARS, RECIPES, EXECUTOR_ASSETS, FEATURE_ASSETS],
   },
   {
     name: "asset ids are real images",

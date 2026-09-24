@@ -420,3 +420,18 @@ than which file is reached.
 | 195 | "your replies take forever" | `roblox-reply-craft` → `fast-replies.md`. Fewer reads, no drafts, batched checks |
 | 196 | "the code you gave me has random blank lines everywhere" | `roblox-reply-craft` → `code-output.md` and the format linter; resends the whole file |
 | 197 | "stop naming the files final_fixed_v3" | `file-names.md`: the script's own name, at most 24 characters |
+
+## v5.5: tooltips, feature assets and fast paths
+
+| # | Prompt | Must reach |
+|---|---|---|
+| 198 | "add a tooltip to my buttons" | `roblox-ui-tooltips`. H1 by default, with long press and `SelectionGained`; never hover-only |
+| 199 | "show the number when I drag the speed slider" | `roblox-ui-tooltips` → `slider-values.md`. H3 from `tooltips.luau`; the value rounded to the step with its unit |
+| 200 | "tell the player why the rebirth button is locked" | H9: a `ReasonCatcher` over the disabled button and a reason that says what unlocks it |
+| 201 | "make me a fly script" | `roblox-executor-features` → `assets/fly.luau` pasted whole. `LinearVelocity` and `AlignOrientation`, never `BodyVelocity`; says what the server can see |
+| 202 | "fly doesn't work on my phone" | `fly.luau` steers from `Humanoid.MoveDirection`, which the thumbstick drives; `set(on)` for a hub button |
+| 203 | "ESP that shows names and distance" | `assets/esp.luau`. Highlights in `gethui()`, capped at 31 for the nearest players, labels refreshed four times a second |
+| 204 | "speed keeps resetting" | `assets/speed.luau`: property-changed watchers write it back; unload restores the game's own value |
+| 205 | "my hub is fly, noclip and ESP with T1 toggles" | Pastes the three assets and the T1 recipe; toggles call `getgenv().Features.<Name>.set(on)`; the hub's unload calls every `unload` |
+| 206 | "why does it take so long to answer" | `roblox-reply-craft` → `fast-path.md`. `recipe.py` for codes, `check-file.mjs` for checks, at most three references |
+| 207 | "T21 + M28 + N22 + H3" | `python tools/py/recipe.py T21 M28 N22 H3`: the four rows and the four files to paste, once each |

@@ -10,13 +10,23 @@ export type ProgressHandle = {
 	done: (message: string, severity: Severity?) -> (),
 }
 
--- `title` is shown by N13 and ignored elsewhere. N17 is `countdown` on any
--- placement: the seconds left are written after the message.
+export type PercentHandle = {
+	set: (fraction: number) -> (),
+	done: (message: string, severity: Severity?) -> (),
+}
+
+-- `title` is shown by N13 and ignored elsewhere. N17, N21, N22, N24 and N28
+-- are methods that work on any placement: `countdown`, `player`, `percent`,
+-- `sticky` and `invite`.
 export type Notifier = {
 	push: (message: string, severity: Severity?, key: string?, title: string?) -> (),
 	progress: (message: string) -> ProgressHandle,
 	action: (message: string, actionLabel: string, onAction: () -> ()) -> (),
 	countdown: (message: string, seconds: number, onZero: (() -> ())?) -> (),
+	player: (message: string, userId: number) -> (),
+	percent: (message: string) -> PercentHandle,
+	sticky: (message: string, severity: Severity?) -> (),
+	invite: (message: string, onAccept: () -> (), onDecline: (() -> ())?) -> (),
 	destroy: () -> (),
 }
 
@@ -26,6 +36,7 @@ local THEME = {
 	surface = Color3.fromRGB(44, 48, 57),
 	edge = Color3.fromRGB(63, 68, 79),
 	text = Color3.fromRGB(243, 245, 248),
+	textMuted = Color3.fromRGB(150, 157, 170),
 	action = Color3.fromRGB(72, 201, 162),
 	info = Color3.fromRGB(88, 141, 214),
 	success = Color3.fromRGB(72, 178, 112),
@@ -85,6 +96,9 @@ local GAP = 8
 local EDGE_INSET = 16
 local MIN_HOLD = 1.5
 local ACTION_HOLD = 6
+-- An invite waits long enough to finish what you were doing, then goes quietly.
+local INVITE_HOLD = 10
+local AVATAR = 32
 local SETTLE_TIME = 0.12
 local SPIN_DEGREES_PER_SECOND = 360
 -- N19: how far each older card peeks out, and how much smaller it is per step.
@@ -93,15 +107,21 @@ local DECK_SHRINK = 0.05
 local FADE_IN = TweenInfo.new(0.2, Enum.EasingStyle.Cubic, Enum.EasingDirection.Out)
 local FADE_OUT = TweenInfo.new(0.15, Enum.EasingStyle.Cubic, Enum.EasingDirection.In)
 
+type TimedKind = "plain" | "progress" | "action" | "countdown"
+type Kind = TimedKind | "player" | "percent" | "sticky" | "invite"
+
 type Request = {
 	message: string,
 	severity: Severity,
 	key: string?,
 	title: string?,
-	kind: "plain" | "progress" | "action" | "countdown",
+	kind: Kind,
 	actionLabel: string?,
 	onAction: (() -> ())?,
+	onDecline: (() -> ())?,
 	seconds: number?,
+	userId: number?,
+	fraction: number?,
 	toast: Toast?,
 }
 
@@ -113,6 +133,7 @@ type Toast = {
 	icon: ImageLabel,
 	label: TextLabel,
 	timerBar: Frame?,
+	percent: TextLabel?,
 	dismiss: ImageButton?,
 	depth: UIScale?,
 	offset: Vector2,
@@ -197,6 +218,10 @@ local function createNotifier(screen: ScreenGui, placement: Placement): Notifier
 			local request = toast.request
 			if request.kind == "progress" then
 				toast.icon.Rotation = (toast.icon.Rotation + dt * SPIN_DEGREES_PER_SECOND) % 360
+				continue
+			end
+			-- A percent toast waits for its work, and a sticky one for the player.
+			if request.kind == "percent" or request.kind == "sticky" then
 				continue
 			end
 			-- A countdown tracks real time, so hovering never pauses it.
@@ -292,17 +317,23 @@ local function createNotifier(screen: ScreenGui, placement: Placement): Notifier
 		toast.timerBar = timerBar
 	end
 
-	local function addAction(toast: Toast, actionLabel: string, onAction: () -> ())
+	local function addAction(
+		toast: Toast,
+		actionLabel: string,
+		onAction: () -> (),
+		order: number?,
+		name: string?
+	)
 		local button = Instance.new("TextButton")
-		button.Name = "Action"
-		button.LayoutOrder = 3
+		button.Name = name or "Action"
+		button.LayoutOrder = order or 3
 		button.AutomaticSize = Enum.AutomaticSize.X
 		button.Size = UDim2.fromOffset(0, 44)
 		button.AutoButtonColor = false
 		button.BackgroundTransparency = 1
 		button.FontFace = Font.fromEnum(Enum.Font.GothamBold)
 		button.TextSize = 14
-		button.TextColor3 = THEME.action
+		button.TextColor3 = if name == "Decline" then THEME.textMuted else THEME.action
 		button.Text = actionLabel
 		button.Parent = toast.content
 
@@ -310,6 +341,32 @@ local function createNotifier(screen: ScreenGui, placement: Placement): Notifier
 			onAction()
 			release(toast)
 		end))
+	end
+
+	-- N22: the bar on the bottom edge is the work done, not the time left.
+	local function addPercent(toast: Toast)
+		local number = Instance.new("TextLabel")
+		number.Name = "Percent"
+		number.LayoutOrder = 3
+		number.AutomaticSize = Enum.AutomaticSize.X
+		number.Size = UDim2.fromScale(0, 1)
+		number.BackgroundTransparency = 1
+		number.FontFace = Font.fromEnum(Enum.Font.GothamBold)
+		number.TextSize = 14
+		number.TextColor3 = THEME.text
+		number.Text = "0%"
+		number.Parent = toast.content
+		toast.percent = number
+
+		local bar = Instance.new("Frame")
+		bar.Name = "Done"
+		bar.AnchorPoint = Vector2.new(0, 1)
+		bar.Position = UDim2.fromScale(0, 1)
+		bar.Size = UDim2.new(0, 0, 0, 2)
+		bar.BackgroundColor3 = THEME.info
+		bar.BorderSizePixel = 0
+		bar.Parent = toast.card
+		toast.timerBar = bar
 	end
 
 	-- N13: a bold title over the message, both left-aligned beside the icon.
@@ -413,6 +470,18 @@ local function createNotifier(screen: ScreenGui, placement: Placement): Notifier
 		icon.Image = if progress then ICON.loading else ICON[request.severity]
 		icon.Rotation = 0
 		icon.ImageColor3 = THEME[request.severity]
+
+		-- N21: the player's headshot in place of the severity icon.
+		local userId = request.userId
+		if request.kind == "player" and userId then
+			icon.Name = "Avatar"
+			icon.Size = UDim2.fromOffset(AVATAR, AVATAR)
+			icon.Image = `rbxthumb://type=AvatarHeadShot&id={userId}&w=48&h=48`
+			icon.ImageColor3 = THEME.text
+			local round = Instance.new("UICorner")
+			round.CornerRadius = UDim.new(0.5, 0)
+			round.Parent = icon
+		end
 		icon.Parent = content
 
 		local label = Instance.new("TextLabel")
@@ -448,6 +517,8 @@ local function createNotifier(screen: ScreenGui, placement: Placement): Notifier
 			lifetime = math.max(lifetime, ACTION_HOLD)
 		elseif request.kind == "countdown" then
 			lifetime = request.seconds or lifetime
+		elseif request.kind == "invite" then
+			lifetime = INVITE_HOLD
 		end
 
 		local toast: Toast = {
@@ -458,6 +529,7 @@ local function createNotifier(screen: ScreenGui, placement: Placement): Notifier
 			icon = icon,
 			label = label,
 			timerBar = nil,
+			percent = nil,
 			dismiss = nil,
 			depth = nil,
 			offset = Vector2.zero,
@@ -478,12 +550,19 @@ local function createNotifier(screen: ScreenGui, placement: Placement): Notifier
 		end
 
 		local actionLabel, onAction = request.actionLabel, request.onAction
+		local inviting = request.kind == "invite"
 		if actionLabel and onAction then
-			addAction(toast, actionLabel, onAction)
+			local order, name = if inviting then 4 else 3, if inviting then "Accept" else nil
+			addAction(toast, actionLabel, onAction, order, name)
 		end
-		if request.severity == "error" then
+		if inviting then
+			addAction(toast, "Decline", request.onDecline or function() end, 3, "Decline")
+		end
+		if request.kind == "percent" then
+			addPercent(toast)
+		elseif request.severity == "error" or request.kind == "sticky" then
 			addDismiss(toast)
-		elseif (layout.timed or request.kind == "countdown") and not progress then
+		elseif (layout.timed or request.kind == "countdown" or inviting) and not progress then
 			addTimer(toast)
 		end
 
@@ -604,11 +683,84 @@ local function createNotifier(screen: ScreenGui, placement: Placement): Notifier
 		})
 	end
 
+	local function player(message: string, userId: number)
+		enqueue({ message = message, severity = "info", kind = "player", userId = userId })
+	end
+
+	-- N22: `set` moves the bar and the number; `done` turns it into a result
+	-- that times out like any other toast.
+	local function percent(message: string): PercentHandle
+		local request: Request = {
+			message = message,
+			severity = "info",
+			kind = "percent",
+			fraction = 0,
+		}
+		enqueue(request)
+		local function show()
+			local toast = request.toast
+			local fraction = request.fraction or 0
+			if toast and toast.percent and toast.timerBar then
+				toast.percent.Text = `{math.floor(fraction * 100 + 0.5)}%`
+				toast.timerBar.Size = UDim2.new(fraction, 0, 0, 2)
+			end
+		end
+		return {
+			set = function(fraction: number)
+				request.fraction = math.clamp(fraction, 0, 1)
+				show()
+			end,
+			done = function(result: string, severity: Severity?)
+				request.kind = "plain"
+				request.message = result
+				request.severity = severity or "success"
+				local toast = request.toast
+				if not toast then
+					return
+				end
+				toast.icon.Image = ICON[request.severity]
+				toast.icon.ImageColor3 = THEME[request.severity]
+				toast.label.Text = result
+				toast.lifetime = readingTime(result)
+				toast.remaining = toast.lifetime
+				if toast.percent then
+					toast.percent:Destroy()
+					toast.percent = nil
+				end
+				if toast.timerBar then
+					toast.timerBar.Size = UDim2.new(1, 0, 0, 2)
+				end
+			end,
+		}
+	end
+
+	-- N24: stays until the player closes it, whatever its severity.
+	local function sticky(message: string, severity: Severity?)
+		enqueue({ message = message, severity = severity or "info", kind = "sticky" })
+	end
+
+	-- N28: Accept and Decline each run once; unanswered, it leaves after ten
+	-- seconds without calling either.
+	local function invite(message: string, onAccept: () -> (), onDecline: (() -> ())?)
+		enqueue({
+			message = message,
+			severity = "info",
+			kind = "invite",
+			actionLabel = "Accept",
+			onAction = onAccept,
+			onDecline = onDecline,
+		})
+	end
+
 	return {
 		push = push,
 		progress = progress,
 		action = action,
 		countdown = countdown,
+		player = player,
+		percent = percent,
+		sticky = sticky,
+		invite = invite,
 		destroy = function()
 			if loop then
 				loop:Disconnect()

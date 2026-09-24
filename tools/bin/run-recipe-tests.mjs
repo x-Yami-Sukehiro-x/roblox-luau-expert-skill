@@ -21,6 +21,7 @@ import { luauRuntime } from "./lib/luau-runtime.mjs";
 const RECIPE_DIRS = [
   join(REPO_ROOT, ".claude", "skills", "roblox-ui-components", "assets"),
   join(REPO_ROOT, ".claude", "skills", "roblox-executor", "assets"),
+  join(REPO_ROOT, ".claude", "skills", "roblox-executor-features", "assets"),
 ];
 const TESTS = join(REPO_ROOT, "library", "tests", "recipes");
 const STUBS = join(REPO_ROOT, "library", "tests", "stubs.luau");

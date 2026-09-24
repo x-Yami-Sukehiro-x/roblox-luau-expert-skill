@@ -55,7 +55,9 @@ metamethod teardown needs the hook-ownership decision in `lifecycle.md`.
 
 ## 2. Drawing ESP loop
 
-Shows: object lifecycle, viewport projection, teardown discipline.
+Shows: object lifecycle, viewport projection, teardown discipline. For a
+finished ESP, fly, noclip, speed or teleport, paste the tested asset from
+`../../../roblox-executor-features/SKILL.md` instead of building from this.
 
 ```lua
 if typeof(Drawing) ~= "table" or typeof(Drawing.new) ~= "function" then

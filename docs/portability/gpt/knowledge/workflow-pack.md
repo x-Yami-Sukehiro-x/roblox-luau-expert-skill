@@ -19,12 +19,12 @@ existing interface matched. A bug fix does not need a style questionnaire.
 ## The guide and its link
 
 The guide is the **Roblox UI style picker**: playable, labeled examples of
-twenty toggles (T1–T20), ten checkboxes and choice groups (C1–C10), twelve
-dropdowns and search fields (D1–D12), twenty-five menu movements (M0–M24)
-picked separately for opening and closing, twenty notification styles
-(N1–N20), twelve ways to hide and bring back the whole UI (O1–O12), twelve
-button feels (P1–P12), twelve tab switches (S1–S12) and a window diagram that
-numbers its parts (W1–W22). A second page, the **UI designer**
+thirty toggles (T1–T30), twenty checkboxes and choice groups (C1–C20),
+twenty-two dropdowns and search fields (D1–D22), thirty-seven menu movements
+(M0–M36) picked separately for opening and closing, thirty notification styles
+(N1–N30), twenty ways to hide and bring back the whole UI (O1–O20), twenty-two
+button feels (P1–P22), twenty-two tab switches (S1–S22), twelve tooltips and
+slider values (H1–H12) and a window diagram that numbers its parts (W1–W22). A second page, the **UI designer**
 (<https://x-yami-sukehiro-x.github.io/roblox-luau-expert-skill/designer.html>),
 lets the user lay out a whole screen and copy it; build that export with
 `../../roblox-ui/references/design-spec.md`. The user picks,
@@ -98,6 +98,16 @@ clause, and ask only if two readings produce different work:
 | keyboard key you push down | T18 |
 | switch with a line of description under the name | T19 |
 | icon, name, then the switch | T20 |
+| switch that fills with colour | T21 |
+| Off and On written either side | T22 |
+| switch that glows, neon | T23 |
+| up and down like a light switch | T24 |
+| dot inside a circle | T25 |
+| stripe on the side lights up | T26 |
+| I and O rocker, power strip switch | T27 |
+| small ON / OFF pill | T28 |
+| switch that shows its hotkey | T29 |
+| small or tiny switch | T30 |
 | tick that draws itself in | C1 |
 | outline tick, box stays empty | C2 |
 | checkbox on the right side | C3 |
@@ -108,6 +118,16 @@ clause, and ask only if two readings produce different work:
 | radio buttons, pick only one | C8 |
 | chips or tags you pick | C9 |
 | tiles with icons you pick | C10 |
+| just a tick at the end, no box | C11 |
+| checkbox with a number | C12 |
+| red X box, ignore list | C13 |
+| big checkbox, easy to tap | C14 |
+| quest list with a progress bar | C15 |
+| buttons stuck together, pick several | C16 |
+| star rating | C17 |
+| colour dots or circles | C18 |
+| S M L size buttons | C19 |
+| pick one card with details | C20 |
 | normal dropdown | D1 |
 | dropdown you can type in to search | D2 |
 | pick several from a list | D3 |
@@ -120,6 +140,16 @@ clause, and ask only if two readings produce different work:
 | pick a player, with their picture | D10 |
 | big search box in the middle, command palette | D11 |
 | colour picker, colour swatches | D12 |
+| list with a description under each | D13 |
+| recent picks at the top | D14 |
+| list that opens upward | D15 |
+| list that slides up from the bottom, phone style | D16 |
+| finishes the word as I type, Tab to complete | D17 |
+| grid of tiles instead of a list | D18 |
+| button with a little arrow to change it | D19 |
+| pick several then press Apply | D20 |
+| menu inside a menu, folders | D21 |
+| add my own option | D22 |
 | no animation, just appear | M0 |
 | fade, gently appears | M1 |
 | slides up a little | M2 |
@@ -145,6 +175,18 @@ clause, and ask only if two readings produce different work:
 | jelly, wobbly | M22 |
 | snappy, instant but smooth | M23 |
 | slow fade | M24 |
+| spins in, twirls | M25 |
+| slides in from the corner, diagonal | M26 |
+| opens like a curtain from the left | M27 |
+| starts as a circle and grows | M28 |
+| bounces up from below | M29 |
+| slides in and wobbles | M30 |
+| zooms from far away | M31 |
+| drops in tilted and straightens | M32 |
+| each row pops in | M33 |
+| smooth long glide | M34 |
+| pops and pulses, heartbeat | M35 |
+| shrinks away into the middle | M36 |
 | message at the bottom | N1 |
 | message near the top | N2 |
 | next to what I changed | N3 |
@@ -165,6 +207,16 @@ clause, and ask only if two readings produce different work:
 | snackbar with a button | N18 |
 | cards stacked on top of each other | N19 |
 | kill feed, activity feed | N20 |
+| popup with the player's picture | N21 |
+| loading bar popup with a percent | N22 |
+| pill at the top that opens, dynamic island | N23 |
+| popup that stays until I close it | N24 |
+| +250 coins floats up | N25 |
+| quest step done, objective complete | N26 |
+| notification bell with a number | N27 |
+| party invite with Accept and Decline | N28 |
+| subtitles, captions | N29 |
+| screen edges flash red | N30 |
 | close it and a button brings it back | O1 |
 | shrink into the button, minimise | O2 |
 | fold up to the title bar | O3 |
@@ -177,6 +229,14 @@ clause, and ask only if two readings produce different work:
 | reminds me which key opens it | O10 |
 | asks hide or unload before closing | O11 |
 | goodbye screen when it closes | O12 |
+| a tab at the bottom to pull it up | O13 |
+| icons at the bottom like a taskbar, dock | O14 |
+| see-through, ghost mode while I play | O15 |
+| keep only the side icons | O16 |
+| only shows while I hold a key | O17 |
+| round button in the corner | O18 |
+| swipe it off the screen | O19 |
+| hides itself when I stop | O20 |
 | changes colour when pressed | P1 |
 | pushes in, clicky | P2 |
 | lifts on hover | P3 |
@@ -189,6 +249,16 @@ clause, and ask only if two readings produce different work:
 | hold to confirm | P10 |
 | arrow that moves | P11 |
 | pops when clicked | P12 |
+| outline that fills on hover | P13 |
+| icon spins, refresh button | P14 |
+| shimmer, shiny hover | P15 |
+| shows it is working after a click | P16 |
+| turns into Done with a tick | P17 |
+| cooldown timer before I can press again | P18 |
+| press twice to be sure | P19 |
+| shakes when I can't | P20 |
+| bouncy hover | P21 |
+| tilts when pressed | P22 |
 | line under the tab | S1 |
 | pill behind the tab | S2 |
 | just highlight the tab | S3 |
@@ -201,6 +271,28 @@ clause, and ask only if two readings produce different work:
 | pages fade | S10 |
 | dot under the tab | S11 |
 | tabs that scroll sideways | S12 |
+| tabs at the bottom, like a phone app | S13 |
+| numbers on the tabs | S14 |
+| step 1, step 2, wizard | S15 |
+| tabs like folders | S16 |
+| icons that show a name when picked | S17 |
+| sidebar with group headings | S18 |
+| chosen tab gets bigger | S19 |
+| extra tabs under More | S20 |
+| left and right arrows, one page at a time | S21 |
+| sections that fold open, accordion | S22 |
+| words when I hover | H1 |
+| speech bubble pointing at the button | H2 |
+| number pops up when I drag a slider | H3 |
+| number on the slider knob | H4 |
+| min and max under the slider | H5 |
+| little i button to tap | H6 |
+| tooltip with a title and the hotkey | H7 |
+| tooltip follows my mouse | H8 |
+| tells me why it is locked | H9 |
+| press and hold to see | H10 |
+| hint under a text box | H11 |
+| points at something new, Got it | H12 |
 
 Mixed answers are normal: "T1 but square" is T2; "M2 with less movement" is M2
 at 8 px; "like N4 but at the top" is N7. "Pop in, fade out" is opening M3 and
@@ -388,6 +480,7 @@ next game update.
 
 | Symptom | Load |
 |---|---|
+| fly, noclip, speed, infinite jump, ESP, click teleport, anti-AFK, fullbright | `../roblox-executor-features/SKILL.md`: tested assets, paste whole |
 | **the user pasted decompiled source or a dump** | `references/technique/feature-search.md`, `references/technique/decompiled-source.md`, then `references/technique/source-to-api.md` |
 | the dump does not contain the requested feature | `references/technique/feature-search.md` → `assets/runtime-probe.luau` |
 | "find the code for X in this dump", "where is the sell remote" | `references/technique/feature-search.md` |
@@ -3439,7 +3532,8 @@ description: How a Roblox reply is delivered - fast, short and ready to paste. C
 The user sees the reply, not the reasoning. Four things decide whether it
 works for them, and none is about the code's correctness:
 
-1. **How long they waited.** → `references/fast-replies.md`
+1. **How long they waited.** → `references/fast-replies.md`, and the
+   request-to-files routes in `references/fast-path.md`
 2. **Whether the code pastes and runs.** → `references/code-output.md`
 3. **Whether the file is easy to find and name.** → `references/file-names.md`
 4. **Whether the words around it are worth reading.** → `references/reply-length.md`
@@ -3453,8 +3547,10 @@ Words inside the UI itself (labels, subtitles, notifications) are
 
 **Speed.** Read the router and only the references the task needs. Run
 independent reads and checks together. Start from a tested recipe instead of
-writing a component from nothing. Write the file once; do not print drafts.
-Skip preamble and the closing summary.
+writing a component from nothing: `python tools/py/recipe.py <codes>` names the
+row and the file. Check the final file in one call with
+`node tools/bin/check-file.mjs <file>`. Write the file once; do not print
+drafts. Skip preamble and the closing summary.
 
 **Code blocks.**
 
@@ -3565,6 +3661,206 @@ python tools/py/format_lint.py Script.luau
 
 Where it goes in Studio's words, and what success looks like: what to press,
 what appears, what the Output shows. Then at most three assumptions.
+
+---
+
+## Source: .claude/skills/roblox-reply-craft/references/fast-path.md
+
+# Fast path: from request to files
+
+The shortest correct route for the requests that come up most. Read the row's
+files in order and stop reading once the answer can be written. Two lookups
+and one check run replace most of the reading.
+
+```bash
+python tools/py/recipe.py T2 M4 H3 fly      # the rows, the calls, the files to paste
+node tools/bin/check-file.mjs Final.luau     # every file-level check at once
+python tools/py/check_file.py Final.luau     # the same where there is no Node
+```
+
+| Request | Read, in order | Then |
+|---|---|---|
+| fly, noclip, speed, jump, ESP, teleport, anti-AFK, fullbright | `roblox-executor-features/SKILL.md`, `recipe.py <feature>` | paste the asset, change constants only |
+| a hub with picked codes ("T2, M4, N4") | `recipe.py <codes>`, `roblox-ui/references/build-order.md` | paste each listed recipe once |
+| a hub, no picks yet | `roblox-request-intake/references/visual-choices.md` | the one grouped question, or the defaults |
+| a tooltip, hint or slider number | `roblox-ui-tooltips/SKILL.md`, `recipe.py H1 H3` | paste `tooltips.luau` |
+| an error message pasted | the router's symptom row, then that one reference | fix the layer the error names |
+| a decompiled dump pasted | `dump_index.py --feature`, `feature-search.md`, `source-to-api.md` | only FOUND builds |
+| a game script to fix | the script, then the reference for the failing layer | `check-file.mjs --compare old new` |
+| saving data | `roblox-data-persistence/SKILL.md` | |
+| lag or climbing memory | `roblox-performance/SKILL.md` | |
+| remotes, "others can't see it" | `roblox-networking/SKILL.md` | |
+
+A common request needs at most three reference files before writing. More
+than that means the router row was skipped.
+
+## Where the time goes
+
+| Time sink | Instead |
+|---|---|
+| opening a whole pack for one style | `recipe.py <code>` prints the row and the file |
+| six checks run one after another | `check-file.mjs` runs them together in half a second |
+| writing a component from nothing | paste the tested recipe or asset |
+| a first draft, then "an improved version" | work it out, write the file once |
+| a clarifying question with a default available | decide, state the default, build |
+| re-reading a reference already in context | use what was read |
+| a long preamble and a closing summary | one line, the code, where it goes |
+
+## In a custom GPT
+
+Unzip the archive once, then run the same tools with Code Interpreter:
+`python tools/py/recipe.py T2 M4` and `python tools/py/check_file.py Final.luau`.
+Name the files and sections read in the reply, once.
+
+---
+
+## Source: .claude/skills/roblox-executor-features/SKILL.md
+
+---
+name: roblox-executor-features
+description: Tested, ready-to-paste executor feature scripts for the local character and view — fly, noclip, walk speed and jump height, infinite jump, ESP, click teleport, anti-AFK and fullbright — and the quality bar every such script must meet. Modern physics (LinearVelocity and AlignOrientation, never BodyVelocity), camera-relative movement that works on keyboard, gamepad and touch, respawn handling, one getgenv namespace, rerun-safe unload that restores what it changed, keybinds, and a set() API a hub toggle can call. Use when asked for fly, noclip, speed, jump, ESP, teleport, anti-AFK, fullbright or any "universal" script, when combining features into a hub, or when an executor script's quality, mobile support or cleanup is poor.
+---
+
+# Executor features
+
+These eight scripts act on things the local client already owns: its own
+character's physics, its own camera, its own lighting and its own view of
+other players. That is why they can be generic. Anything that touches a
+game's own values, remotes or systems is not generic, and follows
+`roblox-executor`'s source-first workflow instead.
+
+Scope and risk are stated once in `roblox-executor`: private and educational
+use on accounts and servers you control; any executor use can be banned.
+
+| Feature | Asset | Key | What moves |
+|---|---|---|---|
+| fly | `assets/fly.luau` | F, E/Space up, Q/LeftControl down | `LinearVelocity` + rigid `AlignOrientation` on the root |
+| noclip | `assets/noclip.luau` | V | `CanCollide` on the character's parts, every physics step |
+| speed | `assets/speed.luau` | G | `WalkSpeed`, `JumpHeight` and matching `JumpPower`, held against resets |
+| infinite jump | `assets/infinite-jump.luau` | J | a jump state on each `JumpRequest`, 0.2 s apart |
+| ESP | `assets/esp.luau` | H | a `Highlight` and a name and distance tag per player, in `gethui()` |
+| click teleport | `assets/click-teleport.luau` | Ctrl+click, tap on a phone | `PivotTo` the clicked ground, facing kept |
+| anti-AFK | `assets/anti-afk.luau` | none | a `VirtualUser` click when `Idled` fires |
+| fullbright | `assets/fullbright.luau` | B | six `Lighting` properties, held against day and night scripts |
+
+Each asset is behaviour-tested in `library/tests/recipes/` (every one covers
+the effect, the toggle key, chat typing, respawn, rerun and a double unload)
+and scores full marks on the slop, format, API and register gates.
+
+---
+
+## How to answer a feature request
+
+1. **Paste the asset whole.** Change only the constants at the top (key,
+   speed, colours). Do not rewrite the physics, the respawn handling or the
+   unload; those are what the tests prove.
+2. **Several features: paste each file.** They share one namespace,
+   `getgenv().Features`, and each replaces its own previous session on rerun.
+   A hub calls `Features.Fly.set(on)`, writes `Features.Fly.speed` or
+   `Features.Speed.walk`, and calls every `unload` from its own unload.
+3. **Hub UI** is `roblox-ui` with the picked style codes: a T toggle per
+   feature, an H3 slider value for speeds, a P18 cooldown on teleports.
+4. **Say what the server can see** (below), once, in the reply.
+5. **Run the checks** on the final file: `node tools/bin/check-file.mjs <file>`
+   (no Node: `python tools/py/check_file.py <file>`).
+
+A request for a feature not in the table still meets the bar in
+`references/feature-quality.md`; start from the closest asset's shape.
+
+---
+
+## What the server sees
+
+The client owns its character's physics, so position and velocity from fly,
+noclip, speed and teleport **replicate to everyone**. That is also why they
+are the features anti-cheats watch. A server that checks distance per second,
+raycasts between positions, or runs Server Authority physics corrects or
+kicks; nothing in these scripts hides that. ESP, fullbright and anti-AFK are
+local-only and change nothing another player sees.
+→ `../roblox-executor/references/technique/replication-exploitation.md`
+
+---
+
+## References
+
+| Need | File |
+|---|---|
+| the quality bar every feature script meets | `references/feature-quality.md` |
+| how each feature works, its variants and why these choices | `references/feature-catalog.md` |
+| lifetime, unload and rerun rules in full | `../roblox-executor/references/technique/lifecycle.md` |
+| game-specific features from a dump | `../roblox-executor/references/technique/feature-search.md` |
+
+---
+
+## Source: .claude/skills/roblox-executor-features/references/feature-quality.md
+
+# The quality bar for a feature script
+
+What separates a feature script that works once in one game from one that
+works every time. Each line is something the tested assets do and a failing
+script usually does not.
+
+## Start-up
+
+- **One bind, one assert.** `local getgenv, gethui = getgenv, gethui` then
+  `assert(getgenv and gethui, "needs getgenv, gethui")`. No `typeof` ladders.
+- **One namespace.** `getgenv().Features.<Name>` holds the session table.
+  Never scatter globals such as `_G.FlyEnabled`.
+- **Unload the previous session first**, before reading any original value;
+  otherwise a rerun saves the patched value as the "original".
+- **Start on.** Running the script is the request; the key turns it off.
+
+## Input
+
+- **`processed` is respected.** `InputBegan:Connect(function(input, processed)`
+  and return when `processed`, so typing F in chat does not toggle fly.
+- **Mobile has a path.** A key alone strands a phone player. Fly steers from
+  `Humanoid.MoveDirection`, which the touch thumbstick drives; click teleport
+  uses `TouchTapInWorld`; every feature exposes `set(on)` for a hub button.
+- **Held keys are a set**, cleared on `InputEnded`, not a counter that drifts
+  when a key-up is missed.
+
+## Physics
+
+- **Modern movers only.** `LinearVelocity`, `AlignOrientation`,
+  `AlignPosition`. `BodyVelocity`, `BodyGyro` and `BodyPosition` are
+  deprecated (`verify-api.mjs BodyVelocity`).
+- **Constraints live under one Attachment** on the root, so one `Destroy`
+  removes all of them.
+- **Camera-relative, including pitch.** Split `MoveDirection` along the
+  camera's flat forward and right, then rebuild along `LookVector`: looking
+  up and pressing forward climbs.
+- **Speed is capped, not summed.** Diagonal plus climb is normalised, so it is
+  never faster than the set speed.
+- **Steer before physics**: `RunService.PreSimulation`, not `RenderStepped`
+  or a `while task.wait()` loop.
+
+## Lifetime
+
+- **Every connection is stored** and disconnected in `unload`.
+- **Respawn is handled.** `CharacterAdded` drops references to the old body,
+  waits for the new one's parts, re-checks that the session is alive and the
+  character is still current after the wait, then re-applies.
+- **Restore what was captured, only what was changed.** Noclip restores only
+  parts it switched off, not every part to `true`. Speed restores the game's
+  own values, not 16.
+- **Unload is idempotent** and clears the namespace only if it still points
+  at this session.
+
+## Cost
+
+- **Event-driven where possible.** Speed and fullbright write back on
+  `GetPropertyChangedSignal`, not every frame.
+- **Throttle labels.** ESP refreshes four times a second, not per frame, and
+  hands its 31 highlights to the nearest players.
+- **No per-frame allocation** of instances; create once, toggle `Enabled`.
+
+## Honesty
+
+- Report a missing executor function by the assert; never a silent no-op.
+- Say in the reply what replicates and what the server can correct.
+- A mocked test proves the logic, not the game. Name the runtime checks that
+  were not run.
 
 ---
 
@@ -3767,4 +4063,827 @@ end
 
 writefile(REPORT_FILE, table.concat(report, "\n"))
 print(`feature probe: {#report} lines written to {REPORT_FILE} in the executor workspace`)
+```
+
+---
+
+## Asset: .claude/skills/roblox-executor-features/assets/anti-afk.luau
+
+```lua
+-- Idled fires after two minutes without input and the kick comes at twenty; a
+-- synthetic right click resets that timer. VirtualUser is LocalUser security:
+-- it works from an executor and errors in a game's own LocalScript.
+local Players = game:GetService("Players")
+local VirtualUser = game:GetService("VirtualUser")
+
+local getgenv = getgenv
+assert(getgenv, "needs getgenv")
+
+local features = getgenv().Features or {}
+getgenv().Features = features
+if features.AntiAfk then
+	features.AntiAfk.unload()
+end
+
+local afk = { alive = true }
+local idled = Players.LocalPlayer.Idled:Connect(function()
+	VirtualUser:CaptureController()
+	VirtualUser:ClickButton2(Vector2.zero)
+end)
+
+function afk.unload()
+	afk.alive = false
+	idled:Disconnect()
+	if features.AntiAfk == afk then
+		features.AntiAfk = nil
+	end
+end
+
+features.AntiAfk = afk
+```
+
+---
+
+## Asset: .claude/skills/roblox-executor-features/assets/click-teleport.luau
+
+```lua
+local HOLD_KEY = Enum.KeyCode.LeftControl
+local REACH = 1000
+-- The root part sits about this far above the floor, so the body lands standing.
+local LIFT = Vector3.new(0, 3, 0)
+
+local Players = game:GetService("Players")
+local UserInputService = game:GetService("UserInputService")
+local Workspace = game:GetService("Workspace")
+
+local getgenv = getgenv
+assert(getgenv, "needs getgenv")
+
+local features = getgenv().Features or {}
+getgenv().Features = features
+if features.ClickTeleport then
+	features.ClickTeleport.unload()
+end
+
+local player = Players.LocalPlayer
+local teleport = {
+	on = true,
+	alive = true,
+	-- A phone has no key to hold, so a plain tap on the world teleports there.
+	touch = UserInputService.TouchEnabled and not UserInputService.KeyboardEnabled,
+}
+local connections: { RBXScriptConnection } = {}
+
+local function teleportTo(x: number, y: number)
+	local character = player.Character
+	if not teleport.on or character == nil then
+		return
+	end
+	local ray = Workspace.CurrentCamera:ViewportPointToRay(x, y)
+	local params = RaycastParams.new()
+	params.FilterType = Enum.RaycastFilterType.Exclude
+	params.FilterDescendantsInstances = { character }
+	local hit = Workspace:Raycast(ray.Origin, ray.Direction * REACH, params)
+	if hit == nil then
+		return
+	end
+	local facing = Vector3.yAxis:Cross(character:GetPivot().RightVector)
+	character:PivotTo(CFrame.lookAlong(hit.Position + LIFT, facing))
+end
+
+function teleport.set(on: boolean)
+	teleport.on = on
+end
+
+function teleport.unload()
+	teleport.alive = false
+	teleport.on = false
+	for _, connection in connections do
+		connection:Disconnect()
+	end
+	table.clear(connections)
+	if features.ClickTeleport == teleport then
+		features.ClickTeleport = nil
+	end
+end
+
+-- GetMouseLocation counts the top bar, which is the space ViewportPointToRay reads.
+table.insert(
+	connections,
+	UserInputService.InputBegan:Connect(function(input, processed)
+		local click = input.UserInputType == Enum.UserInputType.MouseButton1
+		if click and not processed and UserInputService:IsKeyDown(HOLD_KEY) then
+			local mouse = UserInputService:GetMouseLocation()
+			teleportTo(mouse.X, mouse.Y)
+		end
+	end)
+)
+
+table.insert(
+	connections,
+	UserInputService.TouchTapInWorld:Connect(function(position, processedByUI)
+		if teleport.touch and not processedByUI then
+			teleportTo(position.X, position.Y)
+		end
+	end)
+)
+
+features.ClickTeleport = teleport
+```
+
+---
+
+## Asset: .claude/skills/roblox-executor-features/assets/esp.luau
+
+```lua
+local TOGGLE_KEY = Enum.KeyCode.H
+-- The engine draws at most 31 Highlights at once and silently skips the rest,
+-- so the nearest players get them.
+local HIGHLIGHT_LIMIT = 31
+local REFRESH_SECONDS = 0.25
+local ENEMY_FILL = 0.6
+local TAG_SIZE = UDim2.fromOffset(200, 20)
+local TAG_OFFSET = Vector3.new(0, 3, 0)
+local COLOURS = {
+	enemy = Color3.fromRGB(208, 88, 82),
+	friend = Color3.fromRGB(72, 178, 112),
+	text = Color3.fromRGB(243, 245, 248),
+}
+
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+local UserInputService = game:GetService("UserInputService")
+local Workspace = game:GetService("Workspace")
+
+local getgenv, gethui = getgenv, gethui
+assert(getgenv and gethui, "needs getgenv, gethui")
+
+local features = getgenv().Features or {}
+getgenv().Features = features
+if features.Esp then
+	features.Esp.unload()
+end
+
+type Marker = { highlight: Highlight, tag: BillboardGui, label: TextLabel }
+
+local player = Players.LocalPlayer
+local esp = { on = false, alive = true }
+local markers: { [Player]: Marker } = {}
+local connections: { RBXScriptConnection } = {}
+local sinceRefresh = 0
+
+local function track(other: Player)
+	if other == player or markers[other] then
+		return
+	end
+	local highlight = Instance.new("Highlight")
+	highlight.Name = `{other.Name}Highlight`
+	highlight.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
+	highlight.OutlineTransparency = 0
+	highlight.Enabled = false
+	highlight.Parent = gethui()
+	local tag = Instance.new("BillboardGui")
+	tag.Name = `{other.Name}Tag`
+	tag.AlwaysOnTop = true
+	tag.Size = TAG_SIZE
+	tag.StudsOffsetWorldSpace = TAG_OFFSET
+	tag.Enabled = false
+	tag.Parent = gethui()
+	local label = Instance.new("TextLabel")
+	label.BackgroundTransparency = 1
+	label.Size = UDim2.fromScale(1, 1)
+	label.FontFace = Font.fromEnum(Enum.Font.GothamBold)
+	label.TextSize = 14
+	label.TextColor3 = COLOURS.text
+	label.TextStrokeTransparency = 0
+	label.Text = other.DisplayName
+	label.Parent = tag
+	markers[other] = { highlight = highlight, tag = tag, label = label }
+end
+
+local function untrack(other: Player)
+	local marker = markers[other]
+	if marker then
+		marker.highlight:Destroy()
+		marker.tag:Destroy()
+		markers[other] = nil
+	end
+end
+
+-- Teammates get an outline only, so friend and enemy differ in shape as well
+-- as colour.
+local function refresh()
+	local here = Workspace.CurrentCamera.CFrame.Position
+	local ranked: { { marker: Marker, distance: number } } = {}
+	for other, marker in markers do
+		local character = other.Character
+		local root = character and character:FindFirstChild("HumanoidRootPart")
+		marker.highlight.Enabled = false
+		marker.tag.Enabled = esp.on and root ~= nil
+		if esp.on and root then
+			local distance = (root.Position - here).Magnitude
+			local friend = player.Team ~= nil and other.Team == player.Team
+			local colour = if friend then COLOURS.friend else COLOURS.enemy
+			marker.highlight.Adornee = character
+			marker.highlight.FillColor = colour
+			marker.highlight.OutlineColor = colour
+			marker.highlight.FillTransparency = if friend then 1 else ENEMY_FILL
+			marker.tag.Adornee = root
+			marker.label.Text = `{other.DisplayName}  {math.floor(distance)} studs`
+			table.insert(ranked, { marker = marker, distance = distance })
+		end
+	end
+	table.sort(ranked, function(a, b)
+		return a.distance < b.distance
+	end)
+	for index = 1, math.min(#ranked, HIGHLIGHT_LIMIT) do
+		ranked[index].marker.highlight.Enabled = true
+	end
+end
+
+function esp.set(on: boolean)
+	esp.on = on
+	refresh()
+end
+
+function esp.unload()
+	esp.alive = false
+	for _, connection in connections do
+		connection:Disconnect()
+	end
+	table.clear(connections)
+	for other in markers do
+		untrack(other)
+	end
+	if features.Esp == esp then
+		features.Esp = nil
+	end
+end
+
+for _, other in Players:GetPlayers() do
+	track(other)
+end
+table.insert(connections, Players.PlayerAdded:Connect(track))
+table.insert(connections, Players.PlayerRemoving:Connect(untrack))
+
+-- A quarter-second refresh is plenty for labels and costs a fraction of a
+-- per-frame loop over every player.
+table.insert(
+	connections,
+	RunService.Heartbeat:Connect(function(deltaTime)
+		sinceRefresh += deltaTime
+		if sinceRefresh >= REFRESH_SECONDS then
+			sinceRefresh = 0
+			refresh()
+		end
+	end)
+)
+
+table.insert(
+	connections,
+	UserInputService.InputBegan:Connect(function(input, processed)
+		if not processed and input.KeyCode == TOGGLE_KEY then
+			esp.set(not esp.on)
+		end
+	end)
+)
+
+features.Esp = esp
+esp.set(true)
+```
+
+---
+
+## Asset: .claude/skills/roblox-executor-features/assets/fly.luau
+
+```lua
+local TOGGLE_KEY = Enum.KeyCode.F
+local SPEED = 60
+local CLIMB_KEYS = {
+	[Enum.KeyCode.E] = 1,
+	[Enum.KeyCode.Space] = 1,
+	[Enum.KeyCode.Q] = -1,
+	[Enum.KeyCode.LeftControl] = -1,
+}
+
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+local UserInputService = game:GetService("UserInputService")
+local Workspace = game:GetService("Workspace")
+
+local getgenv = getgenv
+assert(getgenv, "needs getgenv")
+
+local features = getgenv().Features or {}
+getgenv().Features = features
+if features.Fly then
+	features.Fly.unload()
+end
+
+type Rig = {
+	humanoid: Humanoid,
+	attachment: Attachment,
+	velocity: LinearVelocity,
+	align: AlignOrientation,
+}
+
+local player = Players.LocalPlayer
+local fly = { on = false, alive = true, speed = SPEED }
+local held: { [Enum.KeyCode]: number } = {}
+local connections: { RBXScriptConnection } = {}
+local rig: Rig? = nil
+
+local function land()
+	if rig == nil then
+		return
+	end
+	rig.humanoid.PlatformStand = false
+	rig.attachment:Destroy()
+	rig = nil
+end
+
+local function takeOff()
+	local character = player.Character
+	local humanoid = character and character:FindFirstChildOfClass("Humanoid")
+	local root = humanoid and humanoid.RootPart
+	if humanoid == nil or root == nil then
+		return
+	end
+	local attachment = Instance.new("Attachment")
+	attachment.Name = "FlyAttachment"
+	local velocity = Instance.new("LinearVelocity")
+	velocity.Attachment0 = attachment
+	velocity.RelativeTo = Enum.ActuatorRelativeTo.World
+	velocity.VelocityConstraintMode = Enum.VelocityConstraintMode.Vector
+	velocity.MaxForce = math.huge
+	velocity.VectorVelocity = Vector3.zero
+	velocity.Parent = attachment
+	-- Rigid alignment ignores torque limits, so the body never tips while flying.
+	local align = Instance.new("AlignOrientation")
+	align.Attachment0 = attachment
+	align.Mode = Enum.OrientationAlignmentMode.OneAttachment
+	align.RigidityEnabled = true
+	align.Parent = attachment
+	attachment.Parent = root
+	humanoid.PlatformStand = true
+	rig = { humanoid = humanoid, attachment = attachment, velocity = velocity, align = align }
+end
+
+-- MoveDirection is already camera-yaw relative on keyboard, gamepad and the
+-- touch thumbstick, so splitting it along the camera gives pitch for free.
+local function steer()
+	if rig == nil then
+		return
+	end
+	local view = Workspace.CurrentCamera.CFrame
+	local ahead = Vector3.yAxis:Cross(view.RightVector)
+	local move = rig.humanoid.MoveDirection
+	local climb = 0
+	for _, amount in held do
+		climb += amount
+	end
+	local forward = view.LookVector * move:Dot(ahead)
+	local sideways = view.RightVector * move:Dot(view.RightVector)
+	local direction = forward + sideways + Vector3.yAxis * math.clamp(climb, -1, 1)
+	if direction.Magnitude > 1 then
+		direction = direction.Unit
+	end
+	rig.velocity.VectorVelocity = direction * fly.speed
+	rig.align.CFrame = CFrame.lookAlong(Vector3.zero, ahead)
+end
+
+function fly.set(on: boolean)
+	fly.on = on
+	if not on then
+		land()
+	elseif rig == nil then
+		takeOff()
+	end
+end
+
+function fly.unload()
+	fly.alive = false
+	fly.on = false
+	land()
+	for _, connection in connections do
+		connection:Disconnect()
+	end
+	table.clear(connections)
+	if features.Fly == fly then
+		features.Fly = nil
+	end
+end
+
+table.insert(connections, RunService.PreSimulation:Connect(steer))
+
+table.insert(
+	connections,
+	UserInputService.InputBegan:Connect(function(input, processed)
+		if processed then
+			return
+		end
+		if input.KeyCode == TOGGLE_KEY then
+			fly.set(not fly.on)
+		elseif CLIMB_KEYS[input.KeyCode] then
+			held[input.KeyCode] = CLIMB_KEYS[input.KeyCode]
+		end
+	end)
+)
+
+table.insert(
+	connections,
+	UserInputService.InputEnded:Connect(function(input)
+		held[input.KeyCode] = nil
+	end)
+)
+
+table.insert(
+	connections,
+	player.CharacterAdded:Connect(function(character)
+		rig = nil
+		character:WaitForChild("Humanoid")
+		character:WaitForChild("HumanoidRootPart")
+		if fly.alive and fly.on and player.Character == character then
+			takeOff()
+		end
+	end)
+)
+
+features.Fly = fly
+fly.set(true)
+```
+
+---
+
+## Asset: .claude/skills/roblox-executor-features/assets/fullbright.luau
+
+```lua
+local TOGGLE_KEY = Enum.KeyCode.B
+local DAYLIGHT = {
+	Brightness = 2,
+	ClockTime = 14,
+	FogEnd = 100000,
+	GlobalShadows = false,
+	Ambient = Color3.fromRGB(178, 178, 178),
+	OutdoorAmbient = Color3.fromRGB(178, 178, 178),
+}
+
+local Lighting = game:GetService("Lighting")
+local UserInputService = game:GetService("UserInputService")
+
+local getgenv = getgenv
+assert(getgenv, "needs getgenv")
+
+local features = getgenv().Features or {}
+getgenv().Features = features
+if features.Fullbright then
+	features.Fullbright.unload()
+end
+
+local fullbright = { on = false, alive = true }
+local original: { [string]: any } = {}
+local watchers: { RBXScriptConnection } = {}
+local toggle: RBXScriptConnection
+
+local function dim()
+	for _, watcher in watchers do
+		watcher:Disconnect()
+	end
+	table.clear(watchers)
+	for property, value in original do
+		Lighting[property] = value
+	end
+	table.clear(original)
+end
+
+-- Day and night cycles rewrite ClockTime every few frames; each watcher writes
+-- the daylight value straight back.
+local function brighten()
+	for property, value in DAYLIGHT do
+		original[property] = Lighting[property]
+		Lighting[property] = value
+		table.insert(
+			watchers,
+			Lighting:GetPropertyChangedSignal(property):Connect(function()
+				Lighting[property] = value
+			end)
+		)
+	end
+end
+
+function fullbright.set(on: boolean)
+	fullbright.on = on
+	dim()
+	if on then
+		brighten()
+	end
+end
+
+function fullbright.unload()
+	fullbright.alive = false
+	fullbright.set(false)
+	toggle:Disconnect()
+	if features.Fullbright == fullbright then
+		features.Fullbright = nil
+	end
+end
+
+toggle = UserInputService.InputBegan:Connect(function(input, processed)
+	if not processed and input.KeyCode == TOGGLE_KEY then
+		fullbright.set(not fullbright.on)
+	end
+end)
+
+features.Fullbright = fullbright
+fullbright.set(true)
+```
+
+---
+
+## Asset: .claude/skills/roblox-executor-features/assets/infinite-jump.luau
+
+```lua
+local TOGGLE_KEY = Enum.KeyCode.J
+-- JumpRequest repeats every frame while the button is held; the gap turns a
+-- held button into a steady climb instead of a launch.
+local JUMP_GAP = 0.2
+
+local Players = game:GetService("Players")
+local UserInputService = game:GetService("UserInputService")
+
+local getgenv = getgenv
+assert(getgenv, "needs getgenv")
+
+local features = getgenv().Features or {}
+getgenv().Features = features
+if features.InfiniteJump then
+	features.InfiniteJump.unload()
+end
+
+local player = Players.LocalPlayer
+local jump = { on = true, alive = true }
+local connections: { RBXScriptConnection } = {}
+local lastJump = -math.huge
+
+function jump.set(on: boolean)
+	jump.on = on
+end
+
+function jump.unload()
+	jump.alive = false
+	jump.on = false
+	for _, connection in connections do
+		connection:Disconnect()
+	end
+	table.clear(connections)
+	if features.InfiniteJump == jump then
+		features.InfiniteJump = nil
+	end
+end
+
+table.insert(
+	connections,
+	UserInputService.JumpRequest:Connect(function()
+		local character = player.Character
+		local humanoid = character and character:FindFirstChildOfClass("Humanoid")
+		local now = os.clock()
+		if not jump.on or humanoid == nil or humanoid.Health <= 0 or now - lastJump < JUMP_GAP then
+			return
+		end
+		lastJump = now
+		humanoid:ChangeState(Enum.HumanoidStateType.Jumping)
+	end)
+)
+
+table.insert(
+	connections,
+	UserInputService.InputBegan:Connect(function(input, processed)
+		if not processed and input.KeyCode == TOGGLE_KEY then
+			jump.set(not jump.on)
+		end
+	end)
+)
+
+features.InfiniteJump = jump
+```
+
+---
+
+## Asset: .claude/skills/roblox-executor-features/assets/noclip.luau
+
+```lua
+local TOGGLE_KEY = Enum.KeyCode.V
+
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+local UserInputService = game:GetService("UserInputService")
+
+local getgenv = getgenv
+assert(getgenv, "needs getgenv")
+
+local features = getgenv().Features or {}
+getgenv().Features = features
+if features.Noclip then
+	features.Noclip.unload()
+end
+
+local player = Players.LocalPlayer
+local noclip = { on = false, alive = true }
+local connections: { RBXScriptConnection } = {}
+local switched: { [BasePart]: true } = {}
+
+-- The Humanoid turns collision back on for its body parts every step, so the
+-- write repeats before each physics step instead of happening once.
+local function phase()
+	local character = player.Character
+	if not noclip.on or character == nil then
+		return
+	end
+	for _, part in character:GetDescendants() do
+		if part:IsA("BasePart") and part.CanCollide then
+			switched[part] = true
+			part.CanCollide = false
+		end
+	end
+end
+
+local function restore()
+	for part in switched do
+		if part.Parent then
+			part.CanCollide = true
+		end
+	end
+	table.clear(switched)
+end
+
+function noclip.set(on: boolean)
+	noclip.on = on
+	if on then
+		phase()
+	else
+		restore()
+	end
+end
+
+function noclip.unload()
+	noclip.alive = false
+	noclip.set(false)
+	for _, connection in connections do
+		connection:Disconnect()
+	end
+	table.clear(connections)
+	if features.Noclip == noclip then
+		features.Noclip = nil
+	end
+end
+
+table.insert(connections, RunService.PreSimulation:Connect(phase))
+
+table.insert(
+	connections,
+	UserInputService.InputBegan:Connect(function(input, processed)
+		if not processed and input.KeyCode == TOGGLE_KEY then
+			noclip.set(not noclip.on)
+		end
+	end)
+)
+
+table.insert(
+	connections,
+	player.CharacterAdded:Connect(function()
+		table.clear(switched)
+	end)
+)
+
+features.Noclip = noclip
+noclip.set(true)
+```
+
+---
+
+## Asset: .claude/skills/roblox-executor-features/assets/speed.luau
+
+```lua
+local TOGGLE_KEY = Enum.KeyCode.G
+local WALK_SPEED = 40
+local JUMP_HEIGHT = 16
+
+local Players = game:GetService("Players")
+local UserInputService = game:GetService("UserInputService")
+local Workspace = game:GetService("Workspace")
+
+local getgenv = getgenv
+assert(getgenv, "needs getgenv")
+
+local features = getgenv().Features or {}
+getgenv().Features = features
+if features.Speed then
+	features.Speed.unload()
+end
+
+type Held = {
+	humanoid: Humanoid,
+	walkSpeed: number,
+	jumpPower: number,
+	jumpHeight: number,
+	watchers: { RBXScriptConnection },
+}
+
+local player = Players.LocalPlayer
+local speed = { on = false, alive = true, walk = WALK_SPEED, jump = JUMP_HEIGHT }
+local connections: { RBXScriptConnection } = {}
+local held: Held? = nil
+
+-- A game that uses JumpPower ignores JumpHeight, so both are written; the power
+-- is the launch speed that reaches the same height under this place's gravity.
+local function write(humanoid: Humanoid)
+	humanoid.WalkSpeed = speed.walk
+	humanoid.JumpHeight = speed.jump
+	humanoid.JumpPower = math.sqrt(2 * Workspace.Gravity * speed.jump)
+end
+
+local function release()
+	if held == nil then
+		return
+	end
+	for _, watcher in held.watchers do
+		watcher:Disconnect()
+	end
+	local humanoid = held.humanoid
+	humanoid.WalkSpeed = held.walkSpeed
+	humanoid.JumpPower = held.jumpPower
+	humanoid.JumpHeight = held.jumpHeight
+	held = nil
+end
+
+-- Sprint, stun and round scripts rewrite WalkSpeed; the watchers write it back.
+local function hold()
+	release()
+	local character = player.Character
+	local humanoid = character and character:FindFirstChildOfClass("Humanoid")
+	if humanoid == nil then
+		return
+	end
+	local watchers = {}
+	held = {
+		humanoid = humanoid,
+		walkSpeed = humanoid.WalkSpeed,
+		jumpPower = humanoid.JumpPower,
+		jumpHeight = humanoid.JumpHeight,
+		watchers = watchers,
+	}
+	write(humanoid)
+	for _, property in { "WalkSpeed", "JumpPower", "JumpHeight" } do
+		table.insert(
+			watchers,
+			humanoid:GetPropertyChangedSignal(property):Connect(function()
+				write(humanoid)
+			end)
+		)
+	end
+end
+
+function speed.set(on: boolean)
+	speed.on = on
+	if on then
+		hold()
+	else
+		release()
+	end
+end
+
+function speed.unload()
+	speed.alive = false
+	speed.set(false)
+	for _, connection in connections do
+		connection:Disconnect()
+	end
+	table.clear(connections)
+	if features.Speed == speed then
+		features.Speed = nil
+	end
+end
+
+table.insert(
+	connections,
+	UserInputService.InputBegan:Connect(function(input, processed)
+		if not processed and input.KeyCode == TOGGLE_KEY then
+			speed.set(not speed.on)
+		end
+	end)
+)
+
+table.insert(
+	connections,
+	player.CharacterAdded:Connect(function(character)
+		release()
+		character:WaitForChild("Humanoid")
+		if speed.alive and speed.on and player.Character == character then
+			hold()
+		end
+	end)
+)
+
+features.Speed = speed
+speed.set(true)
 ```

@@ -60,6 +60,7 @@ nav.sections .wrap{display:flex;flex-wrap:wrap;gap:4px 18px;align-items:center}
 nav.sections a{font-weight:700;font-size:14px;text-decoration:none;color:var(--muted);padding:6px 0}
 nav.sections a:hover{color:var(--ink)}
 nav.sections a.cta{color:var(--pick)}
+@media (max-width:640px){nav.sections .wrap{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;mask-image:linear-gradient(90deg,#000 85%,transparent)}nav.sections .wrap::-webkit-scrollbar{display:none}nav.sections a{white-space:nowrap;flex:none;padding:12px 0}}
 section.group{padding-block:48px 8px;border-bottom:1px solid var(--line)}
 .group-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px;align-items:end;margin-bottom:24px}
 .group-head p{color:var(--muted);margin:0}
@@ -162,6 +163,39 @@ svg.i{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;stroke
 .label.two small{font:400 12px/16px var(--roblox);color:var(--s-muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .lead-icon{display:grid;color:var(--s-muted);transition:color .12s var(--quad)}
 .lead-icon svg{width:20px;height:20px}
+/* T21 to T30 */
+.r-track.fill .fill{position:absolute;left:0;top:0;bottom:0;width:0;border-radius:12px;background:var(--r-accent);transition:width .12s var(--quad)}
+.r-track.fill .r-knob{z-index:1}
+[aria-checked="true"] .r-track.fill{background:var(--s-overlay)}
+[aria-checked="true"] .r-track.fill .fill{width:100%}
+.end-word{font:700 12px var(--roblox);color:var(--s-faint);transition:color .12s var(--quad)}
+.end-word.off{color:var(--s-text)}
+[aria-checked="true"] .end-word.off{color:var(--s-faint)}
+[aria-checked="true"] .end-word.on{color:var(--r-bright)}
+[aria-checked="true"] .r-track.glow{box-shadow:0 0 0 2px color-mix(in srgb,var(--r-bright) 60%,transparent),0 0 12px color-mix(in srgb,var(--r-bright) 45%,transparent)}
+.r-lever{width:24px;height:40px;border-radius:12px;background:var(--s-overlay);position:relative;flex:none;transition:background-color .12s var(--quad)}
+.r-lever .r-knob{top:19px}
+[aria-checked="true"] .r-lever{background:var(--r-accent)}
+[aria-checked="true"] .r-lever .r-knob{transform:translateY(-16px)}
+.r-ring{width:22px;height:22px;border-radius:11px;border:2px solid var(--s-overlay);display:grid;place-items:center;flex:none;transition:border-color .12s var(--quad)}
+.r-ring i{width:10px;height:10px;border-radius:5px;background:var(--r-accent);transform:scale(0);transition:transform .12s var(--quad)}
+[aria-checked="true"] .r-ring{border-color:var(--r-accent)}
+[aria-checked="true"] .r-ring i{transform:scale(1)}
+.r-stripe{width:4px;height:24px;border-radius:2px;background:var(--s-overlay);flex:none;transition:background-color .12s var(--quad)}
+[aria-checked="true"] .r-stripe{background:var(--r-accent)}
+.r-rocker{position:relative;width:64px;height:32px;border-radius:6px;background:var(--s-deep);display:flex;flex:none}
+.r-rocker .cap{position:absolute;top:4px;left:4px;width:28px;height:24px;border-radius:4px;background:var(--s-overlay);transition:transform .12s var(--quad),background-color .12s var(--quad)}
+.r-rocker b{position:relative;flex:1;display:grid;place-items:center;font:700 14px var(--roblox);color:var(--s-faint)}
+.r-rocker b.o{color:var(--s-text)}
+[aria-checked="true"] .r-rocker .cap{transform:translateX(28px);background:var(--r-accent)}
+[aria-checked="true"] .r-rocker b.o{color:var(--s-faint)}
+[aria-checked="true"] .r-rocker b.i{color:var(--s-text)}
+.r-statpill{min-width:52px;height:24px;border-radius:12px;background:var(--s-overlay);color:var(--s-muted);font:700 12px/24px var(--roblox);text-align:center;flex:none;transition:background-color .12s var(--quad),color .12s var(--quad)}
+[aria-checked="true"] .r-statpill{background:var(--r-accent);color:var(--s-text)}
+.r-keychip{height:24px;padding:0 8px;border-radius:4px;background:var(--s-deep);color:var(--s-muted);font:700 12px/24px var(--roblox);flex:none}
+.r-track.mini{width:32px;height:18px;border-radius:9px}
+.r-track.mini .r-knob{top:2px;left:2px;width:14px;height:14px;border-radius:7px}
+[aria-checked="true"] .r-track.mini .r-knob{transform:translateX(14px)}
 [aria-checked="true"] .lead-icon{color:var(--r-accent)}
 /* Checkboxes */
 .r-box.draw svg{opacity:1;transform:none;clip-path:inset(0 100% 0 0);transition:clip-path .16s var(--quad)}
@@ -169,6 +203,41 @@ svg.i{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;stroke
 .r-box.hollow svg{color:var(--r-bright)}
 [aria-checked="true"] .r-box.hollow{background:transparent;border-color:var(--r-accent)}
 .r-row.todo[aria-checked="true"] .label{text-decoration:line-through;color:var(--s-muted)}
+.rt{margin-left:auto;color:var(--r-bright);opacity:0;transition:opacity .12s var(--quad)}
+[aria-checked="true"] .rt{opacity:1}
+.r-row.rtick[aria-checked="true"] .label{font-weight:700}
+.r-row .count{font:700 12px var(--roblox);color:var(--s-faint)}
+[aria-checked="true"] .count{color:var(--s-text)}
+.r-box.x svg{color:var(--s-text)}
+[aria-checked="true"] .r-box.x{background:#d05852;border-color:#d05852}
+.r-row.exclude[aria-checked="true"] .label{color:var(--s-muted)}
+.r-box.big{width:32px;height:32px}
+.r-box.big svg{width:20px;height:20px}
+.progress-head{display:grid;gap:8px;padding:0 4px 4px}
+.progress-head small{font:500 12px var(--roblox);color:var(--s-muted)}
+.progress-head .bar{height:4px;border-radius:2px;background:var(--s-overlay);overflow:hidden}
+.progress-head .bar i{display:block;height:100%;background:var(--r-accent);transition:width .2s var(--out)}
+.joined{display:flex;border-radius:6px;overflow:hidden;background:var(--s-overlay);gap:1px}
+.seg-btn{height:36px;border:0;background:var(--s-panel);color:var(--s-text);font:500 14px var(--roblox);padding:0 12px;display:flex;align-items:center;gap:6px;transition:background-color .12s var(--quad)}
+.seg-btn svg{display:none;width:16px;height:16px;color:var(--r-bright)}
+.seg-btn[aria-checked="true"]{background:var(--r-dim)}
+.seg-btn[aria-checked="true"] svg{display:block}
+.stars{display:flex;gap:4px}
+.star{width:44px;height:44px;border:0;background:transparent;display:grid;place-items:center;color:var(--s-overlay);transition:color .12s var(--quad),transform .12s var(--quad)}
+.star svg{width:24px;height:24px}
+.star.lit{color:#d69e3e}
+.star:hover{transform:scale(1.1)}
+.dots{display:flex;gap:8px}
+.dot-pick{width:44px;height:44px;border-radius:22px;border:0;display:grid;place-items:center;box-shadow:inset 0 0 0 0 #fff;transition:box-shadow .12s var(--quad)}
+.dot-pick svg{width:20px;height:20px;color:#fff;display:none}
+.dot-pick[aria-checked="true"]{box-shadow:0 0 0 3px var(--s-text)}
+.dot-pick[aria-checked="true"] svg{display:block}
+.sizes{position:relative;display:flex;border-radius:6px;overflow:hidden;background:var(--s-overlay)}
+.sizes .mk{position:absolute;left:0;top:0;width:64px;height:36px;background:var(--r-accent);transition:transform .2s var(--out)}
+.sizes:has(button:nth-of-type(2)[aria-checked="true"]) .mk{transform:translateX(64px)}
+.sizes:has(button:nth-of-type(3)[aria-checked="true"]) .mk{transform:translateX(128px)}
+.size-btn{position:relative;width:64px;height:36px;border:0;background:transparent;color:var(--s-muted);font:500 14px var(--roblox)}
+.size-btn[aria-checked="true"]{color:var(--s-text);font-weight:700}
 .checklist,.radios{display:grid;gap:4px;width:236px}
 .checklist .r-row.child{padding-left:32px}
 .r-box .dash{display:none}
@@ -281,12 +350,53 @@ svg.i{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;stroke
 .title-pill{position:absolute;height:44px;border-radius:22px;border:1px solid var(--s-overlay);background:var(--s-raised);color:var(--s-text);display:flex;align-items:center;gap:8px;padding:0 12px 0 16px;font:700 13px var(--roblox);visibility:hidden}
 .key-chip{position:absolute;right:16px;bottom:16px;height:44px;min-width:44px;border-radius:10px;border:1px solid var(--s-overlay);background:var(--s-raised);color:var(--s-text);display:flex;align-items:center;justify-content:center;gap:8px;padding:0 12px;font:500 12px var(--roblox);visibility:hidden}
 .key-chip.folded .key-text{display:none}
+.pull-tab.bottom{top:auto;bottom:0;border-radius:10px 10px 0 0}
+.dock{position:absolute;left:50%;bottom:10px;transform:translateX(-50%);display:flex;gap:8px;padding:6px;border-radius:14px;background:#090a0d99}
+.dock-icon{width:40px;height:40px;border-radius:10px;border:1px solid var(--s-overlay);background:var(--s-raised);color:var(--s-muted);display:grid;place-items:center}
+.dock-icon[data-bring]{color:var(--s-text);position:relative}
+.dock-icon[data-bring]::after{content:"";position:absolute;bottom:-5px;left:calc(50% - 2px);width:4px;height:4px;border-radius:2px;background:var(--r-bright);opacity:0;transition:opacity .2s var(--out)}
+.dock-icon[data-bring].away::after{opacity:1}
+.ghost-btn,.expand-btn{position:absolute;width:44px;height:44px;border-radius:10px;border:1px solid var(--s-overlay);background:var(--s-raised);color:var(--s-text);display:grid;place-items:center;visibility:hidden;z-index:2}
+.win.with-rail .wbody{margin-left:44px}
+.wrail{position:absolute;left:0;top:33px;bottom:0;width:44px;border-right:1px solid var(--s-raised);display:grid;align-content:start;justify-items:center;gap:8px;padding-top:8px}
+.wrail i{width:16px;height:16px;border-radius:4px;background:var(--s-overlay);display:block}
+.wrail i:first-child{background:var(--r-accent)}
+.hold-btn{position:absolute;right:16px;bottom:16px;height:44px;border-radius:10px;border:1px solid var(--s-overlay);background:var(--s-raised);color:var(--s-text);display:flex;align-items:center;gap:8px;padding:0 12px;font:500 12px var(--roblox);visibility:hidden;touch-action:none;user-select:none}
+.hold-btn:active{background:var(--s-overlay)}
+.fab{position:absolute;right:16px;bottom:16px;width:52px;height:52px;border-radius:26px;border:0;background:var(--r-accent);color:var(--s-text);display:grid;place-items:center;visibility:hidden;box-shadow:0 6px 16px #0008}
+.win .whead.swipe{cursor:grab;touch-action:none}
+.idle-note{position:absolute;left:0;right:0;bottom:10px;text-align:center;font:500 12px var(--roblox);color:var(--s-muted)}
 .ask{position:absolute;left:calc(50% - 118px);top:40px;width:236px;background:var(--s-raised);border:1px solid var(--s-overlay);border-radius:10px;padding:12px;font:500 12px var(--roblox);visibility:hidden;z-index:3}
 .ask p{margin:0 0 10px;color:var(--s-text)}
 .ask .row{display:flex;gap:6px;flex-wrap:wrap}
 .intro{position:absolute;inset:0;display:grid;place-content:center;justify-items:center;gap:10px;font:700 20px var(--roblox);visibility:hidden;z-index:4}
 .intro .line{display:block;height:2px;width:0;background:var(--r-accent)}
 .stage-note{position:absolute;left:0;right:0;bottom:12px;text-align:center;font:500 12px var(--roblox);color:var(--s-muted)}
+.toast .avatar{width:32px;height:32px;border-radius:16px;display:grid;place-items:center;font:700 13px var(--roblox);color:#0b1310;flex:none}
+.toast .pct{font:700 13px var(--roblox);flex:none}
+.toast .x-btn{width:32px;height:32px;border:0;border-radius:6px;background:transparent;color:var(--s-text);display:grid;place-items:center;flex:none;cursor:pointer}
+.toast .x-btn:hover{background:var(--s-overlay)}
+.toast .act.muted{color:var(--s-muted)}
+.island{position:absolute;left:50%;top:10px;transform:translateX(-50%);min-width:120px;max-width:240px;border-radius:22px;background:#090a0d;border:1px solid var(--s-overlay);padding:8px 16px;display:grid;justify-items:center;gap:4px;font:700 13px var(--roblox);visibility:hidden;cursor:pointer;transition:border-radius .2s var(--out)}
+.island small{display:none;font:500 12px var(--roblox);color:var(--s-muted);text-align:center}
+.island:hover small,.island.open small{display:block}
+.island:hover,.island.open{border-radius:14px}
+.collect{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);min-height:44px;padding:0 16px;border:0;border-radius:6px;background:var(--s-panel);color:var(--s-text);font:700 14px var(--roblox)}
+.floater{position:absolute;display:flex;align-items:center;gap:4px;font:800 18px var(--roblox);color:#d69e3e;-webkit-text-stroke:1px #090a0d;pointer-events:none;white-space:nowrap}
+.floater svg{width:18px;height:18px}
+.objective{position:absolute;right:16px;top:30%;display:flex;align-items:center;gap:12px;background:var(--s-raised);border:1px solid var(--s-overlay);border-radius:10px;padding:10px 12px;visibility:hidden}
+.objective small{display:block;font:500 11px var(--roblox);color:var(--s-muted)}
+.objective b{font:700 13px var(--roblox)}
+.bell{position:absolute;right:16px;top:16px;width:44px;height:44px;border-radius:10px;border:1px solid var(--s-overlay);background:var(--s-raised);color:var(--s-text);display:grid;place-items:center;cursor:pointer}
+.bell .badge{position:absolute;right:-6px;top:-6px;min-width:20px;height:20px;border-radius:10px;background:var(--r-danger);font:700 11px/20px var(--roblox);padding:0 5px;display:none}
+.bell .badge.on{display:block}
+.inbox{position:absolute;right:16px;top:66px;width:200px;background:var(--s-raised);border:1px solid var(--s-overlay);border-radius:10px;padding:8px 12px;display:none;gap:6px;font:500 12px var(--roblox)}
+.inbox.open{display:grid}
+.inbox .empty{color:var(--s-muted)}
+.caption{position:absolute;left:50%;bottom:20px;transform:translateX(-50%);max-width:88%;display:flex;gap:8px;align-items:baseline;background:#090a0d99;border-radius:6px;padding:8px 12px;font:500 14px var(--roblox);visibility:hidden}
+.caption b{color:var(--r-bright);font-weight:700;white-space:nowrap}
+.edges{position:absolute;inset:0;box-shadow:inset 0 0 48px 12px #d05852;opacity:0;pointer-events:none}
+.danger-word{position:absolute;left:0;right:0;top:44%;text-align:center;font:800 16px var(--roblox);color:#f3f5f8;opacity:0}
 
 /* Button feel */
 .press{position:relative;min-height:44px;padding:0 20px;border-radius:6px;border:0;background:var(--s-raised);color:var(--s-text);font:700 14px var(--roblox);transition:background-color .12s var(--quad),transform .12s var(--quad),box-shadow .12s var(--quad),background-position .2s var(--out);touch-action:manipulation;overflow:hidden;display:inline-flex;align-items:center;gap:8px}
@@ -313,6 +423,22 @@ svg.i{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;stroke
 .press[data-style="P11"] svg{transition:transform .12s var(--quad)}
 .press[data-style="P11"].hover svg{transform:translateX(4px)}
 .press-count{position:absolute;bottom:12px;font:500 12px var(--roblox);color:var(--s-muted)}
+.press[data-style="P13"],.press[data-style="P13"].hover{background:transparent;box-shadow:inset 0 0 0 1px var(--r-accent)}
+.press[data-style="P13"].hover{background:var(--r-dim)}
+.press[data-style="P13"].down{background:var(--r-accent)}
+.press[data-style="P14"]{display:inline-flex;align-items:center;gap:8px}
+.press[data-style="P15"].hover{background:linear-gradient(90deg,var(--s-overlay),var(--r-dim),var(--s-overlay)) 0 0/200% 100%;animation:shimmer 1.5s linear infinite}
+@keyframes shimmer{from{background-position:200% 0}to{background-position:0 0}}
+.press.busy{opacity:.6;cursor:default}
+.press.ok{background:var(--r-accent)}
+.press.warn{background:var(--r-danger)}
+.press[data-style="P18"]::after{content:"";position:absolute;left:0;top:0;bottom:0;width:var(--left,0%);background:#ffffff26}
+.press[data-style="P18"].cooling::after{transition:width 3s linear}
+.press[data-style="P18"] span{position:relative}
+.press[data-style="P21"]{transition:transform .3s var(--back),background-color .12s var(--quad)}
+.press[data-style="P21"].hover{transform:scale(1.06)}
+.press[data-style="P21"].down{transform:scale(.98);transition-duration:.08s}
+.press[data-style="P22"].down{transform:rotate(-2deg)}
 .ripple{position:absolute;border-radius:50%;background:#ffffff40;pointer-events:none;transform:translate(-50%,-50%)}
 
 /* Tabs */
@@ -343,6 +469,70 @@ svg.i{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;stroke
 .tabbar.vertical.rail{width:44px}
 .tabbar.vertical.rail button{width:44px;padding:0;justify-content:center}
 .vtabs .tabpage{margin:0;height:auto}
+.tabs.bottom{display:flex;flex-direction:column-reverse}
+.tabs.bottom .tabpage{margin:0 0 8px}
+.tabbar[data-mark="top"] .mark{height:2px;background:var(--r-accent)}
+.tabbar .count{position:absolute;top:4px;right:6px;min-width:16px;height:16px;border-radius:8px;background:var(--r-accent);font:700 10px/16px var(--roblox);color:var(--s-text);padding:0 4px}
+.tabbar .step{width:22px;height:22px;border-radius:11px;background:var(--s-overlay);display:grid;place-items:center;font:700 11px var(--roblox);font-style:normal;color:var(--s-text);flex:none}
+.tabbar .step svg{width:12px;height:12px;display:none}
+.tabbar button[aria-selected="true"] .step,.tabbar button.done .step{background:var(--r-accent)}
+.tabbar button.done .step b{display:none}
+.tabbar button.done .step svg{display:block}
+.tabbar[data-mark="folder"] .mark{background:var(--s-panel);border-radius:6px 6px 0 0;height:calc(100% + 12px)}
+.tabs.folder .tabpage{border-radius:0 6px 6px 6px}
+.tabbar.expand{justify-content:flex-start;gap:4px}
+.tabbar.expand button{flex:none;padding:0 12px}
+.tabbar.expand button .lbl{display:none}
+.tabbar.expand button[aria-selected="true"] .lbl{display:inline}
+.tabbar .grp{font:700 10px var(--roblox);letter-spacing:.08em;color:var(--s-faint);padding:6px 0 0 12px}
+.tabbar[data-style="S19"] button{transition:font-size .15s var(--out)}
+.tabbar[data-style="S19"] button[aria-selected="true"]{font-size:20px}
+.tabbar .more-list{position:absolute;right:0;top:48px;width:132px;background:var(--s-raised);border-radius:6px;box-shadow:0 0 0 1px var(--s-overlay),0 8px 18px #0008;display:none;flex-direction:column;z-index:3;padding:4px}
+.tabbar .more-list.open{display:flex}
+.tabbar .more-list button{flex:none;height:36px;justify-content:flex-start;padding:0 10px}
+.tabbar .cycle{flex:1;display:grid;place-items:center;font:700 14px var(--roblox)}
+.acc{width:252px;display:grid;gap:4px;font-family:var(--roblox)}
+.acc-head{height:40px;border:0;border-radius:6px;background:var(--s-panel);color:var(--s-text);font:700 13px var(--roblox);display:flex;align-items:center;justify-content:space-between;padding:0 12px}
+.acc-head svg{transition:transform .2s var(--out);color:var(--s-muted)}
+.acc-head[aria-expanded="true"] svg{transform:rotate(180deg)}
+.acc-body{display:none;padding:6px 12px;font:500 12px var(--roblox);color:var(--s-muted)}
+.acc-head[aria-expanded="true"]+.acc-body{display:block}
+/* Tooltips */
+.tip-target{position:relative;min-height:44px;padding:0 16px;border-radius:6px;border:0;background:var(--s-raised);color:var(--s-text);font:700 14px var(--roblox);display:inline-flex;align-items:center;gap:8px;touch-action:none;user-select:none}
+.tip-target:disabled,.tip-target.off{opacity:.45;cursor:not-allowed}
+.tipb{position:absolute;z-index:6;max-width:220px;width:max-content;background:#090a0d;border:1px solid var(--s-overlay);border-radius:6px;padding:8px 12px;font:500 13px/1.35 var(--roblox);color:var(--s-text);text-align:left;pointer-events:none;opacity:0;visibility:hidden;transition:opacity .12s var(--quad),visibility 0s .12s}
+.tipb.on{opacity:1;visibility:visible;transition:opacity .12s var(--quad)}
+.tipb b{display:block;font:700 13px var(--roblox);margin-bottom:2px}
+.tipb small{display:block;color:var(--s-muted);font:500 12px/1.35 var(--roblox)}
+.tipb kbd{display:inline-block;margin-top:6px;background:var(--s-panel);border-radius:4px;padding:1px 6px;font:700 11px var(--roblox)}
+.tipb.below{top:calc(100% + 8px);left:50%;transform:translateX(-50%)}
+.tipb.above{bottom:calc(100% + 8px);left:50%;transform:translateX(-50%)}
+.tipb.above::after{content:"";position:absolute;left:calc(50% - 5px);bottom:-6px;width:10px;height:10px;background:#090a0d;border:solid var(--s-overlay);border-width:0 1px 1px 0;transform:rotate(45deg)}
+.tipb.locked{border-color:var(--r-danger)}
+.tipb .lock{display:inline-grid;vertical-align:-3px;margin-right:6px;color:var(--r-danger)}
+.tipb .lock svg{width:14px;height:14px}
+.slider-demo{width:220px;position:relative;font-family:var(--roblox)}
+.slider-demo input{width:100%;accent-color:var(--r-accent);height:24px}
+.slider-demo .val-tag{position:absolute;top:-24px;transform:translateX(-50%);background:#090a0d;border-radius:4px;padding:1px 6px;font:700 11px var(--roblox);pointer-events:none}
+.slider-demo .ends{display:flex;justify-content:space-between;font:500 11px var(--roblox);color:var(--s-muted)}
+.slider-demo.with-value{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:start}
+.slider-demo .readout{font:700 14px var(--roblox);min-width:28px;padding-top:2px}
+.slider-demo .tipb{top:-44px;bottom:auto;transform:translateX(-50%)}
+.info-row{display:flex;align-items:center;gap:4px;font:500 14px var(--roblox);position:relative}
+.info-btn{width:44px;height:44px;border:0;background:transparent;color:var(--s-muted);display:grid;place-items:center;border-radius:6px}
+.info-btn[aria-expanded="true"]{color:var(--r-bright)}
+.follow-box{width:220px;height:110px;border-radius:10px;background:var(--s-panel);display:grid;place-items:center;font:500 12px var(--roblox);color:var(--s-muted);position:relative;overflow:visible}
+.field-demo{width:220px;display:grid;gap:6px;font-family:var(--roblox)}
+.field-demo input{height:44px;border-radius:6px;border:0;background:var(--s-panel);box-shadow:inset 0 0 0 1px var(--s-overlay);color:var(--s-text);padding:0 12px;font:500 14px var(--roblox)}
+.field-demo input.bad{box-shadow:inset 0 0 0 2px var(--r-danger)}
+.field-demo .help{font:500 12px var(--roblox);color:var(--s-muted);display:flex;gap:6px;align-items:center}
+.field-demo .help.bad{color:var(--r-danger)}
+.field-demo .help svg{width:14px;height:14px;display:none}
+.field-demo .help.bad svg{display:block}
+.coach-ring{position:absolute;inset:-5px;border-radius:10px;box-shadow:0 0 0 2px var(--r-bright);pointer-events:none;opacity:0}
+.coach-ring.on{opacity:1}
+.tipb.coach{pointer-events:auto}
+.tipb.coach button{margin-top:8px;min-height:36px;border:0;border-radius:6px;background:var(--r-accent);color:var(--s-text);font:700 13px var(--roblox);padding:0 12px}
 
 /* Dropdowns */
 .dd{position:absolute;left:16px;right:16px;top:16px;font-family:var(--roblox);font-size:14px}
@@ -385,6 +575,34 @@ button.dd-field:hover,.dd-arrow:hover{background:var(--s-raised)}
 .dd-palette .dd-rows{max-height:132px;overflow:auto}
 .dd-row.hi{background:var(--s-overlay)}
 .dd.palette-host{top:auto;bottom:16px}
+.dd-row.tall{min-height:56px}
+.dd-row .two{display:grid;gap:4px;min-width:0}
+.dd-row .two b{font:500 14px/16px var(--roblox)}
+.dd-row .two small{margin:0;font:400 12px/16px var(--roblox);color:var(--s-muted)}
+.dd.up{top:auto;bottom:16px}
+.dd.up .dd-list{top:auto;bottom:48px}
+.dd-sheet{position:absolute;left:0;right:0;bottom:0;background:var(--s-raised);border-radius:10px 10px 0 0;box-shadow:0 -12px 24px #0009;padding:8px 4px 4px;transform:translateY(105%);transition:transform .2s var(--out);z-index:5}
+.dd-sheet::before{content:"";display:block;width:36px;height:4px;border-radius:2px;background:var(--s-overlay);margin:0 auto 8px}
+.dd-sheet-title{font:700 12px var(--roblox);color:var(--s-muted);padding:0 12px 4px}
+.dd-sheet .dd-rows{max-height:96px;overflow:auto}
+.stage.sheet-open .dd-sheet{transform:none}
+.stage.sheet-open .dd-dim{display:block}
+.dd-inwrap{position:relative;flex:1;min-width:0;display:flex}
+.dd-ghost{position:absolute;inset:0;line-height:42px;font:500 14px/42px var(--roblox);color:var(--s-faint);white-space:pre;pointer-events:none;overflow:hidden}
+.dd-ghost .typed{visibility:hidden}
+.dd-list.grid{grid-template-columns:repeat(3,1fr);gap:4px;max-height:152px}
+.dd.open .dd-list.grid{display:grid}
+.dd-list.grid .dd-row{min-height:72px;flex-direction:column;justify-content:center;gap:4px;padding:4px;font-size:12px;text-align:center}
+.dd-list.grid .dd-row svg{width:24px;height:24px}
+.dd-list.grid .dd-row[aria-selected="true"]{background:var(--r-dim);box-shadow:inset 0 0 0 1px var(--r-accent)}
+.dd-split{padding:0;gap:0;overflow:hidden}
+.dd-run{flex:1;min-width:0;height:44px;border:0;background:transparent;color:var(--s-text);font:500 14px var(--roblox);text-align:left;padding:0 12px;display:flex;align-items:center}
+.dd-more{width:44px;height:44px;border:0;border-left:1px solid var(--s-overlay);background:transparent;display:grid;place-items:center;color:var(--s-muted)}
+.dd-run:hover,.dd-more:hover{background:var(--s-raised)}
+.dd-apply{width:100%;height:44px;border:0;border-radius:6px;background:var(--r-accent);color:var(--s-text);font:700 14px var(--roblox);margin-top:4px}
+.dd-list:has(.dd-apply){max-height:170px}
+.dd-row .deeper{margin-left:auto;color:var(--s-muted)}
+.dd-row.back{color:var(--s-muted)}
 
 /* Point at it */
 .anatomy{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:24px;align-items:start}
@@ -442,6 +660,12 @@ footer{padding-block:0 120px;color:var(--muted);font-size:13px}
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><rect width="18" height="11" x="3" y="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></symbol>
+  <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M8 16H3v5"/></symbol>
+  <symbol id="i-chevron-up" viewBox="0 0 24 24"><path d="m18 15-6-6-6 6"/></symbol>
+  <symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5v14"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></symbol>
   <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></symbol>
   <symbol id="i-ok" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></symbol>
   <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></symbol>
@@ -499,7 +723,7 @@ footer{padding-block:0 120px;color:var(--muted);font-size:13px}
 </header>
 
 <nav class="sections" aria-label="Guide sections"><div class="wrap">
-  <a href="#parts">Point at it</a><a href="#toggles">Toggles</a><a href="#checks">Checkboxes</a><a href="#dropdowns">Dropdowns</a><a href="#menus">Menu movement</a><a href="#notifications">Notifications</a><a href="#hiding">Hide &amp; bring back</a><a href="#buttons">Button feel</a><a href="#tabs">Tab switch</a><a href="#picks">Your picks</a><a class="cta" href="designer.html">UI designer</a>
+  <a href="#parts">Point at it</a><a href="#toggles">Toggles</a><a href="#checks">Checkboxes</a><a href="#dropdowns">Dropdowns</a><a href="#menus">Menu movement</a><a href="#notifications">Notifications</a><a href="#hiding">Hide &amp; bring back</a><a href="#buttons">Button feel</a><a href="#tabs">Tab switch</a><a href="#tooltips">Tooltips</a><a href="#picks">Your picks</a><a class="cta" href="designer.html">UI designer</a>
 </div></nav>
 
 <main class="wrap">
@@ -608,11 +832,19 @@ footer{padding-block:0 120px;color:var(--muted);font-size:13px}
   <div class="grid" id="tab-grid"></div>
 </section>
 
+<section class="group" id="tooltips" aria-labelledby="tooltips-h">
+  <div class="group-head">
+    <div><h2 id="tooltips-h">Tooltips</h2><p>Small explanations: over buttons, on sliders, behind an info mark, under a field. Hover, hold or drag each one.</p></div>
+    <p>None of them needs a mouse: a long press, a tap on the info mark, or keyboard focus opens every one, because phones have no hover.</p>
+  </div>
+  <div class="grid" id="tooltip-grid"></div>
+</section>
+
 <section class="picks" id="picks" aria-labelledby="picks-h">
   <div>
     <h2 id="picks-h">Your picks</h2>
     <p>Paste this into your chat. You can also mix and describe: “T1 but square”, “pop in, fade out”, “like N4 but at the top”.</p>
-    <p class="note">Skipped a group? Your AI uses its default for it and tells you which one: T1, C1, D1 (D2 for long lists, D10 to pick a player), M1 to open and close, N1 (N4 for a script hub), O1, P1 and S1.</p>
+    <p class="note">Skipped a group? Your AI uses its default for it and tells you which one: T1, C1, D1 (D2 for long lists, D10 to pick a player), M1 to open and close, N1 (N4 for a script hub), O1, P1, S1 and H1 (H3 on sliders).</p>
     <p class="note">Want to arrange a whole screen yourself? Use the <a href="designer.html">UI designer</a>; it copies a layout your AI can rebuild exactly.</p>
     <label for="notes">Anything else, in your own words (optional)</label>
     <textarea id="notes" placeholder="Example: use purple instead of green, and make the close button bigger"></textarea>
@@ -644,9 +876,9 @@ const EASE={
 };
 if(!(window.CSS&&CSS.supports('animation-timing-function','linear(0, 1)'))){EASE.bounce=EASE.back;EASE.elastic=EASE.back}
 
-const GROUPS=[['toggle','Toggle','T'],['check','Checkbox','C'],['dropdown','Dropdown','D'],['open','Opening','M'],['close','Closing','M'],['notice','Notifications','N'],['window','Hide & bring back','O'],['press','Button feel','P'],['tabs','Tab switch','S']];
+const GROUPS=[['toggle','Toggle','T'],['check','Checkbox','C'],['dropdown','Dropdown','D'],['open','Opening','M'],['close','Closing','M'],['notice','Notifications','N'],['window','Hide & bring back','O'],['press','Button feel','P'],['tabs','Tab switch','S'],['tooltip','Tooltip','H']];
 const NAMES={};
-const GROUP_OF=code=>({T:'toggle',C:'check',D:'dropdown',N:'notice',O:'window',P:'press',S:'tabs'})[code[0]];
+const GROUP_OF=code=>({T:'toggle',C:'check',D:'dropdown',N:'notice',O:'window',P:'press',S:'tabs',H:'tooltip'})[code[0]];
 const PARTS=[['W1','Header','the bar at the top'],['W2','Title','the name at the top'],['W3','Close button','the X'],['W4','Minimise button','the dash, hide button'],['W5','Drag handle','the bit you grab to move it'],['W6','Sidebar','the side menu, list on the left'],['W7','Tab','the pages, sections (see S codes)'],['W8','Section heading','the little titles'],['W9','Toggle','the on/off thing (see T codes)'],['W10','Slider','the bar you drag'],['W11','Dropdown','the list that opens (see D codes)'],['W12','Button','the button (see P codes)'],['W13','Keybind','the key box, hotkey'],['W14','Search box','search bar (see D5)'],['W15','Text box','the typing box'],['W16','Notification','the popup message (see N codes)'],['W17','Tooltip','the hint when you hover'],['W18','Scrollbar','the scroll thing'],['W20','Launcher','the button that opens the menu (see O codes)'],['W22','Badge','the little tag']];
 
 const reduce=document.getElementById('reduce');
@@ -658,10 +890,11 @@ reduce.addEventListener('change',syncReduced);
 prefers.addEventListener('change',e=>{reduce.checked=e.matches;syncReduced()});
 syncReduced();
 
+const escHTML=text=>String(text).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'})[c]);
 const icon=(id,cls='')=>`<svg class="i ${cls}" aria-hidden="true"><use href="#i-${id}"/></svg>`;
 const says=list=>list.map(w=>`<q>${w}</q>`).join(', ');
 const pickButton=(group,code,cls='')=>`<button class="btn pick ${cls}" type="button" data-group="${group}" data-value="${code}" aria-pressed="false"></button>`;
-const isNew=code=>{const n=parseInt(code.slice(1),10);return ({T:n>10,C:true,D:true,M:n>12,N:n>10,O:n>5,P:n>3,S:n>3})[code[0]]};
+const isNew=code=>{const n=parseInt(code.slice(1),10);return ({T:n>20,C:n>10,D:n>12,M:n>24,N:n>20,O:n>12,P:n>12,S:n>12,H:true})[code[0]]};
 function card(code,title,words,use,stage,extra='',buttons=pickButton(GROUP_OF(code),code)){NAMES[code]=title;return `<article class="card" data-code="${code}"><div class="stage">${stage}</div><div class="card-body"><div class="code-line"><span class="code">${code}</span><h3>${title}</h3>${isNew(code)?'<span class="new">New</span>':''}</div><p class="says">People say ${says(words)}</p><p class="use">${use}</p><div class="actions">${extra}${buttons}</div></div></article>`}
 
 /* Motion: every run owns its element; a newer run cancels the older one. */
@@ -708,7 +941,17 @@ const TOGGLES=[
   ['T17','Icons in the track',['tick and cross in the switch'],'The track shows a tick and a cross; the knob covers the one not chosen.',sw('Auto farm',`<span class="r-track icons"><span class="ti ti-yes">${icon('check')}</span><span class="ti ti-no">${icon('x')}</span>${knob()}</span>`)],
   ['T18','Push key',['key that stays pushed in','keyboard key'],'A key that sinks and stays down while on.',sw('Auto farm','<span class="r-key"><span class="r-key-cap" data-state>ON</span></span>')],
   ['T19','Switch with description',['switch with a small line under it'],'A title plus one short line explaining it. Keep that line under eight words.',`<button class="r-row tall" type="button" role="switch" aria-checked="true" data-toggle><span class="label two"><b>Auto farm</b><small>Collects drops near you</small></span>${track()}</button>`],
-  ['T20','Icon row switch',['switch with an icon at the start'],'A feature icon leads the row and lights up with the switch.',sw('Walk speed',track(),{before:`<span class="lead-icon">${icon('steps')}</span>`})]
+  ['T20','Icon row switch',['switch with an icon at the start'],'A feature icon leads the row and lights up with the switch.',sw('Walk speed',track(),{before:`<span class="lead-icon">${icon('steps')}</span>`})],
+  ['T21','Fill switch',['switch that fills up','colour fills in as it slides'],'The colour fills the track behind the knob as it moves.',sw('Auto farm',`<span class="r-track fill"><span class="fill"></span>${knob()}</span>`)],
+  ['T22','Words at both ends',['Off and On either side','words next to the switch'],'Off and On sit either side of the switch; the chosen word lights up.',sw('Music',`<span class="end-word off">Off</span>${track()}<span class="end-word on">On</span>`)],
+  ['T23','Glow switch',['switch that glows','neon switch'],'T1 with a soft glow around the track while it is on.',sw('Auto farm',track('glow'))],
+  ['T24','Up-down lever',['wall light switch','switch that goes up'],'An upright switch: up is on, like a light switch.',sw('Lights',`<span class="r-lever">${knob()}</span>`)],
+  ['T25','Dot in a ring',['radio button','dot in a circle'],'An empty circle that fills with a dot. Good for single options.',sw('Night mode','',{role:'checkbox',before:'<span class="r-ring"><i></i></span>'})],
+  ['T26','Edge stripe',['stripe on the side','bar on the left lights up'],'A stripe on the left edge lights up and the word says ON.',sw('Kill aura','<span class="state-word" data-state>ON</span>',{before:'<span class="r-stripe"></span>'})],
+  ['T27','Rocker switch',['I and O switch','power strip switch'],'A two-sided rocker marked O and I; the pressed side sinks.',sw('Server lights','<span class="r-rocker"><span class="cap"></span><b class="o">O</b><b class="i">I</b></span>')],
+  ['T28','Status pill',['little ON OFF pill','tag that says ON'],'A small pill that says ON or OFF. Fits long, dense lists.',sw('Aimbot','<span class="r-statpill" data-state>ON</span>')],
+  ['T29','Switch with hotkey',['switch with its key','shows the keybind'],'The feature’s hotkey sits in a chip beside the switch.',sw('Fly',`<span class="r-keychip">F</span>${track()}`)],
+  ['T30','Mini switch',['small switch','tiny toggle'],'A smaller switch for long lists; the row stays easy to tap.',sw('Auto farm',track('mini'))]
 ];
 const toggleGrid=document.getElementById('toggle-grid');
 toggleGrid.innerHTML=TOGGLES.map(([code,title,words,use,stage])=>card(code,title,words,use,stage)).join('');
@@ -725,9 +968,27 @@ const CHECKS=[
   ['C7','Card choice',['cards you tick','option cards'],'A bigger card with a title, one short line and a round tick.',`<button class="r-card" type="button" role="checkbox" aria-checked="true" data-toggle><span class="card-text"><b>Hard mode</b><small>Enemies hit twice as hard</small></span><span class="r-badge-round">${icon('check')}</span></button>`],
   ['C8','Radio buttons',['circles, pick one','only one can be on'],'Choose exactly one of a few. The dot moves to your choice.',`<div class="radios" role="radiogroup" aria-label="Target">${['Nearest','Lowest HP','Random'].map((n,i)=>`<button class="r-row" type="button" role="radio" aria-checked="${i===0}" data-radio><span class="r-radio"></span><span class="label">${n}</span></button>`).join('')}</div>`],
   ['C9','Chips',['tags you tap','little pills'],'Short options that wrap onto new lines; tap to tick several.',`<div class="chips">${['Wood','Stone','Gold','Iron'].map((n,i)=>`<button class="r-pill" type="button" role="checkbox" aria-checked="${i===2}" data-toggle>${icon('check')}${n}</button>`).join('')}</div>`],
-  ['C10','Icon tiles',['squares with pictures','tiles'],'Square tiles with an icon; ticked tiles light up. For items and pets.',`<div class="tiles">${[['Sword','sword'],['Gems','gem']].map(([n,i],k)=>`<button class="r-tile" type="button" role="checkbox" aria-checked="${k===0}" data-toggle><span class="t-badge">${icon('check')}</span>${icon(i)}<span>${n}</span></button>`).join('')}</div>`]
+  ['C10','Icon tiles',['squares with pictures','tiles'],'Square tiles with an icon; ticked tiles light up. For items and pets.',`<div class="tiles">${[['Sword','sword'],['Gems','gem']].map(([n,i],k)=>`<button class="r-tile" type="button" role="checkbox" aria-checked="${k===0}" data-toggle><span class="t-badge">${icon('check')}</span>${icon(i)}<span>${n}</span></button>`).join('')}</div>`],
+  ['C11','Tick on the right',['just a tick at the end','no box'],'No box at all: a tick appears at the end of the chosen row.',sw('Nearest player',icon('check','rt'),{role:'checkbox',cls:'rtick'})],
+  ['C12','Box with a count',['checkbox with a number','shows how many'],'A tick box with a count at the end, such as how many items match.',sw('Coins','<span class="count">12</span>',{role:'checkbox',before:box()})],
+  ['C13','Cross box',['X box','ignore list'],'For lists of things to leave out: the box fills red with a cross.',sw('Ignore Red team','',{role:'checkbox',cls:'exclude',before:`<span class="r-box x">${icon('x')}</span>`})],
+  ['C14','Big tick box',['large checkbox','easy to tap'],'A thumb-sized box for phones and touch screens.',sw('Auto collect','',{role:'checkbox',before:box('big')})],
+  ['C15','Checklist with progress',['quest list with a bar','shows how many are done'],'A checklist that counts what is done and fills a bar.',`<div class="checklist" data-progress><div class="progress-head"><small data-count>1 of 3 done</small><span class="bar"><i style="width:33%"></i></span></div>${['Collect 10 eggs','Sell a pet','Rebirth once'].map((n,i)=>`<button class="r-row todo" type="button" role="checkbox" aria-checked="${i===0}" data-toggle>${box()}<span class="label">${n}</span></button>`).join('')}</div>`],
+  ['C16','Joined buttons',['buttons stuck together','pick several in a bar'],'A bar of joined buttons; tap several and each one ticks.',`<div class="joined">${['Sword','Bow','Staff'].map((n,i)=>`<button class="seg-btn" type="button" role="checkbox" aria-checked="${i===1}" data-toggle>${icon('check')}${n}</button>`).join('')}</div>`],
+  ['C17','Star rating',['stars','rate it out of five'],'Pick one to five stars; every star up to your pick lights.',`<div class="stars" role="radiogroup" aria-label="Rating">${[1,2,3,4,5].map(n=>`<button class="star${n<=4?' lit':''}" type="button" role="radio" aria-checked="${n===4}" aria-label="${n} stars" data-star="${n}">${icon('star')}</button>`).join('')}</div>`],
+  ['C18','Colour dots',['colour circles','pick a colour'],'Round colour dots; the chosen one gets a ring and a tick.',`<div class="dots" role="radiogroup" aria-label="Team colour">${[['Red','#d05852'],['Gold','#d69e3e'],['Green','#48b270'],['Blue','#588dd6']].map(([n,c],i)=>`<button class="dot-pick" type="button" role="radio" aria-checked="${i===2}" aria-label="${n}" style="background:${c}" data-radio>${icon('check')}</button>`).join('')}</div>`],
+  ['C19','Size buttons',['S M L','small medium large'],'Equal buttons for one choice, with a block that slides to it.',`<div class="sizes" role="radiogroup" aria-label="Size"><span class="mk"></span>${['S','M','L'].map((n,i)=>`<button class="size-btn" type="button" role="radio" aria-checked="${i===1}" data-radio>${n}</button>`).join('')}</div>`],
+  ['C20','Plan cards',['pick one card','options with details'],'Pick one of a few cards, each with one line saying what it gives.',`<div class="radios">${[['Free','Normal coins'],['VIP','Double coins']].map(([n,d],i)=>`<button class="r-card" type="button" role="radio" aria-checked="${i===1}" data-radio><span class="card-text"><b>${n}</b><small>${d}</small></span><span class="r-badge-round">${icon('check')}</span></button>`).join('')}</div>`]
 ];
 document.getElementById('check-grid').innerHTML=CHECKS.map(([code,title,words,use,stage])=>card(code,title,words,use,stage)).join('');
+// C15 counts what is done; C17 lights every star up to the chosen one.
+document.addEventListener('click',e=>{
+  const list=e.target.closest('[data-progress]');
+  if(list){const items=[...list.querySelectorAll('[role="checkbox"]')];const done=items.filter(i=>i.getAttribute('aria-checked')==='true').length;
+    list.querySelector('[data-count]').textContent=`${done} of ${items.length} done`;list.querySelector('.bar i').style.width=`${Math.round(done/items.length*100)}%`}
+  const star=e.target.closest('[data-star]');
+  if(star){const n=+star.dataset.star;star.parentElement.querySelectorAll('[data-star]').forEach(s=>{s.classList.toggle('lit',+s.dataset.star<=n);s.setAttribute('aria-checked',String(s===star))})}
+});
 
 document.addEventListener('click',e=>{
   const t=e.target.closest('[data-toggle]');
@@ -771,66 +1032,113 @@ const DROPDOWNS=[
   ['D9','List with icons',['icons next to each option'],'Each option carries its own icon; the field shows the chosen one.',{label:'Weapon',options:[{t:'Sword',i:'sword'},{t:'Axe',i:'axe'},{t:'Fishing rod',i:'fish'}]}],
   ['D10','Player picker',['choose a player','list of players'],'Players in the server with their avatar and @name; updates as people join and leave.',{label:'Choose a player',players:true,options:[{t:'Bob',d:'Bobby',c:'#588dd6'},{t:'alice',d:'Ali',c:'#d69e3e'},{t:'Noob_123',d:'Noob',c:'#48b270'}]}],
   ['D11','Command palette',['search everything','Ctrl K'],'One search box for every feature; arrows and Enter run it.',{label:'Search features',options:['Teleport to spawn','Toggle fly','Rejoin server','Copy position','Reset character'],palette:true}],
-  ['D12','Colour swatches',['colour picker list','theme colours'],'Options are colours; the field shows the chosen swatch.',{label:'Theme',options:[{t:'Green',s:'#2ea07f'},{t:'Purple',s:'#8c5adc'},{t:'Blue',s:'#588dd6'},{t:'Red',s:'#d05852'}],start:'Green'}]
+  ['D12','Colour swatches',['colour picker list','theme colours'],'Options are colours; the field shows the chosen swatch.',{label:'Theme',options:[{t:'Green',s:'#2ea07f'},{t:'Purple',s:'#8c5adc'},{t:'Blue',s:'#588dd6'},{t:'Red',s:'#d05852'}],start:'Green'}],
+  ['D13','Options with a second line',['list with descriptions','two lines each'],'Each option has a short line under it saying what it is.',{label:'Teleport to',options:[{t:'Spawn',x:'Where you start'},{t:'Shop',x:'Buy tools and pets'},{t:'Arena',x:'Fight other players'}],twoLine:true}],
+  ['D14','Recent picks first',['remembers what I picked','recent at the top'],'Your last three picks sit at the top under RECENT. Pick one, then open it again.',{label:'Teleport to',options:['Spawn','Shop','Arena','Bank','Volcano'],recent:true}],
+  ['D15','Opens upward',['list goes up','for the bottom of the screen'],'The list opens above the field, for fields near the bottom edge.',{label:'Quality',options:['Low','Medium','High'],up:true}],
+  ['D16','Bottom sheet',['slides up from the bottom','phone style list'],'The list slides up from the bottom edge and dims the rest. Easy on a phone.',{label:'Choose a pet',options:['Cat','Dog','Dragon','Bunny'],sheet:true}],
+  ['D17','Autocomplete',['finishes the word for me','Tab to complete'],'Type a few letters: the rest of the first match shows in grey, Tab accepts it.',{label:'Feature',options:['Teleport','Trade','Fly','Fullbright','Walk speed'],typed:true,ghost:true}],
+  ['D18','Grid of choices',['boxes instead of a list','tiles to pick from'],'Options open as a grid of tiles with icons, for pictures more than words.',{label:'Weapon',options:[{t:'Sword',i:'sword'},{t:'Axe',i:'axe'},{t:'Rod',i:'fish'},{t:'Gem',i:'gem'},{t:'Coins',i:'coins'},{t:'Bag',i:'backpack'}],grid:true}],
+  ['D19','Split button',['button with a little arrow','run it or change it'],'The main part runs the choice; the arrow changes it. Try both halves.',{label:'Teleport to',options:['Spawn','Shop','Arena'],start:'Spawn',split:true}],
+  ['D20','Pick then Apply',['choose several then confirm','Apply button'],'Tick several, then press Apply. Closing without Apply changes nothing.',{label:'Auto sell',options:['Wood','Stone','Gold','Iron'],multi:true,apply:true}],
+  ['D21','Sub-menus',['menu inside a menu','folders in the list'],'Some options open their own list, with a way back.',{label:'Teleport to',options:[{t:'Places',k:['Spawn','Shop','Arena']},{t:'Players',k:['Bob','alice']},'Random spot']}],
+  ['D22','Type to add',['add my own option','create new'],'Type a name that is not there and add it, like a new waypoint.',{label:'Waypoint',options:['Base','Spawn'],typed:true,create:true}]
 ];
 const DD_SPEC={};
-document.getElementById('dropdown-grid').innerHTML=DROPDOWNS.map(([code,title,words,use,spec])=>{DD_SPEC[code]=spec;return card(code,title,words,use,`<div class="dd${spec.inline?' inline':''}${spec.palette?' palette-host':''}" data-dd="${code}"></div>`)}).join('');
+document.getElementById('dropdown-grid').innerHTML=DROPDOWNS.map(([code,title,words,use,spec])=>{DD_SPEC[code]=spec;return card(code,title,words,use,`<div class="dd${spec.inline?' inline':''}${spec.palette?' palette-host':''}${spec.up?' up':''}" data-dd="${code}"></div>`)}).join('');
 function setupDropdown(root){
   const spec=DD_SPEC[root.dataset.dd];
   const opts=spec.options.map(o=>typeof o==='string'?{t:o}:o);
-  let chosen=spec.start?[spec.start]:[];let query='';let hi=0;
-  const find=t=>opts.find(o=>o.t===t);
+  let chosen=spec.start?[spec.start]:[];let query='';let hi=0;let pending=null;const recent=[];const trail=[];
+  const find=(t,list=opts)=>{for(const o of list.map(x=>typeof x==='string'?{t:x}:x)){if(o.t===t)return o;if(o.k){const n=find(t,o.k);if(n)return n}}return null};
   const lead=o=>o.s?`<span class="dd-sw" style="background:${o.s}"></span>`:o.c?`<span class="dd-av" style="background:${o.c}">${o.d[0]}</span>`:o.i?icon(o.i):'';
+  const sheetLike=spec.palette||spec.sheet;
   if(spec.cycler){
     root.innerHTML=`<div class="dd-field cycler"><button class="dd-arrow" type="button" data-step="-1" aria-label="Previous">${icon('chevron-left')}</button><span class="dd-value"></span><button class="dd-arrow" type="button" data-step="1" aria-label="Next">${icon('right')}</button></div>`;
   }else if(spec.typed||spec.search){
-    root.innerHTML=`<div class="dd-field">${spec.search?icon('search'):''}<input class="dd-input" placeholder="${spec.label}" aria-label="${spec.label}">${spec.search?'':icon('down','dd-chev')}</div><div class="dd-list" role="listbox"></div>`;
+    const input=`<input class="dd-input" placeholder="${spec.label}" aria-label="${spec.label}">`;
+    root.innerHTML=`<div class="dd-field">${spec.search?icon('search'):''}${spec.ghost?`<span class="dd-inwrap"><span class="dd-ghost" aria-hidden="true"></span>${input}</span>`:input}${spec.search?'':icon('down','dd-chev')}</div><div class="dd-list" role="listbox"></div>`;
   }else if(spec.palette){
     root.innerHTML=`<button class="dd-field" type="button">${icon('search')}<span class="dd-value empty">${spec.label}</span><span class="dd-kbd">Ctrl K</span></button>`;
     root.parentElement.insertAdjacentHTML('beforeend',`<div class="dd-dim"></div><div class="dd-palette" role="dialog" aria-label="${spec.label}"><div class="dd-pal-search">${icon('search')}<input class="dd-input" placeholder="${spec.label}…" aria-label="${spec.label}"></div><div class="dd-rows" role="listbox"></div></div>`);
+  }else if(spec.split){
+    root.innerHTML=`<div class="dd-field dd-split"><button class="dd-run" type="button" data-run><span class="dd-value"></span></button><button class="dd-more" type="button" aria-label="More places" aria-haspopup="listbox" aria-expanded="false" data-more>${icon('down','dd-chev')}</button></div><div class="dd-list" role="listbox"></div>`;
   }else{
-    root.innerHTML=`<button class="dd-field" type="button" aria-haspopup="listbox" aria-expanded="false"><span class="dd-lead"></span>${spec.chips?'<span class="dd-chips"></span>':'<span class="dd-value"></span>'}${icon('down','dd-chev')}</button><div class="dd-list" role="listbox"></div>${spec.inline?'<div class="dd-below">The next setting moves down</div>':''}`;
+    root.innerHTML=`<button class="dd-field" type="button" aria-haspopup="listbox" aria-expanded="false"><span class="dd-lead"></span>${spec.chips?'<span class="dd-chips"></span>':'<span class="dd-value"></span>'}${icon('down','dd-chev')}</button><div class="dd-list${spec.grid?' grid':''}" role="listbox"></div>${spec.inline?'<div class="dd-below">The next setting moves down</div>':''}`;
+    if(spec.sheet)root.parentElement.insertAdjacentHTML('beforeend',`<div class="dd-dim"></div><div class="dd-sheet" role="listbox" aria-label="${spec.label}"><div class="dd-sheet-title">${spec.label}</div><div class="dd-rows"></div></div>`);
   }
   const stage=root.parentElement;
-  const listEl=spec.palette?stage.querySelector('.dd-rows'):root.querySelector('.dd-list');
+  const listEl=spec.palette?stage.querySelector('.dd-palette .dd-rows'):spec.sheet?stage.querySelector('.dd-sheet .dd-rows'):root.querySelector('.dd-list');
   const input=spec.palette?stage.querySelector('.dd-palette input'):root.querySelector('.dd-input');
-  const setOpen=open=>{root.classList.toggle('open',open);if(spec.palette)stage.querySelector('.dd-palette').style.display=stage.querySelector('.dd-dim').style.display=open?'block':'';root.querySelector('[aria-expanded]')?.setAttribute('aria-expanded',String(open));if(open){hi=0;draw();if(spec.palette){input.value='';query='';draw();setTimeout(()=>input.focus(),0)}}};
-  const shown=()=>{let list=opts.filter(o=>!query||`${o.d||o.t} ${o.t}`.toLowerCase().includes(query.toLowerCase()));if(spec.search)list=list.slice(0,6);return list};
+  const ghost=root.querySelector('.dd-ghost');
+  const isOpen=()=>root.classList.contains('open');
+  const setOpen=open=>{
+    root.classList.toggle('open',open);
+    if(spec.palette)stage.querySelector('.dd-palette').style.display=stage.querySelector('.dd-dim').style.display=open?'block':'';
+    if(spec.sheet)stage.classList.toggle('sheet-open',open);
+    root.querySelector('[aria-expanded]')?.setAttribute('aria-expanded',String(open));
+    if(open){hi=0;if(spec.apply)pending=[...chosen];draw();if(spec.palette){input.value='';query='';draw();setTimeout(()=>input.focus(),0)}}
+    else{pending=null;trail.length=0}
+  };
+  const level=()=>(trail.length?trail[trail.length-1].k:opts).map(o=>typeof o==='string'?{t:o}:o);
+  const shown=()=>{let list=level().filter(o=>!query||`${o.d||o.t} ${o.t}`.toLowerCase().includes(query.toLowerCase()));if(spec.search)list=list.slice(0,6);return list};
+  const row=(o,index,extra='')=>{const picked=(pending||chosen).includes(o.t);
+    const body=spec.twoLine?`<span class="two"><b>${o.t}</b><small>${o.x}</small></span>`:spec.grid?`${lead(o)}<span>${o.t}</span>`:`<span>${o.d||o.t}</span>`;
+    return `<button class="dd-row${spec.palette&&index===hi?' hi':''}${spec.twoLine?' tall':''}" type="button" role="option" aria-selected="${picked}" data-choice="${o.t}"${extra}>${spec.multi?`<span class="box">${icon('check')}</span>`:spec.grid?'':lead(o)}${body}${o.c?`<small>@${o.t}</small>`:''}${o.k?icon('right','deeper'):''}${picked&&!spec.multi&&!spec.grid?icon('check','tick'):''}</button>`};
   function draw(){
     if(listEl){
-      const list=shown();let group=null;
-      listEl.innerHTML=list.map((o,index)=>{const head=o.g&&o.g!==group?`<div class="dd-head">${(group=o.g).toUpperCase()}</div>`:'';const picked=chosen.includes(o.t);
-        return `${head}<button class="dd-row${spec.palette&&index===hi?' hi':''}" type="button" role="option" aria-selected="${picked}" data-choice="${o.t}">${spec.multi?`<span class="box">${icon('check')}</span>`:lead(o)}<span>${o.d||o.t}</span>${o.c?`<small>@${o.t}</small>`:''}${picked&&!spec.multi?icon('check','tick'):''}</button>`}).join('')||`<div class="dd-empty">No matches</div>`;
+      const list=shown();let group=null;let html='';
+      if(spec.recent&&recent.length&&!query)html+=`<div class="dd-head">RECENT</div>${recent.map(t=>row(find(t),-1)).join('')}<div class="dd-head">ALL</div>`;
+      if(trail.length)html+=`<button class="dd-row back" type="button" data-back>${icon('chevron-left')}<span>Back to ${trail[trail.length-1].t}</span></button>`;
+      html+=list.map((o,index)=>{const head=o.g&&o.g!==group?`<div class="dd-head">${(group=o.g).toUpperCase()}</div>`:'';return head+row(o,index)}).join('');
+      const exact=query&&find(query);
+      if(spec.create&&query&&!exact)html+=`<button class="dd-row" type="button" data-create>${icon('plus')}<span>Add “${escHTML(query)}”</span></button>`;
+      else if(!list.length)html+=`<div class="dd-empty">No matches</div>`;
+      if(spec.apply)html+=`<button class="dd-apply" type="button" data-apply>Apply</button>`;
+      listEl.innerHTML=html;
     }
     const first=find(chosen[0]||'');
     const value=root.querySelector('.dd-value');
     if(value&&!spec.palette){value.textContent=chosen.length===0?spec.label:spec.multi&&chosen.length>1?`${chosen.length} selected`:first?(first.d||first.t):chosen[0];value.classList.toggle('empty',chosen.length===0)}
     const leadEl=root.querySelector('.dd-lead');if(leadEl){leadEl.innerHTML=first?lead(first):'';leadEl.style.display=first&&lead(first)?'grid':'none'}
     const chips=root.querySelector('.dd-chips');if(chips)chips.innerHTML=chosen.length?chosen.map(t=>`<span class="dd-chip">${t}</span>`).join(''):`<span class="dd-value empty">${spec.label}</span>`;
+    if(ghost){const word=query&&level().map(o=>o.t).find(t=>t.toLowerCase().startsWith(query.toLowerCase()));ghost.innerHTML=word?`<span class="typed">${escHTML(query)}</span>${escHTML(word.slice(query.length))}`:''}
   }
   function choose(t){
+    const o=find(t,level());
+    if(o&&o.k){trail.push(o);draw();return}
+    if(spec.apply){pending=pending.includes(t)?pending.filter(c=>c!==t):[...pending,t];draw();return}
     if(spec.multi){chosen=chosen.includes(t)?chosen.filter(c=>c!==t):[...chosen,t];draw();return}
-    chosen=[t];if(input&&spec.search)input.value=t;if(input&&spec.typed)input.value='';query='';draw();setOpen(false);
+    chosen=[t];if(spec.recent){const at=recent.indexOf(t);if(at>=0)recent.splice(at,1);recent.unshift(t);recent.length=Math.min(recent.length,3)}
+    if(input&&spec.search)input.value=t;if(input&&(spec.typed||spec.create))input.value='';query='';setOpen(false);draw();
     if(spec.palette)flashNote(stage,`Ran “${t}”`);
   }
   root.addEventListener('click',e=>{
     const step=e.target.closest('[data-step]');
     if(step){const at=Math.max(0,opts.findIndex(o=>o.t===chosen[0]));chosen=[opts[(at+Number(step.dataset.step)+opts.length)%opts.length].t];draw();return}
-    if(e.target.closest('.dd-field')&&!e.target.closest('input')){setOpen(!root.classList.contains('open'));return}
+    if(e.target.closest('[data-run]')){flashNote(stage,chosen[0]?`Teleported to ${chosen[0]}`:'Pick a place first');return}
+    if(e.target.closest('[data-more]')||(e.target.closest('.dd-field')&&!spec.split&&!e.target.closest('input'))){setOpen(!isOpen());return}
   });
-  (spec.palette?stage:root).addEventListener('click',e=>{const row=e.target.closest('[data-choice]');if(row)choose(row.dataset.choice);if(spec.palette&&e.target.closest('.dd-dim'))setOpen(false)});
+  (sheetLike?stage:root).addEventListener('click',e=>{
+    if(e.target.closest('[data-back]')){trail.pop();draw();return}
+    if(e.target.closest('[data-apply]')){chosen=[...pending];setOpen(false);draw();return}
+    if(e.target.closest('[data-create]')){const t=query;opts.push({t});choose(t);flashNote(stage,`Added “${t}”`);return}
+    const r=e.target.closest('[data-choice]');if(r)choose(r.dataset.choice);
+    if(sheetLike&&e.target.closest('.dd-dim'))setOpen(false);
+  });
   if(input){
-    input.addEventListener('input',()=>{query=input.value;hi=0;if(spec.search&&!query){setOpen(false);return}if(!root.classList.contains('open')&&!spec.palette)setOpen(true);else draw()});
-    if(spec.typed)input.addEventListener('focus',()=>setOpen(true));
+    input.addEventListener('input',()=>{query=input.value;hi=0;if(spec.search&&!query){setOpen(false);return}if(!isOpen()&&!spec.palette)setOpen(true);else draw()});
+    if(spec.typed||spec.create)input.addEventListener('focus',()=>setOpen(true));
     input.addEventListener('keydown',e=>{
       const list=shown();
+      if(e.key==='Tab'&&spec.ghost&&ghost.textContent){const word=level().map(o=>o.t).find(t=>t.toLowerCase().startsWith(query.toLowerCase()));if(word){input.value=word;query=word;draw();e.preventDefault()}}
       if(e.key==='Enter'&&list.length){choose((spec.palette?list[hi]:list[0]).t);e.preventDefault()}
       if(e.key==='Escape')setOpen(false);
       if(spec.palette&&(e.key==='ArrowDown'||e.key==='ArrowUp')){hi=(hi+(e.key==='ArrowDown'?1:-1)+list.length)%list.length;draw();e.preventDefault()}
     });
   }
-  document.addEventListener('pointerdown',e=>{if(root.classList.contains('open')&&!spec.palette&&!root.contains(e.target))setOpen(false)});
-  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&root.classList.contains('open'))setOpen(false)});
+  document.addEventListener('pointerdown',e=>{if(isOpen()&&!sheetLike&&!root.contains(e.target))setOpen(false)});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&isOpen())setOpen(false)});
   draw();
 }
 function flashNote(stage,text){let note=stage.querySelector('.stage-note');if(!note){note=document.createElement('div');note.className='stage-note';stage.append(note)}note.textContent=text;clearTimeout(note.timer);note.timer=setTimeout(()=>note.textContent='',1800)}
@@ -864,7 +1172,19 @@ const MOTIONS=[
   ['M21','Drop and bounce',['falls and bounces','cartoony'],'Falls from above and bounces to a stop. Playful games only.',{kind:'center',from:'translateY(-40px)',exit:'translateY(-12px)',enter:450,ease:EASE.bounce}],
   ['M22','Jelly pop',['wobbly pop','jelly'],'Pops in with a wobble. Playful games only.',{kind:'center',from:'scale(.8)',exit:'scale(.95)',enter:500,ease:EASE.elastic}],
   ['M23','Snap',['fast and snappy','instant but smooth'],'A tenth of a second: nearly instant, still smooth.',{kind:'center',from:'scale(.98)',exit:'scale(.98)',enter:100,leave:80,fadeMs:100}],
-  ['M24','Slow fade',['slow cinematic fade'],'A slower, softer fade for title screens and big moments.',{kind:'center',enter:350,leave:250,ease:EASE.sineOut,exitEase:EASE.sineIn,fadeMs:350}]
+  ['M24','Slow fade',['slow cinematic fade'],'A slower, softer fade for title screens and big moments.',{kind:'center',enter:350,leave:250,ease:EASE.sineOut,exitEase:EASE.sineIn,fadeMs:350}],
+  ['M25','Spin in',['spins into place','twirls in'],'Turns a quarter and grows as it arrives. Playful games only.',{kind:'center',from:'rotate(-90deg) scale(.9)',exit:'rotate(45deg) scale(.95)',enter:320,ease:EASE.back}],
+  ['M26','Diagonal slide',['slides in from the corner','comes in at an angle'],'Comes in from the lower left, a short diagonal.',{kind:'center',from:'translate(-24px,24px)',exit:'translate(-12px,12px)'}],
+  ['M27','Curtain from the left',['opens like a curtain','wipes in from the left'],'The window is revealed from its left edge across.',{kind:'center',clip:'inset(0px 100% 0px 0px round 10px)',enter:240,leave:180,fade:false}],
+  ['M28','Grow from a circle',['starts as a circle','bubble that becomes a window'],'Begins as a small circle and grows into the window.',{kind:'center',clip:'inset(38% 42% 38% 42% round 24px)',enter:280,leave:180}],
+  ['M29','Bounce up',['bounces up from below'],'Comes up from below and bounces to a stop. Playful games only.',{kind:'center',from:'translateY(40px)',exit:'translateY(12px)',enter:450,ease:EASE.bounce}],
+  ['M30','Wobbly slide',['slides in and wobbles','elastic slide'],'Slides in from the left and wobbles to a stop.',{kind:'center',from:'translateX(-48px)',exit:'translateX(-12px)',enter:500,ease:EASE.elastic}],
+  ['M31','Zoom from far',['zooms from far away','grows from small'],'Starts at half size and grows past full size once.',{kind:'center',from:'scale(.5)',exit:'scale(.9)',enter:320,ease:EASE.back}],
+  ['M32','Tilt and drop',['drops in tilted','falls and straightens'],'Drops in slightly tilted and straightens as it lands.',{kind:'center',from:'translateY(-24px) rotate(8deg)',exit:'translateY(8px) rotate(-4deg)',enter:320,ease:EASE.back}],
+  ['M33','Rows pop in',['each row pops in','items grow in one by one'],'The window appears, then each row grows in after the last.',{kind:'center',from:'translateY(8px)',exit:'translateY(8px)',cascade:true,pop:true}],
+  ['M34','Glide',['smooth long slide','glides in from the right'],'A longer, smooth slide from the right that slows gently.',{kind:'center',from:'translateX(120px)',exit:'translateX(40px)',enter:500,leave:300,ease:'cubic-bezier(.22,1,.36,1)',exitEase:'cubic-bezier(.64,0,.78,0)',fadeMs:400}],
+  ['M35','Heartbeat pop',['pops and pulses twice','heartbeat'],'Pops in, then beats twice to draw the eye. For rewards.',{kind:'center',from:'scale(.96)',exit:'scale(.98)',beat:true}],
+  ['M36','Collapse to centre',['shrinks away to the middle'],'Opens with a small grow; closes by shrinking to half into the middle.',{kind:'center',from:'scale(.9)',exit:'scale(.5)'}]
 ];
 const SPEC=Object.fromEntries(MOTIONS.map(m=>[m[0],m[4]]));
 const miniPanel=(key,kind)=>`<div class="mdim" id="dim-${key}"></div><div class="mini ${kind}" id="panel-${key}"><strong>Settings</strong><div class="ln"></div><div class="ln short"></div><div class="ln"></div></div>`;
@@ -891,9 +1211,11 @@ async function setMenu(key,open){
   if(open){
     if(el.style.visibility!=='visible'){settle(el);el.style.visibility='visible';el.style.opacity=fade?0:1;el.style.transform=spec.from??'none';el.style.clipPath=spec.clip??''}
     if(spec.dim){dim.style.visibility='visible';run(dim,{opacity:.5},200,EASE.out)}
-    if(spec.cascade&&!reduced())el.querySelectorAll('.ln').forEach((line,index)=>line.animate([{opacity:0,transform:'translateY(8px)'},{opacity:1,transform:'none'}],{duration:200,delay:120+index*40,easing:EASE.out,fill:'backwards'}));
+    if(spec.cascade&&!reduced())el.querySelectorAll('.ln').forEach((line,index)=>line.animate(spec.pop?[{opacity:0,transform:'scale(.9)'},{opacity:1,transform:'none'}]:[{opacity:0,transform:'translateY(8px)'},{opacity:1,transform:'none'}],{duration:spec.pop?320:200,delay:120+index*60,easing:spec.pop?EASE.back:EASE.out,fill:'backwards'}));
     const to={opacity:1,transform:'none'};if(spec.clip)to.clipPath=OPEN_CLIP;
-    return run(el,to,spec.enter??200,spec.ease??EASE.out,{fadeMs:spec.fadeMs??200,fadeEase:EASE.out});
+    const arrived=run(el,to,spec.enter??200,spec.ease??EASE.out,{fadeMs:spec.fadeMs??200,fadeEase:EASE.out});
+    if(spec.beat)arrived.then(done=>{if(done&&!reduced())el.animate([{transform:'none'},{transform:'scale(1.04)'},{transform:'none'},{transform:'scale(1.04)'},{transform:'none'}],{duration:480,easing:EASE.quad})});
+    return arrived;
   }
   const to={opacity:fade?0:1,transform:spec.exit??'none'};if(spec.clip)to.clipPath=spec.clip;
   const done=await run(el,to,spec.leave??150,spec.exitEase??EASE.in);
@@ -934,7 +1256,17 @@ const NOTICES=[
   ['N17','Countdown',['timer popup','restarting in 10 seconds'],'Shows the seconds left and a bar that drains in real time.'],
   ['N18','Snackbar',['bar at the bottom with a button'],'One wide bar at the bottom with an action; a new one replaces it.'],
   ['N19','Stacked cards',['cards stacked behind each other'],'Older messages tuck behind the newest; hover to spread them out.'],
-  ['N20','Activity feed',['kill feed','log in the corner'],'Short lines stack in the corner and fade one by one.']
+  ['N20','Activity feed',['kill feed','log in the corner'],'Short lines stack in the corner and fade one by one.'],
+  ['N21','Player popup',['popup with their picture','someone joined'],'A corner toast led by the player’s avatar, for joins, friends and trades.'],
+  ['N22','Progress with percent',['loading bar popup','shows the percent'],'A bar that fills with the work done, then turns into the result.'],
+  ['N23','Island at the top',['pill at the top that opens','dynamic island'],'A small pill under the top bar; hover or tap it to read more.'],
+  ['N24','Stays until closed',['popup that does not go away','has an X'],'Waits for the player to close it. For things they must not miss.'],
+  ['N25','Floating reward',['+250 coins floats up','number that rises'],'The reward rises from what earned it and fades away.'],
+  ['N26','Objective complete',['quest step done','tick for a finished task'],'A compact card with a tick slides in at the right edge.'],
+  ['N27','Bell with a count',['notification bell','inbox with a number'],'Messages wait behind a bell with a count; nothing interrupts play.'],
+  ['N28','Invite with buttons',['party invite','accept or decline'],'Accept and Decline right on the toast; it leaves quietly after 10 seconds.'],
+  ['N29','Captions',['subtitles','what the character says'],'One line near the bottom with the speaker’s name first.'],
+  ['N30','Edge flash',['screen flashes red','low health warning'],'The edges of the screen flash red for danger you must notice.']
 ];
 const STAGES={
   N1:`<div class="scene-panel"></div><div class="toast" id="n1" style="left:calc(50% - 110px);bottom:16px">${icon('ok','ico-ok')}<span>Settings saved</span></div>`,
@@ -946,7 +1278,13 @@ const STAGES={
   N15:`<div class="scene-panel" style="top:auto;bottom:24px"></div><div class="achv" id="n15"><span class="tile">${icon('trophy')}</span><span><b>First win</b><small>Win one round</small></span><span class="shine"></span></div>`,
   N16:`<div class="scene-panel"></div><div class="announce" id="n16">Round starting!</div>`,
   N18:`<div class="scene-panel"></div><div class="snack" id="n18"><span class="snack-text">Removed 3 waypoints</span><button class="act r-btn" type="button" style="background:transparent;color:var(--r-bright)">Undo</button></div>`,
-  N20:`<div class="scene-panel" style="left:auto;right:24px;top:auto;bottom:24px"></div><div class="feed" id="n20"></div>`
+  N20:`<div class="scene-panel" style="left:auto;right:24px;top:auto;bottom:24px"></div><div class="feed" id="n20"></div>`,
+  N23:`<div class="scene-panel" style="top:auto;bottom:24px"></div><div class="island" id="n23" role="button" tabindex="0"><span>Auto farm on</span><small>Collecting drops within 30 studs</small></div>`,
+  N25:`<button class="collect" type="button" id="n25-btn">Collect</button>`,
+  N26:`<div class="scene-panel"></div><div class="objective" id="n26">${icon('ok','ico-ok')}<span><small>Objective complete</small><b>Collect 10 eggs</b></span></div>`,
+  N27:`<div class="scene-panel"></div><button class="bell" type="button" id="n27" aria-label="Messages">${icon('bell')}<span class="badge"></span></button><div class="inbox" id="n27-list"><span class="empty">No messages yet</span></div>`,
+  N29:`<div class="scene-panel"></div><div class="caption" id="n29"><b>Guard</b><span>The gate opens at dawn.</span></div>`,
+  N30:`<div class="scene-panel"></div><div class="edges" id="n30"></div><div class="danger-word" id="n30-word">Low health</div>`
 };
 for(const [code,title,words,use] of NOTICES){noticeGrid.insertAdjacentHTML('beforeend',card(code,title,words,use,STAGES[code]??`<div class="scene-panel"${code==='N7'?' style="top:auto;bottom:24px"':''}></div><div id="${code.toLowerCase()}" class="host"></div>`,`<button class="btn" type="button" data-show="${code}">Show example</button>`))}
 async function toast(el,from,exit,hold){
@@ -973,10 +1311,10 @@ function pushCorner(host,text,kind,ms,options={}){
   if(!options.pill)el.style[side]='16px';
   el.style.transition=reduced()?'none':`${edge} .3s cubic-bezier(.215,.61,.355,1),scale .3s cubic-bezier(.215,.61,.355,1)`;
   const look=LOOK[kind];
-  const lead=options.progress?`<span class="lead spin">${icon('loader','ico-info')}</span>`:`<span class="lead">${icon(options.countdown?'timer':look[0],look[1])}</span>`;
-  const action=options.action?`<button class="act" type="button">${options.action}</button>`:'';
+  const lead=options.avatar?`<span class="avatar" style="background:${options.avatar[1]}">${options.avatar[0]}</span>`:options.progress?`<span class="lead spin">${icon('loader','ico-info')}</span>`:`<span class="lead">${icon(options.countdown?'timer':look[0],look[1])}</span>`;
+  const action=options.invite?`<button class="act muted" type="button" data-decline>Decline</button><button class="act" type="button" data-accept>Accept</button>`:options.action?`<button class="act" type="button">${options.action}</button>`:options.sticky?`<button class="x-btn" type="button" aria-label="Close">${icon('x')}</button>`:options.percent?'<span class="pct">0%</span>':'';
   const body=options.title?`<b>${options.title}</b><span class="sub">${text}</span>`:text;
-  el.innerHTML=`${options.edge?`<span class="t-edge ${look[2]}"></span>`:''}${lead}<span class="msg-text">${body}</span>${action}${options.pill?'':`<span class="t-bar ${look[2]}"></span>`}`;
+  el.innerHTML=`${options.edge?`<span class="t-edge ${look[2]}"></span>`:''}${lead}<span class="msg-text">${body}</span>${action}${options.pill||options.sticky?'':`<span class="t-bar ${look[2]}"></span>`}`;
   host.append(el);
   const items=stacks.get(host)??[];stacks.set(host,items);
   const item={el};items.push(item);layoutStack(host);
@@ -985,10 +1323,13 @@ function pushCorner(host,text,kind,ms,options={}){
   run(el,{opacity:1,transform:'none'},200,EASE.out);
   item.leave=async()=>{if(item.gone)return;item.gone=true;item.timer?.cancel();clearInterval(item.ticker);stacks.set(host,(stacks.get(host)??[]).filter(i=>i!==item));layoutStack(host);await run(el,{opacity:0,transform:options.pill?'translateY(8px)':side==='left'?'translateX(-8px)':'translateX(8px)'},150,EASE.in);el.remove()};
   item.start=duration=>{const bar=el.querySelector('.t-bar');const timer=(bar??el).animate(bar?[{transform:'scaleX(1)'},{transform:'scaleX(0)'}]:[{},{}],{duration,easing:'linear',fill:'forwards'});item.timer=timer;timer.finished.then(item.leave,()=>{})};
-  item.done=(result,resultKind)=>{const next=LOOK[resultKind];el.querySelector('.lead').outerHTML=`<span class="lead">${icon(next[0],next[1])}</span>`;el.querySelector('.msg-text').textContent=result;el.querySelector('.t-bar').className=`t-bar ${next[2]}`;item.start(2800)};
+  item.done=(result,resultKind)=>{const next=LOOK[resultKind];el.querySelector('.lead').outerHTML=`<span class="lead">${icon(next[0],next[1])}</span>`;el.querySelector('.msg-text').textContent=result;el.querySelector('.pct')?.remove();const bar=el.querySelector('.t-bar');bar.className=`t-bar ${next[2]}`;bar.style.transition='';bar.style.transform='';item.start(2800)};
   if(options.action)el.querySelector('.act').addEventListener('click',()=>{options.onAction?.();item.leave()});
+  if(options.invite){el.querySelector('[data-accept]').addEventListener('click',()=>{options.onAccept?.();item.leave()});el.querySelector('[data-decline]').addEventListener('click',()=>item.leave())}
+  if(options.sticky)el.querySelector('.x-btn').addEventListener('click',()=>item.leave());
+  if(options.percent){const bar=el.querySelector('.t-bar');bar.style.transform='scaleX(0)';bar.style.transition='transform .2s linear';item.set=f=>{bar.style.transform=`scaleX(${f})`;el.querySelector('.pct').textContent=`${Math.round(f*100)}%`}}
   if(options.countdown){let left=options.countdown;const words=el.querySelector('.msg-text');words.textContent=`${text} ${left}s`;item.ticker=setInterval(()=>{left-=1;words.textContent=`${text} ${Math.max(left,0)}s`},1000);item.start(options.countdown*1000)}
-  else if(!options.progress)item.start(ms);
+  else if(!options.progress&&!options.sticky&&!options.percent)item.start(ms);
   el.addEventListener('pointerenter',()=>{if(!options.countdown)item.timer?.pause();if(host.dataset.mode==='deck'){host.dataset.spread='1';layoutStack(host)}});
   el.addEventListener('pointerleave',()=>{item.timer?.play();if(host.dataset.mode==='deck'){delete host.dataset.spread;layoutStack(host)}});
   return item;
@@ -1036,8 +1377,34 @@ const shows={
   N18:()=>snack('Removed 3 waypoints',true),
   N19:async()=>{const host=hostOf('N19');host.dataset.mode='deck';clearHost(host);await sleep(160);
     pushCorner(host,'Auto farm is on','ok',6000);await sleep(400);pushCorner(host,'+250 coins','info',6000);await sleep(400);pushCorner(host,'Egg hatched: Dragon','ok',6000)},
-  N20:async()=>{const feed=document.getElementById('n20');for(const [text,kind] of FEED){feedLine(feed,text,kind);await sleep(450)}}
+  N20:async()=>{const feed=document.getElementById('n20');for(const [text,kind] of FEED){feedLine(feed,text,kind);await sleep(450)}},
+  N21:async()=>{const host=hostOf('N21');clearHost(host);await sleep(160);pushCorner(host,'Bob joined the server','info',3600,{avatar:['B','#588dd6']});await sleep(500);pushCorner(host,'Alice sent a friend request','info',4200,{avatar:['A','#d69e3e']})},
+  N22:async()=>{const host=hostOf('N22');clearHost(host);await sleep(160);const job=pushCorner(host,'Downloading map','info',0,{percent:true});
+    for(let step=1;step<=10;step++){await sleep(220);if(job.gone)return;job.set(step/10)}job.done('Map ready','ok')},
+  N23:async()=>{const el=document.getElementById('n23');el.classList.remove('open');settle(el);el.style.visibility='visible';el.style.opacity=0;await run(el,{opacity:1},200,EASE.out);
+    await sleep(900);el.classList.add('open');await sleep(1800);el.classList.remove('open');await sleep(1600);if(await run(el,{opacity:0},150,EASE.in))el.style.visibility='hidden'},
+  N24:async()=>{const host=hostOf('N24');clearHost(host);await sleep(160);pushCorner(host,'Anti-AFK is on. Close this when you have read it.','info',0,{sticky:true})},
+  N25:()=>floatReward(),
+  N26:async()=>{const el=document.getElementById('n26');settle(el);el.style.visibility='visible';el.style.opacity=0;el.style.transform='translateX(24px)';
+    await run(el,{opacity:1,transform:'none'},280,EASE.out);await sleep(2600);if(await run(el,{opacity:0},150,EASE.in))el.style.visibility='hidden'},
+  N27:async()=>{inbox.length=0;inboxDraw();for(const text of ['Bob sent you a trade','Daily reward ready']){await sleep(500);inbox.unshift(text);if(!document.getElementById('n27-list').classList.contains('open'))inboxUnread+=1;inboxDraw()}},
+  N28:async()=>{const host=hostOf('N28');clearHost(host);await sleep(160);pushCorner(host,'Bob invited you to a party','info',10000,{invite:true,onAccept:()=>setTimeout(()=>pushCorner(host,'You joined Bob’s party','ok',2800),200)})},
+  N29:async()=>{const el=document.getElementById('n29');const who=el.querySelector('b'),said=el.querySelector('span');
+    for(const [name,line] of [['Guard','The gate opens at dawn.'],['You','Then we wait.']]){who.textContent=name;said.textContent=line;settle(el);el.style.visibility='visible';el.style.opacity=0;await run(el,{opacity:1},200,EASE.out);await sleep(1800)}
+    if(await run(el,{opacity:0},150,EASE.in))el.style.visibility='hidden'},
+  N30:async()=>{const edge=document.getElementById('n30'),word=document.getElementById('n30-word');if(reduced()){edge.style.opacity=.6;word.style.opacity=1;await sleep(900);edge.style.opacity=0;word.style.opacity=0;return}
+    edge.animate([{opacity:0},{opacity:1,offset:.15},{opacity:0}],{duration:700,easing:'ease-out'});word.animate([{opacity:0},{opacity:1,offset:.15},{opacity:1,offset:.7},{opacity:0}],{duration:1400})}
 };
+const inbox=[];let inboxUnread=0;
+function inboxDraw(){const list=document.getElementById('n27-list');const badge=document.querySelector('#n27 .badge');
+  badge.textContent=String(inboxUnread);badge.classList.toggle('on',inboxUnread>0);
+  list.innerHTML=inbox.length?inbox.map(text=>`<span>${escHTML(text)}</span>`).join(''):'<span class="empty">No messages yet</span>'}
+async function floatReward(){
+  const button=document.getElementById('n25-btn');const stage=button.parentElement;
+  const el=document.createElement('div');el.className='floater';el.innerHTML=`${icon('coins')}+250`;
+  el.style.left=`${button.offsetLeft-30}px`;el.style.top=`${button.offsetTop-40}px`;stage.append(el);
+  if(reduced()){await sleep(800);el.remove();return}
+  await el.animate([{transform:'translateY(0)',opacity:1},{transform:'translateY(-40px)',opacity:0}],{duration:1000,easing:'cubic-bezier(.25,.46,.45,.94)'}).finished;el.remove()}
 let snackTicket=0;
 async function snack(text,withUndo){
   const el=document.getElementById('n18');const mine=++snackTicket;
@@ -1058,6 +1425,9 @@ hostOf('N7').dataset.edge='top';
 async function closeAlert(){const scrim=document.getElementById('n6-scrim'),box=document.getElementById('n6');run(scrim,{opacity:0},150,EASE.in);if(await run(box,{opacity:0,transform:'scale(.98)'},150,EASE.in)){scrim.style.visibility='hidden';box.style.visibility='hidden'}document.querySelector('[data-show="N6"]').focus({preventScroll:true})}
 noticeGrid.addEventListener('click',async e=>{
   const show=e.target.closest('[data-show]');if(show){shows[show.dataset.show]();return}
+  if(e.target.closest('#n23')){e.target.closest('#n23').classList.toggle('open');return}
+  if(e.target.closest('#n25-btn')){floatReward();return}
+  if(e.target.closest('#n27')){const list=document.getElementById('n27-list');list.classList.toggle('open');if(list.classList.contains('open')){inboxUnread=0;inboxDraw()}return}
   if(e.target.closest('[data-answer]')||e.target.closest('#n6-scrim')){closeAlert();return}
   if(e.target.closest('#n18 .act')){snack('Waypoints restored',false);return}
   const dismiss=e.target.closest('[data-dismiss]');
@@ -1078,7 +1448,15 @@ const WINDOWS=[
   ['O9','Title pill',['shrinks to a small title','collapses to its name'],'The window shrinks to a pill with its name, right where it was.'],
   ['O10','Key reminder',['reminds me which key opens it'],'A chip names the key that reopens it, then folds to an icon.'],
   ['O11','Ask before closing',['asks hide or unload','are you sure you want to close'],'Closing asks: hide it (keeps running) or unload the script.'],
-  ['O12','Goodbye card',['closing screen','outro'],'After unloading, a short card says it is closed, then it is gone.']
+  ['O12','Goodbye card',['closing screen','outro'],'After unloading, a short card says it is closed, then it is gone.'],
+  ['O13','Pull-up tab',['a tab at the bottom to pull it up'],'Slides down out of view and leaves a small tab at the bottom.'],
+  ['O14','Dock',['icons at the bottom like a taskbar','dock'],'The window shrinks into its icon in a dock; several windows can share it.'],
+  ['O15','See-through',['ghost mode','see through while I play'],'The window stays but goes faint and lets clicks through; the eye makes it solid.'],
+  ['O16','Shrink to the tab icons',['keep only the side icons','collapse sideways'],'Only the icon rail stays; a button beside it opens the rest.'],
+  ['O17','Hold to show',['only while I hold a key','peek'],'Hidden until you hold Alt or the button; letting go hides it. Try holding it.'],
+  ['O18','Corner button',['round button in the corner','floating action button'],'The window shrinks into a round button in the bottom-right corner.'],
+  ['O19','Swipe away',['swipe it off the screen','flick it away'],'Drag the title bar sideways and let go: far enough and it leaves that way.'],
+  ['O20','Hides when idle',['hides itself when I stop','auto hide'],'After a quiet stretch it fades away; move or tap and it comes back.']
 ];
 const winStage=code=>{
   const close=code==='O3'?`<button class="icon-btn small" type="button" data-fold="O3" aria-label="Fold window">${icon('minus')}</button>`:`<button class="icon-btn small" type="button" data-hide="${code}" aria-label="Close window">${icon('x')}</button>`;
@@ -1093,9 +1471,18 @@ const winStage=code=>{
     O9:`<button class="title-pill" type="button" data-bring="O9">Blox Hub${icon('down')}</button>`,
     O10:`<button class="key-chip" type="button" data-bring="O10">${icon('keyboard')}<span class="key-text">Show menu · RightShift</span></button>`,
     O11:`<button class="launcher" type="button" data-bring="O11" style="visibility:hidden">${icon('menu')}Hub</button><div class="ask" id="ask-O11" role="dialog" aria-label="Hide or unload"><p>Hide the menu? It keeps running.</p><div class="row"><button class="r-btn" type="button" data-ask="cancel">Cancel</button><button class="r-btn go" type="button" data-ask="hide">Hide</button><button class="r-btn danger" type="button" data-ask="unload">Unload script</button></div></div><div class="intro" id="outro-O11"><span>Blox Hub unloaded</span><span class="line"></span></div>`,
-    O12:`<div class="intro" id="outro-O12"><span>Blox Hub closed</span><span class="line"></span></div>`
+    O12:`<div class="intro" id="outro-O12"><span>Blox Hub closed</span><span class="line"></span></div>`,
+    O13:`<button class="pull-tab bottom" type="button" data-bring="O13" aria-label="Bring the window back">${icon('chevron-up')}</button>`,
+    O14:`<div class="dock"><span class="dock-icon">${icon('settings')}</span><button class="dock-icon" type="button" data-bring="O14" aria-label="Blox Hub">${icon('menu')}</button><span class="dock-icon">${icon('backpack')}</span></div>`,
+    O15:`<button class="ghost-btn" type="button" data-bring="O15" aria-label="Make the window solid">${icon('eye')}</button>`,
+    O16:`<button class="expand-btn" type="button" data-bring="O16" aria-label="Open the window">${icon('right')}</button>`,
+    O17:`<button class="hold-btn" type="button" data-hold="O17">${icon('keyboard')}Hold to show</button>`,
+    O18:`<button class="fab" type="button" data-bring="O18" aria-label="Open Blox Hub">${icon('menu')}</button>`,
+    O19:`<button class="edge-tab" type="button" data-bring="O19" aria-label="Bring the window back">${icon('right')}</button>`,
+    O20:`<span class="idle-note" id="idle-note">Leave the mouse still here for 3 seconds</span>`
   }[code]??'';
-  return `<div class="win" id="win-${code}"><div class="whead"><span class="grow">Blox Hub</span>${close}</div><div class="wbody"><div class="ln"></div><div class="ln short"></div><div class="ln"></div></div></div>${extra}`;
+  const rail=code==='O16'?'<div class="wrail"><i></i><i></i><i></i></div>':'';
+  return `<div class="win${code==='O16'?' with-rail':''}" id="win-${code}"><div class="whead${code==='O19'?' swipe':''}"><span class="grow">Blox Hub</span>${close}</div>${rail}<div class="wbody"><div class="ln"></div><div class="ln short"></div><div class="ln"></div></div></div>${extra}`;
 };
 for(const [code,title,words,use] of WINDOWS){windowGrid.insertAdjacentHTML('beforeend',card(code,title,words,use,winStage(code),`<button class="btn" type="button" data-play="${code}">Replay</button>`))}
 const winShown=Object.fromEntries(WINDOWS.map(([code])=>[code,true]));
@@ -1103,17 +1490,24 @@ const returnOf=code=>document.querySelector(`[data-bring="${code}"]`);
 function delta(win,target){const a=win.getBoundingClientRect(),b=target.getBoundingClientRect();return [b.left+b.width/2-(a.left+a.width/2),b.top+b.height/2-(a.top+a.height/2)]}
 function reveal(el){if(!el)return;el.style.visibility='visible';el.style.opacity=0;settle(el);run(el,{opacity:1},200,EASE.out)}
 const keyTimers={};
-async function hideWindow(code){
+async function hideWindow(code,options={}){
   const win=document.getElementById(`win-${code}`);if(!winShown[code])return;
   if(code==='O11'){const ask=document.getElementById('ask-O11');settle(ask);ask.style.visibility='visible';ask.style.opacity=0;run(ask,{opacity:1},200,EASE.out);ask.querySelector('[data-ask="hide"]').focus({preventScroll:true});return}
   winShown[code]=false;
   const back=returnOf(code);
   if(code==='O3'){const body=win.querySelector('.wbody');run(body,{opacity:0},150,EASE.in);win.animate([{height:'120px'},{height:'33px'}],{duration:reduced()?0:240,easing:EASE.in,fill:'forwards'});win.querySelector('[data-fold]').innerHTML=icon('down');return}
   if(code==='O12'){await run(win,{opacity:0,transform:'scale(.98)'},150,EASE.in);win.style.visibility='hidden';await playCard(document.getElementById('outro-O12'),800);return}
+  if(code==='O15'){win.style.pointerEvents='none';back.style.left=`${win.offsetLeft-8}px`;back.style.top=`${win.offsetTop-8}px`;await run(win,{opacity:.2},150,EASE.in);if(!winShown.O15)reveal(back);return}
+  if(code==='O16'){const body=win.querySelector('.wbody');run(body,{opacity:0},150,EASE.in);await win.animate([{width:'190px'},{width:'44px'}],{duration:reduced()?0:240,easing:EASE.in,fill:'forwards'}).finished;
+    back.style.left=`${win.offsetLeft+52}px`;back.style.top=`${win.offsetTop}px`;if(!winShown.O16)reveal(back);return}
+  if(code==='O14')back.classList.add('away');
   if(code==='O6'&&back&&!back.dataset.placed){back.style.left=`${win.offsetLeft}px`;back.style.top=`${win.offsetTop}px`;back.dataset.placed='1'}
   if(code==='O9'&&back){back.style.left=`${win.offsetLeft}px`;back.style.top=`${win.offsetTop}px`}
   let transform='translateY(8px)';let opacity=0;let ms=150;
-  if(code==='O2'||code==='O6'){const [dx,dy]=delta(win,back);transform=`translate(${dx}px,${dy}px) scale(.2)`;ms=240}
+  if(code==='O2'||code==='O6'||code==='O14'||code==='O18'){const [dx,dy]=delta(win,back);transform=`translate(${dx}px,${dy}px) scale(.2)`;ms=240}
+  if(code==='O13'){transform=`translateY(${win.parentElement.clientHeight-win.offsetTop+8}px)`;opacity=1;ms=240}
+  if(code==='O19'){const right=(options.side??1)>0;back.classList.toggle('right',right);back.innerHTML=icon(right?'chevron-left':'right');transform=`translateX(${right?win.parentElement.clientWidth-win.offsetLeft+8:-(win.offsetLeft+win.offsetWidth+8)}px)`;opacity=1;ms=240}
+  if(code==='O17'||code==='O20')ms=code==='O20'?300:120;
   if(code==='O4'){transform=`translateX(${-(win.offsetLeft+win.offsetWidth+8)}px)`;opacity=1;ms=240}
   if(code==='O7'){transform=`translateX(${win.parentElement.clientWidth-win.offsetLeft+8}px)`;opacity=1;ms=240}
   if(code==='O8'){transform=`translateY(${-(win.offsetTop+win.offsetHeight+8)}px)`;opacity=1;ms=240}
@@ -1126,10 +1520,13 @@ async function hideWindow(code){
 }
 async function showWindow(code){
   const win=document.getElementById(`win-${code}`);if(winShown[code])return;winShown[code]=true;
-  const back=returnOf(code);if(back&&code!=='O3')back.style.visibility='hidden';
+  const back=returnOf(code);if(back&&code!=='O3'&&code!=='O14')back.style.visibility='hidden';
+  if(code==='O14')back.classList.remove('away');
+  if(code==='O15'){win.style.pointerEvents='';return run(win,{opacity:1},200,EASE.out)}
+  if(code==='O16'){win.animate([{width:'44px'},{width:'190px'}],{duration:reduced()?0:280,easing:EASE.out,fill:'forwards'});return run(win.querySelector('.wbody'),{opacity:1},200,EASE.out)}
   if(code==='O3'){const body=win.querySelector('.wbody');win.animate([{height:'33px'},{height:'120px'}],{duration:reduced()?0:280,easing:EASE.out,fill:'forwards'});run(body,{opacity:1},200,EASE.out);win.querySelector('[data-fold]').innerHTML=icon('minus');return}
   win.style.visibility='visible';
-  return run(win,{opacity:1,transform:'none'},code==='O1'||code==='O11'||code==='O12'?200:280,EASE.out);
+  return run(win,{opacity:1,transform:'none'},code==='O1'||code==='O11'||code==='O12'||code==='O17'?(code==='O17'?120:200):280,EASE.out);
 }
 async function playCard(card,hold){
   const line=card.querySelector('.line');settle(card);card.style.visibility='visible';card.style.opacity=0;
@@ -1160,9 +1557,34 @@ windowGrid.addEventListener('click',async e=>{
     if(code==='O5')await playIntro();
     else if(code==='O11'){if(!winShown.O11){await showWindow('O11');await sleep(300)}await hideWindow('O11')}
     else if(code==='O12'){if(!winShown.O12){await showWindow('O12');await sleep(300)}await hideWindow('O12');await sleep(300);await showWindow('O12')}
+    else if(code==='O17'){await hideWindow('O17');reveal(document.querySelector('[data-hold="O17"]'));await sleep(700);await showWindow('O17');await sleep(900);await hideWindow('O17')}
+    else if(code==='O19'){const win=document.getElementById('win-O19');if(!winShown.O19){await showWindow('O19');await sleep(300)}await run(win,{transform:'translateX(60px)'},200,EASE.out);await hideWindow('O19',{side:1});await sleep(900);await showWindow('O19')}
     else{if(!winShown[code]){await showWindow(code);await sleep(300)}await hideWindow(code);await sleep(code==='O10'?1400:900);await showWindow(code)}
   }finally{play.disabled=false}
 });
+// O17: shown only while Alt or the button is held.
+{
+  const hold=document.querySelector('[data-hold="O17"]');
+  const press=()=>showWindow('O17'),release=()=>hideWindow('O17');
+  hold.addEventListener('pointerdown',e=>{hold.setPointerCapture(e.pointerId);press()});
+  hold.addEventListener('pointerup',release);hold.addEventListener('pointercancel',release);
+  document.addEventListener('keydown',e=>{if(e.key==='Alt'&&!e.repeat&&hold.style.visibility==='visible'){e.preventDefault();press()}});
+  document.addEventListener('keyup',e=>{if(e.key==='Alt'&&hold.style.visibility==='visible')release()});
+}
+// O19: the title bar follows a sideways drag; far enough and it leaves that way.
+{
+  const win=document.getElementById('win-O19');const head=win.querySelector('.whead');let start=null;
+  head.addEventListener('pointerdown',e=>{if(e.target.closest('button'))return;start=e.clientX;head.setPointerCapture(e.pointerId);settle(win)});
+  head.addEventListener('pointermove',e=>{if(start===null)return;win.style.transform=`translateX(${e.clientX-start}px)`});
+  head.addEventListener('pointerup',e=>{if(start===null)return;const dx=e.clientX-start;start=null;
+    if(Math.abs(dx)>=80)hideWindow('O19',{side:Math.sign(dx)});else run(win,{transform:'none'},200,EASE.out)});
+}
+// O20: a quiet three seconds over the example fades the window; any movement brings it back.
+{
+  const win=document.getElementById('win-O20');const stage=win.parentElement;let timer=0;
+  const wake=()=>{clearTimeout(timer);if(!winShown.O20)showWindow('O20');timer=setTimeout(()=>hideWindow('O20'),3000)};
+  stage.addEventListener('pointermove',wake);stage.addEventListener('pointerdown',wake);
+}
 {
   const bubble=returnOf('O6');let start=null;
   bubble.addEventListener('pointerdown',e=>{start={x:e.clientX,y:e.clientY,left:bubble.offsetLeft,top:bubble.offsetTop,moved:false};bubble.setPointerCapture(e.pointerId)});
@@ -1185,9 +1607,19 @@ const PRESSES=[
   ['P9','Shine',['shiny sweep'],'A light passes across the button on hover.','Teleport to spawn'],
   ['P10','Hold to confirm',['hold down to do it','for dangerous buttons'],'Fills while held and only acts when full. For resets and deletes.','Hold to reset stats'],
   ['P11','Arrow nudge',['arrow moves when I hover'],'An arrow nudges forward on hover. For “next” and “continue”.','Continue'],
-  ['P12','Click pop',['pops when clicked'],'A quick pop and edge flash confirm the click.','Claim reward']
+  ['P12','Click pop',['pops when clicked'],'A quick pop and edge flash confirm the click.','Claim reward'],
+  ['P13','Outline fill',['empty until I hover','outline button'],'An outline that fills with colour on hover and press.','Teleport to spawn'],
+  ['P14','Icon spin',['the icon spins','refresh button'],'Its icon spins once when pressed. For refresh and reload.','Refresh servers'],
+  ['P15','Shimmer',['colour moves across it','shiny hover'],'Colour drifts across the button while the pointer is on it.','Open shop'],
+  ['P16','Shows it is working',['loading after click','spinner button'],'Says “Working…” and cannot be pressed again until it is done.','Save config'],
+  ['P17','Turns into Done',['turns green with a tick','success button'],'Shows “Done” for a moment after it works, then goes back.','Redeem code'],
+  ['P18','Cooldown',['timer before I can press again'],'Counts down and blocks presses until it is ready again.','Collect coins'],
+  ['P19','Press twice to confirm',['click again to be sure','are you sure button'],'The first press asks; the second, within three seconds, does it.','Reset stats'],
+  ['P20','Shakes when blocked',['wiggles if I can’t','no money shake'],'A small shake says no, such as when you cannot afford it.','Buy for 500 coins'],
+  ['P21','Bouncy hover',['grows with a bounce'],'Grows on hover with a small overshoot. Playful games.','Play'],
+  ['P22','Tilt on press',['tilts when I press it'],'Tips slightly while held, like a physical key.','Jump']
 ];
-for(const [code,title,words,use,label] of PRESSES){pressGrid.insertAdjacentHTML('beforeend',card(code,title,words,use,`<button class="press" type="button" data-style="${code}"><span>${label}</span>${code==='P11'?icon('arrow-right'):''}</button><span class="press-count" aria-live="polite"></span>`))}
+for(const [code,title,words,use,label] of PRESSES){pressGrid.insertAdjacentHTML('beforeend',card(code,title,words,use,`<button class="press" type="button" data-style="${code}">${code==='P14'?icon('refresh'):''}<span>${label}</span>${code==='P11'?icon('arrow-right'):''}</button><span class="press-count" aria-live="polite"></span>`))}
 pressGrid.querySelectorAll('.press').forEach(button=>{
   let presses=0;let holdTimer=null;const count=button.parentElement.querySelector('.press-count');const style=button.dataset.style;
   const release=()=>{button.classList.remove('down','holding');clearTimeout(holdTimer)};
@@ -1201,8 +1633,19 @@ pressGrid.querySelectorAll('.press').forEach(button=>{
   for(const type of ['pointerup','pointercancel'])button.addEventListener(type,release);
   button.addEventListener('keydown',e=>{if(e.key===' '||e.key==='Enter')button.classList.add('down')});
   button.addEventListener('keyup',()=>button.classList.remove('down'));
+  const words=button.querySelector('span');const label=words.textContent;let armed=0;
+  const back=()=>{button.classList.remove('busy','ok','warn');words.textContent=label;button.disabled=false};
   button.addEventListener('click',()=>{
     if(style==='P10')return;
+    if(style==='P16'){button.classList.add('busy');button.disabled=true;words.textContent='Working…';setTimeout(()=>{back();count.textContent='Saved'},1400);return}
+    if(style==='P17'){button.classList.add('ok');words.textContent='Done';setTimeout(back,1200);return}
+    if(style==='P18'){let left=3;button.disabled=true;button.classList.add('busy');button.style.setProperty('--left','100%');words.textContent=`${label} ${left}s`;count.textContent='+100 coins';
+      requestAnimationFrame(()=>requestAnimationFrame(()=>{button.classList.add('cooling');button.style.setProperty('--left','0%')}));
+      const tick=setInterval(()=>{left-=1;if(left<=0){clearInterval(tick);back();button.classList.remove('cooling');button.style.removeProperty('--left')}else words.textContent=`${label} ${left}s`},1000);return}
+    if(style==='P19'){if(!armed){armed=setTimeout(()=>{armed=0;back()},3000);button.classList.add('warn');words.textContent='Press again to confirm';return}
+      clearTimeout(armed);armed=0;back();count.textContent='Stats reset';return}
+    if(style==='P20'){count.textContent='You have 250 coins';if(!reduced())button.animate([{transform:'rotate(0)'},{transform:'rotate(4deg)'},{transform:'rotate(-4deg)'},{transform:'rotate(4deg)'},{transform:'rotate(0)'}],{duration:240});return}
+    if(style==='P14'&&!reduced())button.querySelector('svg').animate([{transform:'rotate(0)'},{transform:'rotate(360deg)'}],{duration:400,easing:EASE.out});
     presses+=1;count.textContent=`Pressed ${presses} time${presses===1?'':'s'}`;
     if(style==='P12'&&!reduced())button.animate([{transform:'scale(1)',boxShadow:'0 0 0 2px #48c9a2'},{transform:'scale(1.05)',boxShadow:'0 0 0 2px #48c9a2'},{transform:'scale(1)',boxShadow:'0 0 0 2px #48c9a200'}],{duration:220,easing:EASE.quad});
   });
@@ -1225,18 +1668,39 @@ const TABSTYLES=[
   ['S9','Page slide',['pages slide sideways'],'The page slides toward the tab you picked.',{mark:'line',pages:'slide'}],
   ['S10','Page fade',['pages fade'],'The old page fades out, then the new one fades in.',{mark:'line',pages:'fade'}],
   ['S11','Dot marker',['little dot under the tab'],'A small dot slides under the chosen tab.',{mark:'dot'}],
-  ['S12','Scrolling tabs',['lots of tabs that scroll','swipe the tabs'],'Many tabs in one row that scrolls; the chosen tab slides into view.',{mark:'pill',scroll:true}]
+  ['S12','Scrolling tabs',['lots of tabs that scroll','swipe the tabs'],'Many tabs in one row that scrolls; the chosen tab slides into view.',{mark:'pill',scroll:true}],
+  ['S13','Bottom tab bar',['tabs at the bottom','like a phone app'],'Icons with names along the bottom, with a line on top of the chosen one.',{mark:'top',icons:true,bottom:true}],
+  ['S14','Tabs with counts',['numbers on the tabs','how many new'],'A small count on a tab says how many new things wait there.',{mark:'line',counts:{Combat:2,Visuals:5}}],
+  ['S15','Numbered steps',['step 1, step 2','wizard'],'Numbered steps; the ones behind the chosen step show a tick.',{mark:'none',steps:true}],
+  ['S16','Folder tabs',['tabs like folders','joined to the page'],'The chosen tab joins the page under it, like a folder tab.',{mark:'folder',folder:true}],
+  ['S17','Icon that grows a name',['icons that show a name when picked'],'Icons only, and the chosen one grows to show its name.',{mark:'pill',expand:true}],
+  ['S18','Side list with groups',['sidebar with headings'],'Tabs down the side under small group headings.',{mark:'side',vertical:true,groups:true}],
+  ['S19','Bigger when chosen',['chosen tab gets big','large title tab'],'The chosen tab’s name grows larger; nothing slides.',{mark:'none'}],
+  ['S20','More menu',['extra tabs under More','too many tabs'],'The first tabs show; the rest wait in a More menu.',{mark:'line',more:true}],
+  ['S21','Arrows between pages',['left and right arrows','one page at a time'],'One name at a time with arrows either side that wrap round.',{mark:'none',cycle:true}],
+  ['S22','Sections that open',['accordion','fold out sections'],'Each tab is a heading that opens its section under it; one at a time.',{accordion:true}]
 ];
 for(const [code,title,words,use,spec] of TABSTYLES){
+  if(spec.accordion){tabGrid.insertAdjacentHTML('beforeend',card(code,title,words,use,`<div class="acc">${Object.entries(PAGES).map(([name,text],i)=>`<button class="acc-head" type="button" aria-expanded="${i===0}" data-acc>${name}${icon('down')}</button><div class="acc-body">${text}</div>`).join('')}</div>`));continue}
+  if(spec.cycle){tabGrid.insertAdjacentHTML('beforeend',card(code,title,words,use,`<div class="tabs"><div class="tabbar" data-style="${code}" data-mark="none" data-cycle="0"><button type="button" data-cycle-step="-1" aria-label="Previous page">${icon('chevron-left')}</button><span class="cycle">${Object.keys(PAGES)[0]}</span><button type="button" data-cycle-step="1" aria-label="Next page">${icon('right')}</button></div><div class="tabpage"><div class="page-text">${Object.values(PAGES)[0]}</div></div></div>`));continue}
+  if(spec.more){const names=Object.keys(MORE);const shown=names.slice(0,3),rest=names.slice(3);
+    tabGrid.insertAdjacentHTML('beforeend',card(code,title,words,use,`<div class="tabs"><div class="tabbar" role="tablist" aria-label="Demo tabs" data-style="${code}" data-mark="line" data-pages-from="more"><span class="mark"></span>${shown.map((name,i)=>`<button type="button" role="tab" aria-selected="${i===0}" data-tab="${name}">${name}</button>`).join('')}<button type="button" data-more aria-haspopup="true">More ${icon('down')}</button><div class="more-list">${rest.map(name=>`<button type="button" role="tab" aria-selected="false" data-tab="${name}">${name}</button>`).join('')}</div></div><div class="tabpage"><div class="page-text">${Object.values(MORE)[0]}</div></div></div>`));continue}
   const pages=spec.scroll?MORE:PAGES;
-  const buttons=Object.keys(pages).map((name,i)=>`<button type="button" role="tab" aria-selected="${i===0}" data-tab="${name}"${spec.rail?` aria-label="${name}"`:''}>${spec.icons||spec.rail?icon(TAB_ICONS[name]):''}${spec.rail?'':name}</button>`).join('');
-  const cls=['tabbar',spec.vertical?'vertical':'',spec.rail?'rail':'',spec.icons?'icons':'',spec.seg?'seg':'',spec.scroll?'scroll':''].join(' ');
+  const GROUP_OF_TAB={Combat:'Fighting',Movement:'Fighting',Visuals:'Seeing'};let lastGroup='';
+  const buttons=Object.keys(pages).map((name,i)=>{
+    const head=spec.groups&&GROUP_OF_TAB[name]!==lastGroup?`<span class="grp">${(lastGroup=GROUP_OF_TAB[name]).toUpperCase()}</span>`:'';
+    const inner=spec.steps?`<i class="step"><b>${i+1}</b>${icon('check')}</i>${name}`:spec.expand?`${icon(TAB_ICONS[name])}<span class="lbl">${name}</span>`:`${spec.icons||spec.rail?icon(TAB_ICONS[name]):''}${spec.rail?'':name}`;
+    const count=spec.counts?.[name]?`<span class="count">${spec.counts[name]}</span>`:'';
+    return `${head}<button type="button" role="tab" aria-selected="${i===0}" data-tab="${name}"${spec.rail||spec.expand?` aria-label="${name}"`:''}>${inner}${count}</button>`}).join('');
+  const cls=['tabbar',spec.vertical?'vertical':'',spec.rail?'rail':'',spec.icons?'icons':'',spec.seg?'seg':'',spec.scroll?'scroll':'',spec.expand?'expand':''].join(' ');
   const bar=`<div class="${cls}" role="tablist" aria-label="Demo tabs" data-style="${code}" data-mark="${spec.mark}"${spec.pages?` data-pages="${spec.pages}"`:''}><span class="mark"></span>${buttons}</div>`;
   const page=`<div class="tabpage" role="tabpanel"><div class="page-text">${Object.values(pages)[0]}</div></div>`;
-  tabGrid.insertAdjacentHTML('beforeend',card(code,title,words,use,spec.vertical?`<div class="vtabs">${bar}${page}</div>`:`<div class="tabs">${bar}${page}</div>`));
+  tabGrid.insertAdjacentHTML('beforeend',card(code,title,words,use,spec.vertical?`<div class="vtabs">${bar}${page}</div>`:`<div class="tabs${spec.bottom?' bottom':''}${spec.folder?' folder':''}">${bar}${page}</div>`));
 }
 function placeMark(bar){
-  const chosen=bar.querySelector('[aria-selected="true"]');const mark=bar.querySelector('.mark');const kind=bar.dataset.mark;
+  const mark=bar.querySelector('.mark');if(!mark)return;
+  let chosen=bar.querySelector('[aria-selected="true"]');if(chosen?.closest('.more-list'))chosen=bar.querySelector('[data-more]');
+  const kind=bar.dataset.mark;
   if(kind==='dot'){mark.style.transform=`translateX(${chosen.offsetLeft+chosen.offsetWidth/2-3}px)`;return}
   if(bar.classList.contains('vertical')){mark.style.width=kind==='side'?'3px':`${chosen.offsetWidth}px`;mark.style.height=`${chosen.offsetHeight}px`;mark.style.transform=`translateY(${chosen.offsetTop}px)`;return}
   mark.style.width=`${chosen.offsetWidth}px`;mark.style.transform=`translateX(${chosen.offsetLeft}px)`;
@@ -1246,9 +1710,10 @@ tabGrid.querySelectorAll('.tabbar').forEach(bar=>{
   bar.addEventListener('click',async e=>{
     const tab=e.target.closest('[data-tab]');if(!tab||tab.getAttribute('aria-selected')==='true')return;
     const tabs=[...bar.querySelectorAll('[data-tab]')];const before=tabs.findIndex(t=>t.getAttribute('aria-selected')==='true');const after=tabs.indexOf(tab);
-    tabs.forEach(t=>t.setAttribute('aria-selected',String(t===tab)));placeMark(bar);
+    tabs.forEach(t=>t.setAttribute('aria-selected',String(t===tab)));
+    tabs.forEach((t,i)=>t.classList.toggle('done',i<after));bar.querySelector('.more-list')?.classList.remove('open');placeMark(bar);
     if(bar.classList.contains('scroll'))tab.scrollIntoView({behavior:reduced()?'auto':'smooth',block:'nearest',inline:'center'});
-    const text=bar.parentElement.querySelector('.page-text');const words=(bar.classList.contains('scroll')?MORE:PAGES)[tab.dataset.tab];
+    const text=bar.parentElement.querySelector('.page-text');const words=(bar.classList.contains('scroll')||bar.dataset.pagesFrom==='more'?MORE:PAGES)[tab.dataset.tab];
     if(reduced()||!bar.dataset.pages){text.textContent=words;if(!reduced())text.animate([{opacity:.3},{opacity:1}],{duration:150,easing:'ease-out'});return}
     const shift=bar.dataset.pages==='slide'?(after>before?24:-24):0;
     await run(text,{opacity:0,transform:`translateX(${-shift}px)`},100,EASE.in);
@@ -1257,6 +1722,67 @@ tabGrid.querySelectorAll('.tabbar').forEach(bar=>{
   });
 });
 addEventListener('resize',()=>tabGrid.querySelectorAll('.tabbar').forEach(placeMark));
+tabGrid.addEventListener('click',e=>{
+  const more=e.target.closest('[data-more]');if(more){more.parentElement.querySelector('.more-list').classList.toggle('open');return}
+  const step=e.target.closest('[data-cycle-step]');
+  if(step){const bar=step.closest('.tabbar');const names=Object.keys(PAGES);const at=(Number(bar.dataset.cycle)+Number(step.dataset.cycleStep)+names.length)%names.length;
+    bar.dataset.cycle=String(at);bar.querySelector('.cycle').textContent=names[at];bar.parentElement.querySelector('.page-text').textContent=PAGES[names[at]];return}
+  const head=e.target.closest('[data-acc]');
+  if(head){const open=head.getAttribute('aria-expanded')!=='true';head.parentElement.querySelectorAll('[data-acc]').forEach(h=>h.setAttribute('aria-expanded',String(h===head&&open)))}
+});
+
+/* Tooltips */
+const tipGrid=document.getElementById('tooltip-grid');
+const tipBubble=(text,cls='below',extra='')=>`<span class="tipb ${cls}" role="tooltip">${extra}${text}</span>`;
+const TIPS=[
+  ['H1','Hover tooltip',['words when I hover','little popup over a button'],'Appears under the button after a short rest; a long press opens it on a phone.',`<button class="tip-target" type="button" data-tip="hover">Auto farm${tipBubble('Collects drops within 30 studs')}</button>`],
+  ['H2','Bubble with an arrow',['speech bubble','points at the button'],'Sits above the button with a small arrow pointing at it.',`<button class="tip-target" type="button" data-tip="hover">Teleport${tipBubble('Takes you to spawn','above')}</button>`],
+  ['H3','Slider value while dragging',['number pops up when I drag'],'The value floats over the knob only while you drag it.',`<div class="slider-demo" data-slider="drag"><input type="range" min="16" max="100" value="32" aria-label="Walk speed">${tipBubble('32','above')}</div>`],
+  ['H4','Value on the knob',['number above the slider knob'],'The value always rides above the knob.',`<div class="slider-demo" data-slider="tag"><input type="range" min="0" max="10" value="7" aria-label="Volume"><span class="val-tag">7</span></div>`],
+  ['H5','Ends and value',['min and max under it','number at the end'],'The lowest and highest values sit under the ends; the current one follows the slider.',`<div class="slider-demo with-value" data-slider="ends"><div><input type="range" min="0" max="100" value="42" aria-label="Field of view"><div class="ends"><span>0</span><span>100</span></div></div><span class="readout">42</span></div>`],
+  ['H6','Info button',['little i button','tap for more info'],'A small info mark; tap it to read, tap anywhere else to close. Works on phones.',`<div class="info-row">Shiny chance<button class="info-btn" type="button" aria-expanded="false" aria-label="About shiny chance" data-info>${icon('info')}</button>${tipBubble('1 in 500 eggs hatches shiny. Luck boosts raise it.')}</div>`],
+  ['H7','Title, words and key',['tooltip with a title','shows the hotkey'],'A bold title, a short line, and the key that does it.',`<button class="tip-target" type="button" data-tip="hover">Fly${tipBubble('<small>Flies where the camera looks</small><kbd>F</kbd>','below','<b>Fly</b>')}</button>`],
+  ['H8','Follows the pointer',['tooltip follows my mouse'],'The words follow the pointer around the thing you are over.',`<div class="follow-box" data-follow>Move over the map${tipBubble('Volcano · level 30+','','')}</div>`],
+  ['H9','Why it is locked',['tells me why I can’t press it','locked reason'],'Hover or tap a locked button to see what unlocks it.',`<span class="tip-hold" data-tip="hover" style="position:relative;display:inline-block"><button class="tip-target off" type="button" aria-disabled="true">${icon('lock')}Rebirth</button>${tipBubble('Unlocks at level 10','below locked','<span class="lock">'+icon('lock')+'</span>')}</span>`],
+  ['H10','Press and hold',['hold to see','peek while pressing'],'Nothing on hover: press and hold to read, let go to hide.',`<button class="tip-target" type="button" data-tip="hold">Hold me${tipBubble('Shows while you hold')}</button>`],
+  ['H11','Helper line',['text under the box','hint under the field'],'A short hint under a field turns into the error when the entry is wrong. Type <b>admin</b>.',`<div class="field-demo"><input type="text" placeholder="Pet name" aria-label="Pet name" data-helper><span class="help">${icon('err')}<span>3 to 20 letters</span></span></div>`],
+  ['H12','First-time pointer',['points at something new','Got it tip'],'Shown once to point at something new; Got it closes it for good.',`<div style="position:relative;display:inline-block"><button class="tip-target" type="button">Auto sell</button><span class="coach-ring on"></span><span class="tipb below coach on" role="dialog" aria-label="New feature">New: sells items when your bag is full<br><button type="button" data-coach>Got it</button></span></div>`]
+];
+for(const [code,title,words,use,stage] of TIPS)tipGrid.insertAdjacentHTML('beforeend',card(code,title,words,use,stage,code==='H12'?'<button class="btn" type="button" data-coach-replay>Replay</button>':''));
+{
+  const showTip=(host,on)=>host.querySelector('.tipb')?.classList.toggle('on',on);
+  tipGrid.querySelectorAll('[data-tip]').forEach(host=>{
+    let timer=0;const hold=host.dataset.tip==='hold';
+    host.addEventListener('pointerenter',e=>{if(hold||e.pointerType!=='mouse')return;clearTimeout(timer);timer=setTimeout(()=>showTip(host,true),reduced()?0:400)});
+    host.addEventListener('pointerleave',()=>{clearTimeout(timer);showTip(host,false)});
+    host.addEventListener('pointerdown',e=>{if(!hold&&e.pointerType==='mouse')return;clearTimeout(timer);timer=setTimeout(()=>showTip(host,true),500)});
+    host.addEventListener('pointerup',e=>{if(!hold&&e.pointerType==='mouse')return;clearTimeout(timer);if(hold)showTip(host,false);else timer=setTimeout(()=>showTip(host,false),1500)});
+    host.addEventListener('focus',()=>showTip(host,true));host.addEventListener('blur',()=>showTip(host,false));
+  });
+  tipGrid.querySelectorAll('[data-slider]').forEach(box=>{
+    const input=box.querySelector('input');const kind=box.dataset.slider;
+    const place=el=>{const f=(input.value-input.min)/(input.max-input.min);el.style.left=`calc(${f*100}% + ${8-f*16}px)`};
+    const update=()=>{const tag=box.querySelector('.val-tag,.tipb');if(tag){tag.textContent=input.value;place(tag)}const out=box.querySelector('.readout');if(out)out.textContent=input.value};
+    input.addEventListener('input',update);update();
+    if(kind==='drag'){const bubble=box.querySelector('.tipb');input.addEventListener('pointerdown',()=>bubble.classList.add('on'));
+      for(const type of ['pointerup','pointercancel','blur'])input.addEventListener(type,()=>bubble.classList.remove('on'));input.addEventListener('keydown',()=>bubble.classList.add('on'))}
+  });
+  const info=tipGrid.querySelector('[data-info]');const infoTip=info.parentElement.querySelector('.tipb');
+  const setInfo=open=>{info.setAttribute('aria-expanded',String(open));infoTip.classList.toggle('on',open)};
+  info.addEventListener('click',e=>{e.stopPropagation();setInfo(info.getAttribute('aria-expanded')!=='true')});
+  document.addEventListener('click',()=>setInfo(false));document.addEventListener('keydown',e=>{if(e.key==='Escape')setInfo(false)});
+  const follow=tipGrid.querySelector('[data-follow]');const followTip=follow.querySelector('.tipb');
+  follow.addEventListener('pointermove',e=>{const r=follow.getBoundingClientRect();followTip.style.left=`${e.clientX-r.left+16}px`;followTip.style.top=`${e.clientY-r.top+16}px`;followTip.classList.add('on')});
+  follow.addEventListener('pointerleave',()=>followTip.classList.remove('on'));
+  const field=tipGrid.querySelector('[data-helper]');const help=field.parentElement.querySelector('.help');const helpText=help.querySelector('span');
+  field.addEventListener('input',()=>{const bad=field.value.trim().toLowerCase()==='admin';const short=field.value.length>0&&field.value.length<3;
+    field.classList.toggle('bad',bad||short);help.classList.toggle('bad',bad||short);helpText.textContent=bad?'That name is taken':short?'Too short: at least 3 letters':'3 to 20 letters'});
+  const coach=tipGrid.querySelector('[data-coach]').closest('.tipb');const ring=coach.parentElement.querySelector('.coach-ring');
+  tipGrid.addEventListener('click',e=>{
+    if(e.target.closest('[data-coach]')){coach.classList.remove('on');ring.classList.remove('on')}
+    if(e.target.closest('[data-coach-replay]')){coach.classList.add('on');ring.classList.add('on')}
+  });
+}
 
 /* Point at it */
 const legend=document.getElementById('legend');

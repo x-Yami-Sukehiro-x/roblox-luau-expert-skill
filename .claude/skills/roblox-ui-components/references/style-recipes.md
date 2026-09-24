@@ -5,7 +5,8 @@ offline copy `docs/visual-guide/index.html`) shows every option with a code:
 **T** toggles, **C** checkboxes and choice groups, **D** dropdowns (including
 search fields), **M** menu movement (opening and closing can differ), **N**
 notifications, **O** how the whole UI hides and comes back, **P** press feel,
-**S** tab switch, and **W** for the parts of a window. When a user answers
+**S** tab switch, **H** tooltips and slider values, and **W** for the parts
+of a window. When a user answers
 "T2 + M4 + N4", that answer is a contract. This file says exactly what each code
 builds and which tested recipe builds it.
 
@@ -35,7 +36,7 @@ marks on the slop, format and UI rubrics.
    (`../../roblox-ui/references/functional-proof.md`).
 
 If the user gave no answer and asked you to decide, use **T1 + C1 + D1 + M1 +
-N1 + O1 + P1 + S1**; for an executor hub use **N4** instead of N1, **D2** for a
+N1 + O1 + P1 + S1**, H1 on buttons that need a word and H3 on sliders; for an executor hub use **N4** instead of N1, **D2** for a
 list longer than about eight options and **D10** to pick a player. Say which
 you used, once.
 
@@ -43,7 +44,8 @@ you used, once.
 
 `createToggle(parent, label, style, initial, onChanged, details?)` returns
 `{ row, set, get, setEnabled, destroy }`. `details` is
-`{ description = "...", icon = "rbxassetid://..." }`, read by T19 and T20. Every row is 44 px tall so the whole
+`{ description = "...", icon = "rbxassetid://...", key = "F" }`: T19 reads
+`description`, T20 `icon`, T29 `key`. Every row is 44 px tall so the whole
 row is the touch target, and each style shows state by shape or words as well
 as colour.
 
@@ -69,6 +71,16 @@ as colour.
 | T18 | "key you push", "keyboard key" | push key | 52×36 key cap on a base; on sinks 4 px and reads `ON` |
 | T19 | "switch with a description" | described row | 56 px row: label and a 12 px description on the left, T1 on the right |
 | T20 | "icon, name and switch" | icon row switch | 16 px icon before the label (from `details.icon`), T1 on the right |
+| T21 | "switch that fills up" | fill switch | T1 track; the accent fill widens behind the knob as it travels |
+| T22 | "Off and On either side" | words at both ends | `Off`, the T1 track, `On`; the chosen word takes the text colour, the other goes muted |
+| T23 | "switch that glows", "neon switch" | glow switch | T1 with a 2 px accent `UIStroke` named `Glow` on the track while on |
+| T24 | "wall light switch" | up-down lever | upright track 24×40; knob y 19 → 3, so up is on |
+| T25 | "dot in a circle" | dot in a ring | 22 px ring; a 10 px dot grows inside on a `UIScale` 0 → 1 |
+| T26 | "stripe on the side" | edge stripe | 4×24 stripe on the row's left edge lights accent; a `Status` word says ON / OFF |
+| T27 | "I and O switch", "power strip switch" | rocker | a two-sided cap marked O and I; the pressed side sinks and darkens |
+| T28 | "little ON OFF pill" | status pill | a pill at the row end: `ON` on the dim accent, `OFF` on the raised surface |
+| T29 | "shows the keybind" | switch with hotkey | a key chip (`details.key`, default `F`) before a T1 switch |
+| T30 | "small switch", "tiny toggle" | mini switch | track 32×18, knob 14, x 2 → 16; the row stays 44 px |
 
 Pressing the half of T4 that is already chosen leaves the value alone. T5 and
 T14 are the only styles where the row colour carries state; the word or tick
@@ -93,13 +105,26 @@ returns `{ row, set, get, setEnabled, destroy }`. A group:
 | C8 | "radio buttons", "pick one" | radio group | round markers; exactly one chosen; the only choice cannot be cleared |
 | C9 | "chips", "tags to pick" | chip group | 44 px pills that wrap onto more lines |
 | C10 | "tiles with icons" | icon tiles | 88×88 tiles, icon from `details.icons[name]` (default package), tick badge |
+| C11 | "just a tick at the end" | tick on the right | no box; a 16 px tick appears at the end of the chosen row |
+| C12 | "checkbox with a number" | box with a count | C1 box plus a muted count at the row end from `details.count` |
+| C13 | "X box", "ignore list" | cross box | the box fills with the danger colour and shows a cross, for exclusions |
+| C14 | "large checkbox", "easy to tap" | big tick box | 32 px box, 20 px tick |
+| C15 | "quest list with a bar" | checklist with progress | a `Progress` header, "n of m done" and a filling bar; ticked rows strike through |
+| C16 | "buttons stuck together" | joined buttons | multi-select segments in one `CanvasGroup` track; each chosen segment fills and ticks |
+| C17 | "stars", "rate it out of five" | star rating | pick one; every star up to the chosen index lights |
+| C18 | "colour circles" | colour dots | 32 px dots from `details.colours[name]`; the chosen one gets a ring and a tick |
+| C19 | "S M L", "small medium large" | size buttons | 64×36 cells; a `Marker` block slides to the chosen one |
+| C20 | "pick one card" | plan cards | radio cards with a line each from `details.descriptions[name]` |
+
+C8, C17, C18, C19 and C20 choose exactly one; the rest choose any number.
 
 ## Dropdowns and search fields — `../assets/dropdowns.luau`
 
 `createDropdown(parent, style, spec)` with `spec = { label, options, chosen?,
 onChanged, host? }` returns `{ root, get, set, setOptions, open, close, destroy
 }`. An option is a string or `{ text, display?, detail?, icon?, image?, group?,
-colour? }`. The list opens in its own `ScreenGui` one `DisplayOrder` above the
+colour?, children? }`. D19 calls `spec.onRun(chosen)` from its main half; D22
+calls `spec.onCreate(text)` before choosing the new option. The list opens in its own `ScreenGui` one `DisplayOrder` above the
 host, so no `ScrollingFrame` clips it; a tap outside closes it. Lists show five
 rows and scroll; an empty list says "No matches" or "Nothing to choose yet".
 
@@ -117,6 +142,16 @@ rows and scroll; an empty list says "No matches" or "Nothing to choose yet".
 | D10 | "pick a player" | player picker | every other player with a headshot; updates as they join and leave |
 | D11 | "command palette", "big search box" | palette | a centred search panel; type to filter, Enter runs the first match |
 | D12 | "colour picker", "swatches" | swatches | options with `colour` shown as swatches |
+| D13 | "list with descriptions" | two-line options | 56 px rows: the option and a muted `detail` line under it |
+| D14 | "recent at the top" | recent first | the last three picks under RECENT, then ALL |
+| D15 | "list goes up" | opens upward | the list prefers the space above the field |
+| D16 | "phone style list" | bottom sheet | the list slides up from the bottom edge and dims the game behind it |
+| D17 | "finishes the word for me" | autocomplete | the rest of the first match shows as ghost text; Tab accepts it |
+| D18 | "tiles to pick from" | grid | options as 72 px tiles in three columns, icon over the name |
+| D19 | "run it or change it" | split button | the main half runs the choice (`onRun`); the chevron half opens the list |
+| D20 | "Apply button" | pick then apply | ticks wait in the list; only Apply changes the value, closing discards them |
+| D21 | "menu inside a menu" | sub-menus | an option with `children` opens its own list with a Back row |
+| D22 | "add my own option" | type to add | typing a new name offers `Add "name"`; picking it calls `onCreate` |
 
 
 ## Menu movement — `../assets/menus.luau`
@@ -154,6 +189,18 @@ exits use In easing and travel less.
 | M22 | "jelly", "wobbly pop" | jelly pop | `UIScale` 0.8 → 1 on Elastic Out, 0.5 s |
 | M23 | "snappy", "quick" | snap | 0.10 s in, 0.08 s out, a tiny scale |
 | M24 | "slow fade" | slow fade | fade only, 0.35 s in, 0.25 s out, Sine |
+| M25 | "spins into place" | spin in | the M5 grow with a quarter turn, −90° → 0, one overshoot; leaves turning 45° |
+| M26 | "comes in at an angle" | diagonal slide | 24 px from the lower left with the fade; leaves 12 px |
+| M27 | "wipes in from the left" | curtain | width unfolds from the left edge, keeping that edge still |
+| M28 | "starts as a circle" | grow from a circle | a 48 px circle at the centre grows into the panel while its corner eases to 10 px |
+| M29 | "bounces up from below" | bounce up | 40 px rise on Bounce Out, 0.45 s |
+| M30 | "wobbly slide" | jelly slide | 48 px from the left on Elastic Out, 0.5 s |
+| M31 | "zooms from far away" | zoom from far | `UIScale` 0.5 → 1 on the settle timing, one overshoot |
+| M32 | "falls and straightens" | tilt and drop | 24 px drop tilted 8°, straightens on the settle timing |
+| M33 | "each row pops in" | rows pop | the M12 cascade with each row's `RowScale` 0.9 → 1 |
+| M34 | "smooth long slide" | glide | 120 px from the right, 0.5 s Quint Out; out 0.3 s Quint In |
+| M35 | "heartbeat" | heartbeat pop | the M3 pop, then two 1.04 beats of 0.12 s |
+| M36 | "shrinks away to the middle" | collapse to centre | opens with a 0.9 grow; closes shrinking to 0.5 |
 
 Every style needs a way back: when the window closes, a launcher button (W20)
 stays on screen. A keybind alone strands a phone player. Reopening during a
@@ -162,7 +209,7 @@ reopened panel. A panel dragged while open keeps its new
 position. With reduced motion every style becomes a 0.08 s fade. A `UIScale`
 used for screen-size scaling belongs on a parent frame, not on the panel.
 
-## Notifications — `../assets/toasts.luau` and `../assets/notices.luau`
+## Notifications — `../assets/toasts.luau`, `../assets/notices.luau` and `../assets/announcements.luau`
 
 Every notification shares the panel's surface entry: the same fill, edge and
 10 px radius. Each carries an icon image as well as a hue, holds at least
@@ -191,6 +238,16 @@ until dismissed and get a 44 px dismiss button with a 16 px mark.
 | N18 | "snackbar" | snackbar | `announcements.createSnackbar(screen)`: one bar at the bottom, 4 s, 6 s with an action |
 | N19 | "cards stacked on each other" | stacked cards | `createNotifier(screen, "N19")`: a deck that peeks 8 px and spreads on hover |
 | N20 | "activity feed", "kill feed" | feed | `announcements.createFeed(screen).push(text, severity?)`: up to 6 lines, each fades after 4 s |
+| N21 | "someone joined", "popup with their picture" | player popup | `notifier.player(message, userId)`: a 32 px round headshot leads the toast |
+| N22 | "loading bar popup" | progress with percent | `notifier.percent(message)` returns `{ set(fraction), done(message, severity?) }`; a bar and a percent |
+| N23 | "dynamic island" | island | `announcements.createIsland(screen).show(text, more?)`: a pill under the top bar that opens on hover or tap |
+| N24 | "popup that does not go away" | sticky toast | `notifier.sticky(message, severity?)`: no timer, a 44 px dismiss button |
+| N25 | "+250 coins floats up" | floating reward | `announcements.floatText(anchor, text, icon?)`: rises 40 px from the anchor and fades |
+| N26 | "quest step done" | objective complete | `announcements.createObjectives(screen).complete(text)`: a tick card at the right edge |
+| N27 | "notification bell" | bell with a count | `announcements.createInbox(screen)`: `push(text)`, `unread()`; a bell with a badge opens the list |
+| N28 | "party invite" | invite | `notifier.invite(message, onAccept, onDecline?)`: Decline and Accept buttons, leaves after 10 s |
+| N29 | "subtitles" | captions | `announcements.createCaptions(screen).say(text, name?)`: one line near the bottom, speaker first |
+| N30 | "screen flashes red" | edge flash | `announcements.flashEdges(screen, severity?)`: gradient strips pulse on all four edges |
 
 The stacked styles (N1, N2, N4) show three at a time, queue up to ten, collapse
 a repeated `key` into `×2`, pause while hovered and reflow with a spring when a
@@ -201,7 +258,7 @@ safe choice.
 
 ## Hiding and bringing back the whole UI — `../assets/windows.luau`
 
-`createWindow({ panel, launcher, header, body, opener }, style)` returns
+`createWindow({ panel, launcher, header, body, rail, dock, opener, keyName }, style)` returns
 `{ show, hide, toggle, isShown, destroy }`; wire the close or minimise button
 and the keybind to `hide` / `toggle`. Every style leaves a way back on screen,
 because a keybind alone strands a phone player.
@@ -220,12 +277,26 @@ because a keybind alone strands a phone player.
 | O10 | "tells me the key to open it" | key reminder | a chip "Press `keyName` to open" that collapses to the key after 5 s |
 | O11 | "asks before closing" | ask first | close asks Hide, Unload script or Cancel; unload calls `onUnload` |
 | O12 | "goodbye screen" | outro card | `playOutro(screen, title, onDone)`: the O5 card on the way out, 0.8 s hold |
+| O13 | "a tab at the bottom" | pull-up tab | slides down out of view; a tab at the bottom brings it up |
+| O14 | "dock", "taskbar" | dock | shrinks into its icon in a `Dock` bar; pass one `dock` to share it between windows |
+| O15 | "ghost mode", "see through while I play" | see-through | goes to 0.8 transparency with `Interactable = false`; an eye button makes it solid |
+| O16 | "keep only the side icons" | shrink to the rail | the width folds to `rail`; a button beside it expands the rest |
+| O17 | "only while I hold a key" | hold to show | shown only while `keyName` (default LeftAlt) or the on-screen "Hold to show" button is held |
+| O18 | "floating action button" | corner button | shrinks into a round button in the bottom-right corner |
+| O19 | "swipe it away" | swipe away | drag the header sideways past 120 px to send it off that side; the tab waits there |
+| O20 | "hides when I stop" | hides when idle | fades after 8 s without input over the screen; any input brings it back |
 
 ## Press feel — `../assets/press-and-tabs.luau`
 
 `attachPress(button, style, onHold?)` returns a cleanup function. P4, P8, P9,
 P10 and P11 draw inside the button, so they need a button with no
-`UIListLayout`.
+`UIListLayout`; P14 spins the button's child named `Icon`.
+
+The P16 to P20 styles are about what an action does, not how the button
+moves: `attachAction(button, style, { run, seconds?, confirmText?, allowed? })`
+returns a cleanup function. `run(finish)` does the work and calls
+`finish(true)` or `finish(false)`; P18 reads `seconds`, P19 `confirmText`,
+P20 `allowed`.
 
 | Code | People say | What it is | Exact build |
 |---|---|---|---|
@@ -241,12 +312,23 @@ P10 and P11 draw inside the button, so they need a button with no
 | P10 | "hold to confirm" | hold | holding fills the button over 1 s, then calls `onHold`; release early cancels |
 | P11 | "arrow moves" | arrow nudge | a 16 px arrow at the right edge nudges 4 px right on hover |
 | P12 | "pops when clicked" | click pop | a quick 1.05 pop and an accent edge flash on click |
+| P13 | "outline button" | outline fill | outlined at rest; the fill comes in on hover and deepens on press |
+| P14 | "refresh button" | icon spin | the `Icon` child turns a full circle on press |
+| P15 | "shiny hover" | shimmer | a `Shimmer` gradient drifts across only while hovered |
+| P16 | "loading after click" | working | `attachAction`: reads "Working…" and cannot be pressed until `finish` |
+| P17 | "turns green with a tick" | done state | `attachAction`: "Done" or "Failed" for 1.2 s, then the label returns |
+| P18 | "timer before I can press again" | cooldown | `attachAction`: a draining `CooldownLayer` and "label 4s" until ready |
+| P19 | "click again to be sure" | press twice | `attachAction`: the first press asks "Press again to confirm" for 3 s |
+| P20 | "wiggles if I can't" | shake when blocked | `attachAction`: when `allowed()` is false it shakes ±4° and does not run |
+| P21 | "grows with a bounce" | bouncy hover | `UIScale` 1.06 on hover with a Back overshoot back |
+| P22 | "tilts when I press it" | tilt on press | `Rotation` −2° while held |
 
 ## Tab switch — `../assets/press-and-tabs.luau`
 
 `createTabs(parent, names, style, onSelect, options?)` returns `{ select,
-selected, destroy }`. `options = { icons = { [name] = id }, pages = { [name] =
-CanvasGroup } }`: S6 and S7 read `icons`; S9 and S10 turn `pages`. The selected tab persists; focus and hover never change it.
+selected, destroy }`. `options = { icons, pages, counts, groups, visible }`: S6, S7, S13 and S17
+read `icons`; S9, S10 and S22 turn `pages`; S14 reads `counts`, S18 `groups`
+and S20 `visible` (how many tabs show before More). The selected tab persists; focus and hover never change it.
 
 | Code | People say | What it is | Exact build |
 |---|---|---|---|
@@ -262,6 +344,47 @@ CanvasGroup } }`: S6 and S7 read `icons`; S9 and S10 turn `pages`. The selected 
 | S10 | "pages fade" | page fade | S1 underline, and the page cross-fades |
 | S11 | "dot under the tab" | dot marker | a 6 px dot slides under the chosen tab |
 | S12 | "tabs scroll sideways" | scrolling tabs | a scrolling strip with a pill marker that scrolls the chosen tab into view |
+| S13 | "tabs at the bottom", "like a phone app" | bottom tab bar | 56 px bar of icon-over-name tabs; a 2 px line on top of the chosen one |
+| S14 | "numbers on the tabs" | tabs with counts | S1 with a `Count` badge from `counts[name]` |
+| S15 | "step 1, step 2" | numbered steps | numbered circles; steps before the chosen one show a tick |
+| S16 | "tabs like folders" | folder tabs | the chosen tab takes the page's surface and joins it by 6 px |
+| S17 | "icons that show a name when picked" | expanding icon | icons only; the chosen one widens to show its name |
+| S18 | "sidebar with headings" | grouped side list | S4 under `{group}Heading` labels from `groups` |
+| S19 | "chosen tab gets big" | bigger when chosen | the chosen tab's name goes to 20 px; nothing slides |
+| S20 | "too many tabs" | more menu | the first `visible` tabs show; the rest open from a More button |
+| S21 | "one page at a time" | arrows between pages | one name with previous and next buttons that wrap |
+| S22 | "accordion" | sections that open | each tab is a heading; its page opens under it, one at a time |
+
+## Tooltips and slider values — `../assets/tooltips.luau`
+
+The words that explain a control. Every style is readable without a mouse:
+hover styles open on a 0.5 s long press on a phone and on gamepad selection.
+Full guidance is `../../roblox-ui-tooltips/SKILL.md`.
+
+`createTooltip(target, style, { text, title?, keyHint?, host? })` returns
+`{ setText, setDisabled, show, hide, destroy }` and draws in its own
+`TooltipLayer` two `DisplayOrder`s above the host, so nothing clips it.
+`createSliderValue({ track, thumb, min, max, format? }, style)` returns
+`{ update(value), setDragging(on), destroy }`.
+
+| Code | People say | What it is | Exact build |
+|---|---|---|---|
+| H1 | "words when I hover" | hover tooltip | after 0.4 s at rest, 8 px under the control; flips above near the bottom, never crosses a side edge |
+| H2 | "speech bubble" | bubble with arrow | H1 above the control with an `Arrow` pointing at it |
+| H3 | "number pops up when I drag" | drag value | `createSliderValue(parts, "H3")`: the formatted value floats 8 px over the thumb only while dragging |
+| H4 | "number on the knob" | value on the knob | `createSliderValue(parts, "H4")`: a `ValueTag` rides the thumb always |
+| H5 | "min and max under it" | ends and value | `createSliderValue(parts, "H5")`: `Min` and `Max` under the ends, `Value` after the track |
+| H6 | "little i button" | info button | `createInfoButton(parent, text, order?)`: a 44 px button; tap opens, a tap elsewhere or Escape closes |
+| H7 | "tooltip with a title" | titled tooltip | bold `title`, a 12 px line and a `keyHint` chip |
+| H8 | "follows my mouse" | follows the pointer | sits 16 px right and below the pointer and follows it |
+| H9 | "why is it locked" | locked reason | `setDisabled(true)` lays a `ReasonCatcher` over the control; tap or hover says why, with a lock |
+| H10 | "hold to see" | press and hold | nothing on hover; shows after a 0.5 s hold, hides on release |
+| H11 | "hint under the box" | helper line | `createHelperText(parent, text, order)`: a 12 px hint that `setError(message)` turns into the error with an icon |
+| H12 | "points at something new" | coach mark | `showCoachMark(target, text, onDone)`: a ring on the target and a bubble with Got it; returns `dismiss` |
+
+A tooltip names what the control does in the game's words and stays under
+about twelve words. Anything the player must know to play is H11 or H6, never
+a hover.
 
 ## Window parts — the W codes
 

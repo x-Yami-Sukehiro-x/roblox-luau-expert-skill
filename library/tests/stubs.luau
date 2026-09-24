@@ -39,9 +39,69 @@ UDim2 = {
 UDim2.fromOffset = function(x, y) return UDim2.new(0, x, 0, y) end
 UDim2.fromScale = function(x, y) return UDim2.new(x, 0, y, 0) end
 Vector2 = { new = function(x, y) return { X = x, Y = y } end, zero = { X = 0, Y = 0 } }
-Vector3 = { zero = {} }
+-- Real vector arithmetic: the executor assets steer physics with it.
+local vectorMeta = {}
+local function vector(x, y, z)
+    local v = setmetatable({ X = x, Y = y, Z = z }, vectorMeta)
+    return v
+end
+vectorMeta.__index = function(v, key)
+    if key == "Magnitude" then return math.sqrt(v.X * v.X + v.Y * v.Y + v.Z * v.Z) end
+    if key == "Unit" then
+        local length = math.sqrt(v.X * v.X + v.Y * v.Y + v.Z * v.Z)
+        return vector(v.X / length, v.Y / length, v.Z / length)
+    end
+    if key == "Dot" then return function(a, b) return a.X * b.X + a.Y * b.Y + a.Z * b.Z end end
+    if key == "Cross" then
+        return function(a, b) return vector(a.Y * b.Z - a.Z * b.Y, a.Z * b.X - a.X * b.Z, a.X * b.Y - a.Y * b.X) end
+    end
+    return nil
+end
+vectorMeta.__add = function(a, b) return vector(a.X + b.X, a.Y + b.Y, a.Z + b.Z) end
+vectorMeta.__sub = function(a, b) return vector(a.X - b.X, a.Y - b.Y, a.Z - b.Z) end
+vectorMeta.__unm = function(a) return vector(-a.X, -a.Y, -a.Z) end
+vectorMeta.__mul = function(a, b)
+    if type(a) == "number" then return vector(a * b.X, a * b.Y, a * b.Z) end
+    if type(b) == "number" then return vector(a.X * b, a.Y * b, a.Z * b) end
+    return vector(a.X * b.X, a.Y * b.Y, a.Z * b.Z)
+end
+vectorMeta.__div = function(a, b) return vector(a.X / b, a.Y / b, a.Z / b) end
+vectorMeta.__eq = function(a, b) return a.X == b.X and a.Y == b.Y and a.Z == b.Z end
+Vector3 = {
+    new = function(x, y, z) return vector(x or 0, y or 0, z or 0) end,
+    zero = vector(0, 0, 0),
+    one = vector(1, 1, 1),
+    xAxis = vector(1, 0, 0),
+    yAxis = vector(0, 1, 0),
+    zAxis = vector(0, 0, 1),
+}
 Rect = { new = function() return {} end }
-CFrame = { identity = {} }
+-- A CFrame here is a position plus look and right vectors; enough for
+-- camera-relative steering and teleports, not for composing rotations.
+local function frame(position, look, right)
+    local up = right:Cross(look)
+    return {
+        Position = position,
+        LookVector = look,
+        RightVector = right,
+        UpVector = up,
+        Rotation = { LookVector = look, RightVector = right },
+    }
+end
+CFrame = {
+    identity = frame(vector(0, 0, 0), vector(0, 0, -1), vector(1, 0, 0)),
+    new = function(x, y, z)
+        local position = if type(x) == "table" then x else vector(x or 0, y or 0, z or 0)
+        return frame(position, vector(0, 0, -1), vector(1, 0, 0))
+    end,
+    lookAlong = function(position, direction)
+        local look = direction.Unit
+        return frame(position, look, look:Cross(vector(0, 1, 0)).Unit)
+    end,
+    frame = frame,
+}
+Ray = { new = function(origin, direction) return { Origin = origin, Direction = direction } end }
+RaycastParams = { new = function() return {} end }
 Font = { fromEnum = function(e) return e end, new = function() return {} end }
 TweenInfo = { new = function(...) return { ... } end }
 NumberSequenceKeypoint = { new = function(time, value) return { Time = time, Value = value } end }
@@ -80,9 +140,19 @@ Enum = {
     ContextActionResult = enumOf("ContextActionResult", { "Sink", "Pass" }),
     UIFlexAlignment = enumOf("UIFlexAlignment", { "None", "Fill", "SpaceAround", "SpaceBetween", "SpaceEvenly" }),
     ScrollingDirection = enumOf("ScrollingDirection", { "X", "Y", "XY" }),
-    KeyCode = enumOf("KeyCode", { "Left", "Right", "Up", "Down", "Escape", "DPadLeft", "DPadRight", "ButtonB" }),
+    KeyCode = enumOf("KeyCode", {
+        "Left", "Right", "Up", "Down", "Escape", "DPadLeft", "DPadRight", "ButtonB",
+        "F", "G", "H", "J", "E", "Q", "V", "X", "Z", "Space", "LeftControl", "LeftShift", "RightShift",
+    }),
+    HumanoidStateType = enumOf("HumanoidStateType", { "Jumping", "Freefall", "Running", "Physics", "Dead" }),
+    VelocityConstraintMode = enumOf("VelocityConstraintMode", { "Line", "Plane", "Vector" }),
+    ActuatorRelativeTo = enumOf("ActuatorRelativeTo", { "Attachment0", "Attachment1", "World" }),
+    OrientationAlignmentMode = enumOf("OrientationAlignmentMode", { "OneAttachment", "TwoAttachment" }),
+    HighlightDepthMode = enumOf("HighlightDepthMode", { "AlwaysOnTop", "Occluded" }),
+    RaycastFilterType = enumOf("RaycastFilterType", { "Exclude", "Include" }),
 }
 Enum.UserInputType.MouseMovement = "UserInputType.MouseMovement"
+Enum.UserInputType.Keyboard = "UserInputType.Keyboard"
 
 Instance = {}
 -- Instances proxy their properties through a shadow table so that `Parent`
@@ -177,6 +247,7 @@ Instance.new = function(className)
             GuiObject = { Frame = true, TextLabel = true, TextButton = true, TextBox = true, ImageLabel = true, ImageButton = true, ScrollingFrame = true, CanvasGroup = true },
             GuiButton = { TextButton = true, ImageButton = true },
             LayerCollector = { ScreenGui = true, SurfaceGui = true, BillboardGui = true },
+            BasePart = { Part = true, MeshPart = true, UnionOperation = true },
         }
         return name == className or (family[name] ~= nil and family[name][className] == true)
     end
@@ -192,6 +263,16 @@ Instance.new = function(className)
         return nil
     end
     fields.FindFirstChild = function(_, name) return children[name] end
+    fields.GetDescendants = function()
+        local list = {}
+        for _, child in children do
+            table.insert(list, child)
+            for _, below in child:GetDescendants() do table.insert(list, below) end
+        end
+        return list
+    end
+    fields.DescendantAdded = newSignal()
+    fields.ChildAdded = newSignal()
     fields.Clone = function()
         local copy = Instance.new(className)
         for key, value in fields do
@@ -279,7 +360,103 @@ local function drain()
     end
 end
 
-HARNESS = { heartbeat = heartbeat, preRender = preRender, drain = drain, input = services.UserInputService }
+HARNESS = { heartbeat = heartbeat, preRender = preRender, drain = drain, input = services.UserInputService, services = services }
+
+-- A local player standing in a world, for the executor feature scripts. Each
+-- call replaces the previous world, and getgenv() keeps one table per world.
+function HARNESS.world()
+    local genv = {}
+    getgenv = function() return genv end
+    local function character(name)
+        local model = Instance.new("Model")
+        model.Name = name
+        local humanoid = Instance.new("Humanoid")
+        humanoid.WalkSpeed, humanoid.JumpPower, humanoid.JumpHeight = 16, 50, 7.2
+        humanoid.UseJumpPower, humanoid.MoveDirection, humanoid.Health = false, Vector3.zero, 100
+        humanoid.ChangeState = function(self, state) self.lastState = state end
+        humanoid.Parent = model
+        local root = Instance.new("Part")
+        root.Name = "HumanoidRootPart"
+        root.CanCollide, root.Position = true, Vector3.new(0, 3, 0)
+        root.Parent = model
+        humanoid.RootPart = root
+        local head = Instance.new("Part")
+        head.Name = "Head"
+        head.CanCollide = true
+        head.Parent = model
+        model.PivotTo = function(self, target) self.pivot = target end
+        model.GetPivot = function(self) return self.pivot or CFrame.new(root.Position) end
+        model.WaitForChild = function(self, childName) return self:FindFirstChild(childName) end
+        return model, humanoid, root
+    end
+    local player = { Name = "Player1", DisplayName = "Player1", UserId = 1, CharacterAdded = newSignal(), Idled = newSignal() }
+    player.Character = character("Player1")
+    local camera = { CFrame = CFrame.identity, ViewportSize = Vector2.new(1280, 720) }
+    camera.ViewportPointToRay = function(_, x, y) return Ray.new(Vector3.new(x, 50, y), Vector3.new(0, -1, 0)) end
+    local workspace = Instance.new("Workspace")
+    workspace.CurrentCamera = camera
+    workspace.Gravity = 196.2
+    workspace.Raycast = function(_, origin, direction)
+        return workspace.hit and { Position = workspace.hit, Instance = Instance.new("Part") } or nil
+    end
+    local lighting = Instance.new("Lighting")
+    lighting.Brightness, lighting.ClockTime, lighting.FogEnd, lighting.GlobalShadows = 1, 20, 500, true
+    lighting.Ambient, lighting.OutdoorAmbient = Color3.fromRGB(20, 20, 20), Color3.fromRGB(40, 40, 40)
+    local others = {}
+    services.Players = {
+        LocalPlayer = player,
+        PlayerAdded = newSignal(),
+        PlayerRemoving = newSignal(),
+        GetPlayers = function()
+            local list = { player }
+            for _, other in others do table.insert(list, other) end
+            return list
+        end,
+    }
+    services.Workspace = workspace
+    services.Lighting = lighting
+    services.RunService.PreSimulation = newSignal()
+    services.RunService.Stepped = newSignal()
+    services.UserInputService = {
+        InputBegan = newSignal(),
+        InputEnded = newSignal(),
+        InputChanged = newSignal(),
+        JumpRequest = newSignal(),
+        TouchTapInWorld = newSignal(),
+        TouchEnabled = false,
+        MouseEnabled = true,
+        IsKeyDown = function(self, key) return self.down == key end,
+        GetMouseLocation = function() return Vector2.new(640, 360) end,
+    }
+    services.VirtualUser = {
+        CaptureController = function(self) self.captured = true end,
+        ClickButton2 = function(self) self.clicks = (self.clicks or 0) + 1 end,
+    }
+    HARNESS.input = services.UserInputService
+    local world = { player = player, camera = camera, workspace = workspace, lighting = lighting, genv = genv }
+    function world.join(name)
+        local other = { Name = name, DisplayName = name, UserId = #others + 2, CharacterAdded = newSignal() }
+        other.Character = character(name)
+        table.insert(others, other)
+        services.Players.PlayerAdded:Fire(other)
+        return other
+    end
+    function world.leave(other)
+        table.remove(others, table.find(others, other))
+        services.Players.PlayerRemoving:Fire(other)
+    end
+    function world.respawn(who)
+        local model = character(who.Name)
+        who.Character = model
+        who.CharacterAdded:Fire(model)
+        return model
+    end
+    function world.key(code, down)
+        local signal = if down == false then services.UserInputService.InputEnded else services.UserInputService.InputBegan
+        signal:Fire({ KeyCode = code, UserInputType = Enum.UserInputType.Keyboard }, false)
+    end
+    return world
+end
 
 script = {}
 script.Parent = {}

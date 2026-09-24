@@ -5,7 +5,7 @@
 
 # Style pack
 
-Read this before building or restyling UI. It holds the style picker question, the everyday words users say, what each picked code (T1-T10, M0-M12, N1-N10, O1-O5, P1-P3, S1-S3) builds, and the tested recipe for every code in full. Recolour a recipe only through its THEME block.
+Read this before building or restyling UI. It holds the style picker question, the everyday words users say, what each picked code (T1-T30, C1-C20, D1-D22, M0-M36, N1-N30, O1-O20, P1-P22, S1-S22, H1-H12) builds, and the tested recipe for every code in full. Recolour a recipe only through its THEME block.
 
 ## Source: .claude/skills/roblox-request-intake/references/visual-choices.md
 
@@ -19,12 +19,12 @@ existing interface matched. A bug fix does not need a style questionnaire.
 ## The guide and its link
 
 The guide is the **Roblox UI style picker**: playable, labeled examples of
-twenty toggles (T1–T20), ten checkboxes and choice groups (C1–C10), twelve
-dropdowns and search fields (D1–D12), twenty-five menu movements (M0–M24)
-picked separately for opening and closing, twenty notification styles
-(N1–N20), twelve ways to hide and bring back the whole UI (O1–O12), twelve
-button feels (P1–P12), twelve tab switches (S1–S12) and a window diagram that
-numbers its parts (W1–W22). A second page, the **UI designer**
+thirty toggles (T1–T30), twenty checkboxes and choice groups (C1–C20),
+twenty-two dropdowns and search fields (D1–D22), thirty-seven menu movements
+(M0–M36) picked separately for opening and closing, thirty notification styles
+(N1–N30), twenty ways to hide and bring back the whole UI (O1–O20), twenty-two
+button feels (P1–P22), twenty-two tab switches (S1–S22), twelve tooltips and
+slider values (H1–H12) and a window diagram that numbers its parts (W1–W22). A second page, the **UI designer**
 (<https://x-yami-sukehiro-x.github.io/roblox-luau-expert-skill/designer.html>),
 lets the user lay out a whole screen and copy it; build that export with
 `../../roblox-ui/references/design-spec.md`. The user picks,
@@ -98,6 +98,16 @@ clause, and ask only if two readings produce different work:
 | keyboard key you push down | T18 |
 | switch with a line of description under the name | T19 |
 | icon, name, then the switch | T20 |
+| switch that fills with colour | T21 |
+| Off and On written either side | T22 |
+| switch that glows, neon | T23 |
+| up and down like a light switch | T24 |
+| dot inside a circle | T25 |
+| stripe on the side lights up | T26 |
+| I and O rocker, power strip switch | T27 |
+| small ON / OFF pill | T28 |
+| switch that shows its hotkey | T29 |
+| small or tiny switch | T30 |
 | tick that draws itself in | C1 |
 | outline tick, box stays empty | C2 |
 | checkbox on the right side | C3 |
@@ -108,6 +118,16 @@ clause, and ask only if two readings produce different work:
 | radio buttons, pick only one | C8 |
 | chips or tags you pick | C9 |
 | tiles with icons you pick | C10 |
+| just a tick at the end, no box | C11 |
+| checkbox with a number | C12 |
+| red X box, ignore list | C13 |
+| big checkbox, easy to tap | C14 |
+| quest list with a progress bar | C15 |
+| buttons stuck together, pick several | C16 |
+| star rating | C17 |
+| colour dots or circles | C18 |
+| S M L size buttons | C19 |
+| pick one card with details | C20 |
 | normal dropdown | D1 |
 | dropdown you can type in to search | D2 |
 | pick several from a list | D3 |
@@ -120,6 +140,16 @@ clause, and ask only if two readings produce different work:
 | pick a player, with their picture | D10 |
 | big search box in the middle, command palette | D11 |
 | colour picker, colour swatches | D12 |
+| list with a description under each | D13 |
+| recent picks at the top | D14 |
+| list that opens upward | D15 |
+| list that slides up from the bottom, phone style | D16 |
+| finishes the word as I type, Tab to complete | D17 |
+| grid of tiles instead of a list | D18 |
+| button with a little arrow to change it | D19 |
+| pick several then press Apply | D20 |
+| menu inside a menu, folders | D21 |
+| add my own option | D22 |
 | no animation, just appear | M0 |
 | fade, gently appears | M1 |
 | slides up a little | M2 |
@@ -145,6 +175,18 @@ clause, and ask only if two readings produce different work:
 | jelly, wobbly | M22 |
 | snappy, instant but smooth | M23 |
 | slow fade | M24 |
+| spins in, twirls | M25 |
+| slides in from the corner, diagonal | M26 |
+| opens like a curtain from the left | M27 |
+| starts as a circle and grows | M28 |
+| bounces up from below | M29 |
+| slides in and wobbles | M30 |
+| zooms from far away | M31 |
+| drops in tilted and straightens | M32 |
+| each row pops in | M33 |
+| smooth long glide | M34 |
+| pops and pulses, heartbeat | M35 |
+| shrinks away into the middle | M36 |
 | message at the bottom | N1 |
 | message near the top | N2 |
 | next to what I changed | N3 |
@@ -165,6 +207,16 @@ clause, and ask only if two readings produce different work:
 | snackbar with a button | N18 |
 | cards stacked on top of each other | N19 |
 | kill feed, activity feed | N20 |
+| popup with the player's picture | N21 |
+| loading bar popup with a percent | N22 |
+| pill at the top that opens, dynamic island | N23 |
+| popup that stays until I close it | N24 |
+| +250 coins floats up | N25 |
+| quest step done, objective complete | N26 |
+| notification bell with a number | N27 |
+| party invite with Accept and Decline | N28 |
+| subtitles, captions | N29 |
+| screen edges flash red | N30 |
 | close it and a button brings it back | O1 |
 | shrink into the button, minimise | O2 |
 | fold up to the title bar | O3 |
@@ -177,6 +229,14 @@ clause, and ask only if two readings produce different work:
 | reminds me which key opens it | O10 |
 | asks hide or unload before closing | O11 |
 | goodbye screen when it closes | O12 |
+| a tab at the bottom to pull it up | O13 |
+| icons at the bottom like a taskbar, dock | O14 |
+| see-through, ghost mode while I play | O15 |
+| keep only the side icons | O16 |
+| only shows while I hold a key | O17 |
+| round button in the corner | O18 |
+| swipe it off the screen | O19 |
+| hides itself when I stop | O20 |
 | changes colour when pressed | P1 |
 | pushes in, clicky | P2 |
 | lifts on hover | P3 |
@@ -189,6 +249,16 @@ clause, and ask only if two readings produce different work:
 | hold to confirm | P10 |
 | arrow that moves | P11 |
 | pops when clicked | P12 |
+| outline that fills on hover | P13 |
+| icon spins, refresh button | P14 |
+| shimmer, shiny hover | P15 |
+| shows it is working after a click | P16 |
+| turns into Done with a tick | P17 |
+| cooldown timer before I can press again | P18 |
+| press twice to be sure | P19 |
+| shakes when I can't | P20 |
+| bouncy hover | P21 |
+| tilts when pressed | P22 |
 | line under the tab | S1 |
 | pill behind the tab | S2 |
 | just highlight the tab | S3 |
@@ -201,6 +271,28 @@ clause, and ask only if two readings produce different work:
 | pages fade | S10 |
 | dot under the tab | S11 |
 | tabs that scroll sideways | S12 |
+| tabs at the bottom, like a phone app | S13 |
+| numbers on the tabs | S14 |
+| step 1, step 2, wizard | S15 |
+| tabs like folders | S16 |
+| icons that show a name when picked | S17 |
+| sidebar with group headings | S18 |
+| chosen tab gets bigger | S19 |
+| extra tabs under More | S20 |
+| left and right arrows, one page at a time | S21 |
+| sections that fold open, accordion | S22 |
+| words when I hover | H1 |
+| speech bubble pointing at the button | H2 |
+| number pops up when I drag a slider | H3 |
+| number on the slider knob | H4 |
+| min and max under the slider | H5 |
+| little i button to tap | H6 |
+| tooltip with a title and the hotkey | H7 |
+| tooltip follows my mouse | H8 |
+| tells me why it is locked | H9 |
+| press and hold to see | H10 |
+| hint under a text box | H11 |
+| points at something new, Got it | H12 |
 
 Mixed answers are normal: "T1 but square" is T2; "M2 with less movement" is M2
 at 8 px; "like N4 but at the top" is N7. "Pop in, fade out" is opening M3 and
@@ -255,7 +347,7 @@ The guide's "Point at it" diagram numbers these parts, so a user can answer
 | W6 | "the side menu", "list on the left" | sidebar / tab rail | vertical tabs; selection persists |
 | W7 | "the pages", "sections", "categories" | tabs | see S1–S12 |
 | W8 | "the little titles", "group names" | section heading | 12 px caption, muted, above a group |
-| W9 | "on/off thing", "switch", "tick" | toggle | see T1–T20; a plain checkbox is C1–C10 |
+| W9 | "on/off thing", "switch", "tick" | toggle | see T1–T30; a plain checkbox is C1–C20 |
 | W10 | "the bar you drag", "number bar", "range" | slider | shows its value; arrow keys and gamepad step it |
 | W11 | "list that opens", "picker", "choose one" | dropdown | closes on outside tap; long lists scroll; see D1–D12 |
 | W12 | "the button" | button | label names the action: `Teleport to spawn` |
@@ -263,7 +355,7 @@ The guide's "Point at it" diagram numbers these parts, so a user can answer
 | W14 | "search bar", "find box" | search box | filters as they type; clear button; D5 or D11 |
 | W15 | "typing box", "where I put the name" | text box | placeholder, focus ring, inline error (N3) |
 | W16 | "popup message", "alert", "notification" | toast / notice | see N1–N20 |
-| W17 | "the hint when I hover" | tooltip | never the only place information lives; phones have no hover |
+| W17 | "the hint when I hover" | tooltip | H1–H12; never the only place information lives; phones have no hover |
 | W18 | "scroll thing" | scrollbar | thin, only where content overflows |
 | W19 | "dark background behind the popup" | backdrop / scrim | dims the game; a tap on it cancels |
 | W20 | "button that opens the menu", "toggle UI button" | launcher | stays on screen when the window is closed |
@@ -310,7 +402,8 @@ offline copy `docs/visual-guide/index.html`) shows every option with a code:
 **T** toggles, **C** checkboxes and choice groups, **D** dropdowns (including
 search fields), **M** menu movement (opening and closing can differ), **N**
 notifications, **O** how the whole UI hides and comes back, **P** press feel,
-**S** tab switch, and **W** for the parts of a window. When a user answers
+**S** tab switch, **H** tooltips and slider values, and **W** for the parts
+of a window. When a user answers
 "T2 + M4 + N4", that answer is a contract. This file says exactly what each code
 builds and which tested recipe builds it.
 
@@ -340,7 +433,7 @@ marks on the slop, format and UI rubrics.
    (`../../roblox-ui/references/functional-proof.md`).
 
 If the user gave no answer and asked you to decide, use **T1 + C1 + D1 + M1 +
-N1 + O1 + P1 + S1**; for an executor hub use **N4** instead of N1, **D2** for a
+N1 + O1 + P1 + S1**, H1 on buttons that need a word and H3 on sliders; for an executor hub use **N4** instead of N1, **D2** for a
 list longer than about eight options and **D10** to pick a player. Say which
 you used, once.
 
@@ -348,7 +441,8 @@ you used, once.
 
 `createToggle(parent, label, style, initial, onChanged, details?)` returns
 `{ row, set, get, setEnabled, destroy }`. `details` is
-`{ description = "...", icon = "rbxassetid://..." }`, read by T19 and T20. Every row is 44 px tall so the whole
+`{ description = "...", icon = "rbxassetid://...", key = "F" }`: T19 reads
+`description`, T20 `icon`, T29 `key`. Every row is 44 px tall so the whole
 row is the touch target, and each style shows state by shape or words as well
 as colour.
 
@@ -374,6 +468,16 @@ as colour.
 | T18 | "key you push", "keyboard key" | push key | 52×36 key cap on a base; on sinks 4 px and reads `ON` |
 | T19 | "switch with a description" | described row | 56 px row: label and a 12 px description on the left, T1 on the right |
 | T20 | "icon, name and switch" | icon row switch | 16 px icon before the label (from `details.icon`), T1 on the right |
+| T21 | "switch that fills up" | fill switch | T1 track; the accent fill widens behind the knob as it travels |
+| T22 | "Off and On either side" | words at both ends | `Off`, the T1 track, `On`; the chosen word takes the text colour, the other goes muted |
+| T23 | "switch that glows", "neon switch" | glow switch | T1 with a 2 px accent `UIStroke` named `Glow` on the track while on |
+| T24 | "wall light switch" | up-down lever | upright track 24×40; knob y 19 → 3, so up is on |
+| T25 | "dot in a circle" | dot in a ring | 22 px ring; a 10 px dot grows inside on a `UIScale` 0 → 1 |
+| T26 | "stripe on the side" | edge stripe | 4×24 stripe on the row's left edge lights accent; a `Status` word says ON / OFF |
+| T27 | "I and O switch", "power strip switch" | rocker | a two-sided cap marked O and I; the pressed side sinks and darkens |
+| T28 | "little ON OFF pill" | status pill | a pill at the row end: `ON` on the dim accent, `OFF` on the raised surface |
+| T29 | "shows the keybind" | switch with hotkey | a key chip (`details.key`, default `F`) before a T1 switch |
+| T30 | "small switch", "tiny toggle" | mini switch | track 32×18, knob 14, x 2 → 16; the row stays 44 px |
 
 Pressing the half of T4 that is already chosen leaves the value alone. T5 and
 T14 are the only styles where the row colour carries state; the word or tick
@@ -398,13 +502,26 @@ returns `{ row, set, get, setEnabled, destroy }`. A group:
 | C8 | "radio buttons", "pick one" | radio group | round markers; exactly one chosen; the only choice cannot be cleared |
 | C9 | "chips", "tags to pick" | chip group | 44 px pills that wrap onto more lines |
 | C10 | "tiles with icons" | icon tiles | 88×88 tiles, icon from `details.icons[name]` (default package), tick badge |
+| C11 | "just a tick at the end" | tick on the right | no box; a 16 px tick appears at the end of the chosen row |
+| C12 | "checkbox with a number" | box with a count | C1 box plus a muted count at the row end from `details.count` |
+| C13 | "X box", "ignore list" | cross box | the box fills with the danger colour and shows a cross, for exclusions |
+| C14 | "large checkbox", "easy to tap" | big tick box | 32 px box, 20 px tick |
+| C15 | "quest list with a bar" | checklist with progress | a `Progress` header, "n of m done" and a filling bar; ticked rows strike through |
+| C16 | "buttons stuck together" | joined buttons | multi-select segments in one `CanvasGroup` track; each chosen segment fills and ticks |
+| C17 | "stars", "rate it out of five" | star rating | pick one; every star up to the chosen index lights |
+| C18 | "colour circles" | colour dots | 32 px dots from `details.colours[name]`; the chosen one gets a ring and a tick |
+| C19 | "S M L", "small medium large" | size buttons | 64×36 cells; a `Marker` block slides to the chosen one |
+| C20 | "pick one card" | plan cards | radio cards with a line each from `details.descriptions[name]` |
+
+C8, C17, C18, C19 and C20 choose exactly one; the rest choose any number.
 
 ## Dropdowns and search fields — `../assets/dropdowns.luau`
 
 `createDropdown(parent, style, spec)` with `spec = { label, options, chosen?,
 onChanged, host? }` returns `{ root, get, set, setOptions, open, close, destroy
 }`. An option is a string or `{ text, display?, detail?, icon?, image?, group?,
-colour? }`. The list opens in its own `ScreenGui` one `DisplayOrder` above the
+colour?, children? }`. D19 calls `spec.onRun(chosen)` from its main half; D22
+calls `spec.onCreate(text)` before choosing the new option. The list opens in its own `ScreenGui` one `DisplayOrder` above the
 host, so no `ScrollingFrame` clips it; a tap outside closes it. Lists show five
 rows and scroll; an empty list says "No matches" or "Nothing to choose yet".
 
@@ -422,6 +539,16 @@ rows and scroll; an empty list says "No matches" or "Nothing to choose yet".
 | D10 | "pick a player" | player picker | every other player with a headshot; updates as they join and leave |
 | D11 | "command palette", "big search box" | palette | a centred search panel; type to filter, Enter runs the first match |
 | D12 | "colour picker", "swatches" | swatches | options with `colour` shown as swatches |
+| D13 | "list with descriptions" | two-line options | 56 px rows: the option and a muted `detail` line under it |
+| D14 | "recent at the top" | recent first | the last three picks under RECENT, then ALL |
+| D15 | "list goes up" | opens upward | the list prefers the space above the field |
+| D16 | "phone style list" | bottom sheet | the list slides up from the bottom edge and dims the game behind it |
+| D17 | "finishes the word for me" | autocomplete | the rest of the first match shows as ghost text; Tab accepts it |
+| D18 | "tiles to pick from" | grid | options as 72 px tiles in three columns, icon over the name |
+| D19 | "run it or change it" | split button | the main half runs the choice (`onRun`); the chevron half opens the list |
+| D20 | "Apply button" | pick then apply | ticks wait in the list; only Apply changes the value, closing discards them |
+| D21 | "menu inside a menu" | sub-menus | an option with `children` opens its own list with a Back row |
+| D22 | "add my own option" | type to add | typing a new name offers `Add "name"`; picking it calls `onCreate` |
 
 
 ## Menu movement — `../assets/menus.luau`
@@ -459,6 +586,18 @@ exits use In easing and travel less.
 | M22 | "jelly", "wobbly pop" | jelly pop | `UIScale` 0.8 → 1 on Elastic Out, 0.5 s |
 | M23 | "snappy", "quick" | snap | 0.10 s in, 0.08 s out, a tiny scale |
 | M24 | "slow fade" | slow fade | fade only, 0.35 s in, 0.25 s out, Sine |
+| M25 | "spins into place" | spin in | the M5 grow with a quarter turn, −90° → 0, one overshoot; leaves turning 45° |
+| M26 | "comes in at an angle" | diagonal slide | 24 px from the lower left with the fade; leaves 12 px |
+| M27 | "wipes in from the left" | curtain | width unfolds from the left edge, keeping that edge still |
+| M28 | "starts as a circle" | grow from a circle | a 48 px circle at the centre grows into the panel while its corner eases to 10 px |
+| M29 | "bounces up from below" | bounce up | 40 px rise on Bounce Out, 0.45 s |
+| M30 | "wobbly slide" | jelly slide | 48 px from the left on Elastic Out, 0.5 s |
+| M31 | "zooms from far away" | zoom from far | `UIScale` 0.5 → 1 on the settle timing, one overshoot |
+| M32 | "falls and straightens" | tilt and drop | 24 px drop tilted 8°, straightens on the settle timing |
+| M33 | "each row pops in" | rows pop | the M12 cascade with each row's `RowScale` 0.9 → 1 |
+| M34 | "smooth long slide" | glide | 120 px from the right, 0.5 s Quint Out; out 0.3 s Quint In |
+| M35 | "heartbeat" | heartbeat pop | the M3 pop, then two 1.04 beats of 0.12 s |
+| M36 | "shrinks away to the middle" | collapse to centre | opens with a 0.9 grow; closes shrinking to 0.5 |
 
 Every style needs a way back: when the window closes, a launcher button (W20)
 stays on screen. A keybind alone strands a phone player. Reopening during a
@@ -467,7 +606,7 @@ reopened panel. A panel dragged while open keeps its new
 position. With reduced motion every style becomes a 0.08 s fade. A `UIScale`
 used for screen-size scaling belongs on a parent frame, not on the panel.
 
-## Notifications — `../assets/toasts.luau` and `../assets/notices.luau`
+## Notifications — `../assets/toasts.luau`, `../assets/notices.luau` and `../assets/announcements.luau`
 
 Every notification shares the panel's surface entry: the same fill, edge and
 10 px radius. Each carries an icon image as well as a hue, holds at least
@@ -496,6 +635,16 @@ until dismissed and get a 44 px dismiss button with a 16 px mark.
 | N18 | "snackbar" | snackbar | `announcements.createSnackbar(screen)`: one bar at the bottom, 4 s, 6 s with an action |
 | N19 | "cards stacked on each other" | stacked cards | `createNotifier(screen, "N19")`: a deck that peeks 8 px and spreads on hover |
 | N20 | "activity feed", "kill feed" | feed | `announcements.createFeed(screen).push(text, severity?)`: up to 6 lines, each fades after 4 s |
+| N21 | "someone joined", "popup with their picture" | player popup | `notifier.player(message, userId)`: a 32 px round headshot leads the toast |
+| N22 | "loading bar popup" | progress with percent | `notifier.percent(message)` returns `{ set(fraction), done(message, severity?) }`; a bar and a percent |
+| N23 | "dynamic island" | island | `announcements.createIsland(screen).show(text, more?)`: a pill under the top bar that opens on hover or tap |
+| N24 | "popup that does not go away" | sticky toast | `notifier.sticky(message, severity?)`: no timer, a 44 px dismiss button |
+| N25 | "+250 coins floats up" | floating reward | `announcements.floatText(anchor, text, icon?)`: rises 40 px from the anchor and fades |
+| N26 | "quest step done" | objective complete | `announcements.createObjectives(screen).complete(text)`: a tick card at the right edge |
+| N27 | "notification bell" | bell with a count | `announcements.createInbox(screen)`: `push(text)`, `unread()`; a bell with a badge opens the list |
+| N28 | "party invite" | invite | `notifier.invite(message, onAccept, onDecline?)`: Decline and Accept buttons, leaves after 10 s |
+| N29 | "subtitles" | captions | `announcements.createCaptions(screen).say(text, name?)`: one line near the bottom, speaker first |
+| N30 | "screen flashes red" | edge flash | `announcements.flashEdges(screen, severity?)`: gradient strips pulse on all four edges |
 
 The stacked styles (N1, N2, N4) show three at a time, queue up to ten, collapse
 a repeated `key` into `×2`, pause while hovered and reflow with a spring when a
@@ -506,7 +655,7 @@ safe choice.
 
 ## Hiding and bringing back the whole UI — `../assets/windows.luau`
 
-`createWindow({ panel, launcher, header, body, opener }, style)` returns
+`createWindow({ panel, launcher, header, body, rail, dock, opener, keyName }, style)` returns
 `{ show, hide, toggle, isShown, destroy }`; wire the close or minimise button
 and the keybind to `hide` / `toggle`. Every style leaves a way back on screen,
 because a keybind alone strands a phone player.
@@ -525,12 +674,26 @@ because a keybind alone strands a phone player.
 | O10 | "tells me the key to open it" | key reminder | a chip "Press `keyName` to open" that collapses to the key after 5 s |
 | O11 | "asks before closing" | ask first | close asks Hide, Unload script or Cancel; unload calls `onUnload` |
 | O12 | "goodbye screen" | outro card | `playOutro(screen, title, onDone)`: the O5 card on the way out, 0.8 s hold |
+| O13 | "a tab at the bottom" | pull-up tab | slides down out of view; a tab at the bottom brings it up |
+| O14 | "dock", "taskbar" | dock | shrinks into its icon in a `Dock` bar; pass one `dock` to share it between windows |
+| O15 | "ghost mode", "see through while I play" | see-through | goes to 0.8 transparency with `Interactable = false`; an eye button makes it solid |
+| O16 | "keep only the side icons" | shrink to the rail | the width folds to `rail`; a button beside it expands the rest |
+| O17 | "only while I hold a key" | hold to show | shown only while `keyName` (default LeftAlt) or the on-screen "Hold to show" button is held |
+| O18 | "floating action button" | corner button | shrinks into a round button in the bottom-right corner |
+| O19 | "swipe it away" | swipe away | drag the header sideways past 120 px to send it off that side; the tab waits there |
+| O20 | "hides when I stop" | hides when idle | fades after 8 s without input over the screen; any input brings it back |
 
 ## Press feel — `../assets/press-and-tabs.luau`
 
 `attachPress(button, style, onHold?)` returns a cleanup function. P4, P8, P9,
 P10 and P11 draw inside the button, so they need a button with no
-`UIListLayout`.
+`UIListLayout`; P14 spins the button's child named `Icon`.
+
+The P16 to P20 styles are about what an action does, not how the button
+moves: `attachAction(button, style, { run, seconds?, confirmText?, allowed? })`
+returns a cleanup function. `run(finish)` does the work and calls
+`finish(true)` or `finish(false)`; P18 reads `seconds`, P19 `confirmText`,
+P20 `allowed`.
 
 | Code | People say | What it is | Exact build |
 |---|---|---|---|
@@ -546,12 +709,23 @@ P10 and P11 draw inside the button, so they need a button with no
 | P10 | "hold to confirm" | hold | holding fills the button over 1 s, then calls `onHold`; release early cancels |
 | P11 | "arrow moves" | arrow nudge | a 16 px arrow at the right edge nudges 4 px right on hover |
 | P12 | "pops when clicked" | click pop | a quick 1.05 pop and an accent edge flash on click |
+| P13 | "outline button" | outline fill | outlined at rest; the fill comes in on hover and deepens on press |
+| P14 | "refresh button" | icon spin | the `Icon` child turns a full circle on press |
+| P15 | "shiny hover" | shimmer | a `Shimmer` gradient drifts across only while hovered |
+| P16 | "loading after click" | working | `attachAction`: reads "Working…" and cannot be pressed until `finish` |
+| P17 | "turns green with a tick" | done state | `attachAction`: "Done" or "Failed" for 1.2 s, then the label returns |
+| P18 | "timer before I can press again" | cooldown | `attachAction`: a draining `CooldownLayer` and "label 4s" until ready |
+| P19 | "click again to be sure" | press twice | `attachAction`: the first press asks "Press again to confirm" for 3 s |
+| P20 | "wiggles if I can't" | shake when blocked | `attachAction`: when `allowed()` is false it shakes ±4° and does not run |
+| P21 | "grows with a bounce" | bouncy hover | `UIScale` 1.06 on hover with a Back overshoot back |
+| P22 | "tilts when I press it" | tilt on press | `Rotation` −2° while held |
 
 ## Tab switch — `../assets/press-and-tabs.luau`
 
 `createTabs(parent, names, style, onSelect, options?)` returns `{ select,
-selected, destroy }`. `options = { icons = { [name] = id }, pages = { [name] =
-CanvasGroup } }`: S6 and S7 read `icons`; S9 and S10 turn `pages`. The selected tab persists; focus and hover never change it.
+selected, destroy }`. `options = { icons, pages, counts, groups, visible }`: S6, S7, S13 and S17
+read `icons`; S9, S10 and S22 turn `pages`; S14 reads `counts`, S18 `groups`
+and S20 `visible` (how many tabs show before More). The selected tab persists; focus and hover never change it.
 
 | Code | People say | What it is | Exact build |
 |---|---|---|---|
@@ -567,6 +741,47 @@ CanvasGroup } }`: S6 and S7 read `icons`; S9 and S10 turn `pages`. The selected 
 | S10 | "pages fade" | page fade | S1 underline, and the page cross-fades |
 | S11 | "dot under the tab" | dot marker | a 6 px dot slides under the chosen tab |
 | S12 | "tabs scroll sideways" | scrolling tabs | a scrolling strip with a pill marker that scrolls the chosen tab into view |
+| S13 | "tabs at the bottom", "like a phone app" | bottom tab bar | 56 px bar of icon-over-name tabs; a 2 px line on top of the chosen one |
+| S14 | "numbers on the tabs" | tabs with counts | S1 with a `Count` badge from `counts[name]` |
+| S15 | "step 1, step 2" | numbered steps | numbered circles; steps before the chosen one show a tick |
+| S16 | "tabs like folders" | folder tabs | the chosen tab takes the page's surface and joins it by 6 px |
+| S17 | "icons that show a name when picked" | expanding icon | icons only; the chosen one widens to show its name |
+| S18 | "sidebar with headings" | grouped side list | S4 under `{group}Heading` labels from `groups` |
+| S19 | "chosen tab gets big" | bigger when chosen | the chosen tab's name goes to 20 px; nothing slides |
+| S20 | "too many tabs" | more menu | the first `visible` tabs show; the rest open from a More button |
+| S21 | "one page at a time" | arrows between pages | one name with previous and next buttons that wrap |
+| S22 | "accordion" | sections that open | each tab is a heading; its page opens under it, one at a time |
+
+## Tooltips and slider values — `../assets/tooltips.luau`
+
+The words that explain a control. Every style is readable without a mouse:
+hover styles open on a 0.5 s long press on a phone and on gamepad selection.
+Full guidance is `../../roblox-ui-tooltips/SKILL.md`.
+
+`createTooltip(target, style, { text, title?, keyHint?, host? })` returns
+`{ setText, setDisabled, show, hide, destroy }` and draws in its own
+`TooltipLayer` two `DisplayOrder`s above the host, so nothing clips it.
+`createSliderValue({ track, thumb, min, max, format? }, style)` returns
+`{ update(value), setDragging(on), destroy }`.
+
+| Code | People say | What it is | Exact build |
+|---|---|---|---|
+| H1 | "words when I hover" | hover tooltip | after 0.4 s at rest, 8 px under the control; flips above near the bottom, never crosses a side edge |
+| H2 | "speech bubble" | bubble with arrow | H1 above the control with an `Arrow` pointing at it |
+| H3 | "number pops up when I drag" | drag value | `createSliderValue(parts, "H3")`: the formatted value floats 8 px over the thumb only while dragging |
+| H4 | "number on the knob" | value on the knob | `createSliderValue(parts, "H4")`: a `ValueTag` rides the thumb always |
+| H5 | "min and max under it" | ends and value | `createSliderValue(parts, "H5")`: `Min` and `Max` under the ends, `Value` after the track |
+| H6 | "little i button" | info button | `createInfoButton(parent, text, order?)`: a 44 px button; tap opens, a tap elsewhere or Escape closes |
+| H7 | "tooltip with a title" | titled tooltip | bold `title`, a 12 px line and a `keyHint` chip |
+| H8 | "follows my mouse" | follows the pointer | sits 16 px right and below the pointer and follows it |
+| H9 | "why is it locked" | locked reason | `setDisabled(true)` lays a `ReasonCatcher` over the control; tap or hover says why, with a lock |
+| H10 | "hold to see" | press and hold | nothing on hover; shows after a 0.5 s hold, hides on release |
+| H11 | "hint under the box" | helper line | `createHelperText(parent, text, order)`: a 12 px hint that `setError(message)` turns into the error with an icon |
+| H12 | "points at something new" | coach mark | `showCoachMark(target, text, onDone)`: a ring on the target and a bubble with Got it; returns `dismiss` |
+
+A tooltip names what the control does in the game's words and stays under
+about twelve words. Anything the player must know to play is H11 or H6, never
+a hover.
 
 ## Window parts — the W codes
 
@@ -748,6 +963,105 @@ nearest row above; never invent an id.
 
 ---
 
+## Source: .claude/skills/roblox-ui-tooltips/SKILL.md
+
+---
+name: roblox-ui-tooltips
+description: Tooltips and the words around a control in Roblox UI — hover tooltips, bubbles with arrows, slider value readouts while dragging, values on the knob, min and max labels, info buttons, titled tooltips with a hotkey, pointer-following labels, locked-button reasons, press-and-hold hints, helper and error lines under a field, and first-time coach marks. Covers which one to use, delay and hide timing, placement and edge flipping, touch and gamepad access so nothing is hover-only, layering above scrolling frames, text length, and the tested H1-H12 recipes. Use for any tooltip, hover text, slider number, "what does this do", "why can't I press this", "add a hint", or a picked H code.
+---
+
+# Tooltips and slider values
+
+A tooltip is the most over-used and least reachable piece of Roblox UI: a
+phone has no hover, a gamepad has no pointer, and a `ScrollingFrame` clips
+anything drawn inside it. Decide first whether the words belong in a tooltip
+at all.
+
+Each H code has a tested implementation in
+`../roblox-ui-components/assets/tooltips.luau`, specified in
+`../roblox-ui-components/references/style-recipes.md`. Paste the recipe and
+change only its `THEME`; the picker at
+<https://x-yami-sukehiro-x.github.io/roblox-luau-expert-skill/> shows every
+code working.
+
+| Need | File |
+|---|---|
+| placement, flipping, timing, touch and gamepad, layering | `references/tooltip-patterns.md` |
+| slider numbers: which readout, formatting, units, typing a value | `references/slider-values.md` |
+
+---
+
+## Which one
+
+| The words are | Use | Code |
+|---|---|---|
+| a name for an icon-only button | hover tooltip | H1, H2 |
+| a slider's current number | drag value, value on the knob, or ends and value | H3, H4, H5 |
+| something the player needs before choosing | an info button | H6 |
+| a feature with a hotkey | titled tooltip | H7 |
+| about a point on a map or chart | follows the pointer | H8 |
+| why a control is locked | locked reason | H9 |
+| a preview the player asks for deliberately | press and hold | H10 |
+| a rule for a text field, or its error | helper line | H11 |
+| a one-time pointer at something new | coach mark | H12 |
+
+**Anything the player must know to play is never a hover.** It is a helper
+line (H11), an info button (H6) or the label itself. A tooltip that repeats
+the button's own label is noise: delete it.
+
+If the user has not picked, use **H1** for icon-only buttons and **H3** for
+sliders, and say so once.
+
+---
+
+## Rules every tooltip follows
+
+1. **Reachable three ways.** Mouse hover after a rest, a 0.5 s long press on
+   touch, and gamepad selection (`SelectionGained`). A tap on a phone fires a
+   fake `MouseEnter`; ignore it when `UserInputService:GetLastInputType()` is
+   `Touch` so a tap does not open a tooltip and trigger the button at once.
+2. **Delay in, instant out.** Show after 0.4 s at rest so passing over a row of
+   buttons shows nothing; hide the moment the pointer leaves.
+3. **Its own layer.** Draw in a separate `ScreenGui` above the host
+   (`DisplayOrder` + 2), positioned from the target's `AbsolutePosition`.
+   Inside a `ScrollingFrame` or a `CanvasGroup` it is clipped.
+4. **Never off screen.** 8 px from the control, below by default, flipped above
+   when there is no room, and clamped 8 px from each side edge.
+5. **One at a time.** Leaving or losing selection hides a tooltip, so moving
+   to the next control closes the last one.
+6. **Short.** About twelve words, in the game's vocabulary: "Collects drops
+   within 30 studs", not "This toggle enables the auto collect feature".
+7. **The project's tokens.** The recipe's bubble is the darkest neutral with
+   the overlay edge and the 6 px control radius, so it reads above any panel;
+   recolour it through `THEME` only. A tooltip that looks like a different app
+   reads as a bug.
+8. **Teardown.** Every tooltip returns `destroy`; the hub's unload calls it.
+
+---
+
+## Slider values in one screen
+
+- **H3** while dragging only: the default. The number is where the eye is.
+- **H4** always on the knob: when the exact value matters at a glance
+  (field of view, volume).
+- **H5** ends and value: when the range itself is information (a 16 to 100
+  walk speed).
+
+Format with the unit the game uses (`"32 speed"`, `"80%"`, `"1.5x"`), round to
+the slider's step, and let the player tap the number to type an exact value
+when the range is wide. Details: `references/slider-values.md`.
+
+---
+
+## Checks before it ships
+
+- Run the callbacks on the final file: hover, long press, `SelectionGained`,
+  a tap on the button, and `destroy` (`../roblox-ui/references/functional-proof.md`).
+- Resize to 390 × 844: the bubble stays on screen at every edge.
+- `node tools/bin/check-file.mjs <file>` runs every file-level gate at once.
+
+---
+
 ## Recipe: .claude/skills/roblox-ui-components/assets/announcements.luau
 
 ```lua
@@ -770,10 +1084,13 @@ local THEME = {
 	success = Color3.fromRGB(72, 178, 112),
 	warning = Color3.fromRGB(214, 158, 62),
 	error = Color3.fromRGB(208, 88, 82),
+	caption = Color3.fromRGB(9, 10, 13),
 }
 
 local ICON = {
 	trophy = "rbxassetid://113055182645565",
+	bell = "rbxassetid://84691420588185",
+	done = "rbxassetid://88244323237265",
 }
 
 local ENTER = TweenInfo.new(0.2, Enum.EasingStyle.Cubic, Enum.EasingDirection.Out)
@@ -788,6 +1105,18 @@ local SNACK_ACTION_HOLD = 6
 local FEED_HOLD = 4
 local FEED_LINES = 6
 local FEED_DIM = 0.2
+local OBJECTIVE_HOLD = 3
+-- N26 sits a third of the way down the right edge, clear of the corner stacks.
+local OBJECTIVE_HEIGHT = 0.3
+local FLOAT_RISE = 40
+local FLOAT_TIME = 1
+local INBOX_KEEP = 20
+local CAPTION_DIM = 0.4
+local EDGE_DEPTH = 0.18
+local EDGE_PEAK = 0.45
+local FLASH_IN = TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)
+local FLASH_OUT = TweenInfo.new(0.6, Enum.EasingStyle.Quad, Enum.EasingDirection.In)
+local FLOAT = TweenInfo.new(FLOAT_TIME, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)
 
 local function motion(timing: TweenInfo): TweenInfo
 	return if GuiService.ReducedMotionEnabled then INSTANT else timing
@@ -1205,11 +1534,464 @@ local function createFeed(screen: ScreenGui)
 	}
 end
 
+local function pill(target: GuiObject)
+	local corner = Instance.new("UICorner")
+	corner.CornerRadius = UDim.new(0.5, 0)
+	corner.Parent = target
+end
+
+local function glyph(name: string, image: string, size: number, colour: Color3): ImageLabel
+	local picture = Instance.new("ImageLabel")
+	picture.Name = name
+	picture.Size = UDim2.fromOffset(size, size)
+	picture.BackgroundTransparency = 1
+	picture.Image = image
+	picture.ImageColor3 = colour
+	return picture
+end
+
+-- N23: a small pill under the top bar with the short line; hovering or
+-- tapping it opens the detail underneath, and it closes itself again.
+local function createIsland(screen: ScreenGui)
+	local ticket = 0
+	local connections: { RBXScriptConnection } = {}
+
+	local island = Instance.new("CanvasGroup")
+	island.Name = "Island"
+	island.AnchorPoint = Vector2.new(0.5, 0)
+	island.Position = UDim2.new(0.5, 0, 0, 8)
+	island.AutomaticSize = Enum.AutomaticSize.XY
+	island.BackgroundColor3 = THEME.caption
+	island.GroupTransparency = 1
+	island.Visible = false
+	island.Parent = screen
+	pill(island)
+
+	local bounds = Instance.new("UISizeConstraint")
+	bounds.MinSize = Vector2.new(120, 0)
+	bounds.MaxSize = Vector2.new(360, math.huge)
+	bounds.Parent = island
+
+	-- The words have their own frame so the tap target can lie over them
+	-- without being placed by their layout.
+	local content = Instance.new("Frame")
+	content.Name = "Content"
+	content.AutomaticSize = Enum.AutomaticSize.XY
+	content.BackgroundTransparency = 1
+	content.Parent = island
+	pad(content, 8, 16)
+	local stack = line(content, 4, Enum.FillDirection.Vertical)
+	stack.HorizontalAlignment = Enum.HorizontalAlignment.Center
+
+	local short = words("Short", "", 14, true)
+	short.LayoutOrder = 1
+	short.Parent = content
+
+	local detail = words("Detail", "", 12, false)
+	detail.LayoutOrder = 2
+	detail.TextColor3 = THEME.textMuted
+	detail.Visible = false
+	detail.Parent = content
+
+	local hit = Instance.new("TextButton")
+	hit.Name = "Hit"
+	hit.AutoButtonColor = false
+	hit.BackgroundTransparency = 1
+	hit.Text = ""
+	hit.Size = UDim2.fromScale(1, 1)
+	hit.Parent = island
+
+	local function expand(open: boolean)
+		detail.Visible = open and detail.Text ~= ""
+	end
+
+	table.insert(connections, hit.MouseEnter:Connect(function()
+		expand(true)
+	end))
+	table.insert(connections, hit.MouseLeave:Connect(function()
+		expand(false)
+	end))
+	table.insert(connections, hit.Activated:Connect(function()
+		expand(not detail.Visible)
+	end))
+
+	local function show(text: string, more: string?)
+		ticket += 1
+		local mine = ticket
+		short.Text = text
+		detail.Text = more or ""
+		expand(false)
+		island.Visible = true
+		tween(island, ENTER, { GroupTransparency = 0 })
+		task.delay(readingTime(`{text} {more or ""}`), function()
+			if mine ~= ticket then
+				return
+			end
+			tween(island, EXIT, { GroupTransparency = 1 }).Completed:Once(function()
+				if mine == ticket then
+					island.Visible = false
+				end
+			end)
+		end)
+	end
+
+	return {
+		show = show,
+		destroy = function()
+			ticket += 1
+			for _, connection in connections do
+				connection:Disconnect()
+			end
+			island:Destroy()
+		end,
+	}
+end
+
+-- N25: "+250 coins" rises from the thing that earned it and fades away. The
+-- label lives on the anchor's ScreenGui, so a list or a clip cannot cut it off.
+local function floatText(anchor: GuiObject, text: string, icon: string?)
+	local screen = anchor:FindFirstAncestorWhichIsA("ScreenGui")
+	assert(screen, "floatText needs an anchor inside a ScreenGui")
+
+	local x = anchor.AbsolutePosition.X - screen.AbsolutePosition.X + anchor.AbsoluteSize.X / 2
+	local y = anchor.AbsolutePosition.Y - screen.AbsolutePosition.Y
+
+	local reward = Instance.new("Frame")
+	reward.Name = "Reward"
+	reward.AnchorPoint = Vector2.new(0.5, 1)
+	reward.Position = UDim2.fromOffset(x, y)
+	reward.AutomaticSize = Enum.AutomaticSize.XY
+	reward.BackgroundTransparency = 1
+	reward.Parent = screen
+	line(reward, 4, Enum.FillDirection.Horizontal)
+
+	if icon then
+		local picture = glyph("Icon", icon, 20, THEME.warning)
+		picture.LayoutOrder = 1
+		picture.Parent = reward
+	end
+
+	local amount = words("Amount", text, 20, true)
+	amount.LayoutOrder = 2
+	amount.TextColor3 = THEME.warning
+	amount.Parent = reward
+
+	local rim = Instance.new("UIStroke")
+	rim.Color = THEME.outline
+	rim.Thickness = 2
+	rim.Parent = amount
+
+	tween(reward, FLOAT, { Position = UDim2.fromOffset(x, y - FLOAT_RISE) })
+	tween(amount, FLOAT, { TextTransparency = 1 })
+	tween(rim, FLOAT, { Transparency = 1 }).Completed:Once(function()
+		reward:Destroy()
+	end)
+end
+
+-- N26: a compact card slides in at the right edge with a tick when a step of
+-- a quest is done; a newer one replaces it.
+local function createObjectives(screen: ScreenGui)
+	local ticket = 0
+
+	local card = Instance.new("CanvasGroup")
+	card.Name = "Objective"
+	card.AnchorPoint = Vector2.new(1, 0)
+	card.Position = UDim2.new(1, 0, OBJECTIVE_HEIGHT, 0)
+	card.AutomaticSize = Enum.AutomaticSize.XY
+	card.BackgroundColor3 = THEME.surface
+	card.GroupTransparency = 1
+	card.Visible = false
+	card.Parent = screen
+	round(card, 10)
+	outline(card)
+	pad(card, 12, 12)
+	line(card, 12, Enum.FillDirection.Horizontal)
+
+	local tick = glyph("Tick", ICON.done, 20, THEME.success)
+	tick.LayoutOrder = 1
+	tick.Parent = card
+
+	local column = Instance.new("Frame")
+	column.Name = "Words"
+	column.LayoutOrder = 2
+	column.AutomaticSize = Enum.AutomaticSize.XY
+	column.BackgroundTransparency = 1
+	column.Parent = card
+	line(column, 4, Enum.FillDirection.Vertical)
+
+	local caption = words("Caption", "Objective complete", 12, false)
+	caption.LayoutOrder = 1
+	caption.TextColor3 = THEME.textMuted
+	caption.Parent = column
+
+	local step = words("Step", "", 14, true)
+	step.LayoutOrder = 2
+	step.Parent = column
+
+	local function complete(text: string)
+		ticket += 1
+		local mine = ticket
+		step.Text = text
+		card.Visible = true
+		local start = if GuiService.ReducedMotionEnabled then -16 else 24
+		card.Position = UDim2.new(1, start, OBJECTIVE_HEIGHT, 0)
+		local rest = UDim2.new(1, -16, OBJECTIVE_HEIGHT, 0)
+		tween(card, ARRIVE, { Position = rest, GroupTransparency = 0 })
+		task.delay(OBJECTIVE_HOLD, function()
+			if mine ~= ticket then
+				return
+			end
+			tween(card, EXIT, { GroupTransparency = 1 }).Completed:Once(function()
+				if mine == ticket then
+					card.Visible = false
+				end
+			end)
+		end)
+	end
+
+	return {
+		complete = complete,
+		destroy = function()
+			ticket += 1
+			card:Destroy()
+		end,
+	}
+end
+
+-- N27: a bell with an unread count; tapping it opens the saved messages,
+-- newest first, and marks them read. Nothing interrupts play.
+local function createInbox(screen: ScreenGui)
+	local unread = 0
+	local messages: { string } = {}
+	local connections: { RBXScriptConnection } = {}
+
+	local bell = Instance.new("ImageButton")
+	bell.Name = "Inbox"
+	bell.AnchorPoint = Vector2.new(1, 0)
+	bell.Position = UDim2.new(1, -16, 0, 16)
+	bell.Size = UDim2.fromOffset(44, 44)
+	bell.AutoButtonColor = false
+	bell.BackgroundColor3 = THEME.surface
+	bell.Image = ""
+	bell.Parent = screen
+	round(bell, 10)
+	outline(bell)
+
+	local mark = glyph("Bell", ICON.bell, 20, THEME.text)
+	mark.AnchorPoint = Vector2.new(0.5, 0.5)
+	mark.Position = UDim2.fromScale(0.5, 0.5)
+	mark.Parent = bell
+
+	local badge = words("Badge", "", 12, true)
+	badge.AnchorPoint = Vector2.new(0.5, 0.5)
+	badge.Position = UDim2.fromScale(1, 0)
+	badge.BackgroundColor3 = THEME.error
+	badge.BackgroundTransparency = 0
+	badge.Visible = false
+	badge.Parent = bell
+	pill(badge)
+	pad(badge, 0, 4)
+
+	local panel = Instance.new("Frame")
+	panel.Name = "Messages"
+	panel.AnchorPoint = Vector2.new(1, 0)
+	panel.Position = UDim2.new(1, -16, 0, 68)
+	panel.AutomaticSize = Enum.AutomaticSize.Y
+	panel.Size = UDim2.fromOffset(280, 0)
+	panel.BackgroundColor3 = THEME.surface
+	panel.Visible = false
+	panel.Parent = screen
+	round(panel, 10)
+	outline(panel)
+	pad(panel, 8, 12)
+	line(panel, 4, Enum.FillDirection.Vertical)
+
+	local function paint()
+		badge.Text = if unread > 9 then "9+" else tostring(unread)
+		badge.Visible = unread > 0
+	end
+
+	local function draw()
+		for _, child in panel:GetChildren() do
+			if child:IsA("TextLabel") then
+				child:Destroy()
+			end
+		end
+		for index, text in messages do
+			local row = words(`Message{index}`, text, 14, false)
+			row.LayoutOrder = index
+			row.AutomaticSize = Enum.AutomaticSize.Y
+			row.Size = UDim2.fromScale(1, 0)
+			row.TextWrapped = true
+			row.Parent = panel
+		end
+		if #messages == 0 then
+			local empty = words("Empty", "No messages yet", 12, false)
+			empty.TextColor3 = THEME.textMuted
+			empty.Parent = panel
+		end
+	end
+
+	local function push(text: string)
+		table.insert(messages, 1, text)
+		if #messages > INBOX_KEEP then
+			table.remove(messages)
+		end
+		if panel.Visible then
+			draw()
+		else
+			unread += 1
+			paint()
+		end
+	end
+
+	table.insert(connections, bell.Activated:Connect(function()
+		panel.Visible = not panel.Visible
+		if panel.Visible then
+			unread = 0
+			paint()
+			draw()
+		end
+	end))
+	table.insert(connections, bell.MouseEnter:Connect(function()
+		bell.BackgroundColor3 = THEME.edge
+	end))
+	table.insert(connections, bell.MouseLeave:Connect(function()
+		bell.BackgroundColor3 = THEME.surface
+	end))
+
+	return {
+		push = push,
+		unread = function()
+			return unread
+		end,
+		destroy = function()
+			for _, connection in connections do
+				connection:Disconnect()
+			end
+			bell:Destroy()
+			panel:Destroy()
+		end,
+	}
+end
+
+-- N29: one subtitle line near the bottom centre, the speaker's name first;
+-- a new line replaces the old one.
+local function createCaptions(screen: ScreenGui)
+	local ticket = 0
+
+	local strip = Instance.new("Frame")
+	strip.Name = "Caption"
+	strip.AnchorPoint = Vector2.new(0.5, 1)
+	strip.Position = UDim2.new(0.5, 0, 1, -96)
+	strip.AutomaticSize = Enum.AutomaticSize.XY
+	strip.BackgroundColor3 = THEME.caption
+	strip.BackgroundTransparency = 1
+	strip.Visible = false
+	strip.Parent = screen
+	round(strip, 6)
+	pad(strip, 8, 12)
+	line(strip, 8, Enum.FillDirection.Horizontal)
+
+	local bounds = Instance.new("UISizeConstraint")
+	bounds.MaxSize = Vector2.new(640, math.huge)
+	bounds.Parent = strip
+
+	local speaker = words("Speaker", "", 16, true)
+	speaker.LayoutOrder = 1
+	speaker.TextColor3 = THEME.action
+	speaker.Parent = strip
+
+	local said = words("Line", "", 16, false)
+	said.LayoutOrder = 2
+	said.TextWrapped = true
+	said.Parent = strip
+
+	local function say(text: string, name: string?)
+		ticket += 1
+		local mine = ticket
+		speaker.Text = name or ""
+		speaker.Visible = name ~= nil
+		said.Text = text
+		strip.Visible = true
+		tween(strip, ENTER, { BackgroundTransparency = CAPTION_DIM })
+		task.delay(readingTime(text), function()
+			if mine == ticket then
+				strip.Visible = false
+				strip.BackgroundTransparency = 1
+			end
+		end)
+	end
+
+	return {
+		say = say,
+		destroy = function()
+			ticket += 1
+			strip:Destroy()
+		end,
+	}
+end
+
+-- N30: the screen's edges flash the severity colour for a moment, for danger
+-- the player must notice without reading, such as low health.
+local function flashEdges(screen: ScreenGui, severity: Severity?)
+	local colour = THEME[severity or "error"]
+	local frame = Instance.new("Frame")
+	frame.Name = "EdgeFlash"
+	frame.Size = UDim2.fromScale(1, 1)
+	frame.BackgroundTransparency = 1
+	frame.Parent = screen
+
+	-- Each edge is a strip whose gradient fades toward the middle of the screen;
+	-- the rotation points the opaque end at the edge.
+	local across, down = UDim2.fromScale(1, EDGE_DEPTH), UDim2.fromScale(EDGE_DEPTH, 1)
+	local sides = {
+		{ name = "Top", size = across, at = UDim2.fromScale(0, 0), turn = 90 },
+		{ name = "Bottom", size = across, at = UDim2.fromScale(0, 1 - EDGE_DEPTH), turn = -90 },
+		{ name = "Left", size = down, at = UDim2.fromScale(0, 0), turn = 0 },
+		{ name = "Right", size = down, at = UDim2.fromScale(1 - EDGE_DEPTH, 0), turn = 180 },
+	}
+	local strips: { Frame } = {}
+	for _, side in sides do
+		local strip = Instance.new("Frame")
+		strip.Name = side.name
+		strip.Size = side.size
+		strip.Position = side.at
+		strip.BackgroundColor3 = colour
+		strip.BackgroundTransparency = 1
+		strip.BorderSizePixel = 0
+		strip.Parent = frame
+
+		local fade = Instance.new("UIGradient")
+		fade.Rotation = side.turn
+		fade.Transparency = NumberSequence.new(0, 1)
+		fade.Parent = strip
+		table.insert(strips, strip)
+	end
+
+	for index, strip in strips do
+		tween(strip, FLASH_IN, { BackgroundTransparency = EDGE_PEAK }).Completed:Once(function()
+			local out = tween(strip, FLASH_OUT, { BackgroundTransparency = 1 })
+			if index == #strips then
+				out.Completed:Once(function()
+					frame:Destroy()
+				end)
+			end
+		end)
+	end
+end
+
 return {
 	showAchievement = showAchievement,
 	createAnnouncer = createAnnouncer,
 	createSnackbar = createSnackbar,
 	createFeed = createFeed,
+	createIsland = createIsland,
+	floatText = floatText,
+	createObjectives = createObjectives,
+	createInbox = createInbox,
+	createCaptions = createCaptions,
+	flashEdges = flashEdges,
 }
 ```
 
@@ -1233,12 +2015,29 @@ local THEME = {
 	accent = Color3.fromRGB(46, 160, 127),
 	accentDim = Color3.fromRGB(28, 88, 74),
 	focus = Color3.fromRGB(72, 201, 162),
+	danger = Color3.fromRGB(208, 88, 82),
+	swatchRed = Color3.fromRGB(208, 88, 82),
+	swatchGold = Color3.fromRGB(214, 158, 62),
+	swatchGreen = Color3.fromRGB(72, 178, 112),
+	swatchBlue = Color3.fromRGB(88, 141, 214),
+	swatchPurple = Color3.fromRGB(150, 110, 214),
 }
 
 local ICON = {
 	check = "rbxassetid://86817768619372",
 	dash = "rbxassetid://95070996149109",
 	tile = "rbxassetid://106101842173393",
+	cross = "rbxassetid://116396312853810",
+	star = "rbxassetid://72669221096319",
+}
+
+-- C18's colours when the caller names none.
+local DEFAULT_SWATCHES = {
+	Red = THEME.swatchRed,
+	Gold = THEME.swatchGold,
+	Green = THEME.swatchGreen,
+	Blue = THEME.swatchBlue,
+	Purple = THEME.swatchPurple,
 }
 
 local STATE_MOTION = TweenInfo.new(0.12, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)
@@ -1246,13 +2045,18 @@ local DRAW_MOTION = TweenInfo.new(0.16, Enum.EasingStyle.Quad, Enum.EasingDirect
 local POP_MOTION = TweenInfo.new(0.25, Enum.EasingStyle.Back, Enum.EasingDirection.Out)
 local NO_MOTION = TweenInfo.new(0)
 
-export type BoxStyle = "C1" | "C2" | "C3" | "C5" | "C6" | "C7"
-export type GroupStyle = "C4" | "C8" | "C9" | "C10"
+export type BoxStyle = "C1" | "C2" | "C3" | "C5" | "C6" | "C7" | "C11" | "C12" | "C13" | "C14"
+type FirstGroups = "C4" | "C8" | "C9" | "C10"
+export type GroupStyle = FirstGroups | "C15" | "C16" | "C17" | "C18" | "C19" | "C20"
 
--- C7 reads `description`; C10 reads `icons`, keyed by item name.
+-- C7 reads `description`, C12 `count`; C10 reads `icons`, C18 `colours` and C20
+-- `descriptions`, each keyed by item name.
 export type CheckDetails = {
 	description: string?,
+	count: number?,
 	icons: { [string]: string }?,
+	colours: { [string]: Color3 }?,
+	descriptions: { [string]: string }?,
 }
 
 export type Checkbox = {
@@ -1553,6 +2357,74 @@ local function cardSkin(button: TextButton, label: TextLabel, description: strin
 	end
 end
 
+-- C11: no box at all; a tick appears at the right end of a chosen row.
+local function rightTickSkin(button: TextButton, label: TextLabel): (boolean) -> ()
+	local tick = newIcon("Tick", 16, ICON.check)
+	tick.AnchorPoint = Vector2.zero
+	tick.LayoutOrder = 2
+	tick.ImageColor3 = THEME.focus
+	tick.Parent = button
+
+	return function(on: boolean)
+		tick.ImageTransparency = if on then 0 else 1
+		label.FontFace = Font.fromEnum(if on then Enum.Font.GothamBold else Enum.Font.GothamMedium)
+	end
+end
+
+-- C12: a filled box plus a count at the end of the row, such as matching items.
+local function countSkin(button: TextButton, count: number): (boolean) -> ()
+	local paintBox = filledSkin(button, 0)
+	local badge = newLabel("Count", tostring(count), 12)
+	badge.LayoutOrder = 2
+	badge.AutomaticSize = Enum.AutomaticSize.X
+	badge.Size = UDim2.fromScale(0, 1)
+	badge.TextColor3 = THEME.textMuted
+	badge.Parent = button
+
+	return function(on: boolean)
+		paintBox(on)
+		badge.TextColor3 = if on then THEME.text else THEME.textMuted
+	end
+end
+
+-- C13: an exclude list; the chosen box fills red with a cross, not a tick.
+local function crossSkin(button: TextButton, label: TextLabel): (boolean) -> ()
+	local box, outline = newBox(0, UDim.new(0, 6))
+	box.Parent = button
+
+	local cross = newIcon("Cross", 16, ICON.cross)
+	cross.Parent = box
+
+	return function(on: boolean)
+		animate(box, { BackgroundColor3 = if on then THEME.danger else THEME.row })
+		animate(outline, { Color = if on then THEME.danger else THEME.edge })
+		animate(cross, { ImageTransparency = if on then 0 else 1 })
+		label.TextColor3 = if on then THEME.textMuted else THEME.text
+	end
+end
+
+-- C14: a thumb-sized 32 px box for touch-first screens.
+local function bigBoxSkin(button: TextButton): (boolean) -> ()
+	local box = newFrame("Box", UDim2.fromOffset(32, 32), THEME.row)
+	box.LayoutOrder = 0
+	round(box, UDim.new(0, 6))
+	box.Parent = button
+
+	local outline = Instance.new("UIStroke")
+	outline.Color = THEME.edge
+	outline.Thickness = 2
+	outline.Parent = box
+
+	local tick = newIcon("Tick", 20, ICON.check)
+	tick.Parent = box
+
+	return function(on: boolean)
+		animate(box, { BackgroundColor3 = if on then THEME.accent else THEME.row })
+		animate(outline, { Color = if on then THEME.accent else THEME.edge })
+		animate(tick, { ImageTransparency = if on then 0 else 1 })
+	end
+end
+
 local function createCheckbox(
 	parent: GuiObject,
 	labelText: string,
@@ -1583,14 +2455,24 @@ local function createCheckbox(
 		paintValue = strikeSkin(button, label, labelText)
 	elseif style == "C6" then
 		paintValue = popSkin(button)
-	else
+	elseif style == "C7" then
 		local description = if details and details.description then details.description else ""
 		paintValue = cardSkin(button, label, description)
 	end
 
+	if style == "C11" then
+		paintValue = rightTickSkin(button, label)
+	elseif style == "C12" then
+		paintValue = countSkin(button, if details and details.count then details.count else 0)
+	elseif style == "C13" then
+		paintValue = crossSkin(button, label)
+	elseif style == "C14" then
+		paintValue = bigBoxSkin(button)
+	end
+
 	local function paintRow(hovered: boolean, pressed: boolean)
 		animate(button, { BackgroundColor3 = surface(hovered, pressed) })
-		if style ~= "C5" then
+		if style ~= "C5" and style ~= "C13" then
 			label.TextColor3 = if enabled then THEME.text else THEME.textMuted
 		end
 	end
@@ -1732,6 +2614,113 @@ local function tileItem(
 	end
 end
 
+-- C16 and C19 sit in one rounded track; the CanvasGroup rounds the segments,
+-- because a UICorner on the track would not round its children. The segments
+-- live in their own row so C19's marker can sit behind them outside the layout.
+local function newTrack(frame: Frame): (CanvasGroup, Frame)
+	local track = Instance.new("CanvasGroup")
+	track.Name = "Track"
+	track.AutomaticSize = Enum.AutomaticSize.X
+	track.Size = UDim2.fromOffset(0, 36)
+	track.BackgroundColor3 = THEME.edge
+	track.BorderSizePixel = 0
+	round(track, UDim.new(0, 6))
+	track.Parent = frame
+
+	local segments = newFrame("Segments", UDim2.fromOffset(0, 36), THEME.row)
+	segments.AutomaticSize = Enum.AutomaticSize.X
+	segments.BackgroundTransparency = 1
+	segments.ZIndex = 2
+	segments.Parent = track
+
+	local line = Instance.new("UIListLayout")
+	line.FillDirection = Enum.FillDirection.Horizontal
+	line.SortOrder = Enum.SortOrder.LayoutOrder
+	line.Parent = segments
+	return track, segments
+end
+
+-- C16: joined buttons for picking several; each chosen one fills and ticks.
+local function segmentItem(button: TextButton, corner: UICorner): (boolean) -> ()
+	corner:Destroy()
+	button.AutomaticSize = Enum.AutomaticSize.X
+	button.Size = UDim2.fromOffset(0, 36)
+	button.BackgroundColor3 = THEME.row
+
+	local tick = newIcon("Tick", 16, ICON.check)
+	tick.AnchorPoint = Vector2.zero
+	tick.LayoutOrder = 0
+	tick.ImageColor3 = THEME.focus
+	tick.Parent = button
+
+	return function(on: boolean)
+		tick.Visible = on
+		animate(button, { BackgroundColor3 = if on then THEME.accentDim else THEME.row })
+	end
+end
+
+-- C17: star buttons; the rating is how many are lit, set by the parent group.
+local function starItem(button: TextButton, label: TextLabel, corner: UICorner): (boolean) -> ()
+	corner:Destroy()
+	button.Size = UDim2.fromOffset(44, 44)
+	button.BackgroundTransparency = 1
+	label.Visible = false
+
+	local star = newIcon("Star", 24, ICON.star)
+	star.AnchorPoint = Vector2.zero
+	star.LayoutOrder = 0
+	star.ImageColor3 = THEME.edge
+	star.Parent = button
+
+	return function(lit: boolean)
+		animate(star, { ImageColor3 = if lit then THEME.swatchGold else THEME.edge })
+	end
+end
+
+-- C18: round colour dots; the chosen dot gets a ring and a tick.
+local function swatchItem(
+	button: TextButton,
+	label: TextLabel,
+	corner: UICorner,
+	colour: Color3
+): (boolean) -> ()
+	corner.CornerRadius = UDim.new(0.5, 0)
+	button.Size = UDim2.fromOffset(44, 44)
+	button.BackgroundColor3 = colour
+	label.Visible = false
+
+	local ring = Instance.new("UIStroke")
+	ring.Name = "Ring"
+	ring.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+	ring.Color = THEME.mark
+	ring.Thickness = 3
+	ring.Parent = button
+
+	local tick = newIcon("Tick", 20, ICON.check)
+	tick.AnchorPoint = Vector2.zero
+	tick.LayoutOrder = 0
+	tick.Parent = button
+
+	return function(on: boolean)
+		ring.Enabled = on
+		tick.Visible = on
+	end
+end
+
+-- C19: equal-width segments for one choice, such as S, M and L; the marker
+-- behind the chosen one is placed by the parent group.
+local function sizeItem(button: TextButton, label: TextLabel, corner: UICorner): (boolean) -> ()
+	corner:Destroy()
+	button.Size = UDim2.fromOffset(64, 36)
+	button.BackgroundTransparency = 1
+	label.TextXAlignment = Enum.TextXAlignment.Center
+
+	return function(on: boolean)
+		label.TextColor3 = if on then THEME.mark else THEME.textMuted
+		label.FontFace = Font.fromEnum(if on then Enum.Font.GothamBold else Enum.Font.GothamMedium)
+	end
+end
+
 -- C4, C8, C9 and C10 own several options at once. C4 adds a "Select all"
 -- header whose box shows none, some (a dash) or all (a tick).
 local function createCheckGroup(
@@ -1757,9 +2746,31 @@ local function createCheckGroup(
 	layout.SortOrder = Enum.SortOrder.LayoutOrder
 	layout.Padding = UDim.new(0, 8)
 	layout.Parent = frame
-	if style == "C9" or style == "C10" then
+	if style == "C9" or style == "C10" or style == "C18" then
 		layout.FillDirection = Enum.FillDirection.Horizontal
 		layout.Wraps = true
+	elseif style == "C17" then
+		layout.FillDirection = Enum.FillDirection.Horizontal
+		layout.Padding = UDim.new(0, 4)
+	end
+
+	-- One choice at a time; the rest pick several.
+	local single = style == "C8"
+		or style == "C17"
+		or style == "C18"
+		or style == "C19"
+		or style == "C20"
+	local holder: GuiObject = frame
+	local marker: Frame? = nil
+	if style == "C16" or style == "C19" then
+		local track, segments = newTrack(frame)
+		holder = segments
+		if style == "C19" then
+			local slide = newFrame("Marker", UDim2.fromOffset(64, 36), THEME.accent)
+			slide.ZIndex = 1
+			slide.Parent = track
+			marker = slide
+		end
 	end
 
 	local function selected(): { string }
@@ -1774,9 +2785,25 @@ local function createCheckGroup(
 
 	local paintHeader: (() -> ())? = nil
 
+	-- C17 lights every star up to the chosen one; C19 slides its marker there.
 	local function repaint()
-		for name, item in items do
-			item.paint(chosen[name] == true)
+		local rating = 0
+		for index, name in names do
+			if chosen[name] then
+				rating = index
+			end
+		end
+		for index, name in names do
+			local item = items[name]
+			if style == "C17" then
+				item.paint(index <= rating)
+			else
+				item.paint(chosen[name] == true)
+			end
+		end
+		if marker then
+			marker.Visible = rating > 0
+			animate(marker, { Position = UDim2.fromOffset((math.max(rating, 1) - 1) * 64, 0) })
 		end
 		if paintHeader then
 			paintHeader()
@@ -1787,7 +2814,7 @@ local function createCheckGroup(
 		if not items[name] or (chosen[name] == true) == on then
 			return
 		end
-		if style == "C8" then
+		if single then
 			if not on then
 				return
 			end
@@ -1829,6 +2856,34 @@ local function createCheckGroup(
 		end))
 	end
 
+	-- C15: a heading that counts what is done, over a bar that fills with it.
+	if style == "C15" then
+		local header = newFrame("Progress", UDim2.new(1, 0, 0, 32), THEME.row)
+		header.LayoutOrder = 0
+		header.BackgroundTransparency = 1
+		header.Parent = frame
+
+		local summary = newLabel("Summary", "", 12)
+		summary.Size = UDim2.new(1, 0, 0, 16)
+		summary.TextColor3 = THEME.textMuted
+		summary.Parent = header
+
+		local bar = newFrame("Bar", UDim2.new(1, 0, 0, 4), THEME.edge)
+		bar.Position = UDim2.fromOffset(0, 24)
+		round(bar, UDim.new(0.5, 0))
+		bar.Parent = header
+
+		local done = newFrame("Fill", UDim2.fromScale(0, 1), THEME.accent)
+		round(done, UDim.new(0.5, 0))
+		done.Parent = bar
+
+		paintHeader = function()
+			local count = #selected()
+			summary.Text = `{count} of {#names} done`
+			animate(done, { Size = UDim2.fromScale(if #names > 0 then count / #names else 0, 1) })
+		end
+	end
+
 	for index, name in names do
 		local button, corner, rowLayout, padding = row(name, 44)
 		button.LayoutOrder = index
@@ -1848,23 +2903,43 @@ local function createCheckGroup(
 		elseif style == "C9" then
 			label.AutomaticSize = Enum.AutomaticSize.X
 			paint = chipItem(button, corner)
-		else
+		elseif style == "C10" then
 			local icons = if details and details.icons then details.icons else {}
 			paint = tileItem(button, rowLayout, label, icons[name] or ICON.tile)
+		elseif style == "C15" then
+			fill(label)
+			paint = strikeSkin(button, label, name)
+		elseif style == "C16" then
+			label.AutomaticSize = Enum.AutomaticSize.X
+			paint = segmentItem(button, corner)
+		end
+		if style == "C17" then
+			paint = starItem(button, label, corner)
+		elseif style == "C18" then
+			local colours = details and details.colours or DEFAULT_SWATCHES
+			paint = swatchItem(button, label, corner, colours[name] or THEME.edge)
+		elseif style == "C19" then
+			fill(label)
+			paint = sizeItem(button, label, corner)
+		elseif style == "C20" then
+			local descriptions = details and details.descriptions or {}
+			paint = cardSkin(button, label, descriptions[name] or "")
 		end
 
 		items[name] = { button = button, paint = paint }
-		-- Chips and tiles fill when chosen, so hover must not paint over that.
-		local filledWhenChosen = style == "C9" or style == "C10"
+		-- Chips, tiles and segments fill when chosen, so hover must not paint over
+		-- that; stars, swatches and sizes never take a row surface at all.
+		local filledWhenChosen = style == "C9" or style == "C10" or style == "C16"
+		local bare = style == "C17" or style == "C18" or style == "C19"
 		watchStates(button, connections, function(hovered, pressed)
-			if not (filledWhenChosen and chosen[name]) then
+			if not bare and not (filledWhenChosen and chosen[name]) then
 				animate(button, { BackgroundColor3 = surface(hovered, pressed) })
 			end
 		end)
 		table.insert(connections, button.Activated:Connect(function()
-			set(name, if style == "C8" then true else not chosen[name])
+			set(name, if single then true else not chosen[name])
 		end))
-		button.Parent = frame
+		button.Parent = holder
 	end
 
 	repaint()
@@ -1903,11 +2978,14 @@ local TweenService = game:GetService("TweenService")
 local UserInputService = game:GetService("UserInputService")
 
 type FirstSix = "D1" | "D2" | "D3" | "D4" | "D5" | "D6"
-export type DropdownStyle = FirstSix | "D7" | "D8" | "D9" | "D10" | "D11" | "D12"
+type SecondSix = "D7" | "D8" | "D9" | "D10" | "D11" | "D12"
+type LaterStyles = "D13" | "D14" | "D15" | "D16" | "D17" | "D18" | "D19" | "D20" | "D21" | "D22"
+export type DropdownStyle = FirstSix | SecondSix | LaterStyles
 
 -- `text` is the value handed to onChanged; `display` is what the row shows
 -- when it should differ (D10 shows a display name for a unique username).
--- D8 reads `group`, D9 `icon`, D12 `colour`; D10 fills `image` itself.
+-- D8 reads `group`, D9 and D18 `icon`, D12 `colour`, D13 `detail` and D21
+-- `children`; D10 fills `image` itself.
 export type Choice = {
 	text: string,
 	display: string?,
@@ -1916,15 +2994,19 @@ export type Choice = {
 	image: string?,
 	group: string?,
 	colour: Color3?,
+	children: { string | Choice }?,
 }
 
 -- `label` names what the field is for and is its placeholder. `host` is the
--- ScreenGui the list opens above; by default the field's own ScreenGui.
+-- ScreenGui the list opens above; by default the field's own ScreenGui. D19
+-- calls `onRun` with the chosen value; D22 calls `onCreate` with a new one.
 export type DropdownSpec = {
 	label: string,
 	options: { string | Choice },
 	chosen: { string }?,
 	onChanged: (chosen: { string }) -> (),
+	onRun: ((chosen: string) -> ())?,
+	onCreate: ((text: string) -> ())?,
 	host: ScreenGui?,
 }
 
@@ -1949,6 +3031,7 @@ local THEME = {
 	accent = Color3.fromRGB(46, 160, 127),
 	accentDim = Color3.fromRGB(28, 88, 74),
 	focus = Color3.fromRGB(72, 201, 162),
+	scrim = Color3.fromRGB(0, 0, 0),
 }
 
 local ICON = {
@@ -1957,9 +3040,15 @@ local ICON = {
 	chevronRight = "rbxassetid://101007429951147",
 	check = "rbxassetid://86817768619372",
 	search = "rbxassetid://72296609649861",
+	plus = "rbxassetid://101123124881873",
 }
 
 local ROW = 44
+local TWO_LINE_ROW = 56
+local GRID_CELL = 72
+local GRID_COLUMNS = 3
+local RECENT_LIMIT = 3
+local SCRIM_TRANSPARENCY = 0.5
 local VISIBLE_ROWS = 5
 local LIST_GAP = 4
 local SUGGESTIONS = 6
@@ -1969,7 +3058,15 @@ local SHUT = TweenInfo.new(0.15, Enum.EasingStyle.Cubic, Enum.EasingDirection.In
 local INSTANT = TweenInfo.new(0)
 
 -- The styles that let the player pick several at once.
-local MULTI = { D3 = true, D4 = true }
+local MULTI = { D3 = true, D4 = true, D20 = true }
+
+-- The styles whose field is a text box the player types into.
+local TYPED = { D2 = true, D5 = true, D17 = true, D22 = true }
+
+-- Rich text treats these as markup; a typed "<" must show as itself.
+local function escape(text: string): string
+	return (text:gsub("&", "&amp;"):gsub("<", "&lt;"):gsub(">", "&gt;"))
+end
 
 local function animate(target: Instance, timing: TweenInfo, goals: { [string]: any }): Tween
 	local chosen = if GuiService.ReducedMotionEnabled then INSTANT else timing
@@ -2151,14 +3248,25 @@ local function createDropdown(parent: GuiObject, style: DropdownStyle, spec: Dro
 		return table.find(chosen, text) ~= nil
 	end
 
-	local function choiceFor(text: string): Choice?
-		for _, choice in choices do
+	local function choiceFor(text: string, within: { string | Choice }?): Choice?
+		for _, option in within or choices do
+			local choice = toChoice(option)
 			if choice.text == text then
 				return choice
+			end
+			local nested = if choice.children then choiceFor(text, choice.children) else nil
+			if nested then
+				return nested
 			end
 		end
 		return nil
 	end
+
+	-- D14 remembers the last few picks; D20 holds picks until Apply; D21 keeps
+	-- the path of open sub-menus.
+	local recent: { string } = {}
+	local pending: { string }? = nil
+	local trail: { Choice } = {}
 
 	-- The field. Most styles are one button; the typed styles hold a TextBox,
 	-- D7 holds two arrows, and D4 grows to fit its chips.
@@ -2171,7 +3279,8 @@ local function createDropdown(parent: GuiObject, style: DropdownStyle, spec: Dro
 	local chips: Frame? = nil
 	local chevron: ImageLabel? = nil
 
-	if style == "D2" or style == "D5" then
+	local ghost: TextLabel? = nil
+	if TYPED[style] then
 		local frame = Instance.new("Frame")
 		frame.Size = UDim2.new(1, 0, 0, ROW)
 		field = frame
@@ -2182,7 +3291,17 @@ local function createDropdown(parent: GuiObject, style: DropdownStyle, spec: Dro
 		local entry = newBox("Search", spec.label, 1)
 		entry.Parent = frame
 		box = entry
-	elseif style == "D7" then
+
+		-- D17 shows the rest of the first match behind the typing, in grey.
+		if style == "D17" then
+			local hint = newText("Ghost", "", 14, 0)
+			hint.Size = UDim2.fromScale(1, 1)
+			hint.RichText = true
+			hint.TextColor3 = THEME.textMuted
+			hint.Parent = entry
+			ghost = hint
+		end
+	elseif style == "D7" or style == "D19" then
 		local frame = Instance.new("Frame")
 		frame.Size = UDim2.new(1, 0, 0, ROW)
 		field = frame
@@ -2203,7 +3322,7 @@ local function createDropdown(parent: GuiObject, style: DropdownStyle, spec: Dro
 	field.Parent = root
 	round(field, 6)
 	outline(field)
-	pad(field, if style == "D4" then 4 else 0, if style == "D7" then 0 else 12)
+	pad(field, if style == "D4" then 4 else 0, if style == "D7" or style == "D19" then 0 else 12)
 	lineUp(field, Enum.FillDirection.Horizontal, 8)
 
 	if style == "D9" or style == "D10" or style == "D11" then
@@ -2247,6 +3366,44 @@ local function createDropdown(parent: GuiObject, style: DropdownStyle, spec: Dro
 		local mark = newIcon("Chevron", ICON.chevronDown, 16, 2)
 		mark.Parent = field
 		chevron = mark
+	end
+
+	-- D19: the value is a button that runs it; only the arrow opens the list.
+	local runButton: TextButton? = nil
+	local moreButton: TextButton? = nil
+	if style == "D19" then
+		local run = Instance.new("TextButton")
+		run.Name = "Run"
+		run.LayoutOrder = 1
+		run.AutoButtonColor = false
+		run.Text = ""
+		run.Size = UDim2.fromScale(0, 1)
+		run.BackgroundColor3 = THEME.field
+		run.Parent = field
+		round(run, 6)
+		pad(run, 0, 12)
+		lineUp(run, Enum.FillDirection.Horizontal, 8)
+		fill(run)
+		if value then
+			value.Parent = run
+		end
+		runButton = run
+
+		local more = Instance.new("TextButton")
+		more.Name = "More"
+		more.LayoutOrder = 2
+		more.AutoButtonColor = false
+		more.Text = ""
+		more.Size = UDim2.fromOffset(ROW, ROW)
+		more.BackgroundColor3 = THEME.field
+		more.Parent = field
+		round(more, 6)
+		local centre = lineUp(more, Enum.FillDirection.Horizontal, 0)
+		centre.HorizontalAlignment = Enum.HorizontalAlignment.Center
+		if chevron then
+			chevron.Parent = more
+		end
+		moreButton = more
 	end
 
 	-- The list: under the field for D6; for the rest, a layer of its own above
@@ -2316,6 +3473,24 @@ local function createDropdown(parent: GuiObject, style: DropdownStyle, spec: Dro
 
 	list.Parent = if catcher then catcher else root
 
+	-- D20 commits nothing until this is pressed.
+	local applyButton: TextButton? = nil
+	if style == "D20" then
+		local apply = Instance.new("TextButton")
+		apply.Name = "Apply"
+		apply.LayoutOrder = 2
+		apply.AutoButtonColor = false
+		apply.Size = UDim2.new(1, 0, 0, ROW)
+		apply.BackgroundColor3 = THEME.accent
+		apply.FontFace = Font.fromEnum(Enum.Font.GothamBold)
+		apply.TextSize = 14
+		apply.TextColor3 = THEME.text
+		apply.Text = "Apply"
+		apply.Parent = list
+		round(apply, 6)
+		applyButton = apply
+	end
+
 	local rows = Instance.new("ScrollingFrame")
 	rows.Name = "Rows"
 	rows.LayoutOrder = 1
@@ -2327,7 +3502,15 @@ local function createDropdown(parent: GuiObject, style: DropdownStyle, spec: Dro
 	rows.AutomaticCanvasSize = Enum.AutomaticSize.Y
 	rows.CanvasSize = UDim2.new()
 	rows.Parent = list
-	lineUp(rows, Enum.FillDirection.Vertical, 0)
+	if style == "D18" then
+		local grid = Instance.new("UIGridLayout")
+		grid.CellSize = UDim2.new(1 / GRID_COLUMNS, -LIST_GAP, 0, GRID_CELL)
+		grid.CellPadding = UDim2.fromOffset(LIST_GAP, LIST_GAP)
+		grid.SortOrder = Enum.SortOrder.LayoutOrder
+		grid.Parent = rows
+	else
+		lineUp(rows, Enum.FillDirection.Vertical, 0)
+	end
 
 	local refreshField: () -> ()
 	local rebuild: () -> ()
@@ -2337,7 +3520,40 @@ local function createDropdown(parent: GuiObject, style: DropdownStyle, spec: Dro
 		spec.onChanged(table.clone(chosen))
 	end
 
+	local function remember(text: string)
+		local at = table.find(recent, text)
+		if at then
+			table.remove(recent, at)
+		end
+		table.insert(recent, 1, text)
+		if #recent > RECENT_LIMIT then
+			table.remove(recent)
+		end
+	end
+
 	local function choose(text: string)
+		local level = if #trail > 0 then trail[#trail].children else nil
+		local picked = choiceFor(text, level)
+		if style == "D21" and picked and picked.children then
+			table.insert(trail, picked)
+			rebuild()
+			return
+		end
+
+		if style == "D20" and pending then
+			local at = table.find(pending, text)
+			if at then
+				table.remove(pending, at)
+			else
+				table.insert(pending, text)
+			end
+			rebuild()
+			return
+		end
+		if style == "D14" then
+			remember(text)
+		end
+
 		if multi then
 			local at = table.find(chosen, text)
 			if at then
@@ -2361,7 +3577,12 @@ local function createDropdown(parent: GuiObject, style: DropdownStyle, spec: Dro
 
 	local function visibleChoices(): { Choice }
 		local shown = {}
-		for _, choice in choices do
+		local level: { string | Choice } = choices
+		if #trail > 0 then
+			level = trail[#trail].children or {}
+		end
+		for _, option in level do
+			local choice = toChoice(option)
 			if matches(choice, query) then
 				table.insert(shown, choice)
 			end
@@ -2372,21 +3593,38 @@ local function createDropdown(parent: GuiObject, style: DropdownStyle, spec: Dro
 		return shown
 	end
 
-	local function addRow(choice: Choice, order: number): TextButton
+	-- `name` and `onPick` let D14, D21 and D22 add rows that are not options:
+	-- a repeat of a recent pick, a way back, a way to create one.
+	local function addRow(
+		choice: Choice,
+		order: number,
+		name: string?,
+		onPick: (() -> ())?
+	): TextButton
 		local row = Instance.new("TextButton")
-		row.Name = choice.text
+		row.Name = name or choice.text
 		row.LayoutOrder = order
 		row.AutoButtonColor = false
 		row.Text = ""
-		row.Size = UDim2.new(1, 0, 0, ROW)
+		row.Size = UDim2.new(1, 0, 0, if style == "D13" then TWO_LINE_ROW else ROW)
 		row.BackgroundColor3 = THEME.surface
 		row.BackgroundTransparency = 0
 		row.Parent = rows
 		round(row, 6)
-		pad(row, 0, 12)
-		lineUp(row, Enum.FillDirection.Horizontal, 12)
+		pad(row, 0, if style == "D18" then 4 else 12)
+		local rowLayout = lineUp(
+			row,
+			if style == "D18" then Enum.FillDirection.Vertical else Enum.FillDirection.Horizontal,
+			if style == "D18" then 4 else 12
+		)
+		if style == "D18" then
+			rowLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
+		end
 
 		local picked = isChosen(choice.text)
+		if pending then
+			picked = table.find(pending, choice.text) ~= nil
+		end
 		if multi then
 			local tickBox = Instance.new("Frame")
 			tickBox.Name = "Box"
@@ -2410,14 +3648,41 @@ local function createDropdown(parent: GuiObject, style: DropdownStyle, spec: Dro
 			chip.Parent = row
 			round(chip, 6)
 		elseif choice.icon or choice.image then
-			local size = if choice.image then 24 else 16
+			local size = if choice.image or style == "D18" then 24 else 16
 			newIcon("Icon", choice.image or choice.icon or "", size, 0).Parent = row
 		end
 
 		local words = newText("Label", choice.display or choice.text, 14, 1)
 		words.Parent = row
-		fill(words)
-		if choice.detail then
+		if style == "D18" then
+			words.TextSize = 12
+			words.TextXAlignment = Enum.TextXAlignment.Center
+			words.Size = UDim2.new(1, 0, 0, 16)
+		elseif style == "D13" then
+			-- Two lines: the label over its detail, both left aligned.
+			local column = Instance.new("Frame")
+			column.Name = "Lines"
+			column.LayoutOrder = 1
+			column.Size = UDim2.fromScale(0, 1)
+			column.BackgroundTransparency = 1
+			column.Parent = row
+			fill(column)
+			lineUp(column, Enum.FillDirection.Vertical, 4)
+
+			words.Size = UDim2.new(1, 0, 0, 16)
+			words.Parent = column
+			local under = newText("Detail", choice.detail or "", 12, 2)
+			under.Size = UDim2.new(1, 0, 0, 16)
+			under.TextColor3 = THEME.textMuted
+			under.Parent = column
+		else
+			fill(words)
+		end
+		if choice.children then
+			newIcon("Deeper", ICON.chevronRight, 16, 3).Parent = row
+		end
+
+		if choice.detail and style ~= "D13" and style ~= "D18" then
 			local extra = newText("Detail", choice.detail, 12, 2)
 			extra.AutomaticSize = Enum.AutomaticSize.X
 			extra.TextColor3 = THEME.textMuted
@@ -2433,7 +3698,11 @@ local function createDropdown(parent: GuiObject, style: DropdownStyle, spec: Dro
 			return THEME.surface
 		end)
 		table.insert(rowConnections, row.Activated:Connect(function()
-			choose(choice.text)
+			if onPick then
+				onPick()
+			else
+				choose(choice.text)
+			end
 		end))
 		return row
 	end
@@ -2461,6 +3730,29 @@ local function createDropdown(parent: GuiObject, style: DropdownStyle, spec: Dro
 
 		local shown = visibleChoices()
 		local order, group = 0, nil
+		if style == "D14" and query == "" and #recent > 0 then
+			order += 1
+			addNote("RECENT", "RECENT", order)
+			for _, text in recent do
+				local choice = choiceFor(text)
+				if choice then
+					order += 1
+					addRow(choice, order, `Recent {text}`)
+				end
+			end
+			order += 1
+			addNote("ALL", "ALL", order)
+		end
+
+		if #trail > 0 then
+			order += 1
+			local above = trail[#trail]
+			local back = { text = "Back", display = `Back to {above.display or above.text}` }
+			addRow(back, order, "Back", function()
+				table.remove(trail)
+				rebuild()
+			end)
+		end
 		for _, choice in shown do
 			if style == "D8" and choice.group and choice.group ~= group then
 				group = choice.group
@@ -2471,11 +3763,31 @@ local function createDropdown(parent: GuiObject, style: DropdownStyle, spec: Dro
 			order += 1
 			addRow(choice, order)
 		end
-		if #shown == 0 then
+
+		-- D22: nothing matches exactly, so offer to add what was typed.
+		local exact = choiceFor(query) ~= nil
+		if style == "D22" and query ~= "" and not exact then
+			order += 1
+			local typed = query
+			local offer = { text = typed, display = `Add "{typed}"`, icon = ICON.plus }
+			addRow(offer, order, "Create", function()
+				table.insert(choices, { text = typed })
+				if spec.onCreate then
+					spec.onCreate(typed)
+				end
+				choose(typed)
+			end)
+		elseif #shown == 0 then
 			addNote("Empty", if #choices == 0 then "Nothing to choose yet" else "No matches", 1)
 		end
-		local lines = math.clamp(order, 1, VISIBLE_ROWS)
-		rows.Size = UDim2.new(1, 0, 0, lines * ROW)
+
+		if style == "D18" then
+			local lines = math.clamp(math.ceil(order / GRID_COLUMNS), 1, 3)
+			rows.Size = UDim2.new(1, 0, 0, lines * (GRID_CELL + LIST_GAP))
+		else
+			local height = if style == "D13" then TWO_LINE_ROW else ROW
+			rows.Size = UDim2.new(1, 0, 0, math.clamp(order, 1, VISIBLE_ROWS) * height)
+		end
 	end
 
 	-- D4: one chip per chosen value, or the label while nothing is chosen.
@@ -2533,11 +3845,21 @@ local function createDropdown(parent: GuiObject, style: DropdownStyle, spec: Dro
 		if style == "D11" then
 			return
 		end
-		local height = rows.Size.Y.Offset + LIST_GAP * 2
+		local extra = if applyButton then ROW + LIST_GAP else 0
+		local height = rows.Size.Y.Offset + LIST_GAP * 2 + extra
+		-- D16 is a sheet along the bottom edge instead of a list at the field.
+		if style == "D16" then
+			list.AnchorPoint = Vector2.new(0.5, 1)
+			list.Size = UDim2.fromOffset(math.min(overlay.AbsoluteSize.X, PALETTE_WIDTH), height)
+			list.Position = UDim2.new(0.5, 0, 1, 0)
+			return
+		end
 		local top = field.AbsolutePosition - overlay.AbsolutePosition
 		local below = top.Y + field.AbsoluteSize.Y + LIST_GAP
+		local above = top.Y - height - LIST_GAP
 		local fits = below + height <= overlay.AbsoluteSize.Y
-		local y = if fits then below else top.Y - height - LIST_GAP
+		-- D15 opens upward whenever there is room, for fields near the bottom.
+		local y = if style == "D15" and above >= 0 then above elseif fits then below else above
 		list.Size = UDim2.fromOffset(field.AbsoluteSize.X, height)
 		list.Position = UDim2.fromOffset(top.X, y)
 	end
@@ -2548,7 +3870,11 @@ local function createDropdown(parent: GuiObject, style: DropdownStyle, spec: Dro
 		end
 		isOpen = true
 		ticket += 1
+		if style == "D20" then
+			pending = table.clone(chosen)
+		end
 		rebuild()
+
 		local overlay = layer
 		if overlay then
 			local host = spec.host or field:FindFirstAncestorWhichIsA("ScreenGui")
@@ -2561,6 +3887,13 @@ local function createDropdown(parent: GuiObject, style: DropdownStyle, spec: Dro
 		end
 		list.Visible = true
 		animate(list, OPEN, { GroupTransparency = 0 })
+
+		if style == "D16" and catcher then
+			catcher.BackgroundColor3 = THEME.scrim
+			animate(catcher, OPEN, { BackgroundTransparency = SCRIM_TRANSPARENCY })
+			list.Position = UDim2.new(0.5, 0, 1, list.Size.Y.Offset)
+			animate(list, OPEN, { Position = UDim2.new(0.5, 0, 1, 0) })
+		end
 		if chevron then
 			animate(chevron, OPEN, { Rotation = 180 })
 		end
@@ -2582,6 +3915,12 @@ local function createDropdown(parent: GuiObject, style: DropdownStyle, spec: Dro
 		local overlay = layer
 		if chevron then
 			animate(chevron, SHUT, { Rotation = 0 })
+		end
+		pending = nil
+		table.clear(trail)
+		if style == "D16" and catcher then
+			animate(catcher, SHUT, { BackgroundTransparency = 1 })
+			animate(list, SHUT, { Position = UDim2.new(0.5, 0, 1, list.Size.Y.Offset) })
 		end
 		animate(list, SHUT, { GroupTransparency = 1 }).Completed:Once(function()
 			if mine == ticket then
@@ -2663,6 +4002,29 @@ local function createDropdown(parent: GuiObject, style: DropdownStyle, spec: Dro
 		end)
 		table.insert(connections, fieldButton.Activated:Connect(toggle))
 	end
+	if runButton and moreButton then
+		for _, button in { runButton, moreButton } do
+			watch(button, connections, function()
+				return THEME.field
+			end)
+		end
+		table.insert(connections, moreButton.Activated:Connect(toggle))
+		table.insert(connections, runButton.Activated:Connect(function()
+			if spec.onRun and chosen[1] then
+				spec.onRun(chosen[1])
+			end
+		end))
+	end
+	if applyButton then
+		table.insert(connections, applyButton.Activated:Connect(function()
+			if pending then
+				chosen = table.clone(pending)
+			end
+			refreshField()
+			close()
+			report()
+		end))
+	end
 	if catcher then
 		table.insert(connections, catcher.Activated:Connect(close))
 	end
@@ -2671,8 +4033,27 @@ local function createDropdown(parent: GuiObject, style: DropdownStyle, spec: Dro
 	local typing = box or paletteBox
 	if typing then
 		local entry = typing
+		-- D17: the grey rest of the first option that starts with the typing.
+		local function suggest()
+			local hint = ghost
+			if not hint then
+				return
+			end
+			local lowered = query:lower()
+			for _, choice in visibleChoices() do
+				local word = choice.display or choice.text
+				if query ~= "" and word:lower():sub(1, #query) == lowered then
+					local rest = escape(word:sub(#query + 1))
+					hint.Text = `<font transparency="1">{escape(query)}</font>{rest}`
+					return
+				end
+			end
+			hint.Text = ""
+		end
+
 		table.insert(connections, entry:GetPropertyChangedSignal("Text"):Connect(function()
 			query = entry.Text
+			suggest()
 			if style == "D5" and query == "" then
 				close()
 				return
@@ -2695,7 +4076,7 @@ local function createDropdown(parent: GuiObject, style: DropdownStyle, spec: Dro
 				choose(first.text)
 			end
 		end))
-		if style == "D2" then
+		if style == "D2" or style == "D17" or style == "D22" then
 			table.insert(connections, entry.Focused:Connect(open))
 		end
 	end
@@ -2703,6 +4084,14 @@ local function createDropdown(parent: GuiObject, style: DropdownStyle, spec: Dro
 	table.insert(connections, UserInputService.InputBegan:Connect(function(input: InputObject)
 		if isOpen and input.KeyCode == Enum.KeyCode.Escape then
 			close()
+		end
+		-- D17: Tab accepts the grey completion.
+		local entry = box
+		if style == "D17" and entry and input.KeyCode == Enum.KeyCode.Tab and entry:IsFocused() then
+			local first = visibleChoices()[1]
+			if first then
+				entry.Text = first.display or first.text
+			end
 		end
 	end))
 
@@ -2776,7 +4165,10 @@ type FirstStyles = "M0" | "M1" | "M2" | "M3" | "M4" | "M5" | "M6"
 type SecondStyles = "M7" | "M8" | "M9" | "M10" | "M11" | "M12"
 type LaterStyles = "M13" | "M14" | "M15" | "M16" | "M17" | "M18"
 type LastStyles = "M19" | "M20" | "M21" | "M22" | "M23" | "M24"
-export type MenuStyle = FirstStyles | SecondStyles | LaterStyles | LastStyles
+type NewerStyles = "M25" | "M26" | "M27" | "M28" | "M29" | "M30"
+type NewestStyles = "M31" | "M32" | "M33" | "M34" | "M35" | "M36"
+type EarlyStyles = FirstStyles | SecondStyles | LaterStyles | LastStyles
+export type MenuStyle = EarlyStyles | NewerStyles | NewestStyles
 
 -- `scrim` is the full-screen frame M19 dims behind the panel.
 export type PresenterOptions = {
@@ -2807,6 +4199,10 @@ local MOTION = {
 	snapOut = TweenInfo.new(0.08, Enum.EasingStyle.Quad, Enum.EasingDirection.In),
 	slowIn = TweenInfo.new(0.35, Enum.EasingStyle.Sine, Enum.EasingDirection.Out),
 	slowOut = TweenInfo.new(0.25, Enum.EasingStyle.Sine, Enum.EasingDirection.In),
+	glide = TweenInfo.new(0.5, Enum.EasingStyle.Quint, Enum.EasingDirection.Out),
+	glideOut = TweenInfo.new(0.3, Enum.EasingStyle.Quint, Enum.EasingDirection.In),
+	-- Out to the peak and back, twice: the two beats of M35.
+	beat = TweenInfo.new(0.12, Enum.EasingStyle.Quad, Enum.EasingDirection.Out, 1, true),
 }
 
 -- How dark M19's scrim gets: half the game still shows through.
@@ -2816,6 +4212,13 @@ local SCRIM_TRANSPARENCY = 0.5
 -- the gentle pop (M3) and the grow from a button (M5).
 local POP_IN, POP_OUT = 0.96, 0.98
 local GROW_IN, GROW_OUT = 0.9, 0.95
+
+-- M31 starts from half size, M36 shrinks to it; M35 beats to 104 %; M28
+-- starts as a 48 px circle; M33's rows pop from 90 %.
+local HALF = 0.5
+local BEAT = 1.04
+local CIRCLE = 48
+local ROW_POP = 0.9
 
 type Pose = {
 	enter: (size: Vector2) -> Vector2,
@@ -2831,7 +4234,7 @@ type Pose = {
 	scaleTiming: TweenInfo?,
 	settlePosition: boolean,
 	settleScale: boolean,
-	unfold: "X" | "Y" | "none",
+	unfold: "X" | "Y" | "L" | "circle" | "none",
 	dims: boolean,
 }
 
@@ -3017,6 +4420,83 @@ local POSE: { [string]: Pose } = {
 		exitTiming = MOTION.slowOut,
 		fadeTiming = MOTION.slowIn,
 	}),
+	M25 = pose({
+		enterRotation = -90,
+		exitRotation = 45,
+		enterScale = GROW_IN,
+		exitScale = GROW_OUT,
+		settleScale = true,
+	}),
+	M26 = pose({
+		enter = function()
+			return Vector2.new(-24, 24)
+		end,
+		exit = function()
+			return Vector2.new(-12, 12)
+		end,
+	}),
+	M27 = pose({
+		unfold = "L",
+		fades = false,
+		enterTiming = MOTION.unfold,
+		exitTiming = MOTION.fold,
+	}),
+	M28 = pose({
+		unfold = "circle",
+		enterTiming = MOTION.drawerIn,
+		exitTiming = MOTION.fold,
+	}),
+	M29 = pose({
+		enter = function()
+			return Vector2.new(0, 40)
+		end,
+		exit = function()
+			return Vector2.new(0, 12)
+		end,
+		enterTiming = MOTION.bounce,
+	}),
+	M30 = pose({
+		enter = function()
+			return Vector2.new(-48, 0)
+		end,
+		exit = function()
+			return Vector2.new(-12, 0)
+		end,
+		enterTiming = MOTION.jelly,
+	}),
+	M31 = pose({ enterScale = HALF, exitScale = GROW_IN, settleScale = true }),
+	M32 = pose({
+		enter = function()
+			return Vector2.new(0, -24)
+		end,
+		exit = function()
+			return Vector2.new(0, 8)
+		end,
+		enterRotation = 8,
+		exitRotation = -4,
+		settlePosition = true,
+	}),
+	M33 = pose({
+		enter = function()
+			return Vector2.new(0, 8)
+		end,
+		exit = function()
+			return Vector2.new(0, 8)
+		end,
+	}),
+	M34 = pose({
+		enter = function()
+			return Vector2.new(120, 0)
+		end,
+		exit = function()
+			return Vector2.new(40, 0)
+		end,
+		enterTiming = MOTION.glide,
+		exitTiming = MOTION.glideOut,
+		fadeTiming = MOTION.glide,
+	}),
+	M35 = pose({ enterScale = POP_IN, exitScale = POP_OUT }),
+	M36 = pose({ enterScale = GROW_IN, exitScale = HALF }),
 }
 
 local ROW_STEP = 0.03
@@ -3026,8 +4506,9 @@ local ROW_BUDGET = 0.25
 -- by a parent layout. For M5, set its AnchorPoint on the side facing the button
 -- that opens it: UIScale grows the panel out of its anchor. A UIScale used for
 -- screen-size scaling belongs on a parent frame, not on the panel. M12 needs
--- the rows it reveals, each a CanvasGroup. M17 and M18 resize the panel, so
--- its contents must be sized in offset or they squash instead of being revealed.
+-- the rows it reveals, each a CanvasGroup; so does M33. M17, M18, M27 and M28
+-- resize the panel, so its contents must be sized in offset or they squash
+-- instead of being revealed. M28 reshapes the panel's own UICorner.
 local function createPresenter(
 	panel: CanvasGroup,
 	style: MenuStyle,
@@ -3048,6 +4529,9 @@ local function createPresenter(
 	local scale = Instance.new("UIScale")
 	scale.Name = "OpenScale"
 	scale.Parent = panel
+
+	local corner = panel:FindFirstChildWhichIsA("UICorner")
+	local restingCorner = if corner then corner.CornerRadius else UDim.new()
 
 	local home = panel.Position
 	local fullSize = panel.Size
@@ -3077,16 +4561,22 @@ local function createPresenter(
 		return home + UDim2.fromOffset(offset.X, offset.Y)
 	end
 
-	-- A folded size on one axis, and the position that keeps the right edge
-	-- still: the top for a roll (Y), the centre for a stretch (X).
-	local function folded(axis: "X" | "Y"): (UDim2, UDim2)
+	-- A folded size, and the position that keeps the right part still: the top
+	-- for a roll (Y), the centre for a stretch (X), the left edge for a curtain
+	-- (L), and the centre for a circle.
+	local function folded(axis: "X" | "Y" | "L" | "circle"): (UDim2, UDim2)
 		local anchor, pixels = panel.AnchorPoint, panel.AbsoluteSize
 		if axis == "Y" then
 			local size = UDim2.new(fullSize.X.Scale, fullSize.X.Offset, 0, 0)
 			return size, shifted(Vector2.new(0, -anchor.Y * pixels.Y))
+		elseif axis == "circle" then
+			local dx = (0.5 - anchor.X) * (pixels.X - CIRCLE)
+			local dy = (0.5 - anchor.Y) * (pixels.Y - CIRCLE)
+			return UDim2.fromOffset(CIRCLE, CIRCLE), shifted(Vector2.new(dx, dy))
 		end
 		local size = UDim2.new(0, 0, fullSize.Y.Scale, fullSize.Y.Offset)
-		return size, shifted(Vector2.new((0.5 - anchor.X) * pixels.X, 0))
+		local keep = if axis == "L" then -anchor.X else 0.5 - anchor.X
+		return size, shifted(Vector2.new(keep * pixels.X, 0))
 	end
 
 	local function dim(show: boolean, timing: TweenInfo)
@@ -3108,16 +4598,31 @@ local function createPresenter(
 		end)
 	end
 
-	local function revealRows()
+	-- M12 fades the rows in one by one; M33 also pops each from 90 %. A row sits
+	-- in a layout, so it can grow but never travel.
+	local function revealRows(pops: boolean)
 		local step = math.min(ROW_STEP, ROW_BUDGET / math.max(#rows, 1))
 		local mine = ticket
 		for index, row in rows do
 			row.GroupTransparency = 1
+			local grow = row:FindFirstChild("RowScale") :: UIScale?
+			if pops and not grow then
+				local created = Instance.new("UIScale")
+				created.Name = "RowScale"
+				created.Parent = row
+				grow = created
+			end
+			if grow then
+				grow.Scale = if pops then ROW_POP else 1
+			end
 			task.delay(step * (index - 1), function()
 				if mine ~= ticket or not row.Parent then
 					return
 				end
 				play(row, MOTION.enter, { GroupTransparency = 0 })
+				if grow then
+					play(grow, MOTION.settle, { Scale = 1 })
+				end
 			end)
 		end
 	end
@@ -3155,7 +4660,11 @@ local function createPresenter(
 			if chosen.unfold ~= "none" then
 				panel.Size, panel.Position = folded(chosen.unfold)
 			end
+			if chosen.unfold == "circle" and corner then
+				corner.CornerRadius = UDim.new(0.5, 0)
+			end
 		end
+
 		local moveTiming = if chosen.settlePosition then MOTION.settle else chosen.enterTiming
 		local growTiming = if chosen.settleScale
 			then MOTION.settle
@@ -3164,14 +4673,21 @@ local function createPresenter(
 		play(panel, chosen.fadeTiming, { GroupTransparency = 0 })
 		play(scale, growTiming, { Scale = 1 })
 		play(panel, growTiming, { Rotation = 0 })
+
 		if chosen.dims then
 			dim(true, MOTION.enter)
 		end
-		if style == "M12" then
-			revealRows()
+		if chosen.unfold == "circle" and corner then
+			play(corner, moveTiming, { CornerRadius = restingCorner })
+		end
+		if style == "M12" or style == "M33" then
+			revealRows(style == "M33")
 		end
 		settleWhen(move, function()
 			phase = "open"
+			if style == "M35" then
+				play(scale, MOTION.beat, { Scale = BEAT })
+			end
 		end)
 	end
 
@@ -3190,6 +4706,9 @@ local function createPresenter(
 			panel.Visible = false
 			panel.Position, panel.Size, scale.Scale, panel.GroupTransparency = home, fullSize, 1, 1
 			panel.Rotation = 0
+			if corner then
+				corner.CornerRadius = restingCorner
+			end
 			if scrim then
 				scrim.Visible = false
 			end
@@ -3215,6 +4734,9 @@ local function createPresenter(
 		dim(false, chosen.exitTiming)
 		if chosen.unfold ~= "none" then
 			local size, position = folded(chosen.unfold)
+			if chosen.unfold == "circle" and corner then
+				play(corner, chosen.exitTiming, { CornerRadius = UDim.new(0.5, 0) })
+			end
 			settleWhen(play(panel, chosen.exitTiming, { Size = size, Position = position }), hide)
 			return
 		end
@@ -3784,9 +5306,24 @@ local GuiService = game:GetService("GuiService")
 local TweenService = game:GetService("TweenService")
 
 type FirstPress = "P1" | "P2" | "P3" | "P4" | "P5" | "P6"
-export type PressStyle = FirstPress | "P7" | "P8" | "P9" | "P10" | "P11" | "P12"
+type LaterPress = "P7" | "P8" | "P9" | "P10" | "P11" | "P12"
+export type PressStyle = FirstPress | LaterPress | "P13" | "P14" | "P15" | "P21" | "P22"
+-- The styles that change what the button says or whether it can be pressed.
+export type ActionStyle = "P16" | "P17" | "P18" | "P19" | "P20"
+
+-- `run` does the button's work and calls `finish` when it is done; P17 shows
+-- whether it worked. P18 waits `seconds` before the next press; P19 asks with
+-- `confirmText`; P20 refuses with a shake while `allowed` returns false.
+export type ActionSpec = {
+	run: (finish: (ok: boolean) -> ()) -> (),
+	seconds: number?,
+	confirmText: string?,
+	allowed: (() -> boolean)?,
+}
 type FirstTabs = "S1" | "S2" | "S3" | "S4" | "S5" | "S6"
-export type TabStyle = FirstTabs | "S7" | "S8" | "S9" | "S10" | "S11" | "S12"
+type SecondTabs = "S7" | "S8" | "S9" | "S10" | "S11" | "S12"
+type LaterTabs = "S13" | "S14" | "S15" | "S16" | "S17" | "S18" | "S19" | "S20" | "S21" | "S22"
+export type TabStyle = FirstTabs | SecondTabs | LaterTabs
 
 local THEME = {
 	control = Color3.fromRGB(44, 48, 57),
@@ -3799,6 +5336,7 @@ local THEME = {
 	accent = Color3.fromRGB(46, 160, 127),
 	accentDim = Color3.fromRGB(28, 88, 74),
 	focus = Color3.fromRGB(72, 201, 162),
+	danger = Color3.fromRGB(208, 88, 82),
 	-- A UIGradient multiplies the fill, so P6 paints white and lets it choose.
 	white = Color3.fromRGB(255, 255, 255),
 }
@@ -3806,6 +5344,10 @@ local THEME = {
 local ICON = {
 	arrow = "rbxassetid://134908902120212",
 	tab = "rbxassetid://89644754139307",
+	check = "rbxassetid://86817768619372",
+	previous = "rbxassetid://102314312897830",
+	next = "rbxassetid://101007429951147",
+	open = "rbxassetid://71457658246709",
 }
 
 local QUICK = TweenInfo.new(0.08, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)
@@ -3819,6 +5361,11 @@ local DRAIN = TweenInfo.new(0.15, Enum.EasingStyle.Quad, Enum.EasingDirection.Ou
 -- Plays forward then back: one quick pop that returns to rest on its own.
 local POP = TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out, 0, true)
 local SLIDE = TweenInfo.new(0.2, Enum.EasingStyle.Cubic, Enum.EasingDirection.Out)
+local SPIN = TweenInfo.new(RIPPLE.Time, Enum.EasingStyle.Cubic, Enum.EasingDirection.Out)
+-- Turns for as long as the pointer stays; cancelled when it leaves.
+local SHIMMER = TweenInfo.new(1.5, Enum.EasingStyle.Linear, Enum.EasingDirection.In, -1)
+-- Three quick wiggles that end where they started.
+local SHAKE = TweenInfo.new(0.05, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, 3, true)
 local PAGE_OUT = TweenInfo.new(0.1, Enum.EasingStyle.Cubic, Enum.EasingDirection.In)
 local PAGE_IN = TweenInfo.new(0.15, Enum.EasingStyle.Cubic, Enum.EasingDirection.Out)
 local INSTANT = TweenInfo.new(0)
@@ -3828,6 +5375,11 @@ local RIPPLE_START = 0.75
 local HOLD_FILL = 0.5
 local NUDGE = 4
 local PAGE_SHIFT = 24
+local TILT = -2
+local SHAKE_ANGLE = 4
+local RESULT_HOLD = 1.2
+local CONFIRM_WINDOW = 3
+local DEFAULT_COOLDOWN = 3
 
 local function animate(instance: Instance, timing: TweenInfo, goals: { [string]: any }): Tween
 	local chosen = if GuiService.ReducedMotionEnabled then INSTANT else timing
@@ -3842,19 +5394,20 @@ local SCALE = {
 	P2 = { rest = 1, hover = 1, pressed = 0.97 },
 	P3 = { rest = 1, hover = 1.02, pressed = 0.98 },
 	P7 = { rest = 1, hover = 1, pressed = 0.94 },
+	P21 = { rest = 1, hover = 1.06, pressed = 0.98 },
 }
 local FLAT = { rest = 1, hover = 1, pressed = 1 }
 
 -- The effects that add children need a button whose own layout would not
 -- grab them: a plain text button, or one whose content sits in a child frame.
-local function needsBare(button: GuiButton, style: PressStyle)
+local function needsBare(button: GuiButton, style: string)
 	local layout = button:FindFirstChildOfClass("UIListLayout")
 	assert(not layout, `{style} needs a button with no UIListLayout`)
 end
 
 -- A clipped layer that matches the button's corners, for effects that must
 -- stay inside its shape; a CanvasGroup rounds what ClipsDescendants cannot.
-local function layer(button: GuiButton, style: PressStyle, name: string): CanvasGroup
+local function layer(button: GuiButton, style: string, name: string): CanvasGroup
 	needsBare(button, style)
 	local group = Instance.new("CanvasGroup")
 	group.Name = name
@@ -3914,6 +5467,34 @@ local function attachPress(button: GuiButton, style: PressStyle, onHold: (() -> 
 		sweep = gradient
 	end
 
+	-- P13 starts as an outline; P14 needs the icon it spins; P15 a gradient to turn.
+	if style == "P13" then
+		rim.Color = THEME.accent
+		rim.Transparency = 0
+		button.BackgroundTransparency = 1
+	end
+	local spinner: GuiObject? = nil
+	if style == "P14" then
+		local found = button:FindFirstChild("Icon")
+		assert(found and found:IsA("GuiObject"), "P14 needs a child named Icon")
+		spinner = found
+	end
+	local shimmer: UIGradient? = nil
+	local turning: Tween? = nil
+	if style == "P15" then
+		local gradient = Instance.new("UIGradient")
+		gradient.Name = "Shimmer"
+		gradient.Color = ColorSequence.new({
+			ColorSequenceKeypoint.new(0, THEME.controlHover),
+			ColorSequenceKeypoint.new(0.5, THEME.accentDim),
+			ColorSequenceKeypoint.new(1, THEME.controlHover),
+		})
+		gradient.Enabled = false
+		gradient.Parent = button
+		table.insert(made, gradient)
+		shimmer = gradient
+	end
+
 	local underline: Frame? = nil
 	local shine: Frame? = nil
 	local ripples: CanvasGroup? = nil
@@ -3971,15 +5552,24 @@ local function attachPress(button: GuiButton, style: PressStyle, onHold: (() -> 
 	local function paint()
 		local steps = SCALE[style] or FLAT
 		local timing = if pressed then QUICK else RELEASE
-		if not sweep then
+		if style == "P13" then
+			animate(button, timing, {
+				BackgroundTransparency = if hovered or pressed then 0 else 1,
+				BackgroundColor3 = if pressed then THEME.accent else THEME.accentDim,
+			})
+		elseif not sweep then
 			local colour = if pressed then THEME.controlPressed
 				elseif hovered then THEME.controlHover
 				else THEME.control
 			animate(button, timing, { BackgroundColor3 = colour })
 		end
 		local scale = if pressed then steps.pressed elseif hovered then steps.hover else steps.rest
-		local springing = style == "P7" and not pressed and size.Scale < 1
+		local springing = (style == "P7" and not pressed and size.Scale < 1)
+			or (style == "P21" and hovered and not pressed)
 		animate(size, if springing then SPRING_BACK else timing, { Scale = scale })
+		if style == "P22" then
+			animate(button, timing, { Rotation = if pressed then TILT else 0 })
+		end
 
 		if style == "P3" or style == "P5" then
 			local lit = if style == "P5" then hovered or pressed else hovered and not pressed
@@ -4064,12 +5654,37 @@ local function attachPress(button: GuiButton, style: PressStyle, onHold: (() -> 
 			band.Position = UDim2.fromScale(-0.5, 0)
 			animate(band, SHINE, { Position = UDim2.fromScale(1.1, 0) })
 		end
+		local gradient = shimmer
+		if gradient and not GuiService.ReducedMotionEnabled then
+			gradient.Enabled = true
+			gradient.Rotation = 0
+			turning = TweenService:Create(gradient, SHIMMER, { Rotation = 360 })
+			turning:Play()
+		end
 	end))
+
 	table.insert(connections, button.MouseLeave:Connect(function()
 		hovered, pressed = false, false
 		paint()
 		drainHold()
+		if turning then
+			turning:Cancel()
+			turning = nil
+		end
+		if shimmer then
+			shimmer.Enabled = false
+		end
 	end))
+
+	if spinner then
+		local icon = spinner
+		table.insert(connections, button.Activated:Connect(function()
+			icon.Rotation = 0
+			animate(icon, SPIN, { Rotation = 360 }).Completed:Once(function()
+				icon.Rotation = 0
+			end)
+		end))
+	end
 	table.insert(connections, button.InputBegan:Connect(function(input: InputObject)
 		local kind = input.UserInputType
 		if kind == Enum.UserInputType.MouseButton1 or kind == Enum.UserInputType.Touch then
@@ -4101,15 +5716,141 @@ local function attachPress(button: GuiButton, style: PressStyle, onHold: (() -> 
 		if holding then
 			holding:Cancel()
 		end
+		if turning then
+			turning:Cancel()
+		end
 		for _, instance in made do
 			instance:Destroy()
 		end
 	end
 end
 
+-- P16 to P20 change what a text button says while its work happens, so the
+-- player always knows whether pressing again does anything. Returns cleanup.
+local function attachAction(button: TextButton, style: ActionStyle, spec: ActionSpec): () -> ()
+	local connections: { RBXScriptConnection } = {}
+	local label = button.Text
+	local rest = button.BackgroundColor3
+	local ticket = 0
+	local busy = false
+	local armed = false
+
+	local function restore()
+		ticket += 1
+		busy, armed = false, false
+		button.Text = label
+		button.BackgroundColor3 = rest
+		button.Interactable = true
+	end
+
+	-- P18: a bar across the button drains while the cooldown counts down.
+	local drain: Frame? = nil
+	if style == "P18" then
+		local group = layer(button, style, "CooldownLayer")
+		local bar = newFrame("Cooldown", THEME.white)
+		bar.Size = UDim2.fromScale(0, 1)
+		bar.BackgroundTransparency = HOLD_FILL
+		bar.Parent = group
+		drain = bar
+	end
+
+	local function countDown(left: number, mine: number)
+		if mine ~= ticket then
+			return
+		end
+		if left <= 0 then
+			restore()
+			return
+		end
+		button.Text = `{label} {left}s`
+		task.delay(1, countDown, left - 1, mine)
+	end
+
+	local function finished(ok: boolean)
+		if style == "P17" then
+			ticket += 1
+			local mine = ticket
+			button.Text = if ok then "Done" else "Failed"
+			button.BackgroundColor3 = if ok then THEME.accent else THEME.danger
+			task.delay(RESULT_HOLD, function()
+				if mine == ticket then
+					restore()
+				end
+			end)
+			return
+		end
+		if style == "P18" then
+			ticket += 1
+			local seconds = spec.seconds or DEFAULT_COOLDOWN
+			local bar = drain
+			if bar then
+				bar.Size = UDim2.fromScale(1, 1)
+				local timing = TweenInfo.new(seconds, Enum.EasingStyle.Linear)
+				animate(bar, timing, { Size = UDim2.fromScale(0, 1) })
+			end
+			countDown(seconds, ticket)
+			return
+		end
+		restore()
+	end
+
+	local function shake()
+		button.Rotation = 0
+		animate(button, SHAKE, { Rotation = SHAKE_ANGLE }).Completed:Once(function()
+			button.Rotation = 0
+		end)
+	end
+
+	table.insert(connections, button.Activated:Connect(function()
+		if busy then
+			return
+		end
+		local allowed = spec.allowed
+		if style == "P20" and allowed and not allowed() then
+			shake()
+			return
+		end
+		if style == "P19" and not armed then
+			ticket += 1
+			local mine = ticket
+			armed = true
+			button.Text = spec.confirmText or "Press again to confirm"
+			button.BackgroundColor3 = THEME.danger
+			task.delay(CONFIRM_WINDOW, function()
+				if mine == ticket then
+					restore()
+				end
+			end)
+			return
+		end
+		busy = true
+		button.Interactable = style ~= "P16" and style ~= "P18"
+		if style == "P16" then
+			button.Text = "Working…"
+		end
+		spec.run(finished)
+	end))
+
+	return function()
+		ticket += 1
+		for _, connection in connections do
+			connection:Disconnect()
+		end
+		button.Text = label
+		button.BackgroundColor3 = rest
+		button.Interactable = true
+	end
+end
+
+-- S6, S7, S13 and S17 read `icons`; S9, S10 and S22 turn `pages`; S14 shows
+-- `counts`; S18 puts tabs under `groups` headings; S20 shows `visible` tabs
+-- (default 4) and moves the rest into More.
 export type TabOptions = {
 	icons: { [string]: string }?,
 	pages: { [string]: CanvasGroup }?,
+	counts: { [string]: number }?,
+	groups: { [string]: string }?,
+	visible: number?,
 }
 
 export type Tabs = {
@@ -4118,7 +5859,7 @@ export type Tabs = {
 	destroy: () -> (),
 }
 
-type Marker = "line" | "pill" | "side" | "dot" | "none"
+type Marker = "line" | "pill" | "side" | "dot" | "top" | "folder" | "none"
 
 -- What marks the chosen tab in each style.
 local MARKER: { [TabStyle]: Marker } = {
@@ -4134,7 +5875,20 @@ local MARKER: { [TabStyle]: Marker } = {
 	S10 = "line",
 	S11 = "dot",
 	S12 = "pill",
+	S13 = "top",
+	S14 = "line",
+	S15 = "none",
+	S16 = "folder",
+	S17 = "pill",
+	S18 = "side",
+	S19 = "none",
+	S20 = "line",
+	S21 = "none",
+	S22 = "none",
 }
+
+-- S16's chosen tab reaches this far below the bar, joining the page under it.
+local FOLDER_JOIN = 6
 
 -- S9 and S10 move the pages too: S9 slides them toward the side the new tab is
 -- on, S10 fades the old page out before the new one fades in.
@@ -4159,9 +5913,15 @@ local function turnPage(style: TabStyle, from: CanvasGroup?, to: CanvasGroup?, f
 	end
 end
 
-local function label(parent: GuiObject, text: string, size: number, order: number): TextLabel
+local function label(
+	parent: GuiObject,
+	text: string,
+	size: number,
+	order: number,
+	name: string?
+): TextLabel
 	local words = Instance.new("TextLabel")
-	words.Name = "Label"
+	words.Name = name or "Label"
 	words.LayoutOrder = order
 	words.Size = UDim2.new(1, 0, 0, 16)
 	words.BackgroundTransparency = 1
@@ -4169,6 +5929,84 @@ local function label(parent: GuiObject, text: string, size: number, order: numbe
 	words.Text = text
 	words.Parent = parent
 	return words
+end
+
+-- S6, S7, S13 and S17: the icon, with the name under it (S6, S13), beside it
+-- (S17, shown only while chosen) or not at all (S7).
+local function iconContent(
+	cell: TextButton,
+	name: string,
+	image: string,
+	style: TabStyle
+): (ImageLabel, TextLabel?)
+	cell.Text = ""
+	local glyph = Instance.new("ImageLabel")
+	glyph.Name = "Glyph"
+	glyph.LayoutOrder = 1
+	glyph.Size = UDim2.fromOffset(20, 20)
+	glyph.BackgroundTransparency = 1
+	glyph.Image = image
+	glyph.Parent = cell
+
+	local stack = Instance.new("UIListLayout")
+	stack.SortOrder = Enum.SortOrder.LayoutOrder
+	stack.HorizontalAlignment = Enum.HorizontalAlignment.Center
+	stack.VerticalAlignment = Enum.VerticalAlignment.Center
+	stack.Padding = UDim.new(0, 4)
+	stack.Parent = cell
+
+	if style == "S7" then
+		cell.Size = UDim2.fromOffset(44, 44)
+		return glyph, nil
+	end
+	if style == "S17" then
+		stack.FillDirection = Enum.FillDirection.Horizontal
+		local caption = label(cell, name, 14, 2)
+		caption.AutomaticSize = Enum.AutomaticSize.X
+		caption.Size = UDim2.fromOffset(0, 16)
+		return glyph, caption
+	end
+	return glyph, label(cell, name, 12, 2)
+end
+
+-- S15: a numbered circle before the name; a tick replaces the number once
+-- the step is behind the chosen one.
+local function stepContent(
+	cell: TextButton,
+	name: string,
+	index: number
+): (TextLabel, ImageLabel, TextLabel)
+	cell.Text = ""
+	local sequence = Instance.new("UIListLayout")
+	sequence.FillDirection = Enum.FillDirection.Horizontal
+	sequence.SortOrder = Enum.SortOrder.LayoutOrder
+	sequence.HorizontalAlignment = Enum.HorizontalAlignment.Center
+	sequence.VerticalAlignment = Enum.VerticalAlignment.Center
+	sequence.Padding = UDim.new(0, 8)
+	sequence.Parent = cell
+
+	local numeral = label(cell, tostring(index), 12, 1, "Step")
+	numeral.Size = UDim2.fromOffset(24, 24)
+	numeral.BackgroundTransparency = 0
+	numeral.TextColor3 = THEME.text
+	local disc = Instance.new("UICorner")
+	disc.CornerRadius = UDim.new(0.5, 0)
+	disc.Parent = numeral
+
+	local done = Instance.new("ImageLabel")
+	done.Name = "Tick"
+	done.AnchorPoint = Vector2.new(0.5, 0.5)
+	done.Position = UDim2.fromScale(0.5, 0.5)
+	done.Size = UDim2.fromOffset(14, 14)
+	done.BackgroundTransparency = 1
+	done.Image = ICON.check
+	done.ImageColor3 = THEME.text
+	done.Parent = numeral
+
+	local caption = label(cell, name, 14, 2)
+	caption.AutomaticSize = Enum.AutomaticSize.X
+	caption.Size = UDim2.fromOffset(0, 16)
+	return numeral, done, caption
 end
 
 -- The marker is a sibling of the tab row, not a child of its UIListLayout, so
@@ -4189,9 +6027,23 @@ local function createTabs(
 	local hovered: string? = nil
 	local icons = if options and options.icons then options.icons else {}
 	local pages = if options and options.pages then options.pages else {}
-	local vertical = style == "S4" or style == "S5" or style == "S7"
+	local counts = if options and options.counts then options.counts else {}
+	local groups = if options and options.groups then options.groups else {}
+	local limit = if options and options.visible then options.visible else 4
+	local vertical = style == "S4"
+		or style == "S5"
+		or style == "S7"
+		or style == "S18"
+		or style == "S22"
 	local marker = MARKER[style]
 	local scrolls = style == "S12"
+	local stacked = style == "S6" or style == "S13"
+	-- S15 steps and S21's arrows need the order; S20's extra tabs live in More.
+	local circles: { [string]: TextLabel } = {}
+	local ticks: { [string]: ImageLabel } = {}
+	local overflow: { [string]: boolean } = {}
+	local moreButton: TextButton? = nil
+	local moreList: Frame? = nil
 
 	local bar: Frame | ScrollingFrame
 	if scrolls then
@@ -4209,7 +6061,7 @@ local function createTabs(
 	bar.Name = "Tabs"
 	bar.Size = if vertical
 		then UDim2.fromScale(1, 1)
-		else UDim2.new(1, 0, 0, if style == "S6" then 56 else 44)
+		else UDim2.new(1, 0, 0, if stacked then 56 else 44)
 	bar.BackgroundColor3 = THEME.track
 	bar.BackgroundTransparency = if style == "S8" then 0 else 1
 	bar.Parent = parent
@@ -4255,7 +6107,10 @@ local function createTabs(
 	end
 
 	local function moveMarker(instant: boolean)
-		local tab = buttons[current]
+		local tab: GuiObject = buttons[current]
+		if overflow[current] and moreButton then
+			tab = moreButton
+		end
 		local origin = bar.AbsolutePosition
 		local canvas = if scrolls then (bar :: ScrollingFrame).CanvasPosition else Vector2.zero
 		local x = tab.AbsolutePosition.X - origin.X + canvas.X
@@ -4269,25 +6124,54 @@ local function createTabs(
 		elseif marker == "dot" then
 			position = UDim2.fromOffset(x + width / 2 - 3, y + height - 8)
 			size = UDim2.fromOffset(6, 6)
+		elseif marker == "top" then
+			size = UDim2.fromOffset(width, 2)
+		elseif marker == "folder" then
+			size = UDim2.fromOffset(width, height + FOLDER_JOIN)
 		end
 		animate(mark, if instant then INSTANT else SLIDE, { Position = position, Size = size })
 	end
 
 	local function paint()
+		local at = table.find(names, current) or 1
 		for name, tab in buttons do
 			local chosen = name == current
 			local colour = if chosen or name == hovered then THEME.text else THEME.textMuted
 			local weight = if chosen then Enum.Font.GothamBold else Enum.Font.GothamMedium
 			tab.TextColor3 = colour
 			tab.FontFace = Font.fromEnum(weight)
+
 			local caption = words[name]
 			if caption then
 				caption.TextColor3 = colour
 				caption.FontFace = Font.fromEnum(weight)
+				-- S17 names only the chosen tab; the rest show just their icon.
+				if style == "S17" then
+					caption.Visible = chosen
+				end
 			end
 			local glyph = glyphs[name]
 			if glyph then
 				glyph.ImageColor3 = if chosen then THEME.focus else colour
+				if style == "S22" then
+					glyph.Rotation = if chosen then 180 else 0
+				end
+			end
+
+			if style == "S19" then
+				tab.TextSize = if chosen then 20 else 14
+			elseif style == "S21" then
+				tab.Visible = chosen
+			elseif style == "S22" and pages[name] then
+				pages[name].Visible = chosen
+			end
+			-- S15: steps before this one are done and show a tick.
+			local numeral, done = circles[name], ticks[name]
+			if numeral and done then
+				local index = table.find(names, name) or 0
+				numeral.BackgroundColor3 = if index <= at then THEME.accent else THEME.controlHover
+				numeral.Text = if index < at then "" else tostring(index)
+				done.Visible = index < at
 			end
 		end
 	end
@@ -4298,7 +6182,12 @@ local function createTabs(
 		end
 		local before = table.find(names, current) or 0
 		local after = table.find(names, name) or 0
-		turnPage(style, pages[current], pages[name], after > before)
+		if style ~= "S22" then
+			turnPage(style, pages[current], pages[name], after > before)
+		end
+		if moreList then
+			moreList.Visible = false
+		end
 		current = name
 		paint()
 		moveMarker(false)
@@ -4314,17 +6203,78 @@ local function createTabs(
 		onSelect(name)
 	end
 
+	-- S20: tabs past the limit wait in a list under a More tab.
+	if style == "S20" and #names > limit then
+		local more = Instance.new("TextButton")
+		more.Name = "More"
+		more.LayoutOrder = limit + 1
+		more.AutoButtonColor = false
+		more.BackgroundTransparency = 1
+		more.Size = UDim2.fromScale(0, 1)
+		more.FontFace = Font.fromEnum(Enum.Font.GothamMedium)
+		more.TextSize = 14
+		more.TextColor3 = THEME.textMuted
+		more.Text = "More"
+		more.Parent = row
+		local share = Instance.new("UIFlexItem")
+		share.FlexMode = Enum.UIFlexMode.Fill
+		share.Parent = more
+		moreButton = more
+
+		local list = newFrame("MoreList", THEME.control)
+		list.AnchorPoint = Vector2.new(1, 0)
+		list.Position = UDim2.new(1, 0, 1, 4)
+		list.AutomaticSize = Enum.AutomaticSize.Y
+		list.Size = UDim2.fromOffset(160, 0)
+		list.Visible = false
+		list.ZIndex = 3
+		list.Parent = bar
+		local round = Instance.new("UICorner")
+		round.CornerRadius = UDim.new(0, 6)
+		round.Parent = list
+		local column = Instance.new("UIListLayout")
+		column.SortOrder = Enum.SortOrder.LayoutOrder
+		column.Parent = list
+		moreList = list
+
+		table.insert(connections, more.Activated:Connect(function()
+			list.Visible = not list.Visible
+		end))
+	end
+
+	local lastGroup: string? = nil
 	for index, name in names do
+		-- S18: a heading above the first tab of each group.
+		local section = groups[name]
+		if style == "S18" and section and section ~= lastGroup then
+			lastGroup = section
+			local heading = label(row, section:upper(), 12, index * 2 - 1, `{section}Heading`)
+			heading.TextColor3 = THEME.textMuted
+			heading.TextXAlignment = Enum.TextXAlignment.Left
+		end
+
 		local tab = Instance.new("TextButton")
 		tab.Name = name
-		tab.LayoutOrder = index
+		tab.LayoutOrder = if style == "S18" or style == "S22" then index * 2 else index
 		tab.AutoButtonColor = false
 		tab.BackgroundTransparency = 1
 		tab.TextSize = 14
 		tab.Text = name
-		tab.Parent = row
+		local spare = moreList
+		if style == "S20" and index > limit and spare then
+			overflow[name] = true
+			tab.Size = UDim2.new(1, 0, 0, 44)
+			tab.Parent = spare
+		else
+			tab.Parent = row
+		end
 
-		if vertical then
+		if overflow[name] then
+			tab.TextXAlignment = Enum.TextXAlignment.Left
+			local inset = Instance.new("UIPadding")
+			inset.PaddingLeft = UDim.new(0, 12)
+			inset.Parent = tab
+		elseif vertical then
 			tab.Size = UDim2.new(1, 0, 0, 44)
 			tab.TextXAlignment = Enum.TextXAlignment.Left
 			local inset = Instance.new("UIPadding")
@@ -4344,29 +6294,54 @@ local function createTabs(
 			share.Parent = tab
 		end
 
-		-- S6 stacks an icon over a small label; S7 shows the icon alone.
-		if style == "S6" or style == "S7" then
-			tab.Text = ""
-			local glyph = Instance.new("ImageLabel")
-			glyph.Name = "Glyph"
-			glyph.LayoutOrder = 1
-			glyph.Size = UDim2.fromOffset(20, 20)
-			glyph.BackgroundTransparency = 1
-			glyph.Image = icons[name] or ICON.tab
-			glyph.Parent = tab
-			glyphs[name] = glyph
+		-- S14: a count in the tab's top corner, placed outside any layout.
+		local count = counts[name]
+		if style == "S14" and count then
+			local badge = Instance.new("TextLabel")
+			badge.Name = "Count"
+			badge.AnchorPoint = Vector2.new(1, 0)
+			badge.Position = UDim2.new(1, -4, 0, 4)
+			badge.AutomaticSize = Enum.AutomaticSize.X
+			badge.Size = UDim2.fromOffset(16, 16)
+			badge.BackgroundColor3 = THEME.accent
+			badge.FontFace = Font.fromEnum(Enum.Font.GothamBold)
+			badge.TextSize = 12
+			badge.TextColor3 = THEME.text
+			badge.Text = tostring(count)
+			badge.Parent = tab
+			local pill = Instance.new("UICorner")
+			pill.CornerRadius = UDim.new(0.5, 0)
+			pill.Parent = badge
+		end
 
-			local stack = Instance.new("UIListLayout")
-			stack.SortOrder = Enum.SortOrder.LayoutOrder
-			stack.HorizontalAlignment = Enum.HorizontalAlignment.Center
-			stack.VerticalAlignment = Enum.VerticalAlignment.Center
-			stack.Padding = UDim.new(0, 4)
-			stack.Parent = tab
-			if style == "S7" then
-				tab.Size = UDim2.fromOffset(44, 44)
-			else
-				words[name] = label(tab, name, 12, 2)
+		if style == "S15" then
+			local numeral, done, caption = stepContent(tab, name, index)
+			circles[name], ticks[name], words[name] = numeral, done, caption
+		end
+
+		-- S22: each tab heads its own section, with an arrow that turns open.
+		if style == "S22" then
+			tab.TextXAlignment = Enum.TextXAlignment.Left
+			local chevron = Instance.new("ImageLabel")
+			chevron.Name = "Glyph"
+			chevron.AnchorPoint = Vector2.new(1, 0.5)
+			chevron.Position = UDim2.new(1, -12, 0.5, 0)
+			chevron.Size = UDim2.fromOffset(16, 16)
+			chevron.BackgroundTransparency = 1
+			chevron.Image = ICON.open
+			chevron.Parent = tab
+			glyphs[name] = chevron
+			local page = pages[name]
+			if page then
+				page.LayoutOrder = index * 2 + 1
+				page.Parent = row
 			end
+		end
+
+		if stacked or style == "S7" or style == "S17" then
+			local glyph, caption = iconContent(tab, name, icons[name] or ICON.tab, style)
+			glyphs[name] = glyph
+			words[name] = caption
 		end
 
 		local ring = Instance.new("UIStroke")
@@ -4398,6 +6373,25 @@ local function createTabs(
 		end))
 	end
 
+	-- S21: one tab name at a time, with arrows either side that wrap.
+	if style == "S21" then
+		for order, step in { -1, 1 } do
+			local stepper = Instance.new("ImageButton")
+			stepper.Name = if step < 0 then "Previous" else "Next"
+			stepper.LayoutOrder = if order == 1 then 0 else #names + 1
+			stepper.Size = UDim2.fromOffset(44, 44)
+			stepper.AutoButtonColor = false
+			stepper.BackgroundTransparency = 1
+			stepper.Image = if step < 0 then ICON.previous else ICON.next
+			stepper.ImageColor3 = THEME.textMuted
+			stepper.Parent = row
+			table.insert(connections, stepper.Activated:Connect(function()
+				local at = table.find(names, current) or 1
+				select(names[(at - 1 + step) % #names + 1])
+			end))
+		end
+	end
+
 	for name, page in pages do
 		page.Visible = name == current
 		page.GroupTransparency = if name == current then 0 else 1
@@ -4424,6 +6418,7 @@ end
 
 return {
 	attachPress = attachPress,
+	attachAction = attachAction,
 	createTabs = createTabs,
 }
 ```
@@ -4445,13 +6440,23 @@ export type ProgressHandle = {
 	done: (message: string, severity: Severity?) -> (),
 }
 
--- `title` is shown by N13 and ignored elsewhere. N17 is `countdown` on any
--- placement: the seconds left are written after the message.
+export type PercentHandle = {
+	set: (fraction: number) -> (),
+	done: (message: string, severity: Severity?) -> (),
+}
+
+-- `title` is shown by N13 and ignored elsewhere. N17, N21, N22, N24 and N28
+-- are methods that work on any placement: `countdown`, `player`, `percent`,
+-- `sticky` and `invite`.
 export type Notifier = {
 	push: (message: string, severity: Severity?, key: string?, title: string?) -> (),
 	progress: (message: string) -> ProgressHandle,
 	action: (message: string, actionLabel: string, onAction: () -> ()) -> (),
 	countdown: (message: string, seconds: number, onZero: (() -> ())?) -> (),
+	player: (message: string, userId: number) -> (),
+	percent: (message: string) -> PercentHandle,
+	sticky: (message: string, severity: Severity?) -> (),
+	invite: (message: string, onAccept: () -> (), onDecline: (() -> ())?) -> (),
 	destroy: () -> (),
 }
 
@@ -4461,6 +6466,7 @@ local THEME = {
 	surface = Color3.fromRGB(44, 48, 57),
 	edge = Color3.fromRGB(63, 68, 79),
 	text = Color3.fromRGB(243, 245, 248),
+	textMuted = Color3.fromRGB(150, 157, 170),
 	action = Color3.fromRGB(72, 201, 162),
 	info = Color3.fromRGB(88, 141, 214),
 	success = Color3.fromRGB(72, 178, 112),
@@ -4520,6 +6526,9 @@ local GAP = 8
 local EDGE_INSET = 16
 local MIN_HOLD = 1.5
 local ACTION_HOLD = 6
+-- An invite waits long enough to finish what you were doing, then goes quietly.
+local INVITE_HOLD = 10
+local AVATAR = 32
 local SETTLE_TIME = 0.12
 local SPIN_DEGREES_PER_SECOND = 360
 -- N19: how far each older card peeks out, and how much smaller it is per step.
@@ -4528,15 +6537,21 @@ local DECK_SHRINK = 0.05
 local FADE_IN = TweenInfo.new(0.2, Enum.EasingStyle.Cubic, Enum.EasingDirection.Out)
 local FADE_OUT = TweenInfo.new(0.15, Enum.EasingStyle.Cubic, Enum.EasingDirection.In)
 
+type TimedKind = "plain" | "progress" | "action" | "countdown"
+type Kind = TimedKind | "player" | "percent" | "sticky" | "invite"
+
 type Request = {
 	message: string,
 	severity: Severity,
 	key: string?,
 	title: string?,
-	kind: "plain" | "progress" | "action" | "countdown",
+	kind: Kind,
 	actionLabel: string?,
 	onAction: (() -> ())?,
+	onDecline: (() -> ())?,
 	seconds: number?,
+	userId: number?,
+	fraction: number?,
 	toast: Toast?,
 }
 
@@ -4548,6 +6563,7 @@ type Toast = {
 	icon: ImageLabel,
 	label: TextLabel,
 	timerBar: Frame?,
+	percent: TextLabel?,
 	dismiss: ImageButton?,
 	depth: UIScale?,
 	offset: Vector2,
@@ -4632,6 +6648,10 @@ local function createNotifier(screen: ScreenGui, placement: Placement): Notifier
 			local request = toast.request
 			if request.kind == "progress" then
 				toast.icon.Rotation = (toast.icon.Rotation + dt * SPIN_DEGREES_PER_SECOND) % 360
+				continue
+			end
+			-- A percent toast waits for its work, and a sticky one for the player.
+			if request.kind == "percent" or request.kind == "sticky" then
 				continue
 			end
 			-- A countdown tracks real time, so hovering never pauses it.
@@ -4727,17 +6747,23 @@ local function createNotifier(screen: ScreenGui, placement: Placement): Notifier
 		toast.timerBar = timerBar
 	end
 
-	local function addAction(toast: Toast, actionLabel: string, onAction: () -> ())
+	local function addAction(
+		toast: Toast,
+		actionLabel: string,
+		onAction: () -> (),
+		order: number?,
+		name: string?
+	)
 		local button = Instance.new("TextButton")
-		button.Name = "Action"
-		button.LayoutOrder = 3
+		button.Name = name or "Action"
+		button.LayoutOrder = order or 3
 		button.AutomaticSize = Enum.AutomaticSize.X
 		button.Size = UDim2.fromOffset(0, 44)
 		button.AutoButtonColor = false
 		button.BackgroundTransparency = 1
 		button.FontFace = Font.fromEnum(Enum.Font.GothamBold)
 		button.TextSize = 14
-		button.TextColor3 = THEME.action
+		button.TextColor3 = if name == "Decline" then THEME.textMuted else THEME.action
 		button.Text = actionLabel
 		button.Parent = toast.content
 
@@ -4745,6 +6771,32 @@ local function createNotifier(screen: ScreenGui, placement: Placement): Notifier
 			onAction()
 			release(toast)
 		end))
+	end
+
+	-- N22: the bar on the bottom edge is the work done, not the time left.
+	local function addPercent(toast: Toast)
+		local number = Instance.new("TextLabel")
+		number.Name = "Percent"
+		number.LayoutOrder = 3
+		number.AutomaticSize = Enum.AutomaticSize.X
+		number.Size = UDim2.fromScale(0, 1)
+		number.BackgroundTransparency = 1
+		number.FontFace = Font.fromEnum(Enum.Font.GothamBold)
+		number.TextSize = 14
+		number.TextColor3 = THEME.text
+		number.Text = "0%"
+		number.Parent = toast.content
+		toast.percent = number
+
+		local bar = Instance.new("Frame")
+		bar.Name = "Done"
+		bar.AnchorPoint = Vector2.new(0, 1)
+		bar.Position = UDim2.fromScale(0, 1)
+		bar.Size = UDim2.new(0, 0, 0, 2)
+		bar.BackgroundColor3 = THEME.info
+		bar.BorderSizePixel = 0
+		bar.Parent = toast.card
+		toast.timerBar = bar
 	end
 
 	-- N13: a bold title over the message, both left-aligned beside the icon.
@@ -4848,6 +6900,18 @@ local function createNotifier(screen: ScreenGui, placement: Placement): Notifier
 		icon.Image = if progress then ICON.loading else ICON[request.severity]
 		icon.Rotation = 0
 		icon.ImageColor3 = THEME[request.severity]
+
+		-- N21: the player's headshot in place of the severity icon.
+		local userId = request.userId
+		if request.kind == "player" and userId then
+			icon.Name = "Avatar"
+			icon.Size = UDim2.fromOffset(AVATAR, AVATAR)
+			icon.Image = `rbxthumb://type=AvatarHeadShot&id={userId}&w=48&h=48`
+			icon.ImageColor3 = THEME.text
+			local round = Instance.new("UICorner")
+			round.CornerRadius = UDim.new(0.5, 0)
+			round.Parent = icon
+		end
 		icon.Parent = content
 
 		local label = Instance.new("TextLabel")
@@ -4883,6 +6947,8 @@ local function createNotifier(screen: ScreenGui, placement: Placement): Notifier
 			lifetime = math.max(lifetime, ACTION_HOLD)
 		elseif request.kind == "countdown" then
 			lifetime = request.seconds or lifetime
+		elseif request.kind == "invite" then
+			lifetime = INVITE_HOLD
 		end
 
 		local toast: Toast = {
@@ -4893,6 +6959,7 @@ local function createNotifier(screen: ScreenGui, placement: Placement): Notifier
 			icon = icon,
 			label = label,
 			timerBar = nil,
+			percent = nil,
 			dismiss = nil,
 			depth = nil,
 			offset = Vector2.zero,
@@ -4913,12 +6980,19 @@ local function createNotifier(screen: ScreenGui, placement: Placement): Notifier
 		end
 
 		local actionLabel, onAction = request.actionLabel, request.onAction
+		local inviting = request.kind == "invite"
 		if actionLabel and onAction then
-			addAction(toast, actionLabel, onAction)
+			local order, name = if inviting then 4 else 3, if inviting then "Accept" else nil
+			addAction(toast, actionLabel, onAction, order, name)
 		end
-		if request.severity == "error" then
+		if inviting then
+			addAction(toast, "Decline", request.onDecline or function() end, 3, "Decline")
+		end
+		if request.kind == "percent" then
+			addPercent(toast)
+		elseif request.severity == "error" or request.kind == "sticky" then
 			addDismiss(toast)
-		elseif (layout.timed or request.kind == "countdown") and not progress then
+		elseif (layout.timed or request.kind == "countdown" or inviting) and not progress then
 			addTimer(toast)
 		end
 
@@ -5039,11 +7113,84 @@ local function createNotifier(screen: ScreenGui, placement: Placement): Notifier
 		})
 	end
 
+	local function player(message: string, userId: number)
+		enqueue({ message = message, severity = "info", kind = "player", userId = userId })
+	end
+
+	-- N22: `set` moves the bar and the number; `done` turns it into a result
+	-- that times out like any other toast.
+	local function percent(message: string): PercentHandle
+		local request: Request = {
+			message = message,
+			severity = "info",
+			kind = "percent",
+			fraction = 0,
+		}
+		enqueue(request)
+		local function show()
+			local toast = request.toast
+			local fraction = request.fraction or 0
+			if toast and toast.percent and toast.timerBar then
+				toast.percent.Text = `{math.floor(fraction * 100 + 0.5)}%`
+				toast.timerBar.Size = UDim2.new(fraction, 0, 0, 2)
+			end
+		end
+		return {
+			set = function(fraction: number)
+				request.fraction = math.clamp(fraction, 0, 1)
+				show()
+			end,
+			done = function(result: string, severity: Severity?)
+				request.kind = "plain"
+				request.message = result
+				request.severity = severity or "success"
+				local toast = request.toast
+				if not toast then
+					return
+				end
+				toast.icon.Image = ICON[request.severity]
+				toast.icon.ImageColor3 = THEME[request.severity]
+				toast.label.Text = result
+				toast.lifetime = readingTime(result)
+				toast.remaining = toast.lifetime
+				if toast.percent then
+					toast.percent:Destroy()
+					toast.percent = nil
+				end
+				if toast.timerBar then
+					toast.timerBar.Size = UDim2.new(1, 0, 0, 2)
+				end
+			end,
+		}
+	end
+
+	-- N24: stays until the player closes it, whatever its severity.
+	local function sticky(message: string, severity: Severity?)
+		enqueue({ message = message, severity = severity or "info", kind = "sticky" })
+	end
+
+	-- N28: Accept and Decline each run once; unanswered, it leaves after ten
+	-- seconds without calling either.
+	local function invite(message: string, onAccept: () -> (), onDecline: (() -> ())?)
+		enqueue({
+			message = message,
+			severity = "info",
+			kind = "invite",
+			actionLabel = "Accept",
+			onAction = onAccept,
+			onDecline = onDecline,
+		})
+	end
+
 	return {
 		push = push,
 		progress = progress,
 		action = action,
 		countdown = countdown,
+		player = player,
+		percent = percent,
+		sticky = sticky,
+		invite = invite,
 		destroy = function()
 			if loop then
 				loop:Disconnect()
@@ -5104,12 +7251,15 @@ local STRETCH = TweenInfo.new(0.06, Enum.EasingStyle.Quad, Enum.EasingDirection.
 
 type FirstTen = "T1" | "T2" | "T3" | "T4" | "T5" | "T6" | "T7" | "T8" | "T9" | "T10"
 type SecondTen = "T11" | "T12" | "T13" | "T14" | "T15" | "T16" | "T17" | "T18" | "T19" | "T20"
-export type ToggleStyle = FirstTen | SecondTen
+type ThirdTen = "T21" | "T22" | "T23" | "T24" | "T25" | "T26" | "T27" | "T28" | "T29" | "T30"
+export type ToggleStyle = FirstTen | SecondTen | ThirdTen
 
--- T19 reads `description`, T20 reads `icon`; the other styles ignore both.
+-- T19 reads `description`, T20 reads `icon`, T29 reads `key`; the other styles
+-- ignore all three.
 export type ToggleDetails = {
 	description: string?,
 	icon: string?,
+	key: string?,
 }
 
 export type Toggle = {
@@ -5162,9 +7312,14 @@ end
 
 -- T1 and T2 differ only in corner radius; the knob position carries the state,
 -- so the track colour is never the only signal.
-local function switchSkin(row: TextButton, radius: UDim, knobRadius: UDim): (boolean) -> ()
+local function switchSkin(
+	row: TextButton,
+	radius: UDim,
+	knobRadius: UDim,
+	order: number?
+): ((boolean) -> (), Frame)
 	local track = newFrame("Track", UDim2.fromOffset(44, 24), THEME.track)
-	track.LayoutOrder = 2
+	track.LayoutOrder = order or 2
 	round(track, radius)
 	track.Parent = row
 
@@ -5173,10 +7328,11 @@ local function switchSkin(row: TextButton, radius: UDim, knobRadius: UDim): (boo
 	round(knob, knobRadius)
 	knob.Parent = track
 
-	return function(on: boolean)
+	local function paint(on: boolean)
 		animate(knob, { Position = UDim2.new(0, if on then 23 else 3, 0.5, 0) })
 		animate(track, { BackgroundColor3 = if on then THEME.accent else THEME.track })
 	end
+	return paint, track
 end
 
 local function tickSkin(row: TextButton): (boolean) -> ()
@@ -5599,7 +7755,7 @@ local function describedSkin(
 	detail.Text = description
 	detail.Parent = column
 
-	return switchSkin(row, UDim.new(0.5, 0), UDim.new(0.5, 0))
+	return (switchSkin(row, UDim.new(0.5, 0), UDim.new(0.5, 0)))
 end
 
 -- T20: a feature icon leads the row and takes the accent while the switch is on.
@@ -5614,6 +7770,232 @@ local function iconRowSkin(row: TextButton, image: string): (boolean) -> ()
 	return function(on: boolean)
 		animate(lead, { ImageColor3 = if on then THEME.accent else THEME.textMuted })
 		paintSwitch(on)
+	end
+end
+
+local function newWord(name: string, order: number, text: string): TextLabel
+	local word = Instance.new("TextLabel")
+	word.Name = name
+	word.LayoutOrder = order
+	word.AutomaticSize = Enum.AutomaticSize.X
+	word.Size = UDim2.fromScale(0, 1)
+	word.BackgroundTransparency = 1
+	word.FontFace = Font.fromEnum(Enum.Font.GothamBold)
+	word.TextSize = 12
+	word.TextColor3 = THEME.textMuted
+	word.Text = text
+	return word
+end
+
+-- T21: the accent fills the track from the left as the knob travels.
+local function fillSkin(row: TextButton): (boolean) -> ()
+	local track = newFrame("Track", UDim2.fromOffset(44, 24), THEME.track)
+	track.LayoutOrder = 2
+	round(track, UDim.new(0.5, 0))
+	track.Parent = row
+
+	local fill = newFrame("Fill", UDim2.fromScale(0, 1), THEME.accent)
+	round(fill, UDim.new(0.5, 0))
+	fill.Parent = track
+
+	local knob = newFrame("Knob", UDim2.fromOffset(18, 18), THEME.knob)
+	knob.AnchorPoint = Vector2.new(0, 0.5)
+	knob.ZIndex = 2
+	round(knob, UDim.new(0.5, 0))
+	knob.Parent = track
+
+	return function(on: boolean)
+		animate(fill, { Size = UDim2.fromScale(if on then 1 else 0, 1) })
+		animate(knob, { Position = UDim2.new(0, if on then 23 else 3, 0.5, 0) })
+	end
+end
+
+-- T22: both words stay visible either side of the switch; the chosen one is lit.
+local function labelledEndsSkin(row: TextButton): (boolean) -> ()
+	local off = newWord("OffWord", 2, "Off")
+	off.Parent = row
+	local paintSwitch = switchSkin(row, UDim.new(0.5, 0), UDim.new(0.5, 0), 3)
+	local on = newWord("OnWord", 4, "On")
+	on.Parent = row
+
+	return function(value: boolean)
+		paintSwitch(value)
+		animate(off, { TextColor3 = if value then THEME.textMuted else THEME.text })
+		animate(on, { TextColor3 = if value then THEME.focus else THEME.textMuted })
+	end
+end
+
+-- T23: T1 whose track takes a soft accent glow while on.
+local function glowSkin(row: TextButton): (boolean) -> ()
+	local paintSwitch, track = switchSkin(row, UDim.new(0.5, 0), UDim.new(0.5, 0))
+	local glow = Instance.new("UIStroke")
+	glow.Name = "Glow"
+	glow.Color = THEME.focus
+	glow.Thickness = 2
+	glow.Transparency = 1
+	glow.Parent = track
+
+	return function(on: boolean)
+		paintSwitch(on)
+		animate(glow, { Transparency = if on then 0.4 else 1 })
+	end
+end
+
+-- T24: an upright lever; the knob rises for on, like a wall switch.
+local function leverSkin(row: TextButton): (boolean) -> ()
+	local track = newFrame("Track", UDim2.fromOffset(24, 40), THEME.track)
+	track.LayoutOrder = 2
+	round(track, UDim.new(0.5, 0))
+	track.Parent = row
+
+	local knob = newFrame("Knob", UDim2.fromOffset(18, 18), THEME.knob)
+	knob.AnchorPoint = Vector2.new(0.5, 0)
+	round(knob, UDim.new(0.5, 0))
+	knob.Parent = track
+
+	return function(on: boolean)
+		animate(knob, { Position = UDim2.new(0.5, 0, 0, if on then 3 else 19) })
+		animate(track, { BackgroundColor3 = if on then THEME.accent else THEME.track })
+	end
+end
+
+-- T25: an empty ring whose centre dot grows in, as a single-option radio.
+local function dotRingSkin(row: TextButton): (boolean) -> ()
+	local ring = newFrame("Ring", UDim2.fromOffset(22, 22), THEME.row)
+	ring.LayoutOrder = 0
+	round(ring, UDim.new(0.5, 0))
+	ring.Parent = row
+
+	local outline = Instance.new("UIStroke")
+	outline.Color = THEME.track
+	outline.Thickness = 2
+	outline.Parent = ring
+
+	local dot = newFrame("Dot", UDim2.fromOffset(10, 10), THEME.accent)
+	dot.AnchorPoint = Vector2.new(0.5, 0.5)
+	dot.Position = UDim2.fromScale(0.5, 0.5)
+	round(dot, UDim.new(0.5, 0))
+	dot.Parent = ring
+
+	local grow = Instance.new("UIScale")
+	grow.Parent = dot
+
+	return function(on: boolean)
+		animate(outline, { Color = if on then THEME.accent else THEME.track })
+		animate(grow, { Scale = if on then 1 else 0 })
+	end
+end
+
+-- T26: a stripe on the row's left edge lights, and the word says it.
+local function stripeSkin(row: TextButton): (boolean) -> ()
+	local stripe = newFrame("Stripe", UDim2.fromOffset(4, 24), THEME.track)
+	stripe.LayoutOrder = 0
+	round(stripe, UDim.new(0.5, 0))
+	stripe.Parent = row
+
+	local status = newWord("Status", 2, "OFF")
+	status.Parent = row
+
+	return function(on: boolean)
+		status.Text = if on then "ON" else "OFF"
+		animate(stripe, { BackgroundColor3 = if on then THEME.accent else THEME.track })
+		animate(status, { TextColor3 = if on then THEME.focus else THEME.textMuted })
+	end
+end
+
+-- T27: a rocker marked O and I; the cap sits under the side that is down.
+local function rockerSkin(row: TextButton): (boolean) -> ()
+	local rocker = newFrame("Rocker", UDim2.fromOffset(64, 32), THEME.keyBase)
+	rocker.LayoutOrder = 2
+	round(rocker, UDim.new(0, 6))
+	rocker.Parent = row
+
+	local cap = newFrame("Cap", UDim2.new(0.5, -4, 1, -8), THEME.track)
+	cap.AnchorPoint = Vector2.new(0, 0.5)
+	cap.ZIndex = 1
+	round(cap, UDim.new(0, 4))
+	cap.Parent = rocker
+
+	local marks: { TextLabel } = {}
+	for index, glyph in { "O", "I" } do
+		local mark = Instance.new("TextLabel")
+		mark.Name = if glyph == "O" then "Off" else "On"
+		mark.Position = UDim2.fromScale((index - 1) * 0.5, 0)
+		mark.Size = UDim2.fromScale(0.5, 1)
+		mark.BackgroundTransparency = 1
+		mark.ZIndex = 2
+		mark.FontFace = Font.fromEnum(Enum.Font.GothamBold)
+		mark.TextSize = 14
+		mark.Text = glyph
+		mark.Parent = rocker
+		marks[index] = mark
+	end
+
+	return function(on: boolean)
+		animate(cap, {
+			Position = UDim2.new(if on then 0.5 else 0, 4, 0.5, 0),
+			BackgroundColor3 = if on then THEME.accent else THEME.track,
+		})
+		marks[1].TextColor3 = if on then THEME.textMuted else THEME.text
+		marks[2].TextColor3 = if on then THEME.knob else THEME.textMuted
+	end
+end
+
+-- T28: a compact pill that reads ON or OFF, for dense feature lists.
+local function pillSkin(row: TextButton): (boolean) -> ()
+	local pill = Instance.new("TextLabel")
+	pill.Name = "Pill"
+	pill.LayoutOrder = 2
+	pill.Size = UDim2.fromOffset(52, 24)
+	pill.BackgroundColor3 = THEME.track
+	pill.BorderSizePixel = 0
+	pill.FontFace = Font.fromEnum(Enum.Font.GothamBold)
+	pill.TextSize = 12
+	pill.Text = "OFF"
+	round(pill, UDim.new(0.5, 0))
+	pill.Parent = row
+
+	return function(on: boolean)
+		pill.Text = if on then "ON" else "OFF"
+		animate(pill, {
+			BackgroundColor3 = if on then THEME.accent else THEME.track,
+			TextColor3 = if on then THEME.knob else THEME.textMuted,
+		})
+	end
+end
+
+-- T29: T1 with the feature's hotkey shown in a chip before the switch.
+local function keyChipSkin(row: TextButton, keyName: string): (boolean) -> ()
+	local chip = newWord("Key", 2, keyName)
+	chip.BackgroundColor3 = THEME.keyBase
+	chip.BackgroundTransparency = 0
+	chip.Size = UDim2.fromOffset(0, 24)
+	round(chip, UDim.new(0, 4))
+	chip.Parent = row
+
+	local inset = Instance.new("UIPadding")
+	inset.PaddingLeft = UDim.new(0, 8)
+	inset.PaddingRight = UDim.new(0, 8)
+	inset.Parent = chip
+
+	return (switchSkin(row, UDim.new(0.5, 0), UDim.new(0.5, 0), 3))
+end
+
+-- T30: a small switch for long, dense lists; the row stays 44 tall to tap.
+local function miniSkin(row: TextButton): (boolean) -> ()
+	local track = newFrame("Track", UDim2.fromOffset(32, 18), THEME.track)
+	track.LayoutOrder = 2
+	round(track, UDim.new(0.5, 0))
+	track.Parent = row
+
+	local knob = newFrame("Knob", UDim2.fromOffset(14, 14), THEME.knob)
+	knob.AnchorPoint = Vector2.new(0, 0.5)
+	round(knob, UDim.new(0.5, 0))
+	knob.Parent = track
+
+	return function(on: boolean)
+		animate(knob, { Position = UDim2.new(0, if on then 16 else 2, 0.5, 0) })
+		animate(track, { BackgroundColor3 = if on then THEME.accent else THEME.track })
 	end
 end
 
@@ -5831,6 +8213,28 @@ local function createToggle(
 		paintValue = iconRowSkin(row, image)
 	end
 
+	if style == "T21" then
+		paintValue = fillSkin(row)
+	elseif style == "T22" then
+		paintValue = labelledEndsSkin(row)
+	elseif style == "T23" then
+		paintValue = glowSkin(row)
+	elseif style == "T24" then
+		paintValue = leverSkin(row)
+	elseif style == "T25" then
+		paintValue = dotRingSkin(row)
+	elseif style == "T26" then
+		paintValue = stripeSkin(row)
+	elseif style == "T27" then
+		paintValue = rockerSkin(row)
+	elseif style == "T28" then
+		paintValue = pillSkin(row)
+	elseif style == "T29" then
+		paintValue = keyChipSkin(row, if details and details.key then details.key else "F")
+	elseif style == "T30" then
+		paintValue = miniSkin(row)
+	end
+
 	if style ~= "T4" then
 		watch(row)
 		table.insert(connections, row.Activated:Connect(function()
@@ -5869,6 +8273,707 @@ return createToggle
 
 ---
 
+## Recipe: .claude/skills/roblox-ui-components/assets/tooltips.luau
+
+```lua
+--!strict
+-- lint: complete
+local GuiService = game:GetService("GuiService")
+local TweenService = game:GetService("TweenService")
+local UserInputService = game:GetService("UserInputService")
+
+-- H1 to H10 without H3 to H6 attach to a control; H3 to H5 show a slider's
+-- value; H6 is its own button, H11 sits under a field and H12 points once.
+export type TooltipStyle = "H1" | "H2" | "H7" | "H8" | "H9" | "H10"
+export type SliderStyle = "H3" | "H4" | "H5"
+
+-- `title` and `keyHint` are shown by H7. `host` is the ScreenGui the bubble
+-- floats above; by default the target's own.
+export type TooltipSpec = {
+	text: string,
+	title: string?,
+	keyHint: string?,
+	host: ScreenGui?,
+}
+
+export type Tooltip = {
+	setText: (text: string) -> (),
+	setDisabled: (disabled: boolean) -> (),
+	show: () -> (),
+	hide: () -> (),
+	destroy: () -> (),
+}
+
+-- `format` turns the value into words, such as `"{value} studs"`.
+export type SliderParts = {
+	track: GuiObject,
+	thumb: GuiObject,
+	min: number,
+	max: number,
+	format: ((value: number) -> string)?,
+}
+
+export type SliderValue = {
+	update: (value: number) -> (),
+	setDragging: (dragging: boolean) -> (),
+	destroy: () -> (),
+}
+
+local THEME = {
+	bubble = Color3.fromRGB(9, 10, 13),
+	edge = Color3.fromRGB(63, 68, 79),
+	chip = Color3.fromRGB(31, 34, 41),
+	text = Color3.fromRGB(243, 245, 248),
+	textMuted = Color3.fromRGB(150, 157, 170),
+	accent = Color3.fromRGB(46, 160, 127),
+	focus = Color3.fromRGB(72, 201, 162),
+	danger = Color3.fromRGB(208, 88, 82),
+}
+
+local ICON = {
+	info = "rbxassetid://120620848266512",
+	lock = "rbxassetid://119765975153029",
+}
+
+local FADE_IN = TweenInfo.new(0.12, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)
+local FADE_OUT = TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.In)
+local INSTANT = TweenInfo.new(0)
+
+-- A pointer resting this long means a question; passing over means nothing.
+local HOVER_DELAY = 0.4
+-- A finger has no hover, so a hold of this long asks instead.
+local TOUCH_HOLD = 0.5
+-- After a finger lifts, the answer stays long enough to read.
+local TOUCH_LINGER = 1.5
+local GAP = 8
+local EDGE = 8
+local MAX_WIDTH = 240
+local CURSOR_OFFSET = 16
+local ARROW = 10
+
+local function motion(timing: TweenInfo): TweenInfo
+	return if GuiService.ReducedMotionEnabled then INSTANT else timing
+end
+
+local function round(target: GuiObject, radius: UDim)
+	local corner = Instance.new("UICorner")
+	corner.CornerRadius = radius
+	corner.Parent = target
+end
+
+local function pad(target: GuiObject, vertical: number, horizontal: number)
+	local padding = Instance.new("UIPadding")
+	padding.PaddingTop = UDim.new(0, vertical)
+	padding.PaddingBottom = UDim.new(0, vertical)
+	padding.PaddingLeft = UDim.new(0, horizontal)
+	padding.PaddingRight = UDim.new(0, horizontal)
+	padding.Parent = target
+end
+
+local function stackIn(target: GuiObject, direction: Enum.FillDirection, gap: number): UIListLayout
+	local layout = Instance.new("UIListLayout")
+	layout.FillDirection = direction
+	layout.VerticalAlignment = Enum.VerticalAlignment.Center
+	layout.SortOrder = Enum.SortOrder.LayoutOrder
+	layout.Padding = UDim.new(0, gap)
+	layout.Parent = target
+	return layout
+end
+
+local function words(name: string, text: string, size: number, bold: boolean): TextLabel
+	local label = Instance.new("TextLabel")
+	label.Name = name
+	label.AutomaticSize = Enum.AutomaticSize.XY
+	label.BackgroundTransparency = 1
+	label.FontFace = Font.fromEnum(if bold then Enum.Font.GothamBold else Enum.Font.GothamMedium)
+	label.TextSize = size
+	label.TextColor3 = THEME.text
+	label.TextWrapped = true
+	label.TextXAlignment = Enum.TextXAlignment.Left
+	label.Text = text
+	return label
+end
+
+local function glyph(name: string, image: string, size: number, colour: Color3): ImageLabel
+	local picture = Instance.new("ImageLabel")
+	picture.Name = name
+	picture.Size = UDim2.fromOffset(size, size)
+	picture.BackgroundTransparency = 1
+	picture.Image = image
+	picture.ImageColor3 = colour
+	return picture
+end
+
+-- Bubbles float in a ScreenGui of their own above the host, so no list or
+-- clipping frame cuts them off. The layer copies the host's insets, so
+-- positions measured against it land where the target is drawn.
+local function newLayer(target: GuiObject, host: ScreenGui?): ScreenGui
+	local owner = host or target:FindFirstAncestorWhichIsA("ScreenGui")
+	assert(owner, "a tooltip's target must be inside a ScreenGui")
+	local layer = Instance.new("ScreenGui")
+	layer.Name = "TooltipLayer"
+	layer.ResetOnSpawn = false
+	layer.DisplayOrder = owner.DisplayOrder + 2
+	layer.ScreenInsets = owner.ScreenInsets
+	layer.Parent = owner.Parent
+	return layer
+end
+
+-- The bubble: a title (H7), the words, and a key hint chip (H7), or a lock
+-- before the words for H9's reason.
+local function newBubble(spec: TooltipSpec, locked: boolean): (CanvasGroup, TextLabel)
+	local bubble = Instance.new("CanvasGroup")
+	bubble.Name = "Bubble"
+	bubble.AutomaticSize = Enum.AutomaticSize.XY
+	bubble.BackgroundColor3 = THEME.bubble
+	bubble.GroupTransparency = 1
+	bubble.Visible = false
+	bubble.ZIndex = 2
+	round(bubble, UDim.new(0, 6))
+	pad(bubble, 8, 12)
+	stackIn(bubble, Enum.FillDirection.Vertical, 4)
+
+	local edge = Instance.new("UIStroke")
+	edge.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+	edge.Color = if locked then THEME.danger else THEME.edge
+	edge.Parent = bubble
+
+	local bounds = Instance.new("UISizeConstraint")
+	bounds.MaxSize = Vector2.new(MAX_WIDTH, math.huge)
+	bounds.Parent = bubble
+
+	local title = spec.title
+	if title then
+		local heading = words("Title", title, 14, true)
+		heading.LayoutOrder = 1
+		heading.Parent = bubble
+	end
+
+	local line = Instance.new("Frame")
+	line.Name = "Line"
+	line.LayoutOrder = 2
+	line.AutomaticSize = Enum.AutomaticSize.XY
+	line.BackgroundTransparency = 1
+	line.Parent = bubble
+	stackIn(line, Enum.FillDirection.Horizontal, 8)
+
+	if locked then
+		local lock = glyph("Lock", ICON.lock, 16, THEME.danger)
+		lock.LayoutOrder = 1
+		lock.Parent = line
+	end
+
+	local body = words("Text", spec.text, if title then 12 else 14, false)
+	body.LayoutOrder = 2
+	body.TextColor3 = if title then THEME.textMuted else THEME.text
+	body.Parent = line
+
+	local keyHint = spec.keyHint
+	if keyHint then
+		local chip = words("Key", keyHint, 12, true)
+		chip.LayoutOrder = 3
+		chip.BackgroundColor3 = THEME.chip
+		chip.BackgroundTransparency = 0
+		round(chip, UDim.new(0, 4))
+		pad(chip, 2, 6)
+		chip.Parent = bubble
+	end
+	return bubble, body
+end
+
+-- Where a bubble of this size goes beside a rectangle: below it, or above
+-- when the layer has no room below, and never past either side edge.
+local function beside(
+	layer: ScreenGui,
+	bubble: GuiObject,
+	left: number,
+	top: number,
+	width: number,
+	height: number,
+	above: boolean
+): (number, number, boolean)
+	local size = bubble.AbsoluteSize
+	local room = layer.AbsoluteSize
+	local rightmost = math.max(EDGE, room.X - size.X - EDGE)
+	local x = math.clamp(left + width / 2 - size.X / 2, EDGE, rightmost)
+	local below = top + height + GAP
+	local over = top - size.Y - GAP
+	local useAbove = if above then over >= 0 else below + size.Y > room.Y and over >= 0
+	return x, if useAbove then over else below, useAbove
+end
+
+local function fade(bubble: CanvasGroup, visible: boolean)
+	if visible then
+		bubble.Visible = true
+		TweenService:Create(bubble, motion(FADE_IN), { GroupTransparency = 0 }):Play()
+		return
+	end
+	local out = TweenService:Create(bubble, motion(FADE_OUT), { GroupTransparency = 1 })
+	out.Completed:Once(function()
+		if bubble.GroupTransparency == 1 then
+			bubble.Visible = false
+		end
+	end)
+	out:Play()
+end
+
+-- H1 below the control, H2 above it with an arrow, H7 with a title and key,
+-- H8 at the pointer, H9 only while disabled, H10 only while pressed. Every
+-- style also answers a long press on a phone and keyboard or gamepad focus.
+local function createTooltip(target: GuiObject, style: TooltipStyle, spec: TooltipSpec): Tooltip
+	local connections: { RBXScriptConnection } = {}
+	local layer = newLayer(target, spec.host)
+	local bubble, body = newBubble(spec, style == "H9")
+	bubble.Parent = layer
+	local ticket = 0
+	local shown = false
+	local disabled = false
+	local pointer: { x: number, y: number }? = nil
+
+	local arrow: Frame? = nil
+	if style == "H2" then
+		local point = Instance.new("Frame")
+		point.Name = "Arrow"
+		point.Size = UDim2.fromOffset(ARROW, ARROW)
+		point.AnchorPoint = Vector2.new(0.5, 0.5)
+		point.Rotation = 45
+		point.BackgroundColor3 = THEME.bubble
+		point.BorderSizePixel = 0
+		point.Visible = false
+		point.ZIndex = 1
+		point.Parent = layer
+		arrow = point
+	end
+
+	-- H9 reads hovers through a transparent cover over the control, because a
+	-- disabled control gets no input of its own.
+	local cover: TextButton? = nil
+
+	local function place()
+		local origin = layer.AbsolutePosition
+		local at = pointer
+		if style == "H8" and at then
+			local x = at.x - origin.X + CURSOR_OFFSET
+			bubble.Position = UDim2.fromOffset(x, at.y - origin.Y + CURSOR_OFFSET)
+			return
+		end
+		local left = target.AbsolutePosition.X - origin.X
+		local top = target.AbsolutePosition.Y - origin.Y
+		local size = target.AbsoluteSize
+		local x, y, above = beside(layer, bubble, left, top, size.X, size.Y, style == "H2")
+		bubble.Position = UDim2.fromOffset(x, y)
+		local point = arrow
+		if point then
+			local tip = if above then y + bubble.AbsoluteSize.Y else y
+			point.Position = UDim2.fromOffset(left + size.X / 2, tip)
+		end
+	end
+
+	local function show()
+		if disabled ~= (style == "H9") then
+			return
+		end
+		ticket += 1
+		shown = true
+		place()
+		fade(bubble, true)
+		if arrow then
+			arrow.Visible = true
+		end
+	end
+
+	local function hide()
+		ticket += 1
+		if not shown then
+			return
+		end
+		shown = false
+		fade(bubble, false)
+		if arrow then
+			arrow.Visible = false
+		end
+	end
+
+	local function later(seconds: number, run: () -> ())
+		ticket += 1
+		local mine = ticket
+		task.delay(seconds, function()
+			if mine == ticket then
+				run()
+			end
+		end)
+	end
+
+	-- One set of handlers for the control, or for H9's cover in its place.
+	local function listen(source: GuiObject)
+		table.insert(connections, source.MouseEnter:Connect(function(x: number, y: number)
+			pointer = { x = x, y = y }
+			local touch = UserInputService:GetLastInputType() == Enum.UserInputType.Touch
+			if style ~= "H10" and not touch then
+				later(HOVER_DELAY, show)
+			end
+		end))
+		table.insert(connections, source.MouseMoved:Connect(function(x: number, y: number)
+			pointer = { x = x, y = y }
+			if shown and style == "H8" then
+				place()
+			end
+		end))
+		table.insert(connections, source.MouseLeave:Connect(hide))
+		table.insert(connections, source.InputBegan:Connect(function(input: InputObject)
+			local kind = input.UserInputType
+			local click = style == "H10" and kind == Enum.UserInputType.MouseButton1
+			if kind == Enum.UserInputType.Touch or click then
+				later(TOUCH_HOLD, show)
+			end
+		end))
+		table.insert(connections, source.InputEnded:Connect(function(input: InputObject)
+			if style == "H10" or input.UserInputType ~= Enum.UserInputType.Touch then
+				hide()
+			else
+				later(TOUCH_LINGER, hide)
+			end
+		end))
+		table.insert(connections, source.SelectionGained:Connect(show))
+		table.insert(connections, source.SelectionLost:Connect(hide))
+	end
+
+	if style == "H9" then
+		local catcher = Instance.new("TextButton")
+		catcher.Name = "ReasonCatcher"
+		catcher.AutoButtonColor = false
+		catcher.BackgroundTransparency = 1
+		catcher.Text = ""
+		catcher.Visible = false
+		catcher.Parent = layer
+		cover = catcher
+		listen(catcher)
+		table.insert(connections, catcher.Activated:Connect(show))
+	else
+		listen(target)
+	end
+
+	local function setDisabled(next: boolean)
+		disabled = next
+		local catcher = cover
+		if catcher then
+			local origin = layer.AbsolutePosition
+			catcher.Position = UDim2.fromOffset(
+				target.AbsolutePosition.X - origin.X,
+				target.AbsolutePosition.Y - origin.Y
+			)
+			catcher.Size = UDim2.fromOffset(target.AbsoluteSize.X, target.AbsoluteSize.Y)
+			catcher.Visible = next
+		end
+		if not next then
+			hide()
+		end
+	end
+
+	return {
+		setText = function(text: string)
+			body.Text = text
+			if shown then
+				place()
+			end
+		end,
+		setDisabled = setDisabled,
+		show = show,
+		hide = hide,
+		destroy = function()
+			ticket += 1
+			for _, connection in connections do
+				connection:Disconnect()
+			end
+			layer:Destroy()
+		end,
+	}
+end
+
+-- H3 floats the value over the thumb while it is dragged; H4 keeps it over
+-- the thumb; H5 writes the ends under the track and the value after it.
+local function createSliderValue(parts: SliderParts, style: SliderStyle): SliderValue
+	local format = parts.format or function(value: number): string
+		return tostring(math.floor(value + 0.5))
+	end
+	local made: { Instance } = {}
+	local dragging = false
+	local current = parts.min
+
+	local bubble: CanvasGroup? = nil
+	local bubbleText: TextLabel? = nil
+	local layer: ScreenGui? = nil
+	if style == "H3" then
+		local floating = newLayer(parts.thumb)
+		table.insert(made, floating)
+		local card, text = newBubble({ text = format(current) }, false)
+		card.AnchorPoint = Vector2.new(0.5, 1)
+		card.Parent = floating
+		layer, bubble, bubbleText = floating, card, text
+	end
+
+	local tag: TextLabel? = nil
+	if style == "H4" then
+		local label = words("ValueTag", format(current), 12, true)
+		label.AnchorPoint = Vector2.new(0.5, 1)
+		label.Position = UDim2.new(0.5, 0, 0, -GAP)
+		label.BackgroundColor3 = THEME.bubble
+		label.BackgroundTransparency = 0
+		round(label, UDim.new(0, 4))
+		pad(label, 2, 6)
+		label.Parent = parts.thumb
+		table.insert(made, label)
+		tag = label
+	end
+
+	local readout: TextLabel? = nil
+	if style == "H5" then
+		-- The two ends of the range, under the matching end of the track.
+		local function markEnd(name: string, value: number, side: number)
+			local mark = words(name, format(value), 12, false)
+			mark.AnchorPoint = Vector2.new(side, 0)
+			mark.Position = UDim2.new(side, 0, 1, 4)
+			mark.TextColor3 = THEME.textMuted
+			mark.Parent = parts.track
+			table.insert(made, mark)
+		end
+		markEnd("Min", parts.min, 0)
+		markEnd("Max", parts.max, 1)
+		local label = words("Value", format(current), 14, true)
+		label.AnchorPoint = Vector2.new(0, 0.5)
+		label.Position = UDim2.new(1, 12, 0.5, 0)
+		label.Parent = parts.track
+		table.insert(made, label)
+		readout = label
+	end
+
+	local function place()
+		local card, floating = bubble, layer
+		if not card or not floating then
+			return
+		end
+		local origin = floating.AbsolutePosition
+		local thumb = parts.thumb
+		local x = thumb.AbsolutePosition.X - origin.X + thumb.AbsoluteSize.X / 2
+		local y = thumb.AbsolutePosition.Y - origin.Y - GAP
+		card.Position = UDim2.fromOffset(x, y)
+	end
+
+	local function update(value: number)
+		current = math.clamp(value, parts.min, parts.max)
+		local text = format(current)
+		if bubbleText then
+			bubbleText.Text = text
+		end
+		if tag then
+			tag.Text = text
+		end
+		if readout then
+			readout.Text = text
+		end
+		if dragging then
+			place()
+		end
+	end
+
+	return {
+		update = update,
+		setDragging = function(next: boolean)
+			dragging = next
+			local card = bubble
+			if card then
+				if next then
+					place()
+				end
+				fade(card, next)
+			end
+		end,
+		destroy = function()
+			for _, instance in made do
+				instance:Destroy()
+			end
+		end,
+	}
+end
+
+-- H6: an info mark with a 44 px target; a tap opens its words and a tap
+-- anywhere else, or Escape, closes them. Nothing depends on hover.
+local function createInfoButton(parent: GuiObject, text: string, order: number?)
+	local connections: { RBXScriptConnection } = {}
+	local button = Instance.new("ImageButton")
+	button.Name = "Info"
+	button.LayoutOrder = order or 0
+	button.Size = UDim2.fromOffset(44, 44)
+	button.AutoButtonColor = false
+	button.BackgroundTransparency = 1
+	button.Image = ""
+	button.Parent = parent
+
+	local mark = glyph("Mark", ICON.info, 16, THEME.textMuted)
+	mark.AnchorPoint = Vector2.new(0.5, 0.5)
+	mark.Position = UDim2.fromScale(0.5, 0.5)
+	mark.Parent = button
+
+	local layer = newLayer(button)
+	local catcher = Instance.new("TextButton")
+	catcher.Name = "Catcher"
+	catcher.AutoButtonColor = false
+	catcher.BackgroundTransparency = 1
+	catcher.Text = ""
+	catcher.Size = UDim2.fromScale(1, 1)
+	catcher.Visible = false
+	catcher.Parent = layer
+
+	local bubble = newBubble({ text = text }, false)
+	bubble.Parent = layer
+
+	local function setOpen(open: boolean)
+		catcher.Visible = open
+		mark.ImageColor3 = if open then THEME.focus else THEME.textMuted
+		if open then
+			local origin = layer.AbsolutePosition
+			local left = button.AbsolutePosition.X - origin.X
+			local top = button.AbsolutePosition.Y - origin.Y
+			local size = button.AbsoluteSize
+			local x, y = beside(layer, bubble, left, top, size.X, size.Y, false)
+			bubble.Position = UDim2.fromOffset(x, y)
+		end
+		fade(bubble, open)
+	end
+
+	table.insert(connections, button.Activated:Connect(function()
+		setOpen(not catcher.Visible)
+	end))
+	table.insert(connections, catcher.Activated:Connect(function()
+		setOpen(false)
+	end))
+	table.insert(connections, UserInputService.InputBegan:Connect(function(input: InputObject)
+		if catcher.Visible and input.KeyCode == Enum.KeyCode.Escape then
+			setOpen(false)
+		end
+	end))
+
+	return {
+		button = button,
+		destroy = function()
+			for _, connection in connections do
+				connection:Disconnect()
+			end
+			layer:Destroy()
+			button:Destroy()
+		end,
+	}
+end
+
+-- H11: a line under a field that says what it wants, and turns into the
+-- error, with an icon, when the entry is wrong.
+local function createHelperText(parent: GuiObject, text: string, order: number)
+	local row = Instance.new("Frame")
+	row.Name = "Help"
+	row.LayoutOrder = order
+	row.AutomaticSize = Enum.AutomaticSize.Y
+	row.Size = UDim2.fromScale(1, 0)
+	row.BackgroundTransparency = 1
+	row.Parent = parent
+	stackIn(row, Enum.FillDirection.Horizontal, 4)
+
+	local warning = glyph("Alert", ICON.info, 16, THEME.danger)
+	warning.LayoutOrder = 1
+	warning.Visible = false
+	warning.Parent = row
+
+	local hint = words("Text", text, 12, false)
+	hint.LayoutOrder = 2
+	hint.TextColor3 = THEME.textMuted
+	hint.Parent = row
+
+	return {
+		label = hint,
+		setError = function(message: string?)
+			warning.Visible = message ~= nil
+			hint.Text = message or text
+			hint.TextColor3 = if message then THEME.danger else THEME.textMuted
+		end,
+		destroy = function()
+			row:Destroy()
+		end,
+	}
+end
+
+-- H12: shown once to point at something new, with a ring around it and a
+-- button that says the player has seen it. `onDone` runs once; store it so
+-- the mark never returns. Returns a dismiss that is safe to repeat.
+local function showCoachMark(target: GuiObject, text: string, onDone: () -> ()): () -> ()
+	local layer = newLayer(target)
+	local finished = false
+	local connections: { RBXScriptConnection } = {}
+
+	local origin = layer.AbsolutePosition
+	local left = target.AbsolutePosition.X - origin.X
+	local top = target.AbsolutePosition.Y - origin.Y
+	local size = target.AbsoluteSize
+
+	local ring = Instance.new("Frame")
+	ring.Name = "Ring"
+	ring.Position = UDim2.fromOffset(left - 4, top - 4)
+	ring.Size = UDim2.fromOffset(size.X + 8, size.Y + 8)
+	ring.BackgroundTransparency = 1
+	ring.Parent = layer
+	round(ring, UDim.new(0, 10))
+
+	local glow = Instance.new("UIStroke")
+	glow.Color = THEME.focus
+	glow.Thickness = 2
+	glow.Parent = ring
+
+	local bubble = newBubble({ text = text }, false)
+	bubble.Parent = layer
+
+	local gotIt = Instance.new("TextButton")
+	gotIt.Name = "GotIt"
+	gotIt.LayoutOrder = 4
+	gotIt.AutoButtonColor = false
+	gotIt.AutomaticSize = Enum.AutomaticSize.X
+	gotIt.Size = UDim2.fromOffset(0, 44)
+	gotIt.BackgroundColor3 = THEME.accent
+	gotIt.FontFace = Font.fromEnum(Enum.Font.GothamBold)
+	gotIt.TextSize = 14
+	gotIt.TextColor3 = THEME.text
+	gotIt.Text = "Got it"
+	gotIt.Parent = bubble
+	round(gotIt, UDim.new(0, 6))
+	pad(gotIt, 0, 16)
+
+	local x, y = beside(layer, bubble, left, top, size.X, size.Y, false)
+	bubble.Position = UDim2.fromOffset(x, y)
+	fade(bubble, true)
+
+	local function dismiss()
+		if finished then
+			return
+		end
+		finished = true
+		for _, connection in connections do
+			connection:Disconnect()
+		end
+		layer:Destroy()
+		onDone()
+	end
+	table.insert(connections, gotIt.Activated:Connect(dismiss))
+	return dismiss
+end
+
+return {
+	createTooltip = createTooltip,
+	createSliderValue = createSliderValue,
+	createInfoButton = createInfoButton,
+	createHelperText = createHelperText,
+	showCoachMark = showCoachMark,
+}
+```
+
+---
+
 ## Recipe: .claude/skills/roblox-ui-components/assets/windows.luau
 
 ```lua
@@ -5880,7 +8985,8 @@ local UserInputService = game:GetService("UserInputService")
 
 type FirstStyles = "O1" | "O2" | "O3" | "O4"
 type LaterStyles = "O6" | "O7" | "O8" | "O9" | "O10" | "O11"
-export type WindowStyle = FirstStyles | LaterStyles
+type NewStyles = "O13" | "O14" | "O15" | "O16" | "O17" | "O18" | "O19" | "O20"
+export type WindowStyle = FirstStyles | LaterStyles | NewStyles
 
 export type Opener = {
 	open: () -> (),
@@ -5891,12 +8997,17 @@ export type Opener = {
 -- O3 keeps `header` on screen and folds `body` away. `opener` is a presenter
 -- from menus.luau; without one, O1 shows and hides instantly. O6 shows
 -- `bubbleIcon`, O9 shows `title`, O10 names `keyName`, and O11 calls `onUnload`
--- when the player chooses to unload rather than hide.
+-- when the player chooses to unload rather than hide. O14 puts its icon in
+-- `dock` when given one, so several windows share a dock. O16 folds the window
+-- down to `rail`, its tab sidebar, and hides `body`. O17 shows the window
+-- while `keyName` (default LeftAlt) is held; O19 swipes by `header`.
 export type WindowParts = {
 	panel: CanvasGroup,
 	launcher: GuiButton?,
 	header: GuiObject?,
 	body: CanvasGroup?,
+	rail: GuiObject?,
+	dock: Frame?,
 	opener: Opener?,
 	bubbleIcon: string?,
 	title: string?,
@@ -5930,6 +9041,10 @@ local ICON = {
 	pullDown = "rbxassetid://71457658246709",
 	menu = "rbxassetid://83047518441184",
 	keyboard = "rbxassetid://121978468376124",
+	pullUp = "rbxassetid://98648581502859",
+	eye = "rbxassetid://127234874352422",
+	hand = "rbxassetid://83088528355903",
+	expand = "rbxassetid://126704485649345",
 }
 
 local MOTION = {
@@ -5942,6 +9057,12 @@ local MOTION = {
 }
 
 local MINIMISED_SCALE = 0.2
+-- O15 leaves the window faint enough to play through, never fully gone.
+local GHOST_TRANSPARENCY = 0.8
+-- O19: how far a header drag must travel before it counts as a swipe.
+local SWIPE_DISTANCE = 120
+-- O20: a whole stretch this long with no input fades the window away.
+local IDLE_SECONDS = 8
 local INTRO_HOLD = 0.6
 local OUTRO_HOLD = 0.8
 local CHIP_COLLAPSE = 5
@@ -6264,8 +9385,22 @@ local function makeAsk(
 		end
 end
 
--- O4, O7 and O8: a tab on the edge the window left by.
+-- O4, O7, O8, O13 and O19: a tab on the edge the window left by.
 local function makeTab(style: WindowStyle, connections: { RBXScriptConnection }): TextButton
+	if style == "O13" then
+		return (
+			returnControl(
+				"PullTab",
+				UDim2.fromOffset(64, 44),
+				Vector2.new(0.5, 1),
+				UDim2.fromScale(0.5, 1),
+				ICON.pullUp,
+				UDim.new(0, 10),
+				connections
+			)
+		)
+	end
+
 	if style == "O8" then
 		return (
 			returnControl(
@@ -6293,10 +9428,101 @@ local function makeTab(style: WindowStyle, connections: { RBXScriptConnection })
 	)
 end
 
+-- O15, O16 and O18: one button that brings the window back. The window moves
+-- O15's and O16's beside itself when it hides; O18's waits in the corner.
+local function makeRestore(
+	style: WindowStyle,
+	parts: WindowParts,
+	connections: { RBXScriptConnection }
+): TextButton
+	if style == "O18" then
+		return (
+			returnControl(
+				"Corner",
+				UDim2.fromOffset(56, 56),
+				Vector2.new(1, 1),
+				UDim2.new(1, -16, 1, -16),
+				parts.bubbleIcon or ICON.menu,
+				UDim.new(0.5, 0),
+				connections
+			)
+		)
+	end
+	local ghost = style == "O15"
+	return (
+		returnControl(
+			if ghost then "Solid" else "Expand",
+			UDim2.fromOffset(44, 44),
+			Vector2.zero,
+			UDim2.new(),
+			if ghost then ICON.eye else ICON.expand,
+			UDim.new(0, 10),
+			connections
+		)
+	)
+end
+
+-- O14: an icon for this window in a dock along the bottom. The dock is the
+-- caller's when given, so several windows can share it.
+local function makeDockIcon(
+	parts: WindowParts,
+	connections: { RBXScriptConnection },
+	made: { Instance }
+): TextButton
+	local icon = returnControl(
+		"DockIcon",
+		UDim2.fromOffset(44, 44),
+		Vector2.zero,
+		UDim2.new(),
+		parts.bubbleIcon or ICON.menu,
+		UDim.new(0, 10),
+		connections
+	)
+	local dock = parts.dock
+	if not dock then
+		local shelf = Instance.new("Frame")
+		shelf.Name = "Dock"
+		shelf.AnchorPoint = Vector2.new(0.5, 1)
+		shelf.Position = UDim2.new(0.5, 0, 1, -16)
+		shelf.AutomaticSize = Enum.AutomaticSize.X
+		shelf.Size = UDim2.fromOffset(0, 44)
+		shelf.BackgroundTransparency = 1
+		shelf.Parent = parts.panel.Parent
+		row(shelf, 8).HorizontalAlignment = Enum.HorizontalAlignment.Center
+		table.insert(made, shelf)
+		dock = shelf
+	end
+	icon.Parent = dock
+	return icon
+end
+
+-- O17 on a phone: pressing and holding this shows the window, letting go hides it.
+local function makePeekButton(connections: { RBXScriptConnection }): TextButton
+	local peek = returnControl(
+		"Peek",
+		UDim2.fromOffset(0, 44),
+		Vector2.new(1, 1),
+		UDim2.new(1, -16, 1, -16),
+		ICON.hand,
+		UDim.new(0, 10),
+		connections
+	)
+	peek.AutomaticSize = Enum.AutomaticSize.X
+	local padding = Instance.new("UIPadding")
+	padding.PaddingLeft = UDim.new(0, 12)
+	padding.PaddingRight = UDim.new(0, 12)
+	padding.Parent = peek
+	row(peek, 8)
+	local hint = caption(peek, "Hold to show", 2)
+	hint.FontFace = Font.fromEnum(Enum.Font.GothamMedium)
+	return peek
+end
+
 local function createWindow(parts: WindowParts, style: WindowStyle): Window
 	local panel = parts.panel
 	local connections: { RBXScriptConnection } = {}
 	local shown = panel.Visible
+	local alive = true
 	local ticket = 0
 	local running: { Tween } = {}
 	local made: { Instance } = {}
@@ -6347,24 +9573,38 @@ local function createWindow(parts: WindowParts, style: WindowStyle): Window
 	local chipHint: TextLabel? = nil
 	local openAsk: (() -> ())? = nil
 
-	-- O2 shrinks into the launcher and O6 into the bubble; nothing else shrinks.
+	-- O19 remembers which side the player swiped toward.
+	local swipeSide = -1
+
+	-- O2 shrinks into the launcher; O6, O14 and O18 into their own control.
 	local function shrinkInto(): GuiObject?
-		return if style == "O2" then parts.launcher elseif style == "O6" then returner else nil
+		if style == "O2" then
+			return parts.launcher
+		end
+		return if style == "O6" or style == "O14" or style == "O18" then returner else nil
 	end
 
 	-- Where each edge style parks the window while it is away.
 	local function offscreen(): UDim2
 		local size = panel.AbsoluteSize
-		if style == "O7" then
+		if style == "O7" or (style == "O19" and swipeSide > 0) then
 			return home + UDim2.fromOffset(size.X + 24, 0)
 		elseif style == "O8" then
 			return home - UDim2.fromOffset(0, size.Y + 24)
+		elseif style == "O13" then
+			return home + UDim2.fromOffset(0, size.Y + 24)
 		end
 		return home - UDim2.fromOffset(size.X + 24, 0)
 	end
 
-	if style == "O4" or style == "O7" or style == "O8" then
-		returner = makeTab(style, connections)
+	local edgeStyle = style == "O4"
+		or style == "O7"
+		or style == "O8"
+		or style == "O13"
+		or style == "O19"
+
+	if edgeStyle then
+		returner = makeTab(if style == "O19" then "O4" else style, connections)
 	elseif style == "O6" then
 		returner = makeBubble(parts, connections, function()
 			show()
@@ -6374,6 +9614,12 @@ local function createWindow(parts: WindowParts, style: WindowStyle): Window
 	elseif style == "O10" then
 		local chip, hint = makeKeyChip(parts, connections)
 		returner, chipHint = chip, hint
+	elseif style == "O14" then
+		returner = makeDockIcon(parts, connections, made)
+	elseif style == "O15" or style == "O16" or style == "O18" then
+		returner = makeRestore(style, parts, connections)
+	elseif style == "O17" then
+		returner = makePeekButton(connections)
 	elseif style == "O11" then
 		local onUnload = parts.onUnload
 		assert(onUnload, "O11 needs parts.onUnload")
@@ -6386,9 +9632,12 @@ local function createWindow(parts: WindowParts, style: WindowStyle): Window
 	end
 
 	if returner then
-		returner.Parent = panel.Parent
+		if style ~= "O14" then
+			returner.Parent = panel.Parent
+		end
 		table.insert(made, returner)
-		if style ~= "O6" then
+		-- The bubble taps through its drag check; the peek button holds instead.
+		if style ~= "O6" and style ~= "O17" then
 			table.insert(connections, returner.Activated:Connect(function()
 				show()
 			end))
@@ -6428,6 +9677,39 @@ local function createWindow(parts: WindowParts, style: WindowStyle): Window
 		ticket += 1
 		stop()
 
+		-- O15: the window stays where it is, faint and ignoring clicks.
+		if style == "O15" then
+			panel.Interactable = false
+			play(panel, MOTION.exit, { GroupTransparency = GHOST_TRANSPARENCY })
+			if returner then
+				local topLeft = panel.AbsolutePosition
+				returner.Position = UDim2.fromOffset(topLeft.X, topLeft.Y)
+			end
+			revealReturn()
+			return
+		end
+
+		-- O16: only the tab rail stays, with a button to open the rest again.
+		if style == "O16" then
+			local rail, body = parts.rail, parts.body
+			assert(rail and body, "O16 needs rail and body")
+			fullSize = panel.Size
+			play(body, MOTION.exit, { GroupTransparency = 1 })
+			local fold = play(panel, MOTION.shrink, {
+				Size = UDim2.new(0, rail.AbsoluteSize.X, fullSize.Y.Scale, fullSize.Y.Offset),
+			})
+			afterTween(fold, function()
+				body.Visible = false
+				if returner then
+					local topLeft = panel.AbsolutePosition
+					local beside = topLeft.X + rail.AbsoluteSize.X + 8
+					returner.Position = UDim2.fromOffset(beside, topLeft.Y)
+				end
+				revealReturn()
+			end)
+			return
+		end
+
 		if style == "O3" then
 			local header, body = parts.header, parts.body
 			assert(header and body, "O3 needs header and body")
@@ -6457,18 +9739,27 @@ local function createWindow(parts: WindowParts, style: WindowStyle): Window
 			return
 		end
 
-		if style == "O4" or style == "O7" or style == "O8" then
-			home = panel.Position
+		if edgeStyle then
+			if style ~= "O19" then
+				home = panel.Position
+			end
 			local slide = play(panel, MOTION.shrink, { Position = offscreen() })
 			afterTween(slide, function()
 				panel.Visible = false
 				panel.Position = home
+				-- O19's tab waits on whichever side the window was swiped to.
+				local tab = returner
+				if style == "O19" and tab then
+					local side = if swipeSide > 0 then 1 else 0
+					tab.AnchorPoint = Vector2.new(side, 0.5)
+					tab.Position = UDim2.fromScale(side, 0.5)
+				end
 				revealReturn()
 			end)
 			return
 		end
 
-		if style == "O9" or style == "O10" then
+		if style == "O9" or style == "O10" or style == "O20" then
 			if style == "O9" and returner then
 				local topLeft = panel.AbsolutePosition
 				returner.Position = UDim2.fromOffset(topLeft.X, topLeft.Y)
@@ -6499,12 +9790,20 @@ local function createWindow(parts: WindowParts, style: WindowStyle): Window
 		ticket += 1
 		stop()
 
-		if style == "O3" then
+		if style == "O3" or style == "O16" then
 			local body = parts.body
-			assert(body, "O3 needs a body")
+			assert(body, `{style} needs a body`)
+			setReturnControl(false)
 			body.Visible = true
 			play(panel, MOTION.grow, { Size = fullSize })
 			play(body, MOTION.enter, { GroupTransparency = 0 })
+			return
+		end
+
+		if style == "O15" then
+			setReturnControl(false)
+			panel.Interactable = true
+			play(panel, MOTION.enter, { GroupTransparency = 0 })
 			return
 		end
 
@@ -6520,7 +9819,7 @@ local function createWindow(parts: WindowParts, style: WindowStyle): Window
 			return
 		end
 
-		if style == "O4" or style == "O7" or style == "O8" then
+		if edgeStyle then
 			panel.Position = offscreen()
 			panel.GroupTransparency = 0
 			panel.Visible = true
@@ -6559,6 +9858,105 @@ local function createWindow(parts: WindowParts, style: WindowStyle): Window
 	if parts.launcher then
 		table.insert(connections, parts.launcher.Activated:Connect(show))
 	end
+
+	-- O17: shown only while the key or the peek button is held down.
+	if style == "O17" then
+		local peekKey = Enum.KeyCode:FromName(parts.keyName or "LeftAlt")
+		local peek = returner
+		if peek then
+			table.insert(connections, peek.InputBegan:Connect(function(input: InputObject)
+				local kind = input.UserInputType
+				if kind == Enum.UserInputType.MouseButton1 or kind == Enum.UserInputType.Touch then
+					show()
+				end
+			end))
+			table.insert(connections, peek.InputEnded:Connect(function()
+				conceal()
+			end))
+		end
+		table.insert(connections, UserInputService.InputBegan:Connect(function(input: InputObject)
+			if input.KeyCode == peekKey then
+				show()
+			end
+		end))
+		table.insert(connections, UserInputService.InputEnded:Connect(function(input: InputObject)
+			if input.KeyCode == peekKey then
+				conceal()
+			end
+		end))
+	end
+
+	-- O19: the header follows a sideways drag; far enough, and the window
+	-- leaves that way. A short drag springs back.
+	local header = parts.header
+	if style == "O19" and header then
+		local startX: number? = nil
+		table.insert(connections, header.InputBegan:Connect(function(input: InputObject)
+			local kind = input.UserInputType
+			if kind == Enum.UserInputType.MouseButton1 or kind == Enum.UserInputType.Touch then
+				startX, home = input.Position.X, panel.Position
+			end
+		end))
+		table.insert(connections, UserInputService.InputChanged:Connect(function(input: InputObject)
+			local kind = input.UserInputType
+			local began = startX
+			local pointer = kind == Enum.UserInputType.MouseMovement
+			if began and (pointer or kind == Enum.UserInputType.Touch) then
+				panel.Position = home + UDim2.fromOffset(input.Position.X - began, 0)
+			end
+		end))
+		table.insert(connections, UserInputService.InputEnded:Connect(function(input: InputObject)
+			local began = startX
+			if not began then
+				return
+			end
+			startX = nil
+			local travel = input.Position.X - began
+			if math.abs(travel) >= SWIPE_DISTANCE then
+				swipeSide = if travel > 0 then 1 else -1
+				conceal()
+			else
+				play(panel, MOTION.grow, { Position = home })
+			end
+		end))
+	end
+
+	-- O20: one timer at a time watches for a stretch with no input at all; any
+	-- input in that stretch starts a new one, and the next input after the
+	-- window fades brings it back.
+	if style == "O20" then
+		local activity = 0
+		local armed = false
+		local function arm()
+			if armed then
+				return
+			end
+			armed = true
+			local seen = activity
+			task.delay(IDLE_SECONDS, function()
+				armed = false
+				if not alive then
+					return
+				end
+				if activity ~= seen then
+					arm()
+				elseif shown then
+					conceal()
+				end
+			end)
+		end
+		local function woke()
+			activity += 1
+			if not shown then
+				show()
+			end
+			arm()
+		end
+		table.insert(connections, UserInputService.InputBegan:Connect(woke))
+		table.insert(connections, UserInputService.InputChanged:Connect(woke))
+		arm()
+	end
+
 	setReturnControl(not shown)
 
 	return {
@@ -6569,6 +9967,7 @@ local function createWindow(parts: WindowParts, style: WindowStyle): Window
 			return shown
 		end,
 		destroy = function()
+			alive = false
 			ticket += 1
 			stop()
 			for _, connection in connections do
