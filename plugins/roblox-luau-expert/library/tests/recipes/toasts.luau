@@ -223,6 +223,56 @@ do
 	notifier.destroy()
 end
 
+do
+	local screen = Instance.new("ScreenGui")
+	local notifier = createNotifier(screen, "N4")
+	notifier.player("Bob joined the server", 2)
+	local toast = screen.Notifications.Toast
+	check("N21 shows the player's headshot", toast.Content.Avatar.Image == "rbxthumb://type=AvatarHeadShot&id=2&w=48&h=48" and toast.Content.Avatar.Size.X.Offset == 32)
+	notifier.destroy()
+end
+do
+	local screen = Instance.new("ScreenGui")
+	local notifier = createNotifier(screen, "N1")
+	local work = notifier.percent("Downloading map")
+	local toast = screen.Notifications.Toast
+	check("N22 starts at 0%", toast.Content.Percent.Text == "0%" and toast.Done.Size.X.Scale == 0)
+	work.set(0.45)
+	check("N22 moves the bar and the number", toast.Content.Percent.Text == "45%" and toast.Done.Size.X.Scale == 0.45)
+	frames(100, 0.1)
+	check("N22 waits for the work", toast.GroupTransparency == 0)
+	work.done("Map ready")
+	check("N22 done shows the result", toast.Content.Message.Text == "Map ready" and toast.Content:FindFirstChild("Percent") == nil)
+	frames(100, 0.1)
+	check("N22 result then times out", toast.GroupTransparency == 1)
+	notifier.destroy()
+end
+do
+	local screen = Instance.new("ScreenGui")
+	local notifier = createNotifier(screen, "N4")
+	notifier.sticky("Anti-AFK is on")
+	local toast = screen.Notifications.Toast
+	frames(200, 0.1)
+	check("N24 stays until closed", toast.GroupTransparency == 0 and toast.Content.Dismiss ~= nil)
+	toast.Content.Dismiss.Activated:Fire()
+	check("N24 the close button removes it", toast.GroupTransparency == 1)
+	notifier.destroy()
+end
+do
+	local screen = Instance.new("ScreenGui")
+	local notifier = createNotifier(screen, "N4")
+	local accepted, declined = 0, 0
+	notifier.invite("Bob invited you to a party", function() accepted += 1 end, function() declined += 1 end)
+	local toast = screen.Notifications.Toast
+	check("N28 has Decline before Accept", toast.Content.Decline.LayoutOrder < toast.Content.Accept.LayoutOrder)
+	toast.Content.Accept.Activated:Fire()
+	check("N28 Accept runs once and closes", accepted == 1 and declined == 0 and toast.GroupTransparency == 1)
+	notifier.invite("Alice wants to trade", function() accepted += 1 end, function() declined += 1 end)
+	local second = screen.Notifications.Toast
+	frames(120, 0.1)
+	check("N28 unanswered leaves quietly after ten seconds", second.GroupTransparency == 1 and accepted == 1 and declined == 0)
+	notifier.destroy()
+end
 local failed = 0
 for _, line in results do print(line) if line:sub(1,4) == "FAIL" then failed += 1 end end
 print(#results - failed .. " passed, " .. failed .. " failed")

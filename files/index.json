@@ -1,7 +1,7 @@
 {
   "repository": "x-Yami-Sukehiro-x/roblox-luau-expert-skill",
-  "source": "5aba143c58bcea3b0418cacbf76e18522e595c64",
-  "version": "5.4.0+g5aba143",
+  "source": "05fd1c4a7a63feac310e5cd41b86a7335582d4b0",
+  "version": "5.4.0+g05fd1c4",
   "files": [
     {
       "name": "AGENTS.md",
@@ -186,7 +186,7 @@
     {
       "name": "library__tests__recipes__toasts.luau",
       "path": "library/tests/recipes/toasts.luau",
-      "bytes": 9139
+      "bytes": 11524
     },
     {
       "name": "library__tests__recipes__toggles.luau",
@@ -651,7 +651,7 @@
     {
       "name": "skills__roblox-ui-components__assets__toasts.luau",
       "path": "skills/roblox-ui-components/assets/toasts.luau",
-      "bytes": 18525
+      "bytes": 23321
     },
     {
       "name": "skills__roblox-ui-components__assets__toggles.luau",
