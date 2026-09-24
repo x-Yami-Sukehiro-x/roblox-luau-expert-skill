@@ -6,7 +6,8 @@ local UserInputService = game:GetService("UserInputService")
 
 type FirstStyles = "O1" | "O2" | "O3" | "O4"
 type LaterStyles = "O6" | "O7" | "O8" | "O9" | "O10" | "O11"
-export type WindowStyle = FirstStyles | LaterStyles
+type NewStyles = "O13" | "O14" | "O15" | "O16" | "O17" | "O18" | "O19" | "O20"
+export type WindowStyle = FirstStyles | LaterStyles | NewStyles
 
 export type Opener = {
 	open: () -> (),
@@ -17,12 +18,17 @@ export type Opener = {
 -- O3 keeps `header` on screen and folds `body` away. `opener` is a presenter
 -- from menus.luau; without one, O1 shows and hides instantly. O6 shows
 -- `bubbleIcon`, O9 shows `title`, O10 names `keyName`, and O11 calls `onUnload`
--- when the player chooses to unload rather than hide.
+-- when the player chooses to unload rather than hide. O14 puts its icon in
+-- `dock` when given one, so several windows share a dock. O16 folds the window
+-- down to `rail`, its tab sidebar, and hides `body`. O17 shows the window
+-- while `keyName` (default LeftAlt) is held; O19 swipes by `header`.
 export type WindowParts = {
 	panel: CanvasGroup,
 	launcher: GuiButton?,
 	header: GuiObject?,
 	body: CanvasGroup?,
+	rail: GuiObject?,
+	dock: Frame?,
 	opener: Opener?,
 	bubbleIcon: string?,
 	title: string?,
@@ -56,6 +62,10 @@ local ICON = {
 	pullDown = "rbxassetid://71457658246709",
 	menu = "rbxassetid://83047518441184",
 	keyboard = "rbxassetid://121978468376124",
+	pullUp = "rbxassetid://98648581502859",
+	eye = "rbxassetid://127234874352422",
+	hand = "rbxassetid://83088528355903",
+	expand = "rbxassetid://126704485649345",
 }
 
 local MOTION = {
@@ -68,6 +78,12 @@ local MOTION = {
 }
 
 local MINIMISED_SCALE = 0.2
+-- O15 leaves the window faint enough to play through, never fully gone.
+local GHOST_TRANSPARENCY = 0.8
+-- O19: how far a header drag must travel before it counts as a swipe.
+local SWIPE_DISTANCE = 120
+-- O20: a whole stretch this long with no input fades the window away.
+local IDLE_SECONDS = 8
 local INTRO_HOLD = 0.6
 local OUTRO_HOLD = 0.8
 local CHIP_COLLAPSE = 5
@@ -390,8 +406,22 @@ local function makeAsk(
 		end
 end
 
--- O4, O7 and O8: a tab on the edge the window left by.
+-- O4, O7, O8, O13 and O19: a tab on the edge the window left by.
 local function makeTab(style: WindowStyle, connections: { RBXScriptConnection }): TextButton
+	if style == "O13" then
+		return (
+			returnControl(
+				"PullTab",
+				UDim2.fromOffset(64, 44),
+				Vector2.new(0.5, 1),
+				UDim2.fromScale(0.5, 1),
+				ICON.pullUp,
+				UDim.new(0, 10),
+				connections
+			)
+		)
+	end
+
 	if style == "O8" then
 		return (
 			returnControl(
@@ -419,10 +449,101 @@ local function makeTab(style: WindowStyle, connections: { RBXScriptConnection })
 	)
 end
 
+-- O15, O16 and O18: one button that brings the window back. The window moves
+-- O15's and O16's beside itself when it hides; O18's waits in the corner.
+local function makeRestore(
+	style: WindowStyle,
+	parts: WindowParts,
+	connections: { RBXScriptConnection }
+): TextButton
+	if style == "O18" then
+		return (
+			returnControl(
+				"Corner",
+				UDim2.fromOffset(56, 56),
+				Vector2.new(1, 1),
+				UDim2.new(1, -16, 1, -16),
+				parts.bubbleIcon or ICON.menu,
+				UDim.new(0.5, 0),
+				connections
+			)
+		)
+	end
+	local ghost = style == "O15"
+	return (
+		returnControl(
+			if ghost then "Solid" else "Expand",
+			UDim2.fromOffset(44, 44),
+			Vector2.zero,
+			UDim2.new(),
+			if ghost then ICON.eye else ICON.expand,
+			UDim.new(0, 10),
+			connections
+		)
+	)
+end
+
+-- O14: an icon for this window in a dock along the bottom. The dock is the
+-- caller's when given, so several windows can share it.
+local function makeDockIcon(
+	parts: WindowParts,
+	connections: { RBXScriptConnection },
+	made: { Instance }
+): TextButton
+	local icon = returnControl(
+		"DockIcon",
+		UDim2.fromOffset(44, 44),
+		Vector2.zero,
+		UDim2.new(),
+		parts.bubbleIcon or ICON.menu,
+		UDim.new(0, 10),
+		connections
+	)
+	local dock = parts.dock
+	if not dock then
+		local shelf = Instance.new("Frame")
+		shelf.Name = "Dock"
+		shelf.AnchorPoint = Vector2.new(0.5, 1)
+		shelf.Position = UDim2.new(0.5, 0, 1, -16)
+		shelf.AutomaticSize = Enum.AutomaticSize.X
+		shelf.Size = UDim2.fromOffset(0, 44)
+		shelf.BackgroundTransparency = 1
+		shelf.Parent = parts.panel.Parent
+		row(shelf, 8).HorizontalAlignment = Enum.HorizontalAlignment.Center
+		table.insert(made, shelf)
+		dock = shelf
+	end
+	icon.Parent = dock
+	return icon
+end
+
+-- O17 on a phone: pressing and holding this shows the window, letting go hides it.
+local function makePeekButton(connections: { RBXScriptConnection }): TextButton
+	local peek = returnControl(
+		"Peek",
+		UDim2.fromOffset(0, 44),
+		Vector2.new(1, 1),
+		UDim2.new(1, -16, 1, -16),
+		ICON.hand,
+		UDim.new(0, 10),
+		connections
+	)
+	peek.AutomaticSize = Enum.AutomaticSize.X
+	local padding = Instance.new("UIPadding")
+	padding.PaddingLeft = UDim.new(0, 12)
+	padding.PaddingRight = UDim.new(0, 12)
+	padding.Parent = peek
+	row(peek, 8)
+	local hint = caption(peek, "Hold to show", 2)
+	hint.FontFace = Font.fromEnum(Enum.Font.GothamMedium)
+	return peek
+end
+
 local function createWindow(parts: WindowParts, style: WindowStyle): Window
 	local panel = parts.panel
 	local connections: { RBXScriptConnection } = {}
 	local shown = panel.Visible
+	local alive = true
 	local ticket = 0
 	local running: { Tween } = {}
 	local made: { Instance } = {}
@@ -473,24 +594,38 @@ local function createWindow(parts: WindowParts, style: WindowStyle): Window
 	local chipHint: TextLabel? = nil
 	local openAsk: (() -> ())? = nil
 
-	-- O2 shrinks into the launcher and O6 into the bubble; nothing else shrinks.
+	-- O19 remembers which side the player swiped toward.
+	local swipeSide = -1
+
+	-- O2 shrinks into the launcher; O6, O14 and O18 into their own control.
 	local function shrinkInto(): GuiObject?
-		return if style == "O2" then parts.launcher elseif style == "O6" then returner else nil
+		if style == "O2" then
+			return parts.launcher
+		end
+		return if style == "O6" or style == "O14" or style == "O18" then returner else nil
 	end
 
 	-- Where each edge style parks the window while it is away.
 	local function offscreen(): UDim2
 		local size = panel.AbsoluteSize
-		if style == "O7" then
+		if style == "O7" or (style == "O19" and swipeSide > 0) then
 			return home + UDim2.fromOffset(size.X + 24, 0)
 		elseif style == "O8" then
 			return home - UDim2.fromOffset(0, size.Y + 24)
+		elseif style == "O13" then
+			return home + UDim2.fromOffset(0, size.Y + 24)
 		end
 		return home - UDim2.fromOffset(size.X + 24, 0)
 	end
 
-	if style == "O4" or style == "O7" or style == "O8" then
-		returner = makeTab(style, connections)
+	local edgeStyle = style == "O4"
+		or style == "O7"
+		or style == "O8"
+		or style == "O13"
+		or style == "O19"
+
+	if edgeStyle then
+		returner = makeTab(if style == "O19" then "O4" else style, connections)
 	elseif style == "O6" then
 		returner = makeBubble(parts, connections, function()
 			show()
@@ -500,6 +635,12 @@ local function createWindow(parts: WindowParts, style: WindowStyle): Window
 	elseif style == "O10" then
 		local chip, hint = makeKeyChip(parts, connections)
 		returner, chipHint = chip, hint
+	elseif style == "O14" then
+		returner = makeDockIcon(parts, connections, made)
+	elseif style == "O15" or style == "O16" or style == "O18" then
+		returner = makeRestore(style, parts, connections)
+	elseif style == "O17" then
+		returner = makePeekButton(connections)
 	elseif style == "O11" then
 		local onUnload = parts.onUnload
 		assert(onUnload, "O11 needs parts.onUnload")
@@ -512,9 +653,12 @@ local function createWindow(parts: WindowParts, style: WindowStyle): Window
 	end
 
 	if returner then
-		returner.Parent = panel.Parent
+		if style ~= "O14" then
+			returner.Parent = panel.Parent
+		end
 		table.insert(made, returner)
-		if style ~= "O6" then
+		-- The bubble taps through its drag check; the peek button holds instead.
+		if style ~= "O6" and style ~= "O17" then
 			table.insert(connections, returner.Activated:Connect(function()
 				show()
 			end))
@@ -554,6 +698,39 @@ local function createWindow(parts: WindowParts, style: WindowStyle): Window
 		ticket += 1
 		stop()
 
+		-- O15: the window stays where it is, faint and ignoring clicks.
+		if style == "O15" then
+			panel.Interactable = false
+			play(panel, MOTION.exit, { GroupTransparency = GHOST_TRANSPARENCY })
+			if returner then
+				local topLeft = panel.AbsolutePosition
+				returner.Position = UDim2.fromOffset(topLeft.X, topLeft.Y)
+			end
+			revealReturn()
+			return
+		end
+
+		-- O16: only the tab rail stays, with a button to open the rest again.
+		if style == "O16" then
+			local rail, body = parts.rail, parts.body
+			assert(rail and body, "O16 needs rail and body")
+			fullSize = panel.Size
+			play(body, MOTION.exit, { GroupTransparency = 1 })
+			local fold = play(panel, MOTION.shrink, {
+				Size = UDim2.new(0, rail.AbsoluteSize.X, fullSize.Y.Scale, fullSize.Y.Offset),
+			})
+			afterTween(fold, function()
+				body.Visible = false
+				if returner then
+					local topLeft = panel.AbsolutePosition
+					local beside = topLeft.X + rail.AbsoluteSize.X + 8
+					returner.Position = UDim2.fromOffset(beside, topLeft.Y)
+				end
+				revealReturn()
+			end)
+			return
+		end
+
 		if style == "O3" then
 			local header, body = parts.header, parts.body
 			assert(header and body, "O3 needs header and body")
@@ -583,18 +760,27 @@ local function createWindow(parts: WindowParts, style: WindowStyle): Window
 			return
 		end
 
-		if style == "O4" or style == "O7" or style == "O8" then
-			home = panel.Position
+		if edgeStyle then
+			if style ~= "O19" then
+				home = panel.Position
+			end
 			local slide = play(panel, MOTION.shrink, { Position = offscreen() })
 			afterTween(slide, function()
 				panel.Visible = false
 				panel.Position = home
+				-- O19's tab waits on whichever side the window was swiped to.
+				local tab = returner
+				if style == "O19" and tab then
+					local side = if swipeSide > 0 then 1 else 0
+					tab.AnchorPoint = Vector2.new(side, 0.5)
+					tab.Position = UDim2.fromScale(side, 0.5)
+				end
 				revealReturn()
 			end)
 			return
 		end
 
-		if style == "O9" or style == "O10" then
+		if style == "O9" or style == "O10" or style == "O20" then
 			if style == "O9" and returner then
 				local topLeft = panel.AbsolutePosition
 				returner.Position = UDim2.fromOffset(topLeft.X, topLeft.Y)
@@ -625,12 +811,20 @@ local function createWindow(parts: WindowParts, style: WindowStyle): Window
 		ticket += 1
 		stop()
 
-		if style == "O3" then
+		if style == "O3" or style == "O16" then
 			local body = parts.body
-			assert(body, "O3 needs a body")
+			assert(body, `{style} needs a body`)
+			setReturnControl(false)
 			body.Visible = true
 			play(panel, MOTION.grow, { Size = fullSize })
 			play(body, MOTION.enter, { GroupTransparency = 0 })
+			return
+		end
+
+		if style == "O15" then
+			setReturnControl(false)
+			panel.Interactable = true
+			play(panel, MOTION.enter, { GroupTransparency = 0 })
 			return
 		end
 
@@ -646,7 +840,7 @@ local function createWindow(parts: WindowParts, style: WindowStyle): Window
 			return
 		end
 
-		if style == "O4" or style == "O7" or style == "O8" then
+		if edgeStyle then
 			panel.Position = offscreen()
 			panel.GroupTransparency = 0
 			panel.Visible = true
@@ -685,6 +879,105 @@ local function createWindow(parts: WindowParts, style: WindowStyle): Window
 	if parts.launcher then
 		table.insert(connections, parts.launcher.Activated:Connect(show))
 	end
+
+	-- O17: shown only while the key or the peek button is held down.
+	if style == "O17" then
+		local peekKey = Enum.KeyCode:FromName(parts.keyName or "LeftAlt")
+		local peek = returner
+		if peek then
+			table.insert(connections, peek.InputBegan:Connect(function(input: InputObject)
+				local kind = input.UserInputType
+				if kind == Enum.UserInputType.MouseButton1 or kind == Enum.UserInputType.Touch then
+					show()
+				end
+			end))
+			table.insert(connections, peek.InputEnded:Connect(function()
+				conceal()
+			end))
+		end
+		table.insert(connections, UserInputService.InputBegan:Connect(function(input: InputObject)
+			if input.KeyCode == peekKey then
+				show()
+			end
+		end))
+		table.insert(connections, UserInputService.InputEnded:Connect(function(input: InputObject)
+			if input.KeyCode == peekKey then
+				conceal()
+			end
+		end))
+	end
+
+	-- O19: the header follows a sideways drag; far enough, and the window
+	-- leaves that way. A short drag springs back.
+	local header = parts.header
+	if style == "O19" and header then
+		local startX: number? = nil
+		table.insert(connections, header.InputBegan:Connect(function(input: InputObject)
+			local kind = input.UserInputType
+			if kind == Enum.UserInputType.MouseButton1 or kind == Enum.UserInputType.Touch then
+				startX, home = input.Position.X, panel.Position
+			end
+		end))
+		table.insert(connections, UserInputService.InputChanged:Connect(function(input: InputObject)
+			local kind = input.UserInputType
+			local began = startX
+			local pointer = kind == Enum.UserInputType.MouseMovement
+			if began and (pointer or kind == Enum.UserInputType.Touch) then
+				panel.Position = home + UDim2.fromOffset(input.Position.X - began, 0)
+			end
+		end))
+		table.insert(connections, UserInputService.InputEnded:Connect(function(input: InputObject)
+			local began = startX
+			if not began then
+				return
+			end
+			startX = nil
+			local travel = input.Position.X - began
+			if math.abs(travel) >= SWIPE_DISTANCE then
+				swipeSide = if travel > 0 then 1 else -1
+				conceal()
+			else
+				play(panel, MOTION.grow, { Position = home })
+			end
+		end))
+	end
+
+	-- O20: one timer at a time watches for a stretch with no input at all; any
+	-- input in that stretch starts a new one, and the next input after the
+	-- window fades brings it back.
+	if style == "O20" then
+		local activity = 0
+		local armed = false
+		local function arm()
+			if armed then
+				return
+			end
+			armed = true
+			local seen = activity
+			task.delay(IDLE_SECONDS, function()
+				armed = false
+				if not alive then
+					return
+				end
+				if activity ~= seen then
+					arm()
+				elseif shown then
+					conceal()
+				end
+			end)
+		end
+		local function woke()
+			activity += 1
+			if not shown then
+				show()
+			end
+			arm()
+		end
+		table.insert(connections, UserInputService.InputBegan:Connect(woke))
+		table.insert(connections, UserInputService.InputChanged:Connect(woke))
+		arm()
+	end
+
 	setReturnControl(not shown)
 
 	return {
@@ -695,6 +988,7 @@ local function createWindow(parts: WindowParts, style: WindowStyle): Window
 			return shown
 		end,
 		destroy = function()
+			alive = false
 			ticket += 1
 			stop()
 			for _, connection in connections do

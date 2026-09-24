@@ -201,6 +201,107 @@ do
 	check("S12 choosing a tab scrolls toward it", parent.Tabs.CanvasPosition ~= nil and tabs.selected() == "Misc")
 end
 
+do
+	local button = roundedButton()
+	local detach = feel.attachPress(button, "P13")
+	check("P13 starts as an outline", button.BackgroundTransparency == 1 and button.LiftEdge.Transparency == 0)
+	button.MouseEnter:Fire()
+	check("P13 hover fills it", button.BackgroundTransparency == 0)
+	button.MouseLeave:Fire()
+	check("P13 leaving empties it", button.BackgroundTransparency == 1)
+	detach()
+end
+do
+	local button = roundedButton()
+	local icon = Instance.new("ImageLabel")
+	icon.Name = "Icon"
+	icon.Parent = button
+	feel.attachPress(button, "P14")
+	button.Activated:Fire()
+	check("P14 the icon spins a full turn", icon.Rotation == 360)
+	HARNESS.drain()
+	check("P14 and rests upright again", icon.Rotation == 0)
+	check("P14 without an icon is refused", not pcall(feel.attachPress, roundedButton(), "P14"))
+end
+do
+	local button = roundedButton()
+	local detach = feel.attachPress(button, "P15")
+	check("P15 shimmer off at rest", button.Shimmer.Enabled == false)
+	button.MouseEnter:Fire()
+	check("P15 shimmer turns while hovered", button.Shimmer.Enabled == true and button.Shimmer.Rotation == 360)
+	button.MouseLeave:Fire()
+	check("P15 stops when the pointer leaves", button.Shimmer.Enabled == false)
+	detach()
+end
+do
+	local button = roundedButton()
+	feel.attachPress(button, "P21")
+	button.MouseEnter:Fire()
+	check("P21 grows on hover", button.PressScale.Scale == 1.06)
+end
+do
+	local button = roundedButton()
+	feel.attachPress(button, "P22")
+	button.InputBegan:Fire(press)
+	check("P22 tilts while pressed", button.Rotation == -2)
+	button.InputEnded:Fire(press)
+	check("P22 straightens on release", button.Rotation == 0)
+end
+do
+	local button = roundedButton()
+	button.Text = "Save config"
+	local finish
+	feel.attachAction(button, "P16", { run = function(done) finish = done end })
+	button.Activated:Fire()
+	check("P16 says it is working and cannot be pressed", button.Text == "Working…" and button.Interactable == false)
+	button.Activated:Fire()
+	finish(true)
+	check("P16 back to its label when done", button.Text == "Save config" and button.Interactable == true)
+end
+do
+	local button = roundedButton()
+	button.Text = "Redeem"
+	feel.attachAction(button, "P17", { run = function(done) done(true) end })
+	button.Activated:Fire()
+	check("P17 turns into Done", button.Text == "Done")
+	HARNESS.drain()
+	check("P17 then goes back", button.Text == "Redeem")
+	feel.attachAction(roundedButton(), "P17", { run = function(done) done(false) end })
+end
+do
+	local button = roundedButton()
+	button.Text = "Collect"
+	local runs = 0
+	feel.attachAction(button, "P18", { seconds = 2, run = function(done) runs += 1 done(true) end })
+	button.Activated:Fire()
+	check("P18 counts down and blocks presses", button.Text == "Collect 2s" and button.Interactable == false and runs == 1)
+	button.Activated:Fire()
+	check("P18 a press during cooldown does nothing", runs == 1)
+	HARNESS.drain()
+	check("P18 ready again after the count", button.Text == "Collect" and button.Interactable == true)
+end
+do
+	local button = roundedButton()
+	button.Text = "Reset data"
+	local runs = 0
+	feel.attachAction(button, "P19", { run = function(done) runs += 1 done(true) end })
+	button.Activated:Fire()
+	check("P19 first press only asks", runs == 0 and button.Text == "Press again to confirm")
+	button.Activated:Fire()
+	check("P19 second press runs it", runs == 1 and button.Text == "Reset data")
+end
+do
+	local button = roundedButton()
+	button.Text = "Buy"
+	local runs, rich = 0, false
+	feel.attachAction(button, "P20", { allowed = function() return rich end, run = function(done) runs += 1 done(true) end })
+	button.Activated:Fire()
+	check("P20 refuses with a shake", runs == 0 and button.Rotation == 4)
+	HARNESS.drain()
+	rich = true
+	button.Activated:Fire()
+	check("P20 runs once allowed", runs == 1 and button.Rotation == 0)
+end
 local failed = 0
 for _, line in results do print(line) if line:sub(1,4) == "FAIL" then failed += 1 end end
 print(#results - failed .. " passed, " .. failed .. " failed")

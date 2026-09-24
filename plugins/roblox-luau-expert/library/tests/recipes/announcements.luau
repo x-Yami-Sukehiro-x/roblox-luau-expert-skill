@@ -97,6 +97,75 @@ do
 	feed.destroy()
 end
 
+do
+	local screen = Instance.new("ScreenGui")
+	local island = notices.createIsland(screen)
+	island.show("Auto farm on", "Collecting within 30 studs")
+	local pill = screen.Island
+	check("N23 shows only the short line at first", pill.Content.Short.Text == "Auto farm on" and pill.Content.Detail.Visible == false)
+	pill.Hit.MouseEnter:Fire()
+	check("N23 hovering opens the detail", pill.Content.Detail.Visible == true)
+	pill.Hit.MouseLeave:Fire()
+	check("N23 leaving closes it", pill.Content.Detail.Visible == false)
+	pill.Hit.Activated:Fire()
+	check("N23 a tap opens it on a phone", pill.Content.Detail.Visible == true)
+	island.destroy()
+end
+do
+	local screen = Instance.new("ScreenGui")
+	local button = Instance.new("TextButton")
+	button.Parent = screen
+	button.AbsolutePosition = { X = 100, Y = 200 }
+	button.AbsoluteSize = { X = 80, Y = 44 }
+	screen.AbsolutePosition = { X = 0, Y = 0 }
+	notices.floatText(button, "+250", "rbxassetid://117341212186115")
+	local reward = screen.Reward
+	check("N25 rises from above the anchor", reward.Position.X.Offset == 140 and reward.Position.Y.Offset == 160)
+	check("N25 fades while it rises", reward.Amount.TextTransparency == 1 and reward.Icon ~= nil)
+	HARNESS.drain()
+	check("N25 cleans itself up", reward.Parent == nil)
+end
+do
+	local screen = Instance.new("ScreenGui")
+	local objectives = notices.createObjectives(screen)
+	objectives.complete("Collect 10 eggs")
+	local card = screen.Objective
+	check("N26 slides in at the right edge", card.Visible == true and card.Position.X.Offset == -16 and card.GroupTransparency == 0)
+	check("N26 says what was done", card.Words.Step.Text == "Collect 10 eggs" and card.Tick ~= nil)
+	objectives.destroy()
+end
+do
+	local screen = Instance.new("ScreenGui")
+	local inbox = notices.createInbox(screen)
+	check("N27 no badge while empty", screen.Inbox.Badge.Visible == false)
+	inbox.push("Bob sent a trade")
+	inbox.push("Daily reward ready")
+	check("N27 badge counts unread", screen.Inbox.Badge.Visible == true and screen.Inbox.Badge.Text == "2" and inbox.unread() == 2)
+	screen.Inbox.Activated:Fire()
+	check("N27 opening lists newest first and marks read", screen.Messages.Visible == true and screen.Messages.Message1.Text == "Daily reward ready" and inbox.unread() == 0)
+	screen.Inbox.Activated:Fire()
+	check("N27 the bell closes the list again", screen.Messages.Visible == false)
+	inbox.destroy()
+end
+do
+	local screen = Instance.new("ScreenGui")
+	local captions = notices.createCaptions(screen)
+	captions.say("The gate opens at dawn.", "Guard")
+	local strip = screen.Caption
+	check("N29 speaker first, then the line", strip.Speaker.Text == "Guard" and strip.Line.Text == "The gate opens at dawn." and strip.Visible == true)
+	captions.say("Hurry.")
+	check("N29 no speaker hides the name", strip.Speaker.Visible == false)
+	captions.destroy()
+end
+do
+	local screen = Instance.new("ScreenGui")
+	notices.flashEdges(screen)
+	local flash = screen.EdgeFlash
+	check("N30 all four edges light", flash.Top ~= nil and flash.Bottom ~= nil and flash.Left ~= nil and flash.Right ~= nil and flash.Top.BackgroundTransparency < 1)
+	HARNESS.drain()
+	HARNESS.drain()
+	check("N30 fades and removes itself", flash.Parent == nil)
+end
 local failed = 0
 for _, line in results do print(line) if line:sub(1,4) == "FAIL" then failed += 1 end end
 print(#results - failed .. " passed, " .. failed .. " failed")

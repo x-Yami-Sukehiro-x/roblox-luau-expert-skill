@@ -4,7 +4,20 @@ local GuiService = game:GetService("GuiService")
 local TweenService = game:GetService("TweenService")
 
 type FirstPress = "P1" | "P2" | "P3" | "P4" | "P5" | "P6"
-export type PressStyle = FirstPress | "P7" | "P8" | "P9" | "P10" | "P11" | "P12"
+type LaterPress = "P7" | "P8" | "P9" | "P10" | "P11" | "P12"
+export type PressStyle = FirstPress | LaterPress | "P13" | "P14" | "P15" | "P21" | "P22"
+-- The styles that change what the button says or whether it can be pressed.
+export type ActionStyle = "P16" | "P17" | "P18" | "P19" | "P20"
+
+-- `run` does the button's work and calls `finish` when it is done; P17 shows
+-- whether it worked. P18 waits `seconds` before the next press; P19 asks with
+-- `confirmText`; P20 refuses with a shake while `allowed` returns false.
+export type ActionSpec = {
+	run: (finish: (ok: boolean) -> ()) -> (),
+	seconds: number?,
+	confirmText: string?,
+	allowed: (() -> boolean)?,
+}
 type FirstTabs = "S1" | "S2" | "S3" | "S4" | "S5" | "S6"
 export type TabStyle = FirstTabs | "S7" | "S8" | "S9" | "S10" | "S11" | "S12"
 
@@ -19,6 +32,7 @@ local THEME = {
 	accent = Color3.fromRGB(46, 160, 127),
 	accentDim = Color3.fromRGB(28, 88, 74),
 	focus = Color3.fromRGB(72, 201, 162),
+	danger = Color3.fromRGB(208, 88, 82),
 	-- A UIGradient multiplies the fill, so P6 paints white and lets it choose.
 	white = Color3.fromRGB(255, 255, 255),
 }
@@ -39,6 +53,11 @@ local DRAIN = TweenInfo.new(0.15, Enum.EasingStyle.Quad, Enum.EasingDirection.Ou
 -- Plays forward then back: one quick pop that returns to rest on its own.
 local POP = TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out, 0, true)
 local SLIDE = TweenInfo.new(0.2, Enum.EasingStyle.Cubic, Enum.EasingDirection.Out)
+local SPIN = TweenInfo.new(0.4, Enum.EasingStyle.Cubic, Enum.EasingDirection.Out)
+-- Turns for as long as the pointer stays; cancelled when it leaves.
+local SHIMMER = TweenInfo.new(1.5, Enum.EasingStyle.Linear, Enum.EasingDirection.In, -1)
+-- Three quick wiggles that end where they started.
+local SHAKE = TweenInfo.new(0.05, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, 3, true)
 local PAGE_OUT = TweenInfo.new(0.1, Enum.EasingStyle.Cubic, Enum.EasingDirection.In)
 local PAGE_IN = TweenInfo.new(0.15, Enum.EasingStyle.Cubic, Enum.EasingDirection.Out)
 local INSTANT = TweenInfo.new(0)
@@ -48,6 +67,11 @@ local RIPPLE_START = 0.75
 local HOLD_FILL = 0.5
 local NUDGE = 4
 local PAGE_SHIFT = 24
+local TILT = -2
+local SHAKE_ANGLE = 4
+local RESULT_HOLD = 1.2
+local CONFIRM_WINDOW = 3
+local DEFAULT_COOLDOWN = 3
 
 local function animate(instance: Instance, timing: TweenInfo, goals: { [string]: any }): Tween
 	local chosen = if GuiService.ReducedMotionEnabled then INSTANT else timing
@@ -62,19 +86,20 @@ local SCALE = {
 	P2 = { rest = 1, hover = 1, pressed = 0.97 },
 	P3 = { rest = 1, hover = 1.02, pressed = 0.98 },
 	P7 = { rest = 1, hover = 1, pressed = 0.94 },
+	P21 = { rest = 1, hover = 1.06, pressed = 0.98 },
 }
 local FLAT = { rest = 1, hover = 1, pressed = 1 }
 
 -- The effects that add children need a button whose own layout would not
 -- grab them: a plain text button, or one whose content sits in a child frame.
-local function needsBare(button: GuiButton, style: PressStyle)
+local function needsBare(button: GuiButton, style: string)
 	local layout = button:FindFirstChildOfClass("UIListLayout")
 	assert(not layout, `{style} needs a button with no UIListLayout`)
 end
 
 -- A clipped layer that matches the button's corners, for effects that must
 -- stay inside its shape; a CanvasGroup rounds what ClipsDescendants cannot.
-local function layer(button: GuiButton, style: PressStyle, name: string): CanvasGroup
+local function layer(button: GuiButton, style: string, name: string): CanvasGroup
 	needsBare(button, style)
 	local group = Instance.new("CanvasGroup")
 	group.Name = name
@@ -134,6 +159,34 @@ local function attachPress(button: GuiButton, style: PressStyle, onHold: (() -> 
 		sweep = gradient
 	end
 
+	-- P13 starts as an outline; P14 needs the icon it spins; P15 a gradient to turn.
+	if style == "P13" then
+		rim.Color = THEME.accent
+		rim.Transparency = 0
+		button.BackgroundTransparency = 1
+	end
+	local spinner: GuiObject? = nil
+	if style == "P14" then
+		local found = button:FindFirstChild("Icon")
+		assert(found and found:IsA("GuiObject"), "P14 needs a child named Icon")
+		spinner = found
+	end
+	local shimmer: UIGradient? = nil
+	local turning: Tween? = nil
+	if style == "P15" then
+		local gradient = Instance.new("UIGradient")
+		gradient.Name = "Shimmer"
+		gradient.Color = ColorSequence.new({
+			ColorSequenceKeypoint.new(0, THEME.controlHover),
+			ColorSequenceKeypoint.new(0.5, THEME.accentDim),
+			ColorSequenceKeypoint.new(1, THEME.controlHover),
+		})
+		gradient.Enabled = false
+		gradient.Parent = button
+		table.insert(made, gradient)
+		shimmer = gradient
+	end
+
 	local underline: Frame? = nil
 	local shine: Frame? = nil
 	local ripples: CanvasGroup? = nil
@@ -191,15 +244,24 @@ local function attachPress(button: GuiButton, style: PressStyle, onHold: (() -> 
 	local function paint()
 		local steps = SCALE[style] or FLAT
 		local timing = if pressed then QUICK else RELEASE
-		if not sweep then
+		if style == "P13" then
+			animate(button, timing, {
+				BackgroundTransparency = if hovered or pressed then 0 else 1,
+				BackgroundColor3 = if pressed then THEME.accent else THEME.accentDim,
+			})
+		elseif not sweep then
 			local colour = if pressed then THEME.controlPressed
 				elseif hovered then THEME.controlHover
 				else THEME.control
 			animate(button, timing, { BackgroundColor3 = colour })
 		end
 		local scale = if pressed then steps.pressed elseif hovered then steps.hover else steps.rest
-		local springing = style == "P7" and not pressed and size.Scale < 1
+		local springing = (style == "P7" and not pressed and size.Scale < 1)
+			or (style == "P21" and hovered and not pressed)
 		animate(size, if springing then SPRING_BACK else timing, { Scale = scale })
+		if style == "P22" then
+			animate(button, timing, { Rotation = if pressed then TILT else 0 })
+		end
 
 		if style == "P3" or style == "P5" then
 			local lit = if style == "P5" then hovered or pressed else hovered and not pressed
@@ -284,12 +346,35 @@ local function attachPress(button: GuiButton, style: PressStyle, onHold: (() -> 
 			band.Position = UDim2.fromScale(-0.5, 0)
 			animate(band, SHINE, { Position = UDim2.fromScale(1.1, 0) })
 		end
+		local gradient = shimmer
+		if gradient and not GuiService.ReducedMotionEnabled then
+			gradient.Enabled = true
+			gradient.Rotation = 0
+			turning = TweenService:Create(gradient, SHIMMER, { Rotation = 360 })
+			turning:Play()
+		end
 	end))
 	table.insert(connections, button.MouseLeave:Connect(function()
 		hovered, pressed = false, false
 		paint()
 		drainHold()
+		if turning then
+			turning:Cancel()
+			turning = nil
+		end
+		if shimmer then
+			shimmer.Enabled = false
+		end
 	end))
+	if spinner then
+		local icon = spinner
+		table.insert(connections, button.Activated:Connect(function()
+			icon.Rotation = 0
+			animate(icon, SPIN, { Rotation = 360 }).Completed:Once(function()
+				icon.Rotation = 0
+			end)
+		end))
+	end
 	table.insert(connections, button.InputBegan:Connect(function(input: InputObject)
 		local kind = input.UserInputType
 		if kind == Enum.UserInputType.MouseButton1 or kind == Enum.UserInputType.Touch then
@@ -321,9 +406,129 @@ local function attachPress(button: GuiButton, style: PressStyle, onHold: (() -> 
 		if holding then
 			holding:Cancel()
 		end
+		if turning then
+			turning:Cancel()
+		end
 		for _, instance in made do
 			instance:Destroy()
 		end
+	end
+end
+
+-- P16 to P20 change what a text button says while its work happens, so the
+-- player always knows whether pressing again does anything. Returns cleanup.
+local function attachAction(button: TextButton, style: ActionStyle, spec: ActionSpec): () -> ()
+	local connections: { RBXScriptConnection } = {}
+	local label = button.Text
+	local rest = button.BackgroundColor3
+	local ticket = 0
+	local busy = false
+	local armed = false
+
+	local function restore()
+		ticket += 1
+		busy, armed = false, false
+		button.Text = label
+		button.BackgroundColor3 = rest
+		button.Interactable = true
+	end
+
+	-- P18: a bar across the button drains while the cooldown counts down.
+	local drain: Frame? = nil
+	if style == "P18" then
+		local group = layer(button, style, "CooldownLayer")
+		local bar = newFrame("Cooldown", THEME.white)
+		bar.Size = UDim2.fromScale(0, 1)
+		bar.BackgroundTransparency = HOLD_FILL
+		bar.Parent = group
+		drain = bar
+	end
+
+	local function countDown(left: number, mine: number)
+		if mine ~= ticket then
+			return
+		end
+		if left <= 0 then
+			restore()
+			return
+		end
+		button.Text = `{label} {left}s`
+		task.delay(1, countDown, left - 1, mine)
+	end
+
+	local function finished(ok: boolean)
+		if style == "P17" then
+			ticket += 1
+			local mine = ticket
+			button.Text = if ok then "Done" else "Failed"
+			button.BackgroundColor3 = if ok then THEME.accent else THEME.danger
+			task.delay(RESULT_HOLD, function()
+				if mine == ticket then
+					restore()
+				end
+			end)
+			return
+		end
+		if style == "P18" then
+			ticket += 1
+			local seconds = spec.seconds or DEFAULT_COOLDOWN
+			local bar = drain
+			if bar then
+				bar.Size = UDim2.fromScale(1, 1)
+				local timing = TweenInfo.new(seconds, Enum.EasingStyle.Linear)
+				animate(bar, timing, { Size = UDim2.fromScale(0, 1) })
+			end
+			countDown(seconds, ticket)
+			return
+		end
+		restore()
+	end
+
+	local function shake()
+		button.Rotation = 0
+		animate(button, SHAKE, { Rotation = SHAKE_ANGLE }).Completed:Once(function()
+			button.Rotation = 0
+		end)
+	end
+
+	table.insert(connections, button.Activated:Connect(function()
+		if busy then
+			return
+		end
+		local allowed = spec.allowed
+		if style == "P20" and allowed and not allowed() then
+			shake()
+			return
+		end
+		if style == "P19" and not armed then
+			ticket += 1
+			local mine = ticket
+			armed = true
+			button.Text = spec.confirmText or "Press again to confirm"
+			button.BackgroundColor3 = THEME.danger
+			task.delay(CONFIRM_WINDOW, function()
+				if mine == ticket then
+					restore()
+				end
+			end)
+			return
+		end
+		busy = true
+		button.Interactable = style ~= "P16" and style ~= "P18"
+		if style == "P16" then
+			button.Text = "Working…"
+		end
+		spec.run(finished)
+	end))
+
+	return function()
+		ticket += 1
+		for _, connection in connections do
+			connection:Disconnect()
+		end
+		button.Text = label
+		button.BackgroundColor3 = rest
+		button.Interactable = true
 	end
 end
 
@@ -644,5 +849,6 @@ end
 
 return {
 	attachPress = attachPress,
+	attachAction = attachAction,
 	createTabs = createTabs,
 }

@@ -265,6 +265,142 @@ do
 	check("O12 ends once and cleans up", done == 1 and screen.Outro == nil)
 end
 
+Enum.KeyCode.FromName = Enum.KeyCode.FromName or function(_, name) return Enum.KeyCode[name] end
+
+do
+	local screen, panel = scene()
+	local window = windows.createWindow({ panel = panel }, "O13")
+	local tab = screen.PullTab
+	check("O13 pull tab at the bottom centre", tab.AnchorPoint.Y == 1 and tab.Position.Y.Scale == 1)
+	window.hide()
+	check("O13 window slides down and away", panel.Position.Y.Offset == 444)
+	HARNESS.drain()
+	check("O13 tab shown", tab.Visible == true and panel.Visible == false)
+	tab.Activated:Fire()
+	HARNESS.drain()
+	check("O13 tab brings it back", panel.Visible == true and panel.Position.Y.Offset == 0)
+	window.destroy()
+end
+
+do
+	local screen, panel = scene()
+	local window = windows.createWindow({ panel = panel }, "O14")
+	local icon = screen.Dock.DockIcon
+	check("O14 makes a dock with this window's icon", icon ~= nil and icon.Visible == false)
+	icon.AbsolutePosition = Vector2.new(600, 660)
+	icon.AbsoluteSize = Vector2.new(44, 44)
+	window.hide()
+	check("O14 window shrinks into its dock icon", panel.WindowScale.Scale == 0.2)
+	HARNESS.drain()
+	check("O14 icon shown once the window is gone", panel.Visible == false and icon.Visible == true)
+	icon.Activated:Fire()
+	HARNESS.drain()
+	check("O14 the icon brings it back", panel.Visible == true and icon.Visible == false)
+	window.destroy()
+	check("O14 destroy removes the dock it made", screen.Dock == nil)
+end
+
+do
+	local screen, panel = scene()
+	local shared = Instance.new("Frame")
+	shared.Name = "SharedDock"
+	shared.Parent = screen
+	local window = windows.createWindow({ panel = panel, dock = shared }, "O14")
+	check("O14 uses the dock it is given", shared.DockIcon ~= nil and screen:FindFirstChild("Dock") == nil)
+	window.destroy()
+end
+
+do
+	local screen, panel = scene()
+	local window = windows.createWindow({ panel = panel }, "O15")
+	window.hide()
+	check("O15 window stays but goes faint and ignores clicks", panel.Visible == true and panel.GroupTransparency == 0.8 and panel.Interactable == false)
+	check("O15 a button to make it solid appears at its corner", screen.Solid.Visible == true and screen.Solid.Position.X.Offset == 400)
+	screen.Solid.Activated:Fire()
+	check("O15 solid again", panel.GroupTransparency == 0 and panel.Interactable == true and screen.Solid.Visible == false)
+	window.destroy()
+end
+
+do
+	local screen, panel = scene()
+	local rail = Instance.new("Frame")
+	rail.AbsoluteSize = Vector2.new(140, 420)
+	local body = Instance.new("CanvasGroup")
+	body.Visible = true
+	local window = windows.createWindow({ panel = panel, rail = rail, body = body }, "O16")
+	window.hide()
+	HARNESS.drain()
+	check("O16 folds to the tab rail", panel.Size.X.Offset == 140 and body.Visible == false and panel.Visible == true)
+	check("O16 an expand button sits beside the rail", screen.Expand.Visible == true and screen.Expand.Position.X.Offset == 548)
+	screen.Expand.Activated:Fire()
+	HARNESS.drain()
+	check("O16 expands to full width", panel.Size.X.Offset == 360 and body.Visible == true and screen.Expand.Visible == false)
+	window.destroy()
+end
+
+do
+	local screen, panel = scene()
+	local window = windows.createWindow({ panel = panel }, "O17")
+	window.hide()
+	check("O17 hidden until held", panel.Visible == false and screen.Peek.Visible == true)
+	HARNESS.input.InputBegan:Fire({ KeyCode = Enum.KeyCode.LeftAlt, UserInputType = Enum.UserInputType.Keyboard })
+	check("O17 holding the key shows it", panel.Visible == true)
+	HARNESS.input.InputEnded:Fire({ KeyCode = Enum.KeyCode.LeftAlt, UserInputType = Enum.UserInputType.Keyboard })
+	check("O17 letting go hides it", panel.Visible == false)
+	screen.Peek.InputBegan:Fire({ UserInputType = Enum.UserInputType.Touch })
+	check("O17 holding the button shows it on a phone", panel.Visible == true)
+	screen.Peek.InputEnded:Fire({ UserInputType = Enum.UserInputType.Touch })
+	check("O17 releasing the button hides it", panel.Visible == false)
+	window.destroy()
+end
+
+do
+	local screen, panel = scene()
+	local window = windows.createWindow({ panel = panel }, "O18")
+	local corner = screen.Corner
+	check("O18 round button waits in the corner", corner.AnchorPoint.X == 1 and corner.AnchorPoint.Y == 1 and corner.Visible == false)
+	corner.AbsolutePosition = Vector2.new(1200, 640)
+	corner.AbsoluteSize = Vector2.new(56, 56)
+	window.hide()
+	check("O18 window shrinks into the corner button", panel.WindowScale.Scale == 0.2)
+	HARNESS.drain()
+	corner.Activated:Fire()
+	HARNESS.drain()
+	check("O18 the button grows it back", panel.Visible == true and corner.Visible == false)
+	window.destroy()
+end
+
+do
+	local screen, panel = scene()
+	local header = Instance.new("Frame")
+	header.Parent = panel
+	local window = windows.createWindow({ panel = panel, header = header }, "O19")
+	header.InputBegan:Fire({ UserInputType = mouse, Position = point(100, 0) })
+	HARNESS.input.InputChanged:Fire({ UserInputType = Enum.UserInputType.MouseMovement, Position = point(160, 0) })
+	check("O19 the window follows the drag", panel.Position.X.Offset == 60)
+	HARNESS.input.InputEnded:Fire({ UserInputType = mouse, Position = point(160, 0) })
+	check("O19 a short drag springs back", panel.Position.X.Offset == 0 and window.isShown())
+	header.InputBegan:Fire({ UserInputType = mouse, Position = point(100, 0) })
+	HARNESS.input.InputEnded:Fire({ UserInputType = mouse, Position = point(260, 0) })
+	HARNESS.drain()
+	check("O19 a long swipe right hides it to the right", panel.Visible == false and screen.EdgeTab.Visible == true and screen.EdgeTab.AnchorPoint.X == 1)
+	screen.EdgeTab.Activated:Fire()
+	HARNESS.drain()
+	check("O19 the tab brings it back", panel.Visible == true and panel.Position.X.Offset == 0)
+	window.destroy()
+end
+
+do
+	local screen, panel = scene()
+	local window = windows.createWindow({ panel = panel }, "O20")
+	window.hide()
+	HARNESS.drain()
+	check("O20 fades away when idle", panel.Visible == false)
+	HARNESS.input.InputChanged:Fire({ UserInputType = Enum.UserInputType.MouseMovement, Position = point(1, 1) })
+	check("O20 any input brings it back", panel.Visible == true and window.isShown())
+	window.destroy()
+end
+
 local failed = 0
 for _, line in results do print(line) if line:sub(1, 4) == "FAIL" then failed += 1 end end
 print(#results - failed .. " passed, " .. failed .. " failed")

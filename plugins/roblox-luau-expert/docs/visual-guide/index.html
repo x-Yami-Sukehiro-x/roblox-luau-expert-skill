@@ -349,12 +349,53 @@ svg.i{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;stroke
 .title-pill{position:absolute;height:44px;border-radius:22px;border:1px solid var(--s-overlay);background:var(--s-raised);color:var(--s-text);display:flex;align-items:center;gap:8px;padding:0 12px 0 16px;font:700 13px var(--roblox);visibility:hidden}
 .key-chip{position:absolute;right:16px;bottom:16px;height:44px;min-width:44px;border-radius:10px;border:1px solid var(--s-overlay);background:var(--s-raised);color:var(--s-text);display:flex;align-items:center;justify-content:center;gap:8px;padding:0 12px;font:500 12px var(--roblox);visibility:hidden}
 .key-chip.folded .key-text{display:none}
+.pull-tab.bottom{top:auto;bottom:0;border-radius:10px 10px 0 0}
+.dock{position:absolute;left:50%;bottom:10px;transform:translateX(-50%);display:flex;gap:8px;padding:6px;border-radius:14px;background:#090a0d99}
+.dock-icon{width:40px;height:40px;border-radius:10px;border:1px solid var(--s-overlay);background:var(--s-raised);color:var(--s-muted);display:grid;place-items:center}
+.dock-icon[data-bring]{color:var(--s-text);position:relative}
+.dock-icon[data-bring]::after{content:"";position:absolute;bottom:-5px;left:calc(50% - 2px);width:4px;height:4px;border-radius:2px;background:var(--r-bright);opacity:0;transition:opacity .2s var(--out)}
+.dock-icon[data-bring].away::after{opacity:1}
+.ghost-btn,.expand-btn{position:absolute;width:44px;height:44px;border-radius:10px;border:1px solid var(--s-overlay);background:var(--s-raised);color:var(--s-text);display:grid;place-items:center;visibility:hidden;z-index:2}
+.win.with-rail .wbody{margin-left:44px}
+.wrail{position:absolute;left:0;top:33px;bottom:0;width:44px;border-right:1px solid var(--s-raised);display:grid;align-content:start;justify-items:center;gap:8px;padding-top:8px}
+.wrail i{width:16px;height:16px;border-radius:4px;background:var(--s-overlay);display:block}
+.wrail i:first-child{background:var(--r-accent)}
+.hold-btn{position:absolute;right:16px;bottom:16px;height:44px;border-radius:10px;border:1px solid var(--s-overlay);background:var(--s-raised);color:var(--s-text);display:flex;align-items:center;gap:8px;padding:0 12px;font:500 12px var(--roblox);visibility:hidden;touch-action:none;user-select:none}
+.hold-btn:active{background:var(--s-overlay)}
+.fab{position:absolute;right:16px;bottom:16px;width:52px;height:52px;border-radius:26px;border:0;background:var(--r-accent);color:var(--s-text);display:grid;place-items:center;visibility:hidden;box-shadow:0 6px 16px #0008}
+.win .whead.swipe{cursor:grab;touch-action:none}
+.idle-note{position:absolute;left:0;right:0;bottom:10px;text-align:center;font:500 12px var(--roblox);color:var(--s-muted)}
 .ask{position:absolute;left:calc(50% - 118px);top:40px;width:236px;background:var(--s-raised);border:1px solid var(--s-overlay);border-radius:10px;padding:12px;font:500 12px var(--roblox);visibility:hidden;z-index:3}
 .ask p{margin:0 0 10px;color:var(--s-text)}
 .ask .row{display:flex;gap:6px;flex-wrap:wrap}
 .intro{position:absolute;inset:0;display:grid;place-content:center;justify-items:center;gap:10px;font:700 20px var(--roblox);visibility:hidden;z-index:4}
 .intro .line{display:block;height:2px;width:0;background:var(--r-accent)}
 .stage-note{position:absolute;left:0;right:0;bottom:12px;text-align:center;font:500 12px var(--roblox);color:var(--s-muted)}
+.toast .avatar{width:32px;height:32px;border-radius:16px;display:grid;place-items:center;font:700 13px var(--roblox);color:#0b1310;flex:none}
+.toast .pct{font:700 13px var(--roblox);flex:none}
+.toast .x-btn{width:32px;height:32px;border:0;border-radius:6px;background:transparent;color:var(--s-text);display:grid;place-items:center;flex:none;cursor:pointer}
+.toast .x-btn:hover{background:var(--s-overlay)}
+.toast .act.muted{color:var(--s-muted)}
+.island{position:absolute;left:50%;top:10px;transform:translateX(-50%);min-width:120px;max-width:240px;border-radius:22px;background:#090a0d;border:1px solid var(--s-overlay);padding:8px 16px;display:grid;justify-items:center;gap:4px;font:700 13px var(--roblox);visibility:hidden;cursor:pointer;transition:border-radius .2s var(--out)}
+.island small{display:none;font:500 12px var(--roblox);color:var(--s-muted);text-align:center}
+.island:hover small,.island.open small{display:block}
+.island:hover,.island.open{border-radius:14px}
+.collect{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);min-height:44px;padding:0 16px;border:0;border-radius:6px;background:var(--s-panel);color:var(--s-text);font:700 14px var(--roblox)}
+.floater{position:absolute;display:flex;align-items:center;gap:4px;font:800 18px var(--roblox);color:#d69e3e;-webkit-text-stroke:1px #090a0d;pointer-events:none;white-space:nowrap}
+.floater svg{width:18px;height:18px}
+.objective{position:absolute;right:16px;top:30%;display:flex;align-items:center;gap:12px;background:var(--s-raised);border:1px solid var(--s-overlay);border-radius:10px;padding:10px 12px;visibility:hidden}
+.objective small{display:block;font:500 11px var(--roblox);color:var(--s-muted)}
+.objective b{font:700 13px var(--roblox)}
+.bell{position:absolute;right:16px;top:16px;width:44px;height:44px;border-radius:10px;border:1px solid var(--s-overlay);background:var(--s-raised);color:var(--s-text);display:grid;place-items:center;cursor:pointer}
+.bell .badge{position:absolute;right:-6px;top:-6px;min-width:20px;height:20px;border-radius:10px;background:var(--r-danger);font:700 11px/20px var(--roblox);padding:0 5px;display:none}
+.bell .badge.on{display:block}
+.inbox{position:absolute;right:16px;top:66px;width:200px;background:var(--s-raised);border:1px solid var(--s-overlay);border-radius:10px;padding:8px 12px;display:none;gap:6px;font:500 12px var(--roblox)}
+.inbox.open{display:grid}
+.inbox .empty{color:var(--s-muted)}
+.caption{position:absolute;left:50%;bottom:20px;transform:translateX(-50%);max-width:88%;display:flex;gap:8px;align-items:baseline;background:#090a0d99;border-radius:6px;padding:8px 12px;font:500 14px var(--roblox);visibility:hidden}
+.caption b{color:var(--r-bright);font-weight:700;white-space:nowrap}
+.edges{position:absolute;inset:0;box-shadow:inset 0 0 48px 12px #d05852;opacity:0;pointer-events:none}
+.danger-word{position:absolute;left:0;right:0;top:44%;text-align:center;font:800 16px var(--roblox);color:#f3f5f8;opacity:0}
 
 /* Button feel */
 .press{position:relative;min-height:44px;padding:0 20px;border-radius:6px;border:0;background:var(--s-raised);color:var(--s-text);font:700 14px var(--roblox);transition:background-color .12s var(--quad),transform .12s var(--quad),box-shadow .12s var(--quad),background-position .2s var(--out);touch-action:manipulation;overflow:hidden;display:inline-flex;align-items:center;gap:8px}
@@ -538,6 +579,8 @@ footer{padding-block:0 120px;color:var(--muted);font-size:13px}
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+  <symbol id="i-chevron-up" viewBox="0 0 24 24"><path d="m18 15-6-6-6 6"/></symbol>
+  <symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></symbol>
   <symbol id="i-plus" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5v14"/></symbol>
   <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></symbol>
   <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></symbol>
@@ -1122,7 +1165,17 @@ const NOTICES=[
   ['N17','Countdown',['timer popup','restarting in 10 seconds'],'Shows the seconds left and a bar that drains in real time.'],
   ['N18','Snackbar',['bar at the bottom with a button'],'One wide bar at the bottom with an action; a new one replaces it.'],
   ['N19','Stacked cards',['cards stacked behind each other'],'Older messages tuck behind the newest; hover to spread them out.'],
-  ['N20','Activity feed',['kill feed','log in the corner'],'Short lines stack in the corner and fade one by one.']
+  ['N20','Activity feed',['kill feed','log in the corner'],'Short lines stack in the corner and fade one by one.'],
+  ['N21','Player popup',['popup with their picture','someone joined'],'A corner toast led by the player’s avatar, for joins, friends and trades.'],
+  ['N22','Progress with percent',['loading bar popup','shows the percent'],'A bar that fills with the work done, then turns into the result.'],
+  ['N23','Island at the top',['pill at the top that opens','dynamic island'],'A small pill under the top bar; hover or tap it to read more.'],
+  ['N24','Stays until closed',['popup that does not go away','has an X'],'Waits for the player to close it. For things they must not miss.'],
+  ['N25','Floating reward',['+250 coins floats up','number that rises'],'The reward rises from what earned it and fades away.'],
+  ['N26','Objective complete',['quest step done','tick for a finished task'],'A compact card with a tick slides in at the right edge.'],
+  ['N27','Bell with a count',['notification bell','inbox with a number'],'Messages wait behind a bell with a count; nothing interrupts play.'],
+  ['N28','Invite with buttons',['party invite','accept or decline'],'Accept and Decline right on the toast; it leaves quietly after 10 seconds.'],
+  ['N29','Captions',['subtitles','what the character says'],'One line near the bottom with the speaker’s name first.'],
+  ['N30','Edge flash',['screen flashes red','low health warning'],'The edges of the screen flash red for danger you must notice.']
 ];
 const STAGES={
   N1:`<div class="scene-panel"></div><div class="toast" id="n1" style="left:calc(50% - 110px);bottom:16px">${icon('ok','ico-ok')}<span>Settings saved</span></div>`,
@@ -1134,7 +1187,13 @@ const STAGES={
   N15:`<div class="scene-panel" style="top:auto;bottom:24px"></div><div class="achv" id="n15"><span class="tile">${icon('trophy')}</span><span><b>First win</b><small>Win one round</small></span><span class="shine"></span></div>`,
   N16:`<div class="scene-panel"></div><div class="announce" id="n16">Round starting!</div>`,
   N18:`<div class="scene-panel"></div><div class="snack" id="n18"><span class="snack-text">Removed 3 waypoints</span><button class="act r-btn" type="button" style="background:transparent;color:var(--r-bright)">Undo</button></div>`,
-  N20:`<div class="scene-panel" style="left:auto;right:24px;top:auto;bottom:24px"></div><div class="feed" id="n20"></div>`
+  N20:`<div class="scene-panel" style="left:auto;right:24px;top:auto;bottom:24px"></div><div class="feed" id="n20"></div>`,
+  N23:`<div class="scene-panel" style="top:auto;bottom:24px"></div><div class="island" id="n23" role="button" tabindex="0"><span>Auto farm on</span><small>Collecting drops within 30 studs</small></div>`,
+  N25:`<button class="collect" type="button" id="n25-btn">Collect</button>`,
+  N26:`<div class="scene-panel"></div><div class="objective" id="n26">${icon('ok','ico-ok')}<span><small>Objective complete</small><b>Collect 10 eggs</b></span></div>`,
+  N27:`<div class="scene-panel"></div><button class="bell" type="button" id="n27" aria-label="Messages">${icon('bell')}<span class="badge"></span></button><div class="inbox" id="n27-list"><span class="empty">No messages yet</span></div>`,
+  N29:`<div class="scene-panel"></div><div class="caption" id="n29"><b>Guard</b><span>The gate opens at dawn.</span></div>`,
+  N30:`<div class="scene-panel"></div><div class="edges" id="n30"></div><div class="danger-word" id="n30-word">Low health</div>`
 };
 for(const [code,title,words,use] of NOTICES){noticeGrid.insertAdjacentHTML('beforeend',card(code,title,words,use,STAGES[code]??`<div class="scene-panel"${code==='N7'?' style="top:auto;bottom:24px"':''}></div><div id="${code.toLowerCase()}" class="host"></div>`,`<button class="btn" type="button" data-show="${code}">Show example</button>`))}
 async function toast(el,from,exit,hold){
@@ -1161,10 +1220,10 @@ function pushCorner(host,text,kind,ms,options={}){
   if(!options.pill)el.style[side]='16px';
   el.style.transition=reduced()?'none':`${edge} .3s cubic-bezier(.215,.61,.355,1),scale .3s cubic-bezier(.215,.61,.355,1)`;
   const look=LOOK[kind];
-  const lead=options.progress?`<span class="lead spin">${icon('loader','ico-info')}</span>`:`<span class="lead">${icon(options.countdown?'timer':look[0],look[1])}</span>`;
-  const action=options.action?`<button class="act" type="button">${options.action}</button>`:'';
+  const lead=options.avatar?`<span class="avatar" style="background:${options.avatar[1]}">${options.avatar[0]}</span>`:options.progress?`<span class="lead spin">${icon('loader','ico-info')}</span>`:`<span class="lead">${icon(options.countdown?'timer':look[0],look[1])}</span>`;
+  const action=options.invite?`<button class="act muted" type="button" data-decline>Decline</button><button class="act" type="button" data-accept>Accept</button>`:options.action?`<button class="act" type="button">${options.action}</button>`:options.sticky?`<button class="x-btn" type="button" aria-label="Close">${icon('x')}</button>`:options.percent?'<span class="pct">0%</span>':'';
   const body=options.title?`<b>${options.title}</b><span class="sub">${text}</span>`:text;
-  el.innerHTML=`${options.edge?`<span class="t-edge ${look[2]}"></span>`:''}${lead}<span class="msg-text">${body}</span>${action}${options.pill?'':`<span class="t-bar ${look[2]}"></span>`}`;
+  el.innerHTML=`${options.edge?`<span class="t-edge ${look[2]}"></span>`:''}${lead}<span class="msg-text">${body}</span>${action}${options.pill||options.sticky?'':`<span class="t-bar ${look[2]}"></span>`}`;
   host.append(el);
   const items=stacks.get(host)??[];stacks.set(host,items);
   const item={el};items.push(item);layoutStack(host);
@@ -1173,10 +1232,13 @@ function pushCorner(host,text,kind,ms,options={}){
   run(el,{opacity:1,transform:'none'},200,EASE.out);
   item.leave=async()=>{if(item.gone)return;item.gone=true;item.timer?.cancel();clearInterval(item.ticker);stacks.set(host,(stacks.get(host)??[]).filter(i=>i!==item));layoutStack(host);await run(el,{opacity:0,transform:options.pill?'translateY(8px)':side==='left'?'translateX(-8px)':'translateX(8px)'},150,EASE.in);el.remove()};
   item.start=duration=>{const bar=el.querySelector('.t-bar');const timer=(bar??el).animate(bar?[{transform:'scaleX(1)'},{transform:'scaleX(0)'}]:[{},{}],{duration,easing:'linear',fill:'forwards'});item.timer=timer;timer.finished.then(item.leave,()=>{})};
-  item.done=(result,resultKind)=>{const next=LOOK[resultKind];el.querySelector('.lead').outerHTML=`<span class="lead">${icon(next[0],next[1])}</span>`;el.querySelector('.msg-text').textContent=result;el.querySelector('.t-bar').className=`t-bar ${next[2]}`;item.start(2800)};
+  item.done=(result,resultKind)=>{const next=LOOK[resultKind];el.querySelector('.lead').outerHTML=`<span class="lead">${icon(next[0],next[1])}</span>`;el.querySelector('.msg-text').textContent=result;el.querySelector('.pct')?.remove();const bar=el.querySelector('.t-bar');bar.className=`t-bar ${next[2]}`;bar.style.transition='';bar.style.transform='';item.start(2800)};
   if(options.action)el.querySelector('.act').addEventListener('click',()=>{options.onAction?.();item.leave()});
+  if(options.invite){el.querySelector('[data-accept]').addEventListener('click',()=>{options.onAccept?.();item.leave()});el.querySelector('[data-decline]').addEventListener('click',()=>item.leave())}
+  if(options.sticky)el.querySelector('.x-btn').addEventListener('click',()=>item.leave());
+  if(options.percent){const bar=el.querySelector('.t-bar');bar.style.transform='scaleX(0)';bar.style.transition='transform .2s linear';item.set=f=>{bar.style.transform=`scaleX(${f})`;el.querySelector('.pct').textContent=`${Math.round(f*100)}%`}}
   if(options.countdown){let left=options.countdown;const words=el.querySelector('.msg-text');words.textContent=`${text} ${left}s`;item.ticker=setInterval(()=>{left-=1;words.textContent=`${text} ${Math.max(left,0)}s`},1000);item.start(options.countdown*1000)}
-  else if(!options.progress)item.start(ms);
+  else if(!options.progress&&!options.sticky&&!options.percent)item.start(ms);
   el.addEventListener('pointerenter',()=>{if(!options.countdown)item.timer?.pause();if(host.dataset.mode==='deck'){host.dataset.spread='1';layoutStack(host)}});
   el.addEventListener('pointerleave',()=>{item.timer?.play();if(host.dataset.mode==='deck'){delete host.dataset.spread;layoutStack(host)}});
   return item;
@@ -1224,8 +1286,34 @@ const shows={
   N18:()=>snack('Removed 3 waypoints',true),
   N19:async()=>{const host=hostOf('N19');host.dataset.mode='deck';clearHost(host);await sleep(160);
     pushCorner(host,'Auto farm is on','ok',6000);await sleep(400);pushCorner(host,'+250 coins','info',6000);await sleep(400);pushCorner(host,'Egg hatched: Dragon','ok',6000)},
-  N20:async()=>{const feed=document.getElementById('n20');for(const [text,kind] of FEED){feedLine(feed,text,kind);await sleep(450)}}
+  N20:async()=>{const feed=document.getElementById('n20');for(const [text,kind] of FEED){feedLine(feed,text,kind);await sleep(450)}},
+  N21:async()=>{const host=hostOf('N21');clearHost(host);await sleep(160);pushCorner(host,'Bob joined the server','info',3600,{avatar:['B','#588dd6']});await sleep(500);pushCorner(host,'Alice sent a friend request','info',4200,{avatar:['A','#d69e3e']})},
+  N22:async()=>{const host=hostOf('N22');clearHost(host);await sleep(160);const job=pushCorner(host,'Downloading map','info',0,{percent:true});
+    for(let step=1;step<=10;step++){await sleep(220);if(job.gone)return;job.set(step/10)}job.done('Map ready','ok')},
+  N23:async()=>{const el=document.getElementById('n23');el.classList.remove('open');settle(el);el.style.visibility='visible';el.style.opacity=0;await run(el,{opacity:1},200,EASE.out);
+    await sleep(900);el.classList.add('open');await sleep(1800);el.classList.remove('open');await sleep(1600);if(await run(el,{opacity:0},150,EASE.in))el.style.visibility='hidden'},
+  N24:async()=>{const host=hostOf('N24');clearHost(host);await sleep(160);pushCorner(host,'Anti-AFK is on. Close this when you have read it.','info',0,{sticky:true})},
+  N25:()=>floatReward(),
+  N26:async()=>{const el=document.getElementById('n26');settle(el);el.style.visibility='visible';el.style.opacity=0;el.style.transform='translateX(24px)';
+    await run(el,{opacity:1,transform:'none'},280,EASE.out);await sleep(2600);if(await run(el,{opacity:0},150,EASE.in))el.style.visibility='hidden'},
+  N27:async()=>{inbox.length=0;inboxDraw();for(const text of ['Bob sent you a trade','Daily reward ready']){await sleep(500);inbox.unshift(text);if(!document.getElementById('n27-list').classList.contains('open'))inboxUnread+=1;inboxDraw()}},
+  N28:async()=>{const host=hostOf('N28');clearHost(host);await sleep(160);pushCorner(host,'Bob invited you to a party','info',10000,{invite:true,onAccept:()=>setTimeout(()=>pushCorner(host,'You joined Bob’s party','ok',2800),200)})},
+  N29:async()=>{const el=document.getElementById('n29');const who=el.querySelector('b'),said=el.querySelector('span');
+    for(const [name,line] of [['Guard','The gate opens at dawn.'],['You','Then we wait.']]){who.textContent=name;said.textContent=line;settle(el);el.style.visibility='visible';el.style.opacity=0;await run(el,{opacity:1},200,EASE.out);await sleep(1800)}
+    if(await run(el,{opacity:0},150,EASE.in))el.style.visibility='hidden'},
+  N30:async()=>{const edge=document.getElementById('n30'),word=document.getElementById('n30-word');if(reduced()){edge.style.opacity=.6;word.style.opacity=1;await sleep(900);edge.style.opacity=0;word.style.opacity=0;return}
+    edge.animate([{opacity:0},{opacity:1,offset:.15},{opacity:0}],{duration:700,easing:'ease-out'});word.animate([{opacity:0},{opacity:1,offset:.15},{opacity:1,offset:.7},{opacity:0}],{duration:1400})}
 };
+const inbox=[];let inboxUnread=0;
+function inboxDraw(){const list=document.getElementById('n27-list');const badge=document.querySelector('#n27 .badge');
+  badge.textContent=String(inboxUnread);badge.classList.toggle('on',inboxUnread>0);
+  list.innerHTML=inbox.length?inbox.map(text=>`<span>${escHTML(text)}</span>`).join(''):'<span class="empty">No messages yet</span>'}
+async function floatReward(){
+  const button=document.getElementById('n25-btn');const stage=button.parentElement;
+  const el=document.createElement('div');el.className='floater';el.innerHTML=`${icon('coins')}+250`;
+  el.style.left=`${button.offsetLeft-30}px`;el.style.top=`${button.offsetTop-40}px`;stage.append(el);
+  if(reduced()){await sleep(800);el.remove();return}
+  await el.animate([{transform:'translateY(0)',opacity:1},{transform:'translateY(-40px)',opacity:0}],{duration:1000,easing:'cubic-bezier(.25,.46,.45,.94)'}).finished;el.remove()}
 let snackTicket=0;
 async function snack(text,withUndo){
   const el=document.getElementById('n18');const mine=++snackTicket;
@@ -1246,6 +1334,9 @@ hostOf('N7').dataset.edge='top';
 async function closeAlert(){const scrim=document.getElementById('n6-scrim'),box=document.getElementById('n6');run(scrim,{opacity:0},150,EASE.in);if(await run(box,{opacity:0,transform:'scale(.98)'},150,EASE.in)){scrim.style.visibility='hidden';box.style.visibility='hidden'}document.querySelector('[data-show="N6"]').focus({preventScroll:true})}
 noticeGrid.addEventListener('click',async e=>{
   const show=e.target.closest('[data-show]');if(show){shows[show.dataset.show]();return}
+  if(e.target.closest('#n23')){e.target.closest('#n23').classList.toggle('open');return}
+  if(e.target.closest('#n25-btn')){floatReward();return}
+  if(e.target.closest('#n27')){const list=document.getElementById('n27-list');list.classList.toggle('open');if(list.classList.contains('open')){inboxUnread=0;inboxDraw()}return}
   if(e.target.closest('[data-answer]')||e.target.closest('#n6-scrim')){closeAlert();return}
   if(e.target.closest('#n18 .act')){snack('Waypoints restored',false);return}
   const dismiss=e.target.closest('[data-dismiss]');
@@ -1266,7 +1357,15 @@ const WINDOWS=[
   ['O9','Title pill',['shrinks to a small title','collapses to its name'],'The window shrinks to a pill with its name, right where it was.'],
   ['O10','Key reminder',['reminds me which key opens it'],'A chip names the key that reopens it, then folds to an icon.'],
   ['O11','Ask before closing',['asks hide or unload','are you sure you want to close'],'Closing asks: hide it (keeps running) or unload the script.'],
-  ['O12','Goodbye card',['closing screen','outro'],'After unloading, a short card says it is closed, then it is gone.']
+  ['O12','Goodbye card',['closing screen','outro'],'After unloading, a short card says it is closed, then it is gone.'],
+  ['O13','Pull-up tab',['a tab at the bottom to pull it up'],'Slides down out of view and leaves a small tab at the bottom.'],
+  ['O14','Dock',['icons at the bottom like a taskbar','dock'],'The window shrinks into its icon in a dock; several windows can share it.'],
+  ['O15','See-through',['ghost mode','see through while I play'],'The window stays but goes faint and lets clicks through; the eye makes it solid.'],
+  ['O16','Shrink to the tab icons',['keep only the side icons','collapse sideways'],'Only the icon rail stays; a button beside it opens the rest.'],
+  ['O17','Hold to show',['only while I hold a key','peek'],'Hidden until you hold Alt or the button; letting go hides it. Try holding it.'],
+  ['O18','Corner button',['round button in the corner','floating action button'],'The window shrinks into a round button in the bottom-right corner.'],
+  ['O19','Swipe away',['swipe it off the screen','flick it away'],'Drag the title bar sideways and let go: far enough and it leaves that way.'],
+  ['O20','Hides when idle',['hides itself when I stop','auto hide'],'After a quiet stretch it fades away; move or tap and it comes back.']
 ];
 const winStage=code=>{
   const close=code==='O3'?`<button class="icon-btn small" type="button" data-fold="O3" aria-label="Fold window">${icon('minus')}</button>`:`<button class="icon-btn small" type="button" data-hide="${code}" aria-label="Close window">${icon('x')}</button>`;
@@ -1281,9 +1380,18 @@ const winStage=code=>{
     O9:`<button class="title-pill" type="button" data-bring="O9">Blox Hub${icon('down')}</button>`,
     O10:`<button class="key-chip" type="button" data-bring="O10">${icon('keyboard')}<span class="key-text">Show menu · RightShift</span></button>`,
     O11:`<button class="launcher" type="button" data-bring="O11" style="visibility:hidden">${icon('menu')}Hub</button><div class="ask" id="ask-O11" role="dialog" aria-label="Hide or unload"><p>Hide the menu? It keeps running.</p><div class="row"><button class="r-btn" type="button" data-ask="cancel">Cancel</button><button class="r-btn go" type="button" data-ask="hide">Hide</button><button class="r-btn danger" type="button" data-ask="unload">Unload script</button></div></div><div class="intro" id="outro-O11"><span>Blox Hub unloaded</span><span class="line"></span></div>`,
-    O12:`<div class="intro" id="outro-O12"><span>Blox Hub closed</span><span class="line"></span></div>`
+    O12:`<div class="intro" id="outro-O12"><span>Blox Hub closed</span><span class="line"></span></div>`,
+    O13:`<button class="pull-tab bottom" type="button" data-bring="O13" aria-label="Bring the window back">${icon('chevron-up')}</button>`,
+    O14:`<div class="dock"><span class="dock-icon">${icon('settings')}</span><button class="dock-icon" type="button" data-bring="O14" aria-label="Blox Hub">${icon('menu')}</button><span class="dock-icon">${icon('backpack')}</span></div>`,
+    O15:`<button class="ghost-btn" type="button" data-bring="O15" aria-label="Make the window solid">${icon('eye')}</button>`,
+    O16:`<button class="expand-btn" type="button" data-bring="O16" aria-label="Open the window">${icon('right')}</button>`,
+    O17:`<button class="hold-btn" type="button" data-hold="O17">${icon('keyboard')}Hold to show</button>`,
+    O18:`<button class="fab" type="button" data-bring="O18" aria-label="Open Blox Hub">${icon('menu')}</button>`,
+    O19:`<button class="edge-tab" type="button" data-bring="O19" aria-label="Bring the window back">${icon('right')}</button>`,
+    O20:`<span class="idle-note" id="idle-note">Leave the mouse still here for 3 seconds</span>`
   }[code]??'';
-  return `<div class="win" id="win-${code}"><div class="whead"><span class="grow">Blox Hub</span>${close}</div><div class="wbody"><div class="ln"></div><div class="ln short"></div><div class="ln"></div></div></div>${extra}`;
+  const rail=code==='O16'?'<div class="wrail"><i></i><i></i><i></i></div>':'';
+  return `<div class="win${code==='O16'?' with-rail':''}" id="win-${code}"><div class="whead${code==='O19'?' swipe':''}"><span class="grow">Blox Hub</span>${close}</div>${rail}<div class="wbody"><div class="ln"></div><div class="ln short"></div><div class="ln"></div></div></div>${extra}`;
 };
 for(const [code,title,words,use] of WINDOWS){windowGrid.insertAdjacentHTML('beforeend',card(code,title,words,use,winStage(code),`<button class="btn" type="button" data-play="${code}">Replay</button>`))}
 const winShown=Object.fromEntries(WINDOWS.map(([code])=>[code,true]));
@@ -1291,17 +1399,24 @@ const returnOf=code=>document.querySelector(`[data-bring="${code}"]`);
 function delta(win,target){const a=win.getBoundingClientRect(),b=target.getBoundingClientRect();return [b.left+b.width/2-(a.left+a.width/2),b.top+b.height/2-(a.top+a.height/2)]}
 function reveal(el){if(!el)return;el.style.visibility='visible';el.style.opacity=0;settle(el);run(el,{opacity:1},200,EASE.out)}
 const keyTimers={};
-async function hideWindow(code){
+async function hideWindow(code,options={}){
   const win=document.getElementById(`win-${code}`);if(!winShown[code])return;
   if(code==='O11'){const ask=document.getElementById('ask-O11');settle(ask);ask.style.visibility='visible';ask.style.opacity=0;run(ask,{opacity:1},200,EASE.out);ask.querySelector('[data-ask="hide"]').focus({preventScroll:true});return}
   winShown[code]=false;
   const back=returnOf(code);
   if(code==='O3'){const body=win.querySelector('.wbody');run(body,{opacity:0},150,EASE.in);win.animate([{height:'120px'},{height:'33px'}],{duration:reduced()?0:240,easing:EASE.in,fill:'forwards'});win.querySelector('[data-fold]').innerHTML=icon('down');return}
   if(code==='O12'){await run(win,{opacity:0,transform:'scale(.98)'},150,EASE.in);win.style.visibility='hidden';await playCard(document.getElementById('outro-O12'),800);return}
+  if(code==='O15'){win.style.pointerEvents='none';back.style.left=`${win.offsetLeft-8}px`;back.style.top=`${win.offsetTop-8}px`;await run(win,{opacity:.2},150,EASE.in);if(!winShown.O15)reveal(back);return}
+  if(code==='O16'){const body=win.querySelector('.wbody');run(body,{opacity:0},150,EASE.in);await win.animate([{width:'190px'},{width:'44px'}],{duration:reduced()?0:240,easing:EASE.in,fill:'forwards'}).finished;
+    back.style.left=`${win.offsetLeft+52}px`;back.style.top=`${win.offsetTop}px`;if(!winShown.O16)reveal(back);return}
+  if(code==='O14')back.classList.add('away');
   if(code==='O6'&&back&&!back.dataset.placed){back.style.left=`${win.offsetLeft}px`;back.style.top=`${win.offsetTop}px`;back.dataset.placed='1'}
   if(code==='O9'&&back){back.style.left=`${win.offsetLeft}px`;back.style.top=`${win.offsetTop}px`}
   let transform='translateY(8px)';let opacity=0;let ms=150;
-  if(code==='O2'||code==='O6'){const [dx,dy]=delta(win,back);transform=`translate(${dx}px,${dy}px) scale(.2)`;ms=240}
+  if(code==='O2'||code==='O6'||code==='O14'||code==='O18'){const [dx,dy]=delta(win,back);transform=`translate(${dx}px,${dy}px) scale(.2)`;ms=240}
+  if(code==='O13'){transform=`translateY(${win.parentElement.clientHeight-win.offsetTop+8}px)`;opacity=1;ms=240}
+  if(code==='O19'){const right=(options.side??1)>0;back.classList.toggle('right',right);back.innerHTML=icon(right?'chevron-left':'right');transform=`translateX(${right?win.parentElement.clientWidth-win.offsetLeft+8:-(win.offsetLeft+win.offsetWidth+8)}px)`;opacity=1;ms=240}
+  if(code==='O17'||code==='O20')ms=code==='O20'?300:120;
   if(code==='O4'){transform=`translateX(${-(win.offsetLeft+win.offsetWidth+8)}px)`;opacity=1;ms=240}
   if(code==='O7'){transform=`translateX(${win.parentElement.clientWidth-win.offsetLeft+8}px)`;opacity=1;ms=240}
   if(code==='O8'){transform=`translateY(${-(win.offsetTop+win.offsetHeight+8)}px)`;opacity=1;ms=240}
@@ -1314,10 +1429,13 @@ async function hideWindow(code){
 }
 async function showWindow(code){
   const win=document.getElementById(`win-${code}`);if(winShown[code])return;winShown[code]=true;
-  const back=returnOf(code);if(back&&code!=='O3')back.style.visibility='hidden';
+  const back=returnOf(code);if(back&&code!=='O3'&&code!=='O14')back.style.visibility='hidden';
+  if(code==='O14')back.classList.remove('away');
+  if(code==='O15'){win.style.pointerEvents='';return run(win,{opacity:1},200,EASE.out)}
+  if(code==='O16'){win.animate([{width:'44px'},{width:'190px'}],{duration:reduced()?0:280,easing:EASE.out,fill:'forwards'});return run(win.querySelector('.wbody'),{opacity:1},200,EASE.out)}
   if(code==='O3'){const body=win.querySelector('.wbody');win.animate([{height:'33px'},{height:'120px'}],{duration:reduced()?0:280,easing:EASE.out,fill:'forwards'});run(body,{opacity:1},200,EASE.out);win.querySelector('[data-fold]').innerHTML=icon('minus');return}
   win.style.visibility='visible';
-  return run(win,{opacity:1,transform:'none'},code==='O1'||code==='O11'||code==='O12'?200:280,EASE.out);
+  return run(win,{opacity:1,transform:'none'},code==='O1'||code==='O11'||code==='O12'||code==='O17'?(code==='O17'?120:200):280,EASE.out);
 }
 async function playCard(card,hold){
   const line=card.querySelector('.line');settle(card);card.style.visibility='visible';card.style.opacity=0;
@@ -1348,9 +1466,34 @@ windowGrid.addEventListener('click',async e=>{
     if(code==='O5')await playIntro();
     else if(code==='O11'){if(!winShown.O11){await showWindow('O11');await sleep(300)}await hideWindow('O11')}
     else if(code==='O12'){if(!winShown.O12){await showWindow('O12');await sleep(300)}await hideWindow('O12');await sleep(300);await showWindow('O12')}
+    else if(code==='O17'){await hideWindow('O17');reveal(document.querySelector('[data-hold="O17"]'));await sleep(700);await showWindow('O17');await sleep(900);await hideWindow('O17')}
+    else if(code==='O19'){const win=document.getElementById('win-O19');if(!winShown.O19){await showWindow('O19');await sleep(300)}await run(win,{transform:'translateX(60px)'},200,EASE.out);await hideWindow('O19',{side:1});await sleep(900);await showWindow('O19')}
     else{if(!winShown[code]){await showWindow(code);await sleep(300)}await hideWindow(code);await sleep(code==='O10'?1400:900);await showWindow(code)}
   }finally{play.disabled=false}
 });
+// O17: shown only while Alt or the button is held.
+{
+  const hold=document.querySelector('[data-hold="O17"]');
+  const press=()=>showWindow('O17'),release=()=>hideWindow('O17');
+  hold.addEventListener('pointerdown',e=>{hold.setPointerCapture(e.pointerId);press()});
+  hold.addEventListener('pointerup',release);hold.addEventListener('pointercancel',release);
+  document.addEventListener('keydown',e=>{if(e.key==='Alt'&&!e.repeat&&hold.style.visibility==='visible'){e.preventDefault();press()}});
+  document.addEventListener('keyup',e=>{if(e.key==='Alt'&&hold.style.visibility==='visible')release()});
+}
+// O19: the title bar follows a sideways drag; far enough and it leaves that way.
+{
+  const win=document.getElementById('win-O19');const head=win.querySelector('.whead');let start=null;
+  head.addEventListener('pointerdown',e=>{if(e.target.closest('button'))return;start=e.clientX;head.setPointerCapture(e.pointerId);settle(win)});
+  head.addEventListener('pointermove',e=>{if(start===null)return;win.style.transform=`translateX(${e.clientX-start}px)`});
+  head.addEventListener('pointerup',e=>{if(start===null)return;const dx=e.clientX-start;start=null;
+    if(Math.abs(dx)>=80)hideWindow('O19',{side:Math.sign(dx)});else run(win,{transform:'none'},200,EASE.out)});
+}
+// O20: a quiet three seconds over the example fades the window; any movement brings it back.
+{
+  const win=document.getElementById('win-O20');const stage=win.parentElement;let timer=0;
+  const wake=()=>{clearTimeout(timer);if(!winShown.O20)showWindow('O20');timer=setTimeout(()=>hideWindow('O20'),3000)};
+  stage.addEventListener('pointermove',wake);stage.addEventListener('pointerdown',wake);
+}
 {
   const bubble=returnOf('O6');let start=null;
   bubble.addEventListener('pointerdown',e=>{start={x:e.clientX,y:e.clientY,left:bubble.offsetLeft,top:bubble.offsetTop,moved:false};bubble.setPointerCapture(e.pointerId)});

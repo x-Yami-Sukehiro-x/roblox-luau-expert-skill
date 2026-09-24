@@ -17,10 +17,13 @@ local THEME = {
 	success = Color3.fromRGB(72, 178, 112),
 	warning = Color3.fromRGB(214, 158, 62),
 	error = Color3.fromRGB(208, 88, 82),
+	caption = Color3.fromRGB(9, 10, 13),
 }
 
 local ICON = {
 	trophy = "rbxassetid://113055182645565",
+	bell = "rbxassetid://84691420588185",
+	done = "rbxassetid://88244323237265",
 }
 
 local ENTER = TweenInfo.new(0.2, Enum.EasingStyle.Cubic, Enum.EasingDirection.Out)
@@ -35,6 +38,18 @@ local SNACK_ACTION_HOLD = 6
 local FEED_HOLD = 4
 local FEED_LINES = 6
 local FEED_DIM = 0.2
+local OBJECTIVE_HOLD = 3
+-- N26 sits a third of the way down the right edge, clear of the corner stacks.
+local OBJECTIVE_HEIGHT = 0.3
+local FLOAT_RISE = 40
+local FLOAT_TIME = 1
+local INBOX_KEEP = 20
+local CAPTION_DIM = 0.4
+local EDGE_DEPTH = 0.18
+local EDGE_PEAK = 0.45
+local FLASH_IN = TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)
+local FLASH_OUT = TweenInfo.new(0.6, Enum.EasingStyle.Quad, Enum.EasingDirection.In)
+local FLOAT = TweenInfo.new(FLOAT_TIME, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)
 
 local function motion(timing: TweenInfo): TweenInfo
 	return if GuiService.ReducedMotionEnabled then INSTANT else timing
@@ -452,9 +467,462 @@ local function createFeed(screen: ScreenGui)
 	}
 end
 
+local function pill(target: GuiObject)
+	local corner = Instance.new("UICorner")
+	corner.CornerRadius = UDim.new(0.5, 0)
+	corner.Parent = target
+end
+
+local function glyph(name: string, image: string, size: number, colour: Color3): ImageLabel
+	local picture = Instance.new("ImageLabel")
+	picture.Name = name
+	picture.Size = UDim2.fromOffset(size, size)
+	picture.BackgroundTransparency = 1
+	picture.Image = image
+	picture.ImageColor3 = colour
+	return picture
+end
+
+-- N23: a small pill under the top bar with the short line; hovering or
+-- tapping it opens the detail underneath, and it closes itself again.
+local function createIsland(screen: ScreenGui)
+	local ticket = 0
+	local connections: { RBXScriptConnection } = {}
+
+	local island = Instance.new("CanvasGroup")
+	island.Name = "Island"
+	island.AnchorPoint = Vector2.new(0.5, 0)
+	island.Position = UDim2.new(0.5, 0, 0, 8)
+	island.AutomaticSize = Enum.AutomaticSize.XY
+	island.BackgroundColor3 = THEME.caption
+	island.GroupTransparency = 1
+	island.Visible = false
+	island.Parent = screen
+	pill(island)
+
+	local bounds = Instance.new("UISizeConstraint")
+	bounds.MinSize = Vector2.new(120, 0)
+	bounds.MaxSize = Vector2.new(360, math.huge)
+	bounds.Parent = island
+
+	-- The words have their own frame so the tap target can lie over them
+	-- without being placed by their layout.
+	local content = Instance.new("Frame")
+	content.Name = "Content"
+	content.AutomaticSize = Enum.AutomaticSize.XY
+	content.BackgroundTransparency = 1
+	content.Parent = island
+	pad(content, 8, 16)
+	local stack = line(content, 4, Enum.FillDirection.Vertical)
+	stack.HorizontalAlignment = Enum.HorizontalAlignment.Center
+
+	local short = words("Short", "", 14, true)
+	short.LayoutOrder = 1
+	short.Parent = content
+
+	local detail = words("Detail", "", 12, false)
+	detail.LayoutOrder = 2
+	detail.TextColor3 = THEME.textMuted
+	detail.Visible = false
+	detail.Parent = content
+
+	local hit = Instance.new("TextButton")
+	hit.Name = "Hit"
+	hit.AutoButtonColor = false
+	hit.BackgroundTransparency = 1
+	hit.Text = ""
+	hit.Size = UDim2.fromScale(1, 1)
+	hit.Parent = island
+
+	local function expand(open: boolean)
+		detail.Visible = open and detail.Text ~= ""
+	end
+
+	table.insert(connections, hit.MouseEnter:Connect(function()
+		expand(true)
+	end))
+	table.insert(connections, hit.MouseLeave:Connect(function()
+		expand(false)
+	end))
+	table.insert(connections, hit.Activated:Connect(function()
+		expand(not detail.Visible)
+	end))
+
+	local function show(text: string, more: string?)
+		ticket += 1
+		local mine = ticket
+		short.Text = text
+		detail.Text = more or ""
+		expand(false)
+		island.Visible = true
+		tween(island, ENTER, { GroupTransparency = 0 })
+		task.delay(readingTime(`{text} {more or ""}`), function()
+			if mine ~= ticket then
+				return
+			end
+			tween(island, EXIT, { GroupTransparency = 1 }).Completed:Once(function()
+				if mine == ticket then
+					island.Visible = false
+				end
+			end)
+		end)
+	end
+
+	return {
+		show = show,
+		destroy = function()
+			ticket += 1
+			for _, connection in connections do
+				connection:Disconnect()
+			end
+			island:Destroy()
+		end,
+	}
+end
+
+-- N25: "+250 coins" rises from the thing that earned it and fades away. The
+-- label lives on the anchor's ScreenGui, so a list or a clip cannot cut it off.
+local function floatText(anchor: GuiObject, text: string, icon: string?)
+	local screen = anchor:FindFirstAncestorWhichIsA("ScreenGui")
+	assert(screen, "floatText needs an anchor inside a ScreenGui")
+
+	local x = anchor.AbsolutePosition.X - screen.AbsolutePosition.X + anchor.AbsoluteSize.X / 2
+	local y = anchor.AbsolutePosition.Y - screen.AbsolutePosition.Y
+
+	local reward = Instance.new("Frame")
+	reward.Name = "Reward"
+	reward.AnchorPoint = Vector2.new(0.5, 1)
+	reward.Position = UDim2.fromOffset(x, y)
+	reward.AutomaticSize = Enum.AutomaticSize.XY
+	reward.BackgroundTransparency = 1
+	reward.Parent = screen
+	line(reward, 4, Enum.FillDirection.Horizontal)
+
+	if icon then
+		local picture = glyph("Icon", icon, 20, THEME.warning)
+		picture.LayoutOrder = 1
+		picture.Parent = reward
+	end
+
+	local amount = words("Amount", text, 20, true)
+	amount.LayoutOrder = 2
+	amount.TextColor3 = THEME.warning
+	amount.Parent = reward
+
+	local rim = Instance.new("UIStroke")
+	rim.Color = THEME.outline
+	rim.Thickness = 2
+	rim.Parent = amount
+
+	tween(reward, FLOAT, { Position = UDim2.fromOffset(x, y - FLOAT_RISE) })
+	tween(amount, FLOAT, { TextTransparency = 1 })
+	tween(rim, FLOAT, { Transparency = 1 }).Completed:Once(function()
+		reward:Destroy()
+	end)
+end
+
+-- N26: a compact card slides in at the right edge with a tick when a step of
+-- a quest is done; a newer one replaces it.
+local function createObjectives(screen: ScreenGui)
+	local ticket = 0
+
+	local card = Instance.new("CanvasGroup")
+	card.Name = "Objective"
+	card.AnchorPoint = Vector2.new(1, 0)
+	card.Position = UDim2.new(1, 0, OBJECTIVE_HEIGHT, 0)
+	card.AutomaticSize = Enum.AutomaticSize.XY
+	card.BackgroundColor3 = THEME.surface
+	card.GroupTransparency = 1
+	card.Visible = false
+	card.Parent = screen
+	round(card, 10)
+	outline(card)
+	pad(card, 12, 12)
+	line(card, 12, Enum.FillDirection.Horizontal)
+
+	local tick = glyph("Tick", ICON.done, 20, THEME.success)
+	tick.LayoutOrder = 1
+	tick.Parent = card
+
+	local column = Instance.new("Frame")
+	column.Name = "Words"
+	column.LayoutOrder = 2
+	column.AutomaticSize = Enum.AutomaticSize.XY
+	column.BackgroundTransparency = 1
+	column.Parent = card
+	line(column, 4, Enum.FillDirection.Vertical)
+
+	local caption = words("Caption", "Objective complete", 12, false)
+	caption.LayoutOrder = 1
+	caption.TextColor3 = THEME.textMuted
+	caption.Parent = column
+
+	local step = words("Step", "", 14, true)
+	step.LayoutOrder = 2
+	step.Parent = column
+
+	local function complete(text: string)
+		ticket += 1
+		local mine = ticket
+		step.Text = text
+		card.Visible = true
+		local start = if GuiService.ReducedMotionEnabled then -16 else 24
+		card.Position = UDim2.new(1, start, OBJECTIVE_HEIGHT, 0)
+		local rest = UDim2.new(1, -16, OBJECTIVE_HEIGHT, 0)
+		tween(card, ARRIVE, { Position = rest, GroupTransparency = 0 })
+		task.delay(OBJECTIVE_HOLD, function()
+			if mine ~= ticket then
+				return
+			end
+			tween(card, EXIT, { GroupTransparency = 1 }).Completed:Once(function()
+				if mine == ticket then
+					card.Visible = false
+				end
+			end)
+		end)
+	end
+
+	return {
+		complete = complete,
+		destroy = function()
+			ticket += 1
+			card:Destroy()
+		end,
+	}
+end
+
+-- N27: a bell with an unread count; tapping it opens the saved messages,
+-- newest first, and marks them read. Nothing interrupts play.
+local function createInbox(screen: ScreenGui)
+	local unread = 0
+	local messages: { string } = {}
+	local connections: { RBXScriptConnection } = {}
+
+	local bell = Instance.new("ImageButton")
+	bell.Name = "Inbox"
+	bell.AnchorPoint = Vector2.new(1, 0)
+	bell.Position = UDim2.new(1, -16, 0, 16)
+	bell.Size = UDim2.fromOffset(44, 44)
+	bell.AutoButtonColor = false
+	bell.BackgroundColor3 = THEME.surface
+	bell.Image = ""
+	bell.Parent = screen
+	round(bell, 10)
+	outline(bell)
+
+	local mark = glyph("Bell", ICON.bell, 20, THEME.text)
+	mark.AnchorPoint = Vector2.new(0.5, 0.5)
+	mark.Position = UDim2.fromScale(0.5, 0.5)
+	mark.Parent = bell
+
+	local badge = words("Badge", "", 12, true)
+	badge.AnchorPoint = Vector2.new(0.5, 0.5)
+	badge.Position = UDim2.fromScale(1, 0)
+	badge.BackgroundColor3 = THEME.error
+	badge.BackgroundTransparency = 0
+	badge.Visible = false
+	badge.Parent = bell
+	pill(badge)
+	pad(badge, 0, 4)
+
+	local panel = Instance.new("Frame")
+	panel.Name = "Messages"
+	panel.AnchorPoint = Vector2.new(1, 0)
+	panel.Position = UDim2.new(1, -16, 0, 68)
+	panel.AutomaticSize = Enum.AutomaticSize.Y
+	panel.Size = UDim2.fromOffset(280, 0)
+	panel.BackgroundColor3 = THEME.surface
+	panel.Visible = false
+	panel.Parent = screen
+	round(panel, 10)
+	outline(panel)
+	pad(panel, 8, 12)
+	line(panel, 4, Enum.FillDirection.Vertical)
+
+	local function paint()
+		badge.Text = if unread > 9 then "9+" else tostring(unread)
+		badge.Visible = unread > 0
+	end
+
+	local function draw()
+		for _, child in panel:GetChildren() do
+			if child:IsA("TextLabel") then
+				child:Destroy()
+			end
+		end
+		for index, text in messages do
+			local row = words(`Message{index}`, text, 14, false)
+			row.LayoutOrder = index
+			row.AutomaticSize = Enum.AutomaticSize.Y
+			row.Size = UDim2.fromScale(1, 0)
+			row.TextWrapped = true
+			row.Parent = panel
+		end
+		if #messages == 0 then
+			local empty = words("Empty", "No messages yet", 12, false)
+			empty.TextColor3 = THEME.textMuted
+			empty.Parent = panel
+		end
+	end
+
+	local function push(text: string)
+		table.insert(messages, 1, text)
+		if #messages > INBOX_KEEP then
+			table.remove(messages)
+		end
+		if panel.Visible then
+			draw()
+		else
+			unread += 1
+			paint()
+		end
+	end
+
+	table.insert(connections, bell.Activated:Connect(function()
+		panel.Visible = not panel.Visible
+		if panel.Visible then
+			unread = 0
+			paint()
+			draw()
+		end
+	end))
+	table.insert(connections, bell.MouseEnter:Connect(function()
+		bell.BackgroundColor3 = THEME.edge
+	end))
+	table.insert(connections, bell.MouseLeave:Connect(function()
+		bell.BackgroundColor3 = THEME.surface
+	end))
+
+	return {
+		push = push,
+		unread = function()
+			return unread
+		end,
+		destroy = function()
+			for _, connection in connections do
+				connection:Disconnect()
+			end
+			bell:Destroy()
+			panel:Destroy()
+		end,
+	}
+end
+
+-- N29: one subtitle line near the bottom centre, the speaker's name first;
+-- a new line replaces the old one.
+local function createCaptions(screen: ScreenGui)
+	local ticket = 0
+
+	local strip = Instance.new("Frame")
+	strip.Name = "Caption"
+	strip.AnchorPoint = Vector2.new(0.5, 1)
+	strip.Position = UDim2.new(0.5, 0, 1, -96)
+	strip.AutomaticSize = Enum.AutomaticSize.XY
+	strip.BackgroundColor3 = THEME.caption
+	strip.BackgroundTransparency = 1
+	strip.Visible = false
+	strip.Parent = screen
+	round(strip, 6)
+	pad(strip, 8, 12)
+	line(strip, 8, Enum.FillDirection.Horizontal)
+
+	local bounds = Instance.new("UISizeConstraint")
+	bounds.MaxSize = Vector2.new(640, math.huge)
+	bounds.Parent = strip
+
+	local speaker = words("Speaker", "", 16, true)
+	speaker.LayoutOrder = 1
+	speaker.TextColor3 = THEME.action
+	speaker.Parent = strip
+
+	local said = words("Line", "", 16, false)
+	said.LayoutOrder = 2
+	said.TextWrapped = true
+	said.Parent = strip
+
+	local function say(text: string, name: string?)
+		ticket += 1
+		local mine = ticket
+		speaker.Text = name or ""
+		speaker.Visible = name ~= nil
+		said.Text = text
+		strip.Visible = true
+		tween(strip, ENTER, { BackgroundTransparency = CAPTION_DIM })
+		task.delay(readingTime(text), function()
+			if mine == ticket then
+				strip.Visible = false
+				strip.BackgroundTransparency = 1
+			end
+		end)
+	end
+
+	return {
+		say = say,
+		destroy = function()
+			ticket += 1
+			strip:Destroy()
+		end,
+	}
+end
+
+-- N30: the screen's edges flash the severity colour for a moment, for danger
+-- the player must notice without reading, such as low health.
+local function flashEdges(screen: ScreenGui, severity: Severity?)
+	local colour = THEME[severity or "error"]
+	local frame = Instance.new("Frame")
+	frame.Name = "EdgeFlash"
+	frame.Size = UDim2.fromScale(1, 1)
+	frame.BackgroundTransparency = 1
+	frame.Parent = screen
+
+	-- Each edge is a strip whose gradient fades toward the middle of the screen;
+	-- the rotation points the opaque end at the edge.
+	local across, down = UDim2.fromScale(1, EDGE_DEPTH), UDim2.fromScale(EDGE_DEPTH, 1)
+	local sides = {
+		{ name = "Top", size = across, at = UDim2.fromScale(0, 0), turn = 90 },
+		{ name = "Bottom", size = across, at = UDim2.fromScale(0, 1 - EDGE_DEPTH), turn = -90 },
+		{ name = "Left", size = down, at = UDim2.fromScale(0, 0), turn = 0 },
+		{ name = "Right", size = down, at = UDim2.fromScale(1 - EDGE_DEPTH, 0), turn = 180 },
+	}
+	local strips: { Frame } = {}
+	for _, side in sides do
+		local strip = Instance.new("Frame")
+		strip.Name = side.name
+		strip.Size = side.size
+		strip.Position = side.at
+		strip.BackgroundColor3 = colour
+		strip.BackgroundTransparency = 1
+		strip.BorderSizePixel = 0
+		strip.Parent = frame
+
+		local fade = Instance.new("UIGradient")
+		fade.Rotation = side.turn
+		fade.Transparency = NumberSequence.new(0, 1)
+		fade.Parent = strip
+		table.insert(strips, strip)
+	end
+
+	for index, strip in strips do
+		tween(strip, FLASH_IN, { BackgroundTransparency = EDGE_PEAK }).Completed:Once(function()
+			local out = tween(strip, FLASH_OUT, { BackgroundTransparency = 1 })
+			if index == #strips then
+				out.Completed:Once(function()
+					frame:Destroy()
+				end)
+			end
+		end)
+	end
+end
+
 return {
 	showAchievement = showAchievement,
 	createAnnouncer = createAnnouncer,
 	createSnackbar = createSnackbar,
 	createFeed = createFeed,
+	createIsland = createIsland,
+	floatText = floatText,
+	createObjectives = createObjectives,
+	createInbox = createInbox,
+	createCaptions = createCaptions,
+	flashEdges = flashEdges,
 }
