@@ -73,9 +73,10 @@ The Action reads current files live from the repository's `plugin` branch, so
 the GPT is not limited to the snapshot in Knowledge. It is imported from URL
 (`docs/portability/gpt-github-action.json` on the public repository's `main`),
 authentication None; operations `listSkillFiles` and `getSkillFile`. Setup and
-limits: `../auto-update.md`. Last recorded state, 24 September 2026 (5.3.0,
-public picker link and license): instructions 7,984 characters, SHA-256 prefix
-`e39d8b5b901198cf`, seven knowledge files matching the build byte for byte, the
+limits: `../auto-update.md`. Last recorded state, 24 September 2026 (5.4.0,
+UI designer, 123 picker codes, register budget): instructions 7,991 characters,
+SHA-256 prefix `b067f61452f97b12`, seven knowledge files matching the build
+byte for byte, the
 Action on `raw.githubusercontent.com`, access invite-only. Read back through the
 gizmo API after saving.
 
