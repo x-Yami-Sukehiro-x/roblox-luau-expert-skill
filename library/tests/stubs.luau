@@ -154,6 +154,7 @@ Instance.new = function(className)
     fields.Focused = newSignal()
     fields.CaptureFocus = function() fields.focused = true end
     fields.ReleaseFocus = function() fields.focused = false end
+    fields.IsFocused = function() return fields.focused == true end
     fields.FindFirstAncestorWhichIsA = function(_, name)
         local layers = { ScreenGui = true, SurfaceGui = true, BillboardGui = true }
         local node = fields.Parent

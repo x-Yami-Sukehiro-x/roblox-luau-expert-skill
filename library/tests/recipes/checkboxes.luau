@@ -4,7 +4,7 @@ local parent = Instance.new("Frame")
 local results = {}
 local function check(name, ok) table.insert(results, (ok and "PASS " or "FAIL ") .. name) end
 
-for _, style in { "C1", "C2", "C3", "C5", "C6", "C7" } do
+for _, style in { "C1", "C2", "C3", "C5", "C6", "C7", "C11", "C12", "C13", "C14" } do
 	local log = {}
 	local box = createCheckbox(parent, "Damage numbers " .. style, style, false, function(v) table.insert(log, v) end)
 	check(style .. " starts unticked", box.get() == false)
@@ -105,6 +105,66 @@ do
 	check("C10 tile toggles independently", #group.selected() == 2)
 end
 
+do
+	local box = createCheckbox(parent, "Right tick", "C11", false, function() end)
+	check("C11 no box, tick hidden", box.row:FindFirstChild("Box") == nil and box.row.Tick.ImageTransparency == 1)
+	box.row.Activated:Fire()
+	check("C11 tick shown at the right", box.row.Tick.ImageTransparency == 0 and box.row.Tick.LayoutOrder == 2)
+end
+do
+	local box = createCheckbox(parent, "Coins", "C12", false, function() end, { count = 12 })
+	check("C12 shows the count", box.row.Count.Text == "12")
+end
+do
+	local box = createCheckbox(parent, "Ignore team", "C13", false, function() end)
+	box.row.Activated:Fire()
+	check("C13 shows a cross when chosen", box.row.Box.Cross.ImageTransparency == 0)
+end
+do
+	local box = createCheckbox(parent, "Big", "C14", false, function() end)
+	check("C14 box is 32 px", box.row.Box.Size.X.Offset == 32)
+end
+do
+	local log = {}
+	local group = createCheckGroup(parent, { "Collect", "Sell", "Rebirth" }, "C15", {}, function(list) log = list end)
+	check("C15 counts none done", group.frame.Progress.Summary.Text == "0 of 3 done")
+	group.frame.Sell.Activated:Fire()
+	check("C15 counts one done and fills a third", group.frame.Progress.Summary.Text == "1 of 3 done" and math.abs(group.frame.Progress.Bar.Fill.Size.X.Scale - 1 / 3) < 0.001 and #log == 1)
+end
+do
+	local group = createCheckGroup(parent, { "Sword", "Bow", "Staff" }, "C16", { "Bow" }, function() end)
+	local segments = group.frame.Track.Segments
+	check("C16 chosen segment shows a tick", segments.Bow.Tick.Visible == true and segments.Sword.Tick.Visible == false)
+	segments.Sword.Activated:Fire()
+	check("C16 picks several", #group.selected() == 2)
+end
+do
+	local picked
+	local group = createCheckGroup(parent, { "1", "2", "3", "4", "5" }, "C17", {}, function(list) picked = list[1] end)
+	group.frame["4"].Activated:Fire()
+	check("C17 rating is one value", picked == "4" and #group.selected() == 1)
+	group.frame["2"].Activated:Fire()
+	check("C17 lower rating replaces it", picked == "2" and group.selected()[1] == "2")
+end
+do
+	local group = createCheckGroup(parent, { "Red", "Blue" }, "C18", { "Red" }, function() end)
+	check("C18 chosen dot has a ring", group.frame.Red.Ring.Enabled == true and group.frame.Blue.Ring.Enabled == false)
+	group.frame.Blue.Activated:Fire()
+	check("C18 one colour at a time", group.selected()[1] == "Blue" and #group.selected() == 1)
+end
+do
+	local group = createCheckGroup(parent, { "S", "M", "L" }, "C19", { "M" }, function() end)
+	local marker = group.frame.Track.Marker
+	check("C19 marker under M", marker.Position.X.Offset == 64)
+	group.frame.Track.Segments.L.Activated:Fire()
+	check("C19 marker moves to L", marker.Position.X.Offset == 128 and group.selected()[1] == "L")
+end
+do
+	local group = createCheckGroup(parent, { "Free", "VIP" }, "C20", { "Free" }, function() end, { descriptions = { VIP = "Double coins" } })
+	check("C20 cards show descriptions", group.frame.VIP.Labels.Description.Text == "Double coins")
+	group.frame.VIP.Activated:Fire()
+	check("C20 one plan at a time", group.selected()[1] == "VIP" and #group.selected() == 1)
+end
 local failed = 0
 for _, line in results do print(line) if line:sub(1,4) == "FAIL" then failed += 1 end end
 print(#results - failed .. " passed, " .. failed .. " failed")

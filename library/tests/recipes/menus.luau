@@ -45,7 +45,7 @@ local function newPanel()
 	return panel
 end
 
-for _, style in { "M1", "M2", "M3", "M4", "M5", "M6", "M7", "M8", "M9", "M10", "M11", "M12", "M13", "M14", "M15", "M16", "M17", "M18", "M20", "M21", "M22", "M23", "M24" } do
+for _, style in { "M1", "M2", "M3", "M4", "M5", "M6", "M7", "M8", "M9", "M10", "M11", "M12", "M13", "M14", "M15", "M16", "M17", "M18", "M20", "M21", "M22", "M23", "M24", "M25", "M26", "M27", "M29", "M30", "M31", "M32", "M34", "M35", "M36" } do
 	local panel = newPanel()
 	local presenter = createPresenter(panel, style)
 	check(style .. " starts hidden", panel.Visible == false and presenter.isOpen() == false)
@@ -220,6 +220,86 @@ do
 	check("M22 pops from 80 %", panel.OpenScale.Scale == 0.8)
 	finishAll()
 	check("M22 rests at full size", panel.OpenScale.Scale == 1)
+	presenter.destroy()
+end
+do
+	local panel = newPanel()
+	local presenter = createPresenter(panel, "M25")
+	presenter.open()
+	check("M25 starts turned a quarter and small", panel.Rotation == -90 and panel.OpenScale.Scale == 0.9)
+	finishAll()
+	check("M25 settles upright at full size", panel.Rotation == 0 and panel.OpenScale.Scale == 1)
+	presenter.destroy()
+end
+do
+	local panel = newPanel()
+	local presenter = createPresenter(panel, "M26")
+	presenter.open()
+	check("M26 starts down and to the left", panel.Position.X.Offset == -24 and panel.Position.Y.Offset == 24)
+	finishAll()
+	presenter.destroy()
+end
+do
+	local panel = newPanel()
+	local presenter = createPresenter(panel, "M27")
+	presenter.open()
+	check("M27 starts as a line on its left edge", panel.Size.X.Offset == 0 and panel.Position.X.Offset == -160)
+	finishAll()
+	check("M27 opens to full width", panel.Size.X.Offset == 320 and panel.Position.X.Offset == 0)
+	presenter.close()
+	finishAll()
+	check("M27 hidden with its size restored", panel.Visible == false and panel.Size.X.Offset == 320)
+	presenter.destroy()
+end
+do
+	local panel = newPanel()
+	local corner = Instance.new("UICorner")
+	corner.CornerRadius = UDim.new(0, 10)
+	corner.Parent = panel
+	local presenter = createPresenter(panel, "M28")
+	presenter.open()
+	check("M28 starts as a 48 px circle", panel.Size.X.Offset == 48 and panel.Size.Y.Offset == 48 and corner.CornerRadius.Scale == 0.5)
+	finishAll()
+	check("M28 grows into the panel and its corners", panel.Size.X.Offset == 320 and corner.CornerRadius.Offset == 10 and corner.CornerRadius.Scale == 0)
+	presenter.close()
+	finishAll()
+	check("M28 hidden with corners restored", panel.Visible == false and corner.CornerRadius.Offset == 10)
+	presenter.destroy()
+end
+do
+	local panel = newPanel()
+	local rows = {}
+	for index = 1, 3 do
+		local row = Instance.new("CanvasGroup")
+		row.Name = "Row" .. index
+		row.Parent = panel
+		rows[index] = row
+	end
+	local presenter = createPresenter(panel, "M33", { rows = rows })
+	presenter.open()
+	check("M33 rows start small and hidden", rows[3].RowScale.Scale == 0.9 and rows[3].GroupTransparency == 1)
+	HARNESS.drain()
+	finishAll()
+	check("M33 rows pop to full size", rows[3].RowScale.Scale == 1 and rows[3].GroupTransparency == 0)
+	presenter.destroy()
+end
+do
+	local panel = newPanel()
+	local presenter = createPresenter(panel, "M35")
+	presenter.open()
+	finishAll()
+	local beat = pending[#pending]
+	check("M35 beats once it has arrived", beat ~= nil and beat.goals.Scale == 1.04)
+	presenter.destroy()
+end
+do
+	local panel = newPanel()
+	local presenter = createPresenter(panel, "M36")
+	presenter.open()
+	finishAll()
+	presenter.close()
+	check("M36 shrinks to half on the way out", pending[1].goals.Scale == 0.5)
+	finishAll()
 	presenter.destroy()
 end
 local failed = 0
