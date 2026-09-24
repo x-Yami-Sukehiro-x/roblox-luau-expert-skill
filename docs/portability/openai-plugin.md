@@ -28,7 +28,7 @@ with the knowledge files beside it.
 ## Route B — the full plugin built from this repository (recommended)
 
 `node tools/bin/build-openai-plugin.mjs` writes
-`dist/openai-plugin/roblox-luau-expert/`: a portable `plugin.json`, all eighteen
+`dist/openai-plugin/roblox-luau-expert/`: a portable `plugin.json`, all nineteen
 skills under `skills/` with their references and the tested style recipes, the
 Python and Node checkers, the library and the style picker. Each skill loads in
 full when its description matches, so nothing is squeezed into 8,000

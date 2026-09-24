@@ -44,6 +44,10 @@ Rect = { new = function() return {} end }
 CFrame = { identity = {} }
 Font = { fromEnum = function(e) return e end, new = function() return {} end }
 TweenInfo = { new = function(...) return { ... } end }
+NumberSequenceKeypoint = { new = function(time, value) return { Time = time, Value = value } end }
+NumberSequence = { new = function(points) return { Keypoints = points } end }
+ColorSequenceKeypoint = { new = function(time, value) return { Time = time, Value = value } end }
+ColorSequence = { new = function(points) return { Keypoints = points } end }
 
 local function enumOf(name, items)
     local t = {}
@@ -75,6 +79,7 @@ Enum = {
     UserInputState = enumOf("UserInputState", { "Begin", "Change", "End", "Cancel" }),
     ContextActionResult = enumOf("ContextActionResult", { "Sink", "Pass" }),
     UIFlexAlignment = enumOf("UIFlexAlignment", { "None", "Fill", "SpaceAround", "SpaceBetween", "SpaceEvenly" }),
+    ScrollingDirection = enumOf("ScrollingDirection", { "X", "Y", "XY" }),
     KeyCode = enumOf("KeyCode", { "Left", "Right", "Up", "Down", "Escape", "DPadLeft", "DPadRight", "ButtonB" }),
 }
 Enum.UserInputType.MouseMovement = "UserInputType.MouseMovement"
@@ -99,6 +104,7 @@ Instance.new = function(className)
         destroyed = false,
     }
     local children = {}
+    local changed = {}
 
     local inst
     inst = setmetatable({}, {
@@ -119,7 +125,10 @@ Instance.new = function(className)
                 end
                 return
             end
+            local before = fields[key]
             fields[key] = value
+            local signal = changed[key]
+            if signal and before ~= value then signal:Fire() end
         end,
     })
 
@@ -136,13 +145,65 @@ Instance.new = function(className)
     fields.SelectionLost = newSignal()
     fields.Activated = newSignal()
     fields.Destroying = newSignal()
-    fields.GetPropertyChangedSignal = function() return newSignal() end
+    fields.GetPropertyChangedSignal = function(_, property)
+        local signal = changed[property] or newSignal()
+        changed[property] = signal
+        return signal
+    end
+    fields.FocusLost = newSignal()
+    fields.Focused = newSignal()
+    fields.CaptureFocus = function() fields.focused = true end
+    fields.ReleaseFocus = function() fields.focused = false end
+    fields.FindFirstAncestorWhichIsA = function(_, name)
+        local layers = { ScreenGui = true, SurfaceGui = true, BillboardGui = true }
+        local node = fields.Parent
+        while node ~= nil do
+            if node.ClassName == name or (name == "LayerCollector" and layers[node.ClassName]) then
+                return node
+            end
+            node = node.Parent
+        end
+        return nil
+    end
     fields.Destroy = function(self)
         fields.destroyed = true
         inst.Parent = nil
     end
     fields.WaitForChild = function() return Instance.new("Folder") end
-    fields.IsA = function(_, name) return name == className end
+    fields.IsA = function(_, name)
+        local family = {
+            GuiObject = { Frame = true, TextLabel = true, TextButton = true, TextBox = true, ImageLabel = true, ImageButton = true, ScrollingFrame = true, CanvasGroup = true },
+            GuiButton = { TextButton = true, ImageButton = true },
+            LayerCollector = { ScreenGui = true, SurfaceGui = true, BillboardGui = true },
+        }
+        return name == className or (family[name] ~= nil and family[name][className] == true)
+    end
+    fields.GetChildren = function()
+        local list = {}
+        for _, child in children do table.insert(list, child) end
+        return list
+    end
+    fields.FindFirstChildWhichIsA = function(_, name)
+        for _, child in children do
+            if child:IsA(name) then return child end
+        end
+        return nil
+    end
+    fields.FindFirstChild = function(_, name) return children[name] end
+    fields.Clone = function()
+        local copy = Instance.new(className)
+        for key, value in fields do
+            local signal = type(value) == "table" and value.handlers ~= nil
+            if key ~= "Parent" and type(value) ~= "function" and not signal then copy[key] = value end
+        end
+        return copy
+    end
+    fields.FindFirstChildOfClass = function(_, name)
+        for _, child in children do
+            if child.ClassName == name then return child end
+        end
+        return nil
+    end
     fields.IsDescendantOf = function() return false end
 
     return inst

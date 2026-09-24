@@ -54,6 +54,7 @@ next game update.
 | **the user pasted decompiled source or a dump** | `references/technique/feature-search.md`, `references/technique/decompiled-source.md`, then `references/technique/source-to-api.md` |
 | the dump does not contain the requested feature | `references/technique/feature-search.md` → `assets/runtime-probe.luau` |
 | "find the code for X in this dump", "where is the sell remote" | `references/technique/feature-search.md` |
+| "what features can I make from this dump", "add every feature that's possible" | `references/technique/feature-ideas.md` (`dump_index.py --inventory`) |
 | "which call reaches this value" | `references/technique/source-to-api.md` |
 | the draft has two ways to find the same thing | `references/technique/source-to-api.md` |
 | the draft is mostly capability checks and pcalls | `roblox-code-craft/references/anti-slop-code.md` |

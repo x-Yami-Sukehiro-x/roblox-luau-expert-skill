@@ -1,6 +1,14 @@
 # Luau Compiler Limits — Registers, Locals, Upvalues, Constants, Instructions
 
-Four **different** compile errors, four **different** fixes. Identify which one you hit before refactoring — grouping locals into a table does nothing for the instruction limit, and splitting a function does nothing for the constant limit.
+Six **different** compile errors, six **different** fixes. Identify which one you hit before refactoring — grouping locals into a table does nothing for the instruction limit, and splitting a function does nothing for the constant limit.
+
+**Do not wait for the error.** A script that fails any of these does not run at all, not even its first line. Write under budget from the start (below), and measure before delivering:
+
+```bash
+node tools/bin/check-registers.mjs <file.luau>     # no Node: python tools/py/register_budget.py <file.luau>
+```
+
+It compiles the file at `-O0` and prints each function's peak register use and the line where it peaks, and exits 1 on a compile error or any function at 160 registers or more.
 
 ---
 
@@ -37,7 +45,7 @@ Documented per-function limits from `luau.org/compatibility`:
 
 ---
 
-## The four errors
+## The six errors
 
 | Error text | Raised by | What it means | Fix |
 |---|---|---|---|
@@ -45,6 +53,27 @@ Documented per-function limits from `luau.org/compatibility`:
 | `Out of upvalue registers when trying to allocate <name>: exceeded limit 200` | `getUpval` | A closure captures more than 200 outer locals | Pass parameters instead of capturing; group captures into one table |
 | `Exceeded constant limit; simplify the code to compile` | `checkConstant` | Too many distinct literals in one function | Move data out to a ModuleScript or a decoded string |
 | `Exceeded function instruction limit; split the function into parts to compile` | `compileFunction` | One function body is too long | Split into several functions |
+| `Out of registers when trying to allocate <N> registers: exceeded limit 255` | register allocation | One expression needs `N` consecutive temporary slots on top of the locals already alive: a call with very many arguments, a long `..` chain, or many locals plus a wide call | Pass a table instead of 60+ arguments; `table.concat` instead of a long `..` chain; fewer live locals at that line |
+| `Exceeded return count limit; simplify the code to compile` | `return` | One `return` lists more than about 250 values | Return one table |
+
+The error is printed as `file(line,col): CompileError: ...`. The line is where the budget ran out, not where the problem started: the 201st local is rarely the one to move.
+
+### Measured, not recalled
+
+Each row was reproduced with the Luau 0.739 compiler in `tools/runtime/`:
+
+| Source | `-O0` | `-O1` / `-O2` |
+|---|---|---|
+| 210 × `local vN = math.random()` | Out of local registers at the 201st | same |
+| 210 × `local vN = <number literal>`, never reassigned | Out of local registers at the 201st | **compiles** — constant locals are folded away |
+| 150 locals in each of four sequential `do` blocks (600 total) | compiles | compiles |
+| `print(` 260 arguments `)` | Out of registers, 261 | same |
+| a 260-part `a .. b .. c ..` chain | Out of registers, 260 | same |
+| 190 live locals, then a 71-argument call | Out of registers, 72 | same |
+| `return` with 260 values | Exceeded return count limit | same |
+| one table constructor with 400 items | compiles | compiles |
+
+Two conclusions. Constant folding hides the problem at the optimisation levels most hosts use, so a count that ignores constant locals is fragile: one reassignment turns them back into registers. And the register limit is the sum of what is alive plus what one expression needs, so a function at 190 locals fails on an ordinary call.
 
 Historical note: the compiler enforced 255 instead of 200 for locals since launch — a bug, fixed so the documented limit is now the real one. Old code that compiled before may now fail.
 
@@ -102,6 +131,56 @@ end
 This reframing makes the fix obvious rather than a trick: **shorten lifetimes**. Declare late, scope tightly, close early.
 
 ---
+
+## Write under budget from the start
+
+The limit is structural, so the prevention is structural. These are the defaults for any script that will grow past a few hundred lines, and for every executor script or UI builder written as one file:
+
+1. **Budget: 160 registers per function, peak.** That leaves room for a wide call and for the next person's edits. `check-registers` flags a function at 160.
+2. **The main chunk holds handles, not items.** Top-level locals are services, the one `CONFIG` table, the one `ui` table, the one `state` table, the `connections` list, and local functions. Not one local per button, per setting, per remote or per colour.
+3. **One table per family, created where the family starts:**
+
+   | Grows by | Instead of | Write |
+   |---|---|---|
+   | UI elements | `local title = ...` × 80 | `ui.title = make("TextLabel", {...})` |
+   | Settings | `local walkSpeed = 16` × 40 | `CONFIG.walkSpeed` |
+   | Remotes | `local buyRemote = ...` × 20 | `remotes.buy` |
+   | Connections | `local conn1 = ...` | `table.insert(connections, ...)` |
+   | Per-tab or per-feature setup | one flat block | `local function buildShopTab()` |
+
+4. **Each tab, feature or window is a local function.** A function has its own 200-local budget, so moving 60 lines of setup into `local function buildPlayerTab()` removes their locals from the main chunk entirely. This is the conversion to make first: it is also how the code reads best.
+5. **One-shot setup goes in `do ... end`**, so its temporaries die at `end`.
+6. **Generated or converter output** (`local Frame1 = Instance.new(...)` × 300) is rewritten into a `make(className, props, children)` helper over a nested table, not patched.
+
+### When the script is already near the limit
+
+Editing a script at 170 locals: **do not add another top-level local.** Put the new value in an existing table, or the new code in a function. Then reduce, largest family first:
+
+1. Run `check-registers` and note the peak line and count.
+2. Pick the largest family of related top-level locals: usually UI references or settings.
+3. Create one table where the first of them was declared and move the whole family in one pass: `local shopFrame = ...` becomes `ui.shopFrame = ...`, and every use of `shopFrame` becomes `ui.shopFrame`. Search for each name, whole word, before and after; a missed use is a nil at runtime, not a compile error.
+4. Move each self-contained section (a tab's rows, a feature's connections) into a `local function` that takes the tables it needs.
+5. Compile, run `check-registers` again, and report both counts: `main chunk 187 → 64 registers`.
+
+Keep names unchanged apart from the table prefix, so the diff stays readable and nothing else is renamed.
+
+```lua
+-- Before: one local per element, all alive in the main chunk
+local shopFrame = Instance.new("Frame")
+local shopTitle = Instance.new("TextLabel")
+local shopClose = Instance.new("ImageButton")
+-- ... 120 more
+
+-- After: one table, filled by a function with its own budget
+local ui = {}
+
+local function buildShop(parent: Instance)
+	ui.shopFrame = Instance.new("Frame")
+	ui.shopFrame.Parent = parent
+	ui.shopTitle = Instance.new("TextLabel")
+	ui.shopTitle.Parent = ui.shopFrame
+end
+```
 
 ## Fix 1 — group into tables (the main fix for the local/upvalue limits)
 
@@ -221,7 +300,7 @@ Do not create a local to hold a literal or a single-use expression.
 
 ## Checklist
 
-1. **Read the error text** — it names which of the four limits you hit.
+1. **Read the error text** — it names which of the six limits you hit.
 2. If a function is getting large, split it. This is the only fix for the instruction limit and helps every other.
 3. Group config, stats, UI references, and related data into tables — with literal field names and uniform shapes.
 4. Use `do ... end` for temporaries; shorten lifetimes rather than counting declarations.
@@ -229,5 +308,6 @@ Do not create a local to hold a literal or a single-use expression.
 6. Move large literal data into ModuleScripts.
 7. Prefer ModuleScripts for systems over one giant LocalScript.
 8. Remember the main chunk is a function too — top-level locals count.
+9. Measure with `check-registers` before delivering a long script, and after every refactor.
 
 Tables, smaller functions, and scoped blocks solve every case cleanly and leave the code faster and more maintainable than it was.

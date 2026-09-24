@@ -1,0 +1,1563 @@
+# Lucide icons already uploaded to Roblox (by icons.rest), each confirmed as a
+# real image by thumbnails.roblox.com on 2026-09-24: 1559 icons.
+# Columns: name <TAB> content id <TAB> what the icon is searched for (lucide tags).
+# Regenerate and re-verify: node tools/bin/update-icons.mjs
+a-arrow-down	rbxassetid://87834851353233	letter, font size, text, formatting, smaller
+a-arrow-up	rbxassetid://89385437396694	letter, font size, text, formatting, larger, bigger
+a-large-small	rbxassetid://73183249747960	letter, font size, text, formatting
+accessibility	rbxassetid://109960743825561	disability, disabled, dda, wheelchair
+activity	rbxassetid://137527339160230	pulse, action, motion, movement, exercise, fitness
+activity-square	rbxassetid://126953951117387	pulse, action, motion, movement, exercise, fitness
+air-vent	rbxassetid://111625153433818	air conditioner, ac, central air, cooling, climate-control
+airplay	rbxassetid://92171397431531	stream, cast, mirroring, screen, monitor
+alarm-check	rbxassetid://130501077167542	done, todo, tick, complete, task
+alarm-clock	rbxassetid://118636480109240	morning
+alarm-clock-check	rbxassetid://70976944787280	done, todo, tick, complete, task
+alarm-clock-minus	rbxassetid://70856300954858	remove
+alarm-clock-off	rbxassetid://110132709107464	morning, turn-off
+alarm-clock-plus	rbxassetid://96736786697131	add
+alarm-minus	rbxassetid://77271404005062	remove
+alarm-plus	rbxassetid://128528043300240	add
+alarm-smoke	rbxassetid://76581519928624	fire, alert, warning, detector, carbon monoxide, safety
+album	rbxassetid://112445622428637	photo, book
+alert-circle	rbxassetid://74115333842618	warning, alert, danger, exclamation mark
+alert-octagon	rbxassetid://138910404523272	warning, alert, danger, exclamation mark
+alert-triangle	rbxassetid://112102474509324	warning, alert, danger, exclamation mark, linter
+align-center	rbxassetid://120408521883501	text, alignment, center
+align-center-horizontal	rbxassetid://108597166812858	items, flex, justify
+align-center-vertical	rbxassetid://121154206034694	items, flex, justify
+align-end-horizontal	rbxassetid://99069601868832	items, bottom, flex, justify
+align-end-vertical	rbxassetid://117942349521535	items, right, flex, justify
+align-horizontal-distribute-center	rbxassetid://77482483036009	items, flex, justify, space, evenly, around
+align-horizontal-distribute-end	rbxassetid://134639979863642	right, items, flex, justify
+align-horizontal-distribute-start	rbxassetid://134435692726811	left, items, flex, justify
+align-horizontal-justify-center	rbxassetid://92390581039957	center, items, flex, justify
+align-horizontal-justify-end	rbxassetid://104340168067575	right, items, flex, justify
+align-horizontal-justify-start	rbxassetid://78939447794797	left, items, flex, justify
+align-horizontal-space-around	rbxassetid://80515421591545	center, items, flex, justify, distribute, between
+align-horizontal-space-between	rbxassetid://114038806348167	around, items, bottom, flex, justify
+align-justify	rbxassetid://92373371786861	text, alignment, justified, menu, list
+align-left	rbxassetid://136554315335959	text, alignment, left, list
+align-right	rbxassetid://135067010612236	text, alignment, right
+align-start-horizontal	rbxassetid://96834758740744	top, items, flex, justify
+align-start-vertical	rbxassetid://123458513293976	left, items, flex, justify
+align-vertical-distribute-center	rbxassetid://90818078154247	items, flex, justify, space, evenly, around
+align-vertical-distribute-end	rbxassetid://136782098795781	bottom, items, flex, justify
+align-vertical-distribute-start	rbxassetid://134480830300767	top, items, flex, justify
+align-vertical-justify-center	rbxassetid://130298876730417	center, items, flex, justify, distribute, between
+align-vertical-justify-end	rbxassetid://100777246465864	bottom, items, flex, justify, distribute, between
+align-vertical-justify-start	rbxassetid://123693071723398	top, items, flex, justify, distribute, between
+align-vertical-space-around	rbxassetid://124225977511288	center, items, flex, justify, distribute, between
+align-vertical-space-between	rbxassetid://81499787439793	center, items, flex, justify, distribute, between
+ambulance	rbxassetid://103392162911629	ambulance, emergency, medical, vehicle, siren, healthcare
+ampersand	rbxassetid://76900943277226	and, typography, operator, join, concatenate, code
+ampersands	rbxassetid://86469233094518	and, operator, then, code, &&
+anchor	rbxassetid://127378493192461	ship
+angry	rbxassetid://79345553086407	emoji, anger, face, emotion
+annoyed	rbxassetid://104846682265434	emoji, nuisance, face, emotion
+antenna	rbxassetid://112766612909532	signal, connection, connectivity, tv, television, broadcast
+anvil	rbxassetid://86432599455606	metal, iron, alloy, materials, heavy, weight
+aperture	rbxassetid://139684165362622	camera, photo, pictures, shutter, exposure
+app-window	rbxassetid://87635787215081	application, executable
+app-window-mac	rbxassetid://108549782746996	application, menu bar, pane, preferences, macos, osx
+apple	rbxassetid://93203750625654	fruit, food
+archive	rbxassetid://137249944163344	index, backup, box, storage, records
+archive-restore	rbxassetid://96820254661076	unarchive, index, backup, box, storage, records
+archive-x	rbxassetid://134784309661522	index, backup, box, storage, records, junk
+area-chart	rbxassetid://107486186614989	statistics, diagram, graph, area
+armchair	rbxassetid://104852764227195	sofa, furniture, leisure, lounge, loveseat, couch
+arrow-big-down	rbxassetid://134387593103194	backwards, reverse, direction, south
+arrow-big-down-dash	rbxassetid://125189777214718	backwards, reverse, slow, direction, south, download
+arrow-big-left	rbxassetid://79012356613282	previous, back, direction, west, indicate turn
+arrow-big-left-dash	rbxassetid://132879301629314	previous, back, direction, west, turn, corner
+arrow-big-right	rbxassetid://90405262165720	next, forward, direction, east, indicate turn
+arrow-big-right-dash	rbxassetid://121488142481379	next, forward, direction, east, turn, corner
+arrow-big-up	rbxassetid://95689861013321	shift, keyboard, button, mac, capitalize, capitalise
+arrow-big-up-dash	rbxassetid://106976910180035	caps lock, capitals, keyboard, button, mac, forward
+arrow-down	rbxassetid://134161790366779	backwards, reverse, direction, south
+arrow-down-0-1	rbxassetid://140381370510884	filter, sort, ascending, numerical
+arrow-down-1-0	rbxassetid://130494621181478	filter, sort, descending, numerical
+arrow-down-a-z	rbxassetid://103554859233661	filter, sort, ascending, alphabetical
+arrow-down-circle	rbxassetid://131404694292521	backwards, reverse, direction, south, sign, button
+arrow-down-from-line	rbxassetid://81443516391691	backwards, reverse, direction, south, download, expand
+arrow-down-left	rbxassetid://102509297349411	direction, south-west, diagonal
+arrow-down-left-from-circle	rbxassetid://73012719459961	outwards, direction, south-west, diagonal
+arrow-down-left-square	rbxassetid://90976696713068	direction, south-west, diagonal, sign, turn, keyboard
+arrow-down-narrow-wide	rbxassetid://71046418862578	filter, sort, ascending
+arrow-down-right	rbxassetid://72764732196403	direction, south-east, diagonal
+arrow-down-right-from-circle	rbxassetid://97668995487103	outwards, direction, south-east, diagonal
+arrow-down-right-square	rbxassetid://128499661363473	direction, south-east, diagonal, sign, turn, keyboard
+arrow-down-square	rbxassetid://138838216140198	backwards, reverse, direction, south, sign, keyboard
+arrow-down-to-dot	rbxassetid://88868273845458	direction, south, waypoint, location, step, into
+arrow-down-to-line	rbxassetid://137644743820952	behind, direction, south, download, save, git
+arrow-down-up	rbxassetid://117405374619280	bidirectional, two-way, 2-way, swap, switch, network
+arrow-down-wide-narrow	rbxassetid://75826372885867	filter, sort, descending
+arrow-down-z-a	rbxassetid://118359795316087	filter, sort, descending, alphabetical, reverse
+arrow-left	rbxassetid://90293255250749	previous, back, direction, west, <-
+arrow-left-circle	rbxassetid://130847257582775	previous, back, direction, west, sign, turn
+arrow-left-from-line	rbxassetid://77381869318221	previous, back, direction, west, expand, fold
+arrow-left-right	rbxassetid://112517617090898	bidirectional, two-way, 2-way, swap, switch, transaction
+arrow-left-square	rbxassetid://135104418905606	previous, back, direction, west, sign, keyboard
+arrow-left-to-line	rbxassetid://130252021035812	previous, back, direction, west, collapse, fold
+arrow-right	rbxassetid://134908902120212	forward, next, direction, east, ->
+arrow-right-circle	rbxassetid://94365145580321	next, forward, direction, east, sign, turn
+arrow-right-from-line	rbxassetid://107378199607331	next, forward, direction, east, export, expand
+arrow-right-left	rbxassetid://111890422557630	bidirectional, two-way, 2-way, swap, switch, transaction
+arrow-right-square	rbxassetid://115337431423227	next, forward, direction, west, sign, keyboard
+arrow-right-to-line	rbxassetid://103829994761864	next, forward, direction, east, tab, keyboard
+arrow-up	rbxassetid://104406213770080	forward, direction, north
+arrow-up-0-1	rbxassetid://139178256421912	filter, sort, ascending, numerical
+arrow-up-1-0	rbxassetid://97298977768167	filter, sort, descending, numerical
+arrow-up-a-z	rbxassetid://97443044644659	filter, sort, ascending, alphabetical
+arrow-up-circle	rbxassetid://75833692771331	forward, direction, north, sign, button
+arrow-up-down	rbxassetid://73746166761985	bidirectional, two-way, 2-way, swap, switch, network
+arrow-up-from-dot	rbxassetid://103317134268223	direction, north, step, out
+arrow-up-from-line	rbxassetid://101711387260955	forward, direction, north, upload, git, version control
+arrow-up-left	rbxassetid://103783370700580	direction, north-west, diagonal
+arrow-up-left-from-circle	rbxassetid://96382098119619	outwards, direction, north-west, diagonal, keyboard, button
+arrow-up-left-square	rbxassetid://101543880954604	direction, north-west, diagonal, sign, keyboard, button
+arrow-up-narrow-wide	rbxassetid://122289869517959	filter, sort, ascending
+arrow-up-right	rbxassetid://115214649052675	direction, north-east, diagonal
+arrow-up-right-from-circle	rbxassetid://102906718956851	outwards, direction, north-east, diagonal
+arrow-up-right-square	rbxassetid://113196521639031	direction, north-east, diagonal, sign, keyboard, button
+arrow-up-square	rbxassetid://112280252781879	forward, direction, north, sign, keyboard, button
+arrow-up-to-line	rbxassetid://135365442561417	forward, direction, north, upload, collapse, fold
+arrow-up-wide-narrow	rbxassetid://79052928363256	filter, sort, descending
+arrow-up-z-a	rbxassetid://93443333447390	filter, sort, descending, alphabetical, reverse
+arrows-up-from-line	rbxassetid://140178313470659	direction, orientation, this way up, vertical, package, box
+asterisk	rbxassetid://107247711733329	reference, times, multiply, multiplication, operator, code
+at-sign	rbxassetid://94614469252449	mention, at, email, message, @
+atom	rbxassetid://119051552929078	atomic, nuclear, physics, particle, element, molecule
+audio-lines	rbxassetid://133487746892141	graphic equaliser, sound, noise, listen, hearing, hertz
+audio-waveform	rbxassetid://135412900878575	sound, noise, listen, hearing, hertz, frequency
+award	rbxassetid://82039875682356	achievement, badge, rosette, prize, winner
+axe	rbxassetid://84931585672806	hatchet, weapon, chop, sharp, equipment, fireman
+axis-3d	rbxassetid://83328523632480	gizmo, coordinates
+baby	rbxassetid://75683742350958	child, childproof, children
+backpack	rbxassetid://76143965140765	bag, hiking, travel, camping, school, childhood
+badge	rbxassetid://78791133479661	check, verified, unverified
+badge-alert	rbxassetid://92904571921902	check, verified, unverified, security, safety, issue
+badge-cent	rbxassetid://110902979965426	discount, offer, sale, voucher, tag, monetization
+badge-check	rbxassetid://76305757263548	verified, check
+badge-dollar-sign	rbxassetid://123225256208806	discount, offer, sale, voucher, tag, monetization
+badge-euro	rbxassetid://82107326159074	discount, offer, sale, voucher, tag, monetization
+badge-help	rbxassetid://83944903318576	verified, unverified, help
+badge-indian-rupee	rbxassetid://105958255216505	discount, offer, sale, voucher, tag, monetization
+badge-info	rbxassetid://109792483526167	verified, unverified, help
+badge-japanese-yen	rbxassetid://96156476341857	discount, offer, sale, voucher, tag, monetization
+badge-minus	rbxassetid://79191240000290	verified, unverified, delete, remove, erase
+badge-percent	rbxassetid://129993801535784	verified, unverified, sale, discount, offer, marketing
+badge-plus	rbxassetid://73308743105191	verified, unverified, add, create, new
+badge-pound-sterling	rbxassetid://104904198937382	discount, offer, sale, voucher, tag, monetization
+badge-russian-ruble	rbxassetid://91738909980749	discount, offer, sale, voucher, tag, monetization
+badge-swiss-franc	rbxassetid://102826901242684	discount, offer, sale, voucher, tag, monetization
+badge-x	rbxassetid://117187082865205	verified, unverified, lost, delete, remove
+baggage-claim	rbxassetid://119346910227968	baggage, luggage, travel, cart, trolley, suitcase
+ban	rbxassetid://109685306480139	cancel, no, stop, forbidden, prohibited, error
+banana	rbxassetid://128374499714074	fruit, food
+banknote	rbxassetid://113703117675594	currency, money, payment
+bar-chart	rbxassetid://121570259716677	statistics, diagram, graph
+bar-chart-2	rbxassetid://121452498735866	statistics, diagram, graph
+bar-chart-3	rbxassetid://130626786024244	statistics, diagram, graph
+bar-chart-4	rbxassetid://96221317327213	statistics, diagram, graph
+bar-chart-big	rbxassetid://119295298711810	statistics, diagram, graph
+bar-chart-horizontal	rbxassetid://109235174327898	statistics, diagram, graph
+bar-chart-horizontal-big	rbxassetid://139737497124066	statistics, diagram, graph
+barcode	rbxassetid://78580529416152	scan, checkout, till, cart, transaction, purchase
+baseline	rbxassetid://116347038683714	text, format, color
+bath	rbxassetid://89008182357290	amenities, services, bathroom, shower
+battery	rbxassetid://102599812606554	power, electricity, energy, accumulator, charge
+battery-charging	rbxassetid://91402957855599	power, electricity, energy, accumulator, charge
+battery-full	rbxassetid://108407180588179	power, electricity, energy, accumulator, charge
+battery-low	rbxassetid://132416805088817	power, electricity, energy, accumulator, charge
+battery-medium	rbxassetid://139407584675024	power, electricity, energy, accumulator, charge
+battery-warning	rbxassetid://119084304752903	power, electricity, energy, accumulator, charge, exclamation mark
+beaker	rbxassetid://100026072450383	cup, lab, chemistry, experiment, test
+bean	rbxassetid://108654318985558	legume, soy, food, seed
+bean-off	rbxassetid://75755103997845	soy free, legume, soy, food, seed, allergy
+bed	rbxassetid://71982795501399	sleep, hotel, furniture
+bed-double	rbxassetid://97693190540435	sleep, hotel, furniture
+bed-single	rbxassetid://80557330573152	sleep, hotel, furniture
+beef	rbxassetid://93001452038647	food, dish, restaurant, course, meal, meat
+beer	rbxassetid://71718925718592	alcohol, bar, beverage, brewery, drink
+beer-off	rbxassetid://135309228180602	alcohol, bar, beverage, brewery, drink
+bell	rbxassetid://84691420588185	alarm, notification, sound, reminder
+bell-dot	rbxassetid://100564215426004	alarm, notification, sound, reminder, unread
+bell-electric	rbxassetid://120584905231603	fire alarm, flames, smoke, firefighter, fireman, department
+bell-minus	rbxassetid://117849268875449	alarm, notification, silent, reminder, delete, remove
+bell-off	rbxassetid://115540031372596	alarm, notification, silent, reminder
+bell-plus	rbxassetid://85655293455454	notification, silent, reminder, add, create, new
+bell-ring	rbxassetid://71006419366158	alarm, notification, sound, reminder
+between-horizontal-end	rbxassetid://97454674221809	insert, add, left, slot, squeeze, space
+between-horizontal-start	rbxassetid://122308710081740	insert, add, right, slot, squeeze, space
+between-vertical-end	rbxassetid://73288142609772	insert, add, top, slot, squeeze, space
+between-vertical-start	rbxassetid://96319480553759	insert, add, bottom, slot, squeeze, space
+bike	rbxassetid://139392597724277	bicycle, transport, trip
+binary	rbxassetid://73887562333653	code, digits, computer, zero, one, boolean
+biohazard	rbxassetid://137351193301090	fallout, waste, biology, chemistry, chemical, element
+bird	rbxassetid://78301366757596	peace, freedom, wing, avian, tweet
+bitcoin	rbxassetid://87905951788220	currency, money, payment
+blend	rbxassetid://99774242136996	mode, overlay, multiply, screen, opacity, transparency
+blinds	rbxassetid://97128563480198	shades, screen, curtain, shutter, roller blind, window
+blocks	rbxassetid://116361302503360	addon, plugin, integration, extension, package, build
+bluetooth	rbxassetid://140648462080543	wireless
+bluetooth-connected	rbxassetid://108047104997672	paired
+bluetooth-off	rbxassetid://85384277884353	lost
+bluetooth-searching	rbxassetid://88887842293685	pairing
+bold	rbxassetid://114571598098097	text, strong, format
+bolt	rbxassetid://134172358414310	nut, screw, settings, preferences, configuration, controls
+bomb	rbxassetid://85112456002145	fatal, error, crash, blockbuster, mine, explosion
+bone	rbxassetid://110911138031483	health, skeleton, skull, death, pets, dog
+book	rbxassetid://74111869099427	reading, paperback, booklet, magazine, leaflet, pamphlet
+book-a	rbxassetid://130683776374615	dictionary, define, definition, thesaurus, encyclopedia, encyclopaedia
+book-audio	rbxassetid://84765914852101	audiobook, reading, listening, sound, story, fiction
+book-check	rbxassetid://116693733550590	read, booklet, magazine, leaflet, pamphlet, library
+book-copy	rbxassetid://103556293898971	code, coding, version control, git, repository, clone
+book-dashed	rbxassetid://90144560974060	code, coding, version control, git, repository, template
+book-down	rbxassetid://102612840928328	code, coding, version control, git, repository, pull
+book-headphones	rbxassetid://101847018803943	audiobook, reading, listening, sound, story, fiction
+book-heart	rbxassetid://79225550955168	diary, romance, novel, journal, entry, entries
+book-image	rbxassetid://97175021450327	images, pictures, photos, album, collection, event
+book-key	rbxassetid://78825638323167	code, coding, version control, git, repository, private
+book-lock	rbxassetid://136914298397858	code, coding, version control, git, repository, private
+book-marked	rbxassetid://130311722822005	dictionary, reading, booklet, magazine, leaflet, pamphlet
+book-minus	rbxassetid://111140800790677	code, coding, version control, git, repository, remove
+book-open	rbxassetid://84762150530577	reading, pages, booklet, magazine, leaflet, pamphlet
+book-open-check	rbxassetid://100175521109916	read, pages, booklet, magazine, leaflet, pamphlet
+book-open-text	rbxassetid://83251408532985	reading, pages, booklet, magazine, leaflet, pamphlet
+book-plus	rbxassetid://135397977794739	code, coding, version control, git, repository, remove
+book-text	rbxassetid://96481772943887	reading, booklet, magazine, leaflet, pamphlet, tome
+book-type	rbxassetid://80135728169729	thesaurus, synonym, reading, booklet, magazine, leaflet
+book-up	rbxassetid://92592832226795	code, coding, version control, git, repository, push
+book-up-2	rbxassetid://74123009075829	code, coding, version control, git, repository, push
+book-user	rbxassetid://80586093636888	person, people, family, friends, acquaintances, contacts
+book-x	rbxassetid://75485266769989	code, coding, version control, git, repository, remove
+bookmark	rbxassetid://137439152875860	read, clip, marker, tag
+bookmark-check	rbxassetid://103743627936816	read, finished, complete, clip, marker, tag
+bookmark-minus	rbxassetid://106761186502279	delete, remove
+bookmark-plus	rbxassetid://108572239011289	add
+bookmark-x	rbxassetid://115354177404954	read, clip, marker, tag, cancel, close
+boom-box	rbxassetid://88874304172044	radio, speakers, audio, music, sound, broadcast
+bot	rbxassetid://70979486241131	robot, ai, chat, assistant
+bot-message-square	rbxassetid://79709292282995	robot, ai, chat, assistant
+box	rbxassetid://117371753006597	cube, package, container, storage, geometry, 3d
+box-select	rbxassetid://106969329058115	selection, square, rectangular, marquee, tool, dashed
+boxes	rbxassetid://95055252135506	cubes, packages, parts, group, units, collection
+braces	rbxassetid://92263187057993	json, code, token, curly brackets, data, {
+brackets	rbxassetid://87406077670628	code, token, array, list, square, [
+brain	rbxassetid://116902501990569	medical, mind, intellect, cerebral, consciousness, genius
+brain-circuit	rbxassetid://130830898675113	mind, intellect, artificial intelligence, ai, deep learning, machine learning
+brain-cog	rbxassetid://76347059769903	mind, intellect, artificial intelligence, ai, deep learning, machine learning
+brick-wall	rbxassetid://94677898150825	bricks, mortar, cement, materials, construction, builder
+briefcase	rbxassetid://78701740878808	work, bag, baggage, folder
+briefcase-business	rbxassetid://83989706459460	work, bag, baggage, folder, portfolio
+briefcase-medical	rbxassetid://101696204417639	doctor, medicine, first aid
+bring-to-front	rbxassetid://105016868447258	bring, send, move, over, forward, front
+brush	rbxassetid://113475652218451	draw, paint, color, artist
+bug	rbxassetid://75649814233484	issue, report, debug, code, insect
+bug-off	rbxassetid://72963988065933	debug, code, insect, kill, exterminate, pest control
+bug-play	rbxassetid://109066688101101	debug, code, insect
+building	rbxassetid://128630485814878	organisation, organization
+building-2	rbxassetid://97744948701888	business, company, enterprise, skyscraper, organisation, organization
+bus	rbxassetid://115040051931434	bus, vehicle, transport, trip
+bus-front	rbxassetid://89834398235413	coach, vehicle, trip, road
+cable	rbxassetid://122718774070506	cord, wire, connector, connection, link, signal
+cable-car	rbxassetid://75378206085314	ski lift, winter holiday, alpine, resort, mountains
+cake	rbxassetid://88535465840262	birthday, birthdate, celebration, party, surprise, gateaux
+cake-slice	rbxassetid://99501344714989	birthday, birthdate, celebration, party, surprise, gateaux
+calculator	rbxassetid://107281102048400	count, calculating machine
+calendar	rbxassetid://126460151885084	date, month, year, event, birthday, birthdate
+calendar-check	rbxassetid://116665691227418	date, day, month, year, event, confirm
+calendar-check-2	rbxassetid://128139765113287	date, day, month, year, event, confirm
+calendar-clock	rbxassetid://91678408267921	date, day, month, year, event, clock
+calendar-days	rbxassetid://83005303274935	date, month, year, event
+calendar-fold	rbxassetid://120622111767156	date, month, year, event, birthday, birthdate
+calendar-heart	rbxassetid://101728896191412	date, month, year, event, heart, favourite
+calendar-minus	rbxassetid://97111317408323	date, day, month, year, event, delete
+calendar-minus-2	rbxassetid://114139960753026	date, day, month, year, event, delete
+calendar-off	rbxassetid://72690038281381	date, day, month, year, event, delete
+calendar-plus	rbxassetid://113126930241503	date, day, month, year, event, add
+calendar-plus-2	rbxassetid://95708816339251	date, day, month, year, event, add
+calendar-range	rbxassetid://85814519406070	date, day, month, year, event, range
+calendar-search	rbxassetid://94105486063910	date, day, month, year, events, search
+calendar-x	rbxassetid://117555084312063	date, day, month, year, event, remove
+calendar-x-2	rbxassetid://137455674513711	date, day, month, year, event, remove
+camera	rbxassetid://114084146151777	photo, webcam, video
+camera-off	rbxassetid://101456706369049	photo, webcam, video
+candlestick-chart	rbxassetid://99842864833044	trading, trader, financial, markets, portfolio, assets
+candy	rbxassetid://113164012451432	sugar, food, sweet
+candy-cane	rbxassetid://125416183674924	sugar, food, sweet, christmas, xmas
+candy-off	rbxassetid://122702931937344	sugar free, food, sweet, allergy, intolerance, diet
+captions	rbxassetid://105023593632540	closed captions, subtitles, subhead, transcription, transcribe, dialogue
+captions-off	rbxassetid://75480095441780	closed captions, subtitles, subhead, transcription, transcribe, dialogue
+car	rbxassetid://91451724283877	vehicle, drive, trip, journey
+car-front	rbxassetid://79993076477613	vehicle, drive, trip, journey
+car-taxi-front	rbxassetid://75623233937291	cab, vehicle, drive, trip, journey
+caravan	rbxassetid://78521421981947	trailer, tow, camping, campsite, mobile home, holiday
+carrot	rbxassetid://71122235024925	vegetable, food, eat
+case-lower	rbxassetid://95359311197985	text, letters, characters, font, typography
+case-sensitive	rbxassetid://133603526051277	text, letters, characters, font, typography
+case-upper	rbxassetid://77340278207531	text, letters, characters, font, typography
+cassette-tape	rbxassetid://113140472253110	audio, music, recording, play
+cast	rbxassetid://119573692041871	chromecast, airplay, screen
+castle	rbxassetid://104598700669384	fortress, stronghold, palace, chateau, building
+cat	rbxassetid://118339348494810	animal, pet, kitten, feline
+cctv	rbxassetid://84978679477516	camera, surveillance, recording, film, videotape, crime
+check	rbxassetid://86817768619372	done, todo, tick, complete, task
+check-check	rbxassetid://101885204738917	done, received, double, todo, tick, complete
+check-circle	rbxassetid://105979545056636	done, todo, tick, complete, task
+check-circle-2	rbxassetid://76928915955542	done, todo, tick, complete, task
+check-square	rbxassetid://135686334400788	done, todo, tick, complete, task
+check-square-2	rbxassetid://84113739446686	done, todo, tick, complete, task
+chef-hat	rbxassetid://94153362248387	cooking, food, kitchen, restaurant
+cherry	rbxassetid://116326418543667	fruit, food
+chevron-down	rbxassetid://71457658246709	backwards, reverse, slow, dropdown
+chevron-down-circle	rbxassetid://130642617728982	back, menu
+chevron-down-square	rbxassetid://84683053234548	back, menu, panel
+chevron-first	rbxassetid://70831710633364	previous, music
+chevron-last	rbxassetid://102556054621077	skip, next, music
+chevron-left	rbxassetid://102314312897830	back, previous, less than, fewer, menu, <
+chevron-left-circle	rbxassetid://70732746220332	back, previous, less than, fewer, menu, <
+chevron-left-square	rbxassetid://78492542000164	back, previous, less than, fewer, menu, panel
+chevron-right	rbxassetid://101007429951147	forward, next, more than, greater, menu, code
+chevron-right-circle	rbxassetid://87038574131735	back, more than, greater, menu, >
+chevron-right-square	rbxassetid://119136642030742	forward, next, more than, greater, menu, panel
+chevron-up	rbxassetid://98648581502859	caret, keyboard, mac, control, ctrl, superscript
+chevron-up-circle	rbxassetid://111681831848531	caret, ahead, menu, ^
+chevrons-down	rbxassetid://84492998086101	backwards, reverse, slower
+chevrons-down-up	rbxassetid://82103880591342	collapse, fold, vertical
+chevrons-left	rbxassetid://87881912126351	turn, corner
+chevrons-left-right	rbxassetid://132331219761704	expand, horizontal, unfold
+chevrons-right	rbxassetid://134353805354361	turn, corner
+chevrons-right-left	rbxassetid://96783734429291	collapse, fold, horizontal
+chevrons-up	rbxassetid://88461690106632	forward, ahead, faster, speed, boost
+chevrons-up-down	rbxassetid://71880540200693	expand, unfold, vertical
+circle-arrow-down	rbxassetid://129076838165145	backwards, reverse, direction, south, sign, button
+circle-arrow-left	rbxassetid://88796613571531	previous, back, direction, west, sign, turn
+circle-arrow-out-down-left	rbxassetid://107231337431973	outwards, direction, south-west, diagonal
+circle-arrow-out-down-right	rbxassetid://70490689174861	outwards, direction, south-east, diagonal
+circle-arrow-out-up-left	rbxassetid://79479678307645	outwards, direction, north-west, diagonal, keyboard, button
+circle-arrow-out-up-right	rbxassetid://127093834620465	outwards, direction, north-east, diagonal
+circle-arrow-right	rbxassetid://97664127355280	next, forward, direction, east, sign, turn
+circle-arrow-up	rbxassetid://72634350793509	forward, direction, north, sign, button
+circle-check	rbxassetid://88244323237265	done, todo, tick, complete, task
+circle-check-big	rbxassetid://105847305799404	done, todo, tick, complete, task
+circle-chevron-down	rbxassetid://88531529614731	back, menu
+circle-chevron-left	rbxassetid://109806050128867	back, previous, less than, fewer, menu, <
+circle-chevron-right	rbxassetid://130159833971034	back, more than, greater, menu, >
+circle-chevron-up	rbxassetid://126990996679640	caret, ahead, menu, ^
+circle-dashed	rbxassetid://122032109800866	pending, dot, progress, issue, draft, code
+circle-divide	rbxassetid://136980096833105	calculate, maths, ÷, /
+circle-dollar-sign	rbxassetid://102720278203768	monetization, marketing, currency, money, payment
+circle-dot	rbxassetid://122878673716704	pending, dot, progress, issue, code, coding
+circle-dot-dashed	rbxassetid://107222591318022	pending, dot, progress, issue, draft, code
+circle-ellipsis	rbxassetid://72989868902667	pending, ellipsis, progress, …, ...
+circle-equal	rbxassetid://83415595687523	calculate, shape, =
+circle-fading-plus	rbxassetid://97734885169321	stories, social media, instagram, facebook, meta, snapchat
+circle-gauge	rbxassetid://79712667314679	dashboard, dial, meter, speed, pressure, measure
+circle-help	rbxassetid://132353516577418	question mark
+circle-minus	rbxassetid://98163850412523	subtract, remove, decrease, reduce, calculate, line
+circle-off	rbxassetid://95467094528299	diameter, zero, Ø, nothing, null, void
+circle-parking	rbxassetid://117482323268433	parking lot, car park
+circle-parking-off	rbxassetid://80459013698184	parking lot, car park, no parking
+circle-pause	rbxassetid://88794740338426	music, audio, stop
+circle-percent	rbxassetid://125429815212970	verified, unverified, sale, discount, offer, marketing
+circle-play	rbxassetid://84481789029543	music, start, run
+circle-plus	rbxassetid://117262167984222	add, new, increase, increment, positive, calculate
+circle-power	rbxassetid://127349877206105	on, off, device, switch, toggle, binary
+circle-slash	rbxassetid://98431785453122	diameter, zero, Ø, nothing, null, void
+circle-slash-2	rbxassetid://79541029224240	diameter, zero, Ø, nothing, null, void
+circle-stop	rbxassetid://109423106908446	media, music
+circle-user	rbxassetid://87167719100614	person, account, contact
+circle-user-round	rbxassetid://113831490904568	person, account, contact
+circle-x	rbxassetid://106305483906363	cancel, close, delete, remove, times, clear
+circuit-board	rbxassetid://124136951218642	computing, electricity, electronics
+citrus	rbxassetid://79624448772527	lemon, orange, grapefruit, fruit
+clapperboard	rbxassetid://132343838416956	movie, film, video, camera, cinema, cut
+clipboard	rbxassetid://105021692319787	copy, paste
+clipboard-check	rbxassetid://90432969741774	copied, pasted, done, todo, tick, complete
+clipboard-copy	rbxassetid://85387882337161	copy, paste
+clipboard-edit	rbxassetid://131193135046966	paste, signature
+clipboard-list	rbxassetid://129402512748462	copy, paste, tasks
+clipboard-minus	rbxassetid://94779294031183	copy, delete, remove, erase, document, medical
+clipboard-paste	rbxassetid://79192963603923	copy, paste
+clipboard-pen	rbxassetid://99195778697194	paste, signature
+clipboard-pen-line	rbxassetid://103555830963651	paste
+clipboard-plus	rbxassetid://74352366953056	copy, paste, add, create, new, document
+clipboard-signature	rbxassetid://120750772696869	paste
+clipboard-type	rbxassetid://132835545998943	paste, format, text
+clipboard-x	rbxassetid://132658738057667	copy, paste, discard, remove
+clock	rbxassetid://136533241128438	time, watch, alarm
+clock-1	rbxassetid://71498600757409	time, watch, alarm
+clock-10	rbxassetid://123641121766955	time, watch, alarm
+clock-11	rbxassetid://85845500811663	time, watch, alarm
+clock-12	rbxassetid://133878455420257	time, watch, alarm, noon, midnight
+clock-2	rbxassetid://102975079908275	time, watch, alarm
+clock-3	rbxassetid://119663119982527	time, watch, alarm
+clock-4	rbxassetid://108792000100666	time, watch, alarm
+clock-5	rbxassetid://97840714155038	time, watch, alarm
+clock-6	rbxassetid://102025123837297	time, watch, alarm
+clock-7	rbxassetid://110824271252901	time, watch, alarm
+clock-8	rbxassetid://123515589399454	time, watch, alarm
+clock-9	rbxassetid://126662391246112	time, watch, alarm
+cloud	rbxassetid://136524873450824	weather
+cloud-cog	rbxassetid://108438517119798	computing, ai, cluster, network
+cloud-download	rbxassetid://78768373704516	import
+cloud-drizzle	rbxassetid://80789072164434	weather, shower
+cloud-fog	rbxassetid://110403642693501	weather, mist
+cloud-hail	rbxassetid://95998880244047	weather, rainfall
+cloud-lightning	rbxassetid://118391347029403	weather, bolt
+cloud-moon	rbxassetid://120156057895579	weather, night
+cloud-moon-rain	rbxassetid://101513348432910	weather, partly, night, rainfall
+cloud-off	rbxassetid://111796785870393	disconnect
+cloud-rain	rbxassetid://130177212410873	weather, rainfall
+cloud-rain-wind	rbxassetid://87893934921731	weather, rainfall
+cloud-snow	rbxassetid://104971371973617	weather, blizzard
+cloud-sun	rbxassetid://140109651313859	weather, partly
+cloud-sun-rain	rbxassetid://132138781511885	weather, partly, rainfall
+cloud-upload	rbxassetid://86452290950086	file
+cloudy	rbxassetid://132267475821363	weather, clouds
+clover	rbxassetid://128291338532394	leaf, luck, plant
+club	rbxassetid://83110975306436	shape, suit, playing, cards
+code	rbxassetid://75851496262862	source, programming, html, xml
+code-2	rbxassetid://79541605299928	source, programming, html, xml
+code-xml	rbxassetid://106124864132557	source, programming, html, xml
+codepen	rbxassetid://131077252082543	logo
+codesandbox	rbxassetid://139298967633423	logo
+coffee	rbxassetid://125329933348791	drink, cup, mug, tea, cafe, hot
+cog	rbxassetid://123222732420633	computing, settings, cog, edit, gear, preferences
+coins	rbxassetid://117341212186115	money, cash, finance, gamble
+columns	rbxassetid://96838631255058	lines, list, queue, preview, panel, parallel
+columns-2	rbxassetid://110924811097991	lines, list, queue, preview, panel, parallel
+columns-3	rbxassetid://88214025452433	lines, list, queue, preview, parallel, series
+columns-4	rbxassetid://100379574150921	lines, list, queue, preview, parallel, series
+combine	rbxassetid://103133480717944	cubes, packages, parts, units, collection, cluster
+command	rbxassetid://90385430770591	keyboard, key, mac, cmd, button
+compass	rbxassetid://73836660434977	direction, north, east, south, west, safari
+component	rbxassetid://106556990975641	design, element, group, module, part, symbol
+computer	rbxassetid://72888027377165	pc, chassis, codespaces, github
+concierge-bell	rbxassetid://134373387272639	reception, bell, porter
+cone	rbxassetid://80255197365555	conical, triangle, triangular, geometry, filter, funnel
+construction	rbxassetid://77845797691565	roadwork, maintenance, blockade, barricade
+contact	rbxassetid://102372888309353	user, person, family, friend, acquaintance, listing
+contact-2	rbxassetid://100454539997812	user, person, family, friend, acquaintance, listing
+contact-round	rbxassetid://117599766367773	user, person, family, friend, acquaintance, listing
+container	rbxassetid://135116917100753	storage, shipping, freight, supply chain, docker, environment
+contrast	rbxassetid://71154426791470	display, accessibility
+cookie	rbxassetid://96083862569395	biscuit, privacy, legal, food
+cooking-pot	rbxassetid://100393801714299	pod, cooking, recipe, food, kitchen, chef
+copy	rbxassetid://116378866141355	clone, duplicate, multiple
+copy-check	rbxassetid://92397569046734	clone, duplicate, done, multiple
+copy-minus	rbxassetid://75815893695780	clone, duplicate, remove, delete, collapse, subtract
+copy-plus	rbxassetid://138173295478363	clone, duplicate, add, multiple, expand, +
+copy-slash	rbxassetid://74395410823283	clone, duplicate, cancel, ban, no, stop
+copy-x	rbxassetid://98741265066436	cancel, close, delete, remove, clear, multiple
+copyleft	rbxassetid://103019482632984	licence
+copyright	rbxassetid://82044483134605	licence, license
+corner-down-left	rbxassetid://105689000447775	arrow, return
+corner-down-right	rbxassetid://82061714010896	arrow, indent, tab
+corner-left-down	rbxassetid://133517193053100	arrow
+corner-left-up	rbxassetid://78035789940893	arrow
+corner-right-down	rbxassetid://135390474501786	arrow
+corner-right-up	rbxassetid://122661540167291	arrow
+corner-up-left	rbxassetid://72973602941956	arrow
+corner-up-right	rbxassetid://108297458644964	arrow
+cpu	rbxassetid://105237370909681	processor, cores, technology, computer, chip, circuit
+creative-commons	rbxassetid://111243376462256	licence, license
+credit-card	rbxassetid://124946887228472	bank, purchase, payment, cc
+croissant	rbxassetid://77683374738482	bakery, cooking, food, pastry
+crop	rbxassetid://121481502611712	photo, image
+cross	rbxassetid://93673591064028	healthcare, first aid
+crosshair	rbxassetid://83752373575368	aim, target
+crown	rbxassetid://92253403464658	king, winner, favourite
+cuboid	rbxassetid://117329818290748	brick, block, container, storage, geometry, rectangular
+cup-soda	rbxassetid://132120247880161	beverage, cup, drink, soda, straw, water
+currency	rbxassetid://96706001818192	finance, money
+cylinder	rbxassetid://99158693669056	shape, elliptical, geometry, container, storage, tin
+database	rbxassetid://99154172590159	storage, memory, container, tin, pot, bytes
+diamond	rbxassetid://136889727768904	square, rectangle, oblique, rhombus, shape, suit
+diamond-percent	rbxassetid://138695404542126	verified, unverified, sale, discount, offer, marketing
+dice-1	rbxassetid://133629376866649	dice, random, tabletop, 1, board, game
+dice-2	rbxassetid://137517882571271	dice, random, tabletop, 2, board, game
+dice-3	rbxassetid://128612626459042	dice, random, tabletop, 3, board, game
+dice-4	rbxassetid://73117400593570	dice, random, tabletop, 4, board, game
+dice-5	rbxassetid://107643287892749	dice, random, tabletop, 5, board, game
+dice-6	rbxassetid://112067139297943	dice, random, tabletop, 6, board, game
+dices	rbxassetid://116678154854810	dice, random, tabletop, board, game
+diff	rbxassetid://122850860032588	patch, difference, compare, plus, minus, plus-minus
+disc	rbxassetid://77318106935130	album, music, songs, format, cd, dvd
+disc-2	rbxassetid://135460247355994	album, music, vinyl, record, cd, dvd
+disc-3	rbxassetid://118087373340436	album, music, vinyl, record, cd, dvd
+disc-album	rbxassetid://101298984360789	album, music, songs, format, cd, dvd
+divide	rbxassetid://134571770296218	calculate, maths, division, operator, code, ÷
+divide-circle	rbxassetid://115849848955050	calculate, maths, ÷, /
+divide-square	rbxassetid://78617148972524	calculate, maths, ÷, /
+dna	rbxassetid://131581201333424	gene, gmo, helix, heredity, chromosome, nucleic acid
+dna-off	rbxassetid://90101733367858	gene, gmo free, helix, heredity, chromosome, nucleic acid
+dock	rbxassetid://96133720652582	desktop, applications, launch, home, menu bar, bottom
+dog	rbxassetid://123749328846346	animal, pet, puppy, hound, canine
+dollar-sign	rbxassetid://74567340201672	currency, money, payment
+donut	rbxassetid://123909563150383	doughnut, sprinkles, topping, fast food, junk food, snack
+door-closed	rbxassetid://118483980594708	entrance, entry, exit, ingress, egress, gate
+door-open	rbxassetid://124230332524625	entrance, entry, exit, ingress, egress, gate
+dot	rbxassetid://105006331197983	interpunct, interpoint, middot, step, punctuation, period
+download	rbxassetid://109698732019071	import, export, save
+download-cloud	rbxassetid://122841052352556	import
+drafting-compass	rbxassetid://110585086142082	geometry, trigonometry, radius, diameter, circumference, calculate
+drama	rbxassetid://138828515077300	drama, masks, theater, theatre, entertainment, show
+dribbble	rbxassetid://112906380564504	design, social
+drill	rbxassetid://113833078477512	power, bit, head, hole, diy, toolbox
+droplet	rbxassetid://91586468475195	water, weather
+droplets	rbxassetid://117720354071548	water, humidity, weather
+drum	rbxassetid://121019656655547	drummer, kit, sticks, instrument, beat, bang
+drumstick	rbxassetid://106711459328737	food, chicken, meat
+dumbbell	rbxassetid://130873531670678	barbell, weight, workout, gym
+ear	rbxassetid://92631431780796	hearing, noise, audio, accessibility
+ear-off	rbxassetid://81480882487332	hearing, hard of hearing, hearing loss, deafness, noise, silence
+earth	rbxassetid://75025349205767	world, browser, language, translate, globe
+earth-lock	rbxassetid://103673515494330	vpn, private, privacy, network, world, browser
+eclipse	rbxassetid://113566298471092	lunar, solar, crescent moon, sun, earth, day
+egg	rbxassetid://103880404435578	bird, chicken, nest, hatch, shell, incubate
+egg-fried	rbxassetid://137654273789326	food, breakfast
+egg-off	rbxassetid://99146230558760	egg free, vegan, hatched, bad egg
+ellipsis	rbxassetid://95127553964880	et cetera, etc, loader, loading, progress, pending
+ellipsis-vertical	rbxassetid://95771045694204	menu, options, spread, more, further, extra
+equal	rbxassetid://79273099065269	calculate, maths, operator, assignment, code, =
+eraser	rbxassetid://71210100060694	pencil, drawing, undo, delete, clear
+euro	rbxassetid://139202392240827	currency, money, payment
+expand	rbxassetid://107643532357936	scale, fullscreen
+external-link	rbxassetid://78664150174274	outbound, open, share
+eye	rbxassetid://127234874352422	view, watch
+eye-off	rbxassetid://85207295981701	view, watch, hide, hidden
+facebook	rbxassetid://98822363427090	logo, social
+factory	rbxassetid://79319339232812	building, business, energy, industry, manufacture, sector
+fan	rbxassetid://76323281744636	air, cooler, ventilation, ventilator, blower
+fast-forward	rbxassetid://131011550754955	music
+feather	rbxassetid://103991922506350	logo
+fence	rbxassetid://90935998613863	picket, panels, woodwork, diy, materials, suburban
+ferris-wheel	rbxassetid://94538249337586	big wheel, daisy wheel, observation, attraction, entertainment, amusement park
+figma	rbxassetid://103020132259719	logo, design, tool
+file	rbxassetid://108499043987115	document
+file-archive	rbxassetid://78133118745021	zip, package, archive
+file-audio	rbxassetid://101306436065858	music, audio, sound, headphones
+file-audio-2	rbxassetid://103353018363480	music, audio, sound, headphones
+file-axis-3d	rbxassetid://136107008496948	model, 3d, axis, coordinates
+file-badge	rbxassetid://135829024450190	award, achievement, badge, rosette, prize, winner
+file-badge-2	rbxassetid://87916835926622	award, achievement, badge, rosette, prize, winner
+file-bar-chart	rbxassetid://92900624303400	statistics, diagram, graph, presentation
+file-bar-chart-2	rbxassetid://133337118425916	statistics, diagram, graph, presentation
+file-box	rbxassetid://102441183584476	box, package, model
+file-check	rbxassetid://91719007832323	done, document, todo, tick, complete, task
+file-check-2	rbxassetid://120611252466724	done, document, todo, tick, complete, task
+file-clock	rbxassetid://101240345040794	history, log, clock
+file-code	rbxassetid://93918366472395	script, document, gist, html, xml, property list
+file-code-2	rbxassetid://77999709917415	script, document, html, xml, property list, plist
+file-cog	rbxassetid://130835463141181	executable, settings, cog, edit, gear
+file-diff	rbxassetid://132890714271689	diff, patch
+file-digit	rbxassetid://108016195781167	number, document
+file-down	rbxassetid://79495546108963	download, import, export
+file-edit	rbxassetid://82156880342025	signature
+file-heart	rbxassetid://138364329637312	heart, favourite, bookmark, quick link
+file-image	rbxassetid://83675710276234	image, graphics, photo, picture
+file-input	rbxassetid://78561929224193	document
+file-json	rbxassetid://98868866618869	code, json, curly braces, curly brackets
+file-json-2	rbxassetid://92610524789574	code, json, curly braces, curly brackets
+file-key	rbxassetid://83249504215614	key, private, public, security
+file-key-2	rbxassetid://103006369640378	key, private, public, security
+file-line-chart	rbxassetid://84182680444173	statistics, diagram, graph, presentation
+file-lock	rbxassetid://140186307068344	lock, password, security
+file-lock-2	rbxassetid://126656887901996	lock, password, security
+file-minus	rbxassetid://138371877961417	delete, remove, erase, document
+file-minus-2	rbxassetid://107551117550330	document
+file-music	rbxassetid://107180630571772	audio, sound, noise, track, digital, recording
+file-output	rbxassetid://109566424197143	document
+file-pen	rbxassetid://134577965177665	signature
+file-pen-line	rbxassetid://90852962587361	edit
+file-pie-chart	rbxassetid://94554256943610	statistics, diagram, graph, presentation
+file-plus	rbxassetid://74194167957081	add, create, new, document
+file-plus-2	rbxassetid://111571245681686	add, create, new, document
+file-question	rbxassetid://128415338385227	readme, help, question
+file-scan	rbxassetid://132590981389921	scan, code, qr-code
+file-search	rbxassetid://131130928074464	lost, document, find, browser
+file-search-2	rbxassetid://139930116408040	lost, document, find, browser
+file-signature	rbxassetid://87096324580559	edit
+file-sliders	rbxassetid://133181135528313	cogged, gear, mechanical, machinery, configuration, controls
+file-spreadsheet	rbxassetid://117808207510717	spreadsheet, sheet, table
+file-stack	rbxassetid://132187715148899	versions, multiple, copy, documents, revisions, version control
+file-symlink	rbxassetid://122206323516270	symlink, symbolic, link
+file-terminal	rbxassetid://91847143440556	terminal, bash, script, executable
+file-text	rbxassetid://92774566080911	data, txt, pdf, document
+file-type	rbxassetid://139551268989315	font, text, typography, type
+file-type-2	rbxassetid://91173675777316	font, text, typography, type
+file-up	rbxassetid://99191463679083	upload, import, export
+file-video	rbxassetid://105252283775469	movie, video, film
+file-video-2	rbxassetid://130213998083954	movie, video, film
+file-volume	rbxassetid://119603558694315	audio, music, volume
+file-volume-2	rbxassetid://139949156797892	audio, music, volume
+file-warning	rbxassetid://89824347717079	hidden, warning, alert, danger, protected, exclamation mark
+file-x	rbxassetid://117124390222574	lost, delete, remove, document
+file-x-2	rbxassetid://136449417648465	lost, delete, remove, document
+files	rbxassetid://78685849153126	multiple, copy, documents
+film	rbxassetid://120941801045330	movie, video, reel, camera, cinema, entertainment
+filter	rbxassetid://100930784445785	funnel, hopper
+filter-x	rbxassetid://85838104400923	funnel, hopper
+fingerprint	rbxassetid://109514257830136	2fa, authentication, biometric, identity, security
+fire-extinguisher	rbxassetid://84862159260845	flames, smoke, foam, water, spray, hose
+fish	rbxassetid://114555142566431	dish, restaurant, course, meal, seafood, pet
+fish-off	rbxassetid://99443044829026	food, dish, restaurant, course, meal, seafood
+fish-symbol	rbxassetid://123702927226939	dish, restaurant, course, meal, seafood, pet
+flag	rbxassetid://121835250831612	report
+flag-off	rbxassetid://90046025355940	unflag
+flag-triangle-left	rbxassetid://73117581559482	report, timeline
+flag-triangle-right	rbxassetid://106524126597496	report, timeline
+flame	rbxassetid://125012650497883	fire, lit, burning, spark, embers, smoke
+flame-kindling	rbxassetid://136834319064926	campfire, camping, wilderness, outdoors, lit, warmth
+flashlight	rbxassetid://110881718712443	torch
+flashlight-off	rbxassetid://117038550056668	torch
+flask-conical	rbxassetid://115528123394259	beaker, erlenmeyer, lab, chemistry, experiment, test
+flask-conical-off	rbxassetid://102385597737770	beaker, erlenmeyer, non toxic, lab, chemistry, experiment
+flask-round	rbxassetid://118701306736141	beaker, lab, chemistry, experiment, test
+flip-horizontal	rbxassetid://76347241876815	reflect, mirror, alignment, dashed
+flip-horizontal-2	rbxassetid://107329750779249	reflect, mirror, alignment, dashed
+flip-vertical	rbxassetid://121575310281690	reflect, mirror, alignment, dashed
+flip-vertical-2	rbxassetid://77578710261033	reflect, mirror, alignment, dashed
+flower	rbxassetid://98459040977090	sustainability, nature, plant, spring
+flower-2	rbxassetid://79478214327919	sustainability, nature, plant
+focus	rbxassetid://116191961683883	camera, lens, photo, dashed
+fold-horizontal	rbxassetid://133102230855922	arrow, collapse, fold, vertical, dashed
+fold-vertical	rbxassetid://128556601978376	arrow, collapse, fold, vertical, dashed
+folder	rbxassetid://77937190465422	directory
+folder-archive	rbxassetid://96956679126324	archive, zip, package
+folder-check	rbxassetid://95477621394824	done, directory, todo, tick, complete, task
+folder-clock	rbxassetid://137926892639070	history, directory, clock
+folder-closed	rbxassetid://86427718056887	directory, closed
+folder-cog	rbxassetid://127866486547434	directory, settings, control, preferences, cog, edit
+folder-dot	rbxassetid://129773010201383	directory, root, project, pinned, active, current
+folder-down	rbxassetid://82793534945672	directory, download, import, export
+folder-edit	rbxassetid://102495189191583	directory, rename
+folder-git	rbxassetid://104507928948019	directory, root, project, git, repo
+folder-git-2	rbxassetid://85014883332248	directory, root, project, git, repo
+folder-heart	rbxassetid://110088173047332	directory, heart, favourite, bookmark, quick link
+folder-input	rbxassetid://132837435930621	directory, import, export
+folder-kanban	rbxassetid://138103158509024	projects, manage, overview, board, tickets, issues
+folder-key	rbxassetid://130401922270021	directory, key, private, security, protected
+folder-lock	rbxassetid://111493727654155	directory, lock, private, security, protected
+folder-minus	rbxassetid://97790081587083	directory, remove, delete
+folder-open	rbxassetid://112237915867403	directory
+folder-open-dot	rbxassetid://90332268376865	directory, root, project, active, current, pinned
+folder-output	rbxassetid://125946013402264	directory, import, export
+folder-pen	rbxassetid://81838874164795	directory, rename
+folder-plus	rbxassetid://71462957431660	directory, add, create, new
+folder-root	rbxassetid://80403663819762	directory, root, project, git, repo
+folder-search	rbxassetid://109602276944932	directory, search, find, lost, browser
+folder-search-2	rbxassetid://74614286288240	directory, search, find, lost, browser
+folder-symlink	rbxassetid://89907141903257	directory, symlink, symbolic, link
+folder-sync	rbxassetid://137088423628527	directory, synchronize, synchronise, refresh, reconnect, transfer
+folder-tree	rbxassetid://78199416535568	directory, tree, browser
+folder-up	rbxassetid://85416900334449	directory, upload, import, export
+folder-x	rbxassetid://103887939759350	directory, remove, delete
+folders	rbxassetid://97828544806816	multiple, copy, directories
+footprints	rbxassetid://80792036653047	steps, walking, foot, feet, trail, shoe
+forklift	rbxassetid://117529645336183	vehicle, transport, logistics
+form-input	rbxassetid://73368443063193	2fa, authenticate, login, field, text
+forward	rbxassetid://78301309129142	send, share, email
+frame	rbxassetid://81913255681858	logo, design, tool
+framer	rbxassetid://117525065607897	logo, design, tool
+frown	rbxassetid://88589722723911	emoji, face, bad, sad, emotion
+fuel	rbxassetid://112915457104961	filling-station, gas, petrol, tank
+fullscreen	rbxassetid://92176335589571	expand, zoom, preview, focus, camera, lens
+function-square	rbxassetid://77009803117016	programming, code, automation, maths
+gallery-horizontal	rbxassetid://113964455804231	carousel, pictures, images, scroll, swipe, album
+gallery-horizontal-end	rbxassetid://125589356860308	carousel, pictures, images, scroll, swipe, album
+gallery-thumbnails	rbxassetid://123093292028306	carousel, pictures, images, album, portfolio, preview
+gallery-vertical	rbxassetid://109130466006021	carousel, pictures, images, scroll, swipe, album
+gallery-vertical-end	rbxassetid://122352399696695	carousel, pictures, images, scroll, swipe, album
+gamepad	rbxassetid://81482768981191	console
+gamepad-2	rbxassetid://99293705721130	console
+gantt-chart	rbxassetid://122456724985241	projects, manage, overview, roadmap, plan, intentions
+gantt-chart-square	rbxassetid://73571197135748	projects, manage, overview, roadmap, plan, intentions
+gauge	rbxassetid://128279962545721	dashboard, dial, meter, speed, pressure, measure
+gauge-circle	rbxassetid://110231832967256	dashboard, dial, meter, speed, pressure, measure
+gavel	rbxassetid://118993398179839	hammer, mallet
+gem	rbxassetid://125353572203968	diamond, crystal, ruby, jewellery, price, special
+ghost	rbxassetid://132705178126217	pac-man, spooky
+gift	rbxassetid://87706885156127	present, box, birthday, party
+git-branch	rbxassetid://101518089376526	code, version control
+git-branch-plus	rbxassetid://127909649257701	add, create, +
+git-commit-horizontal	rbxassetid://91306319670540	code, version control, waypoint, stop, station
+git-commit-vertical	rbxassetid://101185915909200	code, version control, waypoint, stop, station
+git-compare	rbxassetid://134611228556653	code, version control, diff
+git-compare-arrows	rbxassetid://134203912676625	code, version control, diff
+git-fork	rbxassetid://138214272765755	code, version control
+git-graph	rbxassetid://126789259203618	code, version control, commit graph, commits, gitlens
+git-merge	rbxassetid://118868315103570	code, version control
+git-pull-request	rbxassetid://117991178843732	code, version control, open
+git-pull-request-arrow	rbxassetid://133155768650667	code, version control, open
+git-pull-request-closed	rbxassetid://74188383635944	code, version control, rejected, closed, cancelled, x
+git-pull-request-create	rbxassetid://108540858735398	code, version control, open, plus, add, +
+git-pull-request-create-arrow	rbxassetid://75317536980451	code, version control, open, plus, add, +
+git-pull-request-draft	rbxassetid://127220095778670	code, version control, open, draft, dashed
+github	rbxassetid://140138081031269	logo, version control
+gitlab	rbxassetid://109316577965403	logo, version control
+glass-water	rbxassetid://125170765146614	beverage, drink, glass, water
+glasses	rbxassetid://77027406085123	glasses, spectacles
+globe	rbxassetid://125685532120024	world, browser, language, translate
+globe-2	rbxassetid://112945472486319	world, browser, language, translate, globe
+globe-lock	rbxassetid://96469366281710	vpn, private, privacy, network, world, browser
+goal	rbxassetid://90015442702200	flag, bullseye
+grab	rbxassetid://117741873625250	hand
+graduation-cap	rbxassetid://140187510907091	school, university, learn, study, mortarboard, education
+grape	rbxassetid://73195418744413	fruit, wine, food
+grid-2x2	rbxassetid://134599229810680	table, rows, columns, blocks, plot, land
+grid-3x3	rbxassetid://108197747587523	table, rows, columns
+grip	rbxassetid://88188569450143	grab, dots, handle, move, drag
+grip-horizontal	rbxassetid://72027364608348	grab, dots, handle, move, drag
+grip-vertical	rbxassetid://136050395759142	grab, dots, handle, move, drag
+group	rbxassetid://79946652686375	cubes, packages, parts, units, collection, cluster
+guitar	rbxassetid://135654565391445	acoustic, instrument, strings, riff, rock, band
+ham	rbxassetid://134057117057030	food, pork, pig, meat, bone, hock
+hammer	rbxassetid://73956316105509	mallet, nails, diy, toolbox, build, construction
+hand	rbxassetid://83088528355903	wave, move, mouse, grab
+hand-coins	rbxassetid://85922324710029	savings, banking, money, finance, offers, mortgage
+hand-heart	rbxassetid://124155721578457	love, like, emotion
+hand-helping	rbxassetid://95094264299544	agreement, help, proposal, charity, begging, terms
+hand-metal	rbxassetid://105555696144202	rock
+hand-platter	rbxassetid://101356141176839	waiter, waitress, restaurant, table service, served, dinner
+handshake	rbxassetid://121760224402586	agreement, partnership, deal, business, assistance, cooperation
+hard-drive	rbxassetid://115211376876196	computer, server, memory, data, ssd, disk
+hard-drive-download	rbxassetid://115854711953657	computer, server, memory, data, ssd, disk
+hard-drive-upload	rbxassetid://112990104477043	computer, server, memory, data, ssd, disk
+hard-hat	rbxassetid://105207891316460	helmet, construction, safety, savety
+hash	rbxassetid://128945191245705	hashtag, number, pound
+haze	rbxassetid://86624380139587	mist, fog
+hdmi-port	rbxassetid://123935181216786	socket, plug, slot, controller, connector, interface
+heading	rbxassetid://115666667306834	h1, html, markup, markdown
+heading-1	rbxassetid://82056941503516	h1, html, markup, markdown
+heading-2	rbxassetid://109194333144049	h2, html, markup, markdown
+heading-3	rbxassetid://86456694536830	h3, html, markup, markdown
+heading-4	rbxassetid://108808532352504	h4, html, markup, markdown
+heading-5	rbxassetid://84468448396475	h5, html, markup, markdown
+heading-6	rbxassetid://70885434512827	h6, html, markup, markdown
+headphones	rbxassetid://89990513082092	music, audio, sound
+headset	rbxassetid://77155289443816	music, audio, sound, gaming, headphones, headset
+heart	rbxassetid://88525382655929	like, love, emotion, suit, playing, cards
+heart-crack	rbxassetid://78532998725036	heartbreak, sadness, emotion
+heart-handshake	rbxassetid://88807882205984	agreement, charity, help, deal, terms, emotion
+heart-off	rbxassetid://121500734414824	unlike, dislike, hate, emotion
+heart-pulse	rbxassetid://101116623654468	heartbeat, pulse, health, medical, blood pressure, cardiac
+heater	rbxassetid://75867015789217	heating, warmth, comfort, fire, stove, electric
+help-circle	rbxassetid://71693802872044	question mark
+helping-hand	rbxassetid://82838882533396	agreement, help, proposal, charity, begging, terms
+hexagon	rbxassetid://111932983587355	shape, node.js, logo
+highlighter	rbxassetid://124195908160173	mark, text
+history	rbxassetid://70375455140492	time, redo, undo, rewind, timeline, version
+home	rbxassetid://109841253338329	house, living
+hop	rbxassetid://87886892027508	beer, brewery, drink
+hop-off	rbxassetid://124047203843704	beer, brewery, drink, hop free, allergy, intolerance
+hospital	rbxassetid://100542468114469	infirmary, sanatorium, healthcare, doctor, hospice, clinic
+hotel	rbxassetid://88463240253197	building, hostel, motel, inn
+hourglass	rbxassetid://135654740495171	timer, time, sandglass
+ice-cream	rbxassetid://95314536020685	gelato, food
+ice-cream-2	rbxassetid://93935347717656	gelato, food, dessert, dish, restaurant, course
+ice-cream-bowl	rbxassetid://116507918255217	gelato, food, dessert, dish, restaurant, course
+ice-cream-cone	rbxassetid://72823870951577	gelato, food
+image	rbxassetid://114022611279795	picture, photo
+image-down	rbxassetid://91697762317652	picture, photo, download, save, export
+image-minus	rbxassetid://111691180013117	remove, delete
+image-off	rbxassetid://113890586559666	picture, photo
+image-plus	rbxassetid://131640557457656	add, create
+image-up	rbxassetid://95362531246536	picture, photo, upload, import
+images	rbxassetid://87539822715105	picture, photo, multiple, copy, gallery, album
+import	rbxassetid://87776530532335	save
+inbox	rbxassetid://131993988107472	email
+indent	rbxassetid://111431763044113	text, tab
+indent-decrease	rbxassetid://77902371540680	text, tab
+indent-increase	rbxassetid://116043459584133	text, tab
+indian-rupee	rbxassetid://121515804799242	currency, money, payment
+infinity	rbxassetid://77975814002740	unlimited, forever, loop, maths
+info	rbxassetid://120620848266512	help
+inspection-panel	rbxassetid://93487140703578	access, cover, tile, metal, materials, screws
+instagram	rbxassetid://88504800931130	logo, camera, social
+italic	rbxassetid://96844815325902	oblique, text, format
+iteration-ccw	rbxassetid://114475186061127	arrow, right
+iteration-cw	rbxassetid://130833288197698	arrow, left
+japanese-yen	rbxassetid://108845518454015	currency, money, payment
+joystick	rbxassetid://75024649968329	game, console, control stick
+kanban	rbxassetid://132557744047883	projects, manage, overview, board, tickets, issues
+kanban-square	rbxassetid://124564901729634	projects, manage, overview, board, tickets, issues
+kanban-square-dashed	rbxassetid://134205902924289	projects, manage, overview, board, tickets, issues
+key	rbxassetid://83474888140571	password, login, authentication, secure, unlock, keychain
+key-round	rbxassetid://116918931002434	password, login, authentication, secure, unlock
+key-square	rbxassetid://79693131186843	password, login, authentication, secure, unlock, car key
+keyboard	rbxassetid://121978468376124	layout, spell, settings, mouse
+keyboard-music	rbxassetid://74763240290099	music, audio, sound, noise, notes, keys
+lamp	rbxassetid://123765123149989	lighting, household, home, furniture
+lamp-ceiling	rbxassetid://120174084956571	lighting, household, home, furniture
+lamp-desk	rbxassetid://125995036157694	lighting, household, office, desk, home, furniture
+lamp-floor	rbxassetid://102217348025530	lighting, household, floor, home, furniture
+lamp-wall-down	rbxassetid://134067530649420	lighting, household, wall, home, furniture
+lamp-wall-up	rbxassetid://101034120941267	lighting, household, wall, home, furniture
+land-plot	rbxassetid://114974071140535	area, surface, square metres, allotment, parcel, property
+landmark	rbxassetid://130189940998950	bank, building, capitol, finance, money
+languages	rbxassetid://130065428637597	translate
+laptop	rbxassetid://103798905446648	computer, screen, remote
+laptop-2	rbxassetid://106021728338003	computer, screen, remote
+laptop-minimal	rbxassetid://91920768368168	computer, screen, remote
+lasso	rbxassetid://110262485516329	select, cursor
+lasso-select	rbxassetid://112600066891219	select, cursor
+laugh	rbxassetid://115974660887808	emoji, face, happy, good, emotion
+layers	rbxassetid://114499998778667	stack, pile, pages, sheets, paperwork, copies
+layers-2	rbxassetid://87219208863328	stack, pile, pages, sheets, paperwork, copies
+layers-3	rbxassetid://114549653986465	stack, pile, pages, sheets, paperwork, copies
+layout	rbxassetid://75056433029964	menu bar, sidebar, primary, drawers, window, webpage
+layout-dashboard	rbxassetid://70433574792490	masonry, brick
+layout-grid	rbxassetid://89644754139307	app, home, start
+layout-list	rbxassetid://72384664085473	todo, tasks, items, pending, image, photo
+layout-panel-left	rbxassetid://117264898598467	app, home, start, grid
+layout-panel-top	rbxassetid://135570881026156	window, webpage, block, section, grid, template
+layout-template	rbxassetid://78078135578383	window, webpage, block, section
+leaf	rbxassetid://70846801126940	sustainability, nature, energy, plant, autumn
+leafy-green	rbxassetid://94770162749325	salad, lettuce, vegetable, chard, cabbage, bok choy
+library	rbxassetid://114050057679028	books, reading, written, authors, stories, fiction
+library-big	rbxassetid://135791941822287	books, reading, written, authors, stories, fiction
+library-square	rbxassetid://132158761398954	books, reading, written, authors, stories, fiction
+life-buoy	rbxassetid://99147024142900	preserver, life belt, lifesaver, help, rescue, ship
+ligature	rbxassetid://75804099923602	text, font, typography, alternates, alternatives
+lightbulb	rbxassetid://98419938500979	idea, bright, lights
+lightbulb-off	rbxassetid://126746194476977	lights
+line-chart	rbxassetid://115214641333880	statistics, diagram, graph
+link	rbxassetid://86131768436965	chain, url
+link-2	rbxassetid://107339085791087	chain, url
+link-2-off	rbxassetid://74994782779018	unchain, chain
+linkedin	rbxassetid://102928864661994	logo, social media, social
+list	rbxassetid://101699539545687	options
+list-checks	rbxassetid://133109875194066	todo, done, check, tick, complete, tasks
+list-collapse	rbxassetid://103651151660786	items, collapse, expand, details, disclosure, show
+list-end	rbxassetid://116487672075047	queue, bottom, end, playlist
+list-filter	rbxassetid://83186010624431	options
+list-minus	rbxassetid://119184210915074	playlist, remove, song, subtract, delete, unqueue
+list-music	rbxassetid://88988800995482	playlist, queue, music, audio, playback
+list-ordered	rbxassetid://100068475590931	number, order, queue
+list-plus	rbxassetid://124010335412192	playlist, add, song, track, new
+list-restart	rbxassetid://91193864293753	reset, refresh, reload, playlist, replay
+list-start	rbxassetid://131366235513143	queue, top, start, next, playlist
+list-todo	rbxassetid://83287488939815	todo, done, check, tick, complete, tasks
+list-tree	rbxassetid://127759805921507	tree, browser
+list-video	rbxassetid://117978552190904	playlist, video, playback
+list-x	rbxassetid://115746075160943	playlist, subtract, remove, delete, unqueue
+loader	rbxassetid://132295854994374	load, wait
+loader-2	rbxassetid://128780061297692	load
+loader-circle	rbxassetid://71250150569964	loading, wait, busy, progress, spinner, spinning
+locate	rbxassetid://106821189831430	map, gps, location, cross
+locate-fixed	rbxassetid://80648116191645	map, gps, location, cross
+locate-off	rbxassetid://121088730454886	map, gps, location, cross
+lock	rbxassetid://119765975153029	security, password, secure, admin
+lock-keyhole	rbxassetid://135504457058301	security, password, secure, admin
+lock-keyhole-open	rbxassetid://132192657766903	security
+lock-open	rbxassetid://71186154315213	security
+log-in	rbxassetid://82241120685313	sign in, arrow, enter, auth
+log-out	rbxassetid://140299936053191	sign out, arrow, exit, auth
+lollipop	rbxassetid://102239398934579	lolly, candy, sugar, food, sweet, dessert
+luggage	rbxassetid://140614046877100	baggage, luggage, travel, suitcase
+m-square	rbxassetid://97856747717836	metro, subway, underground, track, line
+magnet	rbxassetid://97474941633274	horseshoe, lock, science, snap
+mail	rbxassetid://77537514051485	email, message, letter, unread
+mail-check	rbxassetid://90824179551389	email, message, letter, subscribe, delivered, success
+mail-minus	rbxassetid://104189493909738	email, message, letter, remove, delete
+mail-open	rbxassetid://74874447671108	email, message, letter, read
+mail-plus	rbxassetid://130540869833539	email, message, letter, add, create, new
+mail-question	rbxassetid://128924135790205	email, message, letter, delivery, undelivered
+mail-search	rbxassetid://108269769085404	email, message, letter, search
+mail-warning	rbxassetid://126275145590627	email, message, letter, delivery error, exclamation mark
+mail-x	rbxassetid://97229750262408	email, message, letter, remove, delete
+mailbox	rbxassetid://104064071799815	emails, messages, letters, mailing list, newsletter
+mails	rbxassetid://120925930542398	emails, messages, letters, multiple, mailing list, newsletter
+map	rbxassetid://131325044235094	location, navigation, travel
+map-pin	rbxassetid://137091405832737	location, waypoint, marker, drop
+map-pin-off	rbxassetid://130126969919710	location, waypoint, marker, remove
+map-pinned	rbxassetid://78894827751778	location, waypoint, marker, drop
+martini	rbxassetid://108853683970464	cocktail, alcohol, beverage, bar, drink, glass
+maximize	rbxassetid://116546384863431	fullscreen, expand, dashed
+maximize-2	rbxassetid://130049637400171	fullscreen, arrows, expand
+medal	rbxassetid://97534791863003	prize, sports, winner, trophy, award, achievement
+megaphone	rbxassetid://139746713205639	advertisement, attention, alert, notification
+megaphone-off	rbxassetid://130364738220291	advertisement, attention, alert, notification, disable, silent
+meh	rbxassetid://117127044934876	emoji, face, neutral, emotion
+memory-stick	rbxassetid://82464660673318	ram, random access, technology, computer, chip, circuit
+menu	rbxassetid://83047518441184	bars, navigation, hamburger, options
+menu-square	rbxassetid://84168857053009	bars, navigation, hamburger, options, menu bar, panel
+merge	rbxassetid://96640473379848	combine, join, unite
+message-circle	rbxassetid://74163263000218	comment, chat, conversation, dialog, feedback, speech bubble
+message-circle-code	rbxassetid://124462142601421	comment, chat, conversation, dialog, feedback, speech bubble
+message-circle-dashed	rbxassetid://78559601215727	comment, chat, conversation, dialog, feedback, speech bubble
+message-circle-heart	rbxassetid://122100978068245	comment, chat, conversation, dialog, feedback, positive
+message-circle-more	rbxassetid://72969556529414	comment, chat, conversation, dialog, feedback, speech bubble
+message-circle-off	rbxassetid://106640802525475	comment, chat, conversation, dialog, feedback, speech bubble
+message-circle-plus	rbxassetid://97202853233666	comment, chat, conversation, dialog, feedback, speech bubble
+message-circle-question	rbxassetid://85003442346058	comment, chat, conversation, dialog, feedback, speech bubble
+message-circle-reply	rbxassetid://96024981688039	comment, chat, conversation, dialog, feedback, speech bubble
+message-circle-warning	rbxassetid://112239075926369	comment, chat, conversation, dialog, feedback, speech bubble
+message-circle-x	rbxassetid://104081317224904	comment, chat, conversation, dialog, feedback, speech bubble
+message-square	rbxassetid://86432989388834	comment, chat, conversation, dialog, feedback, speech bubble
+message-square-code	rbxassetid://139338315973052	comment, chat, conversation, dialog, feedback, speech bubble
+message-square-dashed	rbxassetid://127422492651127	comment, chat, conversation, dialog, feedback, speech bubble
+message-square-diff	rbxassetid://120745701209397	comment, chat, conversation, dialog, feedback, speech bubble
+message-square-dot	rbxassetid://131246995114947	unread, unresolved, comment, chat, conversation, dialog
+message-square-heart	rbxassetid://137436561363370	comment, chat, conversation, dialog, feedback, positive
+message-square-more	rbxassetid://76812000893936	comment, chat, conversation, dialog, feedback, speech bubble
+message-square-off	rbxassetid://97376166485199	comment, chat, conversation, dialog, feedback, speech bubble
+message-square-plus	rbxassetid://77957118386462	comment, chat, conversation, dialog, feedback, speech bubble
+message-square-quote	rbxassetid://97203851012575	comment, chat, conversation, dialog, feedback, speech bubble
+message-square-reply	rbxassetid://138540430807955	comment, chat, conversation, dialog, feedback, speech bubble
+message-square-share	rbxassetid://94526690702300	comment, chat, conversation, dialog, feedback, speech bubble
+message-square-text	rbxassetid://128095657789286	comment, chat, conversation, dialog, feedback, speech bubble
+message-square-warning	rbxassetid://83694786088101	comment, chat, conversation, dialog, feedback, speech bubble
+message-square-x	rbxassetid://83972010967159	comment, chat, conversation, dialog, feedback, speech bubble
+messages-square	rbxassetid://112345482432498	comment, chat, conversation, dialog, feedback, speech bubbles
+mic	rbxassetid://125870172276779	record, sound, listen, radio, podcast, microphone
+mic-2	rbxassetid://79774423165436	lyrics, voice, listen, sound, music, radio
+mic-off	rbxassetid://84064988822624	record, sound, mute, microphone
+mic-vocal	rbxassetid://116345765074785	lyrics, voice, listen, sound, music, radio
+microscope	rbxassetid://134078584568005	medical, education, science, imaging, research
+microwave	rbxassetid://109575331253451	oven, cooker, toaster oven, bake
+milestone	rbxassetid://88614752388873	signpost, direction, right, east, forward, version control
+milk	rbxassetid://119818923307142	lactose, bottle, beverage, drink, water, diet
+milk-off	rbxassetid://72925919409773	lactose free, bottle, beverage, drink, water, allergy
+minimize	rbxassetid://95555494586098	exit fullscreen, close, shrink
+minimize-2	rbxassetid://96294437144715	exit fullscreen, arrows, close, shrink
+minus	rbxassetid://95070996149109	subtract, remove, decrease, decrement, reduce, negative
+minus-circle	rbxassetid://103303552772654	subtract, remove, decrease, reduce, calculate, line
+minus-square	rbxassetid://96983863580751	subtract, remove, decrease, reduce, calculator, button
+monitor	rbxassetid://70520152532392	tv, screen, display, virtual machine, vm
+monitor-check	rbxassetid://112341875921743	tv, screen, display, desktop, running, active
+monitor-dot	rbxassetid://132673547251589	tv, screen, display, desktop, running, active
+monitor-down	rbxassetid://132502390896673	tv, screen, display, desktop, download
+monitor-off	rbxassetid://95048101284680	share
+monitor-pause	rbxassetid://99458637542686	tv, screen, display, desktop, video, movie
+monitor-play	rbxassetid://107640137618506	tv, screen, display, desktop, video, movie
+monitor-smartphone	rbxassetid://81757216234228	smartphone, phone, cellphone, device, mobile, desktop
+monitor-speaker	rbxassetid://131099454095944	devices, connect, cast
+monitor-stop	rbxassetid://99235976282671	tv, screen, display, desktop, video, movie
+monitor-up	rbxassetid://116018518624879	tv, screen, display, upload, connect, remote
+monitor-x	rbxassetid://102604336229610	tv, screen, display, desktop, virtual machine, vm
+moon	rbxassetid://98353636264918	dark, night
+moon-star	rbxassetid://137086737657962	dark, night, star
+more-horizontal	rbxassetid://101330725759187	ellipsis, menu, options, loading, loader, throber
+more-vertical	rbxassetid://76302166494262	ellipsis, menu, options
+mountain	rbxassetid://90592200130155	climb, hike, rock
+mountain-snow	rbxassetid://111710418991773	alpine, climb, snow
+mouse	rbxassetid://122014945028597	device, scroll, click
+mouse-pointer	rbxassetid://113428527051320	arrow, cursor, click
+mouse-pointer-2	rbxassetid://84070353881242	arrow, cursor, click
+mouse-pointer-click	rbxassetid://81854854241463	arrow, cursor, click
+mouse-pointer-square	rbxassetid://112337311970951	inspector, element, mouse, click, pointer, box
+mouse-pointer-square-dashed	rbxassetid://80677641664079	inspector, element, mouse, click, pointer, box
+move	rbxassetid://77028714324861	arrows
+move-3d	rbxassetid://82487420092874	arrows, axis, gizmo, coordinates, transform, translate
+move-diagonal	rbxassetid://111179404262244	double, arrow
+move-diagonal-2	rbxassetid://128492050787735	double, arrow
+move-down	rbxassetid://85099736811132	arrow, direction, downwards, south
+move-down-left	rbxassetid://138054515129112	arrow, direction
+move-down-right	rbxassetid://116621809745618	arrow, direction
+move-horizontal	rbxassetid://136107424781093	double, arrow
+move-left	rbxassetid://89444723083105	arrow, direction, back, west
+move-right	rbxassetid://133586722586273	arrow, direction, trend flat, east
+move-up	rbxassetid://76410952730524	arrow, direction, upwards, north
+move-up-left	rbxassetid://102293680652367	arrow, direction
+move-up-right	rbxassetid://88087592569369	arrow, direction
+move-vertical	rbxassetid://92087242547029	double, arrow
+music	rbxassetid://132132095360900	note, quaver, eighth note
+music-2	rbxassetid://121112248614371	quaver, eighth note, note
+music-3	rbxassetid://75731760539974	crotchet, minim, quarter note, half note, note
+music-4	rbxassetid://122935411241955	semiquaver, sixteenth note, note
+navigation	rbxassetid://76549947719521	location, travel
+navigation-2	rbxassetid://127270865325663	location, travel
+navigation-2-off	rbxassetid://74005663669130	location, travel
+navigation-off	rbxassetid://96787422854853	location, travel
+network	rbxassetid://110230147673946	tree
+newspaper	rbxassetid://115179113478597	news, feed, home, magazine, article, headline
+nfc	rbxassetid://119131457808272	contactless, payment, near-field communication
+notebook	rbxassetid://93996170225525	notepad, notes, stationery, sketchbook, moleskine, closure
+notebook-pen	rbxassetid://70494109504383	pencil, notepad, notes, noted, stationery, sketchbook
+notebook-tabs	rbxassetid://113749031276097	notepad, notes, people, family, friends, acquaintances
+notebook-text	rbxassetid://86811328922423	notepad, notes, pages, paper, stationery, sketchbook
+notepad-text	rbxassetid://104957079697866	notebook, notes, pages, paper, stationery, sketchbook
+notepad-text-dashed	rbxassetid://113624610966525	notebook, notes, pages, paper, stationery, diary
+nut	rbxassetid://77621843968987	hazelnut, acorn, food, diet
+nut-off	rbxassetid://84877157781266	hazelnut, acorn, food, allergy, intolerance, diet
+octagon	rbxassetid://103646759535962	stop, shape
+octagon-alert	rbxassetid://101226496664732	warning, alert, danger, exclamation mark
+octagon-pause	rbxassetid://127095623629829	music, audio, stop
+octagon-x	rbxassetid://103912968479362	delete, stop, alert, warning, times, clear
+option	rbxassetid://77581357923982	keyboard, key, mac, alt, button
+orbit	rbxassetid://79200159961573	planet, space, physics, satellites, moons
+outdent	rbxassetid://136657573552804	text, tab
+package	rbxassetid://106101842173393	box, container, storage, sealed, delivery, undelivered
+package-2	rbxassetid://76736374924338	box, container, storage, sealed, packed, unopened
+package-check	rbxassetid://100671298334773	confirm, verified, done, todo, tick, complete
+package-minus	rbxassetid://72114807005321	delete, remove
+package-open	rbxassetid://86470175749466	box, container, storage, unpack, unarchive, unzip
+package-plus	rbxassetid://74357376952178	new, add, create
+package-search	rbxassetid://108965513580143	find, product process
+package-x	rbxassetid://80178189812476	delete, remove
+paint-bucket	rbxassetid://116536780343642	fill, paint, bucket, color, colour
+paint-roller	rbxassetid://76545833297923	brush, color, colour, decoration, diy
+paintbrush	rbxassetid://113234034461805	brush, paintbrush, design, color, colour, decoration
+paintbrush-2	rbxassetid://116925836096427	brush, paintbrush, design, color, colour, decoration
+palette	rbxassetid://127369887384101	colors, colours, theme, scheme, paint, watercolor
+palmtree	rbxassetid://85651135388680	vacation, leisure, island
+panel-bottom	rbxassetid://86537618399617	drawer, dock
+panel-bottom-close	rbxassetid://91281796987492	drawer, dock, hide, chevron, down
+panel-bottom-dashed	rbxassetid://130167117027190	drawer, dock, show, reveal
+panel-bottom-inactive	rbxassetid://97483023786802	drawer, dock, show, reveal
+panel-bottom-open	rbxassetid://86549932703136	drawer, dock, show, reveal, chevron, up
+panel-left	rbxassetid://125599129725759	primary, drawer
+panel-left-close	rbxassetid://106532774300164	primary, drawer, hide, chevron, <
+panel-left-dashed	rbxassetid://115976249358122	sidebar, primary, drawer, show, reveal
+panel-left-inactive	rbxassetid://102689057283340	sidebar, primary, drawer, show, reveal
+panel-left-open	rbxassetid://126704485649345	primary, drawer, show, reveal, chevron, right
+panel-right	rbxassetid://83386566029978	sidebar, secondary, drawer
+panel-right-close	rbxassetid://133236216519470	sidebar, secondary, drawer, hide, chevron, >
+panel-right-dashed	rbxassetid://138321632890167	sidebar, secondary, drawer, show, reveal
+panel-right-inactive	rbxassetid://95197732140314	sidebar, secondary, drawer, show, reveal
+panel-right-open	rbxassetid://107436518875633	sidebar, secondary, drawer, show, reveal, chevron
+panel-top	rbxassetid://80001561556081	drawer, browser, webpage
+panel-top-close	rbxassetid://124467779594157	menu bar, drawer, hide, chevron, up
+panel-top-dashed	rbxassetid://79452019243803	menu bar, drawer, show, reveal
+panel-top-inactive	rbxassetid://135806161551683	menu bar, drawer, show, reveal
+panel-top-open	rbxassetid://88468571469051	menu bar, drawer, show, reveal, chevron, down
+panels-left-bottom	rbxassetid://100709335124708	drawers, sidebar, primary
+panels-right-bottom	rbxassetid://118563843738058	drawers, sidebar, secondary
+panels-top-left	rbxassetid://119230493302275	menu bar, sidebar, primary, drawers, window, webpage
+paperclip	rbxassetid://101144735754292	attachment, file
+parentheses	rbxassetid://117743859847736	code, token, parenthesis, parens, brackets, parameters
+parking-circle	rbxassetid://132958171449207	parking lot, car park
+parking-circle-off	rbxassetid://90293787674695	parking lot, car park, no parking
+parking-meter	rbxassetid://95540023655686	driving, car park, pay, sidewalk, pavement
+parking-square	rbxassetid://119709845027214	parking lot, car park
+parking-square-off	rbxassetid://111516007201199	parking lot, car park, no parking
+party-popper	rbxassetid://92886643958723	emoji, congratulations, celebration, party, tada, 🎉
+pause	rbxassetid://79610666871575	music, stop
+pause-circle	rbxassetid://121009275520669	music, audio, stop
+pause-octagon	rbxassetid://75691149975017	music, audio, stop
+paw-print	rbxassetid://97578437331341	pets, vets, veterinarian, domesticated, cat, dog
+pc-case	rbxassetid://134071343822649	computer, chassis
+pen	rbxassetid://101486948449510	pencil, change, create, draw, writer, writing
+pen-line	rbxassetid://108991407462745	pencil, change, create, draw, writer, writing
+pen-square	rbxassetid://124290018373176	pencil, change, create, draw, sketch, draft
+pen-tool	rbxassetid://126917951709518	vector, drawing, path
+pencil	rbxassetid://113132794872298	rubber, edit, create, draw, sketch, draft
+pencil-line	rbxassetid://97622550721067	pencil, change, create, draw, sketch, draft
+pencil-ruler	rbxassetid://83914055949508	edit, create, draw, sketch, draft, writer
+pentagon	rbxassetid://133006808893408	shape
+percent	rbxassetid://138143948353522	percentage, modulo, modulus, remainder, %, sale
+percent-circle	rbxassetid://120133426400204	verified, unverified, sale, discount, offer, marketing
+percent-diamond	rbxassetid://116484660741674	verified, unverified, sale, discount, offer, marketing
+percent-square	rbxassetid://123104718284792	verified, unverified, sale, discount, offer, marketing
+person-standing	rbxassetid://101118444346965	people, human, accessibility, stick figure
+phone	rbxassetid://110402416146068	call
+phone-call	rbxassetid://83844308787978	ring
+phone-forwarded	rbxassetid://121647613341736	call
+phone-incoming	rbxassetid://80024725665109	call
+phone-missed	rbxassetid://79555645036339	call
+phone-off	rbxassetid://124218610436691	call, mute
+phone-outgoing	rbxassetid://107942094735434	call
+pi	rbxassetid://94324814221349	constant, code, coding, programming, symbol, trigonometry
+pi-square	rbxassetid://104995627137456	constant, code, coding, programming, symbol, trigonometry
+piano	rbxassetid://119387553084830	music, audio, sound, noise, notes, chord
+pickaxe	rbxassetid://111300940329486	mining, mine, land worker, extraction, labor, construction
+picture-in-picture	rbxassetid://131356651374909	display, play, video, pop out, always on top, window
+picture-in-picture-2	rbxassetid://82685697007608	display, play, video, pop out, always on top, window
+pie-chart	rbxassetid://102602815840153	statistics, diagram, presentation
+piggy-bank	rbxassetid://137519559090410	money, savings
+pilcrow	rbxassetid://73426591830540	paragraph, mark, paraph, blind, typography, type
+pilcrow-square	rbxassetid://104294263901485	paragraph, mark, paraph, blind, typography, type
+pill	rbxassetid://102063979166015	medicine, medication, drug, prescription, tablet, pharmacy
+pin	rbxassetid://84152083728286	save, map, lock, fix
+pin-off	rbxassetid://79775551915820	unpin, map, unlock, unfix, unsave, remove
+pipette	rbxassetid://104047428948587	eye dropper, color picker, lab, chemistry
+pizza	rbxassetid://137422469806542	pie, quiche, food
+plane	rbxassetid://123931033451986	plane, trip, airplane
+plane-landing	rbxassetid://127564654216931	arrival, plane, trip, airplane, landing
+plane-takeoff	rbxassetid://71424495151201	departure, plane, trip, airplane, takeoff
+play	rbxassetid://76386816441302	music, audio, video, start, run
+play-circle	rbxassetid://94679908148591	music, start, run
+play-square	rbxassetid://88949301532557	music, audio, video, start, run
+plug	rbxassetid://92495517782055	electricity, energy, electronics, socket, outlet
+plug-2	rbxassetid://90278231790155	electricity, energy, socket, outlet
+plug-zap	rbxassetid://120081085677067	electricity, energy, electronics, charge, charging, battery
+plug-zap-2	rbxassetid://114634662672913	electricity, energy, electronics, charge, charging, battery
+plus	rbxassetid://101123124881873	add, new, increase, increment, positive, calculate
+plus-circle	rbxassetid://120968869021626	add, new, increase, increment, positive, calculate
+plus-square	rbxassetid://110356023190006	add, new, increase, increment, positive, calculate
+pocket	rbxassetid://84604104357709	logo, save
+pocket-knife	rbxassetid://75327579226876	swiss army knife, penknife, multi-tool, multitask, blade, cutter
+podcast	rbxassetid://107827753005302	mic, music
+pointer	rbxassetid://98931495397575	mouse
+pointer-off	rbxassetid://121208450103912	mouse
+popcorn	rbxassetid://131831744800890	cinema, movies, films, salted, sweet, sugar
+popsicle	rbxassetid://104185203372496	ice lolly, ice cream, sweet, food
+pound-sterling	rbxassetid://104324833143828	currency, money, payment
+power	rbxassetid://89331085993646	on, off, device, switch, toggle, binary
+power-circle	rbxassetid://116376776686511	on, off, device, switch, toggle, binary
+power-off	rbxassetid://71082730746769	on, off, device, switch
+power-square	rbxassetid://119684962977179	on, off, device, switch, toggle, binary
+presentation	rbxassetid://116401163910084	screen, whiteboard, marker pens, markers, blackboard, chalk
+printer	rbxassetid://71465784501775	fax, office, device
+projector	rbxassetid://73231680903652	cinema, film, movie, home video, presentation, slideshow
+proportions	rbxassetid://78144579158638	screens, sizes, rotate, rotation, adjust, aspect ratio
+puzzle	rbxassetid://117598556369229	component, module, part, piece
+pyramid	rbxassetid://132485249599747	prism, triangle, triangular, hierarchy, structure, geometry
+qr-code	rbxassetid://113440393569209	barcode, scan, link, url, information, digital
+quote	rbxassetid://131322529504476	quotation
+rabbit	rbxassetid://114280087699339	animal, rodent, pet, pest, bunny, hare
+radar	rbxassetid://132868138496209	scan, sonar, detect, find, locate
+radiation	rbxassetid://100877813176471	radioactive, nuclear, fallout, waste, atomic, physics
+radical	rbxassetid://108409175619446	calculate, formula, maths, operator, root, square
+radio	rbxassetid://99420757373028	signal, broadcast, connectivity, live, frequency
+radio-receiver	rbxassetid://121282639721016	device, music, connect
+radio-tower	rbxassetid://88833838205757	signal, broadcast, connectivity, live, frequency
+radius	rbxassetid://74995747675698	shape, circle, geometry, trigonometry, radii, calculate
+rail-symbol	rbxassetid://97316226200213	railway, train, track, line
+rainbow	rbxassetid://103765621191575	colors, colours, spectrum, light, prism, arc
+rat	rbxassetid://87357329634876	mouse, mice, gerbil, rodent, pet, pest
+ratio	rbxassetid://93282099315884	screens, rotate, rotation, aspect ratio, proportions, 16:9
+receipt	rbxassetid://92008292109070	bill, voucher, slip, check, counterfoil, currency
+receipt-cent	rbxassetid://112492211580771	bill, voucher, slip, check, counterfoil, currency
+receipt-euro	rbxassetid://133191175020669	bill, voucher, slip, check, counterfoil, currency
+receipt-indian-rupee	rbxassetid://133266746153788	bill, voucher, slip, check, counterfoil, inr
+receipt-japanese-yen	rbxassetid://124042872765776	bill, voucher, slip, check, counterfoil, jpy
+receipt-pound-sterling	rbxassetid://100101322122623	bill, voucher, slip, check, counterfoil, british
+receipt-russian-ruble	rbxassetid://121506664677675	bill, voucher, slip, check, counterfoil, rub
+receipt-swiss-franc	rbxassetid://99002246681862	bill, voucher, slip, check, counterfoil, chf
+receipt-text	rbxassetid://100006409297382	bill, voucher, slip, check, counterfoil, details
+rectangle-ellipsis	rbxassetid://107119201863591	login, password, authenticate, 2fa, field, fill
+rectangle-horizontal	rbxassetid://138840515431449	rectangle, aspect ratio, 16:9, horizontal, shape
+rectangle-vertical	rbxassetid://105899574411289	rectangle, aspect ratio, 9:16, vertical, shape
+recycle	rbxassetid://113939163175897	sustainability, salvage, arrows
+redo	rbxassetid://109330889951617	undo, rerun, history
+redo-2	rbxassetid://139377644547969	undo, rerun, history
+redo-dot	rbxassetid://103006780441917	redo, history, step, over, forward
+refresh-ccw	rbxassetid://112330254035751	arrows, rotate, reload, rerun, synchronise, synchronize
+refresh-ccw-dot	rbxassetid://82338761134697	arrows, rotate, reload, synchronise, synchronize, circular
+refresh-cw	rbxassetid://106497040962250	rotate, reload, rerun, synchronise, synchronize, arrows
+refresh-cw-off	rbxassetid://70915551154203	rotate, reload, rerun, synchronise, synchronize, arrows
+refrigerator	rbxassetid://112780018998815	frigerator, fridge, freezer, cooler, icebox, chiller
+regex	rbxassetid://134026857287988	search, text, code
+remove-formatting	rbxassetid://138608399804923	text, font, typography, format, x, remove
+repeat	rbxassetid://88751041821881	loop, arrows
+repeat-1	rbxassetid://83172378763568	replay
+repeat-2	rbxassetid://103267027937654	arrows, retweet, repost, share, repeat, loop
+replace	rbxassetid://107047557421203	search, substitute, swap, change
+replace-all	rbxassetid://100838712445846	search, substitute, swap, change
+reply	rbxassetid://92729212112550	email
+reply-all	rbxassetid://89383445888953	email
+rewind	rbxassetid://112118266859844	music
+ribbon	rbxassetid://138074895056157	awareness, strip, band, tape, strap, cordon
+rocket	rbxassetid://109537053598807	release, boost, launch, space, version
+rocking-chair	rbxassetid://78801538856684	chair, furniture, seat
+roller-coaster	rbxassetid://97027135474963	attraction, entertainment, amusement park, theme park, funfair
+rotate-3d	rbxassetid://97818595741565	gizmo, transform, orientation, orbit
+rotate-ccw	rbxassetid://75086444429266	arrow, left, counter-clockwise, restart, reload, rerun
+rotate-ccw-square	rbxassetid://109860100695153	left, counter-clockwise, rotate, image, 90, 45
+rotate-cw	rbxassetid://83145058297547	arrow, right, clockwise, refresh, reload, rerun
+rotate-cw-square	rbxassetid://125618900116298	right, clockwise, rotate, image, 90, 45
+route	rbxassetid://92054788599928	path, journey, planner, points, stops, stations
+route-off	rbxassetid://84281383994516	path, journey, planner, points, stops, stations
+router	rbxassetid://137822323057124	computer, server, cloud
+rows	rbxassetid://137919453076186	lines, list, queue, preview, panel, paragraphs
+rows-2	rbxassetid://95783038014917	lines, list, queue, preview, panel, paragraphs
+rows-3	rbxassetid://120887473789104	lines, list, queue, preview, paragraphs, parallel
+rows-4	rbxassetid://116714271746099	lines, list, queue, preview, paragraphs, parallel
+rss	rbxassetid://133733106949535	feed, subscribe, news, updates, notifications, content
+ruler	rbxassetid://84633402845324	measurements, centimeters, cm, millimeters, mm, metre
+russian-ruble	rbxassetid://126835196314974	currency, money, payment
+sailboat	rbxassetid://95990070790702	ship, boat, harbor, harbour, dock
+salad	rbxassetid://126822773594847	food, vegetarian, dish, restaurant, course, meal
+sandwich	rbxassetid://125331738014611	food, snack, dish, restaurant, lunch, meal
+satellite	rbxassetid://76405829153460	space station, orbit, transmitter
+satellite-dish	rbxassetid://80919601328215	antenna, receiver, dish aerial, saucer
+save	rbxassetid://122894934359450	floppy disk
+save-all	rbxassetid://130108174247404	floppy disks, copy
+scale	rbxassetid://104058148891720	balance, legal, license, right, rule, law
+scale-3d	rbxassetid://98514591753294	gizmo, transform, size
+scaling	rbxassetid://101030566996452	scale, resize, design
+scan	rbxassetid://125367266780285	qr-code, barcode, checkout, augmented reality, ar, target
+scan-barcode	rbxassetid://97414347978098	checkout, till, cart, transaction, purchase, buy
+scan-eye	rbxassetid://109514269737059	preview, zoom, expand, fullscreen, gallery, image
+scan-face	rbxassetid://98379048258175	face, biometric, identification, authentication, 2fa, access
+scan-line	rbxassetid://74491678843147	checkout, till, cart, transaction, purchase, buy
+scan-search	rbxassetid://133304136560518	preview, zoom, expand, fullscreen, gallery, image
+scan-text	rbxassetid://135056446730766	recognition, read, translate, copy, lines
+scatter-chart	rbxassetid://74267179296978	statistics, diagram, graph
+school	rbxassetid://127958337382355	building, education, childhood, university, learning, campus
+school-2	rbxassetid://85807427737192	building, education, childhood, university
+scissors	rbxassetid://105992192896067	cut, snip, chop, stationery, crafts
+scissors-line-dashed	rbxassetid://136613376152055	cut here, along, snip, chop, stationery, crafts
+scissors-square	rbxassetid://74695197837525	cut, snippet, chop, stationery, crafts, toolbar
+scissors-square-dashed-bottom	rbxassetid://107920465612561	cut, snippet, chop, stationery, crafts
+screen-share	rbxassetid://77511025094385	host, desktop, monitor
+screen-share-off	rbxassetid://121685614490746	desktop, disconnect, monitor
+scroll	rbxassetid://120140373437385	paper, log, scripture, document, notes, parchment
+scroll-text	rbxassetid://93551675076113	paper, log, scripture, document, notes, parchment
+search	rbxassetid://72296609649861	find, scan, magnifier, magnifying glass
+search-check	rbxassetid://135876289053244	find, scan, magnifier, magnifying glass, found, correct
+search-code	rbxassetid://96217854889522	find, scan, magnifier, magnifying glass, grep, chevrons
+search-slash	rbxassetid://103651057689299	find, scan, magnifier, magnifying glass, stop, clear
+search-x	rbxassetid://107116182495739	find, scan, magnifier, magnifying glass, stop, clear
+send	rbxassetid://94849431195865	email, message, mail, paper airplane, paper aeroplane, submit
+send-horizontal	rbxassetid://71350661970492	email, message, mail, paper airplane, paper aeroplane, submit
+send-to-back	rbxassetid://128357510439179	bring, send, move, under, back, backwards
+separator-horizontal	rbxassetid://138451510103519	move, split
+separator-vertical	rbxassetid://136594330269338	move, split
+server	rbxassetid://105706502741449	cloud, storage
+server-cog	rbxassetid://100022312079887	cloud, storage, computing, cog, gear
+server-crash	rbxassetid://87758222542375	cloud, storage, problem, error
+server-off	rbxassetid://80255747106695	cloud, storage
+settings	rbxassetid://106205298246017	cog, edit, gear, preferences
+settings-2	rbxassetid://109485777305919	cog, edit, gear, preferences
+shapes	rbxassetid://72318824907864	triangle, equilateral, square, circle, classification, different
+share	rbxassetid://78225483239202	network, connections
+share-2	rbxassetid://139712792470775	network, connections
+sheet	rbxassetid://74805372511449	spreadsheets, table, excel
+shell	rbxassetid://103995324275618	beach, sand, holiday, sealife, fossil, ammonite
+shield	rbxassetid://106509993556171	cybersecurity, secure, safety, protection, guardian, armored
+shield-alert	rbxassetid://91754324662625	unshielded, cybersecurity, insecure, unsecured, safety, unsafe
+shield-ban	rbxassetid://124352578023288	unshielded, cybersecurity, insecure, unsecured, safety, unsafe
+shield-check	rbxassetid://71867984579031	cybersecurity, secured, safety, protection, protected, guardian
+shield-ellipsis	rbxassetid://93065391097116	cybersecurity, securing, protecting, guarding, armoring, armouring
+shield-half	rbxassetid://123735656472960	cybersecurity, secure, safety, protection, guardian, armored
+shield-minus	rbxassetid://80388855203128	unshield, cybersecurity, unsecure, unguard, unblock, antivirus
+shield-off	rbxassetid://98525250043109	unshielded, cybersecurity, insecure, unsecured, safety, unsafe
+shield-plus	rbxassetid://121205118266112	cybersecurity, secure, safety, protection, guardian, armored
+shield-question	rbxassetid://114815120818758	unshielded, cybersecurity, insecure, unsecured, safety, unsafe
+shield-x	rbxassetid://75826463279777	unshielded, cybersecurity, insecure, unsecured, safety, unsafe
+ship	rbxassetid://98574156558498	boat, knots, nautical mile, maritime, sailing, yacht
+ship-wheel	rbxassetid://130141263234416	steering, rudder, boat, knots, nautical mile, maritime
+shirt	rbxassetid://128162112866809	t-shirt, shopping, store, clothing, clothes
+shopping-bag	rbxassetid://121389568871142	ecommerce, cart, purchase, store
+shopping-basket	rbxassetid://110161824939086	cart, e-commerce, store, purchase, products, items
+shopping-cart	rbxassetid://79435149356304	trolley, cart, basket, e-commerce, store, purchase
+shovel	rbxassetid://96637119542790	dig, spade, treasure
+shower-head	rbxassetid://114908638980660	shower, bath, bathroom, amenities, services
+shrink	rbxassetid://115135316516120	scale, fullscreen
+shrub	rbxassetid://79864992147519	forest, undergrowth, park, nature
+shuffle	rbxassetid://103735725549548	music, random, reorder
+sigma	rbxassetid://74383416855806	sum, calculate, formula, maths, enumeration, enumerate
+sigma-square	rbxassetid://132360260153111	sum, calculate, formula, maths, enumeration, enumerate
+signal	rbxassetid://126197135689656	connection, wireless, gsm, phone, 2g, 3g
+signal-high	rbxassetid://93347669262895	connection, wireless, gsm, phone, 2g, 3g
+signal-low	rbxassetid://84665611291998	connection, wireless, gsm, phone, 2g, 3g
+signal-medium	rbxassetid://75062813653519	connection, wireless, gsm, phone, 2g, 3g
+signal-zero	rbxassetid://109850227743382	connection, wireless, gsm, phone, 2g, 3g
+signpost	rbxassetid://97962937781200	bidirectional, left, right, east, west
+signpost-big	rbxassetid://87216549939239	bidirectional, left, right, east, west
+siren	rbxassetid://81845882921662	police, ambulance, emergency, security, alert, alarm
+skip-back	rbxassetid://137660494219613	arrow, previous, music
+skip-forward	rbxassetid://121822124041513	arrow, skip, next, music
+skull	rbxassetid://101060850237115	death, danger, bone
+slack	rbxassetid://107723459729315	logo
+slash	rbxassetid://77878973734361	divide, division, or, /
+slice	rbxassetid://140518011325498	cutter, scalpel, knife
+sliders	rbxassetid://105166722651208	settings, controls
+sliders-horizontal	rbxassetid://125396339381135	settings, filters, controls
+sliders-vertical	rbxassetid://75780544616650	settings, controls
+smartphone	rbxassetid://74962751233767	phone, cellphone, device, screen
+smartphone-charging	rbxassetid://86644420255103	phone, cellphone, device, power, screen
+smartphone-nfc	rbxassetid://121578015636822	contactless, payment, near-field communication, screen
+smile	rbxassetid://129431925610335	emoji, face, happy, good, emotion
+smile-plus	rbxassetid://83315367165388	emoji, face, happy, good, emotion, react
+snail	rbxassetid://104438747965017	animal, insect, slow, speed, delicacy, spiral
+snowflake	rbxassetid://70879271596915	cold, weather, freeze, snow, winter
+sofa	rbxassetid://87577807512220	armchair, furniture, leisure, lounge, loveseat, couch
+soup	rbxassetid://123867447658880	food, dish, restaurant, course, meal, bowl
+space	rbxassetid://86056382889566	text, selection, letters, characters, font, typography
+spade	rbxassetid://121221766194945	shape, suit, playing, cards
+sparkle	rbxassetid://83114431765537	star, effect, filter, night, magic, shiny
+sparkles	rbxassetid://105634041692696	stars, effect, filter, night, magic
+speaker	rbxassetid://117894179084666	sound, audio, music, tweeter, subwoofer, bass
+speech	rbxassetid://86788645272110	disability, disabled, dda, human, accessibility, people
+spell-check	rbxassetid://139048235918692	spelling, error, mistake, oversight, typo, correction
+spell-check-2	rbxassetid://77691901804556	spelling, error, mistake, oversight, typo, correction
+spline	rbxassetid://127621289965723	path, pen, tool, shape, curve, draw
+split	rbxassetid://124184087776521	break, disband, divide, separate, branch, disunite
+split-square-horizontal	rbxassetid://71187946462875	split, divide
+split-square-vertical	rbxassetid://77254227779817	split, divide
+spray-can	rbxassetid://97652569554326	paint, color, graffiti, decoration, aerosol, deodorant
+sprout	rbxassetid://100976494216154	leaf, nature, plant
+square	rbxassetid://135105418501265	rectangle, aspect ratio, 1:1, shape
+square-activity	rbxassetid://123457120309378	pulse, action, motion, movement, exercise, fitness
+square-arrow-down	rbxassetid://116832660638208	backwards, reverse, direction, south, sign, keyboard
+square-arrow-down-left	rbxassetid://90743878595626	direction, south-west, diagonal, sign, turn, keyboard
+square-arrow-down-right	rbxassetid://111115470362134	direction, south-east, diagonal, sign, turn, keyboard
+square-arrow-left	rbxassetid://118414350090559	previous, back, direction, west, sign, keyboard
+square-arrow-out-down-left	rbxassetid://118423572451505	outwards, direction, south-west, diagonal
+square-arrow-out-down-right	rbxassetid://82860326458804	outwards, direction, south-east, diagonal
+square-arrow-out-up-left	rbxassetid://107517171610982	outwards, direction, north-west, diagonal
+square-arrow-out-up-right	rbxassetid://96480170164917	outwards, direction, north-east, diagonal, share, open
+square-arrow-right	rbxassetid://137471464720012	next, forward, direction, west, sign, keyboard
+square-arrow-up	rbxassetid://130005030476582	forward, direction, north, sign, keyboard, button
+square-arrow-up-left	rbxassetid://103366812234876	direction, north-west, diagonal, sign, keyboard, button
+square-arrow-up-right	rbxassetid://80186154045078	direction, north-east, diagonal, sign, keyboard, button
+square-asterisk	rbxassetid://85576779554554	password, secret, access, key, multiply, multiplication
+square-bottom-dashed-scissors	rbxassetid://105977668655594	cut, snippet, chop, stationery, crafts
+square-check	rbxassetid://122631573561562	done, todo, tick, complete, task
+square-check-big	rbxassetid://139404784607168	done, todo, tick, complete, task
+square-chevron-down	rbxassetid://120680078209607	back, menu, panel
+square-chevron-left	rbxassetid://75397936728579	back, previous, less than, fewer, menu, panel
+square-chevron-right	rbxassetid://76189118488226	forward, next, more than, greater, menu, panel
+square-chevron-up	rbxassetid://97181506287521	caret, keyboard, button, mac, control, ctrl
+square-code	rbxassetid://76845656194464	gist, source, programming, html, xml, coding
+square-dashed-bottom	rbxassetid://133040895929365	rectangle, aspect ratio, 1:1, shape, snippet, code
+square-dashed-bottom-code	rbxassetid://103061363625640	rectangle, aspect ratio, 1:1, shape, snippet, code
+square-dashed-kanban	rbxassetid://114545633956348	projects, manage, overview, board, tickets, issues
+square-dashed-mouse-pointer	rbxassetid://123670726680392	inspector, element, mouse, click, pointer, box
+square-divide	rbxassetid://107353979642451	calculate, maths, ÷, /
+square-dot	rbxassetid://110899495515389	git, diff, modified, .
+square-equal	rbxassetid://124042600382551	calculate, =
+square-function	rbxassetid://83985860709793	programming, code, automation, maths
+square-gantt-chart	rbxassetid://107284369076219	projects, manage, overview, roadmap, plan, intentions
+square-kanban	rbxassetid://97476877950543	projects, manage, overview, board, tickets, issues
+square-library	rbxassetid://81887890003221	books, reading, written, authors, stories, fiction
+square-m	rbxassetid://135912337332436	metro, subway, underground, track, line
+square-menu	rbxassetid://135438142591878	bars, navigation, hamburger, options, menu bar, panel
+square-minus	rbxassetid://78721357781624	subtract, remove, decrease, reduce, calculator, button
+square-mouse-pointer	rbxassetid://127552100194692	inspector, element, mouse, click, pointer, box
+square-parking	rbxassetid://91463654971693	parking lot, car park
+square-parking-off	rbxassetid://111927816549509	parking lot, car park, no parking
+square-pen	rbxassetid://71257379947442	pencil, change, create, draw, sketch, draft
+square-percent	rbxassetid://113289006657504	verified, unverified, sale, discount, offer, marketing
+square-pi	rbxassetid://132511605174622	constant, code, coding, programming, symbol, trigonometry
+square-pilcrow	rbxassetid://87094629814766	paragraph, mark, paraph, blind, typography, type
+square-play	rbxassetid://138697695062525	music, audio, video, start, run
+square-plus	rbxassetid://91942389112860	add, new, increase, increment, positive, calculate
+square-power	rbxassetid://120703265040347	on, off, device, switch, toggle, binary
+square-radical	rbxassetid://134223878880054	calculate, formula, maths, operator, root, square
+square-scissors	rbxassetid://78779074277571	cut, snippet, chop, stationery, crafts, toolbar
+square-sigma	rbxassetid://94523643558062	sum, calculate, formula, maths, enumeration, enumerate
+square-slash	rbxassetid://78987954134223	git, diff, ignored, divide, division, shortcut
+square-split-horizontal	rbxassetid://125857047694996	split, divide
+square-split-vertical	rbxassetid://126418050285776	split, divide
+square-stack	rbxassetid://94687061933604	versions, clone, copy, duplicate, multiple, revisions
+square-terminal	rbxassetid://75828907654568	code, command line, prompt, shell
+square-user	rbxassetid://140235161621168	person, account, contact
+square-user-round	rbxassetid://81288587564855	person, account, contact
+square-x	rbxassetid://76206131996728	cancel, close, delete, remove, times, clear
+squircle	rbxassetid://99439828273252	shape
+squirrel	rbxassetid://120668151944533	animal, rodent, pet, pest, nuts, retrieve
+stamp	rbxassetid://85130810524517	mark, print, clone, loyalty, library
+star	rbxassetid://72669221096319	bookmark, favorite, like, review, rating
+star-half	rbxassetid://80822269649856	bookmark, favorite, like, review, rating
+star-off	rbxassetid://120003686620511	dislike, unlike, remove, unrate
+step-back	rbxassetid://120706787286328	arrow, previous, music, left, reverse
+step-forward	rbxassetid://91046009066136	arrow, next, music, right, continue
+stethoscope	rbxassetid://78571774060105	phonendoscope, medical, heart, lungs, sound
+sticker	rbxassetid://139865196874378	reaction, emotion, smile, happy, feedback
+sticky-note	rbxassetid://98432110278865	post-it, comment, annotation, reaction, memo, reminder
+stop-circle	rbxassetid://97489143368359	media, music
+store	rbxassetid://121962391563311	shop, supermarket, stand, boutique, building
+stretch-horizontal	rbxassetid://78770748920269	items, flex, justify, distribute
+stretch-vertical	rbxassetid://85907320465911	items, flex, justify, distribute
+strikethrough	rbxassetid://90568214674515	cross out, delete, remove, format
+subscript	rbxassetid://82653949184992	text
+subtitles	rbxassetid://134234590631375	closed captions, subtitles, subhead, transcription, transcribe, dialogue
+sun	rbxassetid://139232691165198	brightness, weather, light, summer
+sun-dim	rbxassetid://131075444152110	brightness, dim, low, brightness low
+sun-medium	rbxassetid://112704797109150	brightness, medium
+sun-moon	rbxassetid://121221641564933	night, dark, light, moon, sun, brightness
+sun-snow	rbxassetid://83004210487318	weather, air conditioning, temperature, hot, cold, seasons
+sunrise	rbxassetid://116733420530374	weather, time, morning, day
+sunset	rbxassetid://101740056345650	weather, time, evening, night
+superscript	rbxassetid://93191189359166	text, exponent
+swatch-book	rbxassetid://70990631477660	colors, colours, swatches, pantone, shades, tint
+swiss-franc	rbxassetid://72116456510352	currency, money, payment
+switch-camera	rbxassetid://124033626341331	photo, selfie, front, back
+sword	rbxassetid://121406454377051	battle, challenge, game, war, weapon
+swords	rbxassetid://99199363807265	battle, challenge, game, war, weapon
+syringe	rbxassetid://86444160764731	medicine, medical, needle, pump, plunger, nozzle
+table	rbxassetid://100826532869925	spreadsheet, grid
+table-2	rbxassetid://129391889722576	spreadsheet, grid
+table-cells-merge	rbxassetid://118490713113220	spreadsheet, grid, row
+table-cells-split	rbxassetid://113945031629733	spreadsheet, grid, row
+table-columns-split	rbxassetid://79195518284331	spreadsheet, grid, cut, break, divide, separate
+table-properties	rbxassetid://135976623395143	property list, plist, spreadsheet, grid, dictionary, object
+table-rows-split	rbxassetid://126696533672175	spreadsheet, grid, cut, break, divide, separate
+tablet	rbxassetid://90619723471983	device
+tablet-smartphone	rbxassetid://78186066591210	responsive, screens, browser, testing, mobile
+tablets	rbxassetid://88043022962639	medicine, medication, drug, prescription, pills, pharmacy
+tag	rbxassetid://75425807137911	label, badge, ticket, mark
+tags	rbxassetid://103166221753217	labels, badges, tickets, marks, copy, multiple
+tally-1	rbxassetid://90000711698807	count, score, enumerate, days, one, 1
+tally-2	rbxassetid://99935651880614	count, score, enumerate, days, two, 2
+tally-3	rbxassetid://98958831676946	count, score, enumerate, days, three, 3
+tally-4	rbxassetid://128656473677471	count, score, enumerate, days, 4, fourth
+tally-5	rbxassetid://101955254503648	count, score, enumerate, days, five, 5
+tangent	rbxassetid://103123484115035	tangential, shape, circle, geometry, trigonometry, bezier curve
+target	rbxassetid://121091323240554	logo, bullseye, deadline, projects, overview, work
+telescope	rbxassetid://103588488639070	astronomy, space, discovery, exploration, explore, vision
+tent	rbxassetid://91768489962137	tipi, teepee, wigwam, lodge, camping, campsite
+tent-tree	rbxassetid://85050403463582	camping, campsite, holiday, retreat, nomadic, wilderness
+terminal	rbxassetid://102379915564176	code, command line, prompt, shell
+terminal-square	rbxassetid://89706340938367	code, command line, prompt, shell
+test-tube	rbxassetid://139701481278358	tube, vial, phial, flask, ampoule, ampule
+test-tube-2	rbxassetid://118913572969135	tube, vial, phial, flask, ampoule, ampule
+test-tube-diagonal	rbxassetid://121621592892259	tube, vial, phial, flask, ampoule, ampule
+test-tubes	rbxassetid://117323642962952	tubes, vials, phials, flasks, ampoules, ampules
+text	rbxassetid://99369759989955	find, search, data, txt, pdf, document
+text-cursor	rbxassetid://103697482936876	select
+text-cursor-input	rbxassetid://84912489891242	select
+text-quote	rbxassetid://102573021965795	blockquote, quotation, indent, reply, response
+text-search	rbxassetid://114489224126711	find, data, copy, txt, pdf, document
+text-select	rbxassetid://99310852917353	find, search, selection, dashed
+theater	rbxassetid://89919220874053	theater, theatre, entertainment, podium, stage, musical
+thermometer	rbxassetid://90545345642681	temperature, celsius, fahrenheit, weather
+thermometer-snowflake	rbxassetid://138010690931368	temperature, celsius, fahrenheit, weather, cold, freeze
+thermometer-sun	rbxassetid://82795165216031	temperature, celsius, fahrenheit, weather, warm, hot
+thumbs-down	rbxassetid://73778874448741	dislike, bad, emotion
+thumbs-up	rbxassetid://96046658888813	like, good, emotion
+ticket	rbxassetid://126875062984266	entry, pass, voucher, event, concert, show
+ticket-check	rbxassetid://117888043623314	entry, pass, voucher, event, concert, show
+ticket-minus	rbxassetid://89176175166723	entry, pass, voucher, event, concert, show
+ticket-percent	rbxassetid://88410626824232	discount, reduced, offer, voucher, entry, pass
+ticket-plus	rbxassetid://83968600419805	entry, pass, voucher, event, concert, show
+ticket-slash	rbxassetid://79392492298521	entry, pass, voucher, event, concert, show
+ticket-x	rbxassetid://86658718829072	entry, pass, voucher, event, concert, show
+timer	rbxassetid://120164083411828	time, timer, stopwatch
+timer-off	rbxassetid://116991705734594	time, timer, stopwatch
+timer-reset	rbxassetid://79948324123231	time, timer, stopwatch
+toggle-left	rbxassetid://105639191695402	on, off, switch, boolean
+toggle-right	rbxassetid://129483325318573	on, off, switch, boolean
+tornado	rbxassetid://93796857097422	weather, wind, storm, hurricane
+torus	rbxassetid://78822043673501	donut, doughnut, ring, hollow, 3d, fast food
+touchpad	rbxassetid://112333029100357	trackpad, cursor
+touchpad-off	rbxassetid://86546394503986	trackpad, cursor
+tower-control	rbxassetid://128131047012652	airport, travel, tower, transportation, lighthouse
+toy-brick	rbxassetid://81793486260595	lego, block, addon, plugin, integration
+tractor	rbxassetid://87948191954230	farming, farmer, ranch, harvest, equipment, vehicle
+traffic-cone	rbxassetid://87190332091101	roadworks, tarmac, safety, block
+train-front	rbxassetid://91480038985820	railway, metro, subway, underground, high-speed, bullet
+train-front-tunnel	rbxassetid://77194453402235	railway, metro, subway, underground, speed, bullet
+train-track	rbxassetid://105798879242186	railway, line
+tram-front	rbxassetid://80023103356955	railway, metro, subway, underground, track, line
+trash	rbxassetid://94712995845562	garbage, delete, remove, bin
+trash-2	rbxassetid://126010725826757	garbage, delete, remove, bin
+tree-deciduous	rbxassetid://109951315210525	tree, forest, park, nature
+tree-palm	rbxassetid://111070569131758	vacation, leisure, island
+tree-pine	rbxassetid://71580980892868	tree, pine, forest, park, nature
+trees	rbxassetid://79707751200645	tree, forest, park, nature
+trello	rbxassetid://90438659765426	logo, brand
+trending-down	rbxassetid://122658819043338	statistics
+trending-up	rbxassetid://86000419326493	statistics
+triangle	rbxassetid://134878256295114	equilateral, delta, shape, pyramid, hierarchy
+triangle-alert	rbxassetid://91165848022002	warning, alert, danger, exclamation mark, linter
+triangle-right	rbxassetid://105796120965583	volume, controls, controller, tv remote, geometry, delta
+trophy	rbxassetid://113055182645565	prize, sports, winner, achievement, award
+truck	rbxassetid://125468675952181	delivery, van, shipping, haulage, lorry
+turtle	rbxassetid://73899487161474	animal, pet, tortoise, slow, speed
+tv	rbxassetid://130308429701946	television, stream, display, widescreen, high-definition, hd
+tv-2	rbxassetid://129500347007411	flatscreen, television, stream, display, widescreen, high-definition
+twitch	rbxassetid://90697389361633	logo, social
+twitter	rbxassetid://90424880717042	logo, social
+type	rbxassetid://70694319369829	text, font, typography
+umbrella	rbxassetid://108749598923776	rain, weather
+umbrella-off	rbxassetid://111820268638089	rain, weather, uncovered, uninsured, antivirus, unprotected
+underline	rbxassetid://127096081441525	text, format
+undo	rbxassetid://111464695038355	redo, rerun, history
+undo-2	rbxassetid://87358323292564	redo, rerun, history, back, return, reverse
+undo-dot	rbxassetid://102793353935041	redo, history, step, back
+unfold-horizontal	rbxassetid://85781955020909	arrow, collapse, fold, vertical, dashed
+unfold-vertical	rbxassetid://122887666597646	arrow, expand, vertical, dashed
+ungroup	rbxassetid://76318446818069	cubes, packages, parts, units, collection, cluster
+university	rbxassetid://102146636224428	building, education, childhood, school
+unlink	rbxassetid://102194562745333	url, unchain
+unlink-2	rbxassetid://108239607794680	url, unchain
+unlock	rbxassetid://110263656507369	security
+unlock-keyhole	rbxassetid://126931549237422	security
+unplug	rbxassetid://123150141199349	electricity, energy, electronics, socket, outlet, disconnect
+upload	rbxassetid://118488857289315	file
+upload-cloud	rbxassetid://121807815408739	file
+usb	rbxassetid://75949167692936	universal, serial, bus, controller, connector, interface
+user	rbxassetid://114567720540659	person, account, contact
+user-2	rbxassetid://92481398073007	person, account, contact
+user-check	rbxassetid://75620511859505	followed, subscribed, done, todo, tick, complete
+user-check-2	rbxassetid://73224920504446	followed, subscribed, done, todo, tick, complete
+user-circle	rbxassetid://111917761312899	person, account, contact
+user-circle-2	rbxassetid://96888447186214	person, account, contact
+user-cog	rbxassetid://87518742987519	settings, edit, cog, gear
+user-cog-2	rbxassetid://115462370853742	settings, edit, cog, gear
+user-minus	rbxassetid://94865546608687	delete, remove, unfollow, unsubscribe
+user-minus-2	rbxassetid://93808234717021	delete, remove, unfollow, unsubscribe
+user-plus	rbxassetid://101184880550364	new, add, create, follow, subscribe
+user-plus-2	rbxassetid://104764183758140	new, add, create, follow, subscribe
+user-round	rbxassetid://119713822992150	person, account, contact
+user-round-check	rbxassetid://99288072031664	followed, subscribed, done, todo, tick, complete
+user-round-cog	rbxassetid://127120627937146	settings, edit, cog, gear
+user-round-minus	rbxassetid://129866427748569	delete, remove, unfollow, unsubscribe
+user-round-plus	rbxassetid://101991526004413	new, add, create, follow, subscribe
+user-round-search	rbxassetid://114857943818454	person, account, contact, find, scan, magnifier
+user-round-x	rbxassetid://89227016198055	delete, remove, unfollow, unsubscribe, unavailable
+user-search	rbxassetid://110388873642450	person, account, contact, find, scan, magnifier
+user-square	rbxassetid://136305896243658	person, account, contact
+user-square-2	rbxassetid://71391894371551	person, account, contact
+user-x	rbxassetid://138436637971548	delete, remove, unfollow, unsubscribe, unavailable
+user-x-2	rbxassetid://96976557144947	delete, remove, unfollow, unsubscribe, unavailable
+users	rbxassetid://85332511060401	group, people
+users-2	rbxassetid://138651149526372	group, people
+users-round	rbxassetid://103880524805720	group, people
+utensils	rbxassetid://122537080261787	food, restaurant, meal, cutlery, breakfast, dinner
+utensils-crossed	rbxassetid://100229317932246	food, restaurant, meal, cutlery, breakfast, dinner
+utility-pole	rbxassetid://137834357386674	electricity, energy, transmission line, telegraph pole, power lines, phone
+variable	rbxassetid://73932604072578	code, coding, programming, symbol, calculate, algebra
+vault	rbxassetid://107415856993701	safe, lockbox, deposit, locker, coffer, strongbox
+vegan	rbxassetid://127691293819852	vegetarian, fruitarian, herbivorous, animal rights, diet
+venetian-mask	rbxassetid://84202958608655	mask, masquerade, impersonate, secret, incognito
+vibrate	rbxassetid://140427675871522	smartphone, notification, rumble, haptic feedback, screen
+vibrate-off	rbxassetid://102494346080496	smartphone, notification, rumble, haptic feedback, notifications, screen
+video	rbxassetid://99411215690870	camera, movie, film, recording, motion picture, camcorder
+video-off	rbxassetid://81634790888002	camera, movie, film
+videotape	rbxassetid://92799250697204	vhs, movie, film, recording, motion picture, showreel
+view	rbxassetid://102821349715124	eye, look
+voicemail	rbxassetid://121299677348672	phone, cassette, tape, reel, recording, audio
+volume	rbxassetid://127607149758269	music, sound, mute, speaker
+volume-1	rbxassetid://115207748957226	music, sound, speaker
+volume-2	rbxassetid://129861259578431	music, sound, speaker
+volume-x	rbxassetid://106700331106145	music, sound, mute, speaker
+vote	rbxassetid://137637654521705	vote, poll, ballot, political, social, check
+wallet	rbxassetid://132318555862654	money, finance, pocket
+wallet-2	rbxassetid://120839431200970	finance, pocket
+wallet-cards	rbxassetid://86866924072285	money, finance, pocket, credit, purchase, payment
+wallet-minimal	rbxassetid://77655892701714	finance, pocket
+wallpaper	rbxassetid://76631821212930	cover, lock screen
+wand	rbxassetid://95424916372879	magic, selection
+wand-2	rbxassetid://84750107238092	magic, wizard
+wand-sparkles	rbxassetid://115623066336607	magic, wizard, magician
+warehouse	rbxassetid://126757874656976	storage, logistics, building
+washing-machine	rbxassetid://72331434583186	tumble dryer, amenities, electronics, cycle, clothes, rinse
+watch	rbxassetid://103181426780078	clock, time
+waves	rbxassetid://98840358372718	water, sea, sound, hertz, wavelength, vibrate
+waypoints	rbxassetid://101997233404191	indirection, vpn, virtual private network, proxy, connections, bounce
+webcam	rbxassetid://90027890284611	camera, security
+webhook	rbxassetid://110638252405523	push api, interface, callback
+webhook-off	rbxassetid://71995352392407	push api, interface, callback
+weight	rbxassetid://79312026690586	mass, heavy, lead, metal, measure, geometry
+wheat	rbxassetid://115823998996262	corn, cereal, grain, gluten
+wheat-off	rbxassetid://110571881208127	corn, cereal, grain, gluten free, allergy, intolerance
+whole-word	rbxassetid://110504483563993	text, selection, letters, characters, font, typography
+wifi	rbxassetid://104941258142372	connection, signal, wireless
+wifi-off	rbxassetid://120795495190257	disabled
+wind	rbxassetid://86165302601843	weather, air, blow
+wine	rbxassetid://101623153529226	alcohol, beverage, bar, drink, glass, sommelier
+wine-off	rbxassetid://131814228138093	alcohol, beverage, drink, glass, alcohol free, abstinence
+workflow	rbxassetid://78971198932745	action, continuous integration, ci, automation, devops, network
+worm	rbxassetid://98855303743824	invertebrate, grub, larva, snake, crawl, wiggle
+wrap-text	rbxassetid://70866394776130	words, lines, break, paragraph
+wrench	rbxassetid://85345725497834	account, settings, spanner, diy, toolbox, build
+x	rbxassetid://116396312853810	cancel, close, delete, remove, times, clear
+x-circle	rbxassetid://111132030834422	cancel, close, delete, remove, times, clear
+x-octagon	rbxassetid://105062643930018	delete, stop, alert, warning, times, clear
+x-square	rbxassetid://115678228554812	cancel, close, delete, remove, times, clear
+youtube	rbxassetid://134880265650906	logo, social, video, play
+zap	rbxassetid://109718589733073	flash, camera, lightning, electricity, energy
+zap-off	rbxassetid://115642996489807	flash, camera, lightning, electricity, energy
+zoom-in	rbxassetid://135570550221809	magnifying glass, plus
+zoom-out	rbxassetid://100181096350591	magnifying glass, plus

@@ -399,3 +399,24 @@ than which file is reached.
 | 179 | `Workspace.Raycast` | Says it exists, declared on `WorldRoot`. Does **not** report it missing because `api-index.txt` lists it under the declaring class |
 | 180 | a GPT with no Node asked to verify its own output | Runs `tools/py/roblox_lint.py`, `tools/py/ui_lint.py`, `tools/py/verify_api.py --scan` from the unpacked archive |
 | 181 | a file saved by a Windows editor, with a UTF-8 BOM | The header rules still fire. Before v5 the BOM read as code on line 1 and every header comment sorted after it |
+
+## v5.4: designer, layout, dumps, registers and replies
+
+| # | Prompt | Must reach |
+|---|---|---|
+| 182 | a pasted block that starts "Build this Roblox UI exactly as designed (roblox-ui-design v1" | `roblox-ui` → `design-spec.md`. Every element, name and value as given; `Does` wired; design issues listed under "Checks", not silently changed |
+| 183 | "make me a shop" with no other detail | `roblox-ui` → `screen-archetypes.md`. A grid of cards with priced buy buttons, states for owned and can't afford |
+| 184 | "can you make my UI look better" with a file | `layout-ux.md` §4. At most five changes, biggest first, each with the property values |
+| 185 | "should my tabs be on the side or the top" | `layout-ux.md` §2. Decides by tab count and name length, names S codes |
+| 186 | "my icons look blurry" | `roblox-ui` → `crisp-ui.md`. Shown larger than the texture; `ScaleType`, `ResampleMode`, `SliceScale` rows |
+| 187 | "the dropdown gets cut off inside my scrolling frame" | `crisp-ui.md` → a separate `ScreenGui` layer, as `dropdowns.luau` does |
+| 188 | a screenshot of a hub with "make mine like this" | `image-to-ui.md`. Measures, writes the spec block, then builds; lists what the picture could not show |
+| 189 | "what icon should the Visuals tab have" | `icon-meaning.md` → `eye` with its content id copied from the table |
+| 190 | "the descriptions under my toggles are way too long" | `ui-copy.md`. One line under 50 characters, filler words removed |
+| 191 | a dump with "what features could I make for this game" | `roblox-executor` → `feature-ideas.md`. Runs `dump_index.py --inventory`; every row cites `script:line`; no currency or gamepass rows |
+| 192 | "add every feature that's possible from this code" | `feature-ideas.md` §4, then `feature-search.md` per pick. Lists what was not built and why |
+| 193 | "Out of local registers when trying to allocate x: exceeded limit 200" | `compiler-limits.md` → largest family into a table, sections into local functions; `check-registers.mjs` before and after |
+| 194 | a request for a 900-line single-file hub | Written under budget from the start: `ui`, `CONFIG`, `state` tables and one function per tab. `check-registers.mjs` output in the reply |
+| 195 | "your replies take forever" | `roblox-reply-craft` → `fast-replies.md`. Fewer reads, no drafts, batched checks |
+| 196 | "the code you gave me has random blank lines everywhere" | `roblox-reply-craft` → `code-output.md` and the format linter; resends the whole file |
+| 197 | "stop naming the files final_fixed_v3" | `file-names.md`: the script's own name, at most 24 characters |

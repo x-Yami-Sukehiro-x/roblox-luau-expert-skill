@@ -41,6 +41,7 @@ const WORKFLOW_SOURCES = [
   "roblox-luau-expert/references/task-contract.md",
   "roblox-executor/SKILL.md",
   "roblox-executor/references/technique/feature-search.md",
+  "roblox-executor/references/technique/feature-ideas.md",
   "roblox-executor/references/technique/decompiled-source.md",
   "roblox-executor/references/technique/source-to-api.md",
   "roblox-executor/references/technique/lifecycle.md",
@@ -48,6 +49,15 @@ const WORKFLOW_SOURCES = [
   "roblox-ui/references/build-order.md",
   "roblox-ui/references/self-review.md",
   "roblox-ui/references/functional-proof.md",
+  "roblox-ui/references/screen-archetypes.md",
+  "roblox-ui/references/layout-ux.md",
+  "roblox-ui/references/crisp-ui.md",
+  "roblox-ui/references/image-to-ui.md",
+  "roblox-ui/references/ui-copy.md",
+  "roblox-ui/references/design-spec.md",
+  "roblox-luau-language/references/compiler-limits.md",
+  "roblox-reply-craft/SKILL.md",
+  "roblox-reply-craft/references/code-output.md",
 ];
 
 // Everything a picked style code needs, in one retrievable file: the question,
@@ -57,6 +67,7 @@ const STYLE_SOURCES = [
   "roblox-request-intake/references/visual-choices.md",
   "roblox-request-intake/references/ui-words.md",
   "roblox-ui-components/references/style-recipes.md",
+  "roblox-ui-components/references/icon-meaning.md",
 ];
 const STYLE_RECIPES_DIR = join(SKILLS_DIR, "roblox-ui-components", "assets");
 

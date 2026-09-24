@@ -1,7 +1,7 @@
 {
   "name": "roblox-luau-expert",
   "displayName": "Roblox Luau Expert",
-  "version": "5.3.0",
+  "version": "5.4.0",
   "description": "Expert Roblox and Luau skill stack: engine APIs, type system, networking, DataStores, monetization, performance, UI and UX, animation and audio, anti-exploit, toolchain, and client/executor scripting. Ships fully specified design directions, a gated UI build order, an intake skill for vague non-technical requests, and a decompiled-source workflow. Verifies every Roblox API against a vendored API dump, recomputes every stated contrast ratio, and lints its own prose against both. Ships Python ports of its linters, parity-gated against the Node originals, so the rules still run in hosts without Node.",
   "author": {
     "name": "x-Yami-Sukehiro-x"

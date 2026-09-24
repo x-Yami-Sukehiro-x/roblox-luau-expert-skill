@@ -141,6 +141,130 @@ do
 	check("O5 skip ends at once, only once", skipped == 1)
 end
 
+local v3meta = {}
+v3meta.__sub = function(a, b)
+	local x, y = a.X - b.X, a.Y - b.Y
+	return { X = x, Y = y, Z = 0, Magnitude = math.sqrt(x * x + y * y) }
+end
+local function point(x, y) return setmetatable({ X = x, Y = y, Z = 0 }, v3meta) end
+local mouse = Enum.UserInputType.MouseButton1
+
+do
+	local screen, panel = scene()
+	local window = windows.createWindow({ panel = panel }, "O6")
+	local bubble = screen.Bubble
+	check("O6 bubble waits hidden at the window's corner", bubble.Visible == false and bubble.Position.X.Offset == 426 and bubble.Position.Y.Offset == 226)
+	bubble.AbsolutePosition = Vector2.new(400, 200)
+	bubble.AbsoluteSize = Vector2.new(52, 52)
+	window.hide()
+	check("O6 window shrinks into the bubble", panel.WindowScale.Scale == 0.2)
+	HARNESS.drain()
+	check("O6 bubble shown once the window is gone", panel.Visible == false and bubble.Visible == true)
+	bubble.InputBegan:Fire({ UserInputType = mouse, Position = point(0, 0) })
+	HARNESS.input.InputChanged:Fire({ UserInputType = Enum.UserInputType.MouseMovement, Position = point(30, 4) })
+	check("O6 dragging moves the bubble", bubble.Position.X.Offset == 456 and bubble.Position.Y.Offset == 230)
+	bubble.Activated:Fire()
+	HARNESS.input.InputEnded:Fire({ UserInputType = mouse })
+	check("O6 releasing a drag does not reopen", window.isShown() == false)
+	bubble.InputBegan:Fire({ UserInputType = mouse, Position = point(10, 10) })
+	HARNESS.input.InputChanged:Fire({ UserInputType = Enum.UserInputType.MouseMovement, Position = point(12, 11) })
+	bubble.Activated:Fire()
+	HARNESS.drain()
+	check("O6 a tap brings the window back", window.isShown() and panel.Visible == true and bubble.Visible == false)
+	window.destroy()
+	check("O6 destroy removes the bubble", screen.Bubble == nil)
+end
+
+do
+	local screen, panel = scene()
+	local window = windows.createWindow({ panel = panel }, "O7")
+	local tab = screen.EdgeTab
+	check("O7 tab sits on the right edge", tab.AnchorPoint.X == 1 and tab.Position.X.Scale == 1)
+	window.hide()
+	check("O7 window slides off to the right", panel.Position.X.Offset == 384)
+	HARNESS.drain()
+	check("O7 tab shown", tab.Visible == true and panel.Visible == false)
+	tab.Activated:Fire()
+	HARNESS.drain()
+	check("O7 tab brings it back", panel.Visible == true and panel.Position.X.Offset == 0)
+	window.destroy()
+end
+
+do
+	local screen, panel = scene()
+	local window = windows.createWindow({ panel = panel }, "O8")
+	local tab = screen.PullTab
+	check("O8 pull tab at the top centre", tab.AnchorPoint.Y == 0 and tab.Position.X.Scale == 0.5 and tab.Size.Y.Offset == 44)
+	window.hide()
+	check("O8 window slides up and away", panel.Position.Y.Offset == -444)
+	HARNESS.drain()
+	tab.Activated:Fire()
+	HARNESS.drain()
+	check("O8 pull tab brings it down", panel.Visible == true and panel.Position.Y.Offset == 0 and tab.Visible == false)
+	window.destroy()
+end
+
+do
+	local screen, panel = scene()
+	local window = windows.createWindow({ panel = panel, title = "Blox Hub" }, "O9")
+	window.hide()
+	HARNESS.drain()
+	local pill = screen.TitlePill
+	check("O9 pill carries the title where the window was", pill.Visible and pill.Caption.Text == "Blox Hub" and pill.Position.X.Offset == 400 and pill.Position.Y.Offset == 200)
+	pill.Activated:Fire()
+	check("O9 pill reopens", window.isShown() and panel.Visible == true and pill.Visible == false)
+	window.destroy()
+end
+
+do
+	local screen, panel = scene()
+	local window = windows.createWindow({ panel = panel, keyName = "K" }, "O10")
+	window.hide()
+	HARNESS.drain()
+	local chip = screen.KeyChip
+	check("O10 chip names the key", chip.Visible and chip.Caption.Text == "Show menu · K")
+	check("O10 chip folds to its icon after a while", chip.Caption.Visible == false and chip.Visible == true)
+	chip.Activated:Fire()
+	check("O10 chip reopens", window.isShown() and chip.Visible == false)
+	window.destroy()
+end
+
+do
+	local _, panel = scene()
+	check("O11 needs an unload handler", not pcall(windows.createWindow, { panel = panel }, "O11"))
+end
+
+do
+	local screen, panel, launcher = scene()
+	local unloaded = 0
+	local window = windows.createWindow({ panel = panel, launcher = launcher, onUnload = function() unloaded += 1 end }, "O11")
+	local ask = screen.Ask
+	window.hide()
+	check("O11 closing asks first", ask.Visible == true and window.isShown() and panel.Visible == true)
+	ask.Choices.Hide.Activated:Fire()
+	check("O11 Hide hides and shows the launcher", window.isShown() == false and panel.Visible == false and launcher.Visible == true)
+	launcher.Activated:Fire()
+	window.hide()
+	ask.Choices["Unload script"].Activated:Fire()
+	check("O11 Unload runs the handler once", unloaded == 1)
+	HARNESS.drain()
+	ask.Visible = false
+	window.show()
+	window.toggle()
+	check("O11 the keybind hides without asking", ask.Visible == false and window.isShown() == false)
+	window.destroy()
+	check("O11 destroy removes the question", screen.Ask == nil)
+end
+
+do
+	local screen = Instance.new("ScreenGui")
+	local done = 0
+	windows.playOutro(screen, "Blox Hub closed", function() done += 1 end)
+	check("O12 goodbye card shows", screen.Outro ~= nil and screen.Outro.Title.Text == "Blox Hub closed")
+	HARNESS.drain()
+	check("O12 ends once and cleans up", done == 1 and screen.Outro == nil)
+end
+
 local failed = 0
 for _, line in results do print(line) if line:sub(1, 4) == "FAIL" then failed += 1 end end
 print(#results - failed .. " passed, " .. failed .. " failed")

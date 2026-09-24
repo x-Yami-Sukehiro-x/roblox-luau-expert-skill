@@ -59,3 +59,6 @@ cookies.txt
 __pycache__/
 *.pyc
 *.log
+
+# Local browser-automation output.
+.playwright-mcp/

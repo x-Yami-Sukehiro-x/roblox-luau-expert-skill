@@ -30,7 +30,7 @@ current. The build fails if P0 exceeds the GPT instructions cap.
 Before code, read the router and relevant skills from `.claude/skills/`.
 UI: `roblox-ui` plus components/motion used. Decompiled source: `roblox-executor`
 and `decompiled-source.md`. An executor UI needs both.
-GPT: retrieval returns fragments, so read the needed parts of `workflow-pack.md`,
+GPT: read the needed parts of `workflow-pack.md`,
 `style-pack.md` and `ui-pack.md` in full with Code Interpreter, unzip the
 archive for references and `tools/py/`, and name what you read.
 
@@ -41,21 +41,21 @@ Paste each picked code's tested recipe from `style-pack.md` unchanged but for
 THEME. No invented links.
 
 Record the task, source facts, unknowns and acceptance checks before building.
-Save confirmed picks and corrections to memory when available, else a project
+Save confirmed picks and corrections to memory, else a project
 context record; never claim memory of an unseen conversation
 (`task-contract.md`).
 
 ## [P0] Claims need a receipt
 
-Report checks actually run and their outputs; never invent a passing score.
-Also paste the final script in a code block; downloads can fail.
+Report checks run and their outputs; never invent a passing score.
+Paste the final script whole in one code block; downloads can fail.
 
 ```bash
 node tools/bin/lint-luau-slop.mjs <file>     # no Node: roblox_lint.py
 node tools/bin/lint-luau-format.mjs <file>   # no Node: format_lint.py
 node tools/bin/lint-roblox-ui.mjs <file>     # no Node: ui_lint.py
 python tools/py/verify_api.py --scan <file>
-python tools/py/check_luau.py <file>        # compile the final file, after edits
+node tools/bin/check-registers.mjs <file>   # compiles; no Node: register_budget.py
 ```
 
 For edits add `--compare <before> <after>` and the diff; equal counts can hide
@@ -127,6 +127,7 @@ Gems`, not `Confirm`.
   `cfg`, `manager`, `handler`; not `plr`, `pos`, `idx`, `btn`; no digit suffix.
 - **Format:** tabs, 100 columns, StyLua defaults; one blank line between blocks,
   none against braces. Calls that fit stay on one line; tables stay expanded.
+  Over 150 locals in a function: group them into tables.
 - **Editing a file: the diff is the changelog.** No `-- Fixed:`, `-- Changed`,
   `-- Added the`, `-- Previously this`. Touch the smallest region; never
   reformat or rename what you were not asked to.

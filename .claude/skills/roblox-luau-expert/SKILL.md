@@ -130,7 +130,7 @@ varies per executor and per update.
 |---|---|
 | "attempt to index nil", crashes, `WaitForChild` hangs | `roblox-engine-api` |
 | types, `--!strict`, generics, `buffer`, metatables, OOP | `roblox-luau-language` |
-| "out of local registers", won't compile | `roblox-luau-language` → `roblox-luau-language/references/compiler-limits.md` |
+| "out of local registers", won't compile, or a long single-file script | `roblox-luau-language` → `roblox-luau-language/references/compiler-limits.md`; `tools/bin/check-registers.mjs` |
 | raycasting, CFrame, Humanoid, tweens, camera, input | `roblox-engine-api` |
 | module layout, "where does this code go", frameworks | `roblox-architecture` |
 | DataStore, saving, data loss, ProfileService, session lock | `roblox-data-persistence` |
@@ -141,6 +141,13 @@ varies per executor and per update.
 | "build me a menu / shop / inventory / modal / HUD" | `roblox-ui` → `roblox-ui/references/blueprints.md` |
 | "my UI looks AI-generated" / design review | `roblox-ui` → `roblox-ui/references/anti-slop-catalog.md` then `self-review.md` |
 | "make it look better" (no other detail) | `roblox-request-intake` → `roblox-ui/references/build-order.md` |
+| "make me a shop / hub / settings / HUD" with no layout given | `roblox-ui` → `roblox-ui/references/screen-archetypes.md` |
+| "improve my UI", "it looks off", tab layout, sizes | `roblox-ui` → `roblox-ui/references/layout-ux.md` |
+| blurry UI, cut-off dropdown, "the UI is bugged" | `roblox-ui` → `roblox-ui/references/crisp-ui.md` |
+| a screenshot of a UI to recreate | `roblox-ui` → `roblox-ui/references/image-to-ui.md` |
+| a pasted `roblox-ui-design` export or `ui-design.json` | `roblox-ui` → `roblox-ui/references/design-spec.md` |
+| labels, descriptions, subtitles too long or too "AI" | `roblox-ui` → `roblox-ui/references/ui-copy.md` |
+| which icon for a tab or feature | `roblox-ui-components/references/icon-meaning.md` |
 | animating UI, tweens, springs, janky motion | `roblox-ui-motion` |
 | toast, notification, popup, button, slider, modal, divider, outline | `roblox-ui-components` |
 | icons, lucide, `rbxassetid`, an icon renders blank, `getcustomasset` | `roblox-ui-components/references/icons.md` |
@@ -166,9 +173,11 @@ varies per executor and per update.
 | "it resets when I change it" (client-side) | `roblox-executor` → `roblox-executor/references/technique/value-persistence.md` |
 | "where is this game's anti-cheat" | `roblox-executor` → `roblox-executor/references/recon/anticheat-recon.md` |
 | user pasted decompiled source, a dump, or the game's scripts | `roblox-executor` → `roblox-executor/references/technique/decompiled-source.md` |
+| "what features can I add from this dump", "add everything possible" | `roblox-executor` → `roblox-executor/references/technique/feature-ideas.md` |
 | "which executor call reaches this", a draft with fallback chains | `roblox-executor` → `roblox-executor/references/technique/source-to-api.md` |
 | vague, non-technical, or "it doesn't work" with no detail | `roblox-request-intake` |
 | a pasted error message and nothing else | `roblox-request-intake` → `roblox-request-intake/references/error-triage.md` |
+| any reply with code or a file; "too slow", "too long", "badly formatted", odd file names | `roblox-reply-craft` |
 
 Two skills at once is normal. "Exploiters are duping items" is
 `roblox-game-security` for the fix and `roblox-executor` for the threat model.

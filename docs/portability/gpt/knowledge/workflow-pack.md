@@ -18,11 +18,16 @@ existing interface matched. A bug fix does not need a style questionnaire.
 
 ## The guide and its link
 
-The guide is the **Roblox UI style picker**: playable, labeled examples of ten
-toggles (T1–T10), thirteen menu movements (M0–M12) picked separately for
-opening and closing, ten notification styles (N1–N10), five ways to hide and
-bring back the whole UI (O1–O5), three button feels (P1–P3), three tab switches
-(S1–S3) and a window diagram that numbers its parts (W1–W22). The user picks,
+The guide is the **Roblox UI style picker**: playable, labeled examples of
+twenty toggles (T1–T20), ten checkboxes and choice groups (C1–C10), twelve
+dropdowns and search fields (D1–D12), twenty-five menu movements (M0–M24)
+picked separately for opening and closing, twenty notification styles
+(N1–N20), twelve ways to hide and bring back the whole UI (O1–O12), twelve
+button feels (P1–P12), twelve tab switches (S1–S12) and a window diagram that
+numbers its parts (W1–W22). A second page, the **UI designer**
+(<https://x-yami-sukehiro-x.github.io/roblox-luau-expert-skill/designer.html>),
+lets the user lay out a whole screen and copy it; build that export with
+`../../roblox-ui/references/design-spec.md`. The user picks,
 presses **Copy my picks**, and pastes a summary such as
 `Opening: M3 — Gentle pop`.
 
@@ -48,7 +53,8 @@ Ask once, in one message, with the link first:
 > menu opens and closes, and the notification you like — then paste your picks
 > here. Or just describe it in your own words, or say "choose for you". My
 > suggestion is **T1 + M1 + N1 + O1** (for a script hub, **N4** for
-> notifications).
+> notifications). If you'd rather arrange the whole screen yourself, use the UI
+> designer and paste what it copies.
 
 **The question is the final reply of the turn**, with the hosted link written
 out in it. Hosts such as ChatGPT fold progress notes away, so a link placed in
@@ -82,6 +88,38 @@ clause, and ask only if two readings produce different work:
 | switch with ON / OFF written in it | T8 |
 | little light that turns on | T9 |
 | round tick, circle checkbox | T10 |
+| thin line with a big knob, Android switch | T11 |
+| empty outline switch that fills when on | T12 |
+| big switch | T13 |
+| chip or tag that lights up with a tick | T14 |
+| power button | T15 |
+| switch whose knob stretches | T16 |
+| tick and cross inside the switch | T17 |
+| keyboard key you push down | T18 |
+| switch with a line of description under the name | T19 |
+| icon, name, then the switch | T20 |
+| tick that draws itself in | C1 |
+| outline tick, box stays empty | C2 |
+| checkbox on the right side | C3 |
+| select all box above a list | C4 |
+| crossed off like a to-do list | C5 |
+| tick that pops in | C6 |
+| cards you tick, with a description | C7 |
+| radio buttons, pick only one | C8 |
+| chips or tags you pick | C9 |
+| tiles with icons you pick | C10 |
+| normal dropdown | D1 |
+| dropdown you can type in to search | D2 |
+| pick several from a list | D3 |
+| pick several, shown as little tags | D4 |
+| search bar with results under it | D5 |
+| list that opens in place, pushes things down | D6 |
+| arrows either side to cycle | D7 |
+| list with headings | D8 |
+| list with icons | D9 |
+| pick a player, with their picture | D10 |
+| big search box in the middle, command palette | D11 |
+| colour picker, colour swatches | D12 |
 | no animation, just appear | M0 |
 | fade, gently appears | M1 |
 | slides up a little | M2 |
@@ -95,6 +133,18 @@ clause, and ask only if two readings produce different work:
 | zooms in toward me | M10 |
 | bounces up a little | M11 |
 | rows come in one by one | M12 |
+| slides in a little from the left | M13 |
+| slides in a little from the right | M14 |
+| drops in a little | M15 |
+| swings or tilts in | M16 |
+| rolls down, unrolls | M17 |
+| stretches open sideways | M18 |
+| darkens the game and pops | M19 |
+| rises and grows | M20 |
+| drops and bounces | M21 |
+| jelly, wobbly | M22 |
+| snappy, instant but smooth | M23 |
+| slow fade | M24 |
 | message at the bottom | N1 |
 | message near the top | N2 |
 | next to what I changed | N3 |
@@ -105,17 +155,52 @@ clause, and ask only if two readings produce different work:
 | one small line at the top that swaps | N8 |
 | loading, then done | N9 |
 | popup with an undo button | N10 |
+| popups in the bottom left | N11 |
+| small pill message | N12 |
+| message with a title | N13 |
+| coloured strip on the side | N14 |
+| achievement, "unlocked!" card | N15 |
+| big text in the middle of the screen | N16 |
+| countdown | N17 |
+| snackbar with a button | N18 |
+| cards stacked on top of each other | N19 |
+| kill feed, activity feed | N20 |
 | close it and a button brings it back | O1 |
 | shrink into the button, minimise | O2 |
 | fold up to the title bar | O3 |
 | a tab on the side to pull it back | O4 |
 | loading screen before the hub | O5 |
+| floating bubble I can move around | O6 |
+| tab on the right side | O7 |
+| tab at the top to pull it down | O8 |
+| small pill with the name | O9 |
+| reminds me which key opens it | O10 |
+| asks hide or unload before closing | O11 |
+| goodbye screen when it closes | O12 |
 | changes colour when pressed | P1 |
 | pushes in, clicky | P2 |
 | lifts on hover | P3 |
+| ripple where I click | P4 |
+| glowing edge | P5 |
+| fills up from the side | P6 |
+| squishy | P7 |
+| underline appears | P8 |
+| shine sweeps across | P9 |
+| hold to confirm | P10 |
+| arrow that moves | P11 |
+| pops when clicked | P12 |
 | line under the tab | S1 |
 | pill behind the tab | S2 |
 | just highlight the tab | S3 |
+| side menu with a bar | S4 |
+| side menu with a pill | S5 |
+| tabs with icons | S6 |
+| icons only down the side | S7 |
+| tabs inside a box, segmented | S8 |
+| pages slide | S9 |
+| pages fade | S10 |
+| dot under the tab | S11 |
+| tabs that scroll sideways | S12 |
 
 Mixed answers are normal: "T1 but square" is T2; "M2 with less movement" is M2
 at 8 px; "like N4 but at the top" is N7. "Pop in, fade out" is opening M3 and
@@ -306,6 +391,7 @@ next game update.
 | **the user pasted decompiled source or a dump** | `references/technique/feature-search.md`, `references/technique/decompiled-source.md`, then `references/technique/source-to-api.md` |
 | the dump does not contain the requested feature | `references/technique/feature-search.md` → `assets/runtime-probe.luau` |
 | "find the code for X in this dump", "where is the sell remote" | `references/technique/feature-search.md` |
+| "what features can I make from this dump", "add every feature that's possible" | `references/technique/feature-ideas.md` (`dump_index.py --inventory`) |
 | "which call reaches this value" | `references/technique/source-to-api.md` |
 | the draft has two ways to find the same thing | `references/technique/source-to-api.md` |
 | the draft is mostly capability checks and pcalls | `roblox-code-craft/references/anti-slop-code.md` |
@@ -634,6 +720,125 @@ its decompiled sources are searched like any other script.
   does not change the server's copy — `client-feasibility.md`.
 - The report showed nothing: say so. The feature may be server-side, in an
   unloaded module or another VM; the dump and probe together do not locate it.
+
+---
+
+## Source: .claude/skills/roblox-executor/references/technique/feature-ideas.md
+
+# Suggesting features from a dump
+
+For "what can I make for this game?", "suggest features from this code" and
+"add every feature that is possible". The user has pasted or uploaded a
+decompiled dump and has not named the features.
+
+The failure this file prevents is the confident list: *auto farm, infinite
+money, god mode, unlock all gamepasses*, written from the game's genre rather
+than its code. Half of it names remotes that do not exist and half of it asks
+the client for things only the server owns. Every suggestion here is a line
+the dump shows, and says what the dump cannot show.
+
+`feature-search.md` answers "can I do X?". This file answers "what could I
+do?", and hands each chosen feature to `feature-search.md` to build.
+
+---
+
+## 1. Take the inventory
+
+```bash
+python tools/py/dump_index.py <dump file or folder> --inventory
+python tools/py/dump_index.py <dump> --inventory --json     # for your own filtering
+```
+
+It prints five sections, each entry with `script:line`:
+
+| Section | What it lists | What it can become |
+|---|---|---|
+| 1. Actions the client sends | Every `FireServer` / `InvokeServer` call site, grouped by remote, with arguments as written | Automate or repeat the action the game already performs |
+| 2. Interactions | `.Triggered` (ProximityPrompt), `.MouseClick` (ClickDetector), `.Touched` listeners | Auto-interact through `fireproximityprompt`, `fireclickdetector`, `firetouchinterest` |
+| 3. Numbers in client code | `SprintSpeed = 24`, `AttackCooldown = 0.5` and similar | Change this client's copy of a rule |
+| 4. Tags and attributes | `CollectionService` tags and attribute names the client reads | ESP, highlight, collect or teleport targets |
+| 5. Engine features | Fly, speed, jump, noclip, ESP, teleport, aim | Needs no game code at all |
+
+No Python? Search the dump by hand for the same things, in the same order:
+`FireServer`, `InvokeServer`, `.Triggered`, `.MouseClick`, `.Touched`,
+`Cooldown =`, `Speed =`, `GetTagged`, `GetAttribute`. The rules below do not
+change.
+
+Read the failed-to-decompile count. A region that failed is unknown, not empty.
+
+---
+
+## 2. Classify every candidate before suggesting it
+
+| Class | Feasible from the client? | Say |
+|---|---|---|
+| **Engine** (section 5) | Yes, on your own character and camera | "Works without game code; the game may reset it or notice." Check the dump for code that writes the same property |
+| **Game action** (section 1) | The call is; the result is the server's choice | "Calls `CollectCoin` the way `CoinCollector:11` does; the server decides whether it counts" |
+| **Interaction** (section 2) | If the executor has the `fire*` function | "Needs `fireproximityprompt`; the server may still check distance" |
+| **Client rule** (section 3) | Changes this client's copy only | "Makes your sprint faster on your screen; if the server checks speed, it snaps back or gets flagged" |
+| **Visual** (section 4, UI) | Yes | "Shows where `Chest` objects are; it does not open them" |
+| **Server-owned** | **No** | One line why, never code |
+
+**Server-owned, whatever the dump says:** currency, inventory, gamepasses and
+developer products, other players' data, damage the server calculates, stats
+the server saves, admin commands with no client call site. A remote that
+*requests* one of these is a game action (class 2), and the answer depends on
+the server's checks, which a client dump cannot show. Never present it as
+"infinite money".
+
+---
+
+## 3. Write the suggestions
+
+One table, strongest evidence first: game actions and interactions with call
+sites, then engine features, then client rules, then visuals. Eight rows unless
+the user asked for everything.
+
+| Feature | Evidence | How | Cannot tell from the dump |
+|---|---|---|---|
+| Auto collect coins | `CoinCollector.txt:11` fires `CollectCoin(coin.Name, coin.Position)` | Repeat that call for each coin, same two arguments | Whether the server checks distance or rate |
+| Faster sprint | `Sprint.txt:4` `SprintSpeed = 24` in a module table | Set the field on the table `filtergc` finds by its keys | Whether the server checks speed |
+| Fly | Engine | `LinearVelocity` on your own root part | Whether the game kicks for it |
+
+Rules for each row:
+
+- **The feature name is in the user's words**, not the remote's: "Auto collect
+  coins", not "CollectCoin spam".
+- **Evidence is a line the inventory printed.** Copy the remote name, method,
+  and argument list from the call site exactly. Decompiler labels (`v14`, `u3`,
+  `p6`) are not names; describe what they hold.
+- **How names one value layer and one API** (`function-selection.md`). A row
+  that needs "try the upvalue, else the global" is not ready.
+- **The last column is never empty.** The dump shows the client; the server's
+  checks are always unknown.
+
+Then the rejected list, one line each: "Infinite gems: the server owns gems;
+the only gem remote, `BuyItem` at `Shop:40`, spends them."
+
+---
+
+## 4. Building what they pick
+
+When the user picks rows, or says "all of them":
+
+1. Run `feature-search.md` for each picked row. Only a FOUND verdict builds; an
+   engine feature builds on its engine route.
+2. Build the rows that pass, in one script, with one toggle each. Controls and
+   hub styling follow `roblox-ui` and the user's picker codes.
+3. List what was not built and why, in the same words as the rejected list.
+4. Anything PARTIAL or NOT FOUND gets the runtime probe, not a guess.
+
+---
+
+## Checklist before sending suggestions
+
+- [ ] The inventory was run, or the manual search done, and its counts are in the reply
+- [ ] Every remote, tag, attribute and number named appears in the inventory output
+- [ ] Every argument list is copied from a call site, with its `script:line`
+- [ ] No row gives currency, items, passes or other players' data
+- [ ] Every row says what the dump cannot show
+- [ ] Failed-to-decompile regions are reported as unknown
+- [ ] Nothing was suggested because games of this genre usually have it
 
 ---
 
@@ -1300,7 +1505,7 @@ runtime cases as unrun, alongside the static checks that did execute.
 
 ---
 name: roblox-ui
-description: Roblox UI layout, responsiveness and design taste — recognising and removing generic AI-generated UI, ScreenGui and GuiObject layout, scale versus offset, UIListLayout with Wraps and flex alignment, UIFlexItem, StyleSheet cascade, safe areas and the GUI inset, design tokens for re-skinnable UI, config persistence for feature-heavy menus, viewport and DPI scaling with UIScale, typography and rich text, gradients including radial and conical, input across mouse, touch, gamepad and console, and the three surfaces (game HUD, executor hub, Studio plugin). Use for building or reviewing any GUI, menu, HUD, hub or script UI, when UI breaks on mobile, or when a design "looks AI-generated".
+description: Roblox UI layout, responsiveness and design taste — recognising and removing generic AI-generated UI, ScreenGui and GuiObject layout, scale versus offset, UIListLayout with Wraps and flex alignment, UIFlexItem, StyleSheet cascade, safe areas and the GUI inset, design tokens for re-skinnable UI, config persistence for feature-heavy menus, viewport and DPI scaling with UIScale, typography and rich text, gradients including radial and conical, input across mouse, touch, gamepad and console, the three surfaces (game HUD, executor hub, Studio plugin), whole-screen defaults (shop, hub, settings, HUD, inventory), sizes and tab layouts, blurry or broken UI, rebuilding a UI from a screenshot, building from a UI designer export, and short UI copy. Use for building, reviewing or improving any GUI, menu, HUD, hub or script UI, when UI breaks on mobile or looks blurry, when the user sends a UI picture or a roblox-ui-design export, or when a design "looks AI-generated".
 ---
 
 # Roblox UI
@@ -1336,6 +1541,13 @@ This skill owns **layout, responsiveness and taste**. Two siblings own the rest:
 | UI too big or too small on a device, `UIScale`, insets, notches | `references/scaling-and-dpi.md` |
 | gradients, radial and conical, depth, blur behind a modal | `references/gradients-and-depth.md` |
 | mouse vs touch vs gamepad vs console, focus, gestures | `references/input-surfaces.md` |
+| **a whole screen from a one-line request** — shop, hub, settings, HUD, inventory | `references/screen-archetypes.md` |
+| sizes, tab layout (top, side, bottom), improving an existing UI | `references/layout-ux.md` |
+| blurry icons or panels, cut-off dropdowns, "it's bugged" | `references/crisp-ui.md` |
+| the user sent a picture of a UI to recreate | `references/image-to-ui.md` |
+| labels, row descriptions, subtitles, button text, empty states | `references/ui-copy.md` |
+| a pasted `roblox-ui-design` export from the UI designer | `references/design-spec.md` |
+| which icon fits a tab or feature | `../roblox-ui-components/references/icon-meaning.md` |
 
 ## The four files that decide the outcome
 
@@ -2171,6 +2383,1188 @@ When Studio or the executor is unavailable, finish source checks and provide the
 smallest relevant manual test. State which visual/runtime checks remain untested.
 For a reported regression, reproduce the specific sequence first and preserve
 that case with its evidence in the project's existing test or context record.
+
+---
+
+## Source: .claude/skills/roblox-ui/references/screen-archetypes.md
+
+# Screen archetypes: whole screens that work without being art-directed
+
+"Make me a shop." "I need a settings menu." The user will not describe the
+layout, and should not have to. Each archetype below is a complete default:
+what the screen is for, its one hero, its skeleton, the parts and picker codes
+it uses, the states it needs, and what changes on a phone. Build the default,
+state it in one line, and let the user react to something real.
+
+Sizes and spacing follow `layout-ux.md`; parts come from `blueprints.md`;
+copy follows `ui-copy.md`; icons follow `icon-meaning.md`.
+
+---
+
+## Script hub
+
+**For** switching many features on and off while playing. **Hero:** none; the
+content is the point, so the window stays quiet and small.
+
+```text
+Window 560 x 380 (scale 0.5 x 0.65, 300..720 x 320..820), draggable header
+├── Header 44: title 20 Bold · badge · minimise · close        (B1a)
+├── Sidebar 140: tabs with icons, S4 or S5                      (B6)
+└── Page: search (D11 or a search box), section headings,
+          rows 44: toggles T1, sliders, dropdowns D1, keybinds  (B2)
+```
+
+States: empty search ("No features match"), a disabled row with the reason,
+loading while a feature starts. Hide and bring back: O1 or the user's pick.
+Notifications: N4, one line, 1.5 s. Phone: the sidebar becomes a top tab strip
+(S12); the window takes 92 % of the width.
+
+## Settings
+
+**For** changing a few preferences once. **Hero:** the section the player
+opened.
+
+```text
+Modal 420 x content, padding 16
+├── Header: "Settings" · close
+├── Tabs S1 along the top if there are 2-5 groups (Controls, Audio, Graphics)
+└── Rows 44 grouped under headings; sliders show their value; toggles T1
+    Footer: "Reset to defaults" (plain, left) — changes apply immediately
+```
+
+No Save button when every control applies at once; if something needs a
+restart, say so on that row. Phone: full-width sheet from the bottom (B8).
+
+## Shop
+
+**For** comparing and buying. **Hero:** the item's price and buy button.
+
+```text
+Window 560 x 420
+├── Header: "Shop" · coin balance (icon + number) · close
+├── Tabs S8 if there are categories (Tools, Pets, Passes)
+└── Grid of cards 120 x 152, gap 8                              (B4)
+    card: icon 40 · name 14 Bold · "250 coins" button (accent, full width)
+```
+
+The buy button says what it costs: **Buy for 250 coins**, never "Buy" alone.
+States: can't afford (button shows the shortfall, disabled with reason),
+owned ("Owned", not a disabled Buy), purchase pending, purchase failed. Robux
+products open Roblox's own prompt; the server grants (`roblox-monetization`).
+
+## Inventory
+
+**For** finding and equipping what you own. **Hero:** the selected item.
+
+```text
+Window 600 x 420
+├── Header: "Inventory" · count "18 / 50" · close
+├── Filter chips C9 or a search field
+├── Grid of slots 72 x 72 (icon, rarity edge, equipped mark)   (B4)
+└── Detail panel 200 wide: big icon, name, stats, Equip / Unequip
+```
+
+Empty state: "Nothing here yet. Items you buy or find appear here." Phone: the
+detail panel becomes a sheet over the grid.
+
+## Daily reward
+
+**For** a one-tap claim. **Hero:** the claim button.
+
+```text
+Window 520 x 236, content centred
+├── Title "Daily reward" 20 Bold
+├── Row of 7 day tiles 60 x 88 (claimed · today, outlined in accent · locked)
+└── Button "Claim day 4" 200 x 48, accent
+```
+
+Already claimed: the button becomes a countdown, "Next reward in 5h 12m".
+The server decides the day and the grant; the client only asks.
+
+## Main menu
+
+**For** getting into the game. **Hero:** Play.
+
+```text
+Column 320 wide, centred over the game or a backdrop
+├── Game title 28 Heavy
+├── Play 52 tall, accent, full width
+└── Settings, Credits 44 tall, raised
+```
+
+Nothing else competes with Play. The backdrop is the game or a slow camera
+move, not a gradient.
+
+## HUD
+
+**For** reading at a glance while playing. **Hero:** none; the HUD must not
+compete with the game.
+
+```text
+Bottom left: health chip 260 x 44 (heart icon + bar)
+Top right: currency chip (coin icon + number), below the Roblox buttons
+Right edge, centred: 3 icon buttons 56 x 56 (Shop, Pets, Settings)
+```
+
+Every chip is the smallest size that reads, on a surface at 10-20 %
+transparency. Numbers change with a short count-up, never a bounce. Phone:
+nothing under the thumb zones in the lower corners except the joystick side
+the game does not use.
+
+## Leaderboard
+
+**For** "where am I?". **Hero:** the player's own row.
+
+```text
+Panel 360 x 420
+├── Header: "Top players" · tabs S8 (Today, All time)
+├── Rows 44: rank · avatar headshot 32 · name · score (right-aligned)
+└── Pinned row at the bottom: the player's own rank, accent edge
+```
+
+Loading and empty states; scores formatted with separators (12,450).
+
+## Quest tracker
+
+**For** the next objective without opening a menu. **Hero:** the current
+objective.
+
+```text
+Top right under currency: 280 wide, content height
+├── Quest title 14 Bold
+└── Objective rows: "Collect coins 12 / 20" with a thin progress bar
+```
+
+Collapses to its title with one tap. Completing a step: a check and a short
+fade, then the next step.
+
+## Trade window
+
+**For** agreeing a swap safely. **Hero:** the two offers.
+
+```text
+Window 640 x 440
+├── Header: "Trading with Name" · close
+├── Two columns: your offer · their offer (slot grids, values)
+└── Footer: status text · Ready (toggle) · Accept (disabled until both ready)
+```
+
+Any change to either offer clears both Ready states and says so. The server
+validates every item and performs the swap.
+
+## Loading screen
+
+**For** covering the load honestly. **Hero:** the game's name.
+
+```text
+Full screen, the game's colour or art
+├── Name 28 · short tip line 14
+└── Progress bar 280 x 6 with a real step count, or an indeterminate bar
+```
+
+Never a percentage that is made up. Skip after assets load; fade out 0.3 s.
+
+## Dialogue (NPC)
+
+**For** reading and choosing a reply. **Hero:** the line being said.
+
+```text
+Bottom panel 640 wide, 24 from the bottom edge
+├── Speaker name 14 Bold · portrait 48
+├── Text 16, typed on at a readable speed, tap to finish
+└── Reply buttons 44 tall, stacked, the game's words
+```
+
+## Confirm a purchase or a destructive action
+
+**For** one question. **Hero:** the consequence.
+
+```text
+Modal 360 wide (B5)
+├── Title that is the question: "Sell Golden Sword?"
+├── One line with the consequence: "You get 120 coins. This can't be undone."
+└── Buttons: "Keep it" (plain) · "Sell for 120 coins" (danger or accent)
+```
+
+The confirming button repeats the action and the amount.
+
+---
+
+## When the request fits none of these
+
+Take the nearest archetype, keep its hero rule, and change the parts. State
+which archetype you started from in the reply ("built like a shop: a grid of
+cards with prices") so the user has a word for what they are looking at.
+
+---
+
+## Source: .claude/skills/roblox-ui/references/layout-ux.md
+
+# Layout and UX: sizes, tab layouts, and improving an existing UI
+
+The user will not say "increase the hierarchy contrast". They will say "it
+looks off", "it's cramped", "everything is tiny on my phone", "can you make it
+better". This file turns those into decisions with numbers, so a good layout
+does not depend on the user knowing the words.
+
+Pair it with `build-order.md` (the order to build in), `blueprints.md` (the
+parts), `screen-archetypes.md` (whole screens) and `crisp-ui.md` (blur and
+breakage).
+
+---
+
+## 1. Sizes: not too small, not too big
+
+Numbers for a 1280 × 720 computer screen that also survive a 390 × 844 phone.
+
+| Thing | Size | Too small looks like | Too big looks like |
+|---|---|---|---|
+| Anything tappable | 44 px tall at least, 44 wide for icon buttons | missed taps on a phone | — |
+| Row (toggle, slider, dropdown) | 44 px | cramped, hard to tap | 64+: a list that looks empty |
+| Body text, row labels | 14 px | squinting at 11 px | 18+: rows that look shouted |
+| Secondary text, notes | 12 px, never less | unreadable on a phone | — |
+| Section heading | 16 px bold | lost among rows | — |
+| Window title | 20 px bold | the window has no name | 28 belongs to one hero only |
+| Hero (one per screen) | 28 px | nothing leads | two heroes compete |
+| Icons | 16 in rows, 20 in tabs and headers, 24 on HUD buttons | smudges | icons louder than words |
+| Window | `fromScale(0.5, 0.65)`, `UISizeConstraint` 300..720 × 320..820 | text wraps everywhere | a 1000 px panel of empty space on a big monitor |
+| Script hub | about 560 × 380 at 1280 × 720, sidebar 140 | tabs truncate | covers the game the player is playing |
+| Confirm dialog | 360 wide, content height | buttons wrap | reads as a page, not a question |
+| HUD chip | 44 tall, as narrow as its content + 24 | — | covers the game: the HUD rule is "smallest that reads" |
+
+**Spacing**, only these values: 4, 8, 12, 16, 24, 32.
+
+| Between | Gap |
+|---|---|
+| icon and its label | 8 |
+| rows in a list | 8 |
+| groups of rows | 16 to 24 |
+| window edge and content | 16 |
+| sections of a page | 24 |
+
+**Density.** One screen does one job. A hub page shows about seven rows before
+it scrolls; past twelve, split it into sections with headings or into a second
+tab. Empty space around a group is what makes it read as a group.
+
+---
+
+## 2. Which tab layout
+
+Pick by the number of sections and the length of their names, not by taste.
+Codes are the style picker's tab styles.
+
+| Situation | Layout | Picker codes |
+|---|---|---|
+| 2 to 4 views of the same list (Buy / Sell, Daily / Weekly) | Segmented control above the list | S8 |
+| 3 to 5 sections, one-word names, window wider than tall | Tabs along the top | S1, S2, S3, S11 |
+| 5 to 9 sections, or names longer than one word | Sidebar on the left | S4, S5 |
+| A script hub | Sidebar with an icon per tab | S4 or S5 with icons, S6 |
+| More than 9 sections | Sidebar with group headings and a search field | S4 + D11 |
+| Sections that must fit a narrow window | Scrolling tab strip | S12 |
+| An icon-only rail | Only on a computer, only with names on hover | S7 |
+| Phone portrait | Tabs along the top or bottom; a sidebar becomes a top strip | S12, S2 |
+| Pages that should feel like pages | Add a page turn to any of the above | S9, S10 |
+
+Tab names follow `ui-copy.md`: one or two words, all different, the game's
+own words. Tab icons follow `roblox-ui-components/references/icon-meaning.md`.
+
+---
+
+## 3. What reads as organised
+
+1. **One hero.** One element per screen gets the largest type, the accent and
+   the most space: the title of a menu, the price in a shop, the claim button
+   on a daily reward. If you cannot say which it is, there isn't one.
+2. **One left edge.** Titles, labels and section headings start on the same
+   line. Controls line up on the right edge. A row is label left, control
+   right, nothing floating in the middle.
+3. **Group, then order.** Related controls sit together under a heading, at
+   most six per group. The most-used group first; anything destructive last,
+   separated, and never under the resting thumb on a phone.
+4. **One surface rule.** Page, panel, raised card: three levels, each one step
+   lighter (or darker) than the one under it. A border is the next step up.
+5. **Same things look the same.** Every row 44 tall, every corner from the two
+   radii, every toggle the same style. Variation must mean something.
+6. **The primary action is obvious and alone.** One filled accent button per
+   view. Secondary actions are outlined or plain.
+7. **Motion explains, it does not decorate.** Things move from where they
+   come from; nothing loops while idle.
+
+---
+
+## 4. Improving an existing UI
+
+When the user shares their UI (code, a screenshot, or a designer export) and
+asks to improve it, or says it "looks bad":
+
+1. **Name what it is for** in one sentence. Everything else is judged against
+   it.
+2. **Measure before judging.** For code, run `lint-roblox-ui.mjs` and note the
+   counts: text sizes, radii, spacing values, targets under 44. For a picture,
+   estimate the same things against a known size (a 44 px row, a 1280 px wide
+   screenshot).
+3. **Walk this order**, stopping at the first level that is wrong, because
+   later fixes depend on it: purpose → hero → grouping and order → alignment →
+   sizes → spacing → surfaces and colour → states → phone.
+4. **Report at most five changes, biggest effect first**, each written so a
+   non-programmer can picture it and a programmer can apply it:
+
+   > **The window has no clear title.** "Blox Hub" is the same size as the tab
+   > names, so the eye has nowhere to start. → Title to 20 px bold; tab names
+   > stay 14 px.
+
+5. **Offer to apply them** and, when applying, change only those things.
+   Report before and after counts from the linter.
+
+### What usually needs fixing
+
+| They say, or you see | Usually | Change |
+|---|---|---|
+| "looks cheap", "AI-made" | every surface the same shade, one text size, no hero | three surface levels, the type scale, one hero |
+| "cramped" | spacing under 8, no padding on the window | 16 padding, 8 between rows, 24 between groups |
+| "empty", "too big" | no max size, huge text | `UISizeConstraint` max, 14 px rows |
+| "messy" | several left edges, centred labels | one left edge, labels left, controls right |
+| "hard to use on phone" | targets under 44, hover-only actions | 44 px rows, tap states, bottom-placed primary action |
+| "boring" | no accent, no motion on open | one accent on the selected tab and primary button; M1 open |
+| "too much going on" | an icon on every row, three accents, gradients everywhere | icons on tabs and actions only, one accent, flat surfaces |
+| "can't find anything" | ten tabs with one row each, or one tab with forty rows | regroup to 4 to 7 tabs of 4 to 12 rows |
+
+---
+
+## Source: .claude/skills/roblox-ui/references/crisp-ui.md
+
+# Blurry and broken UI: causes and fixes
+
+"It looks blurry", "it's bugged", "the dropdown is cut off", "it's fine on my
+PC and broken on my phone". Each of these has a small set of mechanical causes,
+and none of them is fixed by changing colours. Find the row, apply the fix,
+check the way the last column says.
+
+The engine facts below come from the Roblox API reference; the member names
+are checked against the vendored API dump.
+
+---
+
+## Blurry
+
+| You see | Cause | Fix |
+|---|---|---|
+| An icon is soft or fuzzy | The image is drawn larger than the texture it was uploaded as. By default the engine smooths an image shown larger or smaller than its texture size | Show it at or below the size it was made for. For your own art, upload it at least twice the largest size it appears on screen, then set the displayed size |
+| Pixel art is smeared | The same smoothing | `ResampleMode = Enum.ResamplerMode.Pixelated` keeps hard pixel edges |
+| An icon is squashed or stretched | `ScaleType` is `Stretch` and the box is not the image's shape | `ScaleType = Enum.ScaleType.Fit`, or a square box with a `UIAspectRatioConstraint` |
+| A 9-slice panel has soft, fat corners | `SliceScale` above 1 grows the edges as if the texture had been upscaled | Keep `SliceScale` at 1 or below; for bigger corners, upload a bigger slice image. Set `SliceCenter` to the source image's real corner size in pixels |
+| A dark rim around a transparent icon | Colour hidden in the transparent pixels bleeds in when the image is scaled | Export the PNG with the transparent area filled with the icon's own edge colour, or use the `icon-ids.txt` icons, which are single-colour and tinted with `ImageColor3` |
+| A whole panel goes soft, or blank on low graphics | It is inside a `CanvasGroup`. A CanvasGroup draws its children into a texture whose quality and memory are limited by the player's graphics quality; past the memory cap it draws blank; each new size makes a new texture | Use a `CanvasGroup` only for something that must fade or clip as one piece. Never wrap the whole screen or a scrolling list in one, and do not tween its `Size` |
+| Text is small and soft on a phone | `TextScaled` shrank it, or a `UIScale` below 1 took 14 px text under 12 | Fixed `TextSize` from the type scale, `TextScaled = false` on any sentence, and check the phone size after `UIScale`: nothing under 12 |
+| Outlined text looks blobby | A thick `UIStroke` on small text | Stroke thickness 1 on text under 20 px, or no stroke: a darker panel behind the text reads better |
+| The game behind the menu stays blurry | A `BlurEffect` in `Lighting` was never set back to 0 | One shared blur, tweened to 0 on close; see `roblox-ui-components/references/shadows-and-elevation.md` |
+
+---
+
+## Broken
+
+| You see | Cause | Fix |
+|---|---|---|
+| A dropdown list or tooltip is cut off by its panel | It is inside a `ScrollingFrame` or a `ClipsDescendants` parent, which clips anything that leaves it | Draw the list in its own `ScreenGui` with `DisplayOrder` one above the host and the host's `ScreenInsets` copied; `roblox-ui-components/assets/dropdowns.luau` does this |
+| Something shows behind what it should cover | Sibling `ZIndex` values fight, or `ZIndexBehavior` differs between guis | Set `ZIndexBehavior = Enum.ZIndexBehavior.Sibling` explicitly and give overlays their own `ScreenGui` with a higher `DisplayOrder`, instead of raising `ZIndex` everywhere |
+| Square corners poke out of a rounded panel | `UICorner` rounds only its own parent, and `ClipsDescendants` clips to the rectangle | A `CanvasGroup` with the `UICorner` for content that reaches the edge, or inset the children by the radius |
+| A child ignores its `Position` | A `UIListLayout` or `UIGridLayout` places every child | Order with `LayoutOrder`, space with the layout's `Padding` and a `UIPadding`, take the slack with `UIFlexItem` |
+| A frame grows forever or flickers | `AutomaticSize` on an axis where a child is sized by scale of that same parent | Children on an automatic axis size in offset, or fill with `UIFlexItem` |
+| A list cannot scroll to the end | `CanvasSize` is a fixed guess | `AutomaticCanvasSize = Enum.AutomaticSize.Y` with `CanvasSize = UDim2.new()` and a list layout inside |
+| Text runs out of its box | No wrap and no truncation | `TextWrapped = true` in a box that can grow, or `TextTruncate = Enum.TextTruncate.AtEnd` on a one-line label |
+| The top of the UI hides under the Roblox top bar or a notch | Insets ignored | `ScreenInsets = Enum.ScreenInsets.CoreUISafeInsets` on the `ScreenGui` |
+| The UI disappears when the player respawns | `ResetOnSpawn` is true, the default | `ResetOnSpawn = false` |
+| A button does nothing when clicked | An invisible frame lies on top of it and takes the input | Find what covers it (`PlayerGui:GetGuiObjectsAtPosition`) and set `Interactable = false` or `Active = false` on the cover, or move it |
+| A list jitters while something animates | A layout child's `Size` is tweened, so every sibling reflows each frame | Tween a `UIScale` inside it, or the size of an inner frame that is not a layout child |
+| Right size on a computer, cut off on a phone | Offset-only sizes on the root | Scale sizes with a `UISizeConstraint` holding both bounds; `responsive-and-surfaces.md` |
+| Hover colour stuck on a phone | `MouseEnter` fired from a tap with no `MouseLeave` after it | Show hover only while an input of type `MouseMovement` is over it; pressed and selected states come from `InputBegan` and `Activated` |
+| A button fires twice | A second connection was made the next time the menu opened | Connect once when the UI is built, or keep and disconnect the connection when the menu closes |
+
+---
+
+## Before any UI leaves
+
+Run these, in this order, and fix what they report before looking at colour:
+
+1. `node tools/bin/lint-roblox-ui.mjs <file>` catches the layout-position,
+   radius, unbounded-root, text-size and connection rows above.
+2. Resize the view to 390 × 844 (Studio's Device emulator, or the UI designer's
+   phone screen): nothing under 12 px, nothing cut off, no target under 44 px.
+3. Open every popup inside every scrolling area and confirm it is not clipped.
+4. Respawn once with the UI open.
+5. For every image: shown size no larger than the size it was made for, and
+   `ScaleType` right for its shape.
+
+---
+
+## Source: .claude/skills/roblox-ui/references/image-to-ui.md
+
+# Rebuilding a UI from a picture
+
+The user sends a screenshot of a UI they like ("make mine look like this") or a
+mock-up they drew. The failure is a build that shares the reference's colours
+and nothing else: different proportions, different spacing, a generic layout
+wearing its palette. The fix is to measure the picture before writing any
+code, write the measurements down, build from the measurements, then compare.
+
+---
+
+## 1. Inventory
+
+List every element in the picture, top to bottom, left to right, as a tree:
+
+```text
+Window (dark panel, rounded)
+├── Header: title "Blox Hub", badge "BETA", minimise, close
+├── Sidebar: 5 tabs with icons, the first selected
+└── Content
+    ├── Search field with icon
+    ├── Section heading "FARMING"
+    └── 4 rows: toggle, toggle, slider, dropdown
+```
+
+Name each part with the words in `roblox-request-intake/references/ui-words.md`
+and each control with its picker code when one matches (a sliding pill switch
+is T1, a pill tab marker is S5). Codes carry tested implementations; matching
+a code is better than inventing a lookalike.
+
+## 2. Measure
+
+Find one thing whose real size you know and derive the scale from it:
+
+- A row or button that is clearly a touch target: about 44 px.
+- The screenshot's width, if it is a full Roblox window: 1280, 1366 or 1920.
+- The Roblox top bar, if visible: about 58 px tall.
+
+Then write down, in real pixels: the window's width and height, the sidebar
+width, row height, the gaps between rows and groups, the window padding, the
+corner radii, the icon sizes and every distinct text size. Round each to the
+nearest value on the scales (spacing 4/8/12/16/24/32, text 12/14/16/20/28) and
+say where you rounded: "measured 13 px, using 12".
+
+## 3. Colours
+
+Sample the flat areas, not the edges: page behind the window, window, raised
+rows, borders, primary text, secondary text, accent, and any status colours.
+Map each sample to a token role (`build-order.md`), not to a literal in the
+code. If two samples are within a few steps of each other, they are one token.
+
+Check the text contrast of the result (4.5:1). A reference that fails it is
+matched in hue, with the text token lifted until it passes, and the reply
+says so.
+
+## 4. Type
+
+Identify the font by its shape and name the nearest Roblox family:
+
+| Looks like | Use |
+|---|---|
+| Geometric, round letters (Gotham, Montserrat) | `Gotham` family (`Font.fromEnum(Enum.Font.GothamMedium)` and the Bold/Black faces) |
+| Neutral grotesque (Inter, Arial) | `BuilderSans` or `Arial` |
+| Rounded, friendly | `FredokaOne`, `Nunito` |
+| Monospace, console | `RobotoMono`, `Code` |
+| Chunky display, cartoon | `LuckiestGuy`, `Bangers` |
+
+Check every face you name exists with
+`node tools/bin/verify-api.mjs Enum.Font.<Name>`. Weights come from
+`Font.new(Font.fromEnum(Enum.Font.Gotham).Family, Enum.FontWeight.Bold)`.
+
+## 5. Icons
+
+Name each icon by what it depicts, then find it in
+`roblox-ui-components/references/icon-ids.txt` by name or tag. Use the content
+id from the file. If the reference uses a custom or branded icon with no Lucide
+equivalent, use the closest meaning (`icon-meaning.md`) and list it as a
+difference.
+
+## 6. What a picture cannot show
+
+Hover, press and focus colours, animations, what happens on a phone, and the
+content of other tabs. Do not claim them. Build them from the defaults (six
+states, M1, N1) or the user's picker codes, and list them in the reply as
+decided, not seen.
+
+## 7. Write the spec, then build
+
+Before code, one block the user can check:
+
+```text
+Window 560 x 380, radius 10, padding 16, surface (19,21,26), border (44,48,57)
+Sidebar 140 wide, tabs 44 tall, gap 4, selected: pill (46,160,127) at 15%
+Rows 44 tall, gap 8, radius 6, raised (31,34,41)
+Text: title 20 Bold, rows 14 Medium, section 12 Bold caps muted
+Icons: home, user, swords, eye, settings (16 px, secondary text colour)
+Controls: T1 toggles, D1 dropdown, slider plain
+```
+
+Then build the tree from the spec with the recipes, in `build-order.md` order.
+
+## 8. Compare
+
+Put the result next to the reference, element by element, and report every
+difference that remains, with its reason:
+
+| Element | Reference | Built | Why |
+|---|---|---|---|
+| Close icon | custom X | Lucide `x` | same meaning, uploaded and checked |
+| Title font | a paid font | Gotham Bold | nearest Roblox face |
+
+"Pixel perfect" is not a claim to make: fonts, antialiasing and screen scale
+differ between a screenshot and Roblox.
+
+---
+
+## Someone else's game
+
+Recreate the layout, proportions and feel. Do not copy a game's logo, name,
+artwork or uploaded images: rebuild them with the user's own names and icons
+from `icon-ids.txt`, and say that you did.
+
+---
+
+## Source: .claude/skills/roblox-ui/references/ui-copy.md
+
+# Words on the screen: labels, descriptions, subtitles
+
+The text inside a UI is read in half a second by someone playing a game. The
+generated version reads like a product launch: *"Seamlessly enhance your
+gameplay experience with our powerful auto-farming solution."* The player
+wanted two words and a switch.
+
+This file is for text in the interface: titles, tab names, row labels, row
+descriptions, subtitles under a heading, button labels, notifications, empty
+states. For the length of chat replies, see `roblox-reply-craft`.
+
+---
+
+## Lengths
+
+| Text | Length | Example |
+|---|---|---|
+| Window title | 1-3 words | Blox Hub · Daily reward |
+| Tab name | 1-2 words | Combat · Teleports |
+| Section heading | 1-2 words | Farming · Movement |
+| Row label | 1-4 words, the thing it changes | Auto farm · Walk speed |
+| Row description (optional) | one line, under 50 characters, says what the player gets or what it costs | Collects coins within 30 studs |
+| Button | verb + object, with the amount if there is one | Buy for 250 coins · Claim day 4 |
+| Notification | under 40 characters, one line; the result, not the process | Auto farm is on · Not enough coins |
+| Empty state | what is missing + how to get it, two short sentences | No pets yet. Hatch an egg to get one. |
+| Error | what failed + what to do, one line | Couldn't save. Try again in a moment. |
+| Subtitle under a title | usually none; if needed, one line under 60 characters | Changes apply straight away |
+
+A row description exists only when the label cannot say it: a limit, a cost, a
+side effect. "Enables the auto farm feature" under **Auto farm** says nothing
+and is deleted.
+
+## Rules
+
+1. **Name the thing in the game's words.** The game says *coins*, the UI says
+   coins, not "currency". It says *rebirth*, not "prestige system".
+2. **Labels are nouns or verbs, not sentences.** No full stops in labels,
+   tabs, buttons or headings.
+3. **Sentence case**: "Walk speed", not "Walk Speed" or "WALK SPEED", except
+   where the chosen direction uses small caps headings (then only headings).
+4. **Buttons say what happens**: *Buy for 250 coins*, *Sell Golden Sword*,
+   *Keep it*. Never *OK*, *Confirm*, *Submit*, *Yes*.
+5. **Numbers are numbers**: "3 left", "12 / 20", "5h 12m". Not "three
+   remaining".
+6. **Every tab name is different in meaning.** *Settings*, *Options* and
+   *Config* as three tabs are one word three times; name them for what they
+   hold: *Controls*, *Audio*, *Graphics*.
+7. **No decoration in text**: no emoji, no ✨, no "→" arrows, no ALL CAPS
+   shouting, no exclamation marks outside a genuine reward moment.
+
+## Words that mark text as generated
+
+Delete them, then rewrite what is left in the game's words. The UI designer's
+checks flag the first row.
+
+| Delete | Because |
+|---|---|
+| seamless, effortless, elevate, unleash, ultimate, experience the, unlock the power, enhance your | marketing voice; says nothing about the game |
+| powerful, advanced, smart, intelligent, robust, cutting-edge | claims no player can check |
+| simply, just, easily | the player decides what is easy |
+| feature, functionality, solution, system (as in "the farming system") | names the code, not the thing |
+| "Welcome to …", "Get ready to …", "Dive into …" | a preamble before the content |
+| "Toggle to enable …", "Click here to …" | describes the control instead of the result |
+
+Before and after:
+
+| Generated | Written |
+|---|---|
+| Unleash the power of automated farming | Auto farm |
+| Seamlessly teleport to any location with ease | Teleport to a zone |
+| This feature allows you to adjust your walk speed | Walk speed · 16 to 100 |
+| Successfully enabled auto farm feature! | Auto farm is on |
+| Oops! Something went wrong. Please try again later. | Couldn't claim. Try again in a moment. |
+| Welcome to the ultimate shop experience | Shop |
+
+## Checking
+
+Read every string aloud, in screen order. Each should be something a player
+would say while playing. Count characters for descriptions (50), notifications
+(40) and subtitles (60); cut, do not shrink the text size to fit.
+
+---
+
+## Source: .claude/skills/roblox-ui/references/design-spec.md
+
+# Building from a UI designer export
+
+The user laid out a screen in the UI designer
+(<https://x-yami-sukehiro-x.github.io/roblox-luau-expert-skill/designer.html>)
+and pasted what it copied, or attached `ui-design.json`. That text is a spec,
+not a suggestion: they placed every element on purpose. Build it exactly, and
+add only what a spec cannot hold: behaviour, states and wiring.
+
+Recognise it by its first line or by `"format": "roblox-ui-design"`.
+
+---
+
+## The format (version 1)
+
+```json
+{
+ "format": "roblox-ui-design", "version": 1,
+ "designedOn": { "device": "Computer 1280×720", "screen": "1280x720", "uiArea": "1280x662", "note": "…" },
+ "direction": "Slate",
+ "theme": { "base": "Color3.fromRGB(19, 21, 26)", "text": "Color3.fromRGB(243, 245, 248)" },
+ "picks": { "toggle": "T1", "dropdown": "D1" },
+ "screenGui": { "ClassName": "ScreenGui", "Name": "HubUI", "ResetOnSpawn": false,
+                "ScreenInsets": "Enum.ScreenInsets.CoreUISafeInsets", "ZIndexBehavior": "Enum.ZIndexBehavior.Sibling" },
+ "tree": [ { "ClassName": "Frame", "Name": "Hub", "Size": "UDim2.new(0, 560, 0, 380)", "…": "…",
+             "Modifiers": [ … ], "Control": { … }, "Does": "…", "Children": [ … ] } ]
+}
+```
+
+| Key | Meaning | Build it as |
+|---|---|---|
+| `theme` | Only the colours the design uses, by role name | One `THEME` table with exactly these names and values, at the top. No colour literal anywhere else |
+| `direction` | The design direction the colours came from (`design-directions.md`) | Use its type scale and radii for anything you add |
+| `picks` | Picker codes used by controls in the design | Treat as the user's picks, saved like any other pick |
+| `screenGui` | The root `ScreenGui` | Create it with these properties, parented to `PlayerGui` |
+| `tree` | Top-level elements, in order | Children of the `ScreenGui` |
+| Plain keys (`Size`, `Position`, `AnchorPoint`, `BackgroundColor3`, `Text`, `FontFace`, `TextSize`, …) | Real Roblox properties, values written as Luau | Assign exactly. `THEME.base` means the `THEME` entry |
+| `LayoutOrder` | The element sits in its parent's list or grid | Keep it; a layout child gets no `Position` |
+| `Modifiers` | `UICorner`, `UIStroke`, `UIGradient`, `UIPadding`, `UIListLayout`, `UIGridLayout`, `UIFlexItem`, `UISizeConstraint`, `UIAspectRatioConstraint` | Create each as a child of the element with the listed properties |
+| `Children` | Elements inside it | Recurse |
+| `Control` | A working control: `Kind` (toggle, checkbox, choices, slider, dropdown, tabs, keybind, progress, toast, button, search), `Style` (picker code and name) and its settings (`Label`, `On`, `Options`, `Value`, `Min`, `Max`, `Key`, `Severity`, `Icon`) | Build the element with the code's tested recipe from `style-pack.md` / `roblox-ui-components/assets/`, sized to the element's `Size`, with these settings |
+| `Does` | What the control must do, in the user's words | Wire it (section 3) |
+| `Lucide` | The Lucide name of the image | Informational: the `Image` id beside it is already the verified upload. Do not replace it |
+| `IconSize` | The drawn size of an icon inside a larger image box | Size the image to this, centred |
+| An `Icon` child of an `ImageButton` | The glyph inside an icon button | Build as written: the button has `Image = ""` and the `ImageLabel` carries the icon |
+
+Values are already Roblox-valid: `UDim2.new(0.5, 0, 0.65, 0)`, `Enum.Font…`,
+`Font.new(Font.fromEnum(Enum.Font.Gotham).Family, Enum.FontWeight.SemiBold)`.
+Copy them; do not convert scale to offset or round.
+
+---
+
+## 1. Exactness rules
+
+1. **Every element, in order, with its name.** The export names are the
+   Explorer names the user will look for.
+2. **Every property as given.** Sizes, positions, anchors, colours, fonts,
+   text, radii, strokes and padding are the design. If one breaks a rule of
+   this stack (a 10 px label, a 36 px button), build it as given and list it
+   under "Checks" in the reply with the one-line fix; do not silently change
+   it.
+3. **Image ids as given.** They come from `icon-ids.txt` and were checked as
+   real images. A custom id the user typed is theirs; build it and mention you
+   could not preview it.
+4. **Nothing extra on screen.** No added titles, shadows, gradients or
+   decoration. Additions are behaviour and states only.
+
+## 2. What to add, because a picture cannot hold it
+
+- The six states for every interactive element (rest, hover, press, focus,
+  disabled, selected), from the control's recipe or `component-states.md`.
+- Motion from the user's picks (`M`, `N`, `O`, `P`, `S` codes), else the
+  defaults M1, N1, O1, P1, S1.
+- Empty, loading and error states for lists, from `ui-copy.md`.
+- Connections stored and disconnected; `Activated` for clicks.
+- A `UISizeConstraint` on a top-level window the design left in pixels only,
+  noted under "Checks".
+
+## 3. Wiring `Does`
+
+Each `Does` line becomes code: "Opens the shop" shows the element named Shop;
+"Buys the Sword if I have enough coins" fires the game's purchase remote,
+validated on the server. Names that belong to the user's game (a remote, a
+module, a currency) come from their code. If you cannot find one, build
+everything else, leave that single call behind one clearly named function,
+and ask for that one name. Never invent a remote.
+
+## 4. Reply
+
+1. One line: what was built and from which export (`HubUI, 18 elements`).
+2. The whole script, one code block (`roblox-reply-craft`).
+3. Placement in Studio's words.
+4. "Checks": any design value this stack would change, with the fix, and
+   anything in `Does` still waiting for a name.
+
+Run the UI linter on the result and report its counts. A design that the
+designer's own checks passed should lint clean; a difference is a bug in the
+build, not in the design.
+
+---
+
+## Source: .claude/skills/roblox-luau-language/references/compiler-limits.md
+
+# Luau Compiler Limits — Registers, Locals, Upvalues, Constants, Instructions
+
+Six **different** compile errors, six **different** fixes. Identify which one you hit before refactoring — grouping locals into a table does nothing for the instruction limit, and splitting a function does nothing for the constant limit.
+
+**Do not wait for the error.** A script that fails any of these does not run at all, not even its first line. Write under budget from the start (below), and measure before delivering:
+
+```bash
+node tools/bin/check-registers.mjs <file.luau>     # no Node: python tools/py/register_budget.py <file.luau>
+```
+
+It compiles the file at `-O0` and prints each function's peak register use and the line where it peaks, and exits 1 on a compile error or any function at 160 registers or more.
+
+---
+
+## The limits
+
+From `luau-lang/luau`, `Compiler/src/Compiler.cpp`:
+
+```cpp
+static const uint32_t kMaxRegisterCount = 255;
+static const uint32_t kMaxUpvalueCount = 200;
+static const uint32_t kMaxLocalCount = 200;
+static const uint32_t kMaxInstructionCount = 1'000'000'000;
+```
+
+Documented per-function limits from `luau.org/compatibility`:
+
+| Limit | Value | Note |
+|---|---|---|
+| Local variables | **200** | Includes function arguments |
+| Upvalues | **200** | Up from 60 in Lua 5.1 |
+| Registers | **255** | Locals + temporaries |
+| Constants | **2^23** | Up from 2^18 in Lua 5.1 |
+| Jump distance | **2^23** | The limit that actually bites: a single `if`/loop body cannot need a longer jump |
+| Nested functions | **2^15** | Down from 2^18 in Lua 5.1 |
+| Stack depth | **20,000** Lua calls / thread | 200 C calls per C thread — so `pcall` / `coroutine.resume` nesting caps at 200 |
+
+> The `kMaxInstructionCount` constant quoted above (`1'000'000'000`) and the
+> `2^23` in this table measure different things. The billion is a ceiling on
+> the total instructions the compiler will emit before it gives up; `2^23` is
+> how far a single jump can reach, which is what a very long `if` body or loop
+> runs into first. Only the second is realistically reachable.
+
+**All of these are per function, not per script.** A 10,000-line script is fine if every individual function stays under. The Luau team's own warning applies: code sitting close to any limit is fragile, because codegen evolves.
+
+---
+
+## The six errors
+
+| Error text | Raised by | What it means | Fix |
+|---|---|---|---|
+| `Out of local registers when trying to allocate <name>: exceeded limit 200` | local allocation | Too many **concurrently live** locals in one function | Tables, `do` blocks, split the function |
+| `Out of upvalue registers when trying to allocate <name>: exceeded limit 200` | `getUpval` | A closure captures more than 200 outer locals | Pass parameters instead of capturing; group captures into one table |
+| `Exceeded constant limit; simplify the code to compile` | `checkConstant` | Too many distinct literals in one function | Move data out to a ModuleScript or a decoded string |
+| `Exceeded function instruction limit; split the function into parts to compile` | `compileFunction` | One function body is too long | Split into several functions |
+| `Out of registers when trying to allocate <N> registers: exceeded limit 255` | register allocation | One expression needs `N` consecutive temporary slots on top of the locals already alive: a call with very many arguments, a long `..` chain, or many locals plus a wide call | Pass a table instead of 60+ arguments; `table.concat` instead of a long `..` chain; fewer live locals at that line |
+| `Exceeded return count limit; simplify the code to compile` | `return` | One `return` lists more than about 250 values | Return one table |
+
+The error is printed as `file(line,col): CompileError: ...`. The line is where the budget ran out, not where the problem started: the 201st local is rarely the one to move.
+
+### Measured, not recalled
+
+Each row was reproduced with the Luau 0.739 compiler in `tools/runtime/`:
+
+| Source | `-O0` | `-O1` / `-O2` |
+|---|---|---|
+| 210 × `local vN = math.random()` | Out of local registers at the 201st | same |
+| 210 × `local vN = <number literal>`, never reassigned | Out of local registers at the 201st | **compiles** — constant locals are folded away |
+| 150 locals in each of four sequential `do` blocks (600 total) | compiles | compiles |
+| `print(` 260 arguments `)` | Out of registers, 261 | same |
+| a 260-part `a .. b .. c ..` chain | Out of registers, 260 | same |
+| 190 live locals, then a 71-argument call | Out of registers, 72 | same |
+| `return` with 260 values | Exceeded return count limit | same |
+| one table constructor with 400 items | compiles | compiles |
+
+Two conclusions. Constant folding hides the problem at the optimisation levels most hosts use, so a count that ignores constant locals is fragile: one reassignment turns them back into registers. And the register limit is the sum of what is alive plus what one expression needs, so a function at 190 locals fails on an ordinary call.
+
+Historical note: the compiler enforced 255 instead of 200 for locals since launch — a bug, fixed so the documented limit is now the real one. Old code that compiled before may now fail.
+
+---
+
+## Predicting it before you compile
+
+There is no compiler flag for this. Use the counting rules.
+
+**What consumes a local slot:**
+
+- Every `local x` — one slot each.
+- **Function parameters** — count toward the same 200.
+- `for i, v in pairs(t) do` — **two** locals per loop, plus the internal iterator state.
+- `for i = 1, 10 do` — one visible local, plus internal control registers.
+- `local a, b, c = f()` — three.
+- `local function name()` — one (the name), plus its own separate 200-budget inside.
+
+**The rule people miss:** the main chunk of a script **is itself a function**. Top-level `local` declarations in a single-file executor script count exactly like locals inside any other function, against the same 200. A long flat script with no functions is the most common way to hit this.
+
+**Symptoms that you are approaching it:**
+
+- A single function over ~300 lines with no inner functions.
+- Generated code — GUI-to-Lua converters emitting `local frame1 = ...`, `local frame2 = ...`.
+- A config block written as dozens of individual `local` lines.
+- A network/event library generating many handler functions in one scope.
+- Long `if/elseif` chains where each branch declares its own locals at function scope.
+
+Practical working ceiling: keep functions under **~80 meaningful locals**. That leaves headroom for temporaries, which share the 255-register budget.
+
+---
+
+## Register lifetime — why `do` blocks work
+
+A local occupies a register **only while it is in scope**. When a scope closes, the compiler pops its locals and reuses those register slots.
+
+So the ceiling is **concurrent live locals, not total locals declared**. A function declaring 500 locals across ten sequential `do ... end` blocks — 50 live at a time — compiles fine.
+
+```lua
+local result
+do
+    local tempA = computeA()
+    local tempB = computeB()
+    local tempC = computeC()
+    result = tempA + tempB + tempC
+end
+-- tempA / tempB / tempC slots are free again here
+
+do
+    local other = computeD()   -- reuses one of the freed slots
+    result += other
+end
+```
+
+This reframing makes the fix obvious rather than a trick: **shorten lifetimes**. Declare late, scope tightly, close early.
+
+---
+
+## Write under budget from the start
+
+The limit is structural, so the prevention is structural. These are the defaults for any script that will grow past a few hundred lines, and for every executor script or UI builder written as one file:
+
+1. **Budget: 160 registers per function, peak.** That leaves room for a wide call and for the next person's edits. `check-registers` flags a function at 160.
+2. **The main chunk holds handles, not items.** Top-level locals are services, the one `CONFIG` table, the one `ui` table, the one `state` table, the `connections` list, and local functions. Not one local per button, per setting, per remote or per colour.
+3. **One table per family, created where the family starts:**
+
+   | Grows by | Instead of | Write |
+   |---|---|---|
+   | UI elements | `local title = ...` × 80 | `ui.title = make("TextLabel", {...})` |
+   | Settings | `local walkSpeed = 16` × 40 | `CONFIG.walkSpeed` |
+   | Remotes | `local buyRemote = ...` × 20 | `remotes.buy` |
+   | Connections | `local conn1 = ...` | `table.insert(connections, ...)` |
+   | Per-tab or per-feature setup | one flat block | `local function buildShopTab()` |
+
+4. **Each tab, feature or window is a local function.** A function has its own 200-local budget, so moving 60 lines of setup into `local function buildPlayerTab()` removes their locals from the main chunk entirely. This is the conversion to make first: it is also how the code reads best.
+5. **One-shot setup goes in `do ... end`**, so its temporaries die at `end`.
+6. **Generated or converter output** (`local Frame1 = Instance.new(...)` × 300) is rewritten into a `make(className, props, children)` helper over a nested table, not patched.
+
+### When the script is already near the limit
+
+Editing a script at 170 locals: **do not add another top-level local.** Put the new value in an existing table, or the new code in a function. Then reduce, largest family first:
+
+1. Run `check-registers` and note the peak line and count.
+2. Pick the largest family of related top-level locals: usually UI references or settings.
+3. Create one table where the first of them was declared and move the whole family in one pass: `local shopFrame = ...` becomes `ui.shopFrame = ...`, and every use of `shopFrame` becomes `ui.shopFrame`. Search for each name, whole word, before and after; a missed use is a nil at runtime, not a compile error.
+4. Move each self-contained section (a tab's rows, a feature's connections) into a `local function` that takes the tables it needs.
+5. Compile, run `check-registers` again, and report both counts: `main chunk 187 → 64 registers`.
+
+Keep names unchanged apart from the table prefix, so the diff stays readable and nothing else is renamed.
+
+```lua
+-- Before: one local per element, all alive in the main chunk
+local shopFrame = Instance.new("Frame")
+local shopTitle = Instance.new("TextLabel")
+local shopClose = Instance.new("ImageButton")
+-- ... 120 more
+
+-- After: one table, filled by a function with its own budget
+local ui = {}
+
+local function buildShop(parent: Instance)
+	ui.shopFrame = Instance.new("Frame")
+	ui.shopFrame.Parent = parent
+	ui.shopTitle = Instance.new("TextLabel")
+	ui.shopTitle.Parent = ui.shopFrame
+end
+```
+
+## Fix 1 — group into tables (the main fix for the local/upvalue limits)
+
+```lua
+-- Burns many registers
+local health = 100
+local maxHealth = 100
+local walkSpeed = 16
+local jumpPower = 50
+-- ... dozens more
+
+-- One register
+local stats = {
+    health = 100,
+    maxHealth = 100,
+    walkSpeed = 16,
+    jumpPower = 50,
+}
+```
+
+### "Won't tables be slower than locals?"
+
+Recurring worry, and the answer is **no — provided you write them the way Luau optimizes for.** From `luau.org/performance`, table field access uses inline caching, which requires:
+
+1. **The field name is known at compile time.** `stats.health` is fast. `stats[key]` in a hot loop is not — it defeats the cache.
+2. **The key set is uniform.** Tables with the same shape share cache entries. Varying which keys exist between instances defeats the optimization.
+3. **Data lives directly on the table, methods on the metatable.** Field lookups that fall through a metatable are slower.
+
+```lua
+-- Fast: literal field name, uniform shape
+stats.health -= damage
+
+-- Slow in a hot loop: dynamic key defeats inline caching
+local key = "health"
+stats[key] -= damage
+```
+
+Collapsing locals into a table moves the naming burden onto the field names — `stats.health` has to carry what `playerHealth` used to. Name the fields as carefully as you named the locals; see `roblox-code-craft/references/naming.md`.
+
+Written correctly the table workaround costs essentially nothing. Written as dynamic indexing in a per-frame loop it does. That distinction is the whole answer.
+
+Also from the same page: `table.create(n)` to preallocate arrays, `table.insert` to append, and `-O2` constant-folds most builtin calls with constant arguments — so `math.floor(3.7)` in source is free at runtime.
+
+---
+
+## Fix 2 — split the function (the only fix for the instruction limit)
+
+```lua
+local function processDamage(data)
+    -- only the locals needed for damage
+end
+
+local function processEffects(data)
+    -- only the locals needed for effects
+end
+```
+
+Each function gets its own 200-local, 200-upvalue, 2^23-instruction budget. This is the fix when the error says *"split the function into parts to compile"* — no amount of table-grouping reduces instruction count.
+
+---
+
+## Fix 3 — parameters over captured upvalues
+
+Heavy closure capture pressures the **upvalue** limit, which is separate from locals and produces its own error.
+
+```lua
+-- Captures many outer locals as upvalues
+local function makeHandler()
+    return function()
+        useA(a); useB(b); useC(c) -- a, b, c ... all become upvalues
+    end
+end
+
+-- One upvalue
+local function makeHandler(ctx)
+    return function()
+        useA(ctx.a); useB(ctx.b); useC(ctx.c)
+    end
+end
+```
+
+Passing a single context table, or passing values as parameters, relieves both limits at once.
+
+---
+
+## Fix 4 — move data out (the fix for the constant limit)
+
+Large literal tables burn constants, not registers. When you hit *"Exceeded constant limit"*:
+
+- Move the data into a **ModuleScript** and `require` it — a separate function with a fresh budget.
+- For very large static datasets, store as an encoded string (`base64decode` / `JSONDecode`) and decode at runtime. Trades a little startup cost for a compilable function.
+
+---
+
+## Fix 5 — avoid pointless locals
+
+```lua
+-- Wasteful
+local zero = 0
+part.Transparency = zero
+
+-- Better
+part.Transparency = 0
+```
+
+Do not create a local to hold a literal or a single-use expression.
+
+---
+
+## What not to do
+
+- **Dropping `local` to make things global.** Slower (hash lookup instead of a register), pollutes the environment, and in executor scripts leaks your state into anything that enumerates globals. It "fixes" the error by making the code worse. Luau's `GlobalUsedAsLocal` (3) and `UnknownGlobal` (1) lints flag this — see the lint table in `roblox-code-craft/references/naming.md`.
+- **`_G` or a shared table as permanent architecture.** Fine as a deliberate cross-script channel; wrong as a way to dodge a limit. Use ModuleScripts.
+- **Chasing the limit at all.** Hitting 200 is a structural signal, not a puzzle to outsmart.
+
+---
+
+## Checklist
+
+1. **Read the error text** — it names which of the six limits you hit.
+2. If a function is getting large, split it. This is the only fix for the instruction limit and helps every other.
+3. Group config, stats, UI references, and related data into tables — with literal field names and uniform shapes.
+4. Use `do ... end` for temporaries; shorten lifetimes rather than counting declarations.
+5. Pass a context table instead of capturing many upvalues.
+6. Move large literal data into ModuleScripts.
+7. Prefer ModuleScripts for systems over one giant LocalScript.
+8. Remember the main chunk is a function too — top-level locals count.
+9. Measure with `check-registers` before delivering a long script, and after every refactor.
+
+Tables, smaller functions, and scoped blocks solve every case cleanly and leave the code faster and more maintainable than it was.
+
+---
+
+## Source: .claude/skills/roblox-reply-craft/SKILL.md
+
+---
+name: roblox-reply-craft
+description: How a Roblox reply is delivered - fast, short and ready to paste. Code blocks that paste into Studio or an executor without broken lines, blank-line runs, line numbers or elisions; one whole file per block; short download file names; replies and descriptions without AI filler; less waiting by reading only what the task needs and writing less. Use for every reply that contains a script, a file or a description, and when the user says the reply was slow, too long, badly formatted, or the file name was silly.
+---
+
+# Reply craft
+
+The user sees the reply, not the reasoning. Four things decide whether it
+works for them, and none is about the code's correctness:
+
+1. **How long they waited.** → `references/fast-replies.md`
+2. **Whether the code pastes and runs.** → `references/code-output.md`
+3. **Whether the file is easy to find and name.** → `references/file-names.md`
+4. **Whether the words around it are worth reading.** → `references/reply-length.md`
+
+Words inside the UI itself (labels, subtitles, notifications) are
+`roblox-ui/references/ui-copy.md`.
+
+---
+
+## The rules, in one screen
+
+**Speed.** Read the router and only the references the task needs. Run
+independent reads and checks together. Start from a tested recipe instead of
+writing a component from nothing. Write the file once; do not print drafts.
+Skip preamble and the closing summary.
+
+**Code blocks.**
+
+- One file, one fenced block, tagged `lua`. The whole file every time for a
+  non-programmer; never "rest unchanged" or `-- ...`.
+- Tabs for indentation, no trailing spaces, no line numbers, no `>` quote
+  marks, no HTML entities (`&lt;`), straight quotes only.
+- One blank line between blocks, never two; none after an opening line or
+  before `end`. A call that fits in 100 columns stays on one line.
+- Run the format linter before sending:
+  `node tools/bin/lint-luau-format.mjs <file>` (no Node:
+  `python tools/py/format_lint.py <file>`).
+
+**File names.** Short, the script's own name, no dates or versions:
+`AutoFarm.luau`, `ShopUI.luau`, `hub.lua`. At most 24 characters, no spaces,
+no "final", "fixed", "updated", "v2", "complete".
+
+**Reply length.**
+
+- First line: what was built, in one sentence.
+- Then the code, then where it goes, then at most three assumptions.
+- Descriptions and captions: one line each, under 80 characters.
+- No "Certainly!", "Great question", "I hope this helps", "Let me know if…",
+  no headings on a short reply, no restating the request, no emoji.
+
+---
+
+## When the user complains
+
+| They say | Do |
+|---|---|
+| "it took forever" | Next reply: fewer files read, checks batched, no drafts; see `fast-replies.md` |
+| "the code is all spaced out", "random new lines" | Run the format linter, fix E-SPLIT and blank-line runs, resend the whole file |
+| "it doesn't paste right", "errors on line 1" | Check for line numbers, smart quotes, `&lt;`, a missing fence or a leading indent |
+| "the file name is weird" | Rename to the script's name, `file-names.md` |
+| "too long", "stop explaining" | One-line summary, code, placement. Nothing else |
+
+---
+
+## Source: .claude/skills/roblox-reply-craft/references/code-output.md
+
+# Code that pastes and runs
+
+A script can be correct and still fail the user: it arrives split across three
+blocks, with line numbers in front, curly quotes, a blank line between every
+statement, or `-- rest of the code stays the same`. A non-programmer cannot
+repair any of that. This is the delivery standard for every code block.
+
+---
+
+## One file, one block
+
+- **One fenced block per file**, tagged `lua` (chat renderers and executors
+  both handle `lua`; `luau` is fine where the host highlights it). Put the
+  file name on the line above the block in bold, not inside it as a comment.
+- **The whole file.** For someone who does not code, never send a fragment,
+  a diff, `-- ...` or "keep the rest the same". If the file is long, it is
+  still one block.
+- **Nothing inside the block that is not code**: no "Here's the code:", no
+  Markdown bullets, no line numbers, no `>` quote markers, no trailing
+  "Let me know" text.
+- **The same code once.** If a download is also offered, the block is the same
+  file, not a second version.
+
+## Characters that break a paste
+
+| Problem | Looks like | Why it breaks |
+|---|---|---|
+| Smart quotes | `“Hello”`, `‘x’` | Not string delimiters in Luau: a syntax error |
+| HTML entities | `&lt;`, `&gt;`, `&amp;` | Pasted literally: `if a &lt; b` does not compile |
+| Line numbers | `12  local x = 1` | Every line becomes an error |
+| Non-breaking spaces | invisible | Some editors reject them; they break `==` alignment and search |
+| A leading indent on every line | the whole block shifted right | Harmless in Luau, but the next edit misaligns |
+| Mixed tabs and spaces | uneven indentation | The format linter flags it; editors show it wrong |
+
+## Layout inside the block
+
+The house format is StyLua's with tabs and 100 columns
+(`roblox-code-craft/references/formatting.md`). The ones that make code look
+"spaced out" or "clustered":
+
+- **One blank line between logical blocks. Never two in a row.** No blank line
+  right after `function ...`, `then`, `do` or `{`, and none right before `end`
+  or `}`.
+- **A call that fits on one line stays on one line.**
+  `local frame = Instance.new("Frame")`, never split over three lines.
+- **Tables are expanded** one field per line when they are config or props; a
+  short list (`{ 1, 2, 3 }`) stays inline.
+- **No blank line between every statement.** Statements that do one thing
+  together (create, size, parent) sit together.
+
+Check before sending, and fix what it reports:
+
+```bash
+node tools/bin/lint-luau-format.mjs Script.luau
+python tools/py/format_lint.py Script.luau
+```
+
+## Long scripts
+
+- Keep under the local-register budget while writing
+  (`roblox-luau-language/references/compiler-limits.md`), and run
+  `node tools/bin/check-registers.mjs` on anything over a few hundred lines.
+- A script too long for one reply is split by **file**, never mid-file: a
+  ModuleScript per block, each whole, with where each goes.
+
+## After the block
+
+Where it goes in Studio's words, and what success looks like: what to press,
+what appears, what the Output shows. Then at most three assumptions.
 
 ---
 

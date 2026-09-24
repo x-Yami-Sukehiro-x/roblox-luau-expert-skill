@@ -44,6 +44,23 @@ glancing. Move the knob; do not just recolour the track.
 In hub UI every toggle writes to a persisted flag so state survives re-execution —
 `roblox-ui/references/gui-architecture.md`.
 
+Twenty tested looks, T1–T20, are in `../assets/toggles.luau` (`style-recipes.md`).
+
+---
+
+## Checkbox and choice group
+
+A checkbox is for choices confirmed later or several at once; a toggle is for a
+setting that applies now. One of several is a radio group (C8), never several
+toggles that switch each other off.
+
+- The whole row is the target, 44 px tall; the box is 22.
+- Ticked shows a tick image, not only a fill.
+- A group with "select all" shows a dash when some are chosen (C4).
+- Chips (C9) wrap onto more lines rather than scrolling sideways.
+
+Ten tested looks, C1–C10, are in `../assets/checkboxes.luau`.
+
 ---
 
 ## Slider
@@ -80,6 +97,10 @@ end
   is the standard trick.
 - Show the current selection in the closed state, not a placeholder.
 - Multi-select needs checkboxes and an explicit close; single-select closes on pick.
+- An empty list says so ("No matches"), not a blank panel.
+
+Twelve tested looks, D1–D12 (search, multi-select, player picker, palette), are in
+`../assets/dropdowns.luau`; each opens its list in its own `ScreenGui` layer.
 
 ---
 
@@ -124,6 +145,9 @@ centred box with two identical buttons.
   spike.
 - Above ~5 tabs, consider a sidebar.
 - Left/right on a gamepad should switch tabs.
+
+Twelve tested looks, S1–S12, are in `../assets/press-and-tabs.luau`; which layout
+fits how many tabs is in `roblox-ui/references/layout-ux.md`.
 
 ---
 

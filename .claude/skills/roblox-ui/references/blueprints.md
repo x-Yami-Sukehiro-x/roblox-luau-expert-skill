@@ -559,7 +559,7 @@ an indicator inside the layout cannot slide, and one per tab can only blink.
 | Unselected | secondary text, `GothamMedium` |
 | Switch motion | indicator slides, 0.20 s Cubic Out. Page cross-fades, no slide |
 
-The picker's S1–S3 styles and a tested implementation are in
+The picker's S1–S12 styles and a tested implementation are in
 `../../roblox-ui-components/references/style-recipes.md`.
 
 Pages: build all of them once, toggle `Visible`. Rebuilding a page on every tab
