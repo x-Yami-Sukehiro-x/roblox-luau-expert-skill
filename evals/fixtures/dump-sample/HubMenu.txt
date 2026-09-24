@@ -1,0 +1,9 @@
+-- Script Path: game:GetService("Players").LocalPlayer.PlayerGui.Menu.MenuController
+local v1 = Instance.new("TextButton")
+v1.Text = "Auto Farm"
+local u2 = game:GetService("ReplicatedStorage").Remotes.SetSetting
+v1.Activated:Connect(function()
+	u2:FireServer("AutoFarm", true, {
+		Radius = 30,
+	})
+end)

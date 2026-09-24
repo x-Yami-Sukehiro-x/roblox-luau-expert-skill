@@ -1,0 +1,1481 @@
+{
+  "format": 1,
+  "archiveSha256": "05cdfea94818310c1fe947124aa48ff3a76336c792dc1e6e8ddffa61bcd41e0e",
+  "files": [
+    {
+      "path": ".claude/skills/roblox-architecture/SKILL.md",
+      "bytes": 10802,
+      "sha256": "e40f91a8a3172a6091e9db63edb2dd4743fe4db2815f5ee11d852d5bbeec3376"
+    },
+    {
+      "path": ".claude/skills/roblox-architecture/references/ui-state.md",
+      "bytes": 7618,
+      "sha256": "35730e33f5b1b44cfeec1360ddb4cfe25165ba85a20bd3e2be6bc0054ca770a4"
+    },
+    {
+      "path": ".claude/skills/roblox-audio/SKILL.md",
+      "bytes": 5203,
+      "sha256": "80106a08a1e0ff6441ab2b70c8f4f8877cfcc87ebff3da36851469d032464561"
+    },
+    {
+      "path": ".claude/skills/roblox-audio/references/audio-graph.md",
+      "bytes": 8291,
+      "sha256": "6c3e30ebf6947defd7c43847b15107ff00f99fbcdf7510826e1b1b83b14ccef2"
+    },
+    {
+      "path": ".claude/skills/roblox-code-craft/SKILL.md",
+      "bytes": 12319,
+      "sha256": "e3d3e6335f3422d75a0c2e8e40c3491d057fa2d487d0616640a58c6440e219e6"
+    },
+    {
+      "path": ".claude/skills/roblox-code-craft/references/anti-slop-code.md",
+      "bytes": 21201,
+      "sha256": "eb6d6cf04aee8554d71810f60ab9546bc41df21c92f1f79d18f7d1ccc0ac3a52"
+    },
+    {
+      "path": ".claude/skills/roblox-code-craft/references/code-signature.md",
+      "bytes": 6695,
+      "sha256": "bf62c8170ea65da769241197dcac5661d741f94d26d6b0d9b024c94a288199f8"
+    },
+    {
+      "path": ".claude/skills/roblox-code-craft/references/diagnostics.md",
+      "bytes": 10505,
+      "sha256": "d8e46b85d0f188eea27c98d78cda8bc2d07c66a8ad533c598a1f245962421a0e"
+    },
+    {
+      "path": ".claude/skills/roblox-code-craft/references/formatting.md",
+      "bytes": 5662,
+      "sha256": "a090aa519abf42b50c14b6032e96305daf61e0538dc85b10c564ba8bed34e3c7"
+    },
+    {
+      "path": ".claude/skills/roblox-code-craft/references/naming.md",
+      "bytes": 9606,
+      "sha256": "4ec8a80437b6f5935ab176173268cde1be4a29cadd89d460547f1ddf5b0b6c6a"
+    },
+    {
+      "path": ".claude/skills/roblox-code-craft/references/slop-rewrite.md",
+      "bytes": 7635,
+      "sha256": "534d7c5e082f2e538f961b5c2bd4c2da083551e747c979bd1214990c61971dae"
+    },
+    {
+      "path": ".claude/skills/roblox-data-persistence/SKILL.md",
+      "bytes": 12212,
+      "sha256": "41b3564ab47c109eb4d6f904f249a9c763ceb4acc60889a3a14d23a237a903c5"
+    },
+    {
+      "path": ".claude/skills/roblox-data-persistence/references/profilestore-and-lyra.md",
+      "bytes": 8538,
+      "sha256": "f33858f80b0af10ab495ffb689cd8f62c4375f809609d9ea703b34b74ac54f87"
+    },
+    {
+      "path": ".claude/skills/roblox-engine-api/SKILL.md",
+      "bytes": 14192,
+      "sha256": "33b8bef28757559ee08e8d7a065bacd3d4d7f52aa4542c5926b2d56964ea0c0e"
+    },
+    {
+      "path": ".claude/skills/roblox-engine-api/references/character-and-physics.md",
+      "bytes": 9198,
+      "sha256": "42996e6ff8dbdb89abd66889d70142ba7877577032eecf512292624831608eba"
+    },
+    {
+      "path": ".claude/skills/roblox-engine-api/references/nil-safety.md",
+      "bytes": 3138,
+      "sha256": "f4b22e03d661fdf6e637f7c90c248ee49f11e471ae3677504eb8ce8c9351c647"
+    },
+    {
+      "path": ".claude/skills/roblox-engine-api/references/spatial-and-cframe.md",
+      "bytes": 8452,
+      "sha256": "dc1cd9c50b25419f982fa9fe90d723c42a2e2714eece3c819794cb9383000e4d"
+    },
+    {
+      "path": ".claude/skills/roblox-executor/SKILL.md",
+      "bytes": 12107,
+      "sha256": "53059598f84cf3ab534c35b872ba1b7400fb8b4e93537162a068c4ebb569e098"
+    },
+    {
+      "path": ".claude/skills/roblox-executor/assets/runtime-probe.luau",
+      "bytes": 6311,
+      "sha256": "269d309744dbda3a770048dd5f2614ac43005543a93f7760f19da4e8c9841d62"
+    },
+    {
+      "path": ".claude/skills/roblox-executor/references/api/closures.md",
+      "bytes": 6334,
+      "sha256": "c4f53a80e6a36c9820a93efa2d34c392dae9a054c839429ab76401ff35f782fd"
+    },
+    {
+      "path": ".claude/skills/roblox-executor/references/api/debug.md",
+      "bytes": 9763,
+      "sha256": "26d15f89d251e9ee1b8ac581efe1e8b5acc82fc28f11a7fafe40eb27bb5a8009"
+    },
+    {
+      "path": ".claude/skills/roblox-executor/references/api/drawing.md",
+      "bytes": 4191,
+      "sha256": "3c790239a3b4c320fe64f60d3a7ee6a7b0970c4c2a2dc2566396388fcb77b88e"
+    },
+    {
+      "path": ".claude/skills/roblox-executor/references/api/environment.md",
+      "bytes": 8493,
+      "sha256": "7e72ce22bbcda22e08893a53ad153212b26254ab2b2bee5c4977440f6a86a90a"
+    },
+    {
+      "path": ".claude/skills/roblox-executor/references/api/legacy-syn.md",
+      "bytes": 1830,
+      "sha256": "f1c2e88e852a16f5b2bed6e87729cf833a460fb2035c74cb748615b03f105c86"
+    },
+    {
+      "path": ".claude/skills/roblox-executor/references/api/misc.md",
+      "bytes": 11820,
+      "sha256": "c101c0269e9f29e4d22649b9d27cf9ef131c32cbc6dacc0451023b1a1543306d"
+    },
+    {
+      "path": ".claude/skills/roblox-executor/references/recon/anticheat-recon.md",
+      "bytes": 21806,
+      "sha256": "63a1b26a9af28c571ef3784438b145ba26f4bfa714df528653e31f4f1f43f2f5"
+    },
+    {
+      "path": ".claude/skills/roblox-executor/references/recon/detection-surface.md",
+      "bytes": 9272,
+      "sha256": "3a0a67f4adb8e7454b51d4f5412d68c747b12fb8dfa013c2bde51629131dc0f3"
+    },
+    {
+      "path": ".claude/skills/roblox-executor/references/recon/landscape.md",
+      "bytes": 5987,
+      "sha256": "a9ac17ff5e4923836c9372ed07d80c8d609cf0c5fff391c4a130cefefef3c4e1"
+    },
+    {
+      "path": ".claude/skills/roblox-executor/references/recon/saveinstance-decompile.md",
+      "bytes": 4954,
+      "sha256": "6127f8e12cbd2f7fec36157db0e5c63d8ee0008fa95635eea722c31856ed58a8"
+    },
+    {
+      "path": ".claude/skills/roblox-executor/references/recon/thread-identity.md",
+      "bytes": 5887,
+      "sha256": "8c4537cdde99a552d1daf916f7b478a4ac7fa55c0155e44a5d31591f4037793b"
+    },
+    {
+      "path": ".claude/skills/roblox-executor/references/technique/actors-parallel.md",
+      "bytes": 5801,
+      "sha256": "b68af712238b469c3d11fc397b477e087e13792cd080d46806f9085655525028"
+    },
+    {
+      "path": ".claude/skills/roblox-executor/references/technique/client-feasibility.md",
+      "bytes": 18834,
+      "sha256": "a6f5ebc16b3708c7cfdcf181d39a05b0513ab9565b670f60565858d5016e5713"
+    },
+    {
+      "path": ".claude/skills/roblox-executor/references/technique/decompiled-source.md",
+      "bytes": 17856,
+      "sha256": "5972af37d72fef84e2b75770a11ec573a8c03a50110f580d337747fc2718ae43"
+    },
+    {
+      "path": ".claude/skills/roblox-executor/references/technique/feature-search.md",
+      "bytes": 7307,
+      "sha256": "55a8af9dbb9c5c4ef32e6f4fa6bdfe2d0834bdf9cf4b89cb248822fd673d4962"
+    },
+    {
+      "path": ".claude/skills/roblox-executor/references/technique/function-selection.md",
+      "bytes": 7875,
+      "sha256": "dd4ce36943a7e28a9cd2b0f00a625fdcea1a57716ce373916f10e695f3ef954c"
+    },
+    {
+      "path": ".claude/skills/roblox-executor/references/technique/lifecycle.md",
+      "bytes": 4752,
+      "sha256": "7c70d64ca37904e10e010a0e7df2ab183dd0613c5bcbfc8ea6a858b1e59e86da"
+    },
+    {
+      "path": ".claude/skills/roblox-executor/references/technique/raknet.md",
+      "bytes": 12666,
+      "sha256": "49af5bc6d0e52d8437763e7cb5ba5901eae5c23b080548fed47cef0cb031fb12"
+    },
+    {
+      "path": ".claude/skills/roblox-executor/references/technique/replication-exploitation.md",
+      "bytes": 10390,
+      "sha256": "0cee88c4373c5e9a30e34364b6ad2217b30ee5990980ad39bd054c1a59bf919e"
+    },
+    {
+      "path": ".claude/skills/roblox-executor/references/technique/source-to-api.md",
+      "bytes": 9367,
+      "sha256": "5b440fa75284cf124f697e1bddbf210bd70bf678d91b7b5a80174849cee6ce8a"
+    },
+    {
+      "path": ".claude/skills/roblox-executor/references/technique/value-persistence.md",
+      "bytes": 5929,
+      "sha256": "acb327d08ad56fcd0d9bc746add4c18adda37d3c5ec2f1fdc7a2a2c0d9d4a00d"
+    },
+    {
+      "path": ".claude/skills/roblox-executor/references/templates/script-templates.md",
+      "bytes": 7092,
+      "sha256": "1474bbfda99bd2fc92e189b1b2f0398905ebd8c5036480c2f30bef05c4320a95"
+    },
+    {
+      "path": ".claude/skills/roblox-executor/references/ui/ui-libraries.md",
+      "bytes": 6434,
+      "sha256": "2a1aa717094ad2bbeea76e238f0de256e97e63bdab1c075c0d5327631359a97a"
+    },
+    {
+      "path": ".claude/skills/roblox-game-security/SKILL.md",
+      "bytes": 11726,
+      "sha256": "1f1dbb9c1f12043f57860c5e1ef75037f070f9937f7825069c8655cac24475f9"
+    },
+    {
+      "path": ".claude/skills/roblox-game-security/references/remote-hardening.md",
+      "bytes": 8858,
+      "sha256": "747bc13de1937aa6d9dbb5597b0a13b3de2a1983213d649ea1a27d112038fd6d"
+    },
+    {
+      "path": ".claude/skills/roblox-luau-expert/SKILL.md",
+      "bytes": 17285,
+      "sha256": "bc4b28f0ed318ca701963bc066c2099e3c9f62b8ed68612bff336820f768e35f"
+    },
+    {
+      "path": ".claude/skills/roblox-luau-expert/references/common-mistakes.md",
+      "bytes": 21761,
+      "sha256": "9ad77f07defa00379c2abbcbcfe63531d3df2dd64a2e11c169dae0ab78335198"
+    },
+    {
+      "path": ".claude/skills/roblox-luau-expert/references/delivery-checklist.md",
+      "bytes": 7548,
+      "sha256": "aecc54e0afc6d3a66b972ad70d6e80e89a571fac3a5774c9b835f0185211c9ec"
+    },
+    {
+      "path": ".claude/skills/roblox-luau-expert/references/task-contract.md",
+      "bytes": 5998,
+      "sha256": "60355367cdd986d1961faecce686fcc1c28a1e07c1f64d46ff35275cde55fd3e"
+    },
+    {
+      "path": ".claude/skills/roblox-luau-expert/references/verified/api-index.txt",
+      "bytes": 266136,
+      "sha256": "0d75ffc986612e3f4b72066a71dfcc37a4b18174cda6a24079515bd67d9126e2"
+    },
+    {
+      "path": ".claude/skills/roblox-luau-expert/references/verified/class-hierarchy.txt",
+      "bytes": 26752,
+      "sha256": "e040a180363e129e60804230f586fce44568b86e204ef8d56aaff82fec8076e3"
+    },
+    {
+      "path": ".claude/skills/roblox-luau-expert/references/verified/datatype-index.txt",
+      "bytes": 7047,
+      "sha256": "7862da4ee52c40f2007f698366a1c340de4a64ebc54cf6ce46acc61f2f23a636"
+    },
+    {
+      "path": ".claude/skills/roblox-luau-expert/references/verified/deprecated-apis.md",
+      "bytes": 32826,
+      "sha256": "909ca930ed4ce65591a4d50e2d25ac66405b200dc9926c91f12355a5f66c3f8a"
+    },
+    {
+      "path": ".claude/skills/roblox-luau-expert/references/verified/enum-index.txt",
+      "bytes": 119688,
+      "sha256": "de2705fec2a7c298e9a481eb0614b66e7aed64818826ae8eacefde1a2db95b80"
+    },
+    {
+      "path": ".claude/skills/roblox-luau-expert/references/verified/gui-classes.txt",
+      "bytes": 1183,
+      "sha256": "6b293c1d7452b1d68bfbf50ce6f83fc055ae6f84ff73ac4caaf6ac795374bc27"
+    },
+    {
+      "path": ".claude/skills/roblox-luau-expert/references/verified/parallel-safety.md",
+      "bytes": 7332,
+      "sha256": "36b890044ec7e4b13d65f079dad4e5757a4916aee73161caf310ec261d3b6e79"
+    },
+    {
+      "path": ".claude/skills/roblox-luau-expert/references/verified/script-capabilities.md",
+      "bytes": 1577,
+      "sha256": "6732c7788af520f44827eaf823b6246601fac7e989d049c804fadc8eeda24e94"
+    },
+    {
+      "path": ".claude/skills/roblox-luau-expert/references/verified/security-tagged-apis.md",
+      "bytes": 243855,
+      "sha256": "e49b0c8b6dd7dd1c7d954f6e88e48df97776af39d056604ab2d41eac9230ed70"
+    },
+    {
+      "path": ".claude/skills/roblox-luau-language/SKILL.md",
+      "bytes": 10322,
+      "sha256": "efea58dc2c2d88db9073d27dafd1e4899f8626d9f734e0cfdadbad02371dce6a"
+    },
+    {
+      "path": ".claude/skills/roblox-luau-language/references/compiler-limits.md",
+      "bytes": 9946,
+      "sha256": "499734e6e482ed23902138f43fca3ff9844e302b3970a0ef99fddaf3dce98076"
+    },
+    {
+      "path": ".claude/skills/roblox-luau-language/references/oop-and-metatables.md",
+      "bytes": 6622,
+      "sha256": "bed5d83a636f304416d0ee6b6b9a3e6804025d04157b16eeb3438f12f76a4735"
+    },
+    {
+      "path": ".claude/skills/roblox-luau-language/references/stdlib.md",
+      "bytes": 9484,
+      "sha256": "c7c579d16105da8854799e5e2a61f4099893cb0b4b6e4caf9594cd899506646a"
+    },
+    {
+      "path": ".claude/skills/roblox-luau-language/references/type-system.md",
+      "bytes": 7625,
+      "sha256": "42b2ba46e207d630017b4d210fe0e6cebdbae5640e17a3ea19ee1123320cc0c3"
+    },
+    {
+      "path": ".claude/skills/roblox-monetization/SKILL.md",
+      "bytes": 6084,
+      "sha256": "b9f69acc4dbe0319eea2c7db6c971a6930c931b2e3754e75eea7a4a139a05516"
+    },
+    {
+      "path": ".claude/skills/roblox-monetization/references/products-and-passes.md",
+      "bytes": 9829,
+      "sha256": "fe4ecf8ad29b8e959e0f1c9e478d650c8358a96b4b2549a0ae66a512109d31e7"
+    },
+    {
+      "path": ".claude/skills/roblox-monetization/references/receipts.md",
+      "bytes": 9697,
+      "sha256": "45d95704cee4a406468d722388545701e629a4edd5c541f46de1dab3a9387a07"
+    },
+    {
+      "path": ".claude/skills/roblox-networking/SKILL.md",
+      "bytes": 10697,
+      "sha256": "ddeeb730f8831641f570947b16a02d82d25953c174a96c50808b175afe590025"
+    },
+    {
+      "path": ".claude/skills/roblox-networking/references/cross-server.md",
+      "bytes": 8457,
+      "sha256": "2156e25fa5974edaa0f5b028bff9d9db44a975df6db404f65e8a68783e46f513"
+    },
+    {
+      "path": ".claude/skills/roblox-networking/references/replication-model.md",
+      "bytes": 6370,
+      "sha256": "1d95880b075bb54459bd83c2bd29730f02a71d6e65145d2bf447f8cc23d5298c"
+    },
+    {
+      "path": ".claude/skills/roblox-performance/SKILL.md",
+      "bytes": 10749,
+      "sha256": "516a891f24666e5b4ed189b9055c1605d48d67c4ca607d721f1a9608111e56f7"
+    },
+    {
+      "path": ".claude/skills/roblox-performance/references/parallel-luau.md",
+      "bytes": 8778,
+      "sha256": "351d1af9b71c4434f753a2fe92d03d49c82820858e404839b229e8a6d68e339b"
+    },
+    {
+      "path": ".claude/skills/roblox-request-intake/SKILL.md",
+      "bytes": 6895,
+      "sha256": "dd29abee28db78741b1036fd19826d2b6a8668439e45d0420c00438581eee2fb"
+    },
+    {
+      "path": ".claude/skills/roblox-request-intake/references/defaults.md",
+      "bytes": 6133,
+      "sha256": "751c51acc75b71df09013a01f3e50a3ba5cc4e75d7b06d3c6d293bfaacb7af40"
+    },
+    {
+      "path": ".claude/skills/roblox-request-intake/references/error-triage.md",
+      "bytes": 7671,
+      "sha256": "698e89c27e3c9270130a8f9b4e85797816057c9c0deb6d305629552bcee076a6"
+    },
+    {
+      "path": ".claude/skills/roblox-request-intake/references/plain-language.md",
+      "bytes": 5903,
+      "sha256": "f6ff14086952cafb9777c67ca7bbee9327c6d3323c53485d6c82e8926bb69881"
+    },
+    {
+      "path": ".claude/skills/roblox-request-intake/references/ui-words.md",
+      "bytes": 4756,
+      "sha256": "2b2206f3f03ccbbde1e959c36f4f118e11c74099096cb2ffcc2c132a14856564"
+    },
+    {
+      "path": ".claude/skills/roblox-request-intake/references/vague-to-spec.md",
+      "bytes": 8423,
+      "sha256": "753dc874a06daa88dd07c6f20c376442d32e9f8bc3503977f02fd0329a3b3a72"
+    },
+    {
+      "path": ".claude/skills/roblox-request-intake/references/visual-choices.md",
+      "bytes": 6591,
+      "sha256": "9c7495f2ab84c0cf41070d9d2e2382e1f026b6df06818cd4d487c0f620a6aa11"
+    },
+    {
+      "path": ".claude/skills/roblox-toolchain/SKILL.md",
+      "bytes": 10658,
+      "sha256": "a30a23db0481e8b0e4cd8b2186cdecd2a7d02a02771ed4afdd93f1073b7baf42"
+    },
+    {
+      "path": ".claude/skills/roblox-toolchain/references/luaurc.md",
+      "bytes": 6407,
+      "sha256": "7c0bfdfefa16681ec368403dfc69a377af37cc7878984edb01634c1ad65216f4"
+    },
+    {
+      "path": ".claude/skills/roblox-ui-components/SKILL.md",
+      "bytes": 6270,
+      "sha256": "aa11e9aae69ad782cf0e951e147882b6530a2b608c84f179c60a6ae91eefabc6"
+    },
+    {
+      "path": ".claude/skills/roblox-ui-components/assets/menus.luau",
+      "bytes": 8363,
+      "sha256": "8bc4a411698641f07ab2bc778101cf89b69cb35e95086631736e16c34e35f816"
+    },
+    {
+      "path": ".claude/skills/roblox-ui-components/assets/notices.luau",
+      "bytes": 16208,
+      "sha256": "5b4b1376e4b2e6757daee72d2e69058bf0b872b8c09f9f71ddf02b2fce95ce86"
+    },
+    {
+      "path": ".claude/skills/roblox-ui-components/assets/press-and-tabs.luau",
+      "bytes": 7173,
+      "sha256": "1ded6a17dc3fabcf2831438af501ab27598710f8d4f4f598d5a3f2a5da021792"
+    },
+    {
+      "path": ".claude/skills/roblox-ui-components/assets/toasts.luau",
+      "bytes": 14053,
+      "sha256": "7a8c79dc8d0e5495264e87bb8e6106f4eadc294a1c614b21e9b024df126d5484"
+    },
+    {
+      "path": ".claude/skills/roblox-ui-components/assets/toggles.luau",
+      "bytes": 15752,
+      "sha256": "8d0e50d4d8098f28317b03a1a1a6a2acc4f64dd28cd165112d9627e845859123"
+    },
+    {
+      "path": ".claude/skills/roblox-ui-components/assets/windows.luau",
+      "bytes": 9671,
+      "sha256": "c5121f22410e3d6a3832d4a3cb383b966a5d53b2ab435ea3c02b6e20bade4ceb"
+    },
+    {
+      "path": ".claude/skills/roblox-ui-components/references/catalog.md",
+      "bytes": 8638,
+      "sha256": "02786ca5591c889f27cc5a933e0027962dd6e68594255266f1acdcb592c335b7"
+    },
+    {
+      "path": ".claude/skills/roblox-ui-components/references/component-states.md",
+      "bytes": 6753,
+      "sha256": "f25d9de32f46dca66d0f02fa222215a176a3b222f057110c88f8f0880d073bbe"
+    },
+    {
+      "path": ".claude/skills/roblox-ui-components/references/icons.md",
+      "bytes": 8227,
+      "sha256": "b077fff10929b46beb4f255544904ddde91de5251b824534c912c05d11d60170"
+    },
+    {
+      "path": ".claude/skills/roblox-ui-components/references/outlines-and-dividers.md",
+      "bytes": 12279,
+      "sha256": "b52fc646685447867f83aef2a3b83c2c8a634b4b9cd3a917edc6fb0ad1d20522"
+    },
+    {
+      "path": ".claude/skills/roblox-ui-components/references/scrolling-and-virtualisation.md",
+      "bytes": 7946,
+      "sha256": "49272d42571f0a5619bc1fc03088aaee9c03c09d93e4fab71a8abdcbe7a705d6"
+    },
+    {
+      "path": ".claude/skills/roblox-ui-components/references/shadows-and-elevation.md",
+      "bytes": 12014,
+      "sha256": "899770f8002de58dfaa8c90aa92876c7617145dd12e0b9ffe0f8471118903898"
+    },
+    {
+      "path": ".claude/skills/roblox-ui-components/references/style-recipes.md",
+      "bytes": 11282,
+      "sha256": "eaa4b2b186fe70fc1f14cd538c749b3f5f985cafd38639a409fd763f1cb94266"
+    },
+    {
+      "path": ".claude/skills/roblox-ui-components/references/toasts.md",
+      "bytes": 12028,
+      "sha256": "0d00e59f1f83c3609fc4dcb0f1b6d5baeafb6ad91a735a2622c183ba7aea111a"
+    },
+    {
+      "path": ".claude/skills/roblox-ui-components/references/windows-and-drag.md",
+      "bytes": 7962,
+      "sha256": "2dd0e2ec069e84336ed3d92ad8e6379acc420719b91d72fcd72d345d58ed1c58"
+    },
+    {
+      "path": ".claude/skills/roblox-ui-motion/SKILL.md",
+      "bytes": 7466,
+      "sha256": "b874c1cca0a8a930eada7c629017bba5e498dcc75d10f37013fd0a966ce188fa"
+    },
+    {
+      "path": ".claude/skills/roblox-ui-motion/references/choreography.md",
+      "bytes": 8633,
+      "sha256": "10aa06d46c60ae4d4cff3c8a12e1a7bf495bba3dadfaf68158e663f01568005d"
+    },
+    {
+      "path": ".claude/skills/roblox-ui-motion/references/easing-and-timing.md",
+      "bytes": 6780,
+      "sha256": "c84b2e07f12c78cedd10454c6f21b6f1d7fd55842341f6beefa185725795ddd2"
+    },
+    {
+      "path": ".claude/skills/roblox-ui-motion/references/springs-and-smoothdamp.md",
+      "bytes": 5520,
+      "sha256": "ed3dcf985a66c3aefc51d6c3efb86e54f37f78b0a019878532361157a6256adf"
+    },
+    {
+      "path": ".claude/skills/roblox-ui/SKILL.md",
+      "bytes": 13031,
+      "sha256": "84c30e9dfeb1b16d06886a4270983d2bcaa90bddd3d90964d14cfc2c3485c244"
+    },
+    {
+      "path": ".claude/skills/roblox-ui/references/anti-slop-catalog.md",
+      "bytes": 12451,
+      "sha256": "4f84dcb88479c189acad135ef8eb7af9f64f4e80e8e1d631d1a3286b1ce657ad"
+    },
+    {
+      "path": ".claude/skills/roblox-ui/references/blueprints.md",
+      "bytes": 24275,
+      "sha256": "540ddf4cd373f2f001199efb3b3b3b0b7eebac5afa71f9e6fcb1c804fb822d42"
+    },
+    {
+      "path": ".claude/skills/roblox-ui/references/build-order.md",
+      "bytes": 10841,
+      "sha256": "b3a8bc99a3acc085d2e41bad2b8e98f8fd5264a34b597583a885415e2113cde4"
+    },
+    {
+      "path": ".claude/skills/roblox-ui/references/design-directions.md",
+      "bytes": 13523,
+      "sha256": "2b743143217e8fe4258c821d63accfa9efaff6fc79c89183a91e2226aaa239c2"
+    },
+    {
+      "path": ".claude/skills/roblox-ui/references/functional-proof.md",
+      "bytes": 6533,
+      "sha256": "7c6826f5010f195ecaa5ea57bdc31e09de09252bd15118107bc6a14e787fd000"
+    },
+    {
+      "path": ".claude/skills/roblox-ui/references/gradients-and-depth.md",
+      "bytes": 6992,
+      "sha256": "5bed5078c3afed9cd374e8528497e061914441c6f447a16bb8740d58b7bb09a0"
+    },
+    {
+      "path": ".claude/skills/roblox-ui/references/gui-architecture.md",
+      "bytes": 14610,
+      "sha256": "729b748320ff9378476cd1b2cfcc7966726481fadf6f5f472aa0361a81630b0c"
+    },
+    {
+      "path": ".claude/skills/roblox-ui/references/gui-design.md",
+      "bytes": 17231,
+      "sha256": "4bb5e8087b5228d6ea9cf80013831be82b12223d4422ed8443ca0feaa3beff73"
+    },
+    {
+      "path": ".claude/skills/roblox-ui/references/input-surfaces.md",
+      "bytes": 9534,
+      "sha256": "5431d816d6c529df25fc451f8b0a8228dd705b3aa1038a05edc206b6e14e79f5"
+    },
+    {
+      "path": ".claude/skills/roblox-ui/references/responsive-and-surfaces.md",
+      "bytes": 9749,
+      "sha256": "30bfe6e56d178c5e53967c2f552071dfee1d8bc00425817854b7ae71a6e4ff84"
+    },
+    {
+      "path": ".claude/skills/roblox-ui/references/scaling-and-dpi.md",
+      "bytes": 9120,
+      "sha256": "65e50a87c57d507a45dea291ef6e4f2db2b5f116b9a55446faa75827880eead9"
+    },
+    {
+      "path": ".claude/skills/roblox-ui/references/self-review.md",
+      "bytes": 9126,
+      "sha256": "16eca86c8e3eb2f4815e759cd41facf570510dca853de8d608870145ce0439d1"
+    },
+    {
+      "path": ".claude/skills/roblox-ui/references/typography.md",
+      "bytes": 9894,
+      "sha256": "d3785e4864b54169fe6a412ad75c797dbc57021d8b1a0abf90bec126eec39c03"
+    },
+    {
+      "path": ".claude/skills/roblox-ui/references/ui-rewrite.md",
+      "bytes": 6894,
+      "sha256": "714d523b3de09bc0ac41a263f3a9c17055983871f0d487481cc1c646b778100d"
+    },
+    {
+      "path": ".claude/skills/roblox-vfx-animation/SKILL.md",
+      "bytes": 4127,
+      "sha256": "a47647cfcac8ce4eb11a058f67e03143e6c5347ffec251ea88335ac3860e0e80"
+    },
+    {
+      "path": ".claude/skills/roblox-vfx-animation/references/animation.md",
+      "bytes": 7585,
+      "sha256": "ce203ac52e1cba4022f1a24bdac1582fdaa1692452e4e62f1c124b229a7af637"
+    },
+    {
+      "path": ".claude/skills/roblox-vfx-animation/references/effects.md",
+      "bytes": 10566,
+      "sha256": "c94c35563f6d9d6dc3e45b50b66bd4e1eef93373202abdbe52f1a3b61038124c"
+    },
+    {
+      "path": "AGENTS.md",
+      "bytes": 27471,
+      "sha256": "5335407fe73a59c25bc88f2209cd239942cbc5c7e3bf8235240da1ee17d811a0"
+    },
+    {
+      "path": "LICENSE.md",
+      "bytes": 3593,
+      "sha256": "9eb48619fbc193ab7bb327b090cfcc703000265b83e670f81f231d0b1c43c56e"
+    },
+    {
+      "path": "NOTICE.md",
+      "bytes": 1638,
+      "sha256": "980ddb20083c183080295ab92fd17cf401b686b70a5ab8204fdce75adbc6c7d5"
+    },
+    {
+      "path": "README.md",
+      "bytes": 18202,
+      "sha256": "3efe2aa19d2e940a12d3ea990e7c330fcd9f2fcb2a5928579202df6c5afd5456"
+    },
+    {
+      "path": "docs/CHANGELOG.md",
+      "bytes": 64090,
+      "sha256": "06a6451135d6c1d4527802feba90492996333cd3ee9358c7d073623d3beaaf38"
+    },
+    {
+      "path": "docs/SOURCES.md",
+      "bytes": 17321,
+      "sha256": "4617633cc32a31fef46168b4f8f2b3d5e85a6a52a4954ba912021269b049a7df"
+    },
+    {
+      "path": "docs/maintenance.md",
+      "bytes": 8443,
+      "sha256": "10f697472c4024f128b1ebb29c443f2359fd39ab7a6a4722b7ebc2582b77ad1d"
+    },
+    {
+      "path": "docs/mcp.json.example",
+      "bytes": 1378,
+      "sha256": "e6224c357b882b0a65fb1b61d7cd10b1935338cdebdef09a4937bdbf8a1396ae"
+    },
+    {
+      "path": "docs/mcp.md",
+      "bytes": 6439,
+      "sha256": "dc3a5d446cb2ab7cf252b2e527e7472e7c2ef04ec3b83f7c0c77208def14e79b"
+    },
+    {
+      "path": "docs/portability/README.md",
+      "bytes": 6150,
+      "sha256": "a7ad5f4ab8a8b2c5ab34666dbdbe9c4acc91825a0c5a52fd21c4d2e306352343"
+    },
+    {
+      "path": "docs/portability/auto-update.md",
+      "bytes": 5299,
+      "sha256": "1856997d61968a92423c5a1595a2b2bcec5045d2bd0d1790985ff6964b9b3276"
+    },
+    {
+      "path": "docs/portability/gpt-github-action.json",
+      "bytes": 1803,
+      "sha256": "8b772aa79c7d267735661297584487a4418510d8ec450f1ccc30797a279d4829"
+    },
+    {
+      "path": "docs/portability/gpt/README.md",
+      "bytes": 6909,
+      "sha256": "cf7b5bd2fea024abe968b222d7676c78716e11403b57560c23c7eac99d9b1018"
+    },
+    {
+      "path": "docs/portability/gpt/UIs/README.md",
+      "bytes": 3683,
+      "sha256": "7c1de5e77dd36895a4d7a4f75e69945a9a021a8a18484c5901d9e14a16755602"
+    },
+    {
+      "path": "docs/portability/gpt/UIs/anatomy.md",
+      "bytes": 8340,
+      "sha256": "c915d57436b6dcdb249fba5beac714b195e6fbcd773d36fed5cba2761785262e"
+    },
+    {
+      "path": "docs/portability/gpt/UIs/catalog.md",
+      "bytes": 8834,
+      "sha256": "b839b28579a47be94c89cd7a4a30c6830d8910e3fb60e9a89927b0c806dde0ee"
+    },
+    {
+      "path": "docs/portability/gpt/UIs/exemplars/ExecutorHub.client.luau",
+      "bytes": 15717,
+      "sha256": "a9107f8df09130359f31ab75c99419f21405a337655adb94c9faf62b7bb7c0e7"
+    },
+    {
+      "path": "docs/portability/gpt/UIs/exemplars/GameMenu.client.luau",
+      "bytes": 12448,
+      "sha256": "2bcbd9aa78d31c38737e586140134316e38ef172c58c2451c6de5d302e31edf9"
+    },
+    {
+      "path": "docs/portability/gpt/UIs/exemplars/README.md",
+      "bytes": 4288,
+      "sha256": "991cd2d63298774953d4cdc1c7be6ef0f0f2af2e79ef18dee56d5e66609c5c4f"
+    },
+    {
+      "path": "docs/portability/gpt/UIs/gallery/README.md",
+      "bytes": 5786,
+      "sha256": "0b32a5da90b5532abe16f19f1233787d1254484824f7a78882aa6c7fc12fd160"
+    },
+    {
+      "path": "docs/portability/gpt/UIs/gallery/anatomy-header.svg",
+      "bytes": 4884,
+      "sha256": "9a7af652d87d323eb4857cd1f9656553ec4c06d0e583b78897a5e81efe414a44"
+    },
+    {
+      "path": "docs/portability/gpt/UIs/gallery/exemplar-hub.svg",
+      "bytes": 4860,
+      "sha256": "468cb0d2e3ea471a906e7ee98aebe5a6fe6cf4d9417b142f58c274d72a533fa4"
+    },
+    {
+      "path": "docs/portability/gpt/UIs/gallery/obsidian-window.png",
+      "bytes": 93444,
+      "sha256": "8af20bf35376495540ca620e552f80d9d9785e24fb6cab6de4f4bb119a3e6d16"
+    },
+    {
+      "path": "docs/portability/gpt/UIs/gallery/windui-window.png",
+      "bytes": 85888,
+      "sha256": "bc4a8089b89e4cd95de53b9cec915447edf9015c95535071688fc484717dd64b"
+    },
+    {
+      "path": "docs/portability/gpt/instructions.md",
+      "bytes": 8001,
+      "sha256": "410dd8bd30a320549c4015a8c037f0f5e5bef4f9f236f04e8d9bf63134e289f2"
+    },
+    {
+      "path": "docs/portability/gpt/knowledge/gpt-knowledge.md",
+      "bytes": 26380,
+      "sha256": "d5615ab274461addcaec098491ab3974230181c0da5910cd8d34c4af2ace7869"
+    },
+    {
+      "path": "docs/portability/gpt/knowledge/roblox-ui-style-picker.html",
+      "bytes": 71040,
+      "sha256": "b97d032ffb388c7ba4a1e4dc28acb1a6ef72e1edac6862fb96f15fdbafc57c82"
+    },
+    {
+      "path": "docs/portability/gpt/knowledge/style-pack.md",
+      "bytes": 95082,
+      "sha256": "ac5c889cafee66b75c6147697f5a1c6d3bbbc318954c82eae270d173090a4ac7"
+    },
+    {
+      "path": "docs/portability/gpt/knowledge/ui-pack.md",
+      "bytes": 56002,
+      "sha256": "1b7dc3a7a8ba609b150d851231907b9054e358782437e44575e9fe96fb11a65a"
+    },
+    {
+      "path": "docs/portability/gpt/knowledge/workflow-pack.md",
+      "bytes": 111144,
+      "sha256": "6f0cdd9fa87e99c62687339df8ecbbef9f08952159e3c0e77d71fd6442e3ddb7"
+    },
+    {
+      "path": "docs/portability/openai-plugin.md",
+      "bytes": 3723,
+      "sha256": "2d48b309d84186d7128caf2f1ba768e41a2e637eace173118b38e29bffda6aee"
+    },
+    {
+      "path": "docs/portability/rules.md",
+      "bytes": 26152,
+      "sha256": "5388d94cbe62f6ba081d35a09045574b915e433fa840d38aa1d9b69c7e473e41"
+    },
+    {
+      "path": "docs/portability/scope-and-framing.md",
+      "bytes": 7797,
+      "sha256": "844d84462bd8108a43c9d71e045688fa4d354360b4784f6a43cd6813da535347"
+    },
+    {
+      "path": "docs/visual-guide/index.html",
+      "bytes": 71040,
+      "sha256": "b97d032ffb388c7ba4a1e4dc28acb1a6ef72e1edac6862fb96f15fdbafc57c82"
+    },
+    {
+      "path": "evals/executor-evidence.md",
+      "bytes": 6697,
+      "sha256": "59363bb99484bb03a8cd4520d1da9f17fc8d0c722c66722820e608ee12fba487"
+    },
+    {
+      "path": "evals/fixtures/blind-ui.luau",
+      "bytes": 265,
+      "sha256": "56d6c32452fea3194a727f08990024ecccab34dff3ae7be2002f930b1da2e154"
+    },
+    {
+      "path": "evals/fixtures/dump-sample/CoinCollector.txt",
+      "bytes": 581,
+      "sha256": "688bf067ad04c9ad497f5034e3bb1f54726b0ec052926c5f43a8a2f09152b26e"
+    },
+    {
+      "path": "evals/fixtures/dump-sample/HubMenu.txt",
+      "bytes": 303,
+      "sha256": "60517d0e9a4012777e16ed9edf04388a14a46ed5aa46d847b640d04aaa7204a3"
+    },
+    {
+      "path": "evals/fixtures/dump-sample/Sprint.txt",
+      "bytes": 351,
+      "sha256": "62115c5934c99b155a424dbbd5a552d6c2d88351bb6dfe0b39a5ed4b1964af3a"
+    },
+    {
+      "path": "evals/fixtures/dump-sample/saved-place.rbxlx",
+      "bytes": 481,
+      "sha256": "deacf727f175dfe4100ee45fc2a1864d91afd4c0937ac8c372e012c649eb91f3"
+    },
+    {
+      "path": "evals/fixtures/invented-api.luau",
+      "bytes": 300,
+      "sha256": "66b760fdcccda7f6c4ea2a435b427b8638dd63a7fe8e67ff0abf197f643c5452"
+    },
+    {
+      "path": "evals/fixtures/layout-position.luau",
+      "bytes": 977,
+      "sha256": "cc50a186a089e0684963cef96e8ee3aaa5e2c2da41e4d84c34bde8ab6b8488f4"
+    },
+    {
+      "path": "evals/fixtures/slop-clause.luau",
+      "bytes": 465,
+      "sha256": "26cddd9c5b9143d30546394f7c1537d3a8644c5c5b0fb021eeadbd9542c44210"
+    },
+    {
+      "path": "evals/fixtures/slop-executor.luau",
+      "bytes": 1171,
+      "sha256": "902362330d2dfc06f92b7119cd1ae3ddf6633f90d594823826bc26e28bc505af"
+    },
+    {
+      "path": "evals/fixtures/slop-format.luau",
+      "bytes": 1212,
+      "sha256": "b18ac521515e3d31a99fc13aae1e4cc441acd4cf6e21ab0be88bb9008a3e046b"
+    },
+    {
+      "path": "evals/fixtures/slop-noise.luau",
+      "bytes": 1307,
+      "sha256": "26f3c3b921a5ad78c740a97a49ba29a094c8a27604f548a9008dcb0fed539afd"
+    },
+    {
+      "path": "evals/fixtures/slop-ui.luau",
+      "bytes": 1657,
+      "sha256": "e837bd1fdcdada008799c509114d9aff49f0022f9243e8717bcb09b8fa98cc74"
+    },
+    {
+      "path": "evals/triggers.md",
+      "bytes": 28156,
+      "sha256": "30da6bc1e4fbc98388a082e5764059bdb580d35abe6ea9d9ce17ab8817083f3a"
+    },
+    {
+      "path": "evals/ui-behavior.md",
+      "bytes": 6508,
+      "sha256": "0ed3872a2c2f3de7576ed2f75cade31a0f6fbb10b862cdff848e3f66852bde44"
+    },
+    {
+      "path": "library/README.md",
+      "bytes": 7243,
+      "sha256": "42861af33df49021646e24728ea71ce459f23d43fe5f8b6e39cc2252e134d886"
+    },
+    {
+      "path": "library/src/Components/Button.luau",
+      "bytes": 7931,
+      "sha256": "07d258c23e24deb861aab95b6b74c974b0f7daf957c0a81ddc673a6646185b90"
+    },
+    {
+      "path": "library/src/Components/Divider.luau",
+      "bytes": 3146,
+      "sha256": "a199f8632a3365d756c6581f2ac612fa71b0659d76d533c463c49955338873c5"
+    },
+    {
+      "path": "library/src/Components/Dropdown.luau",
+      "bytes": 11755,
+      "sha256": "7da13153b75b571344f27aa3ea9fae7eb4c5ecb877943df7d66c62aed68ed26e"
+    },
+    {
+      "path": "library/src/Components/Modal.luau",
+      "bytes": 8625,
+      "sha256": "fc0bd8082dac0690a7d91b5142949f85161d2e1a779f58b96d5b6f37a282f1a9"
+    },
+    {
+      "path": "library/src/Components/Panel.luau",
+      "bytes": 4640,
+      "sha256": "89e0065c3c66cabd18e4d764d130bf6e83c000b6a6253a677ad39a46c27e0ce3"
+    },
+    {
+      "path": "library/src/Components/Slider.luau",
+      "bytes": 8693,
+      "sha256": "831e29a3597738aa6ed4d903983c3e75f37e2ddc20af48f610f3769f536b4dc9"
+    },
+    {
+      "path": "library/src/Components/TabBar.luau",
+      "bytes": 7889,
+      "sha256": "0a1065bae694eac84254de2d50539ce1e7772aea2e62f150cede20d033ccdad7"
+    },
+    {
+      "path": "library/src/Components/Toggle.luau",
+      "bytes": 6359,
+      "sha256": "e8cbedb95c58f97d1cce2a9f555bbadd15e3d3ac225edc66a52383db248d2b3c"
+    },
+    {
+      "path": "library/src/Icons.luau",
+      "bytes": 4007,
+      "sha256": "e1f2ae64b81921148c6903802b0be836ba4b81ac189fe2b09f67a30c494b2a37"
+    },
+    {
+      "path": "library/src/Layout.luau",
+      "bytes": 7524,
+      "sha256": "a5c781021b2afb775690936d40e1804be8f1e2c6de6c4b9f3f5d9e6e50de15dd"
+    },
+    {
+      "path": "library/src/Motion.luau",
+      "bytes": 9880,
+      "sha256": "069483415d791d9312b55b548487f81dfafa9742c91ec93c54e42d2bf7dc7a51"
+    },
+    {
+      "path": "library/src/Toast.luau",
+      "bytes": 16202,
+      "sha256": "34cb7557ca9198c6a14df98299ce6fef6442e39139bbcba9470d857238a07b0f"
+    },
+    {
+      "path": "library/src/Tokens.luau",
+      "bytes": 5510,
+      "sha256": "77491079ac7adfed2c0a8dff81eb51c2746cd185a176de5a08c443b858d8532d"
+    },
+    {
+      "path": "library/tests/README.md",
+      "bytes": 1516,
+      "sha256": "fd0c5253c0b064b6a46562f3d87b0bbb1928decf352e0e2c2a6d2fc48cbb3387"
+    },
+    {
+      "path": "library/tests/assertions.luau",
+      "bytes": 2962,
+      "sha256": "2c5970f0b1f96b3f0b3c9fb6e47571234d119debade8c4225291025bcd0b2d4e"
+    },
+    {
+      "path": "library/tests/components.luau",
+      "bytes": 5734,
+      "sha256": "f4f730eaecc2e200894035dc873d35892f465c3921e5fae29a6310e4170e815e"
+    },
+    {
+      "path": "library/tests/recipes/menus.luau",
+      "bytes": 6037,
+      "sha256": "3ede7b3b4542efa8dc9d56d283aef3cf04101209d1f58fc8189369e09e2626e3"
+    },
+    {
+      "path": "library/tests/recipes/notices.luau",
+      "bytes": 3389,
+      "sha256": "cc219d40adb1a0cd6d7dafb128b2d6a0c366b740c0c8b1c72270d2f0acc0948c"
+    },
+    {
+      "path": "library/tests/recipes/press-and-tabs.luau",
+      "bytes": 2058,
+      "sha256": "d8cdb4ca935140e1d0da58b2f907f22d3a3f279642c90ac594449fc242cc96e0"
+    },
+    {
+      "path": "library/tests/recipes/runtime-probe.luau",
+      "bytes": 5218,
+      "sha256": "0cb8d099ba464d4a25eab2aa77cebc22273238b9b1fea077a497326eddc44422"
+    },
+    {
+      "path": "library/tests/recipes/toasts.luau",
+      "bytes": 5971,
+      "sha256": "1dccac75041a0e013d6fce9cb33e4c0543f4ae8c819bdb6153de0015963935e8"
+    },
+    {
+      "path": "library/tests/recipes/toggles.luau",
+      "bytes": 3830,
+      "sha256": "7eb508af9cb52cb2632b6fbfcdb9c8c48473e3294f7273643ff010f906180946"
+    },
+    {
+      "path": "library/tests/recipes/windows.luau",
+      "bytes": 6315,
+      "sha256": "6096fc416f5c1c1f54c9223cf1ef36a3e0afa3d4288a0587a0e58772a2e6fa91"
+    },
+    {
+      "path": "library/tests/stubs.luau",
+      "bytes": 8786,
+      "sha256": "b1ed1562370d8e90b721395a794771c6a6fb33f0b15dd5c7558a2ce76bce0706"
+    },
+    {
+      "path": "tools/api-dump/API-Dump.txt",
+      "bytes": 1002900,
+      "sha256": "e0dd584b577fb92b07f63113b30083ee52ab1abae0224efd1939836c62310634"
+    },
+    {
+      "path": "tools/api-dump/FVariables.txt",
+      "bytes": 426383,
+      "sha256": "1b902b71fc5fb678a6844a32e8c956d4788ac4196177d7700fdfedaa4a87c608"
+    },
+    {
+      "path": "tools/api-dump/LuauTypes.d.luau",
+      "bytes": 15376,
+      "sha256": "008f9f9eb348247dc7f1fd42195546b86fe558c3933f8215a3d3982c6fe842b5"
+    },
+    {
+      "path": "tools/api-dump/datatypes/AdReward.yaml",
+      "bytes": 628,
+      "sha256": "f93e2e58b1b0f51fa1901dc8a4e0ec62895df48ac646fb043882a67751b50c7f"
+    },
+    {
+      "path": "tools/api-dump/datatypes/Axes.yaml",
+      "bytes": 5990,
+      "sha256": "77ac0f4a165878db92d9f6ea97a9ded2c04a3de44b0b242f8625eeeaef4feeb2"
+    },
+    {
+      "path": "tools/api-dump/datatypes/BrickColor.yaml",
+      "bytes": 56539,
+      "sha256": "484973eaf9b9f51b9854d94c03db0185a6fd4e884ceecc60a89d5e7b579e9d8c"
+    },
+    {
+      "path": "tools/api-dump/datatypes/CFrame.yaml",
+      "bytes": 44020,
+      "sha256": "42e0818ffb5475328f8b91d624100cfb8edea75840648bf272bb4000c449c1fb"
+    },
+    {
+      "path": "tools/api-dump/datatypes/CatalogSearchParams.yaml",
+      "bytes": 6715,
+      "sha256": "286d133117a96d8caba679b03658853c873fdd62200ac24dfe8e37ff28f54fed"
+    },
+    {
+      "path": "tools/api-dump/datatypes/Collection.yaml",
+      "bytes": 9751,
+      "sha256": "fd259432d4592c6d8e81f549e06d7ddd0ee68c7b6cc125ac93a8df3a51925dd4"
+    },
+    {
+      "path": "tools/api-dump/datatypes/Color3.yaml",
+      "bytes": 8556,
+      "sha256": "25c8e2c640732091ae21dc7aaec46c2e15a1b8b351c0d92eeb0c8b21ed4b1291"
+    },
+    {
+      "path": "tools/api-dump/datatypes/ColorSequence.yaml",
+      "bytes": 5965,
+      "sha256": "63f0c76cd3257eeda1dd00e4f27d5ee3c0712cf09ac705d64e4e2df7cb0a5c7f"
+    },
+    {
+      "path": "tools/api-dump/datatypes/ColorSequenceKeypoint.yaml",
+      "bytes": 3409,
+      "sha256": "22664fa7887b18fd68249f55c108b9b9f6aad3549047b357f08788ef67020116"
+    },
+    {
+      "path": "tools/api-dump/datatypes/Content.yaml",
+      "bytes": 6283,
+      "sha256": "86733eda32cdaf13c2ee3970738744e75dc2f4d47e075b07a9b3d0ddd3699929"
+    },
+    {
+      "path": "tools/api-dump/datatypes/DateTime.yaml",
+      "bytes": 25266,
+      "sha256": "10c5543141c52c17a0b46ad001f0c9e8c73ae84281fa3e59938debde8a5e056c"
+    },
+    {
+      "path": "tools/api-dump/datatypes/DockWidgetPluginGuiInfo.yaml",
+      "bytes": 4745,
+      "sha256": "d3e5ed9faa1f5f66bbf636b643b5185e6f3190189182b064fb277a3a5a1fbdd5"
+    },
+    {
+      "path": "tools/api-dump/datatypes/Enum.yaml",
+      "bytes": 2178,
+      "sha256": "a21e7b3b630e3d1781715d671fd8ece3911d69d693735b78dbc3aa4f1d259371"
+    },
+    {
+      "path": "tools/api-dump/datatypes/EnumItem.yaml",
+      "bytes": 1248,
+      "sha256": "02c3bd678302ef74358f78e5ed3563a719848e844a8569d0a5ac238c90cacb09"
+    },
+    {
+      "path": "tools/api-dump/datatypes/Enums.yaml",
+      "bytes": 1100,
+      "sha256": "59a02191ab3a3717b6d2d44d03a7ba55599bd64d1df28847d807e9b41e775c58"
+    },
+    {
+      "path": "tools/api-dump/datatypes/Faces.yaml",
+      "bytes": 4607,
+      "sha256": "62388897deaaabf74b2b6d0b511412bee7a14f098bf0391c7d0a7fbf0ef4f56e"
+    },
+    {
+      "path": "tools/api-dump/datatypes/FloatCurveKey.yaml",
+      "bytes": 6319,
+      "sha256": "1a599859f632c49a9c5e1d42eb922e06435ccea2e23bc104496ac952588d4981"
+    },
+    {
+      "path": "tools/api-dump/datatypes/Font.yaml",
+      "bytes": 19493,
+      "sha256": "09fbf18483ff641fc11c32bf56d9b8cd19103aa30fa4e0e423ad81da911d3509"
+    },
+    {
+      "path": "tools/api-dump/datatypes/Instance.yaml",
+      "bytes": 3032,
+      "sha256": "a4c200f309c439ba51b91bdf3a5bcb485a9a4d19d9eb7bc1c92b820550bdb51b"
+    },
+    {
+      "path": "tools/api-dump/datatypes/InstanceHandle.yaml",
+      "bytes": 7843,
+      "sha256": "001fc6cf8ad79a863fe4a5826d775d6ffbc3af9a84967135312fb5cb60924596"
+    },
+    {
+      "path": "tools/api-dump/datatypes/NumberRange.yaml",
+      "bytes": 2415,
+      "sha256": "c0e7c307185b7ca467e2613984b86d9e42d66de8be348ae98916b31f41781b87"
+    },
+    {
+      "path": "tools/api-dump/datatypes/NumberSequence.yaml",
+      "bytes": 5578,
+      "sha256": "d0ff170379209a3c442519987911fbf6d5793f4a7e217549aeb46f1e5373ebfd"
+    },
+    {
+      "path": "tools/api-dump/datatypes/NumberSequenceKeypoint.yaml",
+      "bytes": 4612,
+      "sha256": "0b4792ea564079bbfd9694e7d2d21bcc08c5538130cdcb587a4cf5d67b305137"
+    },
+    {
+      "path": "tools/api-dump/datatypes/OverlapParams.yaml",
+      "bytes": 7614,
+      "sha256": "6a0597ea526724fd65c285bcecaa38446b35c51f80670a33fbbd4182a8b0cfa3"
+    },
+    {
+      "path": "tools/api-dump/datatypes/Path2DControlPoint.yaml",
+      "bytes": 3048,
+      "sha256": "95cff641f37fb02f89e918cbef1193ba36c4388686f59de63c1aa0c3d0f373f8"
+    },
+    {
+      "path": "tools/api-dump/datatypes/PathWaypoint.yaml",
+      "bytes": 2443,
+      "sha256": "0742ece71600410b2f03f1216ae82199baa08f7a5fb650bde4328cc4e4a196ca"
+    },
+    {
+      "path": "tools/api-dump/datatypes/PhysicalProperties.yaml",
+      "bytes": 10337,
+      "sha256": "dc07e98bc18e6d7e1e279ca32242304d30f62b4bcf4b2d09e484fa5836e51a18"
+    },
+    {
+      "path": "tools/api-dump/datatypes/RBXScriptConnection.yaml",
+      "bytes": 1728,
+      "sha256": "8457826cc9f3397f44e0f803399ff50aaaedd649e4ea13f2d19445b586868a3b"
+    },
+    {
+      "path": "tools/api-dump/datatypes/RBXScriptSignal.yaml",
+      "bytes": 4355,
+      "sha256": "8203a0110b8d1cacc2d7612605d891f4a93062eccc35530357c322e6e31cbf58"
+    },
+    {
+      "path": "tools/api-dump/datatypes/Random.yaml",
+      "bytes": 5666,
+      "sha256": "b8f9f398f7f721e2c9c3a8e79fd40b0e79c0f052fedd09cb9b063be2770c87a0"
+    },
+    {
+      "path": "tools/api-dump/datatypes/Ray.yaml",
+      "bytes": 3532,
+      "sha256": "f38e59f5e11d6486636737449289e5b4801c3770f7d11509c6d9d30282404e44"
+    },
+    {
+      "path": "tools/api-dump/datatypes/RaycastParams.yaml",
+      "bytes": 7393,
+      "sha256": "ffa439d1eb21f6999fd9a4882e984941b75a5bbc81b26c46901d6ffce2ba8be0"
+    },
+    {
+      "path": "tools/api-dump/datatypes/RaycastResult.yaml",
+      "bytes": 2386,
+      "sha256": "c34b453b6c73ad8b94a61406cae71b669fc16300e6decdb460971fcd7aebb65b"
+    },
+    {
+      "path": "tools/api-dump/datatypes/Rect.yaml",
+      "bytes": 5091,
+      "sha256": "7a8e30ff88b06e8f928b9f1a772fd89f1160cd00c9ecbcc54aab7ebfd137a2d5"
+    },
+    {
+      "path": "tools/api-dump/datatypes/Region3.yaml",
+      "bytes": 3948,
+      "sha256": "043aa7d9f82308af8dcae17a898e5b53fb02fac11cc192a4b9ce8250cdd8c4a4"
+    },
+    {
+      "path": "tools/api-dump/datatypes/Region3int16.yaml",
+      "bytes": 3115,
+      "sha256": "aa17b9b896b9ff897babb002e7d2b39203b26b6547a816707149b4d522b9d1f8"
+    },
+    {
+      "path": "tools/api-dump/datatypes/RotationCurveKey.yaml",
+      "bytes": 5990,
+      "sha256": "b35ec62eeef3aec69c4e3419663093b404233c53dbe6f3e53f777135e500ceec"
+    },
+    {
+      "path": "tools/api-dump/datatypes/Secret.yaml",
+      "bytes": 1890,
+      "sha256": "cdd8be7b81aecfdd90aff24ab5c9b96093815ab020d54505b972ab2dca19d11e"
+    },
+    {
+      "path": "tools/api-dump/datatypes/SecurityCapabilities.yaml",
+      "bytes": 6146,
+      "sha256": "3803ba0c2505c81f146af9ba8510e0d619f2e2aa4614fb8022ad59e52bb8f23a"
+    },
+    {
+      "path": "tools/api-dump/datatypes/SharedTable.yaml",
+      "bytes": 13896,
+      "sha256": "6de6e4f90042d635f1a180f1560ccb7193c41cdde06cdde3aedc27516ef1c433"
+    },
+    {
+      "path": "tools/api-dump/datatypes/TweenInfo.yaml",
+      "bytes": 3512,
+      "sha256": "a9db57889351ab779963cc703953191e4b0bdb1e3d5d13e27b9c77aff9e44991"
+    },
+    {
+      "path": "tools/api-dump/datatypes/UDim.yaml",
+      "bytes": 4616,
+      "sha256": "fd549a1e59da10cfc9759ea61bdb34a10166ff29e68f82ee5803e4ca633e08bf"
+    },
+    {
+      "path": "tools/api-dump/datatypes/UDim2.yaml",
+      "bytes": 9745,
+      "sha256": "9ff6b95106a281360b35b1ac2092eabb6a19498c6ae2c759df175c726eac3273"
+    },
+    {
+      "path": "tools/api-dump/datatypes/User.yaml",
+      "bytes": 5337,
+      "sha256": "edd03d4c188641c83ed05430694e65de01de4b32abf1a98d8c7d7fce7969d128"
+    },
+    {
+      "path": "tools/api-dump/datatypes/ValueCurveKey.yaml",
+      "bytes": 6529,
+      "sha256": "135bb06dff5980fb1c0f48affe8d3ace64b40df3f0268485f2d7410d3f9904ab"
+    },
+    {
+      "path": "tools/api-dump/datatypes/Vector2.yaml",
+      "bytes": 19372,
+      "sha256": "978d6231da7ec1f0a27e61f700d25b29d1d2bda6d21ec133ee200006c95bb00e"
+    },
+    {
+      "path": "tools/api-dump/datatypes/Vector2int16.yaml",
+      "bytes": 9201,
+      "sha256": "668642168aa78f4e65b17ba83110be7f021e2bd6db531b021bd5f135fdc16d3c"
+    },
+    {
+      "path": "tools/api-dump/datatypes/Vector3.yaml",
+      "bytes": 24322,
+      "sha256": "99ed47e83a497cf71f7d4cd1fdb9149a276ea292d69b649959c0bdee34737971"
+    },
+    {
+      "path": "tools/api-dump/datatypes/Vector3int16.yaml",
+      "bytes": 9865,
+      "sha256": "123b078a73481b3d742a2d1cec62bf421c6ae2c1342e785617623eba778ec6ec"
+    },
+    {
+      "path": "tools/api-dump/version.txt",
+      "bytes": 15,
+      "sha256": "51b938508ef1cfe038668c47c9726981f0e0aa3e568abcc18626fc23dd07a44f"
+    },
+    {
+      "path": "tools/bin/auto-update.mjs",
+      "bytes": 2465,
+      "sha256": "424f0400af5d8ebdbd6bca4e71d5c9cc4d5259738604b26e109e55cbc7069099"
+    },
+    {
+      "path": "tools/bin/build-openai-plugin.mjs",
+      "bytes": 6267,
+      "sha256": "eb23f89e9ee22bc929256c41d5fb972396ab800b4c25c2d013fd0031f9397dd7"
+    },
+    {
+      "path": "tools/bin/build-plugin-branch.mjs",
+      "bytes": 4680,
+      "sha256": "d120ef3f25e98c5758453c1a39ba31be71041ec1aaaa9b484388df558ce36ef9"
+    },
+    {
+      "path": "tools/bin/build-portable.mjs",
+      "bytes": 18786,
+      "sha256": "f60ec95832b009df36357a4517e09dbf5d015ed4b9180e904c49587fe26d3767"
+    },
+    {
+      "path": "tools/bin/check-all.mjs",
+      "bytes": 6824,
+      "sha256": "1b93380256e968611bb096fe7b1dcfb37dc76d648aa8109e639d26ad702a5b41"
+    },
+    {
+      "path": "tools/bin/generate-tables.mjs",
+      "bytes": 14195,
+      "sha256": "74f745b46698551c03d0b7f4e508ae10bc078a56ad3ad35950bde2a61ee0d94a"
+    },
+    {
+      "path": "tools/bin/install-auto-update.ps1",
+      "bytes": 1758,
+      "sha256": "f481faacf91a23de8e3bdd7398172f50e04a111df982cb4f7e776771d8b24425"
+    },
+    {
+      "path": "tools/bin/lib/contrast.mjs",
+      "bytes": 1699,
+      "sha256": "64f5c8406f0331c35811c9317ebadb68f639265fe84f20bc695719cd4ed0a505"
+    },
+    {
+      "path": "tools/bin/lib/dump.mjs",
+      "bytes": 12145,
+      "sha256": "456f8a4c0f3bc72b8d8c2fe0224f1be1cdc53db5d778fd1fc3a9358772aa9ea7"
+    },
+    {
+      "path": "tools/bin/lib/github.mjs",
+      "bytes": 1351,
+      "sha256": "c607ac293955d50b5293473d09984cfab3aa19afead20a02f75e2d7cda74a29d"
+    },
+    {
+      "path": "tools/bin/lib/gui-model.mjs",
+      "bytes": 19339,
+      "sha256": "abe0e631a6668476be7540ef9d8cbfdc79113e0d985ce9059da83beca252dfde"
+    },
+    {
+      "path": "tools/bin/lib/luau-runtime.mjs",
+      "bytes": 596,
+      "sha256": "418dc23937bb8521949e9bd0ed6578994eaa353344dd07dc6fbbbe0938a9b7c6"
+    },
+    {
+      "path": "tools/bin/lib/portable-package.mjs",
+      "bytes": 5739,
+      "sha256": "0a6efe6fd37328cb9ac700cbfa8aa75971a577c33057f564990603d94ef835fe"
+    },
+    {
+      "path": "tools/bin/lib/skills.mjs",
+      "bytes": 2364,
+      "sha256": "3e666e47d69c2395982b5f680ce48920c5d1139f3ecb2a15a66e33e4c62864e2"
+    },
+    {
+      "path": "tools/bin/lint-links.mjs",
+      "bytes": 11681,
+      "sha256": "5a113cfdd0dd31ed2e8f69c6563f55402f0df520b6086dde01d449e9ff6f22c2"
+    },
+    {
+      "path": "tools/bin/lint-luau-blocks.mjs",
+      "bytes": 21106,
+      "sha256": "20e002d57480811e3105db74a5f4a6f265bfbf85fe8770842f56891adc2fa590"
+    },
+    {
+      "path": "tools/bin/lint-luau-format.mjs",
+      "bytes": 13443,
+      "sha256": "c6c05757ee0a93b3ac75019f6b6927b251ccc6e957a8e1ca28771136160ed888"
+    },
+    {
+      "path": "tools/bin/lint-luau-slop.mjs",
+      "bytes": 40757,
+      "sha256": "5d839284724bb4abb65c78ac0d48e1087ad3d4ceae1ede16d470c476ee312135"
+    },
+    {
+      "path": "tools/bin/lint-parity.mjs",
+      "bytes": 4748,
+      "sha256": "80d95875f382567f6def46f0cacc828642e4ce14d9205301b96744f7f77ce42e"
+    },
+    {
+      "path": "tools/bin/lint-prose.mjs",
+      "bytes": 12797,
+      "sha256": "5152b4272d6ed86e7fe634df6d98b539192aae9ebbeec43728064ac5fbe803cf"
+    },
+    {
+      "path": "tools/bin/lint-roblox-ui.mjs",
+      "bytes": 32805,
+      "sha256": "be99c2658b4214ac2250147abc0e4bf7beb6acff35b3dfd032bb0f40d8d80d93"
+    },
+    {
+      "path": "tools/bin/lint-ui-directions.mjs",
+      "bytes": 7395,
+      "sha256": "13744e52ab7717076b7b948dca4109b236f9ae8c23762637cc73b9c7107b59f5"
+    },
+    {
+      "path": "tools/bin/publish-github.mjs",
+      "bytes": 6318,
+      "sha256": "aae65e3c2e800405c9961328a04fe231b62f2671919c741df6266c6eeb95a53c"
+    },
+    {
+      "path": "tools/bin/run-library-tests.mjs",
+      "bytes": 3712,
+      "sha256": "fb96a72d884c3ee6d390789405b6c387298a9f8841c487e588024efc0274df8c"
+    },
+    {
+      "path": "tools/bin/run-recipe-tests.mjs",
+      "bytes": 3223,
+      "sha256": "6cfd54f81899e1d4c7f5633e4634adfb0048b1c1de73a4b0f1f8baa9e808ef43"
+    },
+    {
+      "path": "tools/bin/sync-plugin.mjs",
+      "bytes": 3379,
+      "sha256": "983d033a41844aeea99e61d1913146b4706db9c45d8b49c21339e9e26ec70447"
+    },
+    {
+      "path": "tools/bin/update-dump.mjs",
+      "bytes": 5383,
+      "sha256": "83c4315364b62a0c8ab20a62fee478c7671ceec3bfd7f1d1d3d6accf3c26bfb0"
+    },
+    {
+      "path": "tools/bin/verify-api.mjs",
+      "bytes": 9400,
+      "sha256": "b508b56292b6f36c0f8713d5794fb2180ae42dcb6eec0c89d1534a8f3a13a803"
+    },
+    {
+      "path": "tools/bin/verify-asset-ids.mjs",
+      "bytes": 6761,
+      "sha256": "72d1695437fe0fc6c15f7aaf8c9edb1babb3c8c02f345f94e2ed2400db562642"
+    },
+    {
+      "path": "tools/bin/verify-executor-api.mjs",
+      "bytes": 10909,
+      "sha256": "e2ee1a7c9b9d2fa0d4f12353ef6379f9563cd12b17e065564d9dd6698595069d"
+    },
+    {
+      "path": "tools/lint-allow.txt",
+      "bytes": 825,
+      "sha256": "fd3b0b0289e2f7d8a757d293b55b420cb0e9eb42fcae03ec1cdd37c972704025"
+    },
+    {
+      "path": "tools/ps1/generate-tables.ps1",
+      "bytes": 681,
+      "sha256": "59777875590e5574c89eee859a6eedd137f32889f50f28cf29b4345b8ba67b94"
+    },
+    {
+      "path": "tools/ps1/update-dump.ps1",
+      "bytes": 673,
+      "sha256": "adca5c6701678030fe83c296144edde8b33941b7f36160c2987173a7568fe8f8"
+    },
+    {
+      "path": "tools/ps1/verify-api.ps1",
+      "bytes": 671,
+      "sha256": "388591773f352f7b8c04f0adfb0212a553997cb986021e4e770d1d4c72d5e494"
+    },
+    {
+      "path": "tools/py/check_luau.py",
+      "bytes": 2195,
+      "sha256": "7e65cf8ab3565dbee2f395bd5f326ea4dc0634cb412cfa593c4cdde99e56ba33"
+    },
+    {
+      "path": "tools/py/dump_index.py",
+      "bytes": 22315,
+      "sha256": "fdf2fbf455e3a68f20f48ac98a657bd2616f842861f821ee3839f852109c74bb"
+    },
+    {
+      "path": "tools/py/format_lint.py",
+      "bytes": 13110,
+      "sha256": "740bff1439f7cc5e083298f09eb7d910a14314a33ed0b6a865fe0dcd0939eb37"
+    },
+    {
+      "path": "tools/py/roblox_lint.py",
+      "bytes": 37614,
+      "sha256": "cd44061daa4e16ac32e321c188f57bdd28ce0a5a75c70f3eb75475284e043983"
+    },
+    {
+      "path": "tools/py/ui_lint.py",
+      "bytes": 47553,
+      "sha256": "73a517aa2150eeb0b5aec42dbf1f1dcb281d391bafa67e1d535db84d9f8ef071"
+    },
+    {
+      "path": "tools/py/verify_api.py",
+      "bytes": 16952,
+      "sha256": "b1ed3725693c8a816691d4fbad697afce9ab585a076152ff60d924d96083f6f8"
+    },
+    {
+      "path": "tools/runtime/LICENSE-Luau.txt",
+      "bytes": 1124,
+      "sha256": "1597b423ca8f9c76225b498071f03b2b3609c4960b8dc30e63b230490fc82efd"
+    },
+    {
+      "path": "tools/runtime/README.md",
+      "bytes": 1148,
+      "sha256": "6fd5feb4997458a150d446e1115948f7e52c469afe1af9eb14d7e9845572b27f"
+    },
+    {
+      "path": "tools/runtime/linux-x64/luau",
+      "bytes": 3011888,
+      "sha256": "7e61c82163bd913cb3b12b34cbab2c914f424b6376e69ef870d95e059860e978"
+    },
+    {
+      "path": "tools/runtime/linux-x64/luau-compile",
+      "bytes": 2584912,
+      "sha256": "2795aa31bf4b92261fcfd4e5035b74c5e7b18b12339b6c6aead1c5ed7e24fcaf"
+    },
+    {
+      "path": "tools/runtime/windows-x64/luau-compile.exe",
+      "bytes": 1391616,
+      "sha256": "fe685c8522730da3ac706beb97a2460afca668749de1c6167d4e5c78aec0b33b"
+    },
+    {
+      "path": "tools/runtime/windows-x64/luau.exe",
+      "bytes": 1657344,
+      "sha256": "d8f3850576c68bcb5b377ea214c787bda2d588c19b6bc0bc38abf95fe9bc022d"
+    },
+    {
+      "path": "tools/tests/check-all.test.mjs",
+      "bytes": 1424,
+      "sha256": "5f24b2771bd1ae24bb380fbaccd53faad5e8eb7f850e734d52bbe91bf613d275"
+    },
+    {
+      "path": "tools/tests/dump-index.test.mjs",
+      "bytes": 2654,
+      "sha256": "abf7d2fdeeed60ddd6de6f0c4080428c651b87abbbc7c7aee8338199e8a9b504"
+    },
+    {
+      "path": "tools/tests/install.test.mjs",
+      "bytes": 4865,
+      "sha256": "3717f1fde9f3cd73154bb0dd52f035614979a4f5079b216dbab9d10bbe9cf867"
+    },
+    {
+      "path": "tools/tests/luau-compile.test.mjs",
+      "bytes": 1608,
+      "sha256": "041bad512601f537dd1441babb41d953aff14bc4ad93610b9cd83889601efaeb"
+    },
+    {
+      "path": "tools/tests/portable-package.test.mjs",
+      "bytes": 4363,
+      "sha256": "d89ded772a5ec5192b953d99d9d970530c158128adddd5af84101fcb95f6eb2c"
+    }
+  ]
+}

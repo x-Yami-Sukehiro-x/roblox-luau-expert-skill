@@ -1,0 +1,61 @@
+# Dependencies
+node_modules/
+Packages/
+DevPackages/
+ServerPackages/
+
+# Build output
+*.rbxl
+*.rbxlx
+*.rbxm
+*.rbxmx
+*.rbxl.lock
+*.rbxlx.lock
+# The decompiled-source search is tested against a saveinstance place.
+!evals/fixtures/dump-sample/*.rbxlx
+sourcemap.json
+globalTypes.d.luau
+
+# Tooling
+.luaurc.local
+coverage.out
+profile.out
+trace.json
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+toastharness.luau
+
+# Generated: a zip of this repo, rebuilt by tools/bin/build-portable.mjs.
+# Committing it would pack the previous copy into the next one every build.
+docs/portability/gpt/knowledge/*.zip
+
+# Generated: the OpenAI plugin, rebuilt by tools/bin/build-openai-plugin.mjs.
+dist/
+
+# Machine-local: this checkout's Claude permissions and dev-server config.
+.claude/settings.local.json
+.claude/launch.json
+
+# Private working notes: the requests each version was built from, and GPT test
+# transcripts, which record local paths. Kept on this PC, never published.
+docs/briefs/
+docs/portability/gpt/test-results/
+evals/results/
+
+# Secrets and editor state, should any ever land in this folder.
+.env
+.env.*
+*.pem
+*.key
+*.pfx
+*.p12
+*.cookie
+cookies.txt
+.vscode/
+.idea/
+__pycache__/
+*.pyc
+*.log

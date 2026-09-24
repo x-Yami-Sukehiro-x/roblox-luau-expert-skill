@@ -1,0 +1,37 @@
+{
+  "//": "Copy to .mcp.json at the repo root, or merge into ~/.claude.json.",
+
+  "//  BUILT-IN STUDIO MCP  ": [
+    "Do NOT hand-write this entry. The command is install- and version-specific,",
+    "and Studio writes the correct one for you:",
+    "",
+    "  Studio -> Assistant panel -> Manage MCP Servers",
+    "  -> enable 'Enable Studio as MCP server'",
+    "  -> Quick connect -> Claude Code",
+    "",
+    "That writes a stdio server entry pointing at your Studio install. Guessing",
+    "the path produces a server that silently fails to start.",
+    "",
+    "Verify afterwards with:  claude mcp list"
+  ],
+
+  "mcpServers": {
+    "//  OPTIONAL THIRD PARTY  ": [
+      "Chrrxs/robloxstudio-mcp - 208*, MIT, audited 2026-09-09, no telemetry.",
+      "Add ONLY if you need the profiler / memory / breakpoint / multiplayer",
+      "playtest tools the built-in server does not expose. See ./README.md.",
+      "",
+      "Do not set ROBLOSECURITY (full account credential) or",
+      "ROBLOX_STUDIO_NO_AUTH (disables the local auth gate).",
+      "For asset upload use ROBLOX_OPEN_CLOUD_API_KEY - scoped and revocable.",
+      "",
+      "Remove this comment key and the leading underscore below to enable."
+    ],
+
+    "_robloxstudio-mcp": {
+      "command": "npx",
+      "args": ["-y", "@chrrxs/robloxstudio-mcp@latest", "--auto-install-plugin"],
+      "env": {}
+    }
+  }
+}

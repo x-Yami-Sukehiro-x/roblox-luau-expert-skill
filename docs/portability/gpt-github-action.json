@@ -1,0 +1,50 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Roblox Luau Expert current files",
+    "version": "1.0.0",
+    "description": "The newest published copy of every Roblox Luau Expert skill file, rebuilt from GitHub on every push. It is newer than the uploaded knowledge files and returns whole files instead of search fragments."
+  },
+  "servers": [
+    {
+      "url": "https://raw.githubusercontent.com/x-Yami-Sukehiro-x/roblox-luau-expert-skill/plugin/files"
+    }
+  ],
+  "paths": {
+    "/index.json": {
+      "get": {
+        "operationId": "listSkillFiles",
+        "summary": "List every current skill file",
+        "description": "Returns the build version and files as name, path and bytes. Call it once per conversation, before the first file read, then pass a file's name to getSkillFile.",
+        "responses": {
+          "200": {
+            "description": "The file index as JSON text."
+          }
+        }
+      }
+    },
+    "/{name}": {
+      "get": {
+        "operationId": "getSkillFile",
+        "summary": "Read one current skill file in full",
+        "description": "Returns the whole file as text. name is the flat name from listSkillFiles, such as skills__roblox-ui__SKILL.md or docs__visual-guide__index.html. Use it whenever a rule says to read a skill, reference, recipe or the style picker in full, and prefer it to a knowledge-file fragment.",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "description": "A flat file name exactly as listSkillFiles returned it.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The file's text."
+          }
+        }
+      }
+    }
+  }
+}

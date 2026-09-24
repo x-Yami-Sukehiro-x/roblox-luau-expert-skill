@@ -1,0 +1,12 @@
+-- Script Path: game:GetService("ReplicatedStorage").Modules.Sprint
+local v1 = {}
+v1.MaxStamina = 100
+v1.SprintSpeed = 24
+function v1.StartSprint(p2)
+	local v3 = p2.Character:FindFirstChildOfClass("Humanoid")
+	if p2:GetAttribute("Stamina") > 10 then
+		v3.WalkSpeed = v1.SprintSpeed
+	end
+end
+-- DECOMPILER ERROR at PC 44: Unhandled construct
+return v1

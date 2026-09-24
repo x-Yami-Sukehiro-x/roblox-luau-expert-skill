@@ -1,0 +1,16 @@
+# lint-prose.mjs allowlist.
+#
+# Format:  CODE  symbol  # reason
+#
+# Every entry needs a reason. An unreasoned entry is not an allowlist, it is a
+# hiding place, and the linter rejects the file if it finds one.
+#
+# Before adding a line here, check the finding is genuinely intentional. The
+# whole value of this tool is that its errors are real; each suppression spends
+# a little of that.
+
+# --- Executor skill ---------------------------------------------------------
+# replicatesignal exists specifically to fire engine-internal signals that no
+# ordinary script can reach. The RobloxEngine gate is the premise of the
+# technique, not an oversight, and the surrounding prose says so.
+E-SECURITY ClickDetector.MouseActionReplicated  # replicatesignal targets engine-gated signals by design; that is the point of the section

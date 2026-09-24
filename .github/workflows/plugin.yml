@@ -1,0 +1,99 @@
+# Rebuilds the `plugin` branch and the public style picker on every push to
+# main. Codex and the ChatGPT desktop app install from that branch, the GPT
+# Action reads its files/, and GitHub Pages serves the picker, so a push that
+# fails a gate changes nothing they see.
+name: Build plugin branch
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: plugin-branch
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+
+      # Publishing snapshots the working tree between edits, so the generated host
+      # files and package hashes can trail their sources by one edit. Regenerate
+      # them here; every other gate still judges the sources as published.
+      - name: Regenerate derived files
+        run: node tools/bin/build-portable.mjs
+
+      # Exit 2 means no gate failed but some could not run on this runner: the
+      # installer test is Windows-only and the asset-id check needs Roblox's
+      # thumbnail API to answer. Both still run on the PC that publishes.
+      # Exit 1, any failed gate, stops the build.
+      - name: Every gate
+        run: |
+          set +e
+          node tools/bin/check-all.mjs
+          status=$?
+          if [ "$status" -eq 2 ]; then
+            echo "::warning::No gate failed; the skipped or partial gates are listed above."
+            exit 0
+          fi
+          exit "$status"
+
+      - name: Build the branch tree
+        run: node tools/bin/build-plugin-branch.mjs --source-sha "$GITHUB_SHA"
+
+      - name: Commit it to the plugin branch
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if git fetch --depth 1 origin plugin; then
+            git worktree add --detach plugin-tree FETCH_HEAD
+          else
+            git worktree add --orphan -b plugin plugin-tree
+          fi
+          rsync -a --delete --exclude .git dist/plugin-branch/ plugin-tree/
+          cd plugin-tree
+          git add -A
+          if git diff --cached --quiet; then
+            echo "plugin branch already matches ${GITHUB_SHA::7}"
+            exit 0
+          fi
+          git commit -q -m "Build ${GITHUB_SHA::7}: $(git -C .. log -1 --format=%s)"
+          git push origin HEAD:refs/heads/plugin
+
+  picker:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    concurrency:
+      group: pages
+      cancel-in-progress: false
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/configure-pages@v6
+
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          path: docs/visual-guide
+
+      - id: deploy
+        uses: actions/deploy-pages@v5

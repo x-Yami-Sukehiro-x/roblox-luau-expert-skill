@@ -1,0 +1,47 @@
+# Roblox GUI class sets - dump 0.739.0.7390687 - generated 2026-09-21
+# One 'Root Class' per line: GuiObject, UIBase or LayerCollector.
+# Consumed by tools/py/ui_lint.py, which cannot parse the dump itself.
+GuiObject CanvasGroup
+GuiObject Frame
+GuiObject GuiButton
+GuiObject GuiLabel
+GuiObject ImageButton
+GuiObject ImageLabel
+GuiObject InputActionLabel
+GuiObject RelativeGui
+GuiObject ScrollingFrame
+GuiObject TextBox
+GuiObject TextButton
+GuiObject TextChannelWindow
+GuiObject TextLabel
+GuiObject VideoDisplay
+GuiObject VideoFrame
+GuiObject ViewportFrame
+UIBase UIAspectRatioConstraint
+UIBase UIComponent
+UIBase UIConstraint
+UIBase UICorner
+UIBase UIDragDetector
+UIBase UIFlexItem
+UIBase UIGradient
+UIBase UIGridLayout
+UIBase UIGridStyleLayout
+UIBase UILayout
+UIBase UIListLayout
+UIBase UIPadding
+UIBase UIPageLayout
+UIBase UIScale
+UIBase UIShadow
+UIBase UISizeConstraint
+UIBase UIStroke
+UIBase UITableLayout
+UIBase UITextSizeConstraint
+LayerCollector AdGui
+LayerCollector BillboardGui
+LayerCollector DockWidgetPluginGui
+LayerCollector GuiMain
+LayerCollector PluginGui
+LayerCollector QWidgetPluginGui
+LayerCollector ScreenGui
+LayerCollector SurfaceGui
+LayerCollector SurfaceGuiBase

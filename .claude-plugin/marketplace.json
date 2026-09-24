@@ -1,0 +1,28 @@
+{
+  "name": "roblox-luau-expert-marketplace",
+  "owner": {
+    "name": "x-Yami-Sukehiro-x"
+  },
+  "description": "Roblox and Luau expertise for coding agents: engine APIs, Luau types, networking, data persistence, performance, UI and UX, anti-exploit defence, toolchain, and client/executor scripting.",
+  "plugins": [
+    {
+      "name": "roblox-luau-expert",
+      "source": ".",
+      "displayName": "Roblox Luau Expert",
+      "description": "18-skill Roblox and Luau stack with API-dump-backed verification, contrast-verified design directions, a gated UI build order, vague-request intake, and a decompiled-source workflow. Counts its own anti-slop and UI rules over real files, in Node or in Python, and proves a rewrite with a before/after diff. Generates matching AGENTS.md, Cursor and custom-GPT rule files from one source.",
+      "version": "5.3.0",
+      "license": "LicenseRef-PolyForm-Strict-1.0.0",
+      "category": "development",
+      "keywords": [
+        "roblox",
+        "luau",
+        "gamedev",
+        "anti-exploit",
+        "ui",
+        "ux",
+        "design",
+        "monetization"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+-- Decompiled with Konstant V2.1
+-- Script Path: game:GetService("Players").LocalPlayer.PlayerScripts.CoinCollector
+local v1 = game:GetService("ReplicatedStorage")
+local v2 = game:GetService("Players").LocalPlayer
+local u3 = v1:WaitForChild("Remotes"):WaitForChild("CollectCoin")
+local u4 = require(v1.Modules.CoinConfig)
+local function u5(p6)
+	if p6:GetAttribute("Collected") then
+		return
+	end
+	u3:FireServer(p6.Name, p6.Position)
+end
+workspace.Coins.ChildAdded:Connect(function(p7)
+	p7.Touched:Connect(function(p8)
+		if p8.Parent == v2.Character then
+			u5(p7)
+		end
+	end)
+end)

@@ -1,0 +1,13 @@
+<roblox version="4">
+<Item class="Folder" referent="RBX1"><Properties><string name="Name">Remotes</string></Properties></Item>
+<Item class="LocalScript" referent="RBX2">
+<Properties>
+<string name="Name">RodController</string>
+<ProtectedString name="Source"><![CDATA[local v1 = game:GetService("ReplicatedStorage").Remotes.CastRod
+local function u2(p3)
+	v1:FireServer(p3, workspace.CurrentCamera.CFrame.LookVector)
+end
+return u2]]></ProtectedString>
+</Properties>
+</Item>
+</roblox>
