@@ -28,7 +28,7 @@ with the knowledge files beside it.
 ## Route B — the full plugin built from this repository (recommended)
 
 `node tools/bin/build-openai-plugin.mjs` writes
-`dist/openai-plugin/roblox-luau-expert/`: a portable `plugin.json`, all nineteen
+`dist/openai-plugin/roblox-luau-expert/`: a portable `plugin.json`, all twenty-one
 skills under `skills/` with their references and the tested style recipes, the
 Python and Node checkers, the library and the style picker. Each skill loads in
 full when its description matches, so nothing is squeezed into 8,000
@@ -55,6 +55,28 @@ after installing rather than assuming.
 Update it by hand the same way the GPT was updated: change the source, rebuild,
 and reinstall. To have it follow this repository automatically through GitHub,
 see [auto-update.md](auto-update.md).
+
+### The copy uploaded at chatgpt.com/plugins
+
+A plugin uploaded as a ZIP on the web (**Plugins**, **Personal**, **Created by
+me**) does not follow GitHub. Each version is another upload: open the plugin,
+**Plugin actions** (the three dots), **Upload new version**, and choose
+`dist/openai-plugin/roblox-luau-expert-plugin.zip`.
+
+```bash
+node tools/bin/web-plugin-update.mjs --status   # builds the ZIP; exit 3 when this version was not uploaded
+node tools/bin/web-plugin-update.mjs --record   # after the page shows the new Version
+```
+
+A scheduled Claude task in the desktop app (**Scheduled**, "ChatGPT plugin
+auto-update") runs `--status` and, when an upload is needed, does the upload in
+the signed-in Chrome through Claude in Chrome, checks the Version on the page
+and records it. It runs only while the Claude desktop app is open.
+
+Plugin names are unique per account. With two uploads named
+`roblox-luau-expert`, every **Upload new version** fails with "A plugin named
+`roblox-luau-expert` already exists", on either copy. Remove the copy you do
+not use from the Personal list; the next upload then succeeds.
 
 ## Testing the replacement
 

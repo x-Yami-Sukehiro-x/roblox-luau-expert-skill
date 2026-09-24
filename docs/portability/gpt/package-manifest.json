@@ -1,6 +1,6 @@
 {
   "format": 1,
-  "archiveSha256": "25604b737898e1ef894f3d729397253439eaae526bda42e29d2fc1a40e9eb992",
+  "archiveSha256": "190f974401058ee404a286c4d94d4ad079f1e4a663d1c2212c84dfde02dd3be5",
   "files": [
     {
       "path": ".claude/skills/roblox-architecture/SKILL.md",
@@ -799,8 +799,8 @@
     },
     {
       "path": "docs/portability/README.md",
-      "bytes": 6150,
-      "sha256": "5fac541008360cc90037a6b1c56f927462cc5f2a80b8c91758e297a05908f965"
+      "bytes": 6152,
+      "sha256": "45688800728a155bc082391e67fca3aafb97eb64ae45799224c26d9c25071f57"
     },
     {
       "path": "docs/portability/auto-update.md",
@@ -814,8 +814,8 @@
     },
     {
       "path": "docs/portability/gpt/README.md",
-      "bytes": 6906,
-      "sha256": "10674383e42f317508c8fc810366184c33ca3f5cefd1675cc50ff775a8883193"
+      "bytes": 6817,
+      "sha256": "51a136f0028ed9aab64de23c98169fe0212df97092d3c94bd718175f9eb0d0b0"
     },
     {
       "path": "docs/portability/gpt/UIs/README.md",
@@ -904,8 +904,8 @@
     },
     {
       "path": "docs/portability/openai-plugin.md",
-      "bytes": 3723,
-      "sha256": "e9ab8b9058a7995b8b8482c1c818f0d1f48f23afc4dae38082b87161d9dac504"
+      "bytes": 4842,
+      "sha256": "038e3fab4e605997a20a97d2f1673123ef391feb11a945fc2560945d89aee571"
     },
     {
       "path": "docs/portability/rules.md",
@@ -1564,8 +1564,8 @@
     },
     {
       "path": "tools/bin/lint-prose.mjs",
-      "bytes": 12797,
-      "sha256": "5152b4272d6ed86e7fe634df6d98b539192aae9ebbeec43728064ac5fbe803cf"
+      "bytes": 12918,
+      "sha256": "7c0b19999b88d59e6660ebab38617d87995614d0a65393ef159516a49b9ddf6c"
     },
     {
       "path": "tools/bin/lint-roblox-ui.mjs",
