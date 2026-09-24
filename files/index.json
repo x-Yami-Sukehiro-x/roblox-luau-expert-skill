@@ -1,7 +1,7 @@
 {
   "repository": "x-Yami-Sukehiro-x/roblox-luau-expert-skill",
-  "source": "49d3e71a1d1edc393d0d967bf31e0456be912401",
-  "version": "5.5.0+g49d3e71",
+  "source": "2baebfb1a384d132b30c8044a01042c0372be383",
+  "version": "5.5.0+g2baebfb",
   "files": [
     {
       "name": "AGENTS.md",
@@ -11,7 +11,7 @@
     {
       "name": "docs__CHANGELOG.md",
       "path": "docs/CHANGELOG.md",
-      "bytes": 67797
+      "bytes": 71551
     },
     {
       "name": "docs__SOURCES.md",

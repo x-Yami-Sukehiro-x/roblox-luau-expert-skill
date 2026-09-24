@@ -1,5 +1,75 @@
 # Changelog
 
+## 5.5.0 — 2026-09-24
+
+Ninety-two more picker styles and a new tooltip group, tested executor
+feature scripts, one-call checks and recipe lookup for faster replies, and a
+way to keep the chatgpt.com plugin current.
+
+### Added — picker styles, 215 codes, all with tested recipes
+
+- Toggles T21–T30 (fill, words at both ends, glow, lever, dot in a ring, edge
+  stripe, rocker, status pill, hotkey chip, mini), checkboxes and choice
+  groups C11–C20 (tick on the right, count, cross box, big box, checklist with
+  progress, joined buttons, stars, colour dots, size buttons, plan cards).
+- Dropdowns D13–D22: two-line options, recent first, opens upward, bottom
+  sheet, autocomplete, grid, split button, pick then Apply, sub-menus and type
+  to add.
+- Menu movement M25–M36, notifications N21–N30 (player popup, percent, island,
+  sticky, floating reward, objective, bell inbox, invite, captions, edge
+  flash), hide and bring back O13–O20 (pull-up tab, dock, see-through, rail,
+  hold to show, corner button, swipe away, hide when idle).
+- Button feel P13–P22, with `attachAction` for P16–P20 (working, done,
+  cooldown, press twice, shake when blocked); tab switch S13–S22 (bottom bar,
+  counts, steps, folder, expanding icon, groups, bigger when chosen, More,
+  arrows, accordion).
+- **Tooltips H1–H12** in the new `tooltips.luau`: hover, arrow bubble, slider
+  value while dragging, value on the knob, ends and value, info button, titled
+  with a hotkey, follows the pointer, locked reason, press and hold, helper
+  line and coach mark. Every one opens by long press on touch and by gamepad
+  selection.
+- The designer's style lists carry every new code, with previews for the
+  shapes that differ, and sliders take an H3, H4 or H5 readout.
+- `run-recipe-tests.mjs`: 1,172 assertions over nineteen files.
+
+### Added — two skills
+
+- **`roblox-ui-tooltips`**: which of tooltip, info button, helper line, locked
+  reason or coach mark to use; delay, placement and flipping; touch and gamepad
+  access; layering above scrolling frames; slider readouts, formatting and
+  typing an exact value.
+- **`roblox-executor-features`**: fly (`LinearVelocity` and `AlignOrientation`,
+  camera-relative, works with the touch thumbstick), noclip, speed and jump,
+  infinite jump, ESP (nearest 31 highlighted, labels four times a second),
+  click teleport (tap on phones), anti-AFK and fullbright. Each is paste-whole,
+  shares one `getgenv().Features` namespace, survives respawn, replaces itself
+  on rerun and restores what it changed on unload, and is behaviour-tested.
+  `feature-quality.md` is the bar for any other feature.
+
+### Added — faster replies
+
+- `node tools/bin/check-file.mjs <file>` (Python: `tools/py/check_file.py`)
+  runs slop, format, UI, API, compile and register checks in parallel, in
+  about half a second, with one line per check.
+- `python tools/py/recipe.py T21 M28 H3 fly` prints each code's row, the call
+  and the files to paste, once each, instead of reading the style pack.
+- `roblox-reply-craft/references/fast-path.md`: the request-to-files route for
+  the common requests, and where reply time goes.
+- The GPT instructions name both tools; they are 100 characters shorter.
+
+### Added — the chatgpt.com plugin
+
+`node tools/bin/web-plugin-update.mjs --status` builds the plugin ZIP and says
+whether its version was uploaded; `--record` notes an upload. A scheduled
+browser task uses it to upload each new version through "Upload new version".
+
+### Changed
+
+- The UI linter applies the ScreenGui rules (size bound, `ResetOnSpawn`,
+  insets) only to a `ScreenGui`, not to a `BillboardGui` or `SurfaceGui`.
+- The picker's section links scroll sideways on a phone instead of taking four
+  rows of the screen.
+
 ## 5.4.0 — 2026-09-24
 
 A drag-and-drop UI designer, twice as many picker styles, working replays,
