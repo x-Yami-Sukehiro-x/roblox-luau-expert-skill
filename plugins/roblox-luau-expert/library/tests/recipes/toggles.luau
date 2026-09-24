@@ -2,7 +2,7 @@ local createToggle = __recipe()
 local parent = Instance.new("Frame")
 local results = {}
 local function check(name, ok) table.insert(results, (ok and "PASS " or "FAIL ") .. name) end
-for _, style in { "T1", "T2", "T3", "T5", "T6", "T7", "T8", "T9", "T10", "T11", "T12", "T13", "T14", "T15", "T16", "T17", "T18", "T19", "T20" } do
+for _, style in { "T1", "T2", "T3", "T5", "T6", "T7", "T8", "T9", "T10", "T11", "T12", "T13", "T14", "T15", "T16", "T17", "T18", "T19", "T20", "T21", "T22", "T23", "T24", "T25", "T26", "T27", "T28", "T29", "T30" } do
 	local log = {}
 	local toggle = createToggle(parent, "Auto farm " .. style, style, false, function(v) table.insert(log, v) end)
 	check(style .. " starts off", toggle.get() == false)
@@ -138,6 +138,68 @@ do
 	check("T20 custom lead icon", custom.row.Lead.Image == "rbxassetid://103991922506350")
 	custom.row.Activated:Fire()
 	check("T20 switch moves", custom.row.Track.Knob.Position.X.Offset == 23)
+end
+do
+	local toggle = createToggle(parent, "Fill", "T21", false, function() end)
+	check("T21 fill empty when off", toggle.row.Track.Fill.Size.X.Scale == 0)
+	toggle.row.Activated:Fire()
+	check("T21 fill full and knob right when on", toggle.row.Track.Fill.Size.X.Scale == 1 and toggle.row.Track.Knob.Position.X.Offset == 23)
+end
+do
+	local toggle = createToggle(parent, "Ends", "T22", false, function() end)
+	check("T22 words either side of the track", toggle.row.OffWord.LayoutOrder == 2 and toggle.row.Track.LayoutOrder == 3 and toggle.row.OnWord.LayoutOrder == 4)
+	local before = toggle.row.OnWord.TextColor3
+	toggle.row.Activated:Fire()
+	check("T22 On word changes colour when on", toggle.row.OnWord.TextColor3 ~= before)
+end
+do
+	local toggle = createToggle(parent, "Glow", "T23", false, function() end)
+	check("T23 glow hidden when off", toggle.row.Track.Glow.Transparency == 1)
+	toggle.row.Activated:Fire()
+	check("T23 glow shown when on", toggle.row.Track.Glow.Transparency < 1)
+end
+do
+	local toggle = createToggle(parent, "Lever", "T24", false, function() end)
+	check("T24 knob low when off", toggle.row.Track.Knob.Position.Y.Offset == 19)
+	toggle.row.Activated:Fire()
+	check("T24 knob high when on", toggle.row.Track.Knob.Position.Y.Offset == 3)
+end
+do
+	local toggle = createToggle(parent, "Ring", "T25", false, function() end)
+	check("T25 dot hidden when off", toggle.row.Ring.Dot.UIScale.Scale == 0)
+	toggle.row.Activated:Fire()
+	check("T25 dot grown when on", toggle.row.Ring.Dot.UIScale.Scale == 1)
+end
+do
+	local toggle = createToggle(parent, "Stripe", "T26", false, function() end)
+	check("T26 says OFF", toggle.row.Status.Text == "OFF")
+	local before = toggle.row.Stripe.BackgroundColor3
+	toggle.row.Activated:Fire()
+	check("T26 says ON and stripe lit", toggle.row.Status.Text == "ON" and toggle.row.Stripe.BackgroundColor3 ~= before)
+end
+do
+	local toggle = createToggle(parent, "Rocker", "T27", false, function() end)
+	check("T27 cap under O when off", toggle.row.Rocker.Cap.Position.X.Scale == 0)
+	toggle.row.Activated:Fire()
+	check("T27 cap under I when on", toggle.row.Rocker.Cap.Position.X.Scale == 0.5)
+end
+do
+	local toggle = createToggle(parent, "Pill", "T28", false, function() end)
+	check("T28 pill says OFF", toggle.row.Pill.Text == "OFF")
+	toggle.row.Activated:Fire()
+	check("T28 pill says ON", toggle.row.Pill.Text == "ON")
+end
+do
+	local plain = createToggle(parent, "Key default", "T29", false, function() end)
+	check("T29 default key chip", plain.row.Key.Text == "F" and plain.row.Track.LayoutOrder == 3)
+	local named = createToggle(parent, "Key named", "T29", false, function() end, { key = "G" })
+	check("T29 named key chip", named.row.Key.Text == "G")
+end
+do
+	local toggle = createToggle(parent, "Mini", "T30", false, function() end)
+	check("T30 mini knob left", toggle.row.Track.Knob.Position.X.Offset == 2)
+	toggle.row.Activated:Fire()
+	check("T30 mini knob right", toggle.row.Track.Knob.Position.X.Offset == 16)
 end
 local failed = 0
 for _, line in results do print(line) if line:sub(1,4) == "FAIL" then failed += 1 end end

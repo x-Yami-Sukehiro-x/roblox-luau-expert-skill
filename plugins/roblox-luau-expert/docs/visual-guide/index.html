@@ -162,6 +162,39 @@ svg.i{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;stroke
 .label.two small{font:400 12px/16px var(--roblox);color:var(--s-muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .lead-icon{display:grid;color:var(--s-muted);transition:color .12s var(--quad)}
 .lead-icon svg{width:20px;height:20px}
+/* T21 to T30 */
+.r-track.fill .fill{position:absolute;left:0;top:0;bottom:0;width:0;border-radius:12px;background:var(--r-accent);transition:width .12s var(--quad)}
+.r-track.fill .r-knob{z-index:1}
+[aria-checked="true"] .r-track.fill{background:var(--s-overlay)}
+[aria-checked="true"] .r-track.fill .fill{width:100%}
+.end-word{font:700 12px var(--roblox);color:var(--s-faint);transition:color .12s var(--quad)}
+.end-word.off{color:var(--s-text)}
+[aria-checked="true"] .end-word.off{color:var(--s-faint)}
+[aria-checked="true"] .end-word.on{color:var(--r-bright)}
+[aria-checked="true"] .r-track.glow{box-shadow:0 0 0 2px color-mix(in srgb,var(--r-bright) 60%,transparent),0 0 12px color-mix(in srgb,var(--r-bright) 45%,transparent)}
+.r-lever{width:24px;height:40px;border-radius:12px;background:var(--s-overlay);position:relative;flex:none;transition:background-color .12s var(--quad)}
+.r-lever .r-knob{top:19px}
+[aria-checked="true"] .r-lever{background:var(--r-accent)}
+[aria-checked="true"] .r-lever .r-knob{transform:translateY(-16px)}
+.r-ring{width:22px;height:22px;border-radius:11px;border:2px solid var(--s-overlay);display:grid;place-items:center;flex:none;transition:border-color .12s var(--quad)}
+.r-ring i{width:10px;height:10px;border-radius:5px;background:var(--r-accent);transform:scale(0);transition:transform .12s var(--quad)}
+[aria-checked="true"] .r-ring{border-color:var(--r-accent)}
+[aria-checked="true"] .r-ring i{transform:scale(1)}
+.r-stripe{width:4px;height:24px;border-radius:2px;background:var(--s-overlay);flex:none;transition:background-color .12s var(--quad)}
+[aria-checked="true"] .r-stripe{background:var(--r-accent)}
+.r-rocker{position:relative;width:64px;height:32px;border-radius:6px;background:var(--s-deep);display:flex;flex:none}
+.r-rocker .cap{position:absolute;top:4px;left:4px;width:28px;height:24px;border-radius:4px;background:var(--s-overlay);transition:transform .12s var(--quad),background-color .12s var(--quad)}
+.r-rocker b{position:relative;flex:1;display:grid;place-items:center;font:700 14px var(--roblox);color:var(--s-faint)}
+.r-rocker b.o{color:var(--s-text)}
+[aria-checked="true"] .r-rocker .cap{transform:translateX(28px);background:var(--r-accent)}
+[aria-checked="true"] .r-rocker b.o{color:var(--s-faint)}
+[aria-checked="true"] .r-rocker b.i{color:var(--s-text)}
+.r-statpill{min-width:52px;height:24px;border-radius:12px;background:var(--s-overlay);color:var(--s-muted);font:700 12px/24px var(--roblox);text-align:center;flex:none;transition:background-color .12s var(--quad),color .12s var(--quad)}
+[aria-checked="true"] .r-statpill{background:var(--r-accent);color:var(--s-text)}
+.r-keychip{height:24px;padding:0 8px;border-radius:4px;background:var(--s-deep);color:var(--s-muted);font:700 12px/24px var(--roblox);flex:none}
+.r-track.mini{width:32px;height:18px;border-radius:9px}
+.r-track.mini .r-knob{top:2px;left:2px;width:14px;height:14px;border-radius:7px}
+[aria-checked="true"] .r-track.mini .r-knob{transform:translateX(14px)}
 [aria-checked="true"] .lead-icon{color:var(--r-accent)}
 /* Checkboxes */
 .r-box.draw svg{opacity:1;transform:none;clip-path:inset(0 100% 0 0);transition:clip-path .16s var(--quad)}
@@ -169,6 +202,41 @@ svg.i{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;stroke
 .r-box.hollow svg{color:var(--r-bright)}
 [aria-checked="true"] .r-box.hollow{background:transparent;border-color:var(--r-accent)}
 .r-row.todo[aria-checked="true"] .label{text-decoration:line-through;color:var(--s-muted)}
+.rt{margin-left:auto;color:var(--r-bright);opacity:0;transition:opacity .12s var(--quad)}
+[aria-checked="true"] .rt{opacity:1}
+.r-row.rtick[aria-checked="true"] .label{font-weight:700}
+.r-row .count{font:700 12px var(--roblox);color:var(--s-faint)}
+[aria-checked="true"] .count{color:var(--s-text)}
+.r-box.x svg{color:var(--s-text)}
+[aria-checked="true"] .r-box.x{background:#d05852;border-color:#d05852}
+.r-row.exclude[aria-checked="true"] .label{color:var(--s-muted)}
+.r-box.big{width:32px;height:32px}
+.r-box.big svg{width:20px;height:20px}
+.progress-head{display:grid;gap:8px;padding:0 4px 4px}
+.progress-head small{font:500 12px var(--roblox);color:var(--s-muted)}
+.progress-head .bar{height:4px;border-radius:2px;background:var(--s-overlay);overflow:hidden}
+.progress-head .bar i{display:block;height:100%;background:var(--r-accent);transition:width .2s var(--out)}
+.joined{display:flex;border-radius:6px;overflow:hidden;background:var(--s-overlay);gap:1px}
+.seg-btn{height:36px;border:0;background:var(--s-panel);color:var(--s-text);font:500 14px var(--roblox);padding:0 12px;display:flex;align-items:center;gap:6px;transition:background-color .12s var(--quad)}
+.seg-btn svg{display:none;width:16px;height:16px;color:var(--r-bright)}
+.seg-btn[aria-checked="true"]{background:var(--r-dim)}
+.seg-btn[aria-checked="true"] svg{display:block}
+.stars{display:flex;gap:4px}
+.star{width:44px;height:44px;border:0;background:transparent;display:grid;place-items:center;color:var(--s-overlay);transition:color .12s var(--quad),transform .12s var(--quad)}
+.star svg{width:24px;height:24px}
+.star.lit{color:#d69e3e}
+.star:hover{transform:scale(1.1)}
+.dots{display:flex;gap:8px}
+.dot-pick{width:44px;height:44px;border-radius:22px;border:0;display:grid;place-items:center;box-shadow:inset 0 0 0 0 #fff;transition:box-shadow .12s var(--quad)}
+.dot-pick svg{width:20px;height:20px;color:#fff;display:none}
+.dot-pick[aria-checked="true"]{box-shadow:0 0 0 3px var(--s-text)}
+.dot-pick[aria-checked="true"] svg{display:block}
+.sizes{position:relative;display:flex;border-radius:6px;overflow:hidden;background:var(--s-overlay)}
+.sizes .mk{position:absolute;left:0;top:0;width:64px;height:36px;background:var(--r-accent);transition:transform .2s var(--out)}
+.sizes:has(button:nth-of-type(2)[aria-checked="true"]) .mk{transform:translateX(64px)}
+.sizes:has(button:nth-of-type(3)[aria-checked="true"]) .mk{transform:translateX(128px)}
+.size-btn{position:relative;width:64px;height:36px;border:0;background:transparent;color:var(--s-muted);font:500 14px var(--roblox)}
+.size-btn[aria-checked="true"]{color:var(--s-text);font-weight:700}
 .checklist,.radios{display:grid;gap:4px;width:236px}
 .checklist .r-row.child{padding-left:32px}
 .r-box .dash{display:none}
@@ -385,6 +453,34 @@ button.dd-field:hover,.dd-arrow:hover{background:var(--s-raised)}
 .dd-palette .dd-rows{max-height:132px;overflow:auto}
 .dd-row.hi{background:var(--s-overlay)}
 .dd.palette-host{top:auto;bottom:16px}
+.dd-row.tall{min-height:56px}
+.dd-row .two{display:grid;gap:4px;min-width:0}
+.dd-row .two b{font:500 14px/16px var(--roblox)}
+.dd-row .two small{margin:0;font:400 12px/16px var(--roblox);color:var(--s-muted)}
+.dd.up{top:auto;bottom:16px}
+.dd.up .dd-list{top:auto;bottom:48px}
+.dd-sheet{position:absolute;left:0;right:0;bottom:0;background:var(--s-raised);border-radius:10px 10px 0 0;box-shadow:0 -12px 24px #0009;padding:8px 4px 4px;transform:translateY(105%);transition:transform .2s var(--out);z-index:5}
+.dd-sheet::before{content:"";display:block;width:36px;height:4px;border-radius:2px;background:var(--s-overlay);margin:0 auto 8px}
+.dd-sheet-title{font:700 12px var(--roblox);color:var(--s-muted);padding:0 12px 4px}
+.dd-sheet .dd-rows{max-height:96px;overflow:auto}
+.stage.sheet-open .dd-sheet{transform:none}
+.stage.sheet-open .dd-dim{display:block}
+.dd-inwrap{position:relative;flex:1;min-width:0;display:flex}
+.dd-ghost{position:absolute;inset:0;line-height:42px;font:500 14px/42px var(--roblox);color:var(--s-faint);white-space:pre;pointer-events:none;overflow:hidden}
+.dd-ghost .typed{visibility:hidden}
+.dd-list.grid{grid-template-columns:repeat(3,1fr);gap:4px;max-height:152px}
+.dd.open .dd-list.grid{display:grid}
+.dd-list.grid .dd-row{min-height:72px;flex-direction:column;justify-content:center;gap:4px;padding:4px;font-size:12px;text-align:center}
+.dd-list.grid .dd-row svg{width:24px;height:24px}
+.dd-list.grid .dd-row[aria-selected="true"]{background:var(--r-dim);box-shadow:inset 0 0 0 1px var(--r-accent)}
+.dd-split{padding:0;gap:0;overflow:hidden}
+.dd-run{flex:1;min-width:0;height:44px;border:0;background:transparent;color:var(--s-text);font:500 14px var(--roblox);text-align:left;padding:0 12px;display:flex;align-items:center}
+.dd-more{width:44px;height:44px;border:0;border-left:1px solid var(--s-overlay);background:transparent;display:grid;place-items:center;color:var(--s-muted)}
+.dd-run:hover,.dd-more:hover{background:var(--s-raised)}
+.dd-apply{width:100%;height:44px;border:0;border-radius:6px;background:var(--r-accent);color:var(--s-text);font:700 14px var(--roblox);margin-top:4px}
+.dd-list:has(.dd-apply){max-height:170px}
+.dd-row .deeper{margin-left:auto;color:var(--s-muted)}
+.dd-row.back{color:var(--s-muted)}
 
 /* Point at it */
 .anatomy{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:24px;align-items:start}
@@ -442,6 +538,8 @@ footer{padding-block:0 120px;color:var(--muted);font-size:13px}
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5v14"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></symbol>
   <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></symbol>
   <symbol id="i-ok" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></symbol>
   <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></symbol>
@@ -658,6 +756,7 @@ reduce.addEventListener('change',syncReduced);
 prefers.addEventListener('change',e=>{reduce.checked=e.matches;syncReduced()});
 syncReduced();
 
+const escHTML=text=>String(text).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'})[c]);
 const icon=(id,cls='')=>`<svg class="i ${cls}" aria-hidden="true"><use href="#i-${id}"/></svg>`;
 const says=list=>list.map(w=>`<q>${w}</q>`).join(', ');
 const pickButton=(group,code,cls='')=>`<button class="btn pick ${cls}" type="button" data-group="${group}" data-value="${code}" aria-pressed="false"></button>`;
@@ -708,7 +807,17 @@ const TOGGLES=[
   ['T17','Icons in the track',['tick and cross in the switch'],'The track shows a tick and a cross; the knob covers the one not chosen.',sw('Auto farm',`<span class="r-track icons"><span class="ti ti-yes">${icon('check')}</span><span class="ti ti-no">${icon('x')}</span>${knob()}</span>`)],
   ['T18','Push key',['key that stays pushed in','keyboard key'],'A key that sinks and stays down while on.',sw('Auto farm','<span class="r-key"><span class="r-key-cap" data-state>ON</span></span>')],
   ['T19','Switch with description',['switch with a small line under it'],'A title plus one short line explaining it. Keep that line under eight words.',`<button class="r-row tall" type="button" role="switch" aria-checked="true" data-toggle><span class="label two"><b>Auto farm</b><small>Collects drops near you</small></span>${track()}</button>`],
-  ['T20','Icon row switch',['switch with an icon at the start'],'A feature icon leads the row and lights up with the switch.',sw('Walk speed',track(),{before:`<span class="lead-icon">${icon('steps')}</span>`})]
+  ['T20','Icon row switch',['switch with an icon at the start'],'A feature icon leads the row and lights up with the switch.',sw('Walk speed',track(),{before:`<span class="lead-icon">${icon('steps')}</span>`})],
+  ['T21','Fill switch',['switch that fills up','colour fills in as it slides'],'The colour fills the track behind the knob as it moves.',sw('Auto farm',`<span class="r-track fill"><span class="fill"></span>${knob()}</span>`)],
+  ['T22','Words at both ends',['Off and On either side','words next to the switch'],'Off and On sit either side of the switch; the chosen word lights up.',sw('Music',`<span class="end-word off">Off</span>${track()}<span class="end-word on">On</span>`)],
+  ['T23','Glow switch',['switch that glows','neon switch'],'T1 with a soft glow around the track while it is on.',sw('Auto farm',track('glow'))],
+  ['T24','Up-down lever',['wall light switch','switch that goes up'],'An upright switch: up is on, like a light switch.',sw('Lights',`<span class="r-lever">${knob()}</span>`)],
+  ['T25','Dot in a ring',['radio button','dot in a circle'],'An empty circle that fills with a dot. Good for single options.',sw('Night mode','',{role:'checkbox',before:'<span class="r-ring"><i></i></span>'})],
+  ['T26','Edge stripe',['stripe on the side','bar on the left lights up'],'A stripe on the left edge lights up and the word says ON.',sw('Kill aura','<span class="state-word" data-state>ON</span>',{before:'<span class="r-stripe"></span>'})],
+  ['T27','Rocker switch',['I and O switch','power strip switch'],'A two-sided rocker marked O and I; the pressed side sinks.',sw('Server lights','<span class="r-rocker"><span class="cap"></span><b class="o">O</b><b class="i">I</b></span>')],
+  ['T28','Status pill',['little ON OFF pill','tag that says ON'],'A small pill that says ON or OFF. Fits long, dense lists.',sw('Aimbot','<span class="r-statpill" data-state>ON</span>')],
+  ['T29','Switch with hotkey',['switch with its key','shows the keybind'],'The feature’s hotkey sits in a chip beside the switch.',sw('Fly',`<span class="r-keychip">F</span>${track()}`)],
+  ['T30','Mini switch',['small switch','tiny toggle'],'A smaller switch for long lists; the row stays easy to tap.',sw('Auto farm',track('mini'))]
 ];
 const toggleGrid=document.getElementById('toggle-grid');
 toggleGrid.innerHTML=TOGGLES.map(([code,title,words,use,stage])=>card(code,title,words,use,stage)).join('');
@@ -725,9 +834,27 @@ const CHECKS=[
   ['C7','Card choice',['cards you tick','option cards'],'A bigger card with a title, one short line and a round tick.',`<button class="r-card" type="button" role="checkbox" aria-checked="true" data-toggle><span class="card-text"><b>Hard mode</b><small>Enemies hit twice as hard</small></span><span class="r-badge-round">${icon('check')}</span></button>`],
   ['C8','Radio buttons',['circles, pick one','only one can be on'],'Choose exactly one of a few. The dot moves to your choice.',`<div class="radios" role="radiogroup" aria-label="Target">${['Nearest','Lowest HP','Random'].map((n,i)=>`<button class="r-row" type="button" role="radio" aria-checked="${i===0}" data-radio><span class="r-radio"></span><span class="label">${n}</span></button>`).join('')}</div>`],
   ['C9','Chips',['tags you tap','little pills'],'Short options that wrap onto new lines; tap to tick several.',`<div class="chips">${['Wood','Stone','Gold','Iron'].map((n,i)=>`<button class="r-pill" type="button" role="checkbox" aria-checked="${i===2}" data-toggle>${icon('check')}${n}</button>`).join('')}</div>`],
-  ['C10','Icon tiles',['squares with pictures','tiles'],'Square tiles with an icon; ticked tiles light up. For items and pets.',`<div class="tiles">${[['Sword','sword'],['Gems','gem']].map(([n,i],k)=>`<button class="r-tile" type="button" role="checkbox" aria-checked="${k===0}" data-toggle><span class="t-badge">${icon('check')}</span>${icon(i)}<span>${n}</span></button>`).join('')}</div>`]
+  ['C10','Icon tiles',['squares with pictures','tiles'],'Square tiles with an icon; ticked tiles light up. For items and pets.',`<div class="tiles">${[['Sword','sword'],['Gems','gem']].map(([n,i],k)=>`<button class="r-tile" type="button" role="checkbox" aria-checked="${k===0}" data-toggle><span class="t-badge">${icon('check')}</span>${icon(i)}<span>${n}</span></button>`).join('')}</div>`],
+  ['C11','Tick on the right',['just a tick at the end','no box'],'No box at all: a tick appears at the end of the chosen row.',sw('Nearest player',icon('check','rt'),{role:'checkbox',cls:'rtick'})],
+  ['C12','Box with a count',['checkbox with a number','shows how many'],'A tick box with a count at the end, such as how many items match.',sw('Coins','<span class="count">12</span>',{role:'checkbox',before:box()})],
+  ['C13','Cross box',['X box','ignore list'],'For lists of things to leave out: the box fills red with a cross.',sw('Ignore Red team','',{role:'checkbox',cls:'exclude',before:`<span class="r-box x">${icon('x')}</span>`})],
+  ['C14','Big tick box',['large checkbox','easy to tap'],'A thumb-sized box for phones and touch screens.',sw('Auto collect','',{role:'checkbox',before:box('big')})],
+  ['C15','Checklist with progress',['quest list with a bar','shows how many are done'],'A checklist that counts what is done and fills a bar.',`<div class="checklist" data-progress><div class="progress-head"><small data-count>1 of 3 done</small><span class="bar"><i style="width:33%"></i></span></div>${['Collect 10 eggs','Sell a pet','Rebirth once'].map((n,i)=>`<button class="r-row todo" type="button" role="checkbox" aria-checked="${i===0}" data-toggle>${box()}<span class="label">${n}</span></button>`).join('')}</div>`],
+  ['C16','Joined buttons',['buttons stuck together','pick several in a bar'],'A bar of joined buttons; tap several and each one ticks.',`<div class="joined">${['Sword','Bow','Staff'].map((n,i)=>`<button class="seg-btn" type="button" role="checkbox" aria-checked="${i===1}" data-toggle>${icon('check')}${n}</button>`).join('')}</div>`],
+  ['C17','Star rating',['stars','rate it out of five'],'Pick one to five stars; every star up to your pick lights.',`<div class="stars" role="radiogroup" aria-label="Rating">${[1,2,3,4,5].map(n=>`<button class="star${n<=4?' lit':''}" type="button" role="radio" aria-checked="${n===4}" aria-label="${n} stars" data-star="${n}">${icon('star')}</button>`).join('')}</div>`],
+  ['C18','Colour dots',['colour circles','pick a colour'],'Round colour dots; the chosen one gets a ring and a tick.',`<div class="dots" role="radiogroup" aria-label="Team colour">${[['Red','#d05852'],['Gold','#d69e3e'],['Green','#48b270'],['Blue','#588dd6']].map(([n,c],i)=>`<button class="dot-pick" type="button" role="radio" aria-checked="${i===2}" aria-label="${n}" style="background:${c}" data-radio>${icon('check')}</button>`).join('')}</div>`],
+  ['C19','Size buttons',['S M L','small medium large'],'Equal buttons for one choice, with a block that slides to it.',`<div class="sizes" role="radiogroup" aria-label="Size"><span class="mk"></span>${['S','M','L'].map((n,i)=>`<button class="size-btn" type="button" role="radio" aria-checked="${i===1}" data-radio>${n}</button>`).join('')}</div>`],
+  ['C20','Plan cards',['pick one card','options with details'],'Pick one of a few cards, each with one line saying what it gives.',`<div class="radios">${[['Free','Normal coins'],['VIP','Double coins']].map(([n,d],i)=>`<button class="r-card" type="button" role="radio" aria-checked="${i===1}" data-radio><span class="card-text"><b>${n}</b><small>${d}</small></span><span class="r-badge-round">${icon('check')}</span></button>`).join('')}</div>`]
 ];
 document.getElementById('check-grid').innerHTML=CHECKS.map(([code,title,words,use,stage])=>card(code,title,words,use,stage)).join('');
+// C15 counts what is done; C17 lights every star up to the chosen one.
+document.addEventListener('click',e=>{
+  const list=e.target.closest('[data-progress]');
+  if(list){const items=[...list.querySelectorAll('[role="checkbox"]')];const done=items.filter(i=>i.getAttribute('aria-checked')==='true').length;
+    list.querySelector('[data-count]').textContent=`${done} of ${items.length} done`;list.querySelector('.bar i').style.width=`${Math.round(done/items.length*100)}%`}
+  const star=e.target.closest('[data-star]');
+  if(star){const n=+star.dataset.star;star.parentElement.querySelectorAll('[data-star]').forEach(s=>{s.classList.toggle('lit',+s.dataset.star<=n);s.setAttribute('aria-checked',String(s===star))})}
+});
 
 document.addEventListener('click',e=>{
   const t=e.target.closest('[data-toggle]');
@@ -771,66 +898,113 @@ const DROPDOWNS=[
   ['D9','List with icons',['icons next to each option'],'Each option carries its own icon; the field shows the chosen one.',{label:'Weapon',options:[{t:'Sword',i:'sword'},{t:'Axe',i:'axe'},{t:'Fishing rod',i:'fish'}]}],
   ['D10','Player picker',['choose a player','list of players'],'Players in the server with their avatar and @name; updates as people join and leave.',{label:'Choose a player',players:true,options:[{t:'Bob',d:'Bobby',c:'#588dd6'},{t:'alice',d:'Ali',c:'#d69e3e'},{t:'Noob_123',d:'Noob',c:'#48b270'}]}],
   ['D11','Command palette',['search everything','Ctrl K'],'One search box for every feature; arrows and Enter run it.',{label:'Search features',options:['Teleport to spawn','Toggle fly','Rejoin server','Copy position','Reset character'],palette:true}],
-  ['D12','Colour swatches',['colour picker list','theme colours'],'Options are colours; the field shows the chosen swatch.',{label:'Theme',options:[{t:'Green',s:'#2ea07f'},{t:'Purple',s:'#8c5adc'},{t:'Blue',s:'#588dd6'},{t:'Red',s:'#d05852'}],start:'Green'}]
+  ['D12','Colour swatches',['colour picker list','theme colours'],'Options are colours; the field shows the chosen swatch.',{label:'Theme',options:[{t:'Green',s:'#2ea07f'},{t:'Purple',s:'#8c5adc'},{t:'Blue',s:'#588dd6'},{t:'Red',s:'#d05852'}],start:'Green'}],
+  ['D13','Options with a second line',['list with descriptions','two lines each'],'Each option has a short line under it saying what it is.',{label:'Teleport to',options:[{t:'Spawn',x:'Where you start'},{t:'Shop',x:'Buy tools and pets'},{t:'Arena',x:'Fight other players'}],twoLine:true}],
+  ['D14','Recent picks first',['remembers what I picked','recent at the top'],'Your last three picks sit at the top under RECENT. Pick one, then open it again.',{label:'Teleport to',options:['Spawn','Shop','Arena','Bank','Volcano'],recent:true}],
+  ['D15','Opens upward',['list goes up','for the bottom of the screen'],'The list opens above the field, for fields near the bottom edge.',{label:'Quality',options:['Low','Medium','High'],up:true}],
+  ['D16','Bottom sheet',['slides up from the bottom','phone style list'],'The list slides up from the bottom edge and dims the rest. Easy on a phone.',{label:'Choose a pet',options:['Cat','Dog','Dragon','Bunny'],sheet:true}],
+  ['D17','Autocomplete',['finishes the word for me','Tab to complete'],'Type a few letters: the rest of the first match shows in grey, Tab accepts it.',{label:'Feature',options:['Teleport','Trade','Fly','Fullbright','Walk speed'],typed:true,ghost:true}],
+  ['D18','Grid of choices',['boxes instead of a list','tiles to pick from'],'Options open as a grid of tiles with icons, for pictures more than words.',{label:'Weapon',options:[{t:'Sword',i:'sword'},{t:'Axe',i:'axe'},{t:'Rod',i:'fish'},{t:'Gem',i:'gem'},{t:'Coins',i:'coins'},{t:'Bag',i:'backpack'}],grid:true}],
+  ['D19','Split button',['button with a little arrow','run it or change it'],'The main part runs the choice; the arrow changes it. Try both halves.',{label:'Teleport to',options:['Spawn','Shop','Arena'],start:'Spawn',split:true}],
+  ['D20','Pick then Apply',['choose several then confirm','Apply button'],'Tick several, then press Apply. Closing without Apply changes nothing.',{label:'Auto sell',options:['Wood','Stone','Gold','Iron'],multi:true,apply:true}],
+  ['D21','Sub-menus',['menu inside a menu','folders in the list'],'Some options open their own list, with a way back.',{label:'Teleport to',options:[{t:'Places',k:['Spawn','Shop','Arena']},{t:'Players',k:['Bob','alice']},'Random spot']}],
+  ['D22','Type to add',['add my own option','create new'],'Type a name that is not there and add it, like a new waypoint.',{label:'Waypoint',options:['Base','Spawn'],typed:true,create:true}]
 ];
 const DD_SPEC={};
-document.getElementById('dropdown-grid').innerHTML=DROPDOWNS.map(([code,title,words,use,spec])=>{DD_SPEC[code]=spec;return card(code,title,words,use,`<div class="dd${spec.inline?' inline':''}${spec.palette?' palette-host':''}" data-dd="${code}"></div>`)}).join('');
+document.getElementById('dropdown-grid').innerHTML=DROPDOWNS.map(([code,title,words,use,spec])=>{DD_SPEC[code]=spec;return card(code,title,words,use,`<div class="dd${spec.inline?' inline':''}${spec.palette?' palette-host':''}${spec.up?' up':''}" data-dd="${code}"></div>`)}).join('');
 function setupDropdown(root){
   const spec=DD_SPEC[root.dataset.dd];
   const opts=spec.options.map(o=>typeof o==='string'?{t:o}:o);
-  let chosen=spec.start?[spec.start]:[];let query='';let hi=0;
-  const find=t=>opts.find(o=>o.t===t);
+  let chosen=spec.start?[spec.start]:[];let query='';let hi=0;let pending=null;const recent=[];const trail=[];
+  const find=(t,list=opts)=>{for(const o of list.map(x=>typeof x==='string'?{t:x}:x)){if(o.t===t)return o;if(o.k){const n=find(t,o.k);if(n)return n}}return null};
   const lead=o=>o.s?`<span class="dd-sw" style="background:${o.s}"></span>`:o.c?`<span class="dd-av" style="background:${o.c}">${o.d[0]}</span>`:o.i?icon(o.i):'';
+  const sheetLike=spec.palette||spec.sheet;
   if(spec.cycler){
     root.innerHTML=`<div class="dd-field cycler"><button class="dd-arrow" type="button" data-step="-1" aria-label="Previous">${icon('chevron-left')}</button><span class="dd-value"></span><button class="dd-arrow" type="button" data-step="1" aria-label="Next">${icon('right')}</button></div>`;
   }else if(spec.typed||spec.search){
-    root.innerHTML=`<div class="dd-field">${spec.search?icon('search'):''}<input class="dd-input" placeholder="${spec.label}" aria-label="${spec.label}">${spec.search?'':icon('down','dd-chev')}</div><div class="dd-list" role="listbox"></div>`;
+    const input=`<input class="dd-input" placeholder="${spec.label}" aria-label="${spec.label}">`;
+    root.innerHTML=`<div class="dd-field">${spec.search?icon('search'):''}${spec.ghost?`<span class="dd-inwrap"><span class="dd-ghost" aria-hidden="true"></span>${input}</span>`:input}${spec.search?'':icon('down','dd-chev')}</div><div class="dd-list" role="listbox"></div>`;
   }else if(spec.palette){
     root.innerHTML=`<button class="dd-field" type="button">${icon('search')}<span class="dd-value empty">${spec.label}</span><span class="dd-kbd">Ctrl K</span></button>`;
     root.parentElement.insertAdjacentHTML('beforeend',`<div class="dd-dim"></div><div class="dd-palette" role="dialog" aria-label="${spec.label}"><div class="dd-pal-search">${icon('search')}<input class="dd-input" placeholder="${spec.label}…" aria-label="${spec.label}"></div><div class="dd-rows" role="listbox"></div></div>`);
+  }else if(spec.split){
+    root.innerHTML=`<div class="dd-field dd-split"><button class="dd-run" type="button" data-run><span class="dd-value"></span></button><button class="dd-more" type="button" aria-label="More places" aria-haspopup="listbox" aria-expanded="false" data-more>${icon('down','dd-chev')}</button></div><div class="dd-list" role="listbox"></div>`;
   }else{
-    root.innerHTML=`<button class="dd-field" type="button" aria-haspopup="listbox" aria-expanded="false"><span class="dd-lead"></span>${spec.chips?'<span class="dd-chips"></span>':'<span class="dd-value"></span>'}${icon('down','dd-chev')}</button><div class="dd-list" role="listbox"></div>${spec.inline?'<div class="dd-below">The next setting moves down</div>':''}`;
+    root.innerHTML=`<button class="dd-field" type="button" aria-haspopup="listbox" aria-expanded="false"><span class="dd-lead"></span>${spec.chips?'<span class="dd-chips"></span>':'<span class="dd-value"></span>'}${icon('down','dd-chev')}</button><div class="dd-list${spec.grid?' grid':''}" role="listbox"></div>${spec.inline?'<div class="dd-below">The next setting moves down</div>':''}`;
+    if(spec.sheet)root.parentElement.insertAdjacentHTML('beforeend',`<div class="dd-dim"></div><div class="dd-sheet" role="listbox" aria-label="${spec.label}"><div class="dd-sheet-title">${spec.label}</div><div class="dd-rows"></div></div>`);
   }
   const stage=root.parentElement;
-  const listEl=spec.palette?stage.querySelector('.dd-rows'):root.querySelector('.dd-list');
+  const listEl=spec.palette?stage.querySelector('.dd-palette .dd-rows'):spec.sheet?stage.querySelector('.dd-sheet .dd-rows'):root.querySelector('.dd-list');
   const input=spec.palette?stage.querySelector('.dd-palette input'):root.querySelector('.dd-input');
-  const setOpen=open=>{root.classList.toggle('open',open);if(spec.palette)stage.querySelector('.dd-palette').style.display=stage.querySelector('.dd-dim').style.display=open?'block':'';root.querySelector('[aria-expanded]')?.setAttribute('aria-expanded',String(open));if(open){hi=0;draw();if(spec.palette){input.value='';query='';draw();setTimeout(()=>input.focus(),0)}}};
-  const shown=()=>{let list=opts.filter(o=>!query||`${o.d||o.t} ${o.t}`.toLowerCase().includes(query.toLowerCase()));if(spec.search)list=list.slice(0,6);return list};
+  const ghost=root.querySelector('.dd-ghost');
+  const isOpen=()=>root.classList.contains('open');
+  const setOpen=open=>{
+    root.classList.toggle('open',open);
+    if(spec.palette)stage.querySelector('.dd-palette').style.display=stage.querySelector('.dd-dim').style.display=open?'block':'';
+    if(spec.sheet)stage.classList.toggle('sheet-open',open);
+    root.querySelector('[aria-expanded]')?.setAttribute('aria-expanded',String(open));
+    if(open){hi=0;if(spec.apply)pending=[...chosen];draw();if(spec.palette){input.value='';query='';draw();setTimeout(()=>input.focus(),0)}}
+    else{pending=null;trail.length=0}
+  };
+  const level=()=>(trail.length?trail[trail.length-1].k:opts).map(o=>typeof o==='string'?{t:o}:o);
+  const shown=()=>{let list=level().filter(o=>!query||`${o.d||o.t} ${o.t}`.toLowerCase().includes(query.toLowerCase()));if(spec.search)list=list.slice(0,6);return list};
+  const row=(o,index,extra='')=>{const picked=(pending||chosen).includes(o.t);
+    const body=spec.twoLine?`<span class="two"><b>${o.t}</b><small>${o.x}</small></span>`:spec.grid?`${lead(o)}<span>${o.t}</span>`:`<span>${o.d||o.t}</span>`;
+    return `<button class="dd-row${spec.palette&&index===hi?' hi':''}${spec.twoLine?' tall':''}" type="button" role="option" aria-selected="${picked}" data-choice="${o.t}"${extra}>${spec.multi?`<span class="box">${icon('check')}</span>`:spec.grid?'':lead(o)}${body}${o.c?`<small>@${o.t}</small>`:''}${o.k?icon('right','deeper'):''}${picked&&!spec.multi&&!spec.grid?icon('check','tick'):''}</button>`};
   function draw(){
     if(listEl){
-      const list=shown();let group=null;
-      listEl.innerHTML=list.map((o,index)=>{const head=o.g&&o.g!==group?`<div class="dd-head">${(group=o.g).toUpperCase()}</div>`:'';const picked=chosen.includes(o.t);
-        return `${head}<button class="dd-row${spec.palette&&index===hi?' hi':''}" type="button" role="option" aria-selected="${picked}" data-choice="${o.t}">${spec.multi?`<span class="box">${icon('check')}</span>`:lead(o)}<span>${o.d||o.t}</span>${o.c?`<small>@${o.t}</small>`:''}${picked&&!spec.multi?icon('check','tick'):''}</button>`}).join('')||`<div class="dd-empty">No matches</div>`;
+      const list=shown();let group=null;let html='';
+      if(spec.recent&&recent.length&&!query)html+=`<div class="dd-head">RECENT</div>${recent.map(t=>row(find(t),-1)).join('')}<div class="dd-head">ALL</div>`;
+      if(trail.length)html+=`<button class="dd-row back" type="button" data-back>${icon('chevron-left')}<span>Back to ${trail[trail.length-1].t}</span></button>`;
+      html+=list.map((o,index)=>{const head=o.g&&o.g!==group?`<div class="dd-head">${(group=o.g).toUpperCase()}</div>`:'';return head+row(o,index)}).join('');
+      const exact=query&&find(query);
+      if(spec.create&&query&&!exact)html+=`<button class="dd-row" type="button" data-create>${icon('plus')}<span>Add “${escHTML(query)}”</span></button>`;
+      else if(!list.length)html+=`<div class="dd-empty">No matches</div>`;
+      if(spec.apply)html+=`<button class="dd-apply" type="button" data-apply>Apply</button>`;
+      listEl.innerHTML=html;
     }
     const first=find(chosen[0]||'');
     const value=root.querySelector('.dd-value');
     if(value&&!spec.palette){value.textContent=chosen.length===0?spec.label:spec.multi&&chosen.length>1?`${chosen.length} selected`:first?(first.d||first.t):chosen[0];value.classList.toggle('empty',chosen.length===0)}
     const leadEl=root.querySelector('.dd-lead');if(leadEl){leadEl.innerHTML=first?lead(first):'';leadEl.style.display=first&&lead(first)?'grid':'none'}
     const chips=root.querySelector('.dd-chips');if(chips)chips.innerHTML=chosen.length?chosen.map(t=>`<span class="dd-chip">${t}</span>`).join(''):`<span class="dd-value empty">${spec.label}</span>`;
+    if(ghost){const word=query&&level().map(o=>o.t).find(t=>t.toLowerCase().startsWith(query.toLowerCase()));ghost.innerHTML=word?`<span class="typed">${escHTML(query)}</span>${escHTML(word.slice(query.length))}`:''}
   }
   function choose(t){
+    const o=find(t,level());
+    if(o&&o.k){trail.push(o);draw();return}
+    if(spec.apply){pending=pending.includes(t)?pending.filter(c=>c!==t):[...pending,t];draw();return}
     if(spec.multi){chosen=chosen.includes(t)?chosen.filter(c=>c!==t):[...chosen,t];draw();return}
-    chosen=[t];if(input&&spec.search)input.value=t;if(input&&spec.typed)input.value='';query='';draw();setOpen(false);
+    chosen=[t];if(spec.recent){const at=recent.indexOf(t);if(at>=0)recent.splice(at,1);recent.unshift(t);recent.length=Math.min(recent.length,3)}
+    if(input&&spec.search)input.value=t;if(input&&(spec.typed||spec.create))input.value='';query='';setOpen(false);draw();
     if(spec.palette)flashNote(stage,`Ran “${t}”`);
   }
   root.addEventListener('click',e=>{
     const step=e.target.closest('[data-step]');
     if(step){const at=Math.max(0,opts.findIndex(o=>o.t===chosen[0]));chosen=[opts[(at+Number(step.dataset.step)+opts.length)%opts.length].t];draw();return}
-    if(e.target.closest('.dd-field')&&!e.target.closest('input')){setOpen(!root.classList.contains('open'));return}
+    if(e.target.closest('[data-run]')){flashNote(stage,chosen[0]?`Teleported to ${chosen[0]}`:'Pick a place first');return}
+    if(e.target.closest('[data-more]')||(e.target.closest('.dd-field')&&!spec.split&&!e.target.closest('input'))){setOpen(!isOpen());return}
   });
-  (spec.palette?stage:root).addEventListener('click',e=>{const row=e.target.closest('[data-choice]');if(row)choose(row.dataset.choice);if(spec.palette&&e.target.closest('.dd-dim'))setOpen(false)});
+  (sheetLike?stage:root).addEventListener('click',e=>{
+    if(e.target.closest('[data-back]')){trail.pop();draw();return}
+    if(e.target.closest('[data-apply]')){chosen=[...pending];setOpen(false);draw();return}
+    if(e.target.closest('[data-create]')){const t=query;opts.push({t});choose(t);flashNote(stage,`Added “${t}”`);return}
+    const r=e.target.closest('[data-choice]');if(r)choose(r.dataset.choice);
+    if(sheetLike&&e.target.closest('.dd-dim'))setOpen(false);
+  });
   if(input){
-    input.addEventListener('input',()=>{query=input.value;hi=0;if(spec.search&&!query){setOpen(false);return}if(!root.classList.contains('open')&&!spec.palette)setOpen(true);else draw()});
-    if(spec.typed)input.addEventListener('focus',()=>setOpen(true));
+    input.addEventListener('input',()=>{query=input.value;hi=0;if(spec.search&&!query){setOpen(false);return}if(!isOpen()&&!spec.palette)setOpen(true);else draw()});
+    if(spec.typed||spec.create)input.addEventListener('focus',()=>setOpen(true));
     input.addEventListener('keydown',e=>{
       const list=shown();
+      if(e.key==='Tab'&&spec.ghost&&ghost.textContent){const word=level().map(o=>o.t).find(t=>t.toLowerCase().startsWith(query.toLowerCase()));if(word){input.value=word;query=word;draw();e.preventDefault()}}
       if(e.key==='Enter'&&list.length){choose((spec.palette?list[hi]:list[0]).t);e.preventDefault()}
       if(e.key==='Escape')setOpen(false);
       if(spec.palette&&(e.key==='ArrowDown'||e.key==='ArrowUp')){hi=(hi+(e.key==='ArrowDown'?1:-1)+list.length)%list.length;draw();e.preventDefault()}
     });
   }
-  document.addEventListener('pointerdown',e=>{if(root.classList.contains('open')&&!spec.palette&&!root.contains(e.target))setOpen(false)});
-  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&root.classList.contains('open'))setOpen(false)});
+  document.addEventListener('pointerdown',e=>{if(isOpen()&&!sheetLike&&!root.contains(e.target))setOpen(false)});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&isOpen())setOpen(false)});
   draw();
 }
 function flashNote(stage,text){let note=stage.querySelector('.stage-note');if(!note){note=document.createElement('div');note.className='stage-note';stage.append(note)}note.textContent=text;clearTimeout(note.timer);note.timer=setTimeout(()=>note.textContent='',1800)}
@@ -864,7 +1038,19 @@ const MOTIONS=[
   ['M21','Drop and bounce',['falls and bounces','cartoony'],'Falls from above and bounces to a stop. Playful games only.',{kind:'center',from:'translateY(-40px)',exit:'translateY(-12px)',enter:450,ease:EASE.bounce}],
   ['M22','Jelly pop',['wobbly pop','jelly'],'Pops in with a wobble. Playful games only.',{kind:'center',from:'scale(.8)',exit:'scale(.95)',enter:500,ease:EASE.elastic}],
   ['M23','Snap',['fast and snappy','instant but smooth'],'A tenth of a second: nearly instant, still smooth.',{kind:'center',from:'scale(.98)',exit:'scale(.98)',enter:100,leave:80,fadeMs:100}],
-  ['M24','Slow fade',['slow cinematic fade'],'A slower, softer fade for title screens and big moments.',{kind:'center',enter:350,leave:250,ease:EASE.sineOut,exitEase:EASE.sineIn,fadeMs:350}]
+  ['M24','Slow fade',['slow cinematic fade'],'A slower, softer fade for title screens and big moments.',{kind:'center',enter:350,leave:250,ease:EASE.sineOut,exitEase:EASE.sineIn,fadeMs:350}],
+  ['M25','Spin in',['spins into place','twirls in'],'Turns a quarter and grows as it arrives. Playful games only.',{kind:'center',from:'rotate(-90deg) scale(.9)',exit:'rotate(45deg) scale(.95)',enter:320,ease:EASE.back}],
+  ['M26','Diagonal slide',['slides in from the corner','comes in at an angle'],'Comes in from the lower left, a short diagonal.',{kind:'center',from:'translate(-24px,24px)',exit:'translate(-12px,12px)'}],
+  ['M27','Curtain from the left',['opens like a curtain','wipes in from the left'],'The window is revealed from its left edge across.',{kind:'center',clip:'inset(0px 100% 0px 0px round 10px)',enter:240,leave:180,fade:false}],
+  ['M28','Grow from a circle',['starts as a circle','bubble that becomes a window'],'Begins as a small circle and grows into the window.',{kind:'center',clip:'inset(38% 42% 38% 42% round 24px)',enter:280,leave:180}],
+  ['M29','Bounce up',['bounces up from below'],'Comes up from below and bounces to a stop. Playful games only.',{kind:'center',from:'translateY(40px)',exit:'translateY(12px)',enter:450,ease:EASE.bounce}],
+  ['M30','Wobbly slide',['slides in and wobbles','elastic slide'],'Slides in from the left and wobbles to a stop.',{kind:'center',from:'translateX(-48px)',exit:'translateX(-12px)',enter:500,ease:EASE.elastic}],
+  ['M31','Zoom from far',['zooms from far away','grows from small'],'Starts at half size and grows past full size once.',{kind:'center',from:'scale(.5)',exit:'scale(.9)',enter:320,ease:EASE.back}],
+  ['M32','Tilt and drop',['drops in tilted','falls and straightens'],'Drops in slightly tilted and straightens as it lands.',{kind:'center',from:'translateY(-24px) rotate(8deg)',exit:'translateY(8px) rotate(-4deg)',enter:320,ease:EASE.back}],
+  ['M33','Rows pop in',['each row pops in','items grow in one by one'],'The window appears, then each row grows in after the last.',{kind:'center',from:'translateY(8px)',exit:'translateY(8px)',cascade:true,pop:true}],
+  ['M34','Glide',['smooth long slide','glides in from the right'],'A longer, smooth slide from the right that slows gently.',{kind:'center',from:'translateX(120px)',exit:'translateX(40px)',enter:500,leave:300,ease:'cubic-bezier(.22,1,.36,1)',exitEase:'cubic-bezier(.64,0,.78,0)',fadeMs:400}],
+  ['M35','Heartbeat pop',['pops and pulses twice','heartbeat'],'Pops in, then beats twice to draw the eye. For rewards.',{kind:'center',from:'scale(.96)',exit:'scale(.98)',beat:true}],
+  ['M36','Collapse to centre',['shrinks away to the middle'],'Opens with a small grow; closes by shrinking to half into the middle.',{kind:'center',from:'scale(.9)',exit:'scale(.5)'}]
 ];
 const SPEC=Object.fromEntries(MOTIONS.map(m=>[m[0],m[4]]));
 const miniPanel=(key,kind)=>`<div class="mdim" id="dim-${key}"></div><div class="mini ${kind}" id="panel-${key}"><strong>Settings</strong><div class="ln"></div><div class="ln short"></div><div class="ln"></div></div>`;
@@ -891,9 +1077,11 @@ async function setMenu(key,open){
   if(open){
     if(el.style.visibility!=='visible'){settle(el);el.style.visibility='visible';el.style.opacity=fade?0:1;el.style.transform=spec.from??'none';el.style.clipPath=spec.clip??''}
     if(spec.dim){dim.style.visibility='visible';run(dim,{opacity:.5},200,EASE.out)}
-    if(spec.cascade&&!reduced())el.querySelectorAll('.ln').forEach((line,index)=>line.animate([{opacity:0,transform:'translateY(8px)'},{opacity:1,transform:'none'}],{duration:200,delay:120+index*40,easing:EASE.out,fill:'backwards'}));
+    if(spec.cascade&&!reduced())el.querySelectorAll('.ln').forEach((line,index)=>line.animate(spec.pop?[{opacity:0,transform:'scale(.9)'},{opacity:1,transform:'none'}]:[{opacity:0,transform:'translateY(8px)'},{opacity:1,transform:'none'}],{duration:spec.pop?320:200,delay:120+index*60,easing:spec.pop?EASE.back:EASE.out,fill:'backwards'}));
     const to={opacity:1,transform:'none'};if(spec.clip)to.clipPath=OPEN_CLIP;
-    return run(el,to,spec.enter??200,spec.ease??EASE.out,{fadeMs:spec.fadeMs??200,fadeEase:EASE.out});
+    const arrived=run(el,to,spec.enter??200,spec.ease??EASE.out,{fadeMs:spec.fadeMs??200,fadeEase:EASE.out});
+    if(spec.beat)arrived.then(done=>{if(done&&!reduced())el.animate([{transform:'none'},{transform:'scale(1.04)'},{transform:'none'},{transform:'scale(1.04)'},{transform:'none'}],{duration:480,easing:EASE.quad})});
+    return arrived;
   }
   const to={opacity:fade?0:1,transform:spec.exit??'none'};if(spec.clip)to.clipPath=spec.clip;
   const done=await run(el,to,spec.leave??150,spec.exitEase??EASE.in);

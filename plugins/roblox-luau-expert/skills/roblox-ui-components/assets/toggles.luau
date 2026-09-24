@@ -32,12 +32,15 @@ local STRETCH = TweenInfo.new(0.06, Enum.EasingStyle.Quad, Enum.EasingDirection.
 
 type FirstTen = "T1" | "T2" | "T3" | "T4" | "T5" | "T6" | "T7" | "T8" | "T9" | "T10"
 type SecondTen = "T11" | "T12" | "T13" | "T14" | "T15" | "T16" | "T17" | "T18" | "T19" | "T20"
-export type ToggleStyle = FirstTen | SecondTen
+type ThirdTen = "T21" | "T22" | "T23" | "T24" | "T25" | "T26" | "T27" | "T28" | "T29" | "T30"
+export type ToggleStyle = FirstTen | SecondTen | ThirdTen
 
--- T19 reads `description`, T20 reads `icon`; the other styles ignore both.
+-- T19 reads `description`, T20 reads `icon`, T29 reads `key`; the other styles
+-- ignore all three.
 export type ToggleDetails = {
 	description: string?,
 	icon: string?,
+	key: string?,
 }
 
 export type Toggle = {
@@ -90,9 +93,14 @@ end
 
 -- T1 and T2 differ only in corner radius; the knob position carries the state,
 -- so the track colour is never the only signal.
-local function switchSkin(row: TextButton, radius: UDim, knobRadius: UDim): (boolean) -> ()
+local function switchSkin(
+	row: TextButton,
+	radius: UDim,
+	knobRadius: UDim,
+	order: number?
+): ((boolean) -> (), Frame)
 	local track = newFrame("Track", UDim2.fromOffset(44, 24), THEME.track)
-	track.LayoutOrder = 2
+	track.LayoutOrder = order or 2
 	round(track, radius)
 	track.Parent = row
 
@@ -101,10 +109,11 @@ local function switchSkin(row: TextButton, radius: UDim, knobRadius: UDim): (boo
 	round(knob, knobRadius)
 	knob.Parent = track
 
-	return function(on: boolean)
+	local function paint(on: boolean)
 		animate(knob, { Position = UDim2.new(0, if on then 23 else 3, 0.5, 0) })
 		animate(track, { BackgroundColor3 = if on then THEME.accent else THEME.track })
 	end
+	return paint, track
 end
 
 local function tickSkin(row: TextButton): (boolean) -> ()
@@ -527,7 +536,7 @@ local function describedSkin(
 	detail.Text = description
 	detail.Parent = column
 
-	return switchSkin(row, UDim.new(0.5, 0), UDim.new(0.5, 0))
+	return (switchSkin(row, UDim.new(0.5, 0), UDim.new(0.5, 0)))
 end
 
 -- T20: a feature icon leads the row and takes the accent while the switch is on.
@@ -542,6 +551,232 @@ local function iconRowSkin(row: TextButton, image: string): (boolean) -> ()
 	return function(on: boolean)
 		animate(lead, { ImageColor3 = if on then THEME.accent else THEME.textMuted })
 		paintSwitch(on)
+	end
+end
+
+local function newWord(name: string, order: number, text: string): TextLabel
+	local word = Instance.new("TextLabel")
+	word.Name = name
+	word.LayoutOrder = order
+	word.AutomaticSize = Enum.AutomaticSize.X
+	word.Size = UDim2.fromScale(0, 1)
+	word.BackgroundTransparency = 1
+	word.FontFace = Font.fromEnum(Enum.Font.GothamBold)
+	word.TextSize = 12
+	word.TextColor3 = THEME.textMuted
+	word.Text = text
+	return word
+end
+
+-- T21: the accent fills the track from the left as the knob travels.
+local function fillSkin(row: TextButton): (boolean) -> ()
+	local track = newFrame("Track", UDim2.fromOffset(44, 24), THEME.track)
+	track.LayoutOrder = 2
+	round(track, UDim.new(0.5, 0))
+	track.Parent = row
+
+	local fill = newFrame("Fill", UDim2.fromScale(0, 1), THEME.accent)
+	round(fill, UDim.new(0.5, 0))
+	fill.Parent = track
+
+	local knob = newFrame("Knob", UDim2.fromOffset(18, 18), THEME.knob)
+	knob.AnchorPoint = Vector2.new(0, 0.5)
+	knob.ZIndex = 2
+	round(knob, UDim.new(0.5, 0))
+	knob.Parent = track
+
+	return function(on: boolean)
+		animate(fill, { Size = UDim2.fromScale(if on then 1 else 0, 1) })
+		animate(knob, { Position = UDim2.new(0, if on then 23 else 3, 0.5, 0) })
+	end
+end
+
+-- T22: both words stay visible either side of the switch; the chosen one is lit.
+local function labelledEndsSkin(row: TextButton): (boolean) -> ()
+	local off = newWord("OffWord", 2, "Off")
+	off.Parent = row
+	local paintSwitch = switchSkin(row, UDim.new(0.5, 0), UDim.new(0.5, 0), 3)
+	local on = newWord("OnWord", 4, "On")
+	on.Parent = row
+
+	return function(value: boolean)
+		paintSwitch(value)
+		animate(off, { TextColor3 = if value then THEME.textMuted else THEME.text })
+		animate(on, { TextColor3 = if value then THEME.focus else THEME.textMuted })
+	end
+end
+
+-- T23: T1 whose track takes a soft accent glow while on.
+local function glowSkin(row: TextButton): (boolean) -> ()
+	local paintSwitch, track = switchSkin(row, UDim.new(0.5, 0), UDim.new(0.5, 0))
+	local glow = Instance.new("UIStroke")
+	glow.Name = "Glow"
+	glow.Color = THEME.focus
+	glow.Thickness = 2
+	glow.Transparency = 1
+	glow.Parent = track
+
+	return function(on: boolean)
+		paintSwitch(on)
+		animate(glow, { Transparency = if on then 0.4 else 1 })
+	end
+end
+
+-- T24: an upright lever; the knob rises for on, like a wall switch.
+local function leverSkin(row: TextButton): (boolean) -> ()
+	local track = newFrame("Track", UDim2.fromOffset(24, 40), THEME.track)
+	track.LayoutOrder = 2
+	round(track, UDim.new(0.5, 0))
+	track.Parent = row
+
+	local knob = newFrame("Knob", UDim2.fromOffset(18, 18), THEME.knob)
+	knob.AnchorPoint = Vector2.new(0.5, 0)
+	round(knob, UDim.new(0.5, 0))
+	knob.Parent = track
+
+	return function(on: boolean)
+		animate(knob, { Position = UDim2.new(0.5, 0, 0, if on then 3 else 19) })
+		animate(track, { BackgroundColor3 = if on then THEME.accent else THEME.track })
+	end
+end
+
+-- T25: an empty ring whose centre dot grows in, as a single-option radio.
+local function dotRingSkin(row: TextButton): (boolean) -> ()
+	local ring = newFrame("Ring", UDim2.fromOffset(22, 22), THEME.row)
+	ring.LayoutOrder = 0
+	round(ring, UDim.new(0.5, 0))
+	ring.Parent = row
+
+	local outline = Instance.new("UIStroke")
+	outline.Color = THEME.track
+	outline.Thickness = 2
+	outline.Parent = ring
+
+	local dot = newFrame("Dot", UDim2.fromOffset(10, 10), THEME.accent)
+	dot.AnchorPoint = Vector2.new(0.5, 0.5)
+	dot.Position = UDim2.fromScale(0.5, 0.5)
+	round(dot, UDim.new(0.5, 0))
+	dot.Parent = ring
+
+	local grow = Instance.new("UIScale")
+	grow.Parent = dot
+
+	return function(on: boolean)
+		animate(outline, { Color = if on then THEME.accent else THEME.track })
+		animate(grow, { Scale = if on then 1 else 0 })
+	end
+end
+
+-- T26: a stripe on the row's left edge lights, and the word says it.
+local function stripeSkin(row: TextButton): (boolean) -> ()
+	local stripe = newFrame("Stripe", UDim2.fromOffset(4, 24), THEME.track)
+	stripe.LayoutOrder = 0
+	round(stripe, UDim.new(0.5, 0))
+	stripe.Parent = row
+
+	local status = newWord("Status", 2, "OFF")
+	status.Parent = row
+
+	return function(on: boolean)
+		status.Text = if on then "ON" else "OFF"
+		animate(stripe, { BackgroundColor3 = if on then THEME.accent else THEME.track })
+		animate(status, { TextColor3 = if on then THEME.focus else THEME.textMuted })
+	end
+end
+
+-- T27: a rocker marked O and I; the cap sits under the side that is down.
+local function rockerSkin(row: TextButton): (boolean) -> ()
+	local rocker = newFrame("Rocker", UDim2.fromOffset(64, 32), THEME.keyBase)
+	rocker.LayoutOrder = 2
+	round(rocker, UDim.new(0, 6))
+	rocker.Parent = row
+
+	local cap = newFrame("Cap", UDim2.new(0.5, -4, 1, -8), THEME.track)
+	cap.AnchorPoint = Vector2.new(0, 0.5)
+	cap.ZIndex = 1
+	round(cap, UDim.new(0, 4))
+	cap.Parent = rocker
+
+	local marks: { TextLabel } = {}
+	for index, glyph in { "O", "I" } do
+		local mark = Instance.new("TextLabel")
+		mark.Name = if glyph == "O" then "Off" else "On"
+		mark.Position = UDim2.fromScale((index - 1) * 0.5, 0)
+		mark.Size = UDim2.fromScale(0.5, 1)
+		mark.BackgroundTransparency = 1
+		mark.ZIndex = 2
+		mark.FontFace = Font.fromEnum(Enum.Font.GothamBold)
+		mark.TextSize = 14
+		mark.Text = glyph
+		mark.Parent = rocker
+		marks[index] = mark
+	end
+
+	return function(on: boolean)
+		animate(cap, {
+			Position = UDim2.new(if on then 0.5 else 0, 4, 0.5, 0),
+			BackgroundColor3 = if on then THEME.accent else THEME.track,
+		})
+		marks[1].TextColor3 = if on then THEME.textMuted else THEME.text
+		marks[2].TextColor3 = if on then THEME.knob else THEME.textMuted
+	end
+end
+
+-- T28: a compact pill that reads ON or OFF, for dense feature lists.
+local function pillSkin(row: TextButton): (boolean) -> ()
+	local pill = Instance.new("TextLabel")
+	pill.Name = "Pill"
+	pill.LayoutOrder = 2
+	pill.Size = UDim2.fromOffset(52, 24)
+	pill.BackgroundColor3 = THEME.track
+	pill.BorderSizePixel = 0
+	pill.FontFace = Font.fromEnum(Enum.Font.GothamBold)
+	pill.TextSize = 12
+	pill.Text = "OFF"
+	round(pill, UDim.new(0.5, 0))
+	pill.Parent = row
+
+	return function(on: boolean)
+		pill.Text = if on then "ON" else "OFF"
+		animate(pill, {
+			BackgroundColor3 = if on then THEME.accent else THEME.track,
+			TextColor3 = if on then THEME.knob else THEME.textMuted,
+		})
+	end
+end
+
+-- T29: T1 with the feature's hotkey shown in a chip before the switch.
+local function keyChipSkin(row: TextButton, keyName: string): (boolean) -> ()
+	local chip = newWord("Key", 2, keyName)
+	chip.BackgroundColor3 = THEME.keyBase
+	chip.BackgroundTransparency = 0
+	chip.Size = UDim2.fromOffset(0, 24)
+	round(chip, UDim.new(0, 4))
+	chip.Parent = row
+
+	local inset = Instance.new("UIPadding")
+	inset.PaddingLeft = UDim.new(0, 8)
+	inset.PaddingRight = UDim.new(0, 8)
+	inset.Parent = chip
+
+	return (switchSkin(row, UDim.new(0.5, 0), UDim.new(0.5, 0), 3))
+end
+
+-- T30: a small switch for long, dense lists; the row stays 44 tall to tap.
+local function miniSkin(row: TextButton): (boolean) -> ()
+	local track = newFrame("Track", UDim2.fromOffset(32, 18), THEME.track)
+	track.LayoutOrder = 2
+	round(track, UDim.new(0.5, 0))
+	track.Parent = row
+
+	local knob = newFrame("Knob", UDim2.fromOffset(14, 14), THEME.knob)
+	knob.AnchorPoint = Vector2.new(0, 0.5)
+	round(knob, UDim.new(0.5, 0))
+	knob.Parent = track
+
+	return function(on: boolean)
+		animate(knob, { Position = UDim2.new(0, if on then 16 else 2, 0.5, 0) })
+		animate(track, { BackgroundColor3 = if on then THEME.accent else THEME.track })
 	end
 end
 
@@ -757,6 +992,28 @@ local function createToggle(
 	elseif style == "T20" then
 		local image = if details and details.icon then details.icon else ICON.feature
 		paintValue = iconRowSkin(row, image)
+	end
+
+	if style == "T21" then
+		paintValue = fillSkin(row)
+	elseif style == "T22" then
+		paintValue = labelledEndsSkin(row)
+	elseif style == "T23" then
+		paintValue = glowSkin(row)
+	elseif style == "T24" then
+		paintValue = leverSkin(row)
+	elseif style == "T25" then
+		paintValue = dotRingSkin(row)
+	elseif style == "T26" then
+		paintValue = stripeSkin(row)
+	elseif style == "T27" then
+		paintValue = rockerSkin(row)
+	elseif style == "T28" then
+		paintValue = pillSkin(row)
+	elseif style == "T29" then
+		paintValue = keyChipSkin(row, if details and details.key then details.key else "F")
+	elseif style == "T30" then
+		paintValue = miniSkin(row)
 	end
 
 	if style ~= "T4" then

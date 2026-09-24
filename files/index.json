@@ -1,7 +1,7 @@
 {
   "repository": "x-Yami-Sukehiro-x/roblox-luau-expert-skill",
-  "source": "c4db9a2a5fe0d481e0f36975d5227a512acea97e",
-  "version": "5.4.0+gc4db9a2",
+  "source": "5aba143c58bcea3b0418cacbf76e18522e595c64",
+  "version": "5.4.0+g5aba143",
   "files": [
     {
       "name": "AGENTS.md",
@@ -156,17 +156,17 @@
     {
       "name": "library__tests__recipes__checkboxes.luau",
       "path": "library/tests/recipes/checkboxes.luau",
-      "bytes": 6056
+      "bytes": 9136
     },
     {
       "name": "library__tests__recipes__dropdowns.luau",
       "path": "library/tests/recipes/dropdowns.luau",
-      "bytes": 11229
+      "bytes": 17583
     },
     {
       "name": "library__tests__recipes__menus.luau",
       "path": "library/tests/recipes/menus.luau",
-      "bytes": 8674
+      "bytes": 11466
     },
     {
       "name": "library__tests__recipes__notices.luau",
@@ -191,7 +191,7 @@
     {
       "name": "library__tests__recipes__toggles.luau",
       "path": "library/tests/recipes/toggles.luau",
-      "bytes": 7338
+      "bytes": 10353
     },
     {
       "name": "library__tests__recipes__windows.luau",
@@ -201,7 +201,7 @@
     {
       "name": "library__tests__stubs.luau",
       "path": "library/tests/stubs.luau",
-      "bytes": 11250
+      "bytes": 11318
     },
     {
       "name": "skills__roblox-architecture__SKILL.md",
@@ -626,17 +626,17 @@
     {
       "name": "skills__roblox-ui-components__assets__checkboxes.luau",
       "path": "skills/roblox-ui-components/assets/checkboxes.luau",
-      "bytes": 19861
+      "bytes": 29586
     },
     {
       "name": "skills__roblox-ui-components__assets__dropdowns.luau",
       "path": "skills/roblox-ui-components/assets/dropdowns.luau",
-      "bytes": 24418
+      "bytes": 33886
     },
     {
       "name": "skills__roblox-ui-components__assets__menus.luau",
       "path": "skills/roblox-ui-components/assets/menus.luau",
-      "bytes": 13010
+      "bytes": 16825
     },
     {
       "name": "skills__roblox-ui-components__assets__notices.luau",
@@ -656,7 +656,7 @@
     {
       "name": "skills__roblox-ui-components__assets__toggles.luau",
       "path": "skills/roblox-ui-components/assets/toggles.luau",
-      "bytes": 25196
+      "bytes": 33413
     },
     {
       "name": "skills__roblox-ui-components__assets__windows.luau",
@@ -861,7 +861,7 @@
     },
     {
       "path": "docs/visual-guide/index.html",
-      "bytes": 127911
+      "bytes": 151053
     },
     {
       "path": "skills/roblox-luau-expert/references/verified/api-index.txt",
@@ -877,7 +877,7 @@
     },
     {
       "path": "skills/roblox-request-intake/assets/roblox-ui-style-picker.html",
-      "bytes": 127911
+      "bytes": 151053
     },
     {
       "path": "skills/roblox-ui-components/references/icon-ids.txt",

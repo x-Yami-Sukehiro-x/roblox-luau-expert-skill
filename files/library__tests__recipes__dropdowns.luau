@@ -242,6 +242,136 @@ do
 	check("D12 the field shows the chosen colour", dropdown.root.Field.Swatch.BackgroundColor3 == purple)
 end
 
+do
+	local playerGui, page = scene()
+	local options = { { text = "Spawn", detail = "Where you start" }, { text = "Shop", detail = "Buy tools" } }
+	local dropdown = createDropdown(page, "D13", { label = "Teleport to", options = options, onChanged = function() end })
+	dropdown.root.Field.Activated:Fire()
+	local rows = playerGui.DropdownLayer.Catcher.List.Rows
+	check("D13 rows are two lines tall", rows.Spawn.Size.Y.Offset == 56 and rows.Spawn.Lines.Detail.Text == "Where you start")
+	check("D13 list height counts two-line rows", rows.Size.Y.Offset == 112)
+end
+
+do
+	local playerGui, page = scene()
+	local dropdown = createDropdown(page, "D14", { label = "Teleport to", options = { "Spawn", "Shop", "Arena" }, onChanged = function() end })
+	local field = dropdown.root.Field
+	field.Activated:Fire()
+	local rows = playerGui.DropdownLayer.Catcher.List.Rows
+	check("D14 no recent section before a pick", rows.RECENT == nil)
+	rows.Arena.Activated:Fire()
+	HARNESS.drain()
+	field.Activated:Fire()
+	check("D14 the last pick is listed first under RECENT", rows.RECENT ~= nil and rows["Recent Arena"] ~= nil and rows["Recent Arena"].LayoutOrder < rows.ALL.LayoutOrder)
+end
+
+do
+	local playerGui, page = scene()
+	local dropdown = createDropdown(page, "D15", { label = "Quality", options = { "Low", "High" }, onChanged = function() end })
+	local field = dropdown.root.Field
+	field.AbsolutePosition = Vector2.new(100, 300)
+	field.Activated:Fire()
+	local list = playerGui.DropdownLayer.Catcher.List
+	check("D15 opens above the field when there is room", list.Position.Y.Offset == 300 - (88 + 8) - 4)
+end
+
+do
+	local playerGui, page = scene()
+	local dropdown = createDropdown(page, "D16", { label = "Pet", options = { "Cat", "Dog" }, onChanged = function() end })
+	dropdown.root.Field.Activated:Fire()
+	local layer = playerGui.DropdownLayer
+	local list = layer.Catcher.List
+	check("D16 is a sheet on the bottom edge", list.AnchorPoint.Y == 1 and list.Position.Y.Scale == 1 and list.Position.Y.Offset == 0)
+	check("D16 dims what is behind it", layer.Catcher.BackgroundTransparency == 0.5)
+end
+
+do
+	local _, page = scene()
+	local picked
+	local dropdown = createDropdown(page, "D17", { label = "Feature", options = { "Teleport", "Trade", "Fly" }, onChanged = function(list) picked = list[1] end })
+	local box = dropdown.root.Field.Search
+	box.Text = "tel"
+	check("D17 shows the rest of the first match in grey", box.Ghost.Text == '<font transparency="1">tel</font>eport')
+	box:CaptureFocus()
+	HARNESS.input.InputBegan:Fire({ KeyCode = Enum.KeyCode.Tab })
+	check("D17 Tab accepts the completion", box.Text == "Teleport")
+	box.FocusLost:Fire(true)
+	check("D17 Enter then picks it", picked == "Teleport")
+	box.Text = "<b"
+	check("D17 no grey text when nothing matches", box.Ghost.Text == "")
+end
+
+do
+	local playerGui, page = scene()
+	local sword = "rbxassetid://121406454377051"
+	local dropdown = createDropdown(page, "D18", { label = "Weapon", options = { { text = "Sword", icon = sword }, "Bow", "Axe", "Staff" }, onChanged = function() end })
+	dropdown.root.Field.Activated:Fire()
+	local rows = playerGui.DropdownLayer.Catcher.List.Rows
+	check("D18 options sit in a grid", rows.UIGridLayout ~= nil and rows.Sword.Icon.Size.X.Offset == 24)
+	check("D18 grid height is two rows of cells", rows.Size.Y.Offset == 2 * (72 + 4))
+end
+
+do
+	local playerGui, page = scene()
+	local ran
+	local dropdown = createDropdown(page, "D19", { label = "Teleport to", options = { "Spawn", "Shop" }, chosen = { "Shop" }, onChanged = function() end, onRun = function(value) ran = value end })
+	local field = dropdown.root.Field
+	field.Run.Activated:Fire()
+	check("D19 the main button runs the chosen value", ran == "Shop" and field.Run.Value.Text == "Shop")
+	field.More.Activated:Fire()
+	check("D19 only the arrow opens the list", playerGui.DropdownLayer.Catcher.List.Visible == true and field.More.Chevron ~= nil)
+end
+
+do
+	local playerGui, page = scene()
+	local reports = 0
+	local last = {}
+	local dropdown = createDropdown(page, "D20", { label = "Auto sell", options = { "Wood", "Stone", "Gold" }, onChanged = function(list) reports += 1 last = list end })
+	dropdown.root.Field.Activated:Fire()
+	local list = playerGui.DropdownLayer.Catcher.List
+	list.Rows.Wood.Activated:Fire()
+	list.Rows.Gold.Activated:Fire()
+	check("D20 picks wait for Apply", reports == 0 and #dropdown.get() == 0 and list.Rows.Gold.Box.Tick.ImageTransparency == 0)
+	list.Apply.Activated:Fire()
+	check("D20 Apply commits and reports once", reports == 1 and #last == 2 and dropdown.root.Field.Value.Text == "2 selected")
+	HARNESS.drain()
+	dropdown.root.Field.Activated:Fire()
+	list.Rows.Stone.Activated:Fire()
+	playerGui.DropdownLayer.Catcher.Activated:Fire()
+	check("D20 closing without Apply discards", reports == 1 and #dropdown.get() == 2)
+end
+
+do
+	local playerGui, page = scene()
+	local picked
+	local options = { { text = "Places", children = { "Spawn", "Shop" } }, "Nearest player" }
+	local dropdown = createDropdown(page, "D21", { label = "Teleport to", options = options, onChanged = function(list) picked = list[1] end })
+	dropdown.root.Field.Activated:Fire()
+	local rows = playerGui.DropdownLayer.Catcher.List.Rows
+	check("D21 a row with a sub-menu shows an arrow", rows.Places.Deeper ~= nil)
+	rows.Places.Activated:Fire()
+	check("D21 opening it shows its options and a way back", rows.Spawn ~= nil and rows.Back ~= nil and rows.Places == nil)
+	rows.Back.Activated:Fire()
+	check("D21 back returns to the top", rows.Places ~= nil and rows.Back == nil)
+	rows.Places.Activated:Fire()
+	rows.Shop.Activated:Fire()
+	check("D21 choosing a nested option reports it", picked == "Shop" and dropdown.root.Field.Value.Text == "Shop")
+end
+
+do
+	local playerGui, page = scene()
+	local created, picked
+	local dropdown = createDropdown(page, "D22", { label = "Waypoint", options = { "Base" }, onChanged = function(list) picked = list[1] end, onCreate = function(text) created = text end })
+	local box = dropdown.root.Field.Search
+	box.Text = "Cave"
+	local rows = playerGui.DropdownLayer.Catcher.List.Rows
+	check("D22 offers to add what was typed", rows.Create ~= nil and rows.Create.Label.Text == 'Add "Cave"')
+	rows.Create.Activated:Fire()
+	check("D22 adding creates and chooses it", created == "Cave" and picked == "Cave")
+	box.Text = "Base"
+	check("D22 no add row for an exact match", rows.Create == nil and rows.Base ~= nil)
+end
+
 local failed = 0
 for _, line in results do print(line) if line:sub(1,4) == "FAIL" then failed += 1 end end
 print(#results - failed .. " passed, " .. failed .. " failed")

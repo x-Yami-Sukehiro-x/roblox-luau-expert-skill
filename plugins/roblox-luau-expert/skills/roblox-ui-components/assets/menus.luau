@@ -7,7 +7,10 @@ type FirstStyles = "M0" | "M1" | "M2" | "M3" | "M4" | "M5" | "M6"
 type SecondStyles = "M7" | "M8" | "M9" | "M10" | "M11" | "M12"
 type LaterStyles = "M13" | "M14" | "M15" | "M16" | "M17" | "M18"
 type LastStyles = "M19" | "M20" | "M21" | "M22" | "M23" | "M24"
-export type MenuStyle = FirstStyles | SecondStyles | LaterStyles | LastStyles
+type NewerStyles = "M25" | "M26" | "M27" | "M28" | "M29" | "M30"
+type NewestStyles = "M31" | "M32" | "M33" | "M34" | "M35" | "M36"
+type EarlyStyles = FirstStyles | SecondStyles | LaterStyles | LastStyles
+export type MenuStyle = EarlyStyles | NewerStyles | NewestStyles
 
 -- `scrim` is the full-screen frame M19 dims behind the panel.
 export type PresenterOptions = {
@@ -38,6 +41,10 @@ local MOTION = {
 	snapOut = TweenInfo.new(0.08, Enum.EasingStyle.Quad, Enum.EasingDirection.In),
 	slowIn = TweenInfo.new(0.35, Enum.EasingStyle.Sine, Enum.EasingDirection.Out),
 	slowOut = TweenInfo.new(0.25, Enum.EasingStyle.Sine, Enum.EasingDirection.In),
+	glide = TweenInfo.new(0.5, Enum.EasingStyle.Quint, Enum.EasingDirection.Out),
+	glideOut = TweenInfo.new(0.3, Enum.EasingStyle.Quint, Enum.EasingDirection.In),
+	-- Out to the peak and back, twice: the two beats of M35.
+	beat = TweenInfo.new(0.12, Enum.EasingStyle.Quad, Enum.EasingDirection.Out, 1, true),
 }
 
 -- How dark M19's scrim gets: half the game still shows through.
@@ -47,6 +54,13 @@ local SCRIM_TRANSPARENCY = 0.5
 -- the gentle pop (M3) and the grow from a button (M5).
 local POP_IN, POP_OUT = 0.96, 0.98
 local GROW_IN, GROW_OUT = 0.9, 0.95
+
+-- M31 starts from half size, M36 shrinks to it; M35 beats to 104 %; M28
+-- starts as a 48 px circle; M33's rows pop from 90 %.
+local HALF = 0.5
+local BEAT = 1.04
+local CIRCLE = 48
+local ROW_POP = 0.9
 
 type Pose = {
 	enter: (size: Vector2) -> Vector2,
@@ -62,7 +76,7 @@ type Pose = {
 	scaleTiming: TweenInfo?,
 	settlePosition: boolean,
 	settleScale: boolean,
-	unfold: "X" | "Y" | "none",
+	unfold: "X" | "Y" | "L" | "circle" | "none",
 	dims: boolean,
 }
 
@@ -248,6 +262,83 @@ local POSE: { [string]: Pose } = {
 		exitTiming = MOTION.slowOut,
 		fadeTiming = MOTION.slowIn,
 	}),
+	M25 = pose({
+		enterRotation = -90,
+		exitRotation = 45,
+		enterScale = GROW_IN,
+		exitScale = GROW_OUT,
+		settleScale = true,
+	}),
+	M26 = pose({
+		enter = function()
+			return Vector2.new(-24, 24)
+		end,
+		exit = function()
+			return Vector2.new(-12, 12)
+		end,
+	}),
+	M27 = pose({
+		unfold = "L",
+		fades = false,
+		enterTiming = MOTION.unfold,
+		exitTiming = MOTION.fold,
+	}),
+	M28 = pose({
+		unfold = "circle",
+		enterTiming = MOTION.drawerIn,
+		exitTiming = MOTION.fold,
+	}),
+	M29 = pose({
+		enter = function()
+			return Vector2.new(0, 40)
+		end,
+		exit = function()
+			return Vector2.new(0, 12)
+		end,
+		enterTiming = MOTION.bounce,
+	}),
+	M30 = pose({
+		enter = function()
+			return Vector2.new(-48, 0)
+		end,
+		exit = function()
+			return Vector2.new(-12, 0)
+		end,
+		enterTiming = MOTION.jelly,
+	}),
+	M31 = pose({ enterScale = HALF, exitScale = GROW_IN, settleScale = true }),
+	M32 = pose({
+		enter = function()
+			return Vector2.new(0, -24)
+		end,
+		exit = function()
+			return Vector2.new(0, 8)
+		end,
+		enterRotation = 8,
+		exitRotation = -4,
+		settlePosition = true,
+	}),
+	M33 = pose({
+		enter = function()
+			return Vector2.new(0, 8)
+		end,
+		exit = function()
+			return Vector2.new(0, 8)
+		end,
+	}),
+	M34 = pose({
+		enter = function()
+			return Vector2.new(120, 0)
+		end,
+		exit = function()
+			return Vector2.new(40, 0)
+		end,
+		enterTiming = MOTION.glide,
+		exitTiming = MOTION.glideOut,
+		fadeTiming = MOTION.glide,
+	}),
+	M35 = pose({ enterScale = POP_IN, exitScale = POP_OUT }),
+	M36 = pose({ enterScale = GROW_IN, exitScale = HALF }),
 }
 
 local ROW_STEP = 0.03
@@ -257,8 +348,9 @@ local ROW_BUDGET = 0.25
 -- by a parent layout. For M5, set its AnchorPoint on the side facing the button
 -- that opens it: UIScale grows the panel out of its anchor. A UIScale used for
 -- screen-size scaling belongs on a parent frame, not on the panel. M12 needs
--- the rows it reveals, each a CanvasGroup. M17 and M18 resize the panel, so
--- its contents must be sized in offset or they squash instead of being revealed.
+-- the rows it reveals, each a CanvasGroup; so does M33. M17, M18, M27 and M28
+-- resize the panel, so its contents must be sized in offset or they squash
+-- instead of being revealed. M28 reshapes the panel's own UICorner.
 local function createPresenter(
 	panel: CanvasGroup,
 	style: MenuStyle,
@@ -279,6 +371,9 @@ local function createPresenter(
 	local scale = Instance.new("UIScale")
 	scale.Name = "OpenScale"
 	scale.Parent = panel
+
+	local corner = panel:FindFirstChildWhichIsA("UICorner")
+	local restingCorner = if corner then corner.CornerRadius else UDim.new()
 
 	local home = panel.Position
 	local fullSize = panel.Size
@@ -308,16 +403,22 @@ local function createPresenter(
 		return home + UDim2.fromOffset(offset.X, offset.Y)
 	end
 
-	-- A folded size on one axis, and the position that keeps the right edge
-	-- still: the top for a roll (Y), the centre for a stretch (X).
-	local function folded(axis: "X" | "Y"): (UDim2, UDim2)
+	-- A folded size, and the position that keeps the right part still: the top
+	-- for a roll (Y), the centre for a stretch (X), the left edge for a curtain
+	-- (L), and the centre for a circle.
+	local function folded(axis: "X" | "Y" | "L" | "circle"): (UDim2, UDim2)
 		local anchor, pixels = panel.AnchorPoint, panel.AbsoluteSize
 		if axis == "Y" then
 			local size = UDim2.new(fullSize.X.Scale, fullSize.X.Offset, 0, 0)
 			return size, shifted(Vector2.new(0, -anchor.Y * pixels.Y))
+		elseif axis == "circle" then
+			local dx = (0.5 - anchor.X) * (pixels.X - CIRCLE)
+			local dy = (0.5 - anchor.Y) * (pixels.Y - CIRCLE)
+			return UDim2.fromOffset(CIRCLE, CIRCLE), shifted(Vector2.new(dx, dy))
 		end
 		local size = UDim2.new(0, 0, fullSize.Y.Scale, fullSize.Y.Offset)
-		return size, shifted(Vector2.new((0.5 - anchor.X) * pixels.X, 0))
+		local keep = if axis == "L" then -anchor.X else 0.5 - anchor.X
+		return size, shifted(Vector2.new(keep * pixels.X, 0))
 	end
 
 	local function dim(show: boolean, timing: TweenInfo)
@@ -339,16 +440,31 @@ local function createPresenter(
 		end)
 	end
 
-	local function revealRows()
+	-- M12 fades the rows in one by one; M33 also pops each from 90 %. A row sits
+	-- in a layout, so it can grow but never travel.
+	local function revealRows(pops: boolean)
 		local step = math.min(ROW_STEP, ROW_BUDGET / math.max(#rows, 1))
 		local mine = ticket
 		for index, row in rows do
 			row.GroupTransparency = 1
+			local grow = row:FindFirstChild("RowScale") :: UIScale?
+			if pops and not grow then
+				local created = Instance.new("UIScale")
+				created.Name = "RowScale"
+				created.Parent = row
+				grow = created
+			end
+			if grow then
+				grow.Scale = if pops then ROW_POP else 1
+			end
 			task.delay(step * (index - 1), function()
 				if mine ~= ticket or not row.Parent then
 					return
 				end
 				play(row, MOTION.enter, { GroupTransparency = 0 })
+				if grow then
+					play(grow, MOTION.settle, { Scale = 1 })
+				end
 			end)
 		end
 	end
@@ -386,7 +502,11 @@ local function createPresenter(
 			if chosen.unfold ~= "none" then
 				panel.Size, panel.Position = folded(chosen.unfold)
 			end
+			if chosen.unfold == "circle" and corner then
+				corner.CornerRadius = UDim.new(0.5, 0)
+			end
 		end
+
 		local moveTiming = if chosen.settlePosition then MOTION.settle else chosen.enterTiming
 		local growTiming = if chosen.settleScale
 			then MOTION.settle
@@ -395,14 +515,21 @@ local function createPresenter(
 		play(panel, chosen.fadeTiming, { GroupTransparency = 0 })
 		play(scale, growTiming, { Scale = 1 })
 		play(panel, growTiming, { Rotation = 0 })
+
 		if chosen.dims then
 			dim(true, MOTION.enter)
 		end
-		if style == "M12" then
-			revealRows()
+		if chosen.unfold == "circle" and corner then
+			play(corner, moveTiming, { CornerRadius = restingCorner })
+		end
+		if style == "M12" or style == "M33" then
+			revealRows(style == "M33")
 		end
 		settleWhen(move, function()
 			phase = "open"
+			if style == "M35" then
+				play(scale, MOTION.beat, { Scale = BEAT })
+			end
 		end)
 	end
 
@@ -421,6 +548,9 @@ local function createPresenter(
 			panel.Visible = false
 			panel.Position, panel.Size, scale.Scale, panel.GroupTransparency = home, fullSize, 1, 1
 			panel.Rotation = 0
+			if corner then
+				corner.CornerRadius = restingCorner
+			end
 			if scrim then
 				scrim.Visible = false
 			end
@@ -446,6 +576,9 @@ local function createPresenter(
 		dim(false, chosen.exitTiming)
 		if chosen.unfold ~= "none" then
 			local size, position = folded(chosen.unfold)
+			if chosen.unfold == "circle" and corner then
+				play(corner, chosen.exitTiming, { CornerRadius = UDim.new(0.5, 0) })
+			end
 			settleWhen(play(panel, chosen.exitTiming, { Size = size, Position = position }), hide)
 			return
 		end
