@@ -1,7 +1,7 @@
 {
   "repository": "x-Yami-Sukehiro-x/roblox-luau-expert-skill",
-  "source": "011470f484d5ecf24818a1ad184088fb825ee86f",
-  "version": "5.8.0+g011470f",
+  "source": "8ebe708e50681905cb72b9eb384bd6f679a2727a",
+  "version": "5.8.0+g8ebe708",
   "files": [
     {
       "name": "AGENTS.md",
@@ -67,6 +67,96 @@
       "name": "library__README.md",
       "path": "library/README.md",
       "bytes": 7049
+    },
+    {
+      "name": "library__hub-kit__src__Core__Config.luau",
+      "path": "library/hub-kit/src/Core/Config.luau",
+      "bytes": 4605
+    },
+    {
+      "name": "library__hub-kit__src__Core__Drag.luau",
+      "path": "library/hub-kit/src/Core/Drag.luau",
+      "bytes": 2673
+    },
+    {
+      "name": "library__hub-kit__src__Core__Icons.luau",
+      "path": "library/hub-kit/src/Core/Icons.luau",
+      "bytes": 2168
+    },
+    {
+      "name": "library__hub-kit__src__Core__Motion.luau",
+      "path": "library/hub-kit/src/Core/Motion.luau",
+      "bytes": 1337
+    },
+    {
+      "name": "library__hub-kit__src__Core__Mount.luau",
+      "path": "library/hub-kit/src/Core/Mount.luau",
+      "bytes": 478
+    },
+    {
+      "name": "library__hub-kit__src__Core__New.luau",
+      "path": "library/hub-kit/src/Core/New.luau",
+      "bytes": 793
+    },
+    {
+      "name": "library__hub-kit__src__Core__Signal.luau",
+      "path": "library/hub-kit/src/Core/Signal.luau",
+      "bytes": 1017
+    },
+    {
+      "name": "library__hub-kit__src__Core__Theme.luau",
+      "path": "library/hub-kit/src/Core/Theme.luau",
+      "bytes": 2353
+    },
+    {
+      "name": "library__hub-kit__src__Core__Trove.luau",
+      "path": "library/hub-kit/src/Core/Trove.luau",
+      "bytes": 1427
+    },
+    {
+      "name": "library__hub-kit__src__Elements__Button.luau",
+      "path": "library/hub-kit/src/Elements/Button.luau",
+      "bytes": 1055
+    },
+    {
+      "name": "library__hub-kit__src__Elements__Divider.luau",
+      "path": "library/hub-kit/src/Elements/Divider.luau",
+      "bytes": 698
+    },
+    {
+      "name": "library__hub-kit__src__Elements__Paragraph.luau",
+      "path": "library/hub-kit/src/Elements/Paragraph.luau",
+      "bytes": 862
+    },
+    {
+      "name": "library__hub-kit__src__Elements__Row.luau",
+      "path": "library/hub-kit/src/Elements/Row.luau",
+      "bytes": 7358
+    },
+    {
+      "name": "library__hub-kit__src__Elements__Toggle.luau",
+      "path": "library/hub-kit/src/Elements/Toggle.luau",
+      "bytes": 2425
+    },
+    {
+      "name": "library__hub-kit__src__Themes__Daylight.luau",
+      "path": "library/hub-kit/src/Themes/Daylight.luau",
+      "bytes": 806
+    },
+    {
+      "name": "library__hub-kit__src__Themes__Ember.luau",
+      "path": "library/hub-kit/src/Themes/Ember.luau",
+      "bytes": 784
+    },
+    {
+      "name": "library__hub-kit__src__Themes__Midnight.luau",
+      "path": "library/hub-kit/src/Themes/Midnight.luau",
+      "bytes": 794
+    },
+    {
+      "name": "library__hub-kit__src__Themes__init.luau",
+      "path": "library/hub-kit/src/Themes/init.luau",
+      "bytes": 168
     },
     {
       "name": "library__src__Components__Button.luau",
