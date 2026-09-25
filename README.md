@@ -23,7 +23,7 @@
   <a href="#install">Install</a>
 </p>
 
-Twenty-five skills that cover ordinary Roblox game development and
+Twenty-seven skills that cover ordinary Roblox game development and
 client/executor scripting. They run natively in Claude Code, and the same rules
 are generated for Codex, Cursor, a custom GPT and an OpenAI plugin from one
 source. Pinned to Roblox API dump `0.739.0.7390687`.
@@ -50,6 +50,11 @@ source. Pinned to Roblox API dump `0.739.0.7390687`.
   eleven devices from a 640 x 360 phone to 4K, outlines cut off by a
   scrolling parent are a lint error, and every control is held to one
   contract for mouse, touch and gamepad.
+- **Skills that hand work to each other.** The router's skill map says which
+  skills open together for each kind of task, and every skill ends with the
+  partners it works with, so a host that trims the skill list still reaches
+  all of them. `lint-skills.mjs` keeps the list inside the hosts' 8,000
+  character budget.
 - **A memory of what failed.** Each attempt goes into a ledger in the
   project's `PROJECT_CONTEXT.md`; `attempt-ledger plan` refuses an approach
   that already failed, and `check` finds a recorded mistake back in the code.
@@ -131,6 +136,7 @@ matches their description.
 | **roblox-networking** | Remotes, `UnreliableRemoteEvent`, what replicates, network ownership, bandwidth, latency compensation, `BanAsync` |
 | **roblox-performance** | MicroProfiler, ScriptProfiler, memory leaks, per-frame cost, streaming, parallel Luau, native codegen |
 | **roblox-request-intake** | Vague and non-technical requests: a spec, a default for every decision, plain-language delivery, error triage |
+| **roblox-game-design** | Genre loops, the first session, economy sources and sinks with cost curves, retention systems, `AnalyticsService` events |
 | **roblox-ui** | The ten-step build order, six design directions, blueprints, the countable self-review, screen archetypes, broken-UI fixes, UI copy |
 | **roblox-ui-components** | Tested recipes for every picker code, notifications, outlines, 9-slice panels, the six interaction states, which icon means what |
 | **roblox-ui-motion** | Easing by intent, duration bands, `SmoothDamp` springs, choreography, reduced motion |
@@ -147,7 +153,8 @@ matches their description.
 | **roblox-code-craft** | Naming, error messages, `pcall` discipline, comment policy, matching an existing file, AI-generated tells |
 | **roblox-reply-craft** | Fast replies, code blocks that paste cleanly, short file names, no filler around the code |
 | **roblox-attempt-memory** | The attempt ledger: what was tried, seen and learned, carried across chats and hosts; refuses repeats and reintroduced bugs |
-| **roblox-toolchain** | Rojo, Rokit, Wally, selene, StyLua, luau-lsp, Lune, jest-roblox, CI, Studio MCP |
+| **roblox-toolchain** | Rojo, Rokit, Wally, selene, StyLua, luau-lsp, Lune, jest-roblox, CI |
+| **roblox-studio-mcp** | Checking work in real Studio through its built-in MCP server: read, edit, playtest, console, screen capture, simulated input, and the safety rules |
 
 `roblox-game-security` and `roblox-executor` are deliberate mirrors: knowing
 what a client can do is what keeps a defence proportionate.
@@ -180,6 +187,7 @@ node tools/bin/lint-prose.mjs                     # every API claim in the skill
 node tools/bin/lint-luau-blocks.mjs               # every shipped Luau example, compiled
 node tools/bin/lint-ui-directions.mjs             # every stated contrast ratio, recomputed
 node tools/bin/lint-links.mjs                     # every file the skills point at exists
+node tools/bin/lint-skills.mjs                    # every skill fits the hosts' listing limits and names its partners
 node tools/bin/run-recipe-tests.mjs               # behaviour tests for every recipe and feature script
 node tools/bin/run-library-tests.mjs              # assertions over library/src
 node tools/bin/generate-tables.mjs --check        # generated tables match the dump

@@ -1,6 +1,6 @@
 ---
 name: roblox-reply-craft
-description: How a Roblox reply is delivered - fast, short and ready to paste. Code blocks that paste into Studio or an executor without broken lines, blank-line runs, line numbers or elisions; one whole file per block; short download file names; replies and descriptions without AI filler; less waiting by reading only what the task needs and writing less. Use for every reply that contains a script, a file or a description, and when the user says the reply was slow, too long, badly formatted, or the file name was silly.
+description: How a Roblox reply is delivered - fast, short, whole scripts in one paste-ready block, short file names, no filler. Use for every reply that contains code, and when replies are slow, long or badly formatted.
 ---
 
 # Reply craft
@@ -63,3 +63,9 @@ no "final", "fixed", "updated", "v2", "complete".
 | "it doesn't paste right", "errors on line 1" | Check for line numbers, smart quotes, `&lt;`, a missing fence or a leading indent |
 | "the file name is weird" | Rename to the script's name, `file-names.md` |
 | "too long", "stop explaining" | One-line summary, code, placement. Nothing else |
+
+## Works with
+
+- `roblox-code-craft`: what the delivered code must already be.
+- `roblox-request-intake`: plain-language placement for readers who do not code.
+- `roblox-attempt-memory`: the attempt recorded before the reply ends.

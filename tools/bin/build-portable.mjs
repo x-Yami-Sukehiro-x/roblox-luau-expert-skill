@@ -79,6 +79,15 @@ const WORKFLOW_SOURCES = [
   "roblox-ui-interaction/SKILL.md",
   "roblox-ui-interaction/references/blocked-input.md",
   "roblox-ui-interaction/references/input-matrix.md",
+  "roblox-studio-mcp/SKILL.md",
+  "roblox-studio-mcp/references/verify-in-studio.md",
+  "roblox-studio-mcp/references/safety.md",
+  "roblox-studio-mcp/references/tools.md",
+  "roblox-game-design/SKILL.md",
+  "roblox-game-design/references/genre-loops.md",
+  "roblox-game-design/references/economy-math.md",
+  "roblox-game-design/references/retention-and-analytics.md",
+  "roblox-game-security/references/audit-imported-assets.md",
 ];
 
 // Everything a picked style code needs, in one retrievable file: the question,

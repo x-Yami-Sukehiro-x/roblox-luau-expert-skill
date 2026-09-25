@@ -1,6 +1,6 @@
 ---
 name: roblox-code-craft
-description: How Roblox Luau code should read — naming conventions and the ubiquitous-language test, error and warning message design, error(msg, 2) semantics, pcall discipline, comment policy, matching the conventions of an existing file, recognising and removing AI-generated tells, the ceremony budget for comments and defensive code, and the pre-delivery review pass. Use when naming things, writing error messages, reviewing code, before delivering any Luau, or when code "looks AI-generated", has too many comments, or is buried in capability checks and pcalls.
+description: How Roblox Luau code should read - names, errors, comments, pcall discipline, formatting, the ceremony budget, removing AI-generated slop, matching an existing file. Use when writing or reviewing any Luau, or when code looks AI-made.
 ---
 
 # Code craft
@@ -307,3 +307,9 @@ craft subset:
 - [ ] `node tools/bin/lint-luau-slop.mjs <file>` exits 0.
 - [ ] Editing an existing file: no comment narrates the change. The diff does
       that, and stays right when the next edit lands.
+
+## Works with
+
+- `roblox-reply-craft`: how the finished file is handed over.
+- `roblox-luau-language`: types and language features the code relies on.
+- `roblox-attempt-memory`: fix stories go in the ledger, never in comments.

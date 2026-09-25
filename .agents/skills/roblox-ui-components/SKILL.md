@@ -1,6 +1,6 @@
 ---
 name: roblox-ui-components
-description: Building individual Roblox UI components properly — toast and notification systems with queueing, stacking and reflow; outlines with UIStroke BorderStrokePosition and layered strokes; 9-slice panels and shadows; dividers and separation without lines; interaction states (rest, hover, press, focus, disabled, selected) plus loading; native UIShadow and an elevation scale; draggable and resizable windows with UIDragDetector; ScrollingFrame configuration and virtualised long lists; a catalog covering buttons, toggles, sliders, dropdowns, modals, tooltips, tabs, progress and text input; tested recipes for every style-picker code (T1–T30 toggles, C1–C20 checkboxes, D1–D22 dropdowns including search fields, M0–M36 menu motion, N1–N30 notifications, O1–O20 hide and bring back, P1–P22 button feel, S1–S22 tabs, H1–H12 tooltips and slider values); and which Lucide icon means what, with 1,559 verified Roblox ids. Use when building or reviewing any specific UI control, notification, popup or panel, or when the user picked a style code.
+description: Building Roblox UI controls - the tested recipe for every style picker code (toggles, checkboxes, dropdowns, menus, notifications, buttons, tabs), outlines, shadows, icons, six states. Use when a code like T2 or N4 is picked or a control is built.
 ---
 
 # UI components
@@ -141,3 +141,10 @@ persisted flag so state survives re-execution, and parented via `gethui()` rathe
 Studio theme via `Enum.StudioStyleGuideColor`, or it looks broken in light mode.
 
 Per-surface detail: `roblox-ui/references/responsive-and-surfaces.md`.
+
+## Works with
+
+- `roblox-ui`: the layout the controls sit in.
+- `roblox-ui-interaction`: the six states on every input.
+- `roblox-ui-motion`: the tweens each recipe uses.
+- `roblox-ui-tooltips`: slider values and hints.

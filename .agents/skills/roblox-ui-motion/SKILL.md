@@ -1,6 +1,6 @@
 ---
 name: roblox-ui-motion
-description: Animating Roblox UI properly — mapping intent to easing style and direction, duration bands, TweenService:SmoothDamp for interruptible spring motion, velocity carry, choreography and stagger, enter and exit transitions, CanvasGroup fades, reduced motion, tween lifetime and cleanup, and the PlaybackState trap. Use when animating any GuiObject, when motion feels janky, stiff or uniform, or when a tween needs to be interrupted mid-flight.
+description: Animating Roblox UI - easing and durations, TweenService, springs and SmoothDamp, choreography, reduced motion, janky or idle animation. Use for opening, closing, press feedback and any UI tween.
 ---
 
 # UI motion
@@ -169,3 +169,9 @@ pattern.
   transparency instead where you can.
 - `UIScale.Scale` is the cheapest way to animate apparent size — it does not re-run
   layout the way `Size` does.
+
+## Works with
+
+- `roblox-ui-components`: the recipes that carry the motion.
+- `roblox-ui-interaction`: press feedback on touch and gamepad too.
+- `roblox-performance`: nothing animating when idle.

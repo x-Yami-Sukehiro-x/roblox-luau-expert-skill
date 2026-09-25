@@ -1,6 +1,6 @@
 ---
 name: roblox-performance
-description: Roblox performance and memory — MicroProfiler and ScriptProfiler, the Stats service, finding and fixing memory leaks, per-frame allocation, instance and part cost, StreamingEnabled, parallel Luau with Actors, the SharedTable atomic operations that prevent data races, the serial boundary, native code generation, asset preloading, and physics and render budgets. Use for lag, frame drops, "memory keeps climbing", server crashes under load, or optimisation questions.
+description: Roblox performance and memory - MicroProfiler, ScriptProfiler, leaks, per-frame cost, instance churn, streaming, parallel Luau, native code. Use for lag, stutter, low FPS or climbing memory.
 ---
 
 # Performance and memory
@@ -286,3 +286,9 @@ Do these in order. Skipping ahead wastes effort.
 
 Micro-optimising Luau before reducing part count and instance count is the most
 common wasted effort in Roblox performance work.
+
+## Works with
+
+- `roblox-engine-api`: the frame pipeline the costs sit in.
+- `roblox-ui-components`: virtualised lists instead of thousands of rows.
+- `roblox-studio-mcp`: Roblox's profiling skill during a playtest.

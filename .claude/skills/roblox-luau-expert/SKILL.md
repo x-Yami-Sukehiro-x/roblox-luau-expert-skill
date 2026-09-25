@@ -1,6 +1,6 @@
 ---
 name: roblox-luau-expert
-description: Router and hard rules for all Roblox and Luau work — game scripting, engine APIs, Luau types, networking and replication, DataStores, performance, GUI, anti-exploit, and client/executor scripting. Use for any Roblox question, any .lua/.luau file in a Roblox project, and any mention of Luau, Rojo, RemoteEvent, DataStore, Humanoid, Instance, sUNC, or an executor. Enforces API verification against a vendored API dump so Roblox APIs are checked rather than recalled.
+description: Router for every Roblox or Luau task - .lua/.luau files, Roblox Studio, Rojo, RemoteEvent, DataStore, UI, executor or sUNC scripts. Loads the right specialist skills, verifies every API against the Roblox API dump, and runs the delivery checks.
 ---
 
 # Roblox Luau Expert — router
@@ -51,50 +51,14 @@ ground truth; use it.
 
 ### Rule 1 — verify before you write
 
-Any Roblox class, property, function, event or enum you are not **certain**
-of gets checked first:
-
-```powershell
-node tools/bin/verify-api.mjs <Name>              # in this repo
-node $CLAUDE_PLUGIN_ROOT/tools/bin/verify-api.mjs <Name>   # installed as a plugin
-```
-
-It prints the real signature plus the security level, capability, parallel
-safety, deprecation and yield behaviour. **Exit code 1 means the name is not
-in the dump.** That is the signal you were about to invent an API. Say it does
-not exist. Do not write it anyway with a hedge.
-
-Fast path when you only need existence: `grep` `references/verified/api-index.txt`
-for a `Class.Member`, `references/verified/enum-index.txt` for an enum item such as
-`Enum.EasingStyle.Quad`, and `references/verified/class-hierarchy.txt` when the first
-grep misses - members are indexed against the class that **declares** them, so
-`Workspace.Raycast` is absent and `WorldRoot.Raycast` is not.
-
-No Node available - a custom GPT's Code Interpreter, for instance - and the same
-three questions are answered offline from those files:
-
-```bash
-python tools/py/verify_api.py Humanoid.WalkSpeed     # exists, deprecated, gated
-python tools/py/verify_api.py Enum.EasingStyle.Quad  # real enum item
-python tools/py/verify_api.py --exec hookmetamethod  # documented executor call
-python tools/py/verify_api.py --scan Script.luau     # every name this file establishes
-```
-
-`--scan` resolves each local this file binds to a class - `game:GetService`,
-`Instance.new`, a type annotation - and checks every member read off it, walking
-the inheritance chain. It says which receivers it resolved, so what it did not
-check is visible rather than implied.
-
-Executor functions are a **separate** ground truth and a separate command:
-
-```powershell
-node tools/bin/verify-executor-api.mjs <name>     # sUNC reference; exit 1 if absent
-```
-
-Same contract, different source. `verify-api.mjs` correctly reports every
-executor function as missing, because the API dump does not contain them — that
-is not the signal, and using the wrong tool is how a real function gets called
-imaginary.
+Any Roblox class, member or enum you are not **certain** of gets checked
+first: `node tools/bin/verify-api.mjs <Name>` (Python:
+`python tools/py/verify_api.py <Name>`, or `--scan <file>` for every name a
+file uses). **Exit code 1 means the name is not in the dump**: say it does not
+exist rather than writing it with a hedge. Executor functions are a separate
+source and a separate command, `verify-executor-api.mjs`. The fast grep
+paths, the scan and the executor check in full:
+`references/verifying-apis.md`.
 
 ### Rule 2 — three checks on every Roblox API you hand over
 
@@ -173,7 +137,7 @@ varies per executor and per update.
 | naming, error messages, "this looks AI-generated", review | `roblox-code-craft` |
 | a comment whose first line is real and whose next three restate the code | `roblox-code-craft` → `roblox-code-craft/references/anti-slop-code.md` §3a |
 | `v14`, `u3`, `p1` still in a script built from a dump | `roblox-code-craft` → `roblox-code-craft/references/anti-slop-code.md` §6 |
-| "you said you redesigned it and you didn't" | this file, the delivery pass, step 12 |
+| "you said you redesigned it and you didn't" | this file, the delivery pass, step 9 |
 | picking a UI library, or "my UI looks like every other script hub" | `docs/portability/gpt/UIs/catalog.md` |
 | "too many comments", "stop over-explaining", obvious comments | `roblox-code-craft` → `roblox-code-craft/references/anti-slop-code.md` |
 | "the formatting is clustered", breaks on lines that do not need them | `roblox-code-craft` → `roblox-code-craft/references/formatting.md` |
@@ -182,6 +146,9 @@ varies per executor and per update.
 | fly, noclip, speed, infinite jump, ESP, click teleport, anti-AFK, fullbright, spectate, max zoom, FOV, freecam | `roblox-executor-features` (tested assets) |
 | an executor feature "doesn't work", "works then resets", "broke after respawn", "broke my other feature" | `roblox-executor-reliability` |
 | "you didn't fix it", "same problem again", "we already tried that", a new chat continuing old work | `roblox-attempt-memory` |
+| "make me a game", game ideas, economy balance, retention, daily rewards | `roblox-game-design` |
+| Studio is connected through MCP; "test it in Studio", playtest, screen capture | `roblox-studio-mcp` |
+| a Toolbox or Creator Store model, "is this model safe", backdoors | `roblox-game-security` → `roblox-game-security/references/audit-imported-assets.md` |
 | "it resets when I change it" (client-side) | `roblox-executor` → `roblox-executor/references/technique/value-persistence.md` |
 | "where is this game's anti-cheat" | `roblox-executor` → `roblox-executor/references/recon/anticheat-recon.md` |
 | user pasted decompiled source, a dump, or the game's scripts | `roblox-executor` → `roblox-executor/references/technique/decompiled-source.md` |
@@ -193,6 +160,54 @@ varies per executor and per update.
 
 Two skills at once is normal. "Exploiters are duping items" is
 `roblox-game-security` for the fix and `roblox-executor` for the threat model.
+
+## Skill map: load them together
+
+A host may shorten or drop skill descriptions when many skills are installed,
+so do not wait for a specialist to trigger on its own. Open the bundle for
+the task by path; each skill's **Works with** section names its partners.
+
+| Task | Open together |
+|---|---|
+| any code you hand over | `roblox-code-craft`, `roblox-reply-craft` |
+| any repair, retry or "still broken" | `roblox-attempt-memory` first, then the area's skills |
+| a UI, game or hub | `roblox-ui`, `roblox-ui-components`, `roblox-ui-viewport`, `roblox-ui-interaction`; `roblox-ui-motion` and `roblox-ui-tooltips` when used |
+| an executor feature or hub | `roblox-executor-features`, `roblox-executor-reliability`, `roblox-executor`, plus the UI row for the hub |
+| saving, currency, shops | `roblox-data-persistence`, `roblox-monetization`, `roblox-game-design`, `roblox-game-security` |
+| multiplayer and remotes | `roblox-networking`, `roblox-game-security`, `roblox-engine-api` |
+| "make me a game" | `roblox-request-intake`, `roblox-game-design`, `roblox-architecture` |
+| Studio is connected | `roblox-studio-mcp` to check the change in a real playtest |
+
+Every skill, by path from this folder:
+
+| Skill | Path |
+|---|---|
+| architecture | `../roblox-architecture/SKILL.md` |
+| attempt memory | `../roblox-attempt-memory/SKILL.md` |
+| audio | `../roblox-audio/SKILL.md` |
+| code craft | `../roblox-code-craft/SKILL.md` |
+| data persistence | `../roblox-data-persistence/SKILL.md` |
+| engine API | `../roblox-engine-api/SKILL.md` |
+| executor | `../roblox-executor/SKILL.md` |
+| executor features | `../roblox-executor-features/SKILL.md` |
+| executor reliability | `../roblox-executor-reliability/SKILL.md` |
+| game design | `../roblox-game-design/SKILL.md` |
+| game security | `../roblox-game-security/SKILL.md` |
+| Luau language | `../roblox-luau-language/SKILL.md` |
+| monetization | `../roblox-monetization/SKILL.md` |
+| networking | `../roblox-networking/SKILL.md` |
+| performance | `../roblox-performance/SKILL.md` |
+| reply craft | `../roblox-reply-craft/SKILL.md` |
+| request intake | `../roblox-request-intake/SKILL.md` |
+| Studio MCP | `../roblox-studio-mcp/SKILL.md` |
+| toolchain | `../roblox-toolchain/SKILL.md` |
+| UI | `../roblox-ui/SKILL.md` |
+| UI components | `../roblox-ui-components/SKILL.md` |
+| UI interaction | `../roblox-ui-interaction/SKILL.md` |
+| UI motion | `../roblox-ui-motion/SKILL.md` |
+| UI tooltips | `../roblox-ui-tooltips/SKILL.md` |
+| UI viewport | `../roblox-ui-viewport/SKILL.md` |
+| VFX and animation | `../roblox-vfx-animation/SKILL.md` |
 
 ### Always available here
 
@@ -237,70 +252,32 @@ Non-negotiable at runtime:
 
 ## Before any code leaves — the delivery pass
 
-Run this every time. It is short because it only contains things that have
-actually gone wrong.
+Run it every time; it only lists things that have actually gone wrong. Full
+detail: `references/delivery-checklist.md`.
 
-1. **Every Roblox API verified** — exists, not deprecated, reachable at this
-   security level. Executor calls feature-detected.
-2. **`pcall` results checked** — never `local _, x = pcall(...)`.
-3. **Yields followed by re-validation** — player still here, instance still
-   parented.
-4. **Connections disconnected** — or owned by a Trove/Janitor with a clear
-   teardown.
-5. **Errors name the failing value**, and argument validation uses
-   `error(msg, 2)` so the caller's line is reported.
-6. **Names come from the game's vocabulary** — if an identifier would fit
-   unchanged in another project, it is too generic.
-7. **No dead code** — unused `require`s, unreferenced functions, leftover
-   `TODO`s.
-8. **Comments say why, never what.** None that restate the line below.
-9. **Checked against `references/common-mistakes.md`** for anything the code touches.
-10. **Run the counter on every Luau file, do not estimate it.**
+1. Every Roblox API verified: exists, not deprecated, reachable at this
+   security level. Executor calls feature-detected once.
+2. `pcall` results checked; yields followed by re-validation.
+3. Every connection disconnected or owned by a Trove or Janitor.
+4. Errors name the failing value; names come from the game's vocabulary.
+5. No dead code; comments say why, never what.
+6. Checked against `references/common-mistakes.md` and the ledger
+   (`roblox-attempt-memory`).
+7. **Counted, not estimated**, on the final file:
 
     ```powershell
-    node tools/bin/check-file.mjs <file.luau>         # all of the below, plus viewport fit and the ledger
-    node tools/bin/lint-luau-slop.mjs <file.luau>     # always
-    node tools/bin/lint-luau-format.mjs <file.luau>   # always
-    node tools/bin/lint-roblox-ui.mjs <file.luau>     # if it draws UI
-    node tools/bin/verify-asset-ids.mjs <file.luau>   # if it names an asset id
+    node tools/bin/check-file.mjs <file.luau>      # slop, format, UI, API, compile, registers, fit, ledger
+    python tools/py/check_file.py <file.luau>      # the same without Node
+    node tools/bin/verify-asset-ids.mjs <file.luau> # if it names an asset id
     ```
 
-    Without Node - a custom GPT's Code Interpreter, a bare Python sandbox -
-    use `tools/py/roblox_lint.py`, `tools/py/format_lint.py` and
-    `tools/py/ui_lint.py` respectively, held finding-for-finding by
-    `tools/bin/lint-parity.mjs`.
-
-    Exit 1 means a counted rule was broken. Steps 5 to 8 above are the ones a
-    model reports as passing without having checked; the first command is what
-    makes that claim falsifiable. Budget and rules:
-    `roblox-code-craft/references/anti-slop-code.md`.
-
-    It counts the rubric in `roblox-ui/references/self-review.md` over the real
-    file — type scale, radii, spacing, states, touch targets, teardown — and
-    exits 1 on any error. Report the score it prints. A score you produced
-    without running it is a guess wearing a number.
-11. **If the reader may not code**: the reply carries a placement block in
-    Studio's own labels and a line saying what success looks like.
-    → `roblox-request-intake/references/plain-language.md`
-12. **Match each claim to actual evidence.** Quote command outputs for static
-    checks and observations for runtime or visual checks. Where the task was
-    to change an existing file, inspect the diff and measure the change:
-
-    ```powershell
-    node tools/bin/lint-luau-slop.mjs --compare before.luau after.luau
-    node tools/bin/lint-roblox-ui.mjs --compare before.luau after.luau
-    ```
-
-    The UI comparison separates structural rows - elements, type scale, radii,
-    spacing set, palette - from the score, because a one-line fix moves the
-    score and a redesign can move the structure. **`0 of them structural` means
-    those counted properties did not change**, not that behavior and layout are
-    identical. Report the measured numbers and the observed changes. Static
-    lint cannot establish rendered quality or live executor compatibility.
-
-Full detail in `references/delivery-checklist.md`.
-
----
+    Report what it prints. A score produced without running it is a guess.
+8. For a reader who may not code: a placement block in Studio's own labels
+   and a line saying what success looks like.
+9. For an edit: `--compare before after` and the measured change. `0 of
+   them structural` means the counted properties did not change, not that
+   behaviour is identical. Lint, mocks, Studio and a real device are
+   different evidence; name what was not run.
 
 ## Scope note on the executor half
 

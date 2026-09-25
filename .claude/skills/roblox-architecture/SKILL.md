@@ -1,6 +1,6 @@
 ---
 name: roblox-architecture
-description: Structuring a Roblox codebase — DataModel layout, ModuleScript patterns, script layout conventions, service/controller separation, dependency direction, state management, cleanup with Trove and Janitor, Promise and Signal libraries, framework survey (Knit, Flamework, Matter, roblox-ts), where UI state lives and how it reaches the view, declarative UI libraries (Fusion, Vide, React-lua), and testing seams. Use for "where should this code go", module organisation, project structure, or choosing a framework.
+description: Structuring a Roblox codebase - where code goes, ModuleScript boundaries, services and controllers, startup order, Trove and Janitor cleanup, Signal and Promise, frameworks. Use for "where does this code go" and project layout.
 ---
 
 # Architecture
@@ -307,3 +307,10 @@ inventory *and* UI *and* saving is not.
 
 Before adding an abstraction, find the second caller. If there is only one,
 inline it and wait.
+
+## Works with
+
+- `roblox-data-persistence`: where the profile module lives and who may write it.
+- `roblox-networking`: one remote module per boundary, validated on the server.
+- `roblox-ui`: where UI state lives and how it reaches the view.
+- `roblox-toolchain`: the Rojo layout that mirrors this structure.

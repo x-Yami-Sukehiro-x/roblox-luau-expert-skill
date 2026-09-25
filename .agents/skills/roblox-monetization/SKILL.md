@@ -1,6 +1,6 @@
 ---
 name: roblox-monetization
-description: Robux monetization in Roblox — ProcessReceipt and purchase idempotency, the PurchaseId ledger that prevents double-granting, game passes versus developer products, PromptPurchase flows and their Finished events, UserOwnsGamePassAsync and its caching failure mode, GetProductInfoAsync, subscriptions, PolicyService compliance gating, and refund and chargeback handling. Use for shops, gamepasses, dev products, "players got the item twice", "the purchase went through but nothing happened", receipt handling, or any code that grants something in exchange for Robux.
+description: Robux monetization - game passes, developer products, idempotent ProcessReceipt with a PurchaseId ledger, subscriptions, pricing, PolicyService. Use for shops, purchases, and items granted twice or not at all.
 ---
 
 # Monetization
@@ -143,3 +143,10 @@ not a purchase flow — it is a free item dispenser. See `roblox-game-security`.
 8. **Gate anything region-sensitive on `PolicyService`**, not on a guess.
 9. **Log every receipt** with its `PurchaseId`. When a player says they paid and
    got nothing, that log is the only way to tell whether they are right.
+
+## Works with
+
+- `roblox-data-persistence`: the PurchaseId ledger saved with the grant.
+- `roblox-game-design`: what is worth selling in this loop.
+- `roblox-ui`: the shop and purchase confirmation archetypes.
+- `roblox-game-security`: prices and grants decided by the server.

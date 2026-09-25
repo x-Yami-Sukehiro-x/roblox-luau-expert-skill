@@ -1,6 +1,6 @@
 ---
 name: roblox-vfx-animation
-description: Roblox animation and visual effects — AnimationTrack lifecycle, Animator:LoadAnimation versus the deprecated Humanoid:LoadAnimation, animation priority weight and blending, keyframe and marker signals, ParticleEmitter configuration and Emit bursts, Beam and Trail, Highlight, attachment-driven effects, effect pooling and budgets, and replicating effects without trusting the client. Use for playing or blending animations, "the animation does not play", particle and beam effects, hit and impact effects, or anything about how a visual effect should be spawned, replicated and cleaned up.
+description: Roblox animation and visual effects - AnimationTrack lifecycle, priority and blending, markers, particles, beams, trails, Highlights. Use when an animation does not play and for any effects work.
 ---
 
 # Animation and visual effects
@@ -94,3 +94,9 @@ decides whether damage happened.
 7. **Pool anything that spawns more than a few times a second.**
 8. **Budget particles.** `Rate` times `Lifetime` is roughly how many are alive at
    once, per emitter, and mobile pays for every one.
+
+## Works with
+
+- `roblox-engine-api`: the instances effects attach to.
+- `roblox-performance`: pools and particle budgets.
+- `roblox-networking`: which side spawns an effect so others see it.

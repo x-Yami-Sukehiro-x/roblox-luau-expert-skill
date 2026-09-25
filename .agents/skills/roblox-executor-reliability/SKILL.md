@@ -1,6 +1,6 @@
 ---
 name: roblox-executor-reliability
-description: Making the executor feature a user asks for actually work in their game, first time, without breaking what already worked - naming the effect and who owns the value, choosing the layer, finding what else writes it (game scripts, respawn, the Humanoid, other features), the regression matrix every feature passes (toggle, respawn, rerun, unload, chat typing, phone, seat, death, streaming), combining features without conflicts, and a runtime doctor that reports what is fighting a feature. Use when writing or fixing any executor script or hub feature, when the user says "it doesn't work", "it stopped working", "works then resets", "broke after respawn", "broke my other feature", or when adding a feature to an existing script.
+description: Making an executor feature work in the user's game without regressions - value ownership, what rewrites it, the regression matrix, combining features. Use for "doesn't work", "stops after respawn", "broke my other feature".
 ---
 
 # Executor features that work
@@ -105,3 +105,9 @@ game. Run `node tools/bin/check-file.mjs <file>` and report it.
 | "it doesn't work": the order of questions and the doctor | `references/diagnosis.md` |
 | the tested assets and their quality bar | `../roblox-executor-features/SKILL.md` |
 | finding a game-specific value in a dump | `../roblox-executor/references/technique/feature-search.md` |
+
+## Works with
+
+- `roblox-executor-features`: the closest tested asset to start from.
+- `roblox-executor`: the layer-to-call map for game-owned values.
+- `roblox-attempt-memory`: each failed attempt recorded before the next.

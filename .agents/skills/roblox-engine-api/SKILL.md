@@ -1,6 +1,6 @@
 ---
 name: roblox-engine-api
-description: Roblox engine APIs and their lifecycles — Instance creation, parenting and destruction, FindFirstChild vs WaitForChild, attributes and CollectionService tags, the RunService frame pipeline, raycasting and spatial queries, physics constraints and movers, CFrame math, Humanoid and character lifecycle, animation, TweenService, sound, camera, StreamingEnabled, TextChatService, and input handling. Use for "attempt to index nil", raycast questions, character spawning, tweens, camera control, or any question about how a specific Roblox service behaves.
+description: Roblox engine APIs and lifecycles - instances, attributes, tags, CFrame, raycasts, Humanoid, physics, tweens, camera, input, streaming, frame order, and errors like "attempt to index nil". Use whenever code touches the engine.
 ---
 
 # Roblox engine APIs
@@ -369,3 +369,10 @@ Always `game:GetService("X")`, never `game.X`. The service may not exist yet at
 script start, and `GetService` creates it; dot access errors.
 
 `workspace` is the one exception — it is a global and always present.
+
+## Works with
+
+- `roblox-networking`: what replicates after an engine call.
+- `roblox-performance`: what each call costs per frame.
+- `roblox-vfx-animation`: animation tracks and effects on the same instances.
+- `roblox-studio-mcp`: reading live state on server and client in a playtest.

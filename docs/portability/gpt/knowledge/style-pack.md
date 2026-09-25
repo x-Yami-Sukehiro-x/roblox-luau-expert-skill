@@ -967,7 +967,7 @@ nearest row above; never invent an id.
 
 ---
 name: roblox-ui-tooltips
-description: Tooltips and the words around a control in Roblox UI — hover tooltips, bubbles with arrows, slider value readouts while dragging, values on the knob, min and max labels, info buttons, titled tooltips with a hotkey, pointer-following labels, locked-button reasons, press-and-hold hints, helper and error lines under a field, and first-time coach marks. Covers which one to use, delay and hide timing, placement and edge flipping, touch and gamepad access so nothing is hover-only, layering above scrolling frames, text length, and the tested H1-H12 recipes. Use for any tooltip, hover text, slider number, "what does this do", "why can't I press this", "add a hint", or a picked H code.
+description: Roblox tooltips and the words around a control - hover and long-press tooltips, info buttons, helper lines, locked reasons, coach marks, slider value readouts (H codes). Use for hover text, slider numbers and "why is it locked".
 ---
 
 # Tooltips and slider values
@@ -1059,6 +1059,12 @@ when the range is wide. Details: `references/slider-values.md`.
   a tap on the button, and `destroy` (`../roblox-ui/references/functional-proof.md`).
 - Resize to 390 × 844: the bubble stays on screen at every edge.
 - `node tools/bin/check-file.mjs <file>` runs every file-level gate at once.
+
+## Works with
+
+- `roblox-ui-interaction`: touch and gamepad access for every hint.
+- `roblox-ui-components`: sliders and controls the readouts attach to.
+- `roblox-ui-viewport`: flipping at screen edges.
 
 ---
 

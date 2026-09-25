@@ -1,6 +1,6 @@
 ---
 name: roblox-executor-features
-description: Tested, ready-to-paste executor feature scripts for the local character and view — fly, noclip, walk speed and jump height, infinite jump, ESP, click teleport, anti-AFK, fullbright, spectate, camera unlock (zoom, FOV, third person) and freecam — plus a feature doctor that reports why a feature is not working, and the quality bar every such script must meet. Modern physics (LinearVelocity and AlignOrientation, never BodyVelocity), camera-relative movement that works on keyboard, gamepad and touch, respawn handling, one getgenv namespace, rerun-safe unload that restores what it changed, keybinds, and a set() API a hub toggle can call. Use when asked for fly, noclip, speed, jump, ESP, teleport, anti-AFK, fullbright, spectate, max zoom, FOV, freecam or any "universal" script, when combining features into a hub, or when an executor script's quality, mobile support or cleanup is poor.
+description: Tested paste-ready executor features - fly, noclip, speed, infinite jump, ESP, click teleport, anti-AFK, fullbright, spectate, camera unlock, freecam - and a feature doctor. Use for any universal feature script or a hub toggle for one.
 ---
 
 # Executor features
@@ -85,3 +85,9 @@ unlock and freecam, though freecam's anchored body stands still for everyone.
 | lifetime, unload and rerun rules in full | `../roblox-executor/references/technique/lifecycle.md` |
 | game-specific features from a dump | `../roblox-executor/references/technique/feature-search.md` |
 | making a feature work in this game, and not breaking others | `../roblox-executor-reliability/SKILL.md` |
+
+## Works with
+
+- `roblox-executor-reliability`: the matrix every new or changed feature passes.
+- `roblox-ui-components`: T toggles and H3 slider readouts for a hub.
+- `roblox-executor`: values that live in the game's own code.

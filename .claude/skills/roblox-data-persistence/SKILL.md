@@ -1,6 +1,6 @@
 ---
 name: roblox-data-persistence
-description: Saving and loading player data in Roblox — DataStoreService semantics, UpdateAsync vs SetAsync, request budgets and throttling, session locking, ProfileStore and Lyra with working session code, transactions for trades, MemoryStoreService, OrderedDataStore leaderboards, schema migration and versioning, BindToClose, and diagnosing data loss or item duplication. Use for any question about saving, loading, DataStores, lost progress, or duplication bugs.
+description: Saving player data safely - DataStore budgets, UpdateAsync, session locking, ProfileStore and Lyra, migrations, BindToClose, data loss and item duplication. Use for any save, load, leaderboard or lost-progress problem.
 ---
 
 # Data persistence
@@ -326,3 +326,10 @@ at all. The last one is a `roblox-game-security` problem, not a data one.
 success is how "we have backups" turns into "we have backups of the wrong data".
 Log every failure with the key and the error, and count them — a rising failure
 rate is the earliest signal you will get.
+
+## Works with
+
+- `roblox-monetization`: purchase receipts recorded in the same profile update.
+- `roblox-game-design`: which balances, streaks and unlocks are saved.
+- `roblox-game-security`: the server alone writes saved values.
+- `roblox-studio-mcp`: save and load tested in Studio against a test store.

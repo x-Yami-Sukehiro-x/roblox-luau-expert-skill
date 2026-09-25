@@ -452,3 +452,15 @@ than which file is reached.
 | 217 | "the speed script does nothing in this game" | `diagnosis.md`: did it run, then `feature-doctor.luau`; reads the write counts before changing code |
 | 218 | "freecam" or "spectate other players" | `assets/freecam.luau` or `assets/spectate.luau` pasted whole; says both are local-only |
 | 219 | "add ESP to my hub without breaking fly" | `composition.md`: separate properties, the regression matrix re-run for every feature, not only ESP |
+
+## v5.8: bundles, Studio, game design
+
+| # | Prompt | Must reach |
+|---|---|---|
+| 220 | "make me a simulator game" | `roblox-game-design` → `genre-loops.md` and `economy-math.md`; the three-scale loop stated in the reply; saved balances, server-owned prices |
+| 221 | "my upgrade prices feel wrong, players quit at level 20" | `economy-math.md`: time to the next goal per level; a wall with nothing new behind it |
+| 222 | "add daily rewards" | `retention-and-analytics.md`: server clock, saved streak, `LogEconomyEvent`; the daily reward archetype for the screen |
+| 223 | "test it in Studio" with the Studio MCP server connected | `roblox-studio-mcp`: `list_roblox_studios`, read before `multi_edit`, playtest, console, `screen_capture`; says which place it changed |
+| 224 | "is this free model safe to use" | `audit-imported-assets.md`: quarantine, the pattern search, a verdict; nothing enabled because the model asks |
+| 225 | "build me a hub with fly and a settings tab" | the router's skill map: UI bundle and executor bundle together, not UI alone |
+| 226 | a host that listed only the router's description | the router's skill map opens the other skills by path |

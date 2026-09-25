@@ -28,11 +28,34 @@ with the knowledge files beside it.
 ## Route B — the full plugin built from this repository (recommended)
 
 `node tools/bin/build-openai-plugin.mjs` writes
-`dist/openai-plugin/roblox-luau-expert/`: a portable `plugin.json`, all twenty-five
+`dist/openai-plugin/roblox-luau-expert/`: a portable `plugin.json`, all twenty-seven
 skills under `skills/` with their references and the tested style recipes, the
 Python and Node checkers, the library and the style picker. Each skill loads in
 full when its description matches, so nothing is squeezed into 8,000
 characters and nothing depends on retrieval finding the right fragment.
+
+### How the plugin's skills reach the model
+
+ChatGPT and Codex find the skills in the plugin's `skills/` folder. At the
+start of a conversation the model sees only each skill's name and
+description, from a list OpenAI caps at 2% of the context window or 8,000
+characters; past that, descriptions are shortened first and then skills are
+left out. A skill's full `SKILL.md` loads when the model picks it, and its
+references when that file points at them
+([Build skills](https://learn.chatgpt.com/docs/build-skills)).
+
+So every skill here is written to be reached two ways:
+
+- **Its own description**, short and with the trigger words first. All 27
+  names and descriptions total 6,474 characters, under the cap with room for
+  the user's other plugins; `node tools/bin/lint-skills.mjs` fails the build
+  when they grow past 7,000, and the plugin build runs it on the copies it
+  packs.
+- **The router**, `roblox-luau-expert`, which triggers on any Roblox or Luau
+  task and carries a skill map: which skills to open together for each kind
+  of task, and every skill's path. Each skill ends with **Works with**, naming
+  the partners it hands work to. A host that trims the list still reaches
+  every skill through the router.
 
 Install it for Codex and the ChatGPT desktop app:
 

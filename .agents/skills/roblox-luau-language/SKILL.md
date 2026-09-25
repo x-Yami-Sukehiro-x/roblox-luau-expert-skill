@@ -1,6 +1,6 @@
 ---
 name: roblox-luau-language
-description: The Luau language itself — type system and strict mode, generics, type packs, refinements, metatables and OOP, closures and upvalues, the buffer and vector libraries, string interpolation and other syntax extensions, garbage collection, coroutines vs task, standard library behaviour, and the compiler limits. Use for questions about Luau syntax, typing, --!strict errors, "too many local variables", metatables, __index, or how a Lua construct behaves in Luau specifically.
+description: The Luau language - types and --!strict, generics, metatables and OOP, buffer, vector, closures, garbage collection, compiler limits and out-of-registers errors. Use for type errors, language features and very long scripts.
 ---
 
 # Luau — the language
@@ -297,3 +297,9 @@ local CONFIG = table.freeze({
 
 Full standard-library detail including `buffer` and `vector`:
 `references/stdlib.md`.
+
+## Works with
+
+- `roblox-code-craft`: how typed code should read.
+- `roblox-toolchain`: luau-lsp and strict checking outside Studio.
+- `roblox-performance`: native code generation and allocation.

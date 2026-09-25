@@ -1,6 +1,6 @@
 ---
 name: roblox-attempt-memory
-description: Memory and context across attempts for Roblox work - an attempt ledger that records what was tried, what the user saw, the cause and what to do instead, and tools that refuse to repeat a failed approach or reintroduce a fixed bug. Covers "you didn't fix it", "same problem again", "it broke again", "we already tried that", a new chat or a compacted conversation continuing old work, carrying context between Claude, Codex, Cursor and a custom GPT, and turning each fix into a regression check. Use before any repair, retry or redesign, whenever the user reports a result, and at the end of every attempt.
+description: Remembers past attempts so failed fixes are never repeated - an attempt ledger in PROJECT_CONTEXT.md with plan, check and search tools and known failures. Use for "you didn't fix it", "same problem again", any retry, and a new chat continuing old work.
 ---
 
 # Attempt memory
@@ -122,3 +122,10 @@ each attempt.
 | every field, status and pattern rule, with examples | `references/ledger-format.md` |
 | a new chat, a compacted one, or another host picking up the work | `references/recovering-context.md` |
 | the stack's own recorded failures, checked on every file | `references/known-failures.md` |
+
+## Works with
+
+- `roblox-studio-mcp`: a Studio playtest is evidence for the Saw line.
+- `roblox-executor-reliability`: the feature doctor's output names the layer to record.
+- `roblox-ui-interaction`: its ladder lists the layers a UI fix can miss.
+- `roblox-code-craft`: the diff is the changelog; the ledger holds the story.
