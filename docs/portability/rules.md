@@ -89,8 +89,7 @@ project's, else the user's named colour, else the reference ladder.
    opaque reaching the edge needs a `CanvasGroup`.
 5. Header: title and close in one horizontal `UIListLayout`, `VerticalAlignment
    Center`, title `TextYAlignment Center`. The gap is a `UIFlexItem Fill`
-   element, never a `Position`. Close **button**
-   44×44, mark 16.
+   element, never a `Position`. Close **button** 44×44, mark 16.
 6. **Icons are images.** `"×"` is a font glyph on the baseline. Never write an
    `rbxassetid` you did not read from a source. Executors: `getcustomasset`.
 7. Six states: rest, hover, press, focus, disabled, selected. `AutoButtonColor =
