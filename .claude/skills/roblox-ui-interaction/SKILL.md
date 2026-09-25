@@ -1,6 +1,6 @@
 ---
 name: roblox-ui-interaction
-description: Making every Roblox UI control respond on PC, phone and gamepad - Activated, touch press states, 44 px hit areas, selection and focus, menus versus character input. Use for "the button does nothing" or "can't click on mobile".
+description: Making Roblox UI respond on PC, phone and gamepad - Activated, touch press, 44 px targets, selection and focus. Use for the button does nothing or can't click on mobile.
 ---
 
 # Every control, every input
@@ -105,3 +105,4 @@ Report which rows ran and which were not checked.
 - `roblox-ui-components`: state visuals for each input.
 - `roblox-ui-tooltips`: long press and selection instead of hover.
 - `roblox-studio-mcp`: clicking the real controls in a playtest.
+- `roblox-hub-library`: the input contract applied to a whole hub, including the Open chip.

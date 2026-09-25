@@ -1,6 +1,6 @@
 ---
 name: roblox-networking
-description: Client-server communication - RemoteEvent and RemoteFunction, UnreliableRemoteEvent, what replicates, network ownership, bandwidth, lag compensation, MessagingService and teleports. Use for "others can't see it" and remote design.
+description: Client-server communication - remotes, UnreliableRemoteEvent, replication, network ownership, bandwidth, MessagingService, teleports. Use for others can't see it and remote design.
 ---
 
 # Networking and replication
@@ -264,3 +264,5 @@ Ban on evidence you would be comfortable showing the player, and log the
 - `roblox-game-security`: validating every remote argument.
 - `roblox-engine-api`: network ownership of parts and characters.
 - `roblox-performance`: bandwidth and update rates.
+- `roblox-combat`: hit intent sent to the server, results sent back.
+- `roblox-chat`: typed text carried to the server for filtering.

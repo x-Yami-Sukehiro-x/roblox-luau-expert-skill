@@ -1,6 +1,6 @@
 ---
 name: roblox-luau-expert
-description: Router for every Roblox or Luau task - .lua/.luau files, Roblox Studio, Rojo, RemoteEvent, DataStore, UI, executor or sUNC scripts. Loads the right specialist skills, verifies every API against the Roblox API dump, and runs the delivery checks.
+description: Router for every Roblox or Luau task - .lua/.luau, Studio, Rojo, remotes, DataStores, UI, executor scripts. Opens the right skills together, checks APIs against the dump, runs the delivery checks.
 ---
 
 # Roblox Luau Expert — router
@@ -142,11 +142,18 @@ varies per executor and per update.
 | "too many comments", "stop over-explaining", obvious comments | `roblox-code-craft` → `roblox-code-craft/references/anti-slop-code.md` |
 | "the formatting is clustered", breaks on lines that do not need them | `roblox-code-craft` → `roblox-code-craft/references/formatting.md` |
 | a draft buried in capability checks, `pcall`s and prose errors | `roblox-code-craft` → `roblox-code-craft/references/anti-slop-code.md` |
-| executor, sUNC, `hookfunction`, `getgc`, script hub | `roblox-executor` |
+| executor, sUNC, `hookfunction`, `getgc` | `roblox-executor` |
+| a new executor script, a multi-game hub, a loader, "write me a script for this game" | `roblox-executor-scripting` |
+| a script hub's UI, "make a UI library like WindUI", "improve my hub" | `roblox-hub-library` → `library/hub-kit/` |
 | fly, noclip, speed, infinite jump, ESP, click teleport, anti-AFK, fullbright, spectate, max zoom, FOV, freecam | `roblox-executor-features` (tested assets) |
 | an executor feature "doesn't work", "works then resets", "broke after respawn", "broke my other feature" | `roblox-executor-reliability` |
 | "you didn't fix it", "same problem again", "we already tried that", a new chat continuing old work | `roblox-attempt-memory` |
 | "make me a game", game ideas, economy balance, retention, daily rewards | `roblox-game-design` |
+| NPCs, enemies, mobs, bosses, pathfinding, patrol, chase | `roblox-npc-ai` |
+| weapons, swords, guns, abilities, hitboxes, PvP, cooldowns, "hits don't register" | `roblox-combat` |
+| chat, slash commands, chat tags, pet names, signs, any text players type | `roblox-chat` |
+| "review this", "improve it", "what should I add", feature ideas | `roblox-improve` |
+| an error message, "it does nothing", "works in Studio but not in game" | `roblox-debugging` |
 | Studio is connected through MCP; "test it in Studio", playtest, screen capture | `roblox-studio-mcp` |
 | a Toolbox or Creator Store model, "is this model safe", backdoors | `roblox-game-security` → `roblox-game-security/references/audit-imported-assets.md` |
 | "it resets when I change it" (client-side) | `roblox-executor` → `roblox-executor/references/technique/value-persistence.md` |
@@ -172,42 +179,18 @@ the task by path; each skill's **Works with** section names its partners.
 | any code you hand over | `roblox-code-craft`, `roblox-reply-craft` |
 | any repair, retry or "still broken" | `roblox-attempt-memory` first, then the area's skills |
 | a UI, game or hub | `roblox-ui`, `roblox-ui-components`, `roblox-ui-viewport`, `roblox-ui-interaction`; `roblox-ui-motion` and `roblox-ui-tooltips` when used |
-| an executor feature or hub | `roblox-executor-features`, `roblox-executor-reliability`, `roblox-executor`, plus the UI row for the hub |
+| an executor feature or script | `roblox-executor-scripting` first, then `roblox-executor-features`, `roblox-executor-reliability`, `roblox-executor` |
+| a script hub or hub library | `roblox-hub-library`, `roblox-executor-scripting`, plus the UI row |
+| a bug, an error, "it does nothing" | `roblox-debugging`, `roblox-attempt-memory`, then the area's skills |
+| review, "improve it", feature ideas | `roblox-improve`, `roblox-code-craft`, plus the area's skills |
 | saving, currency, shops | `roblox-data-persistence`, `roblox-monetization`, `roblox-game-design`, `roblox-game-security` |
 | multiplayer and remotes | `roblox-networking`, `roblox-game-security`, `roblox-engine-api` |
-| "make me a game" | `roblox-request-intake`, `roblox-game-design`, `roblox-architecture` |
+| combat, weapons, enemies | `roblox-combat`, `roblox-npc-ai`, `roblox-game-security`, `roblox-vfx-animation` |
+| chat or player-typed text | `roblox-chat`, `roblox-game-security` |
+| "make me a game" | `roblox-request-intake`, `roblox-game-design`, `roblox-architecture`, then `roblox-combat` or `roblox-npc-ai` as the genre needs |
 | Studio is connected | `roblox-studio-mcp` to check the change in a real playtest |
 
-Every skill, by path from this folder:
-
-| Skill | Path |
-|---|---|
-| architecture | `../roblox-architecture/SKILL.md` |
-| attempt memory | `../roblox-attempt-memory/SKILL.md` |
-| audio | `../roblox-audio/SKILL.md` |
-| code craft | `../roblox-code-craft/SKILL.md` |
-| data persistence | `../roblox-data-persistence/SKILL.md` |
-| engine API | `../roblox-engine-api/SKILL.md` |
-| executor | `../roblox-executor/SKILL.md` |
-| executor features | `../roblox-executor-features/SKILL.md` |
-| executor reliability | `../roblox-executor-reliability/SKILL.md` |
-| game design | `../roblox-game-design/SKILL.md` |
-| game security | `../roblox-game-security/SKILL.md` |
-| Luau language | `../roblox-luau-language/SKILL.md` |
-| monetization | `../roblox-monetization/SKILL.md` |
-| networking | `../roblox-networking/SKILL.md` |
-| performance | `../roblox-performance/SKILL.md` |
-| reply craft | `../roblox-reply-craft/SKILL.md` |
-| request intake | `../roblox-request-intake/SKILL.md` |
-| Studio MCP | `../roblox-studio-mcp/SKILL.md` |
-| toolchain | `../roblox-toolchain/SKILL.md` |
-| UI | `../roblox-ui/SKILL.md` |
-| UI components | `../roblox-ui-components/SKILL.md` |
-| UI interaction | `../roblox-ui-interaction/SKILL.md` |
-| UI motion | `../roblox-ui-motion/SKILL.md` |
-| UI tooltips | `../roblox-ui-tooltips/SKILL.md` |
-| UI viewport | `../roblox-ui-viewport/SKILL.md` |
-| VFX and animation | `../roblox-vfx-animation/SKILL.md` |
+Every skill is `../<name>/SKILL.md` from this folder: `roblox-architecture`, `roblox-attempt-memory`, `roblox-audio`, `roblox-chat`, `roblox-code-craft`, `roblox-combat`, `roblox-data-persistence`, `roblox-debugging`, `roblox-engine-api`, `roblox-executor`, `roblox-executor-features`, `roblox-executor-reliability`, `roblox-executor-scripting`, `roblox-game-design`, `roblox-game-security`, `roblox-hub-library`, `roblox-improve`, `roblox-luau-language`, `roblox-monetization`, `roblox-networking`, `roblox-npc-ai`, `roblox-performance`, `roblox-reply-craft`, `roblox-request-intake`, `roblox-studio-mcp`, `roblox-toolchain`, `roblox-ui`, `roblox-ui-components`, `roblox-ui-interaction`, `roblox-ui-motion`, `roblox-ui-tooltips`, `roblox-ui-viewport`, `roblox-vfx-animation`.
 
 ### Always available here
 
@@ -221,19 +204,11 @@ Every skill, by path from this folder:
 
 ## Standing rules for code
 
-**Match the file you are editing.** Its conventions beat the official style
-guide, which beats these defaults. A correctly-styled function that looks
-nothing like its neighbours is worse than a slightly-off one that blends.
-Read enough surrounding code to see the casing, comment density, error style
-and log prefixes actually in use, then mirror them. If a file's convention is
-genuinely harmful, say so once rather than silently diverging.
-
-Defaults for new files: `camelCase` locals and functions, `PascalCase` for
-services, modules and class-likes, `LOUD_SNAKE_CASE` constants, `_camelCase`
-private. Comments sparse and why-only: a comment earns its line by containing a fact
-that is not in the code. No comment about where the script came from, what the
-previous attempt did, or what the user uploaded — that belongs in the reply.
-Full rules, with the counted budget: `roblox-code-craft`.
+**Match the file you are editing**: its conventions beat the style guide,
+which beats these defaults. New files: `camelCase` locals, `PascalCase`
+services and modules, `LOUD_SNAKE_CASE` constants. Comments carry facts the
+code cannot show; where the script came from belongs in the reply. Full
+rules and the counted budget: `roblox-code-craft`.
 
 Non-negotiable at runtime:
 

@@ -1,6 +1,6 @@
 ---
 name: roblox-executor
-description: Client-side and executor scripting - the sUNC API, hooking, getgc and upvalues, decompiled game source, anti-cheat recon, value persistence, script hubs. Use for executor, sUNC, hookfunction, a pasted dump, or which call reaches a value.
+description: Executor and sUNC reference - hooking, getgc and upvalues, decompiled source, anti-cheat recon, value persistence. Use for executor functions, a pasted dump, or which call reaches a value.
 ---
 
 # Executor and client-side scripting
@@ -242,3 +242,6 @@ scripts hit routinely.
 - `roblox-executor-reliability`: making a game-specific feature hold and not regress.
 - `roblox-ui`: the hub around the features.
 - `roblox-attempt-memory`: failed layers recorded so the next attempt differs.
+- `roblox-executor-scripting`: the order of work from request to shipped script, and multi-game loaders.
+- `roblox-hub-library`: the hub window and elements, from HubKit.
+- `roblox-debugging`: executor error messages and silent failures.

@@ -28,7 +28,7 @@ with the knowledge files beside it.
 ## Route B — the full plugin built from this repository (recommended)
 
 `node tools/bin/build-openai-plugin.mjs` writes
-`dist/openai-plugin/roblox-luau-expert/`: a portable `plugin.json`, all twenty-seven
+`dist/openai-plugin/roblox-luau-expert/`: a portable `plugin.json`, all thirty-four
 skills under `skills/` with their references and the tested style recipes, the
 Python and Node checkers, the library and the style picker. Each skill loads in
 full when its description matches, so nothing is squeezed into 8,000
@@ -46,8 +46,8 @@ references when that file points at them
 
 So every skill here is written to be reached two ways:
 
-- **Its own description**, short and with the trigger words first. All 27
-  names and descriptions total 6,474 characters, under the cap with room for
+- **Its own description**, short and with the trigger words first. All 34
+  names and descriptions total 6,496 characters, under the cap with room for
   the user's other plugins; `node tools/bin/lint-skills.mjs` fails the build
   when they grow past 7,000, and the plugin build runs it on the copies it
   packs.

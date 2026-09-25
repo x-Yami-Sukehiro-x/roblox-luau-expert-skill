@@ -1,6 +1,6 @@
 ---
 name: roblox-game-design
-description: Designing Roblox games that keep players - genre loops, the first session, progression and economy math, rewards, retention, live ops and analytics events. Use for "make me a game", game ideas, balancing, pricing and retention.
+description: Roblox games that keep players - genre loops, first session, progression and economy math, rewards, retention, analytics. Use for make me a game, balancing and pricing.
 ---
 
 # Game design for Roblox
@@ -78,3 +78,6 @@ in the reply so the user can change it before more is built.
 - `roblox-data-persistence`: every balance, streak and unlock is saved.
 - `roblox-ui`: screen archetypes for shop, daily reward, quests and HUD.
 - `roblox-game-security`: the server owns currency, prices and rewards.
+- `roblox-npc-ai`: enemies and waves the design calls for.
+- `roblox-combat`: fights that are fair and feel good.
+- `roblox-improve`: grounded feature suggestions for an existing game.

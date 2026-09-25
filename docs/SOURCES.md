@@ -318,3 +318,17 @@ shorter than entries.
 | [Roblox: third-party vulnerabilities](https://create.roblox.com/docs/scripting/security/third-party-vulnerabilities) | — | Imported-asset audits, sandboxing and capabilities |
 | [AshExplained/roblox-skills](https://github.com/AshExplained/roblox-skills) | MIT | Coverage gaps: imported-asset audits, economy, retention and genre topics for `roblox-game-design`. Its `set_active_studio` step does not exist in Roblox's tool list and was not carried over |
 | [web.dev and MDN on viewport units](https://developer.mozilla.org/en-US/docs/Web/CSS/length#relative_length_units_based_on_viewport) | — | `dvh` and `svh` for the designer's full-height layout on phones whose browser bars change the viewport |
+
+## Added for 5.9, checked 2026-09-26
+
+| Source | Licence | Used for |
+|---|---|---|
+| [OpenAI: build skills](https://learn.chatgpt.com/docs/build-skills) and [plugins](https://developers.openai.com/plugins/build/plugins) | — | Re-checked: the 2% or 8,000-character start-up list, trigger words first, and portable plugins discovering skills in `skills/` without a manifest field. 34 skills now total 6,496 characters |
+| [Roblox creator-docs](https://github.com/Roblox/creator-docs) | CC-BY-4.0 docs | Pathfinding limits (3,000 studs, about 20,000 nodes), the 8-second `MoveTo` timeout, `TakeDamage` and `ForceField`, TextChatService hooks and where each runs, text filtering duties, `BanAsync` fields, `PolicyService` fields, `GetGuiObjectsAtPosition` coordinates, `RunContext` |
+| [Footagesus/WindUI](https://github.com/Footagesus/WindUI) | MIT | The folder split HubKit follows (components, elements, modules, themes) and darklua bundling as the alternative. No code copied |
+| [nonlooped/roblox-suite](https://github.com/nonlooped/roblox-suite) | MIT | Leads for `roblox-npc-ai`: follower shape, blocked-path handling, scaling. Its `Path.CalculationSecondsTimeout` is not in the dump and was not used |
+| [andrian-syh/roblox-best-practices-skill](https://github.com/andrian-syh/roblox-best-practices-skill) | MIT | The severity taxonomy, near-miss pairs and four-part gate adapted in `roblox-improve/references/false-positives.md`; the combat case's intent-then-validate order |
+| [gamedev-skills/awesome-gamedev-agent-skills](https://github.com/gamedev-skills/awesome-gamedev-agent-skills) | Apache-2.0 | The feedback-tier model and trauma camera shake, translated to Roblox in `roblox-combat/references/game-feel.md` and `roblox-improve/references/ux-review.md` |
+| [brockmartin/roblox-game-skill](https://github.com/brockmartin/roblox-game-skill), [zilibobi/roblox-skills](https://github.com/zilibobi/roblox-skills) | none stated | Not used |
+| [afrxo/roblox-agent-skills](https://github.com/afrxo/roblox-agent-skills) | MIT | Reviewed; its Luau types, Fusion and toolchain material overlaps skills here already checked against the dump |
+

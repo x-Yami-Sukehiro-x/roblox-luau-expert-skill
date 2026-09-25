@@ -140,7 +140,7 @@ try {
             $wrapper = @'
 ---
 name: roblox-luau-expert-skill
-description: Roblox and Luau work of any kind - scripts, UI that fits every device, executor features, DataStores, networking, performance, security, game design and Studio checks - through 27 bundled skills and API verification tools. Use for any Roblox or Luau task.
+description: Roblox and Luau work of any kind - scripts, UI for every device, executor scripts and hub libraries, DataStores, networking, combat, NPCs, security, debugging and reviews - through 34 bundled skills and API verification tools. Use for any Roblox or Luau task.
 ---
 
 # Roblox Luau Expert Skill

@@ -23,8 +23,8 @@
   <a href="#install">Install</a>
 </p>
 
-Twenty-seven skills that cover ordinary Roblox game development and
-client/executor scripting. They run natively in Claude Code, and the same rules
+Thirty-four skills that cover Roblox game development and client/executor
+scripting, plus HubKit, a tested UI library for script hubs. They run natively in Claude Code, and the same rules
 are generated for Codex, Cursor, a custom GPT and an OpenAI plugin from one
 source. Pinned to Roblox API dump `0.739.0.7390687`.
 
@@ -46,6 +46,16 @@ source. Pinned to Roblox API dump `0.739.0.7390687`.
   freecam ship as behaviour-tested files that survive respawn and rerun and
   restore what they changed. When one does nothing in a game, a read-only
   doctor script reports what is fighting it.
+- **A hub UI library to build on.** HubKit (`library/hub-kit/`) is a script
+  hub library in the shape of WindUI: a window with tabs, sections, nine
+  element types, notifications, dialogs, three themes and saved configs, as
+  33 ModuleScripts in folders and one bundled file. A demo hub uses every
+  element; 107 headless assertions cover it, down to unload releasing every
+  input connection.
+- **Reviews that rank, and bugs found by evidence.** `roblox-improve` returns
+  three to five findings, each with a line, a failure a player would see and
+  the fix; `roblox-debugging` goes from the exact error to one probe per
+  hypothesis instead of resending code.
 - **UI that fits every screen and every input.** Panel sizes are computed for
   eleven devices from a 640 x 360 phone to 4K, outlines cut off by a
   scrolling parent are a lint error, and every control is held to one
@@ -145,11 +155,18 @@ matches their description.
 | **roblox-ui-interaction** | One input contract for mouse, touch and gamepad, hit areas, menus and the character, and the ladder for "the button does nothing" |
 | **roblox-vfx-animation** | `AnimationTrack` lifecycle, priority and blending, markers, particles, beams, trails, highlights |
 | **roblox-audio** | `Sound` versus the `AudioPlayer` and `Wire` graph, mixing, rolloff, preloading |
-| **roblox-monetization** | Idempotent `ProcessReceipt` with a PurchaseId ledger, passes versus products, `PolicyService` |
-| **roblox-game-security** | The client threat model, remote hardening, sanity checks, detection versus enforcement |
+| **roblox-monetization** | Idempotent `ProcessReceipt` with a PurchaseId ledger, passes versus products, `PolicyService` checks for paid random items and trading |
+| **roblox-game-security** | The client threat model, remote hardening, sanity checks, Toolbox backdoor audits, admin commands and `BanAsync` |
+| **roblox-combat** | Server-decided hits with shapecasts and spatial queries, cooldowns, one damage path, projectiles, bounded lag tolerance, hit feedback tiers |
+| **roblox-npc-ai** | `PathfindingService` followers that handle blocked paths and the 8-second `MoveTo` timeout, state machines, sight checks, one scheduler for many NPCs |
+| **roblox-chat** | `TextChatService` commands, channels, tags and bubbles, and filtering every string a player types |
 | **roblox-executor** | The sUNC surface, hooking, memory search, thread identity, anti-cheat recon, RakNet, working from decompiled source |
 | **roblox-executor-features** | Tested fly, noclip, speed, infinite jump, ESP, click teleport, anti-AFK, fullbright, spectate, camera unlock and freecam scripts, a feature doctor, and the quality bar for any other |
+| **roblox-executor-scripting** | The order an expert works in: effect and owner, evidence, one layer, every writer, tested asset, matrix; a GameId loader, remotes from call sites, cross-executor checks |
+| **roblox-hub-library** | Building, extending or auditing a hub UI library, with HubKit as the worked example: registry, shared row, theme roles, one trove, bundling |
 | **roblox-executor-reliability** | Making a requested feature work in the user's game: who owns the value, what else writes it, the regression matrix, combining features, reading the doctor |
+| **roblox-improve** | Evidence-first reviews: measure, read by category, a four-part gate against false alarms, severity, and feature ideas grounded in the loop |
+| **roblox-debugging** | Exact error, reproduce, which side runs it, one probe per hypothesis; an error catalogue and the does-nothing tree |
 | **roblox-code-craft** | Naming, error messages, `pcall` discipline, comment policy, matching an existing file, AI-generated tells |
 | **roblox-reply-craft** | Fast replies, code blocks that paste cleanly, short file names, no filler around the code |
 | **roblox-attempt-memory** | The attempt ledger: what was tried, seen and learned, carried across chats and hosts; refuses repeats and reintroduced bugs |
@@ -190,6 +207,8 @@ node tools/bin/lint-links.mjs                     # every file the skills point 
 node tools/bin/lint-skills.mjs                    # every skill fits the hosts' listing limits and names its partners
 node tools/bin/run-recipe-tests.mjs               # behaviour tests for every recipe and feature script
 node tools/bin/run-library-tests.mjs              # assertions over library/src
+node tools/bin/build-hub-kit.mjs --check          # HubKit's bundle matches its sources
+node --test tools/tests/hub-kit.test.mjs          # HubKit: bundle, contrast, icons, behaviour, the example
 node tools/bin/generate-tables.mjs --check        # generated tables match the dump
 node tools/bin/build-portable.mjs --check         # host rule files are current
 node tools/bin/update-dump.mjs --check            # is the vendored dump behind Roblox?
@@ -261,6 +280,7 @@ docs/
   CHANGELOG.md, SOURCES.md, mcp.md, maintenance.md
 library/
   src/                   Luau you can require: tokens, layout, motion, toasts, components
+  hub-kit/               HubKit, the script hub UI library: src/, example/, dist/, tests/
   tests/                 headless engine stubs and recipe tests
 tools/
   bin/                   Node command-line tools, no dependencies

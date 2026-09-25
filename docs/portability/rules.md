@@ -397,11 +397,15 @@ counts before changing anything.
 Hosts may shorten or drop skill descriptions when many skills are installed,
 so the router's **Skill map** decides what to open, not luck. Any code you
 hand over: code craft and reply craft. Any repair or retry: attempt memory
-first. A UI, game or hub: ui, ui-components, ui-viewport, ui-interaction (and
-motion or tooltips when used). An executor feature: executor-features,
-executor-reliability, executor, plus the UI bundle for a hub. Saving, currency
-or shops: data-persistence, monetization, game-design, game-security.
-Multiplayer: networking, game-security, engine-api. "Make me a game":
+first. A bug or error: debugging, then attempt memory. A review or "improve
+it": improve and code craft. A UI, game or hub: ui, ui-components,
+ui-viewport, ui-interaction (and motion or tooltips when used). An executor
+script: executor-scripting first, then executor-features,
+executor-reliability, executor. A script hub or hub library: hub-library
+(HubKit in `library/hub-kit/`) plus the UI bundle. Saving, currency or shops:
+data-persistence, monetization, game-design, game-security. Multiplayer:
+networking, game-security, engine-api. Combat and enemies: combat, npc-ai,
+game-security. Chat or player-typed text: chat. "Make me a game":
 request-intake, game-design, architecture. Every skill ends with **Works
 with**, naming the partners it hands work to.
 
@@ -506,6 +510,13 @@ choose, such as a `getgc` walk. Not after `getsenv` handed you a named function.
 | "make me a game", balancing, retention, daily rewards | `roblox-game-design` |
 | "test it in Studio", playtest, a connected Studio MCP server | `roblox-studio-mcp` |
 | a Toolbox model, "is this model safe", backdoors | `audit-imported-assets.md` in `roblox-game-security` |
+| an error, "it does nothing", "works in Studio, not in game" | `roblox-debugging`: exact text, which side, one probe per hypothesis |
+| "review this", "improve it", "what should I add" | `roblox-improve`: ranked findings with evidence |
+| a new executor script, a multi-game hub, a loader | `roblox-executor-scripting` |
+| a hub's UI, "a library like WindUI", "improve my hub" | `roblox-hub-library` and HubKit |
+| NPCs, mobs, pathfinding, chase, patrol | `roblox-npc-ai` |
+| weapons, hitboxes, PvP, "hits don't register" | `roblox-combat`: the server decides every hit |
+| chat commands, chat tags, pet names, signs | `roblox-chat`: filter every player-typed string |
 
 Two areas at once is normal. "Exploiters are duping items" is server hardening
 for the fix and the client threat model for the reasoning.

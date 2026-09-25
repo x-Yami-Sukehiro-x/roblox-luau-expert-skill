@@ -1,6 +1,6 @@
 ---
 name: roblox-vfx-animation
-description: Roblox animation and visual effects - AnimationTrack lifecycle, priority and blending, markers, particles, beams, trails, Highlights. Use when an animation does not play and for any effects work.
+description: Roblox animation and effects - AnimationTrack lifecycle, priority, markers, particles, beams, trails, Highlights. Use when an animation does not play and for effects.
 ---
 
 # Animation and visual effects
@@ -100,3 +100,4 @@ decides whether damage happened.
 - `roblox-engine-api`: the instances effects attach to.
 - `roblox-performance`: pools and particle budgets.
 - `roblox-networking`: which side spawns an effect so others see it.
+- `roblox-combat`: hit flashes, sparks and attack animations with a hit pause.

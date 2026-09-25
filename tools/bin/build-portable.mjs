@@ -88,6 +88,38 @@ const WORKFLOW_SOURCES = [
   "roblox-game-design/references/economy-math.md",
   "roblox-game-design/references/retention-and-analytics.md",
   "roblox-game-security/references/audit-imported-assets.md",
+  "roblox-game-security/references/admin-commands.md",
+  "roblox-executor-scripting/SKILL.md",
+  "roblox-executor-scripting/references/script-architecture.md",
+  "roblox-executor-scripting/references/compatibility.md",
+  "roblox-executor-scripting/references/remotes-from-evidence.md",
+  "roblox-hub-library/SKILL.md",
+  "roblox-hub-library/references/architecture.md",
+  "roblox-hub-library/references/element-contract.md",
+  "roblox-hub-library/references/improve-existing-hub.md",
+  "roblox-hub-library/references/hub-anti-slop.md",
+  "roblox-improve/SKILL.md",
+  "roblox-improve/references/review-checklist.md",
+  "roblox-improve/references/false-positives.md",
+  "roblox-improve/references/feature-suggestions.md",
+  "roblox-improve/references/ux-review.md",
+  "roblox-debugging/SKILL.md",
+  "roblox-debugging/references/error-catalogue.md",
+  "roblox-debugging/references/silent-failures.md",
+  "roblox-debugging/references/probes.md",
+  "roblox-npc-ai/SKILL.md",
+  "roblox-npc-ai/references/pathfinding.md",
+  "roblox-npc-ai/references/behaviour.md",
+  "roblox-npc-ai/references/scale.md",
+  "roblox-combat/SKILL.md",
+  "roblox-combat/references/hit-detection.md",
+  "roblox-combat/references/weapons-and-projectiles.md",
+  "roblox-combat/references/game-feel.md",
+  "roblox-chat/SKILL.md",
+  "roblox-chat/references/commands-and-channels.md",
+  "roblox-chat/references/filtering.md",
+  "roblox-ui/references/localization-and-accessibility.md",
+  "roblox-monetization/references/policy-compliance.md",
 ];
 
 // Everything a picked style code needs, in one retrievable file: the question,
@@ -106,6 +138,7 @@ const STYLE_RECIPES_DIR = join(SKILLS_DIR, "roblox-ui-components", "assets");
 // GPT pastes the tested file instead of writing its own from the description.
 const EXECUTOR_ASSETS_DIR = join(SKILLS_DIR, "roblox-executor", "assets");
 const FEATURE_ASSETS_DIR = join(SKILLS_DIR, "roblox-executor-features", "assets");
+const SCRIPTING_ASSETS_DIR = join(SKILLS_DIR, "roblox-executor-scripting", "assets");
 
 // The style picker page itself. The hosted copy is private until its owner
 // shares it, so the GPT carries the page and can hand it over as a file.
@@ -409,7 +442,12 @@ function buildWorkflowPack() {
     const content = readFileSync(join(SKILLS_DIR, source), "utf8").trim();
     return `## Source: .claude/skills/${source}\n\n${content}`;
   });
-  for (const [dir, skill] of [[EXECUTOR_ASSETS_DIR, "roblox-executor"], [FEATURE_ASSETS_DIR, "roblox-executor-features"]]) {
+  const assetDirs = [
+    [EXECUTOR_ASSETS_DIR, "roblox-executor"],
+    [FEATURE_ASSETS_DIR, "roblox-executor-features"],
+    [SCRIPTING_ASSETS_DIR, "roblox-executor-scripting"],
+  ];
+  for (const [dir, skill] of assetDirs) {
     for (const name of readdirSync(dir).filter((file) => file.endsWith(".luau")).sort()) {
       const code = readFileSync(join(dir, name), "utf8").trimEnd();
       sections.push(`## Asset: .claude/skills/${skill}/assets/${name}\n\n\`\`\`lua\n${code}\n\`\`\``);

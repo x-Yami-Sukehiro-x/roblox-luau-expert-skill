@@ -1,6 +1,6 @@
 ---
 name: roblox-reply-craft
-description: How a Roblox reply is delivered - fast, short, whole scripts in one paste-ready block, short file names, no filler. Use for every reply that contains code, and when replies are slow, long or badly formatted.
+description: How a Roblox reply is delivered - fast, short, whole scripts in one paste-ready block, no filler. Use for every reply that contains code.
 ---
 
 # Reply craft
@@ -69,3 +69,4 @@ no "final", "fixed", "updated", "v2", "complete".
 - `roblox-code-craft`: what the delivered code must already be.
 - `roblox-request-intake`: plain-language placement for readers who do not code.
 - `roblox-attempt-memory`: the attempt recorded before the reply ends.
+- `roblox-debugging`: asking for the one piece of evidence that decides the cause.

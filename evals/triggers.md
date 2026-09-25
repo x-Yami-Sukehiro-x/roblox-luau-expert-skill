@@ -464,3 +464,22 @@ than which file is reached.
 | 224 | "is this free model safe to use" | `audit-imported-assets.md`: quarantine, the pattern search, a verdict; nothing enabled because the model asks |
 | 225 | "build me a hub with fly and a settings tab" | the router's skill map: UI bundle and executor bundle together, not UI alone |
 | 226 | a host that listed only the router's description | the router's skill map opens the other skills by path |
+
+## v5.9: hubs, reviews, debugging, combat, NPCs, chat
+
+| # | Prompt | Must reach |
+|---|---|---|
+| 227 | "make me a UI library like WindUI for my hub" | `roblox-hub-library` → HubKit's folder layout, the element contract, the bundle, the example; not a single 900-line file |
+| 228 | "improve my hub" with a Rayfield script pasted | `improve-existing-hub.md`: measured with `check-file`, three ranked fixes in place, the library kept |
+| 229 | "build a hub for these five features" | HubKit bundled, features wired to flagged elements, `OnUnload` switching them off, a `getgenv` session |
+| 230 | "review this script" | `roblox-improve`: three to five findings with line, player-visible failure and fix, a severity each; no generic tips |
+| 231 | "what should I add to my game" | `feature-suggestions.md`: suggestions from the loop or visible friction, each with who it helps and a size |
+| 232 | "attempt to index nil with 'Humanoid'" | `roblox-debugging` → `error-catalogue.md`: the character is not loaded; `CharacterAdded`; one probe, not a rewrite |
+| 233 | "it works in Studio but not in the real game" | `roblox-debugging`: Start with players, ownership, streaming, load order |
+| 234 | "make my zombies chase players" | `roblox-npc-ai`: server-owned, a follower handling Blocked and the 8-second timeout, a state machine, one scheduler |
+| 235 | "my sword hits don't register" or "exploiters kill from across the map" | `roblox-combat`: client intent, server checks cheapest first, a swept hitbox, a named tolerance |
+| 236 | "let players name their pets" | `roblox-chat` → `filtering.md`: server filtering with `GetNonChatStringForBroadcastAsync`, a rate limit, filtered again on load |
+| 237 | "add a /kick command" | `commands-and-channels.md`: `TextChatCommand` in a server Script, the admin list on the server |
+| 238 | "a script hub for several games" | `roblox-executor-scripting` → `assets/hub-loader.luau` routing by `game.GameId` |
+| 239 | "call this remote to get coins" with a dump | `remotes-from-evidence.md`: the call site's name, method and argument shapes; the server is the judge |
+

@@ -28,6 +28,10 @@ that a library untouched for two years accumulates breakage.
   Do not port a working hub to a different library for aesthetics.
 - **Two or three toggles** → no library. A `ScreenGui` with three buttons is
   fifty lines and has no external dependency to break.
+- **A hub library of their own, or one to study** → HubKit in
+  `library/hub-kit/` at the plugin root: WindUI's shape in plain folders, one
+  bundled file, tested headless. `roblox-hub-library` covers building on it,
+  extending it, and auditing an existing hub.
 
 ---
 

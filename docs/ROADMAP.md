@@ -8,9 +8,10 @@ Two limits shape every addition:
 
 - **Skill metadata budget.** Hosts show every skill's name and description
   from a shared list of about 8,000 characters and drop skills when it runs
-  over. `node tools/bin/lint-skills.mjs` holds this stack to 7,000; at 6,474
-  with 27 skills, a new skill needs a description of about 250 characters, or
-  belongs as a reference inside an existing skill.
+  over. `node tools/bin/lint-skills.mjs` holds this stack to 7,000; at 6,496
+  with 34 skills, a new skill needs a description of about 180 characters
+  and probably a trim elsewhere, or belongs as a reference inside an
+  existing skill. The router is at 18,737 characters of a 20,000 warning.
 - **Evidence before advice.** New API claims are checked against the dump by
   `lint-prose.mjs`; new code ships with a behaviour test.
 
@@ -18,33 +19,40 @@ Two limits shape every addition:
 
 | Area | Why | Where it would live | Source to start from |
 |---|---|---|---|
-| TextChatService | chat commands, channels and bubble chat come up often, and the legacy `Chat` service guidance is out of date | reference in `roblox-engine-api` | Roblox creator docs; flatbedj/roblox-skills `roblox-textchat-channels` |
-| NPCs and pathfinding | `PathfindingService`, agent parameters, stuck detection and server-owned NPC movement have no coverage | new skill or `roblox-engine-api` reference | Roblox creator docs |
-| Combat systems | server-authoritative hit detection, cooldowns and lag compensation, beyond the sanity checks in security | `roblox-game-security` or `roblox-game-design` reference | AshExplained/roblox-skills `roblox-combat-systems` (MIT) |
-| Open Cloud | DataStore, MessagingService and place publishing over HTTP for tools and dashboards | `roblox-toolchain` reference | Roblox Open Cloud docs; flatbedj/roblox-skills `roblox-cloud` |
-| Localization and accessibility | `LocalizationService`, translated strings, text that grows, colour-blind-safe status | `roblox-ui` reference | AshExplained/roblox-skills `roblox-localization-accessibility` (MIT) |
-| Policy compliance | Community Standards, advertising rules, paid random items by region | `roblox-monetization` reference | AshExplained/roblox-skills `roblox-policy-compliance` (MIT), Roblox policy pages |
-| Publishing and discovery | icons, thumbnails, names and descriptions that get clicked | `roblox-game-design` reference | AshExplained/roblox-skills `roblox-publishing-discovery` (MIT) |
-| Admin tools | safe admin commands, audit logs, moderation, without a backdoor | `roblox-game-security` reference | AshExplained/roblox-skills `roblox-admin-tools-observability` (MIT) |
-| Legacy migration | replacing deprecated APIs across a whole place with Studio MCP | `roblox-studio-mcp` reference | MSayib/roblox-dev-skill, its legacy migration reference (MIT) |
+| Open Cloud | DataStores, MessagingService and place publishing over HTTP for tools and dashboards | `roblox-toolchain` reference | Roblox Open Cloud docs; `nonlooped/roblox-suite` `roblox-open-cloud` (MIT) |
+| Physics and vehicles | constraints-based cars and boats, ragdolls, collision groups for gameplay | `roblox-engine-api` reference or a new skill | Roblox creator-docs; `nonlooped/roblox-suite` `roblox-physics` (MIT) |
+| Publishing and discovery | icons, thumbnails, names and descriptions that get clicked | `roblox-game-design` reference | `AshExplained/roblox-skills` `roblox-publishing-discovery` (MIT) |
+| Inventory and trading | item ids, stacking, server-owned trades with two-sided confirmation | `roblox-data-persistence` or `roblox-game-design` reference | the combat and data cases in `andrian-syh/roblox-best-practices-skill` (MIT) |
+| Proximity and voice chat | `ShouldDeliverCallback` by distance, voice settings | `roblox-chat` reference | Roblox creator-docs `chat/examples/proximity-chat.md` |
+| Legacy migration | replacing deprecated APIs across a whole place with Studio MCP | `roblox-studio-mcp` reference | `MSayib/roblox-dev-skill`, its legacy migration reference (MIT) |
+
+## HubKit
+
+- **More elements**: a Stepper (the worked case in the element contract), a
+  progress bar, an image and a code block with copy.
+- **Tabs on the top** for landscape phones, as an option on CreateWindow.
+- **Localized strings** through `Translator:FormatByKey` for the kit's own
+  words ("Search this tab", "Saving is off").
+- **A Studio device pass** of the example through Studio MCP screen captures
+  at each device profile, compared with the headless tests.
+- **Luau type checking** of the sources once a `luau-analyze` binary is
+  vendored beside the runtime.
 
 ## Stronger checks
 
 - **A Node port of `viewport_fit.py`**, held to it by `lint-parity.mjs`, so
   the check runs where only Node is available.
-- **Studio device pass through MCP**: a scripted run of screen captures at
-  each device profile using Roblox's `rbx-device-simulator-lua` skill,
-  compared with `viewport_fit.py`.
-- **Trigger evals for the new skills** run against a fresh model, recording
-  which skill each prompt in `evals/triggers.md` actually loaded.
+- **Trigger evals run against a fresh model**, recording which skill each
+  prompt in `evals/triggers.md` actually loaded.
 - **`E-HOVERONLY` lint rule**: a `MouseEnter` that shows information with no
   `SelectionGained` or long-press path in the same file, once it can tell a
   hover tint from hidden content without false alarms.
+- **Behaviour tests for the reference code** in `roblox-npc-ai` and
+  `roblox-combat` (the follower, the melee handler), with PathfindingService
+  and spatial-query stubs.
 
 ## More tested assets
 
-- **A complete hub**: the feature assets wired to T, H and N recipes in one
-  window that passes the UI rubric, the viewport check and the input matrix.
 - **Executor features**: waypoints (save and return), teleport to a player
   by name, and a chat-command bridge for hubs without a UI.
 - **Game systems as tested modules**: daily reward with streak, quest board,
@@ -68,6 +76,10 @@ Recorded so they are not re-evaluated from scratch.
 
 | Source | Decision |
 |---|---|
-| MSayib/roblox-dev-skill (MIT) | Adopted as a source for `roblox-studio-mcp`: tool shapes, first-party Studio skills and safety rules, re-verified against Roblox's MCP page. Its Luau, networking and data references overlap skills here that are already dump-checked. |
-| AshExplained/roblox-skills (MIT) | Adopted as a source for the Creator Store audit and for `roblox-game-design` topics. The remaining 30-odd skills are short playbooks with no verification; the useful ones are listed in the table above for later. |
-| flatbedj/roblox-skills | License not stated on the repository page; not used. TextChatService and Open Cloud topics noted above. |
+| MSayib/roblox-dev-skill (MIT) | Adopted as a source for `roblox-studio-mcp`. Its Luau, networking and data references overlap skills here that are already dump-checked. |
+| AshExplained/roblox-skills (MIT) | Adopted as a source for the Creator Store audit and `roblox-game-design`. The remaining skills are short playbooks with no verification. |
+| nonlooped/roblox-suite (MIT) | Used as leads for `roblox-npc-ai`; one API it names is not in the dump. Open Cloud and physics noted above. |
+| andrian-syh/roblox-best-practices-skill (MIT) | Review taxonomy adapted in `roblox-improve`. Its style rules (doc comments on every function) conflict with this stack's ceremony budget and were not taken. |
+| gamedev-skills/awesome-gamedev-agent-skills (Apache-2.0) | Feedback tiers adopted. Its Roblox skills are thin compared with the dump-checked ones here. |
+| afrxo/roblox-agent-skills (MIT) | Overlaps existing Luau, UI and toolchain skills. |
+| flatbedj/roblox-skills, brockmartin/roblox-game-skill, zilibobi/roblox-skills | No licence stated; not used. |

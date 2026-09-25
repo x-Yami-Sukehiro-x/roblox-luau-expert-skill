@@ -1,6 +1,6 @@
 ---
 name: roblox-ui-viewport
-description: Fitting Roblox UI on every screen from a 640 x 360 phone to 4K and ultrawide - bounded scale sizes, safe insets, a grow-only UIScale, scrolling overflow, popups kept on screen. Use for UI that is cut off, off screen or does not fit.
+description: Fitting Roblox UI on every screen, phone to 4K - bounded scale sizes, safe insets, grow-only UIScale, scrolling, popups kept on screen. Use for UI cut off or not fitting.
 ---
 
 # Every screen, all of the UI

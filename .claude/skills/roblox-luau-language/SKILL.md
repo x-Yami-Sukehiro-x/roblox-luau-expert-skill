@@ -1,6 +1,6 @@
 ---
 name: roblox-luau-language
-description: The Luau language - types and --!strict, generics, metatables and OOP, buffer, vector, closures, garbage collection, compiler limits and out-of-registers errors. Use for type errors, language features and very long scripts.
+description: The Luau language - types and --!strict, generics, metatables and OOP, buffer, closures, garbage collection, register limits. Use for type errors and very long scripts.
 ---
 
 # Luau — the language

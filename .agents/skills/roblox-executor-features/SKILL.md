@@ -1,6 +1,6 @@
 ---
 name: roblox-executor-features
-description: Tested paste-ready executor features - fly, noclip, speed, infinite jump, ESP, click teleport, anti-AFK, fullbright, spectate, camera unlock, freecam - and a feature doctor. Use for any universal feature script or a hub toggle for one.
+description: Tested executor features - fly, noclip, speed, infinite jump, ESP, click teleport, anti-AFK, fullbright, spectate, freecam - and a feature doctor. Use for any universal feature.
 ---
 
 # Executor features
@@ -91,3 +91,5 @@ unlock and freecam, though freecam's anchored body stands still for everyone.
 - `roblox-executor-reliability`: the matrix every new or changed feature passes.
 - `roblox-ui-components`: T toggles and H3 slider readouts for a hub.
 - `roblox-executor`: values that live in the game's own code.
+- `roblox-hub-library`: wiring each feature to a hub toggle with a saved flag.
+- `roblox-executor-scripting`: the session, loader and unload around the features.

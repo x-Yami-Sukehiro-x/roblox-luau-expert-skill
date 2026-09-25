@@ -1,6 +1,6 @@
 ---
 name: roblox-toolchain
-description: Roblox tooling outside Studio - Rojo, Rokit, Wally, selene, StyLua, luau-lsp, Lune, tests and CI. Use for project setup, linting, formatting, packages and continuous integration.
+description: Roblox tooling outside Studio - Rojo, Rokit, Wally, selene, StyLua, luau-lsp, Lune, tests and CI. Use for project setup, linting and packages.
 ---
 
 # Toolchain

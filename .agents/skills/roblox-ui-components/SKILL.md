@@ -1,6 +1,6 @@
 ---
 name: roblox-ui-components
-description: Building Roblox UI controls - the tested recipe for every style picker code (toggles, checkboxes, dropdowns, menus, notifications, buttons, tabs), outlines, shadows, icons, six states. Use when a code like T2 or N4 is picked or a control is built.
+description: Roblox UI controls - the tested recipe for every style picker code (toggles, dropdowns, menus, notifications, tabs), outlines, shadows, icons, six states. Use when a code like T2 is picked.
 ---
 
 # UI components
@@ -148,3 +148,4 @@ Per-surface detail: `roblox-ui/references/responsive-and-surfaces.md`.
 - `roblox-ui-interaction`: the six states on every input.
 - `roblox-ui-motion`: the tweens each recipe uses.
 - `roblox-ui-tooltips`: slider values and hints.
+- `roblox-hub-library`: the same controls inside a hub library's element contract.

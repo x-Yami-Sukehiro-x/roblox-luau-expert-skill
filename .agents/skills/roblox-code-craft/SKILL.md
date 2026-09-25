@@ -1,6 +1,6 @@
 ---
 name: roblox-code-craft
-description: How Roblox Luau code should read - names, errors, comments, pcall discipline, formatting, the ceremony budget, removing AI-generated slop, matching an existing file. Use when writing or reviewing any Luau, or when code looks AI-made.
+description: How Roblox Luau should read - names, errors, comments, pcall discipline, formatting, the ceremony budget, removing AI slop. Use when writing or reviewing any Luau.
 ---
 
 # Code craft
@@ -313,3 +313,4 @@ craft subset:
 - `roblox-reply-craft`: how the finished file is handed over.
 - `roblox-luau-language`: types and language features the code relies on.
 - `roblox-attempt-memory`: fix stories go in the ledger, never in comments.
+- `roblox-improve`: severity and ranking when a review finds several problems.

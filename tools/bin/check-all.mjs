@@ -27,8 +27,10 @@ const EXEMPLARS = join(REPO_ROOT, "docs", "portability", "gpt", "UIs", "exemplar
 // when the user answers "T2 + M4", so they are held to the exemplars' bar.
 const RECIPES = join(REPO_ROOT, ".claude", "skills", "roblox-ui-components", "assets");
 
-// Scripts a reply hands to the user unchanged, such as the runtime probe.
+// Scripts a reply hands to the user unchanged, such as the runtime probe and
+// the multi-game hub loader.
 const EXECUTOR_ASSETS = join(REPO_ROOT, ".claude", "skills", "roblox-executor", "assets");
+const SCRIPTING_ASSETS = join(REPO_ROOT, ".claude", "skills", "roblox-executor-scripting", "assets");
 
 // The feature scripts (fly, ESP, ...) a reply pastes whole.
 const FEATURE_ASSETS = join(REPO_ROOT, ".claude", "skills", "roblox-executor-features", "assets");
@@ -118,11 +120,11 @@ const GATES = [
   },
   {
     name: "slop rubric over the executor assets",
-    argv: [bin("lint-luau-slop.mjs"), EXECUTOR_ASSETS],
+    argv: [bin("lint-luau-slop.mjs"), EXECUTOR_ASSETS, SCRIPTING_ASSETS],
   },
   {
     name: "format rubric over the executor assets",
-    argv: [bin("lint-luau-format.mjs"), EXECUTOR_ASSETS],
+    argv: [bin("lint-luau-format.mjs"), EXECUTOR_ASSETS, SCRIPTING_ASSETS],
   },
   {
     name: "slop rubric over the feature assets",
@@ -156,6 +158,7 @@ const GATES = [
       EXEMPLARS,
       RECIPES,
       EXECUTOR_ASSETS,
+      SCRIPTING_ASSETS,
       FEATURE_ASSETS,
       HUB_KIT,
       join(REPO_ROOT, "library", "hub-kit", "dist"),

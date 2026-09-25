@@ -1,6 +1,6 @@
 ---
 name: roblox-data-persistence
-description: Saving player data safely - DataStore budgets, UpdateAsync, session locking, ProfileStore and Lyra, migrations, BindToClose, data loss and item duplication. Use for any save, load, leaderboard or lost-progress problem.
+description: Saving player data safely - DataStore budgets, UpdateAsync, session locking, ProfileStore and Lyra, migrations, BindToClose. Use for saves, leaderboards, lost or duplicated items.
 ---
 
 # Data persistence
@@ -333,3 +333,4 @@ rate is the earliest signal you will get.
 - `roblox-game-design`: which balances, streaks and unlocks are saved.
 - `roblox-game-security`: the server alone writes saved values.
 - `roblox-studio-mcp`: save and load tested in Studio against a test store.
+- `roblox-chat`: player-typed names saved raw and filtered again on load.

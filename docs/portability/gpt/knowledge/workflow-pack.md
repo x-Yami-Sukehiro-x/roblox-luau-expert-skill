@@ -432,7 +432,7 @@ model was tested, say so; no finite test guarantees every model follows rules.
 
 ---
 name: roblox-executor
-description: Client-side and executor scripting - the sUNC API, hooking, getgc and upvalues, decompiled game source, anti-cheat recon, value persistence, script hubs. Use for executor, sUNC, hookfunction, a pasted dump, or which call reaches a value.
+description: Executor and sUNC reference - hooking, getgc and upvalues, decompiled source, anti-cheat recon, value persistence. Use for executor functions, a pasted dump, or which call reaches a value.
 ---
 
 # Executor and client-side scripting
@@ -674,6 +674,9 @@ scripts hit routinely.
 - `roblox-executor-reliability`: making a game-specific feature hold and not regress.
 - `roblox-ui`: the hub around the features.
 - `roblox-attempt-memory`: failed layers recorded so the next attempt differs.
+- `roblox-executor-scripting`: the order of work from request to shipped script, and multi-game loaders.
+- `roblox-hub-library`: the hub window and elements, from HubKit.
+- `roblox-debugging`: executor error messages and silent failures.
 
 ---
 
@@ -1608,7 +1611,7 @@ runtime cases as unrun, alongside the static checks that did execute.
 
 ---
 name: roblox-ui
-description: Roblox UI layout and design taste - build order, palettes, blueprints, screen archetypes, scale versus offset, flex layouts, typography, the countable rubric and anti-slop review. Use for any GUI, menu, HUD or hub, and UI that looks AI-made.
+description: Roblox UI layout and taste - build order, palettes, blueprints, flex layouts, typography, the countable rubric, localization and accessibility. Use for any GUI or HUD, and UI that looks AI-made.
 ---
 
 # Roblox UI
@@ -1655,6 +1658,8 @@ This skill owns **layout, responsiveness and taste**. Two siblings own the rest:
 | labels, row descriptions, subtitles, button text, empty states | `references/ui-copy.md` |
 | a pasted `roblox-ui-design` export from the UI designer | `references/design-spec.md` |
 | which icon fits a tab or feature | `../roblox-ui-components/references/icon-meaning.md` |
+| translation, text that grows, larger text, colour-blind safety, reduced motion | `references/localization-and-accessibility.md` |
+| a script hub's window, tabs, elements, themes and configs | `../roblox-hub-library/SKILL.md` |
 
 ## The four files that decide the outcome
 
@@ -1892,6 +1897,8 @@ found by a player rather than by you.
 - `roblox-ui-interaction`: every control answers mouse, touch and gamepad.
 - `roblox-ui-motion`: opening, closing and press feedback.
 - `roblox-ui-tooltips`: the words around each control.
+- `roblox-hub-library`: the tested hub library when the UI is an executor hub.
+- `roblox-improve`: ranking what to fix first when reviewing a UI.
 
 ---
 
@@ -3546,7 +3553,7 @@ Tables, smaller functions, and scoped blocks solve every case cleanly and leave 
 
 ---
 name: roblox-reply-craft
-description: How a Roblox reply is delivered - fast, short, whole scripts in one paste-ready block, short file names, no filler. Use for every reply that contains code, and when replies are slow, long or badly formatted.
+description: How a Roblox reply is delivered - fast, short, whole scripts in one paste-ready block, no filler. Use for every reply that contains code.
 ---
 
 # Reply craft
@@ -3615,6 +3622,7 @@ no "final", "fixed", "updated", "v2", "complete".
 - `roblox-code-craft`: what the delivered code must already be.
 - `roblox-request-intake`: plain-language placement for readers who do not code.
 - `roblox-attempt-memory`: the attempt recorded before the reply ends.
+- `roblox-debugging`: asking for the one piece of evidence that decides the cause.
 
 ---
 
@@ -3746,7 +3754,7 @@ Name the files and sections read in the reply, once.
 
 ---
 name: roblox-executor-features
-description: Tested paste-ready executor features - fly, noclip, speed, infinite jump, ESP, click teleport, anti-AFK, fullbright, spectate, camera unlock, freecam - and a feature doctor. Use for any universal feature script or a hub toggle for one.
+description: Tested executor features - fly, noclip, speed, infinite jump, ESP, click teleport, anti-AFK, fullbright, spectate, freecam - and a feature doctor. Use for any universal feature.
 ---
 
 # Executor features
@@ -3837,6 +3845,8 @@ unlock and freecam, though freecam's anchored body stands still for everyone.
 - `roblox-executor-reliability`: the matrix every new or changed feature passes.
 - `roblox-ui-components`: T toggles and H3 slider readouts for a hub.
 - `roblox-executor`: values that live in the game's own code.
+- `roblox-hub-library`: wiring each feature to a hub toggle with a saved flag.
+- `roblox-executor-scripting`: the session, loader and unload around the features.
 
 ---
 
@@ -4066,7 +4076,7 @@ and speed sliders take an H3 value; see `../../roblox-ui/SKILL.md`.
 
 ---
 name: roblox-executor-reliability
-description: Making an executor feature work in the user's game without regressions - value ownership, what rewrites it, the regression matrix, combining features. Use for "doesn't work", "stops after respawn", "broke my other feature".
+description: Making an executor feature hold in the user's game - value ownership, what rewrites it, the regression matrix, combining features. Use for doesn't work, stops after respawn.
 ---
 
 # Executor features that work
@@ -4177,6 +4187,8 @@ game. Run `node tools/bin/check-file.mjs <file>` and report it.
 - `roblox-executor-features`: the closest tested asset to start from.
 - `roblox-executor`: the layer-to-call map for game-owned values.
 - `roblox-attempt-memory`: each failed attempt recorded before the next.
+- `roblox-debugging`: the error catalogue and one-probe-per-hypothesis method.
+- `roblox-executor-scripting`: evidence and layer choice before a feature is built.
 
 ---
 
@@ -4497,7 +4509,7 @@ entry, the evidence has to say what is different.
 
 ---
 name: roblox-attempt-memory
-description: Remembers past attempts so failed fixes are never repeated - an attempt ledger in PROJECT_CONTEXT.md with plan, check and search tools and known failures. Use for "you didn't fix it", "same problem again", any retry, and a new chat continuing old work.
+description: Never repeating a failed fix - the attempt ledger in PROJECT_CONTEXT.md with plan, check and search. Use for you didn't fix it, same problem again, any retry, a new chat on old work.
 ---
 
 # Attempt memory
@@ -4626,6 +4638,7 @@ each attempt.
 - `roblox-executor-reliability`: the feature doctor's output names the layer to record.
 - `roblox-ui-interaction`: its ladder lists the layers a UI fix can miss.
 - `roblox-code-craft`: the diff is the changelog; the ledger holds the story.
+- `roblox-debugging`: the probe that turns a Saw line into a Cause.
 
 ---
 
@@ -5105,7 +5118,7 @@ rounded box (`E-CORNERBLEED`). The fix is a `CanvasGroup` holding the
 
 ---
 name: roblox-ui-viewport
-description: Fitting Roblox UI on every screen from a 640 x 360 phone to 4K and ultrawide - bounded scale sizes, safe insets, a grow-only UIScale, scrolling overflow, popups kept on screen. Use for UI that is cut off, off screen or does not fit.
+description: Fitting Roblox UI on every screen, phone to 4K - bounded scale sizes, safe insets, grow-only UIScale, scrolling, popups kept on screen. Use for UI cut off or not fitting.
 ---
 
 # Every screen, all of the UI
@@ -5400,7 +5413,7 @@ square.
 
 ---
 name: roblox-ui-interaction
-description: Making every Roblox UI control respond on PC, phone and gamepad - Activated, touch press states, 44 px hit areas, selection and focus, menus versus character input. Use for "the button does nothing" or "can't click on mobile".
+description: Making Roblox UI respond on PC, phone and gamepad - Activated, touch press, 44 px targets, selection and focus. Use for the button does nothing or can't click on mobile.
 ---
 
 # Every control, every input
@@ -5505,6 +5518,7 @@ Report which rows ran and which were not checked.
 - `roblox-ui-components`: state visuals for each input.
 - `roblox-ui-tooltips`: long press and selection instead of hover.
 - `roblox-studio-mcp`: clicking the real controls in a playtest.
+- `roblox-hub-library`: the input contract applied to a whole hub, including the Open chip.
 
 ---
 
@@ -5688,7 +5702,7 @@ Studio rows: walk them in the device emulator and say which were walked.
 
 ---
 name: roblox-studio-mcp
-description: Driving Roblox Studio through its built-in MCP server - read and edit scripts, run Luau, playtest, read the console, capture the screen, simulate input, and do it safely. Use to test a change in real Studio instead of guessing.
+description: Testing in real Roblox Studio through its MCP server - edit scripts, run Luau, playtest, read the console, screenshots, simulated input, safely. Use when Studio is connected.
 ---
 
 # Roblox Studio through MCP
@@ -5771,6 +5785,7 @@ Full rules and the tool reference: `references/safety.md`,
   passes their mocks cannot do.
 - `roblox-toolchain`: Rojo keeps files as the source of truth; a Studio edit
   in a Rojo project can be overwritten on the next sync, so edit the files there.
+- `roblox-debugging`: which probe to run in the playtest.
 
 ---
 
@@ -5984,7 +5999,7 @@ against a live build; the rest is from Roblox's documentation page.
 
 ---
 name: roblox-game-design
-description: Designing Roblox games that keep players - genre loops, the first session, progression and economy math, rewards, retention, live ops and analytics events. Use for "make me a game", game ideas, balancing, pricing and retention.
+description: Roblox games that keep players - genre loops, first session, progression and economy math, rewards, retention, analytics. Use for make me a game, balancing and pricing.
 ---
 
 # Game design for Roblox
@@ -6062,6 +6077,9 @@ in the reply so the user can change it before more is built.
 - `roblox-data-persistence`: every balance, streak and unlock is saved.
 - `roblox-ui`: screen archetypes for shop, daily reward, quests and HUD.
 - `roblox-game-security`: the server owns currency, prices and rewards.
+- `roblox-npc-ai`: enemies and waves the design calls for.
+- `roblox-combat`: fights that are fair and feel good.
+- `roblox-improve`: grounded feature suggestions for an existing game.
 
 ---
 
@@ -6363,6 +6381,2825 @@ set to `Experimental` in Studio, a model marked `Sandboxed` runs only with the
 `Network`, `DataStore`, `AssetRequire`, `LoadString` or `CapabilityControl`
 without a reason you can state (`node tools/bin/verify-api.mjs Enum.SecurityCapability`).
 Sandboxing narrows the damage; it does not replace reading the code.
+
+---
+
+## Source: .claude/skills/roblox-game-security/references/admin-commands.md
+
+# Admin commands and bans without a backdoor
+
+An admin system is a remote that does powerful things. Built carelessly it
+is the backdoor an exploiter is looking for. Built this way it is not.
+
+## Rules
+
+1. **Who is an admin is decided on the server**, from a list the server
+   holds (user ids, a group rank read once on join). Never from an
+   attribute the client set, a GUI the client has, or an argument it sends.
+2. **Every command re-checks** the caller's rank on the server, every time.
+   Showing an admin panel only to admins is a convenience, not security.
+3. **No command runs code.** A remote that takes a string and runs it
+   (`loadstring`, `require` of an id the client chose) is a backdoor however
+   well the caller is checked; it is also what audits of Toolbox models look
+   for (`audit-imported-assets.md`).
+4. **Targets and arguments are validated** like any remote: types, ranges,
+   the target exists and is in the server.
+5. **Every action is logged** with who, what, whom and when, on the server.
+
+## Commands through chat
+
+`roblox-chat/references/commands-and-channels.md` has a `/kick` built on
+`TextChatCommand`: the server resolves the sender from `TextSource.UserId`
+and checks the admin list before acting. That is the whole pattern; a panel
+is the same with a RemoteEvent in place of the command.
+
+## Bans that last
+
+`Players:BanAsync` (server only) bans across the experience and survives
+server restarts, which a table of banned ids in a script does not:
+
+```lua
+local Players = game:GetService("Players")
+
+local function ban(moderator: Player, target: Player, days: number, reason: string)
+	local ok, failure = pcall(Players.BanAsync, Players, {
+		UserIds = { target.UserId },
+		Duration = if days < 0 then -1 else math.floor(days * 86400),
+		DisplayReason = reason,
+		PrivateReason = `by {moderator.UserId}`,
+		ExcludeAltAccounts = false,
+		ApplyToUniverse = true,
+	})
+	if not ok then
+		warn(`ban of {target.UserId} failed: {failure}`)
+	end
+end
+```
+
+From Roblox's reference for the method:
+
+- It needs `Players.BanningEnabled`, a Studio setting.
+- `Duration` is in seconds; `-1` is permanent.
+- `DisplayReason` (shown to the banned user) is filtered and at most 400
+  characters. `PrivateReason` is never sent to the client, up to 1000
+  characters.
+- Bans propagate to suspected alternate accounts unless
+  `ExcludeAltAccounts` is true.
+- It calls a web service, so it can fail and is throttled: `pcall`, and
+  report the failure to the moderator.
+- In Studio and team tests it runs but does not ban anyone in production.
+
+`Players:UnbanAsync` reverses a ban, and `Players:GetBanHistoryAsync` returns
+a user's past bans for choosing a longer one for repeat offences. The
+Creator Hub's Bans page manages the same bans without code.
+
+## Checklist
+
+- [ ] Admin identity from a server-side list or a rank read on join.
+- [ ] Every command handler checks the caller again.
+- [ ] No remote executes strings or requires client-chosen ids.
+- [ ] Arguments validated; targets must be players in the server.
+- [ ] Actions logged on the server.
+- [ ] Bans through `BanAsync`, wrapped in `pcall`.
+
+---
+
+## Source: .claude/skills/roblox-executor-scripting/SKILL.md
+
+---
+name: roblox-executor-scripting
+description: How an expert writes executor scripts - evidence before code, one layer per value, multi-game loaders by GameId, remotes from call sites, cross-executor checks. Use for any new executor script.
+---
+
+# Writing executor scripts like an expert
+
+`roblox-executor` is the reference: the sUNC API, hooking, decompiled
+source, which call reaches which value. `roblox-executor-features` is the
+tested features. `roblox-executor-reliability` keeps a feature working.
+This skill is the order an expert works in, so those three are used in the
+right sequence and nothing is guessed.
+
+## The loop
+
+1. **Name the effect and its owner.** "Walk faster" is a Humanoid property
+   the client owns; "more coins" is a server value no client script can
+   change. `roblox-executor/references/technique/client-feasibility.md`
+   decides which requests are possible before any code exists. Say so when
+   one is not.
+2. **Find the evidence.** A universal effect (fly, ESP) starts from the
+   tested asset in `roblox-executor-features`. A game-specific one starts from
+   the game's own code: search the dump for the feature
+   (`python tools/py/dump_index.py <dump> --feature "<words>"`), and when it
+   is not there, send `runtime-probe.luau` rather than guessing names.
+3. **Pick one layer.** The value is a property, an upvalue, a constant, a
+   module table field, or rewritten each frame by a loop. One call reaches
+   each; `roblox-executor/references/technique/function-selection.md` is the
+   table. No fallback chain across layers.
+4. **List every writer.** The game's scripts, the Humanoid, respawn, the
+   camera scripts, the player's other features. Hold the value against the
+   writers that exist, with the mechanism that matches
+   (`roblox-executor-reliability`).
+5. **Build from the closest tested asset**, one bind and one assert for the
+   executor functions it uses, a `getgenv()` session, and an unload that
+   restores the captured value.
+6. **Run the matrix**: runs, toggle twice, game writes, respawn on and off,
+   rerun, unload twice, chat typing, phone, other features on. "It works"
+   without the matrix is a guess.
+7. **Record** the attempt in the ledger (`roblox-attempt-memory`) and deliver
+   the whole script with what it assumes.
+
+## Choosing the script's shape
+
+| What the user wants | Shape |
+|---|---|
+| One feature | One file: session, feature, unload. The feature assets are this shape |
+| Several features, one game | One file per concern is overkill; one script, one HubKit window, a section per group |
+| A hub for many games | A loader that routes by `game.GameId`, a module per game, a universal fallback: [script-architecture.md](references/script-architecture.md) |
+| A library other people build on | `roblox-hub-library` |
+
+Route by **`game.GameId`**, not `game.PlaceId`: every place of one experience
+(lobby, match, event place) shares the GameId, while each has its own
+PlaceId. The tested loader is `assets/hub-loader.luau`.
+
+## Remotes
+
+Take a remote's name, method and argument shapes from a call site in the
+game's code or a logged call, never from what it "probably" takes. A value
+sent to a remote is a request the server may refuse; a changed client value
+is not proof the server accepted anything.
+[remotes-from-evidence.md](references/remotes-from-evidence.md) covers
+reading call sites, what survives serialisation, and rate limits.
+
+## Across executors
+
+Executors differ in which functions exist, what `identifyexecutor()` returns,
+and how their file functions behave. Detect each capability once, assert on
+the list, report what is missing in one sentence, and never claim an
+executor was tested when it was not.
+[compatibility.md](references/compatibility.md) has the patterns.
+
+## Habits that separate expert scripts
+
+- **Capture before you change.** Read the original value, store it, restore
+  that value on unload, never a retyped literal.
+- **Event-driven over polling.** `GetPropertyChangedSignal`, `CharacterAdded`
+  and `ChildAdded` over `while task.wait()` loops; per-frame work only for
+  per-frame effects.
+- **Cache what does not change.** Services, the local player, remotes found
+  once. Re-find what respawn replaces (the character, the Humanoid).
+- **One owner per property.** Two features writing `WalkSpeed` fight; one
+  feature owns it and the others ask it.
+- **Everything under one session.** Hooks, connections, Drawings, threads
+  and instances registered for unload as they are made.
+- **Say what the script cannot do.** A server-side value, an unreadable
+  region of a dump, a function the executor lacks: one line each in the reply.
+
+## What this skill will not help with
+
+Attacking a game's servers or other players (crashing servers, flooding
+remotes, stealing items or accounts), hiding a script from anti-cheat, and
+anything that sends a player's data somewhere. Say so plainly and offer the
+closest legitimate help: a client-side feature, or how the game's own
+developer would stop the exploit (`roblox-game-security`).
+
+## Works with
+
+- `roblox-executor`: the sUNC API, decompiled source, and the layer-to-call table.
+- `roblox-executor-features`: the tested feature scripts to build from.
+- `roblox-executor-reliability`: writers, ownership and the regression matrix.
+- `roblox-hub-library`: the hub window, elements and configs around the features.
+- `roblox-debugging`: executor error messages and what each one means.
+- `roblox-attempt-memory`: never repeating a failed approach on the same game.
+- `roblox-networking`: what replicates, and why a client write is not a server change.
+- `roblox-code-craft`: the ceremony budget that keeps a 330-line script at 59.
+
+---
+
+## Source: .claude/skills/roblox-executor-scripting/references/script-architecture.md
+
+# Script architecture for multi-game hubs
+
+A hub that supports one game is a script. A hub that supports ten is a
+program, and it needs the parts a program has: an entry point, routing,
+modules, shared services and one teardown.
+
+## Layout
+
+```
+loader.luau            the file the player executes: fetch, route, start
+shared/
+  ui.luau              the HubKit window, built once
+  session.luau         the hub-loader session: own() and unload()
+games/
+  universal.luau       fly, ESP, speed: works anywhere
+  <game>.luau          one module per supported experience
+```
+
+For a single file (most user requests), keep the same sections in one
+script, in this order: services, capability bind and assert, session, UI,
+features, unload.
+
+## Routing by GameId
+
+`assets/hub-loader.luau` is the tested loader. It takes a hub name, a table
+from `game.GameId` to an entry, and a universal entry:
+
+```lua
+local loadHub = loadstring(game:HttpGet(LOADER_URL))()
+
+local session = loadHub("FarmHub", {
+	[GAME_ID] = { name = "The game's name", start = startGameFeatures },
+}, { name = "Universal", start = startUniversalFeatures })
+```
+
+What it guarantees, each checked by `library/tests/recipes/hub-loader.luau`:
+
+- the game's entry runs when its GameId matches, the universal one otherwise;
+- a second run unloads the first session before starting;
+- cleanups run newest first, each once;
+- a `start` that errors halfway stays registered, so the next run still
+  cleans up the features it had already started.
+
+Every feature a module starts is paired with its cleanup at the moment it
+starts: `session:own(function() fly.set(false) end)`.
+
+## Fetching modules
+
+A loader that fetches game modules over HTTP has three failure modes: the
+URL moved, the host is down, or the module errors. Handle them as boundaries:
+
+- **Pin to a commit**, not to `main`, for anything players rely on; a
+  breaking push otherwise reaches every player at once.
+- **One `pcall` around the fetch and compile**, reporting which module and
+  why, then continuing with the universal set rather than stopping the hub.
+- **Cache to the executor's workspace** (`writefile`) when file functions
+  exist, so a CDN outage does not stop the hub; feature-detect them.
+
+## Versions
+
+Put a version string in the loader and show it in the window subtitle. When
+players report a bug, the version is the first question, and a hub without
+one cannot answer it.
+
+## Shared state
+
+Features communicate through the session or the UI's `Flags`, never through
+new globals. `getgenv()` holds exactly one entry per hub: its session.
+
+## Unsupported games
+
+When the GameId is not in the table, say so once, in the window: "No game
+features for this experience; universal features are on the Universal tab."
+Do not guess which game module might work.
+
+---
+
+## Source: .claude/skills/roblox-executor-scripting/references/compatibility.md
+
+# Working across executors
+
+Scripts run on executors the author has never used. The only honest way to
+support them is to check capabilities at run time and report what is
+missing, instead of assuming the author's executor is everyone's.
+
+## Detect once, assert once
+
+Bind every executor function the script calls in one `local` statement and
+assert on it. The statement is then the capability list, and it cannot drift
+from the code the way scattered `if typeof(x)` checks do:
+
+```lua
+local hookmetamethod, getnamecallmethod = hookmetamethod, getnamecallmethod
+assert(hookmetamethod and getnamecallmethod, "this feature needs hookmetamethod and getnamecallmethod")
+```
+
+Check each name with `node tools/bin/verify-executor-api.mjs <name>` before
+writing it; the sUNC reference in `roblox-executor/references/api/` is the
+ground truth.
+
+## Optional capabilities
+
+Some features degrade instead of failing: configs without file functions, a
+protected GUI without `gethui`. For those, detect and tell the player, once,
+what is off:
+
+```lua
+local canSave = typeof(writefile) == "function" and typeof(readfile) == "function"
+if not canSave then
+	notify("Saving is off: this executor has no file access")
+end
+```
+
+A fallback that silently does nothing is a bug report waiting to happen.
+
+## Name differences
+
+The one legitimate fallback is the same function under two names, resolved
+once at the top:
+
+```lua
+local getHiddenGui = gethui or get_hidden_gui
+assert(getHiddenGui, "needs gethui")
+```
+
+Never fall back from one value layer to another (an upvalue, then a
+property): those are different values, and the script no longer knows what
+it changed.
+
+## Identifying the executor
+
+`identifyexecutor()` returns a name and sometimes a version. Use it for bug
+reports and logs, not to branch behaviour: two builds of the same executor
+can differ, and a branch on the name hides the real capability check.
+
+## Claims
+
+"Works on every executor" is never true and never checkable. Say which
+functions the script needs, which executor it was run on if any, and what
+happens where a function is missing.
+
+---
+
+## Source: .claude/skills/roblox-executor-scripting/references/remotes-from-evidence.md
+
+# Remote calls from evidence
+
+A remote call written from a guess sends the wrong arguments, gets rejected
+by the server, and looks to the user like "the script does nothing". Every
+remote call in a script comes from one of two pieces of evidence.
+
+## Evidence one: the call site
+
+In the game's decompiled client code, find where the game itself fires the
+remote. Copy from the call site, not from the handler you imagine:
+
+- the exact remote name and its path (`ReplicatedStorage.Remotes.Collect`);
+- `FireServer` or `InvokeServer`;
+- the argument count, order and types at that call, including tables and
+  their keys;
+- the client-side checks around the call (a cooldown, a distance check);
+  the server probably repeats them;
+- where each argument comes from (a constant, the player's position, an
+  id from a config table).
+
+Varargs and multiple returns can change the real argument count; check the
+call, not the decompiler's variable names (`v14` is a label, not a fact).
+`roblox-executor/references/technique/decompiled-source.md` has the rules
+for reading dumps.
+
+## Evidence two: a logged call
+
+When the source is missing or unreadable, log what the game sends while the
+player does the action by hand. `roblox-executor/references/templates/script-templates.md`
+has a remote logger. Log, perform the action once, and copy the arguments.
+
+## What survives the trip
+
+Arguments are serialised. What arrives on the server is not always what was
+sent:
+
+| Sent | Arrives as |
+|---|---|
+| numbers, strings, booleans, nil | the same |
+| Vector3, CFrame, Color3 and other datatypes | the same |
+| an array | an array, but a `nil` hole cuts it short |
+| a table with string keys | the same keys |
+| a table with both array and string keys | the string keys are dropped |
+| an Instance the server can see | the same Instance |
+| an Instance only this client has | nil |
+| a function, a thread | nil |
+| a table's metatable | gone |
+
+## Calling it
+
+- **Prefer calling the game's own function** that fires the remote. It
+  builds every field the dump did not show.
+- **Respect the game's rate.** Firing faster than the game's own client
+  fires gets throttled, kicked, or flagged. Match the cadence the call site
+  shows.
+- **Treat the server as the judge.** A remote call is a request. Check the
+  result in the game (the coin count changed, the item appeared) before
+  calling a feature working.
+
+---
+
+## Source: .claude/skills/roblox-hub-library/SKILL.md
+
+---
+name: roblox-hub-library
+description: Building or improving a script hub UI library like WindUI, Rayfield or Obsidian - windows, tabs, elements, themes, configs, mobile - from the tested HubKit. Use for any hub UI.
+---
+
+# Building a script hub UI library
+
+A hub library is the part of a script hub the player touches: the window,
+the tabs, every toggle and slider, the notifications, the saved settings.
+Players judge a hub by it before any feature runs. This skill is for three
+jobs, in this order of frequency:
+
+1. **Build a hub UI** for someone's features: use a library, usually HubKit.
+2. **Improve an existing hub** (theirs, or one built on WindUI, Rayfield,
+   Obsidian or Linoria): audit it, rank what is wrong, fix the smallest thing
+   that matters most.
+3. **Build a library** from scratch, or extend one with a new element.
+
+The worked example for all three is **HubKit** in `library/hub-kit/` at the
+plugin root: 33 ModuleScripts in folders, a one-file bundle, an example hub
+that uses every element, and 107 headless behaviour assertions. Read its
+`README.md` first; it is the contract this skill refers to.
+
+## Decide what you are building
+
+| The request | The answer |
+|---|---|
+| "Make a hub for these features" | HubKit, bundled, with the user's features wired to elements. Paste `library/hub-kit/example/Example.luau` as the shape |
+| "Use WindUI / Rayfield / Obsidian" | That library. Its API, not HubKit's; `roblox-executor/references/ui/ui-libraries.md` has status and loading |
+| "Improve my hub", a pasted hub script | [improve-existing-hub.md](references/improve-existing-hub.md), then fix in place |
+| "Make my own UI library", "like WindUI" | HubKit's folder layout and [architecture.md](references/architecture.md), adapted to their name and style |
+| "Add a colour picker to my library" | [element-contract.md](references/element-contract.md), "Adding an element" |
+| Two or three toggles | No library. A ScreenGui with three rows is fifty lines |
+
+Never port a working hub to a different library for looks. Fix the look in
+the library it uses.
+
+## The architecture, in one screen
+
+```
+init            HubKit:CreateWindow, :Notify, :SetTheme, :Unload
+Core/           New, Theme, Trove, Signal, Motion, Drag, Config, Mount, Icons
+Themes/         palettes by role; every text role 4.5:1 on its surfaces
+Components/     Window, Tab, Section, Popup, Dialog, Notifications, OpenButton, SettingsTab
+Elements/       init (the registry), Row (shared layout and states), one file per element
+```
+
+Four decisions make it a library rather than a script:
+
+- **A registry, not methods written per container.** `library/hub-kit/src/Elements/init.luau`
+  gives every Tab and Section `:Toggle`, `:Slider` and the rest from one
+  table, and does what every element needs once: register the `Flag`, make
+  the row searchable, undo both on destroy.
+- **One Row for every element.** Title, description, control slot, 44 px
+  minimum height and five of the six states live in `Row.luau`, so a new
+  element cannot forget the focus ring or the disabled look.
+- **Colours are roles, not values.** `New("Frame", { Theme = {
+  BackgroundColor3 = "surface" } })` binds the property to a role, so a
+  theme switch recolours what is already on screen.
+- **Everything is owned by a Trove.** A window's trove holds every
+  connection, instance and popup it made; `Unload` is one `clean()`, and the
+  test suite proves it by counting input connections back to zero.
+
+## What every hub gets right
+
+Ranked by how often a hub fails on it. Each links to where HubKit does it.
+
+1. **Input on every device.** `Activated`, never `MouseButton1Click`; 44 px
+   rows; a draggable **Open** chip when the window is hidden, because a phone
+   has no RightShift; D-pad steps a selected slider through
+   `ContextActionService`; the menu key ignores typing (`gameProcessed`).
+   `roblox-ui-interaction` has the full contract.
+2. **Fits every screen.** Size by scale, `UISizeConstraint` from 300 x 240 to
+   760 x 540, and a compact mode below 520 px that folds the sidebar to icons.
+   Popups live in their own ScreenGui and are clamped on screen.
+   `roblox-ui-viewport` has the numbers.
+3. **Unload and rerun.** One unload path, an `OnUnload` signal for the hub's
+   own features, and a `getgenv()` handle so running the script twice replaces
+   the first hub instead of stacking two.
+4. **Honest configs.** Feature-detect `writefile` and friends once; without
+   them, say saving is off. `Set` runs the Callback, so loading a config starts
+   the saved features.
+5. **Nothing hover-only.** Descriptions are a second line under the title, not
+   a tooltip a touch screen never shows.
+6. **The window never passes clicks to the game.** The root frame is
+   `Active`; otherwise a press on the hub fires the game's click handlers,
+   and a click-teleport feature teleports the player.
+7. **No per-frame work.** Drag and sliders follow input events. A hub that
+   runs `RenderStepped` for its UI costs frame time in every game it runs in.
+8. **Protected parent with a Studio fallback.** `gethui()` when present,
+   `PlayerGui` otherwise, so the same file is testable in Studio.
+
+## What makes a hub look generated
+
+The hub-specific tells, and what replaces each, are in
+[hub-anti-slop.md](references/hub-anti-slop.md). The short list: a fake
+loading screen with a progress bar that measures nothing, rainbow or animated
+gradient borders, emoji or font glyphs as icons, a different accent colour
+per tab, 10 px text, a "Made by" watermark over content, a notification on
+every toggle, and a key system that gates nothing.
+
+## Building a library from scratch
+
+Order matters; each step is testable before the next exists.
+
+1. `Core/` first: Signal, Trove, Theme, New, Motion. No UI yet.
+2. One palette with every role, and a contrast check for each text pair.
+3. `Row` and one element (Toggle), with a test that activates it.
+4. The registry, then the other elements one at a time, each with tests.
+5. Window, Tab, Section; then Popup, Dialog, Notifications, OpenButton.
+6. The bundler, the example, and the README with the element table.
+
+Run after every step: `node tools/bin/lint-roblox-ui.mjs`,
+`node tools/bin/lint-luau-slop.mjs` and `node tools/bin/lint-luau-format.mjs`
+on the folder, then the behaviour tests.
+
+## Delivering a hub library
+
+A library is folders, and folders do not paste into a chat. Deliver:
+
+- the **folder tree** with every file, each in its own code block under its
+  path, as in the Elements folder of `library/hub-kit/src`;
+- the **bundle**, one file, for executors (`node tools/bin/build-hub-kit.mjs`
+  for HubKit; for their own library, the same resolver or darklua, see
+  [architecture.md](references/architecture.md));
+- the **example** that uses every element, and how to run it in an executor
+  and in Studio;
+- what was checked and what was not. The stubs prove callbacks and state;
+  only Roblox proves pixels.
+
+## Checks
+
+```bash
+node tools/bin/build-hub-kit.mjs --check
+node --test tools/tests/hub-kit.test.mjs
+node tools/bin/lint-roblox-ui.mjs library/hub-kit/src
+node tools/bin/check-file.mjs <their-hub.luau>
+```
+
+## Works with
+
+- `roblox-ui`: layout, palettes and the countable rubric every hub is held to.
+- `roblox-ui-components`: tested recipes when the user picks style codes for the hub's controls.
+- `roblox-ui-interaction`: the input contract behind rows, sliders, keybinds and the Open chip.
+- `roblox-ui-viewport`: the size bounds, compact mode and popup clamping.
+- `roblox-ui-motion`: the three timings and Reduce Motion.
+- `roblox-executor-features`: the tested features a hub's toggles switch on and off.
+- `roblox-executor-scripting`: loaders, game routing and rerun safety around the UI.
+- `roblox-executor`: `gethui`, file functions and library loading.
+- `roblox-improve`: ranking what to fix first in an existing hub.
+- `roblox-code-craft`: the ceremony budget for the hub's own code.
+
+---
+
+## Source: .claude/skills/roblox-hub-library/references/architecture.md
+
+# Hub library architecture
+
+How HubKit (`library/hub-kit/` at the plugin root) is put together, and why,
+so the same structure can be rebuilt under another name or extended without
+breaking what it guarantees. WindUI (`Footagesus/WindUI`, MIT) uses a similar
+split into `components/`, `elements/`, `modules/` and `themes/`; nothing here
+copies its code.
+
+## Layers
+
+| Layer | Files | Knows about |
+|---|---|---|
+| Entry | `init.luau` | Window, Notifications, Theme, Config, Elements |
+| Components | `Window`, `Tab`, `Section`, `Popup`, `Dialog`, `Notifications`, `OpenButton`, `SettingsTab` | Core, Elements, each other downward |
+| Elements | `init` (registry), `Row`, one file per element | Core, Popup |
+| Core | `New`, `Theme`, `Trove`, `Signal`, `Motion`, `Drag`, `Config`, `Mount`, `Icons` | nothing above Core |
+| Themes | one palette per file | nothing |
+
+Requires only point down or sideways within a layer. `Section` requires
+`Elements`, and `Elements` never requires `Section`; a cycle would make the
+bundle's loader assert.
+
+## The container interface
+
+A Tab and a Section are both *containers*. Elements are written against
+these fields and nothing else, which is why one registry serves both:
+
+```lua
+container = {
+	kit = kit, -- shared state: windows, the open popup, capturing, toasts
+	window = window, -- Flags, config, applySearch
+	frame = listFrame, -- where rows are parented; has a UIListLayout
+	trove = trove, -- owns everything this container makes
+	entries = searchEntries, -- rows the window search filters
+	section = sectionOrNil, -- so search can hide a section with no matches
+	nextOrder = function(self)
+		self.order += 1
+		return self.order
+	end,
+}
+```
+
+`Elements.install(container)` adds one method per element. Each method calls
+`create`, which:
+
+1. rejects a `Flag` that is already used, **before** building anything, so a
+   rejected element leaves no half-built row;
+2. calls the element's `new(container, options)`;
+3. registers the flag with the window's config and `Flags` table;
+4. adds a search entry;
+5. puts the undo for 3 and 4 in the element's own trove.
+
+## Ownership and teardown
+
+Every instance and connection is added to a trove, and troves nest:
+window, then tab, then element or section, then popup. `Trove:clean()`
+releases newest first, so a connection on a frame is released before the
+frame. A Trove's `clean` also handles threads (`task.cancel`), Signals, nested
+troves and plain functions.
+
+Two teardown details that matter in an executor:
+
+- **A thread cannot cancel itself.** A toast's dismiss timer may be the
+  thread running the dismissal; HubKit checks `coroutine.running()` before
+  `task.cancel`.
+- **Instances are not weak keys.** Theme bindings hold instances strongly
+  and release each on its `Destroying` event. A weak-keyed table of Instances
+  can lose an entry while the instance is still on screen, and that instance
+  then misses every theme switch.
+
+The test suite counts `UserInputService` connections before building a hub
+and after unloading it, and fails if they differ.
+
+## Rerun safety
+
+Running a hub script twice is the most common way a player "breaks" it:
+two windows, two sets of connections, features toggled by both. The hub,
+not the library, keeps a handle in `getgenv()` and unloads the previous
+session first:
+
+```lua
+local session = if typeof(getgenv) == "function" then getgenv() else _G
+if session.MyHub then
+	session.MyHub:Unload()
+end
+session.MyHub = Window
+Window.OnUnload:Connect(function()
+	if session.MyHub == Window then
+		session.MyHub = nil
+	end
+end)
+```
+
+`_G` is the Studio fallback, so the same script is testable there.
+
+## Where the ScreenGuis live
+
+`library/hub-kit/src/Core/Mount.luau` returns `gethui()` when the executor has it and the local
+player's `PlayerGui` otherwise. Every kit ScreenGui sets `ResetOnSpawn =
+false`, `ScreenInsets = CoreUISafeInsets` and its own `DisplayOrder`:
+window 100, popups 110, dialogs 120, notifications 130. Separate ScreenGuis
+keep a dropdown from being clipped by the tab's ScrollingFrame and keep a
+dialog above every popup.
+
+## Search
+
+The window search filters the selected tab's entries by a lower-cased
+"title description" string with a plain `string.find`. While a query is
+active, a collapsed section still shows its matching rows, a section with
+no matches hides, and an empty-state line names the query. Clearing the
+box restores the collapsed state.
+
+## Bundling
+
+Executors run one file, so the folder is bundled. HubKit's
+`tools/bin/build-hub-kit.mjs`:
+
+- resolves each `require(script...)` statically with Rojo's layout rules
+  (`library/hub-kit/src/Elements/init.luau` *is* `Elements`, so
+  `script.Toggle` inside it is the Toggle module beside it);
+- rejects anything it cannot resolve: a variable, a string path, a
+  `Parent` above the root;
+- wraps each module in a function in one table, loads them on first
+  require, caches the result and asserts on a require cycle;
+- has `--check`, which CI runs so the bundle can never trail the sources.
+
+For a library that uses string requires (`require("./Toggle")`), darklua's
+`bundle` rule with `require_mode: "path"` does the same job; WindUI builds
+that way.
+
+## Studio and executor from one source
+
+The same sources run as a ModuleScript tree in Studio (Rojo, or the bundle
+pasted into one ModuleScript) and as the bundle in an executor. Three things
+make that true, and none of them is a silent fallback:
+
+- `Mount` picks `gethui()` or `PlayerGui`;
+- `Config` reports saving as off when file functions are missing;
+- the example requires `ReplicatedStorage.HubKit` when it exists and
+  otherwise loads the bundle from its URL.
+
+---
+
+## Source: .claude/skills/roblox-hub-library/references/element-contract.md
+
+# The element contract
+
+Every HubKit element returns a handle with the same shape, so hub code never
+needs to know which element it holds. A library built from this skill should
+keep the same contract, even under different names.
+
+## The handle
+
+| Member | What it is |
+|---|---|
+| `Get()` | the current value (absent on Button, Paragraph, Divider) |
+| `Set(value)` | changes the value, redraws, fires `Changed` and runs the Callback |
+| `Changed` | a Signal; `Changed:Connect(function(value) ... end)` |
+| `SetTitle(text)`, `SetDescription(text?)` | rewrites the row's two lines |
+| `SetDisabled(disabled)` | `Interactable` off, title muted, no hover |
+| `Destroy()` | releases the row and everything it connected |
+| `Frame` | the row instance, for layout tricks the kit does not cover |
+| `Encode`, `Decode` | optional; how a flagged value is saved and loaded |
+
+## When a Callback runs
+
+- **On every `Set`, even to the same value.** Loading a config calls `Set` on
+  each flag, and a saved "Fly on" must start fly even when the toggle's
+  Default was already on.
+- **Not when the element is created**, with one exception: a Toggle built
+  with `Default = true` runs its Callback once, deferred, because a switch
+  shown on must mean the feature is on. A Slider's Default is only a number
+  on screen; writing it to the game on creation would overwrite a value the
+  game set (a WalkSpeed of 20 reset to 16).
+- **During a drag**, a Slider calls back on every snapped step. A
+  ColorPicker calls back when the drag ends, because a colour change often
+  rebuilds something (an ESP) and sixty rebuilds a second is a stall.
+- **For a Keybind**, when the bound key is pressed and the press was not
+  consumed by the game (typing in chat). `Mode = "Hold"` also calls back with
+  `false` on release.
+
+## Values and how they are saved
+
+| Element | Value | Saved as |
+|---|---|---|
+| Toggle | boolean | boolean |
+| Slider | number, snapped to `Step`, clamped to `Min`..`Max` | number |
+| Dropdown | string or nil; an array in `Values` order for `Multi` | string or array |
+| Input | string; number when `Numeric` | string |
+| Keybind | `Enum.KeyCode` or nil | the KeyCode's Name |
+| ColorPicker | Color3 | six hex digits |
+
+Decoding a KeyCode walks `Enum.KeyCode:GetEnumItems()` for the saved name, so
+an unknown name loads as no key rather than erroring.
+
+## States
+
+`Row.button` draws five states for every button row; the element draws the
+sixth, *selected*, its own way.
+
+| State | How it shows |
+|---|---|
+| rest | the `raised` role |
+| hover | `hover`, 0.12 s |
+| press | `stroke`, the next step up |
+| focus (keyboard, gamepad) | a 2 px inner ring in `focus` |
+| disabled | `Interactable = false`, 40% transparent, muted title |
+| selected | Toggle: knob moves and track turns `accent`. Dropdown: the value in the slot. Tab: filled, bold, accent icon |
+
+Selected is never colour alone: the knob moves, the text changes weight, or
+a check mark appears.
+
+## Adding an element
+
+A Stepper (minus, value, plus) as the worked case:
+
+1. Add the module to `src/Elements/` with `Stepper.new(container, options)`.
+2. Build on `Row.button(container, options)` if the whole row does one thing,
+   or `Row.frame(container, options)` if it holds controls of its own. Put
+   the controls in `row.slot`, or in `row.below` for a stacked element.
+3. Give the handle `Get` and `Set`; in `Set`, redraw, then
+   `self.Changed:Fire(value)`, then the Callback.
+4. Connect everything through `row.trove:connect(...)`, including theme
+   changes if the element colours anything by state.
+5. Add one line to `REGISTRY` in `library/hub-kit/src/Elements/init.luau`. Every Tab and
+   Section now has `:Stepper({...})`; Flag, config and search come free.
+6. Add assertions to `library/hub-kit/tests/hub-kit.luau`: value, Callback, Flag, disabled,
+   destroy. Rebuild the bundle and run the tests.
+
+What an element must not do: create its own ScreenGui (use `Popup`), connect
+to `RunService` for anything but an active drag, colour anything with a
+literal instead of a role, or call a Callback from inside `new`.
+
+---
+
+## Source: .claude/skills/roblox-hub-library/references/improve-existing-hub.md
+
+# Improving an existing hub
+
+The user has a hub and wants it better. Most of the value is in finding the
+three things that matter and fixing them without breaking the forty that work.
+
+## Order of work
+
+1. **Read before judging.** Which library does it use (WindUI, Rayfield,
+   Obsidian, Linoria, its own)? Which parts are the library's and which are
+   the user's? Library code is fixed upstream or left alone; the user's code
+   is where fixes go.
+2. **Measure.** Run `node tools/bin/check-file.mjs <hub.luau>` (or
+   `python tools/py/check_file.py`). Quote the counts; they are the evidence
+   the reply rests on.
+3. **Run the audit below** and write each failure as: where, what happens to
+   the player, the fix.
+4. **Rank** with `roblox-improve`: anything that loses the player's input,
+   leaks, or breaks on a phone comes before anything that looks dated.
+5. **Fix the top three in place**, the smallest region each, and repost the
+   whole file. Say what the rest of the list is and offer it.
+
+Before a second round on the same complaint, read the attempt ledger
+(`roblox-attempt-memory`); a hub that "still doesn't work" after a fix is a
+different cause, not the same fix again.
+
+## The audit
+
+| Check | How to see it | Usual fix |
+|---|---|---|
+| Runs twice cleanly | Execute it twice: two windows, or doubled callbacks | A `getgenv()` session handle that unloads the previous run |
+| Unloads completely | Unload, then press its keybinds and move the mouse | One Trove; `OnUnload` switches features off |
+| Opens on a phone | Hide it on a touch device with no keyboard | An on-screen Open chip, draggable, tap to reopen |
+| Fits 640 x 360 | Studio Device Emulator, landscape phone | Scale sizing, a `UISizeConstraint`, a compact layout |
+| Buttons fire on touch and gamepad | `MouseButton1Click` in the source | `Activated` |
+| No clicks through the window | Click empty window space while click-teleport is on | `Active = true` on the root frame |
+| Menu key ignores chat | Type the key's letter in chat | Check `gameProcessed` before toggling |
+| Keybind capture does not also toggle | Rebind to the menu key | A capturing flag the menu key respects |
+| Dropdown not clipped | Open the last dropdown on a long page | The list in its own ScreenGui, clamped on screen |
+| Config honesty | Run where `writefile` is missing | Detect once; say saving is off |
+| Config actually restores | Save with Fly on, rejoin, load | `Set` runs the Callback on load |
+| No UI work per frame | `RenderStepped` or `while true do` driving UI | Input and property events |
+| Text legible | TextSize under 12, `TextScaled` on sentences | 12 px floor, the type scale |
+| Colour not the only signal | Toggle on and off look alike in greyscale | Move the knob; add a check or weight change |
+| One accent colour | Count distinct accent colours | One accent role in the theme |
+
+## Library-specific notes
+
+- **Any third-party library**: check the two things libraries most often
+  leave to the hub, before assuming either works: how a hidden window comes
+  back on a phone, and whether loading a saved config runs the callbacks.
+  Test both in the user's executor; if one fails, add the missing piece in
+  the hub's code rather than patching the library's source.
+- **Linoria and Obsidian** keep values in `Toggles` and `Options` tables.
+  Their config system is the reason to use them; do not replace it.
+- **A home-made library** with a helper per element (`makeToggle`,
+  `makeSlider`) usually repeats hover and focus code in every helper and
+  misses it in two. Move the shared parts into one Row, as HubKit does.
+
+## What not to change
+
+Do not rename the user's flags (it breaks their saved configs), change the
+menu key default, restyle what they did not complain about, or move them to
+a different library. The diff is the changelog; keep it small enough that
+the user can see what changed.
+
+---
+
+## Source: .claude/skills/roblox-hub-library/references/hub-anti-slop.md
+
+# What makes a hub look generated
+
+These are the tells that make a player close a hub before trying a feature,
+and what replaces each. They add to `roblox-ui/references/anti-slop-catalog.md`,
+which covers game UI in general.
+
+| Tell | Why it reads as generated | Instead |
+|---|---|---|
+| A loading screen with a progress bar that fills on a timer | It measures nothing and delays everything | Build the window; show a toast if loading a library takes over a second |
+| Rainbow, animated or gradient window borders | Motion that carries no information, and it costs a frame update | A 1 px stroke one step above the surface |
+| Emoji or font glyphs as tab icons ("⚔", "★") | They sit on the text baseline and change weight between fonts | Image icons from a verified set (`library/hub-kit/src/Core/Icons.luau`) |
+| A different accent colour per tab | Colour stops meaning "on" or "selected" | One accent role for the whole hub |
+| 10 px text to fit more rows | Unreadable on a phone | 12 px floor, sections and search to fit more |
+| "Made by" watermark over the content | Takes space from the player's controls | The credit in the subtitle or a Paragraph in Settings |
+| A notification on every toggle | Twenty toasts nobody reads, and real errors get lost | Notify on results the player cannot see: saved, failed, loaded |
+| A key system that gates nothing | A step between the player and the hub with no purpose | Nothing; or a real one the user asked for |
+| Every label in capitals, or every one ending in "!" | Shouting | Sentence case, labels that name the thing |
+| Tabs named Main, Misc, Other, Extra | The player cannot guess where anything is | Name tabs by what is in them: Movement, Visuals, Combat |
+| Toggles that say "Enable X" | The switch already says enable | The feature's name: "Fly", "Infinite jump" |
+| Blur or glass behind the window | Heavy, and unreadable over bright maps | A solid surface; transparency only on the dialog scrim |
+| Sounds on hover | Noise on every mouse move | Silence, or one soft click on press |
+| Success prints in the console | "Hub loaded!" says nothing the window does not | Nothing; the Output stays for errors |
+
+## Copy
+
+Rows read as the player's intent. Title is the feature, description is the
+one fact the player needs before switching it on:
+
+- "Fly" with "WASD to steer, Space and Shift to climb"
+- "Walk speed" with "Applied again after every respawn"
+- "Auto collect" with "Only coins within 60 studs"
+
+Buttons that act say what they do: "Rejoin server", "Copy position",
+"Unload". A dialog's buttons name the outcome ("Delete", "Keep"), never
+"Yes", "No" or "OK".
+
+---
+
+## Source: .claude/skills/roblox-improve/SKILL.md
+
+---
+name: roblox-improve
+description: Reviewing Roblox code, features or UI and ranking improvements by impact, each with evidence and the exact fix. Use for review this, improve it, what should I add.
+---
+
+# Reviewing and suggesting improvements
+
+"Can you improve this?" gets one of two bad answers: a list of twenty generic
+tips that fit any script, or a rewrite nobody asked for. The useful answer
+is three to five changes, ranked, each with the line it is about, what goes
+wrong for a player, and the fix. This skill is how to find those.
+
+It covers three kinds of request:
+
+- **Code**: "review this", "is this good", "make it better", "optimise it".
+- **Features**: "what should I add", "ideas for my game or hub".
+- **UI and UX**: "does this look good", "how do I make it feel better".
+
+## The method
+
+1. **Establish what it is.** Game server code, game client code, a
+   ModuleScript, an executor script, a hub. Who uses it, and which side owns
+   each value it touches (the first question in the router). A review that
+   gets the side wrong gets every finding wrong.
+2. **Measure before reading.** Run `node tools/bin/check-file.mjs <file>` or
+   `python tools/py/check_file.py <file>` and keep its counts. Counts are
+   evidence; "this looks messy" is not.
+3. **Read for defects by category**, in the order in
+   [review-checklist.md](references/review-checklist.md): correctness,
+   security and trust, data, lifetime and leaks, performance, input and fit,
+   then code craft.
+4. **Gate every finding.** Before it goes in the reply it must pass all four:
+   - both sides of any paired logic traced, and they disagree;
+   - the odd shape is not deliberate (checked the call sites and comments);
+   - a concrete failure: these inputs, this state, this wrong result;
+   - the API claim checked against the dump, not memory.
+   What fails the gate is not reported. The common false alarms are in
+   [false-positives.md](references/false-positives.md).
+5. **Give each finding a severity**: *Blocker* (exploitable, loses data, or
+   leaks without bound), *Correctness* (a real bug with a scenario), or
+   *Advisory* (style, a micro-optimisation, a preference). Advisory items are
+   offered, never presented as defects.
+6. **Rank by harm to the player, then by size of fix.** A one-line fix to a
+   Blocker goes first; a rewrite for an Advisory goes last or nowhere.
+7. **Suggest features only from evidence**: the game's loop, where players
+   get stuck, what the hub lacks against its own purpose.
+   [feature-suggestions.md](references/feature-suggestions.md) has the method
+   and the lists.
+
+## The reply
+
+```
+Three changes, most important first.
+
+1. Blocker - `ShopService.luau:42`: the server trusts the price the client sends,
+   so an exploiter buys anything for 0 Coins. Read the price from ItemConfig on
+   the server. (8 lines, whole function below.)
+2. Correctness - `Toggle.luau:88`: the connection made on every respawn is never
+   disconnected; after ten deaths the toggle fires ten times. Store it and
+   disconnect it in the CharacterRemoving handler.
+3. Correctness - on a 640 x 360 phone the shop panel is 720 px wide and runs off
+   screen. Scale width 0.9 with a UISizeConstraint max of 720.
+
+Also worth doing, smaller: [two or three one-liners].
+Checked: check-file (0 errors, 2 warnings, quoted), lint-roblox-ui (26/32).
+Not checked: a live server with real latency.
+```
+
+Then offer to apply them. When the user says yes, apply in severity order,
+smallest region each, and repost whole files.
+
+## What not to do
+
+- **No generic advice.** "Add comments", "use better names", "consider
+  performance" with no line and no failure is noise.
+- **No findings from memory of an API.** Verify with
+  `node tools/bin/verify-api.mjs`, or say it is unverified.
+- **No rewrite for style.** The user's conventions win (`roblox-code-craft`,
+  "match the file you are editing").
+- **No inflated severity.** An Advisory dressed as a Blocker costs trust the
+  real Blocker needs.
+- **Never claim a score or a test that did not run.** Name each check and
+  quote its output; say which were not run.
+
+## UI and UX reviews
+
+A UI review uses the counted rubric (`node tools/bin/lint-roblox-ui.mjs`),
+then the checks no linter can count, in
+[ux-review.md](references/ux-review.md): the first thirty seconds, feedback
+for every action, the six states, copy that names things, the phone pass,
+and how an action *feels* (hit feedback, timing, sound).
+
+## Works with
+
+- `roblox-code-craft`: what well-written Luau looks like, and the slop tells to remove.
+- `roblox-game-security`: validating remotes and server authority behind every security finding.
+- `roblox-performance`: measuring before calling anything slow.
+- `roblox-ui`: the rubric and design direction behind UI findings.
+- `roblox-ui-interaction`: the input contract behind "the button does nothing".
+- `roblox-game-design`: loops and retention behind feature suggestions for games.
+- `roblox-hub-library`: the audit for an existing hub's UI.
+- `roblox-executor-reliability`: the regression matrix behind executor feature findings.
+- `roblox-debugging`: when a review turns into finding one specific bug.
+- `roblox-attempt-memory`: recording which suggestions were applied and what happened.
+
+---
+
+## Source: .claude/skills/roblox-improve/references/review-checklist.md
+
+# Review checklist
+
+Read in this order. Earlier categories hurt players more when they fail, so
+a review that runs out of time has covered the ones that matter.
+
+## 1. Correctness
+
+- Nil after a yield: the player left, the character respawned, the instance
+  was destroyed between the check and the use.
+- `WaitForChild` on a name that does not exist, or on something the server
+  never replicates (`ServerStorage`, `ServerScriptService`).
+- A value read once at start-up that the game changes later.
+- Numbers from outside the file: NaN fails every comparison, so a `>` check
+  lets it through. Test `value == value` (false only for NaN) and a range
+  that excludes infinity before using the number.
+- `if value then` on a count, balance or string where 0 or "" is a real case.
+- Tables sent through remotes: mixed keys, nil holes, metatables and
+  functions do not survive the trip.
+- Deprecated APIs in the code being changed (`wait`, `spawn`, `BodyVelocity`).
+
+## 2. Security and trust (game code)
+
+- Every `OnServerEvent` and `OnServerInvoke`: type, range, ownership and rate
+  checked before anything happens.
+- Prices, damage, cooldowns, positions and rewards computed on the server,
+  never taken from the client.
+- `ProximityPrompt` and `ClickDetector` grants re-checked on the server:
+  distance, state, cooldown.
+- Attributes on a player carry only what every client may see.
+- Admin commands check the caller's identity on the server, not a client flag.
+
+## 3. Data
+
+- `UpdateAsync` for anything derived from the old value; session locking or
+  ProfileStore; `BindToClose` saves; schema versioned.
+- A failed load never falls through to defaults on a path that saves.
+- Receipts idempotent through a `PurchaseId` ledger.
+
+## 4. Lifetime and leaks
+
+- Every `Connect` has an owner that disconnects it, or it lives on an
+  instance that is destroyed with it.
+- Per-player tables cleared on `PlayerRemoving`; per-life state cleared on
+  `CharacterRemoving`.
+- Threads from `task.delay` and `task.spawn` cancelled on teardown.
+- Executor scripts: rerun replaces the old session; unload restores what
+  was changed and removes hooks and Drawings.
+
+## 5. Performance
+
+Only on a hot path: `Heartbeat`, `RenderStepped`, `PreSimulation` bodies,
+tight loops. Allocation, `FindFirstChild` chains and `GetDescendants` there
+are findings; the same in `PlayerAdded` or a purchase handler are not.
+Per-frame work that could be an event is a finding anywhere. Claim a speed-up
+only with a before and after measurement.
+
+## 6. Input and fit (anything that draws)
+
+- `Activated` rather than `MouseButton1Click`; 44 px targets; nothing
+  hover-only; gamepad selection reaches every control.
+- Fits 640 x 360 without clipping; bounded on ultrawide.
+- Loading, empty and error states exist.
+
+## 7. Code craft
+
+The ceremony budget, names from the game's vocabulary, comments that carry
+facts, one `pcall` per boundary. Mostly Advisory unless it hides a bug (a
+`pcall` swallowing the error that explains the report).
+
+## Executor scripts, additionally
+
+- Every executor function feature-detected in one bind with one assert.
+- One value layer per job; no fallback chain across globals, upvalues and
+  properties.
+- Search by value or constant, never by index; restore the captured value,
+  not a retyped literal.
+- The regression matrix from `roblox-executor-reliability`: toggle twice,
+  respawn, rerun, unload twice, chat typing, phone.
+
+---
+
+## Source: .claude/skills/roblox-improve/references/false-positives.md
+
+# False positives: what not to flag
+
+A review loses the user's trust fastest by reporting something that is not
+wrong. These shapes look like defects and usually are not. Adapted from the
+severity taxonomy and guardrails in `andrian-syh/roblox-best-practices-skill`
+(MIT), rewritten for this stack.
+
+## Near-miss pairs
+
+Severity follows the context, not the pattern.
+
+| Shape | Not a finding when | A finding when |
+|---|---|---|
+| Attribute holding player state | Public display state (a nameplate, a round timer) | Private state an exploiter can use (balance, cooldowns, a damage multiplier): Blocker |
+| `SetAsync` | One code path writes a per-player key | Several servers write the same key: Blocker |
+| Connection made per spawn | Cleared in `CharacterRemoving` or on an instance destroyed with the character | The owner outlives the object and nothing disconnects it: Blocker if unbounded |
+| Deprecated API | Untouched code far from the change: mention at most | On the path this change modifies: Correctness, with the replacement |
+| No validation | A server-side BindableEvent or module call | A RemoteEvent, RemoteFunction or teleport data: Blocker |
+| `while task.wait(n)` | A scheduled cadence (autosave, AI ticks) | Polling a condition a signal already reports: Correctness |
+| `pcall` around a call | A boundary: DataStore, HTTP, `require`, another script's code | Deterministic code, or a result never checked: Advisory |
+| A remote handler that returns silently on bad input | Always fine; silence is often deliberate | Never a finding on its own |
+
+## Things that are not leaks
+
+- Connections on an instance that is later destroyed: `Destroy` disconnects
+  them.
+- `Once` listeners, which disconnect after firing.
+- Connections on the character's own parts: they die with the character.
+- Anything in a Trove, Janitor or Maid with a teardown path.
+
+## Things that are not slow
+
+A `GetChildren` scan, a table built, or a deep lookup in `PlayerAdded`, a
+purchase handler, round setup or module load. They run once per event.
+"Hot" means per frame or per tight-loop iteration, and the allocation can
+actually be hoisted.
+
+## Things that are not wrong
+
+- An API newer than your memory. Check the dump before calling it invented.
+- A project's own structure (Rojo, Knit, a custom framework) that differs
+  from this stack's defaults.
+- Tutorial-shaped code that works and that the user did not ask to change.
+- Missing type annotations in a project that does not use `--!strict`.
+
+## The four-step gate
+
+Every finding passes all four or is not reported:
+
+1. Both sides of paired logic traced (a writer and its reader, a check and
+   its use), and they disagree.
+2. The shape is not intentional: call sites and comments checked.
+3. A concrete failure: these inputs, this state, this wrong result.
+4. The API verified against the dump or the live docs.
+
+---
+
+## Source: .claude/skills/roblox-improve/references/feature-suggestions.md
+
+# Suggesting features
+
+A good suggestion names who it is for, what it changes for them, and roughly
+what it costs to build. A bad one is a list of things other games have.
+
+## Where suggestions come from
+
+In this order of strength:
+
+1. **The user's stated goal.** "More players stay" and "people keep asking
+   for X" point somewhere specific.
+2. **Friction you can see in their code or UI.** A shop with no confirmation,
+   a toggle with no feedback, a spawn with nothing to do in the first minute.
+3. **The genre's loop.** `roblox-game-design/references/genre-loops.md` lists
+   what each genre's players expect and what they come back for.
+4. **Gaps in the hub's own purpose.** A farming hub with no auto-sell, a PvP
+   hub with no target picker.
+
+Never suggest from "other games have it" alone.
+
+## The format
+
+```
+Three things worth adding, strongest first.
+
+1. A first-minute goal for new players (game design). Right now a new player
+   spawns with 0 Coins and no marker; most leave in the first minute. Show one
+   glowing target with its reward. Small: a Highlight, a BillboardGui, one
+   server check.
+2. ...
+```
+
+Three to five, each with: who it helps, what they see, and a size (small, a
+day, a week). Offer to build the first.
+
+## Games
+
+| Signal | Suggestion family |
+|---|---|
+| Players leave in the first minute | First-session goal, a guided first reward, fewer menus before play |
+| Players stop after a day | Daily reward with a streak, a visible next goal, collections |
+| Low spending | A starter pack under 100 Robux, a game pass for convenience not power, clearer prices |
+| Low sessions per player | Social play: parties, trading, co-op goals |
+| Complaints about unfairness | Server-authoritative checks, matchmaking by level |
+
+Pair each with the analytics event that will show whether it worked
+(`roblox-game-design/references/retention-and-analytics.md`).
+
+## Script hubs
+
+| Signal | Suggestion |
+|---|---|
+| Players re-enable the same toggles every run | Saved configs with autoload |
+| Phone players cannot reopen the hub | An on-screen open button |
+| Features break after respawn | The regression matrix; per-feature respawn handling |
+| Many features, hard to find | Sections and search |
+| Players ask "is it on?" | Feedback on each toggle's effect, not a toast per click |
+
+## UI and UX
+
+Suggest the missing state before a new screen: loading, empty, error,
+disabled with a reason, success. Then feedback (press states, sound, motion
+in 0.2 s), then copy that names things. New visual flourishes come last.
+
+## Never suggest
+
+- Features that break Roblox's Terms or Community Standards, paid random
+  items without the region checks in `PolicyService`, or anything that
+  collects players' personal data.
+- A framework migration as an "improvement" to working code.
+- Features for an executor script that attack the game's servers or other
+  players' accounts.
+
+---
+
+## Source: .claude/skills/roblox-improve/references/ux-review.md
+
+# UX review: what the linter cannot count
+
+`lint-roblox-ui.mjs` counts text sizes, radii, spacing, targets and
+handlers. These are the checks it cannot make, in the order a player meets
+them. Each failure goes into the review with where it is and what the
+player experiences.
+
+## The first thirty seconds
+
+- Is there one obvious thing to do? One element has the largest type, the
+  accent and the most space.
+- Can a player who never read a tooltip do it? Labels name the action
+  ("Buy for 250 Gems"), not the category ("Confirm").
+- Does anything block play before the player has played? Menus, codes and
+  settings come after the first reward, not before.
+
+## Feedback for every action
+
+Every press answers within a frame: a press state, then the result. If the
+result takes longer than about 0.3 s (a purchase, a teleport), show that it
+is working. Silent success reads as failure; a toast for every trivial
+action reads as noise.
+
+## The six states
+
+Rest, hover, press, focus, disabled, selected, on every control. Disabled
+controls say why ("Reach level 5"), not only grey out.
+
+## Words
+
+Read every label aloud in order. Three tabs named Settings, Options and
+Configuration are one word three times. Errors say what happened and what to
+do, in the player's words: "Not enough Coins (need 40 more)", not
+"Transaction failed".
+
+## Phone pass
+
+At 390 x 844 portrait and 640 x 360 landscape: nothing cut off, targets 44 px
+after scaling, primary actions in the lower half where thumbs rest, nothing
+destructive under a resting thumb, nothing only on hover.
+
+## How an action feels
+
+For anything the player does repeatedly (hitting, collecting, buying), feel
+comes from several small responses at once, scaled to how much the moment
+matters. Three tiers keep it proportional:
+
+| Tier | Example | Feedback |
+|---|---|---|
+| Small | coin pickup, hover | a tick sound, a small pop (scale 1.1 back to 1 over 0.15 s) |
+| Medium | a hit, a purchase | sound, a flash, a short camera nudge, a number that rises and fades |
+| Large | a boss hit, a level up | all of the above, stronger, plus a brief hold before the result |
+
+Feedback moves the visual, never the simulation: shake the camera, not the
+character. Everything returns to rest; a shake that never decays is the new
+normal. Offer "reduce screen shake" and "reduce flashing" in settings, and
+honour `GuiService.ReducedMotionEnabled`. The tier model is adapted from the
+`game-feel` skill in `gamedev-skills/awesome-gamedev-agent-skills`
+(Apache-2.0).
+
+---
+
+## Source: .claude/skills/roblox-debugging/SKILL.md
+
+---
+name: roblox-debugging
+description: Finding the real cause of a Roblox or executor bug - exact error, reproduce, which side runs it, one probe per hypothesis, error catalogue. Use for errors, it does nothing, works in Studio only.
+---
+
+# Debugging Roblox and executor code
+
+A bug report is "it doesn't work". A fix needs one sentence: *this line
+does this, when it should do that, because of this*. Everything below gets
+from the first to the second without guessing, and without sending the same
+code again in a different shape.
+
+## The loop
+
+1. **Get the exact text.** The whole error line from the Output window (or
+   the Developer Console, F9, in a live game), with the script path and line
+   number. "It errors" is not a message. If there is no error, that is a
+   finding too: go to step 3.
+2. **Reproduce it.** The shortest sequence of actions that shows it every
+   time. A bug that only happens "sometimes" has a condition not found yet:
+   respawn, a second player, a slow load, a phone.
+3. **Find where the code runs.** Is the script running at all (a `print` on
+   line 1)? Which side (`RunService:IsServer()`)? Is it in a container that
+   runs its class (a LocalScript in `Workspace` never runs; a Script in
+   `ReplicatedStorage` never runs)? Most "does nothing" reports end here.
+4. **Look the error up** in [error-catalogue.md](references/error-catalogue.md).
+   Each entry gives the usual cause and the first thing to check.
+5. **Rank hypotheses, test one at a time.** Write down two or three
+   explanations, most likely first, then a probe that tells them apart: a
+   `print` with the values that matter, an `assert` at the point the
+   assumption is made, a breakpoint. One probe, one answer.
+   [probes.md](references/probes.md) has the shapes.
+6. **Fix the cause, not the symptom.** A `WaitForChild` that hangs is not
+   fixed by a timeout that hides it; it is fixed by the right name, the
+   right side, or waiting for the right event.
+7. **Leave a check behind** and record the attempt (`roblox-attempt-memory`):
+   what was tried, what was seen, what caused it. The next person with the
+   same symptom starts from the answer.
+
+## When there is no error
+
+"It does nothing" has a short list of causes, in order of frequency. The
+full tree is in [silent-failures.md](references/silent-failures.md):
+
+1. The script never runs (wrong container, disabled, wrong script class).
+2. It runs on the other side (a server script changing a player's GUI, a
+   client script changing what others should see).
+3. It runs before the thing exists (character not loaded, streamed out).
+4. It ran once, and respawn replaced what it changed.
+5. Something rewrites the value after it (the game's own scripts, the
+   Humanoid, another feature).
+6. For UI: something covers the button, or it is a mouse-only event.
+7. For executor scripts: a missing function turned into a silent no-op.
+
+## "Works in Studio, not in the game"
+
+Studio's Play solo runs server and client in one process, so timing and
+replication hide. Test with **Start** (a local server and players) in the
+Test tab, and check in order: server versus client ownership, StreamingEnabled
+(the part is not there yet on the client), load order (the game loads
+slower), and API access that differs outside Studio (HTTP requests, DataStores
+need the published place's settings).
+
+## Executor scripts
+
+Executor errors look like ordinary Luau errors with different causes:
+`attempt to call a nil value` on a global usually means the executor lacks
+that function; an error inside a hook shows up in the game's script, not
+yours. Before anything else, run the feature doctor
+(`roblox-executor-features/assets/feature-doctor.luau`) for a feature that
+does nothing, and read its counts. The catalogue has the executor section.
+
+## Tools, by question
+
+| Question | Tool |
+|---|---|
+| What was the error, where? | Output window; Developer Console (F9) in a live game, server and client tabs |
+| What is this value right now? | Breakpoint and Watch in Studio's script debugger |
+| Is it slow, and where? | MicroProfiler (Ctrl+F6), Script Profiler |
+| Is memory climbing? | Developer Console, Memory tab, by tag |
+| Did the remote fire, with what? | A logged `OnServerEvent`, or a remote logger for executor work |
+| In a real playtest, driven by the AI | `roblox-studio-mcp`: read the console, capture the screen |
+
+Logs can be read by code too: `LogService.MessageOut` and
+`ScriptContext.Error` see every message and error, which is how an in-game
+debug panel or an automated test collects them.
+
+## Works with
+
+- `roblox-attempt-memory`: the ledger that stops a failed fix being tried twice.
+- `roblox-engine-api`: instance lifecycles behind most nil errors.
+- `roblox-networking`: replication and ownership behind "others can't see it".
+- `roblox-ui-interaction`: why a button does nothing.
+- `roblox-executor-reliability`: the feature doctor and what rewrites a value.
+- `roblox-studio-mcp`: reproducing in a real playtest and reading the console.
+- `roblox-performance`: when the bug is lag or memory.
+- `roblox-reply-craft`: asking the user for exactly one thing at a time.
+
+---
+
+## Source: .claude/skills/roblox-debugging/references/error-catalogue.md
+
+# Error catalogue
+
+The message as Roblox prints it, what usually causes it, and the first thing
+to check. Placeholders in angle brackets.
+
+## Nil and missing things
+
+| Message | Usual cause | First check |
+|---|---|---|
+| `attempt to index nil with '<Name>'` | The thing before the dot is nil: a character not loaded, a `FindFirstChild` that found nothing, a player who left | Print the thing before the dot; wait for `CharacterAdded` or the right event |
+| `<Name> is not a valid member of <Class> "<Path>"` | The parent exists, the child does not: a typo, wrong capitalisation, not replicated yet, or server-only | Capitalisation; whether the client can see it; `WaitForChild` if it arrives later |
+| `Infinite yield possible on '<Path>:WaitForChild("<Name>")'` | The name never appears: wrong name, wrong parent, or it lives somewhere the client cannot see (`ServerStorage`) | The exact path in the Explorer during play, on the same side |
+| `attempt to call a nil value` | A dot where a colon belongs, a misspelled method, a function defined below its first use, or (executor) a function the executor lacks | Read the call; check spelling and `:` versus `.` |
+| `attempt to call a nil value (global '<name>')` | A global that does not exist here: an executor function outside an executor, or a typo | `verify-executor-api.mjs <name>`; whether the script runs in an executor |
+
+## Types and values
+
+| Message | Usual cause | First check |
+|---|---|---|
+| `attempt to perform arithmetic (add) on nil and number` | A value not loaded yet (a DataStore field, an attribute not set) | Where the value is set, and whether it can be nil at this point |
+| `attempt to compare number <= nil` | Same, in a comparison | Same |
+| `Unable to assign property <Prop>. <Type> expected, got <Type>` | A wrong type: a number for a UDim2, a string for a Color3 | The constructor (`UDim2.fromOffset`, `Color3.fromRGB`) |
+| `invalid argument #1 to '<function>' (number expected, got string)` | A string from a TextBox or attribute passed as a number | `tonumber` and a nil check |
+| `Script timeout: exhausted allowed execution time` | A loop that never yields | Find the `while` without a `task.wait` or a yielding call |
+| `stack overflow` | A function calling itself without end, often a property-changed handler that sets the property it watches | The handler: does it write what it listens to? |
+
+## Engine limits and access
+
+| Message | Usual cause | First check |
+|---|---|---|
+| `The current thread cannot access '<Member>' (lacking capability <Name>)` | A member restricted to plugins or core scripts | `verify-api.mjs <Class.Member>` shows the gate |
+| `<Member> is not a valid member` on a real API | Deprecated or removed, or the wrong class | `verify-api.mjs` |
+| `Out of local registers when trying to allocate <n> registers` | Over 200 locals in one function, usually one giant script | Group values into tables; split into modules (`roblox-luau-language`) |
+| `Requested module experienced an error while loading` | The required module itself errored | The module's own error, printed just above |
+| `DataStore request was added to queue` | Requests over the budget | Batch saves; `UpdateAsync` on a timer, not per change |
+| `HTTP 429 (Too Many Requests)` | An HTTP or Open Cloud rate limit | Back off; cache |
+| `Http requests are not enabled` | Game Settings, Security, Allow HTTP Requests is off | The setting, in the published place |
+| `Remote event invocation queue exhausted` | A remote fired before anything connected to it, many times | Connect handlers before firing; do not fire at startup in a loop |
+
+## Executor-specific
+
+| Symptom | Usual cause | First check |
+|---|---|---|
+| An error naming a game script, after your hook ran | Your hook changed what the game's function returns or receives | Return exactly what the original returns; pass `...` through |
+| `cannot hook` or a crash on `hookfunction` | Hooking a C closure the executor cannot, or re-hooking without restoring | Check `islclosure`; restore on unload before rehooking |
+| A feature works, then stops after death | It changed the old character; respawn built a new one | Re-apply on `CharacterAdded` |
+| A feature works, then snaps back each frame | A game loop rewrites the value | List the writers; see `roblox-executor-reliability` |
+| Two copies of every action | The script ran twice without unloading the first | A `getgenv()` session that unloads the previous run |
+| Changes visible only to you | Client writes do not replicate | Expected; say so. The server owns that value |
+
+---
+
+## Source: .claude/skills/roblox-debugging/references/silent-failures.md
+
+# When nothing happens and nothing errors
+
+Walk this in order and stop at the first "no". Each step is one probe.
+
+## 1. Does the script run?
+
+Put `print("<script name> running on", if game:GetService("RunService"):IsServer() then "server" else "client")`
+on line 1. No output means it never ran:
+
+| Script | Runs in | Never runs in |
+|---|---|---|
+| Script, `RunContext` Legacy (the default) | `ServerScriptService`, `Workspace` | `ReplicatedStorage`, `StarterPlayerScripts` |
+| LocalScript | `StarterPlayerScripts`, `StarterCharacterScripts`, `StarterGui`, the character, a tool the player holds | `Workspace` (outside the character), `ServerScriptService`, `ReplicatedStorage` |
+| ModuleScript | only when something requires it | anywhere, on its own |
+
+Also check `Enabled` on the script. A Script whose `RunContext` is Server
+or Client ignores the container rules above and runs in more places,
+including `ReplicatedStorage`, so read that property before concluding it
+cannot run.
+
+## 2. Is it on the right side?
+
+A server script changing one player's GUI changes the copy the server made,
+not what the player sees. A LocalScript changing a part changes it only for
+that player. `roblox-networking/references/replication-model.md` is the
+table.
+
+## 3. Does the thing exist yet?
+
+The character loads after the player joins; with StreamingEnabled, distant
+parts are not on the client at all. Print the instance at the moment of use.
+Wait for the event that creates it (`CharacterAdded`, `ChildAdded`) rather
+than a fixed delay.
+
+## 4. Did respawn undo it?
+
+Changes to a character die with it. So do connections held on its parts.
+Re-apply on `CharacterAdded`. A ScreenGui with `ResetOnSpawn = true` (the
+default) is rebuilt on every death, and its old connections point at the
+destroyed copy.
+
+## 5. Does something rewrite it?
+
+Print the value one frame later (`task.wait()` then print). If it is back,
+something writes it: the game's scripts, the Humanoid (WalkSpeed, JumpPower,
+CanCollide on limbs), animations (Motor6D transforms), the camera scripts.
+`GetPropertyChangedSignal` with a `debug.traceback()` print shows who.
+
+## 6. UI: does the input reach it?
+
+In order: the connection exists (not lost to a clone or respawn); the object
+is a button (`Activated` on a Frame never fires); nothing covers it (an
+`Active` frame, a higher `ZIndex` or `DisplayOrder`); `Interactable` is on;
+it is inside a clipping parent's visible area; a scroll gesture did not take
+the touch; the game's input bindings did not sink it. Printing
+`PlayerGui:GetGuiObjectsAtPosition(x, y)` at the press point lists what is
+on top. `roblox-ui-interaction` has the fixes.
+
+## 7. Executor: did a missing function turn into nothing?
+
+A fallback like `if hookfunction then ... end` skips the feature silently on
+an executor without it. Replace it with one bind and one assert so the
+missing function is an error the player can report.
+
+---
+
+## Source: .claude/skills/roblox-debugging/references/probes.md
+
+# Probes
+
+A probe answers one question and is removed after. Each shape below is
+small enough to paste in one place and read in one line of output.
+
+## The value, where it is used
+
+```lua
+print("[shop] buy", itemId, "price", price, "coins", player:GetAttribute("Coins"))
+```
+
+Print the values the decision depends on, labelled, at the line that
+decides. A bare `print("here")` proves the line ran and nothing else.
+
+## The assumption, where it is made
+
+```lua
+assert(character.Parent ~= nil, "character left the world before the teleport")
+```
+
+An `assert` stops at the first wrong assumption with a message naming it,
+instead of three lines later with a nil error about something else.
+
+## Who writes this property
+
+```lua
+local humanoid = character:WaitForChild("Humanoid")
+local watch = humanoid:GetPropertyChangedSignal("WalkSpeed"):Connect(function()
+	print("WalkSpeed ->", humanoid.WalkSpeed, debug.traceback("", 2))
+end)
+task.delay(10, function()
+	watch:Disconnect()
+end)
+```
+
+The traceback names the script that wrote it. Disconnect after the question
+is answered.
+
+## What arrives at the server
+
+```lua
+remote.OnServerEvent:Connect(function(player, ...)
+	print("[remote]", remote.Name, player.Name, select("#", ...), ...)
+end)
+```
+
+`select("#", ...)` counts arguments, including trailing nils that `print`
+does not show.
+
+## How long it takes
+
+```lua
+local started = os.clock()
+rebuildLeaderboard()
+print(string.format("[timing] leaderboard %.2f ms", (os.clock() - started) * 1000))
+```
+
+For anything per frame, use the MicroProfiler with
+`debug.profilebegin("Leaderboard")` and `debug.profileend()` instead; a
+print every frame changes the timing it measures.
+
+## What is under the pointer
+
+```lua
+local GuiService = game:GetService("GuiService")
+local UserInputService = game:GetService("UserInputService")
+local playerGui = game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui")
+local point = UserInputService:GetMouseLocation() - GuiService:GetGuiInset()
+for _, object in playerGui:GetGuiObjectsAtPosition(point.X, point.Y) do
+	print(object:GetFullName(), object.Active, object.ZIndex)
+end
+```
+
+`GetMouseLocation` counts from the top of the screen, while
+`GetGuiObjectsAtPosition` counts from below the GUI inset, so the inset is
+subtracted first. The first objects printed are the ones on top.
+
+## Collecting logs in code
+
+```lua
+local LogService = game:GetService("LogService")
+local lines = {}
+local listener = LogService.MessageOut:Connect(function(message, kind)
+	table.insert(lines, `{kind.Name}: {message}`)
+end)
+```
+
+For a debug panel, or for reading errors back in an automated test.
+Disconnect it with the panel.
+
+---
+
+## Source: .claude/skills/roblox-npc-ai/SKILL.md
+
+---
+name: roblox-npc-ai
+description: Roblox NPCs and enemy AI - PathfindingService, blocked paths, MoveTo timeouts, state machines, sight checks, server-owned movement, many NPCs cheaply. Use for mobs, chase and patrol.
+---
+
+# NPCs and enemy AI
+
+An NPC is three separate jobs, and most broken NPCs mix them:
+
+- **Decide** what to do: patrol, chase, attack, return. A state machine.
+- **Path**: how to get there around walls. `PathfindingService`.
+- **Move**: walk the path. `Humanoid:MoveTo`, or movers for non-humanoids.
+
+Keep them apart. The state machine picks a target, the pathfinder turns it
+into waypoints, the mover walks them. Then each can be fixed alone.
+
+## The server owns NPCs
+
+AI decisions, health and damage run on the server. So does movement, with
+one step people miss: an unanchored NPC near a player can have its physics
+handed to that player's client, which then decides where it is. Call
+`rootPart:SetNetworkOwner(nil)` once the NPC is parented under Workspace and
+unanchored (the call errors on an anchored part or one outside Workspace),
+so the server keeps it. Clients only draw.
+
+## Paths
+
+```lua
+local PathfindingService = game:GetService("PathfindingService")
+
+local path = PathfindingService:CreatePath({
+	AgentRadius = 2,
+	AgentHeight = 5,
+	AgentCanJump = true,
+	Costs = { Water = 20, DangerZone = math.huge },
+})
+
+local ok = pcall(path.ComputeAsync, path, rootPart.Position, goal)
+if ok and path.Status == Enum.PathStatus.Success then
+	local waypoints = path:GetWaypoints()
+end
+```
+
+What the engine does not do for you, each covered in
+[pathfinding.md](references/pathfinding.md) with a complete follower:
+
+- **`ComputeAsync` yields and can fail.** It is a boundary: `pcall`, check
+  `Status`, and have a plan for no path (wait, pick another target).
+- **`MoveTo` gives up after 8 seconds** if the goal is not reached, firing
+  `MoveToFinished(false)`. Walk one waypoint at a time and handle `false`.
+- **Paths get blocked.** Listen to `Path.Blocked` and recompute only when the
+  blocked waypoint is ahead of the NPC.
+- **Jump waypoints** have `Action` `Jump`; the follower makes the Humanoid
+  jump there with `ChangeState(Enum.HumanoidStateType.Jumping)`.
+- **Limits**: 3,000 studs straight-line distance, about 20,000 search nodes.
+  Long trips are split into legs.
+
+Studio's **Visualization Options** show the navigation mesh, modifiers and
+links; turn them on before tuning `AgentRadius`.
+
+## Deciding
+
+A state machine with a handful of states (Idle, Patrol, Chase, Attack,
+Return) covers most NPCs. Each state decides its own exit; nothing checks
+`state == "Chase"` from outside. Perception is cheap first, precise second:
+`WorldRoot:GetPartBoundsInRadius` for who is near, then a `Raycast` for line
+of sight to the few that are.
+[behaviour.md](references/behaviour.md) has the state machine and the
+perception code.
+
+## Many NPCs
+
+One scheduler for all NPCs, not a loop per NPC; thinking at 5 to 10 times a
+second, spread across frames; paths computed on a change, not per frame;
+NPCs far from every player slowed or parked; a hard cap on live NPCs.
+[scale.md](references/scale.md) has the scheduler and the numbers.
+
+## Common mistakes
+
+- Computing a path every frame, or every NPC every frame.
+- `MoveTo` straight at a far target with no pathfinding: it walks into walls.
+- Leaving network ownership automatic, so the NPC stutters as it changes
+  hands and an exploiter can move it.
+- Keeping behaviour running after death; stop everything on `Died` and
+  destroy the behaviour with the model.
+- Trusting a client that says "I hit the NPC": damage is decided on the
+  server (`roblox-combat`).
+
+## Works with
+
+- `roblox-engine-api`: Humanoid states, movers, spatial queries and raycasts.
+- `roblox-combat`: server-side hit validation and damage for NPC attacks.
+- `roblox-networking`: network ownership and what replicates to clients.
+- `roblox-performance`: profiling AI cost with the MicroProfiler.
+- `roblox-vfx-animation`: animation tracks for walking and attacking.
+- `roblox-game-design`: wave pacing, difficulty and rewards.
+
+---
+
+## Source: .claude/skills/roblox-npc-ai/references/pathfinding.md
+
+# Pathfinding, in full
+
+Facts here are from Roblox's pathfinding guide and the Humanoid reference,
+and every API name is checked against the vendored dump.
+
+## Agent parameters
+
+| Parameter | Default | Meaning |
+|---|---|---|
+| `AgentRadius` | 2 | clearance from walls, in studs |
+| `AgentHeight` | 5 | spaces lower than this are not walkable |
+| `AgentCanJump` | true | jump waypoints allowed |
+| `AgentCanClimb` | false | `TrussPart` climbing allowed; climb waypoints are labelled `Climb` |
+| `WaypointSpacing` | 4 | studs between intermediate waypoints; `math.huge` for as few as possible |
+| `Costs` | none | per material (`Water`) or per label; `math.huge` forbids |
+
+Costs keys are `Enum.Material` names as strings, or the `Label` of a
+`PathfindingModifier` or `PathfindingLink`. A modifier's part should be
+anchored and not collide. `PassThrough = true` on a modifier makes its
+volume walkable (a door NPCs open).
+
+## Why paths fail
+
+- The straight-line distance is over 3,000 studs.
+- The search ran out of nodes (about 20,000) in a large or maze-like area.
+- The parameters cannot work: the goal is only reachable by jumping and
+  `AgentCanJump` is false, or `AgentHeight` is taller than every gap.
+- Waypoints with a Y coordinate below -65,536 or above 65,536 are ignored.
+
+`Path.Status` after `ComputeAsync` says which kind of failure: `Success`,
+`NoPath`, or a partial result.
+
+## A follower
+
+A server-side follower for one Humanoid NPC. It walks waypoints one at a
+time, jumps where the path says, recomputes when a waypoint ahead is
+blocked, and cleans up after itself.
+
+```lua
+local PathfindingService = game:GetService("PathfindingService")
+
+local Follower = {}
+Follower.__index = Follower
+
+function Follower.new(character: Model)
+	local humanoid = character:FindFirstChildOfClass("Humanoid") :: Humanoid
+	local rootPart = character:FindFirstChild("HumanoidRootPart") :: BasePart
+	rootPart:SetNetworkOwner(nil)
+	local self = setmetatable({
+		humanoid = humanoid,
+		rootPart = rootPart,
+		path = PathfindingService:CreatePath({ AgentRadius = 2, AgentHeight = 5, AgentCanJump = true }),
+		waypoints = {},
+		index = 0,
+		goal = nil :: Vector3?,
+		connections = {},
+	}, Follower)
+
+	table.insert(self.connections, humanoid.MoveToFinished:Connect(function(reached)
+		if reached then
+			self:step()
+		elseif self.goal then
+			self:moveTo(self.goal)
+		end
+	end))
+	table.insert(self.connections, self.path.Blocked:Connect(function(blockedIndex)
+		if blockedIndex >= self.index and self.goal then
+			self:moveTo(self.goal)
+		end
+	end))
+	table.insert(self.connections, humanoid.Died:Connect(function()
+		self:destroy()
+	end))
+	return self
+end
+
+function Follower:moveTo(goal: Vector3): boolean
+	self.goal = goal
+	local ok = pcall(self.path.ComputeAsync, self.path, self.rootPart.Position, goal)
+	if not ok or self.path.Status ~= Enum.PathStatus.Success then
+		self.goal = nil
+		return false
+	end
+	self.waypoints = self.path:GetWaypoints()
+	-- Waypoint 1 is where the NPC already stands.
+	self.index = 1
+	self:step()
+	return true
+end
+
+function Follower:step()
+	self.index += 1
+	local waypoint = self.waypoints[self.index]
+	if not waypoint then
+		self.goal = nil
+		return
+	end
+	if waypoint.Action == Enum.PathWaypointAction.Jump then
+		self.humanoid:ChangeState(Enum.HumanoidStateType.Jumping)
+	end
+	self.humanoid:MoveTo(waypoint.Position)
+end
+
+function Follower:destroy()
+	for _, connection in self.connections do
+		connection:Disconnect()
+	end
+	table.clear(self.connections)
+	self.goal = nil
+end
+
+return Follower
+```
+
+Three details that are easy to get wrong:
+
+- **`MoveToFinished(false)` after 8 seconds.** Here it recomputes from where
+  the NPC is. A stuck NPC then retries every 8 seconds; count the retries and
+  give up (pick another target) after a few.
+- **Blocked behind is not blocked.** The check `blockedIndex >= self.index`
+  ignores a path blocked somewhere the NPC has already passed.
+- **Moving targets.** Chasing a player means recomputing as they move, but
+  not every frame: only when the target has moved several studs since the
+  last path, and no more often than every half second.
+
+## Links and special traversal
+
+A `PathfindingLink` joins two attachments across a gap the navigation mesh
+cannot cross (a boat, a ladder, a teleporter). Its waypoint carries the
+link's `Label`; the follower checks the label and runs the custom movement
+for it instead of `MoveTo`.
+
+## Streaming
+
+With StreamingEnabled, the server still has the whole world, so server-side
+NPCs path normally. A client-side path can fail because the destination has
+not streamed in; keep NPC pathing on the server.
+
+---
+
+## Source: .claude/skills/roblox-npc-ai/references/behaviour.md
+
+# Behaviour: states and perception
+
+## A state machine
+
+Each state is a table of three functions. The machine calls `think` on the
+current state; a state that wants to change returns the next state's name.
+Transitions live inside the states, so there is never a pile of flags
+checked from outside.
+
+```lua
+local Players = game:GetService("Players")
+
+local SIGHT = 60
+local ATTACK_RANGE = 6
+
+local function nearestTarget(npc: any): Model?
+	local nearest, shortest = nil, SIGHT
+	for _, player in Players:GetPlayers() do
+		local character = player.Character
+		local root = character and character:FindFirstChild("HumanoidRootPart")
+		local humanoid = character and character:FindFirstChildOfClass("Humanoid")
+		if root and humanoid and humanoid.Health > 0 then
+			local distance = (root.Position - npc.rootPart.Position).Magnitude
+			if distance < shortest and npc:canSee(root) then
+				nearest, shortest = character, distance
+			end
+		end
+	end
+	return nearest
+end
+
+local States = {}
+
+States.Patrol = {
+	enter = function(npc)
+		npc.follower:moveTo(npc:nextPatrolPoint())
+	end,
+	think = function(npc)
+		local target = nearestTarget(npc)
+		if target then
+			npc.target = target
+			return "Chase"
+		end
+		if not npc.follower.goal then
+			npc.follower:moveTo(npc:nextPatrolPoint())
+		end
+		return nil
+	end,
+	exit = function() end,
+}
+
+States.Chase = {
+	enter = function() end,
+	think = function(npc)
+		local root = npc.target and npc.target:FindFirstChild("HumanoidRootPart")
+		if not root or (root.Position - npc.rootPart.Position).Magnitude > SIGHT * 1.5 then
+			npc.target = nil
+			return "Patrol"
+		end
+		if (root.Position - npc.rootPart.Position).Magnitude <= ATTACK_RANGE then
+			return "Attack"
+		end
+		npc:chase(root.Position)
+		return nil
+	end,
+	exit = function() end,
+}
+```
+
+The machine itself is a few lines: on `think`, if the state returns a name,
+call the old state's `exit`, set the new state, call its `enter`.
+
+Chase leaves at 1.5 times the sight range, not at the sight range: a target
+standing at the edge would otherwise flip the NPC between Chase and Patrol
+every tick.
+
+## Perception, cheap first
+
+1. **Who is near**: one `WorldRoot:GetPartBoundsInRadius` per NPC per think,
+   with `OverlapParams` filtered to player characters, instead of a distance
+   check against every player every frame.
+2. **Who is visible**: a `Workspace:Raycast` from the NPC's head to each
+   nearby target, excluding the NPC's own model. Only for the few that are
+   near.
+
+```lua
+local sightParams = RaycastParams.new()
+sightParams.FilterType = Enum.RaycastFilterType.Exclude
+
+local function canSee(npcModel: Model, from: Vector3, target: BasePart): boolean
+	sightParams.FilterDescendantsInstances = { npcModel, target.Parent :: Instance }
+	return workspace:Raycast(from, target.Position - from, sightParams) == nil
+end
+```
+
+Nothing between the two means visible, which is why the target's own model
+is excluded as well.
+
+## Behaviour trees
+
+For bosses with many prioritised moves, a behaviour tree (selectors and
+sequences returning success, failure or running) scales better than a big
+state machine. Keep leaves that take time (walking, an attack animation)
+returning *running* until done, or the tree restarts them every tick. For
+most enemies a state machine is enough.
+
+## Groups
+
+NPCs chasing one target share its position, take formation offsets so they
+do not stack on one point, and recompute on staggered ticks so eight paths
+are not computed in the same frame.
+
+---
+
+## Source: .claude/skills/roblox-npc-ai/references/scale.md
+
+# Many NPCs at low cost
+
+The usual reason a server slows down as a round goes on is NPCs: each one
+with its own loop, its own path every frame, and no cap.
+
+## One scheduler
+
+One `Heartbeat` connection thinks for every NPC, with a time budget per
+frame, and each NPC thinks at most every 0.1 to 0.2 seconds:
+
+```lua
+local RunService = game:GetService("RunService")
+
+local THINK_EVERY = 0.15
+local BUDGET_SECONDS = 0.002
+
+local npcs = {}
+local cursor = 1
+
+local scheduler = RunService.Heartbeat:Connect(function()
+	local started = os.clock()
+	local now = started
+	for _ = 1, #npcs do
+		if cursor > #npcs then
+			cursor = 1
+		end
+		local npc = npcs[cursor]
+		cursor += 1
+		if now - npc.lastThink >= THINK_EVERY then
+			npc.lastThink = now
+			npc:think()
+		end
+		if os.clock() - started > BUDGET_SECONDS then
+			break
+		end
+	end
+end)
+```
+
+Removing an NPC is `table.remove` from `npcs` when it dies or despawns; the
+cursor wraps on the next frame.
+
+## Numbers that hold up
+
+| Knob | Starting value | Why |
+|---|---|---|
+| Think rate | 5 to 10 per second | Players do not notice reactions under 100 ms apart |
+| Path recompute | on target moved 5+ studs, at most every 0.5 s | A path per frame per NPC is the classic stall |
+| Perception radius query | once per think | Not per frame |
+| Live NPC cap | a fixed number the spawner refuses past | A queue that grows forever is a slow crash |
+| Far NPCs | park beyond the nearest player's view distance | Nobody sees them walk |
+
+## Movement for crowds
+
+Humanoids are the most expensive way to move many things. For decorative
+crowds or simple enemies, an anchored model moved on the server in bulk with
+`WorldRoot:BulkMoveTo` (or, for smoothness, the server sends positions and
+clients tween the visuals) costs far less. Keep Humanoids for NPCs that need
+Humanoid behaviour: climbing, falling, animations driven by the Animator.
+
+## Measure
+
+Tag the think with `debug.profilebegin("NPC think")` and
+`debug.profileend()`, then read the server's MicroProfiler at the largest
+NPC count the game allows. `roblox-performance` has the method.
+
+---
+
+## Source: .claude/skills/roblox-combat/SKILL.md
+
+---
+name: roblox-combat
+description: Fair Roblox combat that feels good - server-validated hits, shapecast hitboxes, cooldowns, damage, projectiles, lag tolerance, hit feedback. Use for weapons, abilities and PvP.
+---
+
+# Combat
+
+Combat has two customers who want opposite things. The player wants every
+hit to land the instant they swing. The server has to refuse hits that did
+not happen, because the client is the exploiter's. The pattern that serves
+both:
+
+1. **The client acts at once**: animation, sound, a hit spark where it
+   thinks it hit. Nothing that matters.
+2. **The client sends intent**: "I swung", "I fired from here in this
+   direction", with the time. Never "I did 40 damage to Bob".
+3. **The server decides**: cooldown, state, range, line of sight, then the
+   hit test, then damage from server-side stats.
+4. **The server tells everyone** the result, and the other clients draw it.
+
+## Hit detection
+
+| Weapon | Server test | Notes |
+|---|---|---|
+| Hitscan gun | `Workspace:Raycast` from a validated origin | One ray per shot |
+| Sword, fist | `Workspace:Blockcast` or `Workspace:Spherecast` along the swing | A swept shape catches what a single box between frames misses |
+| Area attack | `Workspace:GetPartBoundsInBox` or `GetPartBoundsInRadius` | With `OverlapParams` so only characters count |
+| Slow projectile | Server steps it with raycasts each frame | Clients draw their own copy |
+| `Touched` | Avoid for damage | Fires late, misses fast parts, fires many times per contact |
+
+[hit-detection.md](references/hit-detection.md) has a validated melee hit
+and a hitscan shot.
+
+## What the server checks, cheapest first
+
+1. Argument types and shapes (`roblox-game-security`).
+2. Rate: the weapon's cooldown on the server clock (`os.clock()`), per
+   player and per weapon.
+3. State: alive, not stunned, holding the weapon it claims.
+4. Origin: the claimed muzzle or hand is near where the server has the
+   character, within a named tolerance.
+5. Range and line of sight from that origin.
+6. The hit test itself.
+
+A check the server skips is a check the exploiter does not have to pass.
+
+## Latency
+
+At 150 ms of ping, the target the attacker saw is where it was 150 ms ago.
+An exact server check refuses honest hits; no check accepts impossible ones.
+Pick one, name the number, and keep it bounded:
+
+- **Tolerance**: widen range and hitbox by a fixed allowance (a few studs).
+  Simple, and enough for most melee.
+- **Rewind**: keep each character's recent positions (a quarter to half a
+  second) and test against where the target was at the attacker's time.
+  Cap how far back, or a lag switch buys unlimited reach.
+
+`Player:GetNetworkPing()` and `Workspace:GetServerTimeNow()` give the
+numbers to work with.
+
+## Damage
+
+One server function applies damage, so armour, team checks, kill credit and
+logging live in one place. `Humanoid:TakeDamage(amount)` respects a
+`ForceField` (spawn protection); setting `Humanoid.Health` directly does
+not. Credit the kill once, on the server, when health reaches zero.
+
+## Projectiles
+
+Pool projectile parts, move all live projectiles from one loop, and replicate
+a small spawn message (origin, direction, speed, id) so clients simulate the
+visuals themselves. Cosmetic tracers and impacts go over an
+`UnreliableRemoteEvent`; damage never does.
+[weapons-and-projectiles.md](references/weapons-and-projectiles.md) has
+the loop.
+
+## Feel
+
+A hit that is correct but silent feels like a miss. Layer small responses
+scaled to how big the moment is: a sound and a spark for a light hit; a
+flash, a short camera nudge and a damage number for a heavy one; a brief
+pause of the attacker's animation for a finishing blow. All of it on the
+client, none of it in the simulation.
+[game-feel.md](references/game-feel.md) has the tiers and the camera shake.
+
+## Works with
+
+- `roblox-game-security`: remote validation and rate limits behind every hit.
+- `roblox-networking`: replication, ownership and unreliable remotes for effects.
+- `roblox-engine-api`: raycasts, shapecasts, spatial queries and Humanoid health.
+- `roblox-vfx-animation`: attack animations, markers and hit effects.
+- `roblox-npc-ai`: enemies that attack and take damage through the same pipeline.
+- `roblox-audio`: layered hit sounds.
+- `roblox-performance`: pooling and one loop for many projectiles.
+
+---
+
+## Source: .claude/skills/roblox-combat/references/hit-detection.md
+
+# Hit detection on the server
+
+Two complete server handlers: a melee swing and a hitscan shot. Both take
+intent from the client and decide everything else themselves.
+
+## Melee
+
+The client fires `Swing` with nothing but the weapon's name. The server
+knows where the character is, so it sweeps a box forward from there.
+
+```lua
+local Players = game:GetService("Players")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+
+local Swing = ReplicatedStorage.Remotes.Swing
+
+local SWORD = { damage = 20, cooldown = 0.6, reach = 7, width = Vector3.new(4, 5, 1) }
+
+local lastSwing: { [Player]: number } = {}
+
+local sweepParams = RaycastParams.new()
+sweepParams.FilterType = Enum.RaycastFilterType.Exclude
+
+local function applyDamage(attacker: Player, humanoid: Humanoid, amount: number)
+	if humanoid.Health <= 0 then
+		return
+	end
+	humanoid:TakeDamage(amount)
+	if humanoid.Health <= 0 then
+		humanoid:SetAttribute("KilledBy", attacker.UserId)
+	end
+end
+
+Swing.OnServerEvent:Connect(function(player: Player, weaponName: unknown)
+	if weaponName ~= "Sword" then
+		return
+	end
+	local now = os.clock()
+	if now - (lastSwing[player] or 0) < SWORD.cooldown then
+		return
+	end
+	local character = player.Character
+	local root = character and character:FindFirstChild("HumanoidRootPart") :: BasePart?
+	local humanoid = character and character:FindFirstChildOfClass("Humanoid")
+	if not root or not humanoid or humanoid.Health <= 0 then
+		return
+	end
+	if not character:FindFirstChild("Sword") then
+		return
+	end
+	lastSwing[player] = now
+
+	sweepParams.FilterDescendantsInstances = { character }
+	local start = root.CFrame
+	local result = workspace:Blockcast(start, SWORD.width, start.LookVector * SWORD.reach, sweepParams)
+	if not result then
+		return
+	end
+	local model = result.Instance:FindFirstAncestorOfClass("Model")
+	local target = model and model:FindFirstChildOfClass("Humanoid")
+	if target then
+		applyDamage(player, target, SWORD.damage)
+	end
+end)
+
+Players.PlayerRemoving:Connect(function(player)
+	lastSwing[player] = nil
+end)
+```
+
+A Blockcast returns the first thing it hits, and it does not report parts
+the box already overlaps where it starts, so an enemy pressed against the
+attacker is missed. Start the box a stud or two behind the character, or
+check point-blank range with `Workspace:GetPartBoundsInBox`. For a swing that should hit
+several enemies, use `Workspace:GetPartBoundsInBox` at the swing's end
+position with `OverlapParams` filtered to characters, then deduplicate by
+model so one enemy with six parts is hit once.
+
+## Hitscan
+
+The client sends where it fired from and the direction. The server trusts
+neither: the origin must be near the character, and the ray is cast by the
+server.
+
+```lua
+local MAX_ORIGIN_ERROR = 6
+local RANGE = 300
+
+local function validShot(character: Model, origin: unknown, direction: unknown): boolean
+	if typeof(origin) ~= "Vector3" or typeof(direction) ~= "Vector3" then
+		return false
+	end
+	local root = character:FindFirstChild("HumanoidRootPart") :: BasePart?
+	if not root or (origin - root.Position).Magnitude > MAX_ORIGIN_ERROR then
+		return false
+	end
+	return direction.Magnitude > 0.5 and direction.Magnitude < 1.5
+end
+```
+
+After `validShot`, the server casts `workspace:Raycast(origin, direction.Unit
+* RANGE, params)` with the shooter excluded, and damages what it hits.
+`MAX_ORIGIN_ERROR` is the latency allowance, named so it can be tuned and
+found. The direction check rejects a zero vector and a scaled one that would
+change the range.
+
+## What never to accept from a client
+
+- A damage number, a target to damage, or a hit position used for damage.
+- "My cooldown is over."
+- A weapon the character is not holding.
+- An origin far from the character.
+
+---
+
+## Source: .claude/skills/roblox-combat/references/weapons-and-projectiles.md
+
+# Weapons and projectiles
+
+## Cooldowns and combat state
+
+Keep per-player combat state on the server in one table, keyed by the
+character for things that end with a life (stuns, buffs, a channelled
+ability) and by the player for things that survive death (cooldowns
+between lives, if the design wants that):
+
+```lua
+local combatState: { [Model]: { stunnedUntil: number, blocking: boolean } } = {}
+```
+
+Clear character-keyed state on `CharacterRemoving` or `Humanoid.Died`, or a
+buff outlives its body. Buffer at most one queued input per player: a queue
+deeper than one becomes a macro that fires faster than a human can.
+
+## Projectiles
+
+A slow projectile (an arrow, a fireball) is simulated on the server in one
+loop for all of them. Each step casts a ray over the distance travelled, so
+a fast projectile cannot pass through a thin wall between frames.
+
+```lua
+local RunService = game:GetService("RunService")
+
+local GRAVITY = Vector3.new(0, -workspace.Gravity * 0.2, 0)
+local LIFETIME = 4
+
+local live = {}
+local stepParams = RaycastParams.new()
+stepParams.FilterType = Enum.RaycastFilterType.Exclude
+
+local stepper = RunService.Heartbeat:Connect(function(deltaTime)
+	local now = os.clock()
+	for index = #live, 1, -1 do
+		local shot = live[index]
+		local travel = shot.velocity * deltaTime
+		stepParams.FilterDescendantsInstances = { shot.owner }
+		local hit = workspace:Raycast(shot.position, travel, stepParams)
+		if hit or now - shot.fired > LIFETIME then
+			table.remove(live, index)
+			if hit then
+				shot.onHit(hit)
+			end
+		else
+			shot.position += travel
+			shot.velocity += GRAVITY * deltaTime
+		end
+	end
+end)
+```
+
+The server holds positions only; no part moves on the server. Clients get
+one message per shot (origin, velocity, id) and animate their own copy.
+
+## Pooling
+
+Instances created and destroyed per shot are the second cost. Keep a pool
+of visual parts on each client; take one, reset every property the last use
+changed (transparency, colour, size), use it, return it. A pooled part that
+comes back still invisible from its last use is the classic pooling bug.
+
+## Which remote
+
+| Message | Remote |
+|---|---|
+| "I fired", "I swung" | RemoteEvent (reliable: the server must hear it) |
+| Damage results, deaths | RemoteEvent |
+| Tracers, sparks, shell casings | UnreliableRemoteEvent: a lost one costs nothing |
+
+---
+
+## Source: .claude/skills/roblox-combat/references/game-feel.md
+
+# Hit feedback
+
+The tier model and the trauma shake are adapted from the `game-feel` skill in
+`gamedev-skills/awesome-gamedev-agent-skills` (Apache-2.0), translated to
+Roblox's APIs.
+
+## Tiers
+
+Every hit event gets one tier, so the whole game stays proportional.
+
+| Tier | Events | Feedback |
+|---|---|---|
+| Light | a normal hit, a pickup | a sound, a spark at the contact point |
+| Medium | a strong hit, a block broken | plus a white flash on the target for about 0.05 s, a small camera shake, a damage number |
+| Heavy | a critical, a finishing blow, a boss hit | plus a bigger shake and a pause of about 0.1 s in the attacker's animation |
+
+Everything returns to rest: a flash fades, a shake decays, a number rises and
+disappears. Juice that stays becomes the new normal and stops meaning
+anything.
+
+## Camera shake by trauma
+
+Hits add *trauma* (0 to 1); it decays every frame; the shake is trauma
+squared, so small hits barely move the camera and big ones punch. Smooth
+noise, not a new random offset every frame, or the camera buzzes.
+
+```lua
+local RunService = game:GetService("RunService")
+
+local camera = workspace.CurrentCamera
+local trauma = 0
+local DECAY = 1.4
+local MAX_ANGLE = math.rad(2.5)
+
+local function addTrauma(amount: number)
+	trauma = math.min(trauma + amount, 1)
+end
+
+local function shakeCamera(deltaTime: number)
+	if trauma <= 0 then
+		return
+	end
+	trauma = math.max(trauma - DECAY * deltaTime, 0)
+	local shake = trauma * trauma
+	local now = os.clock() * 20
+	local pitch = math.noise(now, 0) * MAX_ANGLE * shake
+	local yaw = math.noise(0, now) * MAX_ANGLE * shake
+	camera.CFrame *= CFrame.Angles(pitch, yaw, 0)
+end
+
+RunService:BindToRenderStep("HitShake", Enum.RenderPriority.Camera.Value + 1, shakeCamera)
+```
+
+Bound after the camera's own update, it offsets the finished camera for
+this frame only, so the camera scripts are not fought. Unbind it with
+`RunService:UnbindFromRenderStep("HitShake")` when the combat system is
+torn down. Scale `addTrauma` by a player setting ("Screen shake: 0 to 100%")
+and skip it when `GuiService.ReducedMotionEnabled` is on.
+
+## Hit pause
+
+A heavy hit reads as heavy when the attacker's animation holds for a moment.
+`AnimationTrack:AdjustSpeed(0)` then back to 1 after about 0.1 s does it
+without touching the simulation. Only the attacker's track pauses; pausing
+the world or `workspace` time does not exist in Roblox and is not needed.
+
+## Numbers and flashes
+
+A damage number is a BillboardGui that rises and fades over about 0.6 s,
+with a small random sideways drift so stacked hits fan out instead of
+overlapping. A flash is a `Highlight` on the target with `FillTransparency`
+tweened from 0.3 to 1 over 0.1 s. Both run on the client that sees them,
+from the server's damage message.
+
+---
+
+## Source: .claude/skills/roblox-chat/SKILL.md
+
+---
+name: roblox-chat
+description: Roblox chat and player text - TextChatService commands, channels, tags and bubbles, and filtering every player-typed string. Use for chat, slash commands, pet names, signs.
+---
+
+# Chat and player text
+
+Two jobs share this skill because they share one rule: **text a player
+typed is shown to anyone else only after Roblox has filtered it.** Chat
+messages sent through TextChatService are filtered for you. Everything else
+(a pet's name, a sign, a clan tag, a bulletin board, text loaded from a
+DataStore) is yours to filter, and Roblox removes experiences that do not.
+
+## TextChatService in one picture
+
+A player's message goes: sending client (`TextChannel:SendAsync`), then the
+server (`TextChannel.ShouldDeliverCallback` decides who gets it, filtering is
+applied), then every receiving client (`TextChatService.OnIncomingMessage`,
+then `TextChatService.MessageReceived`). Where each hook runs matters:
+
+| Hook | Define it on | Use it for |
+|---|---|---|
+| `TextChatCommand.Triggered` | server | slash commands; check who sent it |
+| `TextChannel.ShouldDeliverCallback` | server | team chat, proximity chat, muting |
+| `TextChatService.OnIncomingMessage` | client | tags and colours on messages |
+| `TextChannel:DisplaySystemMessage` | client | local notices in the chat window |
+| `TextChatService:DisplayBubble` | client | a bubble over an NPC |
+
+Callbacks must not yield. Anything slow (group rank, a DataStore) is looked
+up when the player joins and stored as an attribute the callback reads.
+
+## Commands
+
+A `TextChatCommand` parented to `TextChatService`, with `PrimaryAlias`
+(`/give`) and optionally `SecondaryAlias`, fires `Triggered` with the
+sender's `TextSource` and the unfiltered text. Handle it in a server Script,
+resolve the player with `Players:GetPlayerByUserId(textSource.UserId)`, and
+check that player's permission **on the server** before doing anything. The
+built-in commands (`/mute`, emotes) are a Studio setting on
+`TextChatService.CreateDefaultCommands`, not something a script turns on.
+
+[commands-and-channels.md](references/commands-and-channels.md) has an admin
+command, a team channel and chat tags.
+
+## Filtering player text
+
+On the server, after the player submits (never per keystroke):
+
+```lua
+local TextService = game:GetService("TextService")
+
+local function filterForEveryone(text: string, author: Player): string?
+	local ok, result = pcall(TextService.FilterStringAsync, TextService, text, author.UserId)
+	if not ok then
+		return nil
+	end
+	local shown
+	ok, shown = pcall(result.GetNonChatStringForBroadcastAsync, result)
+	return if ok then shown else nil
+end
+```
+
+- **Broadcast** (a sign, a pet name everyone sees):
+  `GetNonChatStringForBroadcastAsync`.
+- **One viewer** (a private note): `GetNonChatStringForUserAsync(viewerId)`.
+- **Failure shows nothing.** If filtering errors, show a placeholder or
+  keep the old text, never the unfiltered string.
+- **Filter again when loading.** A name saved last month is filtered when
+  it is shown today, because filters change.
+- **Rate-limit** text inputs that other players see, on the server.
+
+[filtering.md](references/filtering.md) has the full flow: TextBox,
+remote, validation, filter, display.
+
+## Common mistakes
+
+- Showing a player's typed text in a BillboardGui straight from the
+  TextBox, even "just for testing".
+- Filtering on the client (it cannot) or trusting a client that says the
+  text is filtered.
+- Yielding inside `OnIncomingMessage` (the chat window stalls).
+- Two TextChannels with the same name, which confuses the default window.
+- Using the old `Chat` service's methods for new work.
+
+## Works with
+
+- `roblox-networking`: the remote that carries typed text to the server.
+- `roblox-game-security`: validating and rate-limiting that remote.
+- `roblox-ui`: text inputs, chat-adjacent UI and localization of the words.
+- `roblox-monetization`: PolicyService, and what may be shown to whom.
+- `roblox-data-persistence`: saving names and messages, filtered again on load.
+- `roblox-engine-api`: the services and signals chat code uses.
+
+---
+
+## Source: .claude/skills/roblox-chat/references/commands-and-channels.md
+
+# Commands, channels and tags
+
+From Roblox's in-experience text chat guide and the TextChatService
+reference; API names checked against the dump.
+
+## An admin command
+
+In Studio: add a `TextChatCommand` under `TextChatService`, name it
+`KickCommand`, set `PrimaryAlias` to `/kick`. Then a server Script:
+
+```lua
+local Players = game:GetService("Players")
+local TextChatService = game:GetService("TextChatService")
+
+local ADMINS = { [1234567] = true }
+
+local kick = TextChatService:WaitForChild("KickCommand") :: TextChatCommand
+
+kick.Triggered:Connect(function(textSource: TextSource, text: string)
+	local sender = Players:GetPlayerByUserId(textSource.UserId)
+	if not sender or not ADMINS[sender.UserId] then
+		return
+	end
+	local targetName = string.match(text, "^%S+%s+(%S+)")
+	local target = targetName and Players:FindFirstChild(targetName)
+	if target and target:IsA("Player") then
+		target:Kick("Removed by an admin")
+	end
+end)
+```
+
+The admin list lives on the server. `AutocompleteVisible = false` keeps an
+admin command out of the autocomplete menu for everyone; it still works when
+typed in full. For bans that persist, use `Players:BanAsync` (see
+`roblox-game-security/references/admin-commands.md`).
+
+## A team channel
+
+Create channels on the server, parented to `TextChatService`, and add each
+player with `AddUserAsync` (it yields; call it from `PlayerAdded`). A channel
+per team:
+
+```lua
+local Players = game:GetService("Players")
+local TextChatService = game:GetService("TextChatService")
+
+local channel = Instance.new("TextChannel")
+channel.Name = "RedTeam"
+channel.Parent = TextChatService
+
+local function join(player: Player)
+	if player.Team and player.Team.Name == "Red" then
+		channel:AddUserAsync(player.UserId)
+	end
+end
+```
+
+To limit who *receives* a message in an existing channel instead (proximity
+chat, muted players), set `ShouldDeliverCallback` on the server. It runs for
+every recipient's `TextSource` and returns whether that one gets the message.
+It must not yield.
+
+## Tags on messages
+
+On the client, `TextChatService.OnIncomingMessage` returns a
+`TextChatMessageProperties` with a new `PrefixText`. Read a value the server
+set when the player joined; do not look anything up here, because the
+callback must not yield.
+
+```lua
+local Players = game:GetService("Players")
+local TextChatService = game:GetService("TextChatService")
+
+TextChatService.OnIncomingMessage = function(message: TextChatMessage)
+	local source = message.TextSource
+	local player = source and Players:GetPlayerByUserId(source.UserId)
+	if player and player:GetAttribute("IsVIP") then
+		local properties = Instance.new("TextChatMessageProperties")
+		properties.PrefixText = `<font color="#D69E3E">[VIP]</font> {message.PrefixText}`
+		return properties
+	end
+	return nil
+end
+```
+
+`PrefixText` accepts rich text, which is how the tag gets its own colour.
+
+## System messages and NPC bubbles
+
+- A notice in one player's chat window: on that client,
+  `TextChatService.TextChannels.RBXSystem:DisplaySystemMessage("Round starts in 10 seconds")`.
+  `RBXSystem` exists when `CreateDefaultTextChannels` is on (the default).
+- A bubble over an NPC: on the client, `TextChatService:DisplayBubble(npcHead, "Welcome!")`.
+
+Neither goes through filtering, so neither may contain text a player typed.
+
+---
+
+## Source: .claude/skills/roblox-chat/references/filtering.md
+
+# Filtering player text, end to end
+
+Roblox filters chat that goes through TextChatService. Every other string a
+player typed and another player can see is the experience's to filter, and
+Roblox's text filtering page is explicit that experiences which skip it are
+removed until they add it.
+
+## What needs filtering
+
+- Names players give things: pets, plots, houses, clans, guilds.
+- Signs, notes, bulletin boards, custom chat bubbles.
+- Text stored and shown later (loaded from a DataStore).
+- Text from outside the game (an HTTP response shown in game).
+- Words the game generates from random characters.
+
+## The flow
+
+1. **Client**: a TextBox; on `FocusLost` with Enter, send the text through a
+   RemoteEvent. Never filter as the player types.
+2. **Server, validate**: a string, not empty, under a length cap, the player
+   allowed to name this thing, and not faster than the rate limit.
+3. **Server, filter**: `TextService:FilterStringAsync(text, player.UserId)`,
+   then `GetNonChatStringForBroadcastAsync()` for text everyone sees. Both
+   yield and both can fail; wrap each in `pcall`.
+4. **Server, re-check after the yields**: the player may have left, the pet
+   may be gone.
+5. **Show the filtered string**, never the original. Store the original if
+   the design needs it, and filter again each time it is shown.
+
+```lua
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local TextService = game:GetService("TextService")
+
+local NamePet = ReplicatedStorage.Remotes.NamePet
+local MAX_LENGTH = 20
+local COOLDOWN = 10
+
+local lastRename: { [Player]: number } = {}
+
+NamePet.OnServerEvent:Connect(function(player: Player, petId: unknown, name: unknown)
+	if type(petId) ~= "string" or type(name) ~= "string" or #name == 0 or #name > MAX_LENGTH then
+		return
+	end
+	local now = os.clock()
+	if now - (lastRename[player] or 0) < COOLDOWN then
+		return
+	end
+	lastRename[player] = now
+
+	local ok, result = pcall(TextService.FilterStringAsync, TextService, name, player.UserId)
+	if not ok then
+		return
+	end
+	local shown
+	ok, shown = pcall(result.GetNonChatStringForBroadcastAsync, result)
+	if not ok or player.Parent == nil then
+		return
+	end
+	local pet = workspace.Pets:FindFirstChild(petId)
+	if pet and pet:GetAttribute("OwnerId") == player.UserId then
+		pet:SetAttribute("DisplayName", shown)
+	end
+end)
+```
+
+Clear `lastRename[player]` on `PlayerRemoving`.
+
+## Choosing the method
+
+| Who sees it | Method |
+|---|---|
+| Everyone in the server | `TextFilterResult:GetNonChatStringForBroadcastAsync()` |
+| One specific player | `TextFilterResult:GetNonChatStringForUserAsync(viewerUserId)` |
+| Chat messages | nothing: TextChatService filters them |
+
+`GetChatForUserAsync` is deprecated; use the non-chat methods for text that
+is not a chat message.
+
+---
+
+## Source: .claude/skills/roblox-ui/references/localization-and-accessibility.md
+
+# Localization and accessibility
+
+Many Roblox players do not read English first, and some need larger text,
+see fewer colours, or feel sick from motion. None of this is extra
+work if the UI is built for it from the start; all of it is a rewrite later.
+
+## Text that can be translated
+
+- **Leave `AutoLocalize` on** (`GuiBase2d.AutoLocalize`, true by default) for
+  static labels. Roblox's automatic translation and the localization table
+  translate them without code.
+- **Build dynamic strings from keys, not concatenation.** "You have " .. n ..
+  " coins" cannot be translated, because word order differs by language.
+  Use a key with a parameter and `Translator:FormatByKey`:
+
+```lua
+local LocalizationService = game:GetService("LocalizationService")
+local Players = game:GetService("Players")
+
+local ok, translator = pcall(LocalizationService.GetTranslatorForPlayerAsync, LocalizationService, Players.LocalPlayer)
+local function coinsText(amount: number): string
+	if ok then
+		return translator:FormatByKey("CoinsOwned", { amount })
+	end
+	return `You have {amount} coins`
+end
+```
+
+  `GetTranslatorForPlayerAsync` yields and can fail, so the source language
+  is the fallback, stated once.
+- **Leave room for longer words.** German and Portuguese labels often run about
+  a third longer than English. Size text containers with `AutomaticSize` or
+  enough slack, never to the English string's exact width.
+- **Never put words in images.** They cannot be translated or filtered.
+- **Player-typed text is filtered, not translated** (`roblox-chat`).
+
+## Readable by more players
+
+- **Text size.** 12 px is the floor after scaling; body text is 14 or 16.
+  `GuiService.PreferredTextSize` reports when a player asked Roblox for
+  larger text; a UI with `AutomaticSize` containers can scale its type up
+  for Large and above without clipping.
+- **Contrast.** Text at 4.5:1 or better on its surface; large text and icons
+  at 3:1. The palettes in this stack are checked by
+  `node tools/bin/lint-ui-directions.mjs`.
+- **Never colour alone.** A toggle's knob moves; an error has an icon and
+  words as well as red; a selected tab changes weight as well as colour.
+- **Motion.** Honour `GuiService.ReducedMotionEnabled`: entrances and
+  exits land in one frame, nothing idles, no camera shake. `roblox-ui-motion`
+  has the switch.
+- **Input.** Every action reachable by touch, mouse, keyboard and gamepad,
+  with 44 px targets and visible focus (`roblox-ui-interaction`).
+- **Timing.** A toast stays at least 1.5 seconds; nothing that must be read
+  disappears on a timer shorter than that.
+
+## Checklist
+
+- [ ] Static text left to `AutoLocalize`; dynamic text through keys.
+- [ ] Containers grow with text; nothing sized to the English width.
+- [ ] No words baked into images.
+- [ ] 12 px floor, contrast pairs checked, nothing colour-only.
+- [ ] Reduced motion honoured; focus visible; 44 px targets.
+
+---
+
+## Source: .claude/skills/roblox-monetization/references/policy-compliance.md
+
+# Policy checks for paid features
+
+Some features are allowed for one player and not for another, by country,
+age group and platform. `PolicyService:GetPolicyInfoForPlayerAsync(player)`
+returns a table saying which, and Roblox's reference names the features that
+must check it. Field names below are from that reference.
+
+## Which fields gate what
+
+| Field | Check it before |
+|---|---|
+| `ArePaidRandomItemsRestricted` | any paid random item: loot boxes, gacha, eggs bought with Robux or with currency bought with Robux. When true, the player must not be able to use them |
+| `IsPaidItemTradingAllowed` | trading items bought with Robux or Robux-bought currency |
+| `AreAdsAllowed` | showing immersive ads |
+| `IsEligibleToPurchaseSubscription` | offering a subscription |
+| `IsEligibleToPurchaseCommerceProduct` | offering a commerce product |
+| `IsContentSharingAllowed` | features that let players share content others see (screenshots, posts) |
+| `IsSubjectToChinaPolicies` | anything that must change for the licensed China release |
+
+`AllowedExternalLinkReferences` is a legacy field that always returns an
+empty array; do not build on it.
+
+## How to call it
+
+On the server, once per player on join, cached for the session. It yields
+and can fail, and a failure must not unlock a restricted feature:
+
+```lua
+local Players = game:GetService("Players")
+local PolicyService = game:GetService("PolicyService")
+
+local policies: { [Player]: { [string]: any } } = {}
+
+Players.PlayerAdded:Connect(function(player)
+	local ok, info = pcall(PolicyService.GetPolicyInfoForPlayerAsync, PolicyService, player)
+	-- Unknown means restricted: a failed lookup must not open a paid random item.
+	policies[player] = if ok then info else { ArePaidRandomItemsRestricted = true, IsPaidItemTradingAllowed = false }
+end)
+
+Players.PlayerRemoving:Connect(function(player)
+	policies[player] = nil
+end)
+
+local function mayOpenPaidEgg(player: Player): boolean
+	local policy = policies[player]
+	return policy ~= nil and policy.ArePaidRandomItemsRestricted == false
+end
+```
+
+The server enforces it: the client may hide the button, but the purchase
+handler is where `mayOpenPaidEgg` is checked.
+
+## Design so restricted players still play
+
+A restricted player sees the same game with the gated feature replaced, not
+a broken shop: eggs bought with earned currency only, or a direct purchase
+of the item instead of a random roll. Show odds for every random item to
+everyone, restricted or not.
 
 ---
 
@@ -8044,4 +10881,66 @@ table.insert(
 
 features.Speed = speed
 speed.set(true)
+```
+
+---
+
+## Asset: .claude/skills/roblox-executor-scripting/assets/hub-loader.luau
+
+```lua
+--!strict
+-- Routes a multi-game hub by game.GameId, which every place of one experience shares,
+-- and makes a rerun unload the previous session before the new one starts.
+local getgenv = getgenv
+assert(typeof(getgenv) == "function", "hub-loader needs getgenv")
+
+export type Session = {
+	name: string,
+	gameName: string,
+	unloaded: boolean,
+	own: (self: Session, cleanup: () -> ()) -> (),
+	unload: (self: Session) -> (),
+}
+
+export type GameEntry = {
+	name: string,
+	start: (session: Session) -> (),
+}
+
+return function(hubName: string, games: { [number]: GameEntry }, universal: GameEntry): Session
+	local env = getgenv()
+	local previous = env[hubName]
+	if previous then
+		previous:unload()
+	end
+
+	local entry = games[game.GameId] or universal
+	local cleanups: { () -> () } = {}
+	local session = { name = hubName, gameName = entry.name, unloaded = false }
+
+	function session:own(cleanup: () -> ())
+		table.insert(cleanups, cleanup)
+	end
+
+	-- Newest first: a feature started later may depend on one started earlier.
+	function session:unload()
+		if self.unloaded then
+			return
+		end
+		self.unloaded = true
+		for index = #cleanups, 1, -1 do
+			cleanups[index]()
+		end
+		table.clear(cleanups)
+		if env[hubName] == self then
+			env[hubName] = nil
+		end
+	end
+
+	-- Registered before start runs, so a start that errors halfway is still
+	-- unloaded by the next run instead of leaving its first features behind.
+	env[hubName] = session
+	entry.start(session :: any)
+	return session :: any
+end
 ```

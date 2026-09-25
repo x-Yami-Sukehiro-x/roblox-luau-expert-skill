@@ -1,6 +1,6 @@
 ---
 name: roblox-monetization
-description: Robux monetization - game passes, developer products, idempotent ProcessReceipt with a PurchaseId ledger, subscriptions, pricing, PolicyService. Use for shops, purchases, and items granted twice or not at all.
+description: Robux monetization - game passes, developer products, idempotent ProcessReceipt, subscriptions, pricing, PolicyService and paid random items. Use for shops and purchase bugs.
 ---
 
 # Monetization
@@ -27,6 +27,7 @@ Neither is optional and neither is the default.
 |---|---|
 | the full receipt handler, ledger, and failure modes | `references/receipts.md` |
 | passes vs products vs subscriptions, prompts, ownership checks | `references/products-and-passes.md` |
+| paid random items, trading, ads and subscriptions by region and age | `references/policy-compliance.md` |
 
 ---
 

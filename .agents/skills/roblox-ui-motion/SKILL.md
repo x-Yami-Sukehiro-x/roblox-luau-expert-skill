@@ -1,6 +1,6 @@
 ---
 name: roblox-ui-motion
-description: Animating Roblox UI - easing and durations, TweenService, springs and SmoothDamp, choreography, reduced motion, janky or idle animation. Use for opening, closing, press feedback and any UI tween.
+description: Animating Roblox UI - easing, durations, TweenService, springs, choreography, reduced motion. Use for opening, closing, press feedback and janky tweens.
 ---
 
 # UI motion
