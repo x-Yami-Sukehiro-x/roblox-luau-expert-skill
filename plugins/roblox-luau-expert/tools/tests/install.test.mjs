@@ -54,6 +54,9 @@ test("cross-host installation carries offline tools, backs up edits, preserves u
   }
   assert.match(readFileSync(join(profile, ".cursor/rules/roblox-luau-expert.mdc"), "utf8"), /Installed bundle paths/);
   assert.match(readFileSync(join(profile, ".codex/skills/roblox-luau-expert-skill/SKILL.md"), "utf8"), /bundle root/);
+  const codexEntry = readFileSync(join(profile, ".agents/skills/roblox-luau-expert-skill/SKILL.md"), "utf8");
+  assert.match(codexEntry, /^---\nname: roblox-luau-expert-skill\n/);
+  assert.match(codexEntry, /\.codex\/skills\/roblox-luau-expert-skill\/\.claude\/skills\/roblox-luau-expert\/SKILL\.md/);
 
   put(".claude/skills/roblox-luau-expert/SKILL.md", "local edit to retain\n");
   install();
@@ -69,6 +72,7 @@ test("cross-host installation carries offline tools, backs up edits, preserves u
   assert.ok(!existsSync(join(profile, ".claude/skills/roblox-luau-expert")));
   assert.ok(!existsSync(join(profile, ".cursor/skills/roblox-luau-expert")));
   assert.ok(!existsSync(join(profile, ".codex/skills/roblox-luau-expert-skill/SKILL.md")));
+  assert.ok(!existsSync(join(profile, ".agents/skills/roblox-luau-expert-skill/SKILL.md")));
   assert.equal(readFileSync(join(profile, ".codex/skills/roblox-luau-expert-skill/.git/keep"), "utf8"), "git metadata\n");
   assert.equal(readFileSync(join(profile, ".codex/skills/roblox-luau-expert-skill/private-note.txt"), "utf8"), "private note\n");
   assert.ok(!readdirSync(profile).some((entry) => entry.startsWith(".roblox-luau-expert-stage-")));

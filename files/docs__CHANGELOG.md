@@ -26,6 +26,12 @@ limit of 1,024 on its own.
   `references/verifying-apis.md` and its delivery pass was condensed,
   bringing it from 22,787 to 18,729 characters.
 
+- Codex reads user skills from `~/.agents/skills`, which OpenAI's skill
+  documentation lists; `~/.codex/skills`, where `install.ps1` put the Codex
+  entry, is not in that list. The installer now also writes the entry skill
+  to `~/.agents/skills/roblox-luau-expert-skill`, pointing at the bundle,
+  which stays where an existing clone of it may live.
+
 ### Added
 
 - **`roblox-studio-mcp`**: checking work in real Studio through its built-in
