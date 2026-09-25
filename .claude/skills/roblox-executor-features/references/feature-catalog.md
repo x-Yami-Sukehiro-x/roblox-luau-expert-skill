@@ -89,6 +89,48 @@ and night script changes it. Unload restores the values captured at start.
 An `Atmosphere` object still adds haze; set its `Density` to 0 as a seventh
 captured value if asked.
 
+## Spectate — `../assets/spectate.luau`
+
+Points `Camera.CameraSubject` at another player's Humanoid. The default camera
+script points it back at your own body whenever you respawn, and the target's
+respawn makes a new Humanoid, so a watcher re-aims after either. Turning it
+off returns the camera to your **current** body, not the one captured at the
+start, which may have died since. P toggles, ] and [ step through players, and
+`Features.Spectate.follow(player)` is the call for a hub's player list. The
+target leaving moves to the next player, or back to you.
+
+## Camera unlock — `../assets/camera-unlock.luau`
+
+Sets `CameraMaxZoomDistance`, `CameraMinZoomDistance` and `CameraMode =
+Classic` on the player, and `FieldOfView` on the camera, each held against the
+game's writes (first-person locks, sprint FOV, zoom caps). A replaced
+`CurrentCamera` gets the FOV too, and the old camera gets its own value back.
+
+| Variant asked for | Change |
+|---|---|
+| "max zoom only" | drop the `FieldOfView` entry from the list in `hold` |
+| "FOV slider" | `Features.CameraUnlock.fov = value` then `set(true)` |
+
+## Freecam — `../assets/freecam.luau`
+
+A `Scriptable` camera flown with the same movement split as fly:
+`Humanoid.MoveDirection` along the camera, so WASD, the gamepad stick and the
+touch thumbstick all steer, with E and Q to climb. Hold the right mouse
+button and drag, drag a finger anywhere off the game's buttons, or tilt the
+right stick to look; pitch stops at 80 degrees. The root is anchored so the
+body stays where it stood, and whatever `Anchored` value it had before is put
+back. The camera scripts setting `CameraType` back on respawn are undone.
+
+## Feature doctor — `../assets/feature-doctor.luau`
+
+Read-only. It prints the executor (when `identifyexecutor` exists), every
+session in `getgenv().Features` and whether it is on, pairs that interact
+(fly and freecam, spectate and freecam, speed and fly, click teleport and
+freecam), a missing, seated, anchored or platform-standing character,
+streaming, and, after five seconds, how many times each watched property
+changed. With `setclipboard` it copies the report too. How to read it:
+`../../roblox-executor-reliability/references/diagnosis.md`.
+
 ## Combining into a hub
 
 ```lua

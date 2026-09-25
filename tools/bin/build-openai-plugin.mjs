@@ -4,7 +4,7 @@
 // OpenAI retires custom GPTs on 11 December 2026. Its built-in "Migrate to
 // plugin" turns the GPT's 8,000-character instructions into one skill and copies
 // the knowledge files beside it. This builds the better replacement: all
-// twenty-one skills with their references, each loaded in full when its
+// twenty-five skills with their references, each loaded in full when its
 // description matches, plus the tools, library and guide the skills point at.
 //
 // Output (gitignored, rebuilt from source):
@@ -126,10 +126,13 @@ function main() {
           displayName: "Roblox Luau Expert",
           shortDescription: "Roblox scripts, clean UI and executor work, checked rather than guessed",
           longDescription:
-            "Twenty-one Roblox skills in one plugin. UI requests start from a playable style picker with " +
+            "Twenty-five Roblox skills in one plugin. UI requests start from a playable style picker with " +
             "labeled toggles, checkboxes, dropdowns, menu animations, notifications and tooltips, and every " +
             "picked code has a tested recipe; a drag-and-drop UI designer copies whole screens for exact " +
-            "rebuilds. Fly, noclip, ESP and other character features ship as tested scripts. Decompiled " +
+            "rebuilds, sized for every screen from a 640 x 360 phone to 4K and held to one input contract " +
+            "for mouse, touch and gamepad. Fly, noclip, ESP, spectate, freecam and other character " +
+            "features ship as tested scripts, with a read-only doctor that reports why one does nothing. " +
+            "An attempt ledger records what failed so it is not tried again. Decompiled " +
             "source is searched for the requested feature; when it is missing, a " +
             "read-only runtime probe collects the evidence instead of guessed names. Every " +
             "Roblox API is checked against a vendored API dump, and bundled Python checkers count the " +

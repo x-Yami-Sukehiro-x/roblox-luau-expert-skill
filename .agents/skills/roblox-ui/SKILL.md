@@ -20,6 +20,7 @@ This skill owns **layout, responsiveness and taste**. Two siblings own the rest:
 
 | Need | File |
 |---|---|
+| **a one-line request ("make me a gui") to a shippable screen** | `references/weak-prompt.md` |
 | **building any UI — start here** | `references/build-order.md` |
 | **which palette, which font, which radius** | `references/design-directions.md` |
 | **a layout recipe for a menu, list, grid, modal, HUD** | `references/blueprints.md` |
@@ -39,6 +40,9 @@ This skill owns **layout, responsiveness and taste**. Two siblings own the rest:
 | **a whole screen from a one-line request** — shop, hub, settings, HUD, inventory | `references/screen-archetypes.md` |
 | sizes, tab layout (top, side, bottom), improving an existing UI | `references/layout-ux.md` |
 | blurry icons or panels, cut-off dropdowns, "it's bugged" | `references/crisp-ui.md` |
+| outlines, focus rings, shadows or popups cut off at an edge | `references/clipping.md` |
+| **fits every screen**: phones to 4K, insets, overflow, text after scaling | `../roblox-ui-viewport/SKILL.md` |
+| **every control responds** on mouse, touch and gamepad; "the button does nothing" | `../roblox-ui-interaction/SKILL.md` |
 | the user sent a picture of a UI to recreate | `references/image-to-ui.md` |
 | labels, row descriptions, subtitles, button text, empty states | `references/ui-copy.md` |
 | a pasted `roblox-ui-design` export from the UI designer | `references/design-spec.md` |
@@ -98,7 +102,7 @@ panel.AnchorPoint = Vector2.new(0.5, 0.5)
 
 local constraint = Instance.new("UISizeConstraint")
 constraint.MaxSize = Vector2.new(720, 900)
-constraint.MinSize = Vector2.new(280, 320)
+constraint.MinSize = Vector2.new(280, 260)
 constraint.Parent = panel
 ```
 

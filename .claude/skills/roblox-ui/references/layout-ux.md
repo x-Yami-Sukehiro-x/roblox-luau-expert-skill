@@ -25,7 +25,7 @@ Numbers for a 1280 × 720 computer screen that also survive a 390 × 844 phone.
 | Window title | 20 px bold | the window has no name | 28 belongs to one hero only |
 | Hero (one per screen) | 28 px | nothing leads | two heroes compete |
 | Icons | 16 in rows, 20 in tabs and headers, 24 on HUD buttons | smudges | icons louder than words |
-| Window | `fromScale(0.5, 0.65)`, `UISizeConstraint` 300..720 × 320..820 | text wraps everywhere | a 1000 px panel of empty space on a big monitor |
+| Window | `fromScale(0.5, 0.65)`, `UISizeConstraint` 300..720 × 260..820 | text wraps everywhere | a 1000 px panel of empty space on a big monitor |
 | Script hub | about 560 × 380 at 1280 × 720, sidebar 140 | tabs truncate | covers the game the player is playing |
 | Confirm dialog | 360 wide, content height | buttons wrap | reads as a page, not a question |
 | HUD chip | 44 tall, as narrow as its content + 24 | — | covers the game: the HUD rule is "smallest that reads" |

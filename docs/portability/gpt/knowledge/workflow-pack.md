@@ -402,8 +402,11 @@ Use these fields, omitting empty ones:
   ownership, reset triggers. Link evidence; label inferences separately.
 - **UI decisions:** audience, primary action, palette/type/spacing tokens,
   component behavior, target devices, user-approved design choices.
-- **Corrections:** symptom, observed cause, smallest repair, regression case,
-  result. A complaint is evidence of a symptom, not proof of a guessed cause.
+- **Attempts:** every attempt and correction as a ledger entry (symptom,
+  what was tried, what was seen, cause when evidenced, what instead, the
+  regression check), in the shape `attempt-ledger.mjs` reads
+  (`../../roblox-attempt-memory/references/ledger-format.md`). A complaint is
+  evidence of a symptom, not proof of a guessed cause.
 - **Validation:** command and output or runtime action, date and revision,
   skipped checks, current unresolved issues and next step.
 
@@ -1618,6 +1621,7 @@ This skill owns **layout, responsiveness and taste**. Two siblings own the rest:
 
 | Need | File |
 |---|---|
+| **a one-line request ("make me a gui") to a shippable screen** | `references/weak-prompt.md` |
 | **building any UI — start here** | `references/build-order.md` |
 | **which palette, which font, which radius** | `references/design-directions.md` |
 | **a layout recipe for a menu, list, grid, modal, HUD** | `references/blueprints.md` |
@@ -1637,6 +1641,9 @@ This skill owns **layout, responsiveness and taste**. Two siblings own the rest:
 | **a whole screen from a one-line request** — shop, hub, settings, HUD, inventory | `references/screen-archetypes.md` |
 | sizes, tab layout (top, side, bottom), improving an existing UI | `references/layout-ux.md` |
 | blurry icons or panels, cut-off dropdowns, "it's bugged" | `references/crisp-ui.md` |
+| outlines, focus rings, shadows or popups cut off at an edge | `references/clipping.md` |
+| **fits every screen**: phones to 4K, insets, overflow, text after scaling | `../roblox-ui-viewport/SKILL.md` |
+| **every control responds** on mouse, touch and gamepad; "the button does nothing" | `../roblox-ui-interaction/SKILL.md` |
 | the user sent a picture of a UI to recreate | `references/image-to-ui.md` |
 | labels, row descriptions, subtitles, button text, empty states | `references/ui-copy.md` |
 | a pasted `roblox-ui-design` export from the UI designer | `references/design-spec.md` |
@@ -1696,7 +1703,7 @@ panel.AnchorPoint = Vector2.new(0.5, 0.5)
 
 local constraint = Instance.new("UISizeConstraint")
 constraint.MaxSize = Vector2.new(720, 900)
-constraint.MinSize = Vector2.new(280, 320)
+constraint.MinSize = Vector2.new(280, 260)
 constraint.Parent = panel
 ```
 
@@ -2076,7 +2083,7 @@ selected value. Loading is additional state for asynchronous work.
 | rest | the baseline |
 | hover | background one step up |
 | press | background one step down, plus a `UIScale` of about `0.97` |
-| focus | a visible ring — `UIStroke` with `BorderStrokePosition = Outer` |
+| focus | a visible ring — `UIStroke` with `BorderStrokePosition = Outer` on a panel, `Inner` inside anything that clips (`clipping.md`) |
 | disabled | `Interactable = false`, muted text, reduced background |
 | selected | accent applied, and a shape or weight change as well as colour |
 
@@ -2184,7 +2191,7 @@ produces a visible defect a player will hit.
 | # | Gate | How to check |
 |---|---|---|
 | H1 | No colour literal outside the token block | Search `Color3.fromRGB`. One block, or zero |
-| H2 | Root has a `UISizeConstraint` with min and max | Search `UISizeConstraint` |
+| H2 | Root has a `UISizeConstraint` with min and max, and its smallest size fits 640 x 300 | Search `UISizeConstraint`; `E-MINFIT` |
 | H3 | Nothing is positioned by hand inside a container of siblings | Search for sibling frames with explicit `Position` and no layout |
 | H4 | Every tappable element is at least 44 px on its smallest side | Read the sizes and the `UISizeConstraint` minimums |
 | H5 | `Activated` is used, not `MouseButton1Click` | Search both |
@@ -2226,7 +2233,7 @@ count above and still be full of numbers that nothing reads.
 | L3 | Text-bearing elements parented before their `Text` is set | 0 |
 | L4 | Font glyphs used as icons; asset ids nobody has verified | 0 |
 | L5 | Notification lifetimes under 1.5 s; `ScreenInsets` and `IgnoreGuiInset` both set | 0 |
-| L6 | Opaque children reaching the edge of a rounded container that is not a `CanvasGroup`; `UICorner` on a `ScrollingFrame` | 0 |
+| L6 | Opaque children reaching the edge of a rounded container that is not a `CanvasGroup`; `UICorner` on a `ScrollingFrame`; an Outer `UIStroke` cut off by a clipping parent | 0 |
 
 Every L row is a **dead decision** — a value written into the file that the
 engine ignores, or one that contradicts a value beside it. They matter for the
@@ -2265,7 +2272,7 @@ The rubric is diagnostic. Each row maps to the step that produces it.
 | L1, L2 | step 3 — structure. One thing decides each number |
 | L3 | step 9 — the state before the data arrives is a state |
 | L4 | `roblox-ui-components/references/icons.md` |
-| L6 | `roblox-ui-components/references/outlines-and-dividers.md` |
+| L6 | `roblox-ui-components/references/outlines-and-dividers.md`, `clipping.md` |
 | L5 | `roblox-ui-components/references/toasts.md` |
 
 ---
@@ -2500,7 +2507,7 @@ copy follows `ui-copy.md`; icons follow `icon-meaning.md`.
 content is the point, so the window stays quiet and small.
 
 ```text
-Window 560 x 380 (scale 0.5 x 0.65, 300..720 x 320..820), draggable header
+Window 560 x 380 (scale 0.5 x 0.65, 300..720 x 260..820), draggable header
 ├── Header 44: title 20 Bold · badge · minimise · close        (B1a)
 ├── Sidebar 140: tabs with icons, S4 or S5                      (B6)
 └── Page: search (D11 or a search box), section headings,
@@ -2720,7 +2727,7 @@ Numbers for a 1280 × 720 computer screen that also survive a 390 × 844 phone.
 | Window title | 20 px bold | the window has no name | 28 belongs to one hero only |
 | Hero (one per screen) | 28 px | nothing leads | two heroes compete |
 | Icons | 16 in rows, 20 in tabs and headers, 24 on HUD buttons | smudges | icons louder than words |
-| Window | `fromScale(0.5, 0.65)`, `UISizeConstraint` 300..720 × 320..820 | text wraps everywhere | a 1000 px panel of empty space on a big monitor |
+| Window | `fromScale(0.5, 0.65)`, `UISizeConstraint` 300..720 × 260..820 | text wraps everywhere | a 1000 px panel of empty space on a big monitor |
 | Script hub | about 560 × 380 at 1280 × 720, sidebar 140 | tabs truncate | covers the game the player is playing |
 | Confirm dialog | 360 wide, content height | buttons wrap | reads as a page, not a question |
 | HUD chip | 44 tall, as narrow as its content + 24 | — | covers the game: the HUD rule is "smallest that reads" |
@@ -3699,7 +3706,7 @@ than that means the router row was skipped.
 | Time sink | Instead |
 |---|---|
 | opening a whole pack for one style | `recipe.py <code>` prints the row and the file |
-| six checks run one after another | `check-file.mjs` runs them together in half a second |
+| eight checks run one after another | `check-file.mjs` runs them together in about a second |
 | writing a component from nothing | paste the tested recipe or asset |
 | a first draft, then "an improved version" | work it out, write the file once |
 | a clarifying question with a default available | decide, state the default, build |
@@ -3718,12 +3725,12 @@ Name the files and sections read in the reply, once.
 
 ---
 name: roblox-executor-features
-description: Tested, ready-to-paste executor feature scripts for the local character and view — fly, noclip, walk speed and jump height, infinite jump, ESP, click teleport, anti-AFK and fullbright — and the quality bar every such script must meet. Modern physics (LinearVelocity and AlignOrientation, never BodyVelocity), camera-relative movement that works on keyboard, gamepad and touch, respawn handling, one getgenv namespace, rerun-safe unload that restores what it changed, keybinds, and a set() API a hub toggle can call. Use when asked for fly, noclip, speed, jump, ESP, teleport, anti-AFK, fullbright or any "universal" script, when combining features into a hub, or when an executor script's quality, mobile support or cleanup is poor.
+description: Tested, ready-to-paste executor feature scripts for the local character and view — fly, noclip, walk speed and jump height, infinite jump, ESP, click teleport, anti-AFK, fullbright, spectate, camera unlock (zoom, FOV, third person) and freecam — plus a feature doctor that reports why a feature is not working, and the quality bar every such script must meet. Modern physics (LinearVelocity and AlignOrientation, never BodyVelocity), camera-relative movement that works on keyboard, gamepad and touch, respawn handling, one getgenv namespace, rerun-safe unload that restores what it changed, keybinds, and a set() API a hub toggle can call. Use when asked for fly, noclip, speed, jump, ESP, teleport, anti-AFK, fullbright, spectate, max zoom, FOV, freecam or any "universal" script, when combining features into a hub, or when an executor script's quality, mobile support or cleanup is poor.
 ---
 
 # Executor features
 
-These eight scripts act on things the local client already owns: its own
+These eleven scripts act on things the local client already owns: its own
 character's physics, its own camera, its own lighting and its own view of
 other players. That is why they can be generic. Anything that touches a
 game's own values, remotes or systems is not generic, and follows
@@ -3742,10 +3749,20 @@ use on accounts and servers you control; any executor use can be banned.
 | click teleport | `assets/click-teleport.luau` | Ctrl+click, tap on a phone | `PivotTo` the clicked ground, facing kept |
 | anti-AFK | `assets/anti-afk.luau` | none | a `VirtualUser` click when `Idled` fires |
 | fullbright | `assets/fullbright.luau` | B | six `Lighting` properties, held against day and night scripts |
+| spectate | `assets/spectate.luau` | P, then [ and ] | `Camera.CameraSubject`, re-aimed after either player respawns |
+| camera unlock | `assets/camera-unlock.luau` | Z | max and min zoom, `CameraMode` Classic, `FieldOfView`, held against the game |
+| freecam | `assets/freecam.luau` | X, E/Q, right-drag or touch-drag | a scriptable camera driven by `MoveDirection`; the body anchored where it stood |
 
-Each asset is behaviour-tested in `library/tests/recipes/` (every one covers
-the effect, the toggle key, chat typing, respawn, rerun and a double unload)
-and scores full marks on the slop, format, API and register gates.
+When a feature "does nothing", send `assets/feature-doctor.luau`: it changes
+nothing, and prints the executor, each loaded feature's state, conflicting
+pairs, a seated or anchored body, and every watched property something
+rewrote in five seconds. `../roblox-executor-reliability/SKILL.md` reads its
+output.
+
+Each asset is behaviour-tested in `library/tests/recipes/` (every feature
+covers the effect, the toggle key, chat typing, respawn, rerun and a double
+unload; the doctor covers its report and that it changes nothing) and scores
+full marks on the slop, format, API and register gates.
 
 ---
 
@@ -3765,7 +3782,9 @@ and scores full marks on the slop, format, API and register gates.
    (no Node: `python tools/py/check_file.py <file>`).
 
 A request for a feature not in the table still meets the bar in
-`references/feature-quality.md`; start from the closest asset's shape.
+`references/feature-quality.md`; start from the closest asset's shape, and
+pass the regression matrix in
+`../roblox-executor-reliability/references/regression-matrix.md`.
 
 ---
 
@@ -3776,7 +3795,8 @@ noclip, speed and teleport **replicate to everyone**. That is also why they
 are the features anti-cheats watch. A server that checks distance per second,
 raycasts between positions, or runs Server Authority physics corrects or
 kicks; nothing in these scripts hides that. ESP, fullbright and anti-AFK are
-local-only and change nothing another player sees.
+local-only and change nothing another player sees; so are spectate, camera
+unlock and freecam, though freecam's anchored body stands still for everyone.
 → `../roblox-executor/references/technique/replication-exploitation.md`
 
 ---
@@ -3789,6 +3809,7 @@ local-only and change nothing another player sees.
 | how each feature works, its variants and why these choices | `references/feature-catalog.md` |
 | lifetime, unload and rerun rules in full | `../roblox-executor/references/technique/lifecycle.md` |
 | game-specific features from a dump | `../roblox-executor/references/technique/feature-search.md` |
+| making a feature work in this game, and not breaking others | `../roblox-executor-reliability/SKILL.md` |
 
 ---
 
@@ -3861,6 +3882,1751 @@ script usually does not.
 - Say in the reply what replicates and what the server can correct.
 - A mocked test proves the logic, not the game. Name the runtime checks that
   were not run.
+
+---
+
+## Source: .claude/skills/roblox-executor-features/references/feature-catalog.md
+
+# Feature catalog
+
+How each asset works, the variants people ask for, and why the asset chose
+what it did.
+
+## Fly — `../assets/fly.luau`
+
+`PlatformStand` stops the Humanoid fighting the constraints; a
+`LinearVelocity` with no force cap sets the velocity in world space and a rigid
+`AlignOrientation` keeps the body level, facing the camera's yaw.
+
+| Variant asked for | Change |
+|---|---|
+| "faster" | `SPEED`, or `Features.Fly.speed` live from a slider |
+| "fly where I look, no up key" | already: forward follows the camera's pitch |
+| "face where I look, tilted too" | set `align.CFrame` to the camera's rotation instead of the flat heading |
+| "CFrame fly" | moves the root's `CFrame` each frame; it fights physics and jitters for others. Prefer the constraint version |
+
+Deprecated shapes to refuse: `BodyVelocity` / `BodyGyro` flight and
+`Humanoid.PlatformStand` alone with `Velocity` writes.
+
+## Noclip — `../assets/noclip.luau`
+
+The Humanoid re-enables collision on body parts every step, so the script
+switches it off in `PreSimulation`, before each physics step. It records only
+the parts it switched, so accessories that were already non-colliding stay
+that way on restore.
+
+Variant: "noclip only while holding a key" is `set(true)` on `InputBegan` and
+`set(false)` on `InputEnded` for that key.
+
+## Speed — `../assets/speed.luau`
+
+Writes `WalkSpeed` and `JumpHeight`, and a `JumpPower` of
+`sqrt(2 × Workspace.Gravity × height)` so games that set `UseJumpPower` jump
+the same height. Property-changed watchers write the values back when a sprint,
+stun or round script changes them.
+
+A "CFrame speed" that nudges the root forward each frame passes a WalkSpeed
+check and fails every distance check; it is not safer.
+
+## Infinite jump — `../assets/infinite-jump.luau`
+
+`UserInputService.JumpRequest` fires on the jump key and the mobile jump
+button, and repeats every frame while held. Each request sets the Jumping
+state, at most once per 0.2 s, so holding the button climbs steadily instead
+of launching.
+
+## ESP — `../assets/esp.luau`
+
+A `Highlight` per other player shows the body through walls; a `BillboardGui`
+tag shows the display name and distance. Both live in `gethui()` so the game's
+own scripts do not see them in `PlayerGui`. The engine renders at most 31
+Highlights; the refresh gives them to the 31 nearest players.
+
+| Variant asked for | Change |
+|---|---|
+| "boxes and lines" (tracers) | `Drawing` objects; see `../../roblox-executor/references/api/drawing.md` |
+| "health bars" | a second `TextLabel` or `Frame` in the tag reading `Humanoid.Health` |
+| "only enemies" | skip `track` when `other.Team == player.Team` |
+| "items or NPCs" | the same marker on the models the game spawns; find them from the dump first |
+
+Teammates get an outline only and enemies a fill, so the difference is not
+colour alone.
+
+## Click teleport — `../assets/click-teleport.luau`
+
+Ctrl+click raycasts from the mouse (`GetMouseLocation` with
+`ViewportPointToRay`, both in viewport space) and pivots the character 3 studs
+above the hit, keeping its facing. On a phone a tap in the world does it;
+`processedByUI` keeps taps on buttons out.
+
+Teleporting to a player is the same `PivotTo` with the other root's position.
+A game that validates distance per second rejects long jumps; split them into
+steps only if the dump shows how the server checks.
+
+## Anti-AFK — `../assets/anti-afk.luau`
+
+`Player.Idled` fires after two minutes without input; the kick comes at
+twenty. A `VirtualUser` right click resets the timer. `VirtualUser` is
+LocalUser security, reachable from an executor and not from a game's own
+LocalScript.
+
+## Fullbright — `../assets/fullbright.luau`
+
+Sets six `Lighting` properties (brightness, noon clock, far fog, no global
+shadows, bright ambient and outdoor ambient) and writes each back when a day
+and night script changes it. Unload restores the values captured at start.
+An `Atmosphere` object still adds haze; set its `Density` to 0 as a seventh
+captured value if asked.
+
+## Spectate — `../assets/spectate.luau`
+
+Points `Camera.CameraSubject` at another player's Humanoid. The default camera
+script points it back at your own body whenever you respawn, and the target's
+respawn makes a new Humanoid, so a watcher re-aims after either. Turning it
+off returns the camera to your **current** body, not the one captured at the
+start, which may have died since. P toggles, ] and [ step through players, and
+`Features.Spectate.follow(player)` is the call for a hub's player list. The
+target leaving moves to the next player, or back to you.
+
+## Camera unlock — `../assets/camera-unlock.luau`
+
+Sets `CameraMaxZoomDistance`, `CameraMinZoomDistance` and `CameraMode =
+Classic` on the player, and `FieldOfView` on the camera, each held against the
+game's writes (first-person locks, sprint FOV, zoom caps). A replaced
+`CurrentCamera` gets the FOV too, and the old camera gets its own value back.
+
+| Variant asked for | Change |
+|---|---|
+| "max zoom only" | drop the `FieldOfView` entry from the list in `hold` |
+| "FOV slider" | `Features.CameraUnlock.fov = value` then `set(true)` |
+
+## Freecam — `../assets/freecam.luau`
+
+A `Scriptable` camera flown with the same movement split as fly:
+`Humanoid.MoveDirection` along the camera, so WASD, the gamepad stick and the
+touch thumbstick all steer, with E and Q to climb. Hold the right mouse
+button and drag, drag a finger anywhere off the game's buttons, or tilt the
+right stick to look; pitch stops at 80 degrees. The root is anchored so the
+body stays where it stood, and whatever `Anchored` value it had before is put
+back. The camera scripts setting `CameraType` back on respawn are undone.
+
+## Feature doctor — `../assets/feature-doctor.luau`
+
+Read-only. It prints the executor (when `identifyexecutor` exists), every
+session in `getgenv().Features` and whether it is on, pairs that interact
+(fly and freecam, spectate and freecam, speed and fly, click teleport and
+freecam), a missing, seated, anchored or platform-standing character,
+streaming, and, after five seconds, how many times each watched property
+changed. With `setclipboard` it copies the report too. How to read it:
+`../../roblox-executor-reliability/references/diagnosis.md`.
+
+## Combining into a hub
+
+```lua
+local features = getgenv().Features
+
+features.Speed.walk = 60
+features.Speed.set(true)
+features.Fly.set(false)
+```
+
+A hub's own unload calls every `features.<Name>.unload()`. Toggles are T codes
+and speed sliders take an H3 value; see `../../roblox-ui/SKILL.md`.
+
+---
+
+## Source: .claude/skills/roblox-executor-reliability/SKILL.md
+
+---
+name: roblox-executor-reliability
+description: Making the executor feature a user asks for actually work in their game, first time, without breaking what already worked - naming the effect and who owns the value, choosing the layer, finding what else writes it (game scripts, respawn, the Humanoid, other features), the regression matrix every feature passes (toggle, respawn, rerun, unload, chat typing, phone, seat, death, streaming), combining features without conflicts, and a runtime doctor that reports what is fighting a feature. Use when writing or fixing any executor script or hub feature, when the user says "it doesn't work", "it stopped working", "works then resets", "broke after respawn", "broke my other feature", or when adding a feature to an existing script.
+---
+
+# Executor features that work
+
+A feature works when the player presses the key in **their** game and the
+effect appears, stays, survives a death and a rerun, stops cleanly, and
+nothing that worked before breaks. Most failures are not in the feature's
+main line. They are in what the game does around it.
+
+Scope and ban risk are stated once in `roblox-executor`: private and
+educational use, on accounts you control.
+
+## Before writing a line
+
+1. **Name the effect in the player's terms.** "Fly" means: moves in the
+   camera's direction, holds height with no input, works on the phone
+   thumbstick, lands on the key. Write the acceptance list first; it becomes
+   the test.
+2. **Who owns the value?** The client owns its character's physics, its
+   camera, its lighting and its view of others: generic assets work
+   (`../roblox-executor-features/SKILL.md`). A game value (a cooldown, a stat,
+   a gun's fire rate) lives in the game's own code: find it in the dump first
+   (`../roblox-executor/references/technique/feature-search.md`). A server
+   value (currency, damage, inventory) cannot be written from the client;
+   say so and look for the request the game already sends.
+3. **Which layer, one API.** The table in
+   `../roblox-executor/references/technique/source-to-api.md`. No fallback
+   chain across layers.
+4. **Who else writes it?** List every writer before choosing how to hold the
+   value: the game's scripts, the Humanoid's own state machine, respawn, the
+   camera scripts, the player's other features. `references/failure-modes.md`
+   lists the usual ones per property.
+5. **Check the ledger.** `node tools/bin/attempt-ledger.mjs plan "<approach>"`
+   refuses an approach that already failed in this project or in the stack's
+   known failures (`../roblox-attempt-memory/SKILL.md`).
+
+## Holding a value against the game
+
+| The game writes it | Hold it with |
+|---|---|
+| once, at spawn | apply on `CharacterAdded`, after `WaitForChild` |
+| now and then (sprint, stun, round start) | `GetPropertyChangedSignal`, writing back only when different |
+| every physics step (the Humanoid resetting `CanCollide`) | `RunService.PreSimulation`, before the step |
+| every frame from its own loop | `getconnections` on the loop's signal and `Disable`, when the dump shows the loop |
+| from the server (replicated property) | nothing on the client holds it; the next replication wins |
+
+Writing every frame "just in case" costs a write per frame forever and still
+loses between the game's write and yours (K9 in the known failures).
+
+## Build from the closest tested asset
+
+Paste the closest asset and change what differs; keep its skeleton: one
+`getgenv().Features` namespace, unload the previous session before reading
+any original, every connection stored, respawn re-applied after the wait with
+the session and character re-checked, `processed` respected, a `set(on)` for
+hub buttons, and an idempotent `unload` that restores only what it changed.
+`../roblox-executor-features/references/feature-quality.md` is that skeleton
+as a checklist.
+
+## The regression matrix
+
+Every feature passes every row that applies, in the mocks where they can
+model it and in the game where they cannot. `references/regression-matrix.md`
+has the test code for each row.
+
+| Row | Pass means |
+|---|---|
+| runs | the effect appears on the first run |
+| toggle twice | off restores the game's value; on again works |
+| game writes | the game's write is answered (or honestly not, and said) |
+| respawn on, respawn off | on stays on for the new body; off stays off |
+| rerun | one session, one set of connections, originals not overwritten |
+| unload twice | everything restored, namespace cleared, no error |
+| chat typing | the key typed in chat does nothing |
+| phone | reachable without a keyboard: thumbstick, tap, or a hub button |
+| other features on | no feature undoes another (`references/composition.md`) |
+| seat, death, streaming | behaves as stated: refuses, waits, or says what it cannot see |
+
+A feature change re-runs the whole matrix, not only the new row: that is
+what "no regressions" means in practice.
+
+## When the user says it does not work
+
+Do not re-send the code differently. Follow `references/diagnosis.md`:
+confirm it ran, then send `../roblox-executor-features/assets/feature-doctor.luau`.
+It reports the executor, every loaded feature and its state, conflicting
+pairs, a seated or anchored body, and which properties something rewrote in
+five seconds. That output names the layer to change. Record the failed
+attempt in the ledger before the next one.
+
+## Reply
+
+Paste the final script whole. Say what the server can see and correct, which
+rows of the matrix ran in the mocks, and which only the player can check in
+game. Run `node tools/bin/check-file.mjs <file>` and report it.
+
+| Need | File |
+|---|---|
+| why features break, by symptom, with the fix | `references/failure-modes.md` |
+| the matrix rows as test code | `references/regression-matrix.md` |
+| several features at once: who owns which property | `references/composition.md` |
+| "it doesn't work": the order of questions and the doctor | `references/diagnosis.md` |
+| the tested assets and their quality bar | `../roblox-executor-features/SKILL.md` |
+| finding a game-specific value in a dump | `../roblox-executor/references/technique/feature-search.md` |
+
+---
+
+## Source: .claude/skills/roblox-executor-reliability/references/failure-modes.md
+
+# Failure modes
+
+Why executor features break, grouped by what the player reports. Each row is
+the usual cause and the fix the tested assets use. The doctor
+(`../../roblox-executor-features/assets/feature-doctor.luau`) confirms most of
+them in one run.
+
+## "It does nothing"
+
+| Cause | How to tell | Fix |
+|---|---|---|
+| the script errored before the feature started | the console (F9) shows a red line from the script | read the line; a missing executor function is the assert's message |
+| an old copy is still running, or this copy never ran | the doctor lists the feature as off, or not at all | rerun; every asset unloads its previous session first |
+| the key was typed into chat or a TextBox | works when the chat box is closed | none needed: `processed` is respected on purpose |
+| the character was not there when it ran | the doctor: "no character" | apply on `CharacterAdded`, after `WaitForChild` |
+| the body is seated | the doctor: "seated" | jump out of the seat first; a `SeatWeld` holds the root to the seat |
+| the root is anchored by the game | the doctor: "the root is anchored" | nothing moves an anchored part; wait for the game to release it |
+| the game resets the value at once | the doctor counts writes on that property | hold it (the table in `../SKILL.md`) |
+| the value lives on the server | it changes on your screen and nothing else happens, or it returns on the next update; currency, damage and inventory always live there | client writes do not replicate; find the request the game sends |
+| a phone has no key for it | works on PC only | the phone path: thumbstick, `TouchTapInWorld`, or a hub button calling `set` |
+
+## "It works, then stops"
+
+| Cause | How to tell | Fix |
+|---|---|---|
+| respawn made a new character | stops after the first death | rebind on `CharacterAdded`; never keep the old body in a file-scope local (K4) |
+| a game script rewrote the value | stops after a few seconds, or at a round start | `GetPropertyChangedSignal` write-back |
+| the camera scripts took the camera back | camera features stop after respawn | watch `CameraType` or `CameraSubject` and re-apply |
+| `CurrentCamera` was replaced | FOV or camera features stop after a cutscene | reconnect on `Workspace`'s `CurrentCamera` change (camera-unlock does) |
+| the game's anti-cheat corrected it | position snaps back, or a kick | the server checks movement; nothing client-side hides it |
+| streaming unloaded the target | ESP labels or teleport targets vanish at distance | work with what is streamed in; say so |
+
+## "It broke something else"
+
+| Cause | How to tell | Fix |
+|---|---|---|
+| unload restored a retyped value | the game's own value is wrong after unload | restore the captured value (K7) |
+| unload restored every part, not only the changed ones | accessories collide after noclip turns off | record what was switched and restore only that |
+| two features write the same property | one undoes the other | one owner per property (`composition.md`) |
+| a rerun captured the patched value as "original" | unload leaves the feature's value in place | unload the old session before reading originals |
+| a hook catches the script's own calls | its own remote calls are rewritten | `checkcaller()` first (K11) |
+| a keybind shadows the game's | the game's action on that key stops | pick a key the game does not use; keep it in a constant at the top |
+
+## "It lags"
+
+| Cause | Fix |
+|---|---|
+| work every frame that could be event-driven | property-changed signals, `CharacterAdded`, `PlayerAdded` |
+| instances created every frame | create once, toggle `Enabled` or `Visible` |
+| ESP labels rebuilt each frame | refresh a few times a second; 31 highlights at most |
+| a `while true do task.wait() end` loop per feature | one connection, disconnected by unload (K5) |
+
+## What the server can see
+
+Position, velocity and physics state of a client-owned character replicate:
+fly, noclip, speed and teleports are visible to the server and to other
+players, and a server that checks movement corrects them. Camera, lighting,
+ESP, spectate and freecam are local and change nothing anyone else sees.
+Freecam anchors the local body; other players see it standing still.
+
+---
+
+## Source: .claude/skills/roblox-executor-reliability/references/regression-matrix.md
+
+# Regression matrix
+
+The rows every feature script passes, written as the tests in
+`library/tests/recipes/` write them. Run a new feature through all of them in
+the Luau mocks (`node tools/bin/run-recipe-tests.mjs` for the shipped assets;
+the same harness for a new file), then give the player the rows only the game
+can show.
+
+## The harness
+
+`library/tests/stubs.luau` builds a world with `HARNESS.world()`: the local
+player and camera as instances whose properties can be watched, a character
+with a Humanoid and root part, `getgenv()`, other players through
+`world.join`, respawns through `world.respawn`, keys through `world.key`, and
+`RunService.PreSimulation` and `PreRender` signals to step. The feature file
+runs as `__recipe()`.
+
+## Rows, with the assertion each makes
+
+```lua
+-- lint: fragment
+local world = HARNESS.world()
+__recipe()
+local feature = world.genv.Features.Speed
+local humanoid = world.player.Character.Humanoid
+
+-- runs
+check("running it applies the effect", humanoid.WalkSpeed == 40)
+
+-- game writes
+humanoid.WalkSpeed = 8
+check("a game script's write is answered", humanoid.WalkSpeed == 40)
+
+-- toggle twice
+world.key(Enum.KeyCode.G)
+check("off restores the game's own value", humanoid.WalkSpeed == 16)
+world.key(Enum.KeyCode.G)
+check("on again works", humanoid.WalkSpeed == 40)
+
+-- chat typing: the second argument is `processed`
+HARNESS.input.InputBegan:Fire({ KeyCode = Enum.KeyCode.G }, true)
+check("the key typed in chat does nothing", feature.on == true)
+
+-- respawn on, respawn off
+local body = world.respawn(world.player)
+check("on carries to the new body", body.Humanoid.WalkSpeed == 40)
+feature.set(false)
+body = world.respawn(world.player)
+check("off stays off after respawn", body.Humanoid.WalkSpeed == 16)
+
+-- rerun
+feature.set(true)
+__recipe()
+local again = world.genv.Features.Speed
+check("a rerun replaces the session", again ~= feature and feature.alive == false)
+check("one set of connections", #HARNESS.input.InputBegan.handlers == 1)
+
+-- unload twice
+again.unload()
+again.unload()
+check("unload restores and clears the namespace", body.Humanoid.WalkSpeed == 16 and world.genv.Features.Speed == nil)
+world.key(Enum.KeyCode.G)
+check("the key does nothing after unload", body.Humanoid.WalkSpeed == 16)
+```
+
+The rerun row is the one that catches "originals" captured from the patched
+value: run the feature, run it again, unload, and check the game's value
+came back rather than the feature's.
+
+## Rows only the game can show
+
+The mocks model signals and property writes. They do not model physics,
+replication, the camera scripts, or the game's own code. Give the player these
+steps, short, with what they should see:
+
+| Row | Step | Expected |
+|---|---|---|
+| runs in this game | run it, press nothing | the effect is on |
+| the game's own resets | play a round, sprint, get stunned | the effect stays, or the reply said it would not |
+| phone | play on a phone or the emulator's touch mode | reachable without a keyboard |
+| seat | sit in a vehicle or seat, toggle | behaves as the reply said: refuses or waits |
+| anti-cheat | use it for a minute near other players | no snap-back or kick; if there is, it is the server's check |
+| other features | turn on the other features the player uses | none of them stops working |
+
+Report which rows ran in the mocks, which the player has to run, and never
+upgrade the second kind to a pass.
+
+## Adding a row for a fixed bug
+
+Every bug found in a feature becomes a row before it is fixed: reproduce it in
+the mocks (it fails), fix it (it passes), and record the fix in the ledger with
+`Check:` naming that row. The bug cannot come back without a failing test.
+
+---
+
+## Source: .claude/skills/roblox-executor-reliability/references/composition.md
+
+# Several features at once
+
+Features break each other when two of them write the same property, or when
+one restores a value the other still needs. The tested assets avoid both by
+owning separate properties, so any combination can be loaded and toggled in
+any order.
+
+## Who owns what
+
+| Feature | Writes | Holds against |
+|---|---|---|
+| Fly | a `FlyAttachment` with `LinearVelocity` and `AlignOrientation` on the root; `Humanoid.PlatformStand` | respawn |
+| Noclip | `CanCollide` on the character's parts it switched off | the Humanoid, every physics step |
+| Speed | `WalkSpeed`, `JumpHeight`, `JumpPower` | game writes, respawn |
+| Infinite jump | the Humanoid's state on each jump request | nothing to hold |
+| ESP | its own `Highlight` and tag instances in `gethui()` | players joining, leaving, respawning |
+| Click teleport | the character's pivot, once per click | nothing to hold |
+| Anti-AFK | a `VirtualUser` click on `Idled` | nothing to hold |
+| Fullbright | six `Lighting` properties | day and night scripts |
+| Spectate | `Camera.CameraSubject` | the camera scripts, the target's respawn |
+| Camera unlock | zoom distances and `CameraMode` on the player; `Camera.FieldOfView` | game writes, a replaced camera |
+| Freecam | `Camera.CameraType`, the camera's `CFrame`, the root's `Anchored`, `MouseBehavior` while dragging | the camera scripts, respawn |
+
+No property appears twice. A new feature picks properties no other feature
+owns, or declares that it takes one over and what the other feature does
+meanwhile.
+
+## Pairs that interact
+
+| Both on | What happens | Why it is acceptable |
+|---|---|---|
+| Fly + Freecam | the body stays anchored; fly resumes when freecam is off | neither restores the other's property |
+| Spectate + Freecam | freecam's scriptable camera wins; spectating resumes after | freecam never touches `CameraSubject` |
+| Speed + Fly | fly moves at its own speed; walking speed applies after landing | `PlatformStand` ignores `WalkSpeed` |
+| Noclip + Fly | fly through walls | the usual combination; they share nothing |
+| Click teleport + Freecam | teleports move the anchored body; the camera stays | freecam re-anchors whatever body is current |
+
+The doctor prints these when both are on, so a player who reports "fly
+stopped working" with freecam on gets the reason instead of a new fly script.
+
+## Restore order does not matter when ownership is clean
+
+Each feature captures its own originals when it turns on and restores only
+those. Unloading fly, then freecam, then speed, or any other order, leaves
+the game's values: nobody restores a value somebody else captured.
+
+When a feature must take over another's property, it turns the other off
+through its API first (`features.Fly.set(false)`), and says so in its reply,
+rather than writing the property and letting the other feature's watcher
+fight it every frame.
+
+## Keys
+
+Each asset keeps its key in a constant at the top: F fly, V noclip, G speed,
+J infinite jump, H ESP, B fullbright, P spectate (with [ and ]), Z camera
+unlock, X freecam (E and Q to climb), Ctrl+click teleport. Change a key
+there when it collides with the game's own binding. A hub calls `set(on)` and
+does not need keys at all.
+
+## A hub over the features
+
+A hub loads each feature file, then drives them through the namespace:
+
+```lua
+-- lint: fragment
+local features = getgenv().Features
+
+flyToggle.Activated:Connect(function()
+	features.Fly.set(not features.Fly.on)
+end)
+
+speedSlider.changed = function(value: number)
+	features.Speed.walk = value
+	features.Speed.set(true)
+end
+```
+
+The hub's own unload calls every feature's `unload`, then destroys its
+window. Toggles are T codes and the slider readout an H3
+(`../../roblox-ui/SKILL.md`).
+
+---
+
+## Source: .claude/skills/roblox-executor-reliability/references/diagnosis.md
+
+# "It doesn't work"
+
+The same complaint can have ten causes, and a new version of the script
+guesses at one of them. Ask in this order, one question at a time, and let
+each answer remove a branch.
+
+## 1. Did it run?
+
+Ask what the executor's console (F9, or the executor's own output) showed
+when the script ran.
+
+| Answer | Next |
+|---|---|
+| a red error line | read it. `needs gethui` is the capability assert: the executor lacks that function; say so, do not work around it. Anything else points at a line |
+| nothing at all | the script may not have run: ask whether the executor reported running it, and whether it was the whole file |
+| it ran, no error | question 2 |
+
+## 2. Is the feature on, and is anything else on?
+
+Send `../../roblox-executor-features/assets/feature-doctor.luau` and ask for
+what it prints. Five seconds later it reports:
+
+- the executor's name and version, when the executor says;
+- each loaded feature: on, off, or unloaded but still registered (a stale
+  rerun);
+- pairs of features that are on together and interact, with what the player
+  sees;
+- the character: missing, seated, anchored, platform-standing without fly;
+- whether streaming hides distant parts and players;
+- every watched property that changed while it watched, with a count.
+
+## 3. Read the doctor
+
+| The doctor says | It means | Do |
+|---|---|---|
+| the feature is not listed | the feature script never finished | back to question 1 |
+| "unloaded but still registered" | an old session is still in the namespace | rerun the feature; it unloads the old one |
+| two features "are both on" | the pair interacts | turn one off, or accept the stated behaviour |
+| "seated" or "anchored" | the body cannot move | leave the seat; wait for the game's anchor |
+| a property changed 3 or more times | something keeps writing it | if a feature holds it, that is the fight; decide whether to hold harder or accept the game's value |
+| a property changed once | one write, likely a respawn or round start | apply on that event |
+| nothing changed, feature on, no effect | the effect is on the server's side, or the game checks elsewhere | the value is not client-owned; go to the dump |
+
+## 4. Record, then change one thing
+
+Write the failed attempt into the ledger before the next version:
+
+```bash
+node tools/bin/attempt-ledger.mjs add --status failed --title "speed does nothing in this game" --tried "speed.luau with WalkSpeed held by GetPropertyChangedSignal" --saw "doctor: Humanoid.WalkSpeed changed 40 times in 5 s"
+```
+
+Then change the one layer the evidence points at, and say in the reply which
+evidence led there. `plan` the new approach first; if it matches a failed
+entry, the evidence has to say what is different.
+
+## What not to do
+
+- Re-send the same script with cosmetic changes.
+- Add a fallback that tries three places in turn (K8): after the next game
+  update it edits the wrong object and reports success.
+- Explain the failure as detection or a patched executor without evidence.
+  "It worked and then it didn't" is usually respawn or a game script.
+
+---
+
+## Source: .claude/skills/roblox-attempt-memory/SKILL.md
+
+---
+name: roblox-attempt-memory
+description: Memory and context across attempts for Roblox work - an attempt ledger that records what was tried, what the user saw, the cause and what to do instead, and tools that refuse to repeat a failed approach or reintroduce a fixed bug. Covers "you didn't fix it", "same problem again", "it broke again", "we already tried that", a new chat or a compacted conversation continuing old work, carrying context between Claude, Codex, Cursor and a custom GPT, and turning each fix into a regression check. Use before any repair, retry or redesign, whenever the user reports a result, and at the end of every attempt.
+---
+
+# Attempt memory
+
+A model that forgets its last attempt makes it again. The user sees the same
+failure twice and concludes nothing listens. This skill makes the last attempt
+impossible to forget: every attempt is written down in a fixed shape, and two
+commands read it back before the next one.
+
+The ledger is the **Attempts** section of `PROJECT_CONTEXT.md` in the project
+root, beside the rest of the carried context in
+`../roblox-luau-expert/references/task-contract.md`. One file, so a GPT user
+uploads one thing and Claude, Codex and Cursor read the same record.
+
+```bash
+node tools/bin/attempt-ledger.mjs plan "hold WalkSpeed with a Heartbeat loop"   # repeats a failed attempt?
+node tools/bin/attempt-ledger.mjs check Speed.client.luau                        # a recorded mistake back in the code?
+node tools/bin/attempt-ledger.mjs search walkspeed resets                         # what do we know about this symptom?
+node tools/bin/attempt-ledger.mjs lint                                            # malformed or repeated entries
+python tools/py/attempt_ledger.py plan "..."                                      # the same, without Node
+```
+
+`check` also reads the stack's own ledger, `references/known-failures.md`:
+approaches that look right, keep being generated, and fail. `check-file.mjs`
+runs it on every file.
+
+---
+
+## The loop, every attempt
+
+1. **Read before acting.** Open `PROJECT_CONTEXT.md` if it exists (or ask the
+   GPT user to upload it) and `search` the symptom's words. A matching
+   `failed` entry is the most important fact in the conversation.
+2. **Name the approach in one line, then `plan` it.** "Set WalkSpeed every
+   Heartbeat" and "write WalkSpeed in a RenderStepped loop" are the same
+   approach; the words differ, the tokens do not. Exit 1 means it failed
+   before. Change the approach, or say exactly what is different this time
+   and why that difference addresses what was seen.
+3. **Build, then run `check` on the file.** A hit is a recorded mistake coming
+   back, usually through a helper copied from an older draft.
+4. **Record the outcome as soon as the user reports it**, in the entry format
+   below. "Still broken" is a result: the previous attempt becomes `failed`
+   with what the user saw, before anything else is written.
+5. **Turn every fix into something that fails loudly if it comes back**: a
+   test assertion, an `Avoid` pattern, or a named check. Prose alone decays;
+   the next model reads past it.
+
+## An entry
+
+```markdown
+### A4 failed: speed resets after a few seconds
+- Tried: set Humanoid.WalkSpeed once when the toggle turns on
+- Saw: speed returns to 16 after about 3 s, and on every respawn
+- Cause: the game's sprint script writes WalkSpeed; respawn makes a new Humanoid
+- Instead: write back on GetPropertyChangedSignal, rebind on CharacterAdded (assets/speed.luau)
+- Avoid: `WalkSpeed\s*=\s*\d+\s*$`
+- Unless: `GetPropertyChangedSignal`
+- Check: library/tests/recipes/speed.luau "a game stun or sprint script is overridden"
+- Date: 2026-09-25
+```
+
+| Status | Means | Required |
+|---|---|---|
+| `failed` | the approach did not work | Tried, Saw |
+| `rejected` | it worked, and the user did not want it (a design, a behaviour) | Tried, Saw |
+| `fixed` | a bug that was found and removed; it must not return | Avoid or Check |
+| `works` | a confirmed approach to keep using | Tried |
+| `open` | unresolved; the next attempt starts here | Saw |
+
+`Saw` is what was observed: the user's words, an error line, a measured value.
+`Cause` is written only when evidence supports it, otherwise `unknown`. A
+guessed cause recorded as fact sends every later attempt down the same wrong
+layer. Field meanings, pattern rules and more examples:
+`references/ledger-format.md`.
+
+---
+
+## Same complaint twice
+
+The second "it still does not work" means the fix addressed a different layer
+than the bug. Do not re-send the same code differently. Check, in order:
+
+1. **Is the new code the code that ran?** An old script still executing, a
+   stale copy in Studio, the edit made to a different file. Ask what the
+   Output or console printed on the latest run, and compare it with this
+   version's behaviour.
+2. **Is it the same symptom?** A different error after a fix is progress;
+   record the first as `fixed` and open a new entry.
+3. **Which layer did the last attempt change, and which layer owns the
+   symptom?** Client versus server, the value versus the thing that resets it,
+   the element versus its clipping parent, the handler versus whatever sits on
+   top of the button. `../roblox-executor-reliability/SKILL.md` and
+   `../roblox-ui-interaction/SKILL.md` list the layers for their areas.
+4. **What evidence would tell two causes apart?** Ask for exactly that one
+   thing: a print, a screenshot, the doctor's output.
+
+## Context that crosses a conversation
+
+Never claim to remember a conversation you cannot see. A new chat, a
+compacted one, or another host starts from the record, not from memory.
+`references/recovering-context.md` covers what to rebuild and where each host
+keeps it: `PROJECT_CONTEXT.md` everywhere, plus Claude Code's memory for the
+user's lasting preferences, and a downloadable copy from a GPT at the end of
+each attempt.
+
+## Keeping the ledger useful
+
+- One entry per approach. `lint` reports two failed entries whose Tried lines
+  describe the same thing: merge them, and treat that as a warning sign.
+- Supersede, never erase: a `works` entry that later fails becomes `failed`
+  with the new Saw. History is what stops the loop.
+- Patterns are narrow. An `Avoid` that matches correct code trains everyone to
+  ignore `check`. Add an `Unless` for the fix's signature.
+- Project facts stay in the project. Do not turn one game's quirk into a
+  global preference.
+
+| Need | File |
+|---|---|
+| every field, status and pattern rule, with examples | `references/ledger-format.md` |
+| a new chat, a compacted one, or another host picking up the work | `references/recovering-context.md` |
+| the stack's own recorded failures, checked on every file | `references/known-failures.md` |
+
+---
+
+## Source: .claude/skills/roblox-attempt-memory/references/ledger-format.md
+
+# Ledger format
+
+The **Attempts** section of `PROJECT_CONTEXT.md`. Plain markdown a person can
+read, in a shape `tools/bin/attempt-ledger.mjs` and
+`tools/py/attempt_ledger.py` parse identically.
+
+## Shape
+
+```markdown
+## Attempts
+
+### A7 failed: hub buttons do nothing on phones
+- Tried: connected each button's MouseButton1Down to its feature toggle
+- Saw: taps highlight the button and nothing turns on; PC works
+- Cause: MouseButton1Down never fires for touch
+- Instead: Activated for the action, InputBegan for the pressed look
+- Avoid: `MouseButton1Down`
+- Check: tap each toggle in the device emulator; each changes its feature
+- Date: 2026-09-25
+```
+
+- **Heading**: `### <ID> <status>: <title>`. IDs are letters then digits,
+  unique in the file: `A1`, `A2`... for attempts. The title names the symptom
+  in the user's words, not the fix.
+- **Fields**: one line each, `- Name: value`, in any order. A repeated field
+  joins onto the first.
+- Any other `#`, `##` or `###` heading ends the entry, so notes can sit
+  between sections.
+
+## Statuses
+
+| Status | Use it when | Required |
+|---|---|---|
+| `failed` | an approach was tried and did not produce the result | Tried, Saw |
+| `rejected` | it worked and the user did not want it | Tried, Saw |
+| `fixed` | a bug was found and removed | Avoid or Check |
+| `works` | an approach is confirmed; keep using it | Tried |
+| `open` | the problem is unresolved | Saw |
+
+`check` enforces `failed`, `rejected` and `fixed` entries. `plan` compares new
+approaches against `failed` and `rejected` ones.
+
+## Fields
+
+| Field | Holds | Written from |
+|---|---|---|
+| Tried | the approach, in one line: layer, API, value | what the code did, not what it was meant to do |
+| Saw | the observation | the user's words, an error line, a measurement |
+| Cause | why, when evidence shows it; otherwise `unknown` | a source line, a probe's output, a documented rule |
+| Instead | the next approach, with where it lives | a tested asset, a reference, a changed layer |
+| Never | a rule in one line, when Instead is not enough | |
+| Avoid | backtick-quoted patterns that must not appear in code | the smallest expression that is the mistake |
+| Unless | backtick-quoted patterns that switch Avoid off for a file | the fix's own signature |
+| Check | the command or step that proves the fix still holds | a test, a lint code, an emulator step |
+| Date | `YYYY-MM-DD` | |
+
+## Writing Tried so `plan` can match it
+
+`plan` compares meaningful words after dropping common ones and crude
+suffixes, and calls it a repeat when three or more are shared and they make up
+at least 60% of the shorter description. Name the parts that define the
+approach: the property or API, the loop or event, the object.
+
+| Weak | Strong |
+|---|---|
+| tried to fix the speed | set Humanoid.WalkSpeed once when the toggle turns on |
+| changed the UI | replaced the Outer UIStroke on each row with a padded ScrollingFrame |
+| used a different method | read the upvalue with debug.getupvalue on the sprint function |
+
+## Patterns
+
+`Avoid` and `Unless` hold regular expressions in backticks. They run against
+each line of a Luau file with comments removed, in both Node and Python, so
+use the common subset: `\b \s \d \w . * + ? [] () |` and escaped
+punctuation. One line at a time: a pattern cannot span lines.
+
+A pattern that matches correct code is worse than none; it teaches everyone
+to ignore `check`. Test it on the fixed file (no hit) and on the broken one
+(a hit), then run `attempt-ledger.mjs lint`, which also compiles every
+pattern.
+
+## Example: a design the user turned down
+
+```markdown
+### A12 rejected: hub opened as a full-screen overlay
+- Tried: full-screen dark overlay with the hub centred at 60% width
+- Saw: "too much, I want it small in the corner like before"
+- Instead: M4 corner panel, 360 wide, kept from the first version
+```
+
+A `rejected` entry keeps the next redesign from drifting back to what the
+user said no to.
+
+## Example: a fixed bug with a test
+
+```markdown
+### A15 fixed: noclip left accessories colliding after unload
+- Cause: unload set CanCollide = true on every part, including ones the game had off
+- Check: library/tests/recipes/noclip.luau "V restores only what it switched off"
+```
+
+---
+
+## Source: .claude/skills/roblox-attempt-memory/references/recovering-context.md
+
+# Recovering context
+
+Work on one game runs across many conversations: a new chat, a conversation
+compacted to a summary, the same project opened in Codex after Claude. None
+of them remembers the others. What survives is what was written down.
+
+## What to rebuild before the first reply
+
+1. **The record.** `PROJECT_CONTEXT.md` from the project root, or the copy the
+   user uploads. If there is none, say so and start one; do not reconstruct
+   earlier decisions from guesses.
+2. **The current code.** The file as it is now, not as a summary describes it.
+   Summaries drop the detail that caused the last failure.
+3. **The last result.** What happened when the user ran the latest version:
+   the Output or console text, a screenshot, the doctor's report. If the user
+   has not said, ask for exactly that, once.
+4. **Open and failed entries.** Read every `open` entry and `search` the
+   current complaint. Run `plan` on the approach you are about to take.
+
+Then state, in two or three lines, what the record says and what you are about
+to do. The user can correct a wrong premise before code is written.
+
+## What never to do
+
+- Claim to remember a conversation you cannot see. "Last time we..." is only
+  true when the record or the visible conversation says it.
+- Treat a summary's "fixed" as verified. A summary records what was claimed;
+  the ledger's `Check` line says how to confirm it.
+- Restart from the original request and rebuild from scratch. That discards
+  every `rejected` design and `failed` approach the user already paid for.
+
+## Where each host keeps it
+
+| Host | The ledger | Lasting preferences |
+|---|---|---|
+| Claude Code | `PROJECT_CONTEXT.md` in the project | the memory directory, for the user's corrections and preferences that apply beyond this project |
+| Codex | `PROJECT_CONTEXT.md` in the project | the same file; `AGENTS.md` here is generated and is not edited by hand |
+| Cursor | `PROJECT_CONTEXT.md` in the project | the same file |
+| custom GPT, ChatGPT plugin | the user uploads `PROJECT_CONTEXT.md` at the start of each chat | the GPT gives back an updated copy as a download at the end of each attempt |
+
+Claude Code's memory is for things true across projects: the user wants
+replies short, the user's executor lacks `hookmetamethod`. Game-specific facts
+(this game resets WalkSpeed every 3 s) belong in that game's
+`PROJECT_CONTEXT.md`, where they cannot leak into another project.
+
+A GPT cannot write to its own knowledge or to another application's memory.
+Saying the record was "saved" when it was only printed is a false claim;
+hand over the file and say the user needs to upload it next time.
+
+## At the end of every attempt
+
+Write the entry before the reply ends, not when the user reports back: the
+attempt as `open` with what it changed and how to check it. When the result
+comes in, update the status and the Saw line. A conversation that ends
+between the two still leaves the next one a record of what was tried.
+
+## The rest of the record
+
+The ledger is one section. The rest, from
+`../../roblox-luau-expert/references/task-contract.md`: project and scope,
+source revision, confirmed contracts (paths, remotes, argument shapes), UI
+decisions (palette, picked style codes, target devices), validation. Keep it
+short enough to read in a minute; merge entries rather than appending
+duplicates.
+
+---
+
+## Source: .claude/skills/roblox-attempt-memory/references/known-failures.md
+
+# Known failures
+
+Approaches that look right, keep being generated, and fail. Each is an entry
+in the ledger format, so `attempt-ledger.mjs check` reads this file for every
+project, and `plan` compares a new approach against every `Tried` line here.
+
+Entries with an `Avoid` pattern are the ones a regular expression can find
+without flagging correct code. The rest are caught by a named linter rule or
+test, or only by reading; their `Check` line says which.
+
+## Executor features
+
+### K1 failed: flight with body movers
+- Tried: fly by creating a BodyVelocity and a BodyGyro on the root part
+- Saw: the movers are deprecated, and a BodyGyro needs hand-tuned torque or the body tips while flying
+- Instead: LinearVelocity plus a rigid AlignOrientation under one Attachment (roblox-executor-features/assets/fly.luau)
+- Avoid: `Instance\.new\(\s*["']Body(Velocity|Gyro|Position|AngularVelocity)["']`
+- Check: node tools/bin/verify-api.mjs BodyVelocity
+
+### K2 failed: flight by moving the root's CFrame every frame
+- Tried: fly by adding a step to HumanoidRootPart.CFrame every RenderStepped frame
+- Saw: gravity pulls the body down between writes, so it bobs, and a distance check sees a jump each frame
+- Cause: each write fights the physics solver that still owns the root
+- Instead: constraint flight (roblox-executor-features/assets/fly.luau)
+- Check: roblox-executor-features/references/feature-catalog.md, "CFrame fly"
+
+### K3 failed: a keybind that fires while typing in chat
+- Tried: toggle a feature from a UserInputService.InputBegan handler that takes only the input argument
+- Saw: typing the letter in chat or a TextBox toggled the feature
+- Instead: take `(input, processed)` and return when `processed` is true
+- Avoid: `(UserInputService|UIS|InputService)\.InputBegan:Connect\(function\(\s*\w+\s*\)`
+
+### K4 failed: character parts read once at the top of the script
+- Tried: store player.Character.HumanoidRootPart in a file-scope local and use it for the whole session
+- Saw: the feature works until the first death, then acts on the destroyed body
+- Instead: resolve the character when it is used, and re-apply on CharacterAdded
+- Avoid: `^local\s+\w+\s*=\s*[\w.:()"']*Character[\w.:()"']*HumanoidRootPart`
+- Unless: `CharacterAdded`
+
+### K5 failed: a feature run by a loop on a global flag
+- Tried: run the feature in `while getgenv().Enabled do ... task.wait() end`
+- Saw: a second run starts a second loop beside the first, and nothing can stop either without the flag
+- Instead: one connection stored in the session table, disconnected by unload (roblox-executor/references/technique/lifecycle.md)
+- Avoid: `while\s+(getgenv\(\)|_G|shared)\.\w+\s+do`
+
+### K6 failed: executor interface parented to CoreGui
+- Tried: parent the hub's ScreenGui to game:GetService("CoreGui")
+- Saw: whether CoreGui accepts it depends on the executor, and a PlayerGui copy is visible to the game's own scripts
+- Instead: gethui(), bound and asserted once at the top
+- Avoid: `\.Parent\s*=\s*game:GetService\(\s*["']CoreGui["']\s*\)` `\.Parent\s*=\s*game\.CoreGui\b`
+- Unless: `gethui`
+
+### K7 failed: restoring a retyped constant
+- Tried: find the constant 1.2 with a search, then restore it by writing the literal 1.2 back
+- Saw: the restore is right only while the game keeps 1.2; after an update it writes a stale number, in three separate places
+- Instead: capture the value that was read and restore that variable
+- Check: roblox-code-craft/references/anti-slop-code.md, the 330-line rewrite
+
+### K8 failed: a fallback chain across value layers
+- Tried: try getsenv, then upvalues, then a property, until one of them changes the value
+- Saw: after a game update it edited a different object and still reported success
+- Instead: the one layer the dump proves, with an assert when the target is absent (roblox-executor/references/technique/source-to-api.md)
+- Check: roblox-executor/references/technique/source-to-api.md
+
+### K9 failed: holding a value by writing it every frame
+- Tried: keep WalkSpeed up by writing it in a Heartbeat loop
+- Saw: a write every frame for a value the game changes a few times a minute, and the game's write still shows until the next frame
+- Instead: write back from GetPropertyChangedSignal and rebind on respawn (roblox-executor-features/assets/speed.luau)
+- Check: library/tests/recipes/speed.luau
+
+### K10 failed: mouse-only click teleport
+- Tried: teleport on Mouse.Button1Down to Mouse.Hit
+- Saw: a phone has no mouse button, so the feature does nothing on touch
+- Instead: UserInputService.TouchTapInWorld beside the mouse path (roblox-executor-features/assets/click-teleport.luau)
+- Avoid: `\.Button1Down:Connect`
+
+### K11 failed: a __namecall hook that also catches the script's own calls
+- Tried: hookmetamethod on __namecall that rewrites every matching call
+- Saw: the script's own FireServer calls pass through its hook and get rewritten too, or the hook recurses
+- Instead: return the original call when checkcaller() is true (roblox-executor/references/api/closures.md)
+- Avoid: `hookmetamethod\(`
+- Unless: `checkcaller\(`
+
+## Interfaces
+
+### K12 failed: help text shown only on hover
+- Tried: show a description on MouseEnter and hide it on MouseLeave
+- Saw: phone and gamepad players never see it
+- Instead: a long press on touch and SelectionGained for gamepad (roblox-ui-tooltips, H1)
+- Check: read every MouseEnter handler; a hover tint is fine, hidden information is not
+
+### K13 failed: ClipsDescendants to round a panel's contents
+- Tried: set ClipsDescendants on a rounded panel so its square children follow the curve
+- Saw: square corners still poke out; ClipsDescendants clips to the rectangle
+- Instead: a CanvasGroup with the UICorner, or padding the children in by the radius
+- Check: lint-roblox-ui.mjs E-CORNERBLEED
+
+### K14 failed: an outer outline inside a scrolling list
+- Tried: an Outer UIStroke (the default) as the border or focus ring of rows in a ScrollingFrame
+- Saw: the first row's top and every row's sides are cut off where they meet the list's edge
+- Instead: BorderStrokePosition Inner, or UIPadding on the list of at least the thickness
+- Check: lint-roblox-ui.mjs E-STROKECLIP
+
+### K15 failed: a fixed-pixel panel with nothing that scales it
+- Tried: size the main panel with UDim2.fromOffset(600, 420) and no UIScale
+- Saw: on a landscape phone the bottom of the panel and its buttons are off the screen
+- Instead: scale size with a UISizeConstraint whose minimum fits 640 x 300, or one UIScale from the viewport
+- Check: lint-roblox-ui.mjs E-MINFIT; python tools/py/viewport_fit.py
+
+### K16 failed: connecting a template before cloning it
+- Tried: connect Activated on a template row, then clone it for each item
+- Saw: none of the cloned rows respond; Clone copies properties and children, not connections
+- Instead: connect each clone after it is created, and keep the connection for teardown
+
+### K17 failed: a scripted ScreenGui that resets on spawn
+- Tried: build the interface from a script under a ScreenGui left at ResetOnSpawn true
+- Saw: after the first death every button stops working; the script holds the destroyed copy
+- Instead: ResetOnSpawn = false on any ScreenGui a script builds or keeps references into
+- Check: lint-roblox-ui.mjs W-RESPAWN
+
+### K18 rejected: a redesign that moved nothing structural
+- Tried: answer "redesign it" with the same elements, type scale and palette, reformatted
+- Saw: the user opened it and it looked the same
+- Instead: change hierarchy, surfaces and layout, and report the structural rows
+- Check: node tools/bin/lint-roblox-ui.mjs --compare before.luau after.luau
+
+---
+
+## Source: .claude/skills/roblox-ui/references/weak-prompt.md
+
+# From a weak prompt to a shippable screen
+
+"make me a gui", "make a ui for my script", "a shop menu, make it look good".
+The prompt names a thing and nothing else. The result still has to look
+designed, fit every screen and work on every input. That is possible because
+almost every decision has a right default; the prompt only has to supply what
+the screen is for, and the user's own files usually supply the content.
+
+## What a weak prompt still tells you
+
+| Signal | Where it is | What it decides |
+|---|---|---|
+| the surface | "executor", "script", a pasted script with `getgenv` / a game's LocalScript / a plugin | hub, game screen or plugin (`responsive-and-surfaces.md`) |
+| the screen | "hub", "shop", "settings", "menu" | the archetype (`screen-archetypes.md`) |
+| the content | the user's script: feature names, remotes, config tables, item lists | every row, tab and label; never invent placeholder features |
+| the game | the place's name or genre, if given | the direction (`design-directions.md`, "Choosing between them") |
+| taste words | "clean", "modern", "sick", "like Blox Fruits" | a direction and density, translated with `../../roblox-request-intake/references/vague-to-spec.md` |
+| earlier picks | `PROJECT_CONTEXT.md`, memory, the conversation | style codes and palette already chosen; never re-ask |
+
+## Decide these, in order
+
+1. **Archetype and hero.** The nearest archetype, and the one thing that gets
+   the largest type, the accent and the most space. A hub has no hero: the
+   window stays quiet.
+2. **Content inventory.** List what the screen shows, from the user's files,
+   in the game's words: `Fly`, `Walk speed`, `Auto farm`, not `Feature 1`,
+   `Option`, `Toggle`. No file? Build the minimum the archetype needs and name
+   the rows from the request.
+3. **Grouping.** Two to five tabs or sections named for what the player does
+   there (`Movement`, `Visuals`, `Farming`), never `Main`, `Misc`, `Settings`,
+   `Other`. Under five rows, no tabs.
+4. **Direction.** Slate unless the game or a taste word says otherwise;
+   match an existing project over any default. One accent, used three to five
+   times.
+5. **Sizes.** From `../../roblox-ui-viewport/references/device-matrix.md`:
+   scale size, `UISizeConstraint` with a minimum that fits 640 x 300, type
+   12/14/16/20/28, spacing 4/8/12/16/24/32, radius 6 and 10.
+6. **Style codes.** The user's picks, or the one grouped question with the
+   picker link (`../../roblox-request-intake/references/visual-choices.md`),
+   asked as the end of the turn with decisions 1 to 5 stated beside it.
+   "Choose for you" means the suggestion in that question: T1, M1, N1 and O1,
+   with N4 for a script hub, built from the recipes as written.
+7. **States.** Empty, loading, error and disabled-with-a-reason for every
+   list and action, built now, in the game's words.
+8. **Input and fit.** Every control on mouse, touch and gamepad
+   (`../../roblox-ui-interaction/SKILL.md`); every screen from 640 x 360 to 4K
+   (`../../roblox-ui-viewport/SKILL.md`).
+
+State the result in the reply as a short brief before or beside the code, so
+the user can correct a premise with one word:
+
+```text
+Built as: script hub, Slate, 3 tabs (Movement, Visuals, Player), 11 rows from your script.
+Picks: T1 toggles, M1 opening, N4 notifications (the choose-for-you suggestion).
+Fits: 640x360 phone to 4K (viewport_fit.py); mouse, touch, gamepad.
+```
+
+## The ship bar
+
+A screen ships when every line holds. Each has a check that does not need
+taste.
+
+| # | Holds | Check |
+|---|---|---|
+| 1 | one hero, or deliberately none | the reading test in `self-review.md` |
+| 2 | every label is real content in the game's words | no `Feature`, `Option`, `Button`, `Label`, `Lorem`, `Main`, `Misc` |
+| 3 | one token block; no colour literal outside it | `lint-roblox-ui.mjs` H1 |
+| 4 | type, spacing and radius on the scales | `lint-roblox-ui.mjs` C1, C3, C5 |
+| 5 | root bounded and fits a phone | `E-UNBOUNDED`, `E-MINFIT`; `viewport_fit.py` |
+| 6 | nothing clipped or poking out | `E-STROKECLIP`, `E-CORNERBLEED` (`clipping.md`) |
+| 7 | every control on every input | `E-MOUSEONLY`, `W-TOUCH`; the input matrix |
+| 8 | six states on every control | `W-STATES`, `E-AUTOBUTTON`; `component-states.md` |
+| 9 | empty, loading and error states exist | read every list and action |
+| 10 | motion 0.20 s in, 0.15 s out, nothing idles | `../../roblox-ui-motion/SKILL.md` |
+| 11 | every connection torn down | `E-LEAK`; the unload path |
+| 12 | no recorded mistake is back | `attempt-ledger.mjs check` |
+
+`node tools/bin/check-file.mjs <file>` runs rows 3 to 8, 11 and 12 at once.
+Rows 1, 2, 9 and 10 are read, and the reply says they were read.
+
+## What not to add because the prompt was vague
+
+A weak prompt is not permission to decorate. None of these by default:
+gradient headers, glow on everything, emoji as icons, a big logo, a
+changelog panel, a welcome screen, fake stats, placeholder features to fill a
+tab, a colour per tab. `anti-slop-catalog.md` has the full list and why each
+reads as generated.
+
+---
+
+## Source: .claude/skills/roblox-ui/references/clipping.md
+
+# Clipping: outlines, rings, shadows and popups cut off
+
+Something drawn outside its element's box disappears wherever an ancestor
+clips. The element is fine; its parent is cutting it. Find the clipping
+ancestor first, then pick the fix that keeps the drawing inside it.
+
+## What clips
+
+| Ancestor | Clips to | Note |
+|---|---|---|
+| `ScrollingFrame` | its own rectangle, always | every scrolling list clips its rows |
+| `CanvasGroup` | its own rectangle, always | and its rounded corner, if it has a `UICorner` |
+| any `GuiObject` with `ClipsDescendants = true` | its rectangle, not its rounded corner | also blocks input outside that rectangle |
+| the screen | the viewport, and the safe area with `ClipToDeviceSafeArea` | `../../roblox-ui-viewport/SKILL.md` |
+
+## What draws outside its box
+
+| Drawing | How far outside | Fix inside a clipping parent |
+|---|---|---|
+| `UIStroke` with `BorderStrokePosition = Outer` (the default) | its full `Thickness` | `BorderStrokePosition = Inner`, or `UIPadding` on the parent of at least the thickness |
+| `UIStroke` with `Center` | half the thickness | the same |
+| a focus ring (an extra `UIStroke` or frame around the control) | ring thickness plus any gap | `Inner` ring inside lists; padding the list by the ring |
+| a 9-slice shadow image larger than its card | the shadow's spread | shadows on cards inside a list sit inside the row's padding, or use `UIShadow` on the list's own frame |
+| a press or hover `UIScale` above 1 | the grown amount | padding for the growth (4 px covers a 1.04 scale on a 200 px row), or scale down on press instead |
+| a badge or count bubble offset past the corner | its overhang | pad the parent, or move the badge inside the corner |
+| a dropdown list, tooltip or context menu | its whole body | draw it in its own `ScreenGui` above the host (`../../roblox-ui-viewport/references/overflow.md`) |
+| text descenders in a row exactly `TextSize` tall | a few pixels of g, j, p, y | rows at least `TextSize + 8` tall; never `ClipsDescendants` on a text row |
+
+## The two cases that ship most often
+
+**A list of outlined rows.** Rows are full width in a `ScrollingFrame`; each
+has the default Outer `UIStroke`. The first row loses its top edge, every row
+loses both sides. `lint-roblox-ui.mjs` reports it as `E-STROKECLIP`.
+
+```lua
+local THEME = { border = Color3.fromRGB(44, 48, 57) }
+
+local row = Instance.new("Frame")
+row.Size = UDim2.new(1, 0, 0, 44)
+
+local outline = Instance.new("UIStroke")
+outline.Color = THEME.border
+outline.Thickness = 1
+outline.BorderStrokePosition = Enum.BorderStrokePosition.Inner
+outline.Parent = row
+```
+
+**A focus ring on a control inside a scrolling panel.** Gamepad focus lands on
+a toggle at the edge of the list; the ring is half drawn, and the player
+cannot tell what is focused. Either the ring is `Inner`, or the list's
+`UIPadding` is at least the ring's thickness on every side.
+`build-order.md` step 8 calls for an `Outer` ring, which is right for a
+control standing on a panel and wrong inside anything that clips.
+
+## Rounded corners are a different problem
+
+A `UICorner` rounds its own element, not its children, and
+`ClipsDescendants` clips to the rectangle. Square children poke out of a
+rounded box (`E-CORNERBLEED`). The fix is a `CanvasGroup` holding the
+`UICorner`, or insetting the children by the radius:
+`../../roblox-ui-components/references/outlines-and-dividers.md`.
+
+## Checking for it
+
+1. `node tools/bin/lint-roblox-ui.mjs <file>`: `E-STROKECLIP`, `E-CORNERBLEED`,
+   `E-SCROLLCORNER`.
+2. In Studio, give focus to the first and last row of every list with a
+   gamepad or keyboard navigation, and look at all four edges of the ring.
+3. Open every popup from a control near each edge of its panel.
+4. Hover and press controls at the edge of a list; a growing press effect
+   must not lose its edge.
+
+---
+
+## Source: .claude/skills/roblox-ui-viewport/SKILL.md
+
+---
+name: roblox-ui-viewport
+description: Making a Roblox UI fully visible and usable on every screen - small landscape phones, notched phones, portrait, tablets, laptops, 1080p to 4K monitors, ultrawide and console TVs. Panel sizing that fits 640 x 360 after the topbar, a grow-only UIScale, safe-area insets, content that scrolls instead of running off, popups and dragged windows kept on screen, text and touch targets that stay above their floors after scaling, orientation and resize handling, and a per-device size calculator. Use when building or fixing any ScreenGui, when UI is "cut off", "off the screen", "too big on mobile", "tiny on my monitor", "doesn't fit", or when checking a UI across resolutions.
+---
+
+# Every screen, all of the UI
+
+A UI "works" when a player on the smallest screen it will meet can see every
+part of it and reach every control. Design at 1280 x 720, then prove the two
+ends: a **640 x 360 landscape phone**, which keeps about 640 x 300 once the
+topbar takes its 58 px, and a **4K or ultrawide monitor**, where an unbounded
+panel becomes a strip across the screen.
+
+```bash
+python tools/py/viewport_fit.py MyMenu.client.luau     # panel size, text and targets per device
+node tools/bin/lint-roblox-ui.mjs MyMenu.client.luau    # E-MINFIT, E-UNBOUNDED, E-STROKECLIP
+```
+
+`check-file.mjs` runs both on any file that draws UI.
+
+---
+
+## The sizing model
+
+1. **Top-level panels are sized by scale and bounded both ways.**
+   `UDim2.fromScale(0.5, 0.7)` plus a `UISizeConstraint` whose `MinSize` fits
+   640 x 300 and whose `MaxSize` keeps lines readable (about 560 to 720 wide).
+   A panel sized only in offset has one size on every screen; that size is
+   wrong on most of them.
+2. **Offset is for detail**: padding, stroke thickness, icon size, row height.
+   Detail should not shrink to nothing on a phone.
+3. **`UIScale` only grows.** One per `ScreenGui`, driven from the viewport and
+   clamped to 1 at the bottom (`../roblox-ui/references/scaling-and-dpi.md`).
+   A floor of 0.7 makes 12 px text 8.4 px and a 44 px button 31 px on every
+   phone. The phone is fitted by rule 1, not by shrinking everything.
+4. **Content taller than its panel scrolls.** A `ScrollingFrame` with
+   `AutomaticCanvasSize = Y` and `CanvasSize = UDim2.new()` holds the list; the
+   panel never grows with its content past the screen.
+5. **Insets come from the engine.** `ScreenInsets = CoreUISafeInsets` on every
+   `ScreenGui`, never a hardcoded topbar height; `ClipToDeviceSafeArea` where
+   nothing may bleed under a notch.
+6. **Layout reacts.** Recompute on `Camera.ViewportSize`, `GuiService.TopbarInset`
+   and `GuiService.PreferredTextSize` changes, and clamp dragged windows and
+   open popups back inside after each.
+
+Minimum floors, measured **after** every `UIScale`: text 12 px, touch
+targets 44 px. `viewport_fit.py` prints both per device.
+
+## The device pass
+
+| Profile | Viewport | What breaks there first |
+|---|---|---|
+| small phone, landscape | 640 x 360 | bottom of the panel and its buttons off screen; text under 12 px |
+| notched phone, landscape | 844 x 390 | content under the notch on the left or right |
+| phone, portrait (if the game enables it) | 390 x 844 | a panel wider than 390; rows too cramped for their labels |
+| tablet | 1024 x 768 | a scale-sized panel far too large for its content |
+| laptop | 1366 x 768 | the 720-tall design loses its bottom row |
+| 1080p to 4K monitors | 1920 x 1080 to 3840 x 2160 | unbounded panels; unreadably small offset-only UI |
+| ultrawide | 3440 x 1440 | a panel stretched to a thin strip; left and right items far apart |
+| console on a TV | 1920 x 1080 | type set for a monitor unreadable from a sofa; nothing focused |
+
+Profiles, their insets, and how to open each in Studio's device emulator:
+`references/device-matrix.md`.
+
+## Things that leave their box
+
+A panel that fits can still lose content inside it. Each of these has one
+fix, in `references/overflow.md`:
+
+- a list longer than its frame, and the last row unreachable;
+- a label longer than its space: wrap for sentences, truncate for names, with
+  the full text reachable;
+- a dropdown, tooltip or context menu past the screen edge: open the other
+  way or clamp;
+- a dragged window left off-screen after a resize or rotation;
+- a text field hidden under the on-screen keyboard;
+- a toast stack taller than the screen: cap the count.
+
+Outlines, shadows and focus rings cut off by a clipping parent are the same
+problem one level down: `../roblox-ui/references/clipping.md`.
+
+## Reporting
+
+State which profiles were computed (`viewport_fit.py`), which were opened in
+the emulator, and which were not checked. A computed fit says the panel's box
+is on screen; it does not show that the layout inside it looks right.
+
+| Need | File |
+|---|---|
+| each device profile, its insets and the emulator steps | `references/device-matrix.md` |
+| content leaving its box, and the fix for each case | `references/overflow.md` |
+| outlines, shadows and rings cut off by a parent | `../roblox-ui/references/clipping.md` |
+| the scale formula and text-size preference | `../roblox-ui/references/scaling-and-dpi.md` |
+| buttons that do not respond on touch or gamepad | `../roblox-ui-interaction/SKILL.md` |
+
+---
+
+## Source: .claude/skills/roblox-ui-viewport/references/device-matrix.md
+
+# Device matrix
+
+The profiles `tools/py/viewport_fit.py` computes, and what to look at on each
+when opening it in Studio. Viewport sizes are what `Camera.ViewportSize`
+reports; the usable area is after `ScreenInsets = CoreUISafeInsets`.
+
+## Profiles
+
+| Profile | Viewport | Usable (approx.) | Input | Notes |
+|---|---|---|---|---|
+| small phone, landscape | 640 x 360 | 640 x 302 | touch | the fit target for `MinSize`: 640 x 300 |
+| iPhone SE, landscape | 667 x 375 | 667 x 317 | touch | no notch |
+| notched phone, landscape | 844 x 390 | 750 x 311 | touch | about 47 px of safe area on each long side, 21 px at the bottom |
+| phone, portrait | 390 x 844 | 390 x 705 | touch | only when `StarterGui.ScreenOrientation` allows portrait |
+| tablet, landscape | 1024 x 768 | 1024 x 710 | touch | scale sizes look oversized; cap with `MaxSize` |
+| laptop | 1366 x 768 | 1366 x 710 | mouse | shorter than a 720 design |
+| 1080p monitor | 1920 x 1080 | 1920 x 1022 | mouse | the common desktop |
+| 1440p monitor | 2560 x 1440 | 2560 x 1382 | mouse | offset-only UI starts to look small |
+| ultrawide | 3440 x 1440 | 3440 x 1382 | mouse | width-scaled panels stretch |
+| 4K monitor | 3840 x 2160 | 3840 x 2102 | mouse | unbounded UI is absurd; offset UI is tiny |
+| console on a TV | 1920 x 1080 | 1920 x 1022 | gamepad | `GuiService:IsTenFootInterface()`; read from metres away |
+
+The insets are approximations: the topbar height and safe areas vary by
+client, platform and version. For exact numbers read
+`GuiService:GetInsetArea(Enum.ScreenInsets.CoreUISafeInsets)` in the emulator,
+and never hardcode them in the game: `ScreenInsets` places content for you.
+
+## Opening each in Studio
+
+**Test → Device** picks an emulated device and orientation. For each profile
+that matters to the game, check in this order:
+
+1. **The smallest phone in landscape.** The whole panel on screen, the
+   primary action visible without scrolling, nothing under the thumbstick
+   (bottom left) or the jump button (bottom right).
+2. **The notched phone.** Nothing under the notch on either long side.
+3. **Portrait**, if the game allows it. Rows wrap or stack rather than
+   squeezing labels to one letter.
+4. **A 1080p and a 4K window.** Panels capped by `MaxSize`, type not
+   microscopic, nothing stretched across the whole width.
+5. **The TV.** Focus visible on the first control when the menu opens;
+   everything reachable with the D-pad.
+
+Then open the states that draw outside the resting layout: every dropdown
+open, the longest label, an error toast, the longest list scrolled to the end.
+
+## Choosing sizes that pass
+
+| Element | Size | Bounds |
+|---|---|---|
+| main menu or hub panel | `fromScale(0.5, 0.7)` | min 300 x 260, max 640 x 560 |
+| settings or shop panel | `fromScale(0.55, 0.75)` | min 320 x 280, max 720 x 600 |
+| modal dialog | `fromScale(0.4, 0)` with `AutomaticSize Y` | min 280 x 0, max 440 x 480; long text scrolls inside |
+| toast stack | `fromScale(0.3, 0.6)` | min 240 x 80, max 320 x 480 |
+| HUD element | offset, anchored to a corner inside the insets | small enough for both phone corners to stay clear |
+
+Run the numbers before writing them in:
+
+```bash
+python tools/py/viewport_fit.py --size 0.5,0,0.7,0 --min 300,260 --max 640,560 --text 14 --button 44
+```
+
+## Text and targets after scaling
+
+Every floor applies to the rendered size: `TextSize` times every `UIScale`
+above it, and a button's box times the same. The player's text preference
+(`GuiService.PreferredTextSize`, up to `Largest`) multiplies type again, so a
+label that fits at `Medium` has to wrap or grow its row at `Largest`, not
+overlap the next row.
+
+---
+
+## Source: .claude/skills/roblox-ui-viewport/references/overflow.md
+
+# Content that leaves its box
+
+A panel can fit the screen and still lose what is inside it. Each case below
+is one symptom, its cause, and the fix the rest of the stack uses.
+
+## A list longer than its frame
+
+**Symptom:** the last rows are cut off, or push the panel's footer off the
+screen. **Cause:** the list is a `Frame` with a layout, or a `ScrollingFrame`
+whose `CanvasSize` was set once for the rows that existed then.
+
+```lua
+local list = Instance.new("ScrollingFrame")
+list.Size = UDim2.fromScale(1, 1)
+list.CanvasSize = UDim2.new()
+list.AutomaticCanvasSize = Enum.AutomaticSize.Y
+list.ScrollingDirection = Enum.ScrollingDirection.Y
+list.ScrollBarThickness = 4
+list.VerticalScrollBarInset = Enum.ScrollBarInset.ScrollBar
+list.BackgroundTransparency = 1
+```
+
+The list takes the space left by the header and footer through a
+`UIFlexItem` with `FlexMode = Fill`, so the footer's buttons stay on screen
+however many rows there are. `VerticalScrollBarInset` keeps the bar from
+drawing over the rows' right edge. Check the last row by scrolling to the
+end at the smallest profile.
+
+## A label longer than its space
+
+| Text | Fix |
+|---|---|
+| a sentence (description, error, dialog body) | `TextWrapped = true` and `AutomaticSize = Y` on the label; the row grows |
+| a name or value in a fixed row | `TextTruncate = AtEnd`, and the full text in a tooltip or detail view |
+| a button label | shorter words first (`../../roblox-ui/references/ui-copy.md`); then let the button grow with `AutomaticSize = X` inside a wrapping row |
+
+Never `TextScaled` on a sentence: it shrinks the one long label until nobody
+can read it, and the rows beside it no longer match. Test with the longest
+real string and with `PreferredTextSize` at `Largest`.
+
+## A popup past the screen edge
+
+**Symptom:** the bottom of a dropdown list or the side of a tooltip is off the
+screen, or cut by a scrolling panel. **Cause:** it opens in one fixed direction
+inside the panel that holds its button.
+
+1. Draw popups in their own `ScreenGui` with `DisplayOrder` above the host
+   and the host's `ScreenInsets` copied, so no panel clips them
+   (`roblox-ui-components/assets/dropdowns.luau` does this).
+2. Measure the space below and above the button from `AbsolutePosition` and
+   the screen's `AbsoluteSize`; open toward the larger one (D15 opens upward).
+3. Clamp the final position so the popup's box stays inside the screen with
+   an 8 px margin. Tooltips flip side the same way
+   (`../../roblox-ui-tooltips/references/tooltip-patterns.md`).
+
+## A dragged window left off-screen
+
+**Symptom:** after rotating the phone or shrinking the window, the hub's title
+bar is outside the screen and the window cannot be dragged back. **Cause:** the
+position was stored in pixels and never re-checked.
+
+- Drag with a `UIDragDetector` whose `BoundingUI` is the screen, or clamp by
+  hand on every drag step.
+- Keep the stored position as scale, so a smaller screen moves it
+  proportionally.
+- On `Camera.ViewportSize` change, clamp once more: the title bar must stay
+  fully on screen.
+
+```lua
+-- lint: fragment
+local function keepOnScreen(window: GuiObject, screen: GuiBase2d)
+	local area = screen.AbsoluteSize
+	local size = window.AbsoluteSize
+	local anchor = window.AnchorPoint
+	local x = math.clamp(window.AbsolutePosition.X + size.X * anchor.X, size.X * anchor.X, area.X - size.X * (1 - anchor.X))
+	local y = math.clamp(window.AbsolutePosition.Y + size.Y * anchor.Y, size.Y * anchor.Y, area.Y - size.Y * (1 - anchor.Y))
+	window.Position = UDim2.fromScale(x / area.X, y / area.Y)
+end
+```
+
+`window.AbsolutePosition` is measured in the screen's space only when the
+window is a direct child of the `ScreenGui`; a nested window subtracts its
+parent's `AbsolutePosition` first.
+
+## A text field under the on-screen keyboard
+
+**Symptom:** on a phone, tapping a search or amount field raises the keyboard
+over the field; the player types blind. **Cause:** the field sits in the lower
+half of the screen, where the keyboard opens.
+
+Put text fields in the upper half of any panel used on touch. If one has to
+sit low, lift its panel while
+`UserInputService.OnScreenKeyboardVisible` is true, using
+`OnScreenKeyboardPosition` to find the keyboard's top, and put it back on
+`FocusLost`.
+
+## A toast stack taller than the screen
+
+**Symptom:** a burst of notifications runs off the bottom (or top) and the
+newest are never seen. **Cause:** no cap on the stack. Keep at most three
+visible, queue the rest, and let a new one replace the oldest
+(`roblox-ui-components/assets/toasts.luau`).
+
+## A grid that does not reflow
+
+**Symptom:** item slots overflow sideways on a phone, or sit in two lonely
+columns on a monitor. **Cause:** a `UIGridLayout` with an offset `CellSize`.
+Compute the column count from the frame's `AbsoluteSize.X` on resize and set
+`CellSize` from it, with a `UIAspectRatioConstraint` on each cell to keep them
+square.
+
+---
+
+## Source: .claude/skills/roblox-ui-interaction/SKILL.md
+
+---
+name: roblox-ui-interaction
+description: Making every Roblox UI control respond on PC, phone, tablet and gamepad - Activated instead of mouse-only events, press states that work on touch, 44 px hit areas, long press instead of hover, gamepad selection and focus that never dead-ends, keyboard shortcuts that ignore typing, first-person mouse release, menus that stop or pass character input on purpose, drag versus scroll, text fields and the on-screen keyboard. Also the diagnosis ladder for "the button does nothing", "can't click it on mobile", "clicks go through the menu", "controller can't select it": invisible frames on top, ZIndex and DisplayOrder, Interactable and Active, clipped hit areas, connections lost on respawn or clone. Use when building any clickable UI, when a control does not respond on some device, or when reviewing a UI's input.
+---
+
+# Every control, every input
+
+A control works when a player on a mouse, a phone and a controller can each
+find it, operate it, and see that it responded. Most broken UI works on one of
+the three. Build for all three from the first line, then prove each.
+
+## The contract for one control
+
+| Need | Mouse and keyboard | Touch | Gamepad |
+|---|---|---|---|
+| act | `Activated` (also Enter) | `Activated` | `Activated` (A button) |
+| pressed look | `InputBegan` / `InputEnded` | the same, `UserInputType.Touch` | `SelectionGained` plus A held |
+| hover or focus look | `MouseEnter` / `MouseLeave` | none: nothing may depend on it | `SelectionGained` / `SelectionLost` |
+| extra information | a tooltip after a delay | a long press (`TouchLongPress`) | the tooltip on selection |
+| reach | pointer | a 44 x 44 hit area, clear of the thumbstick and jump button | a selection path from the opening control |
+| undo a press | release outside | drag off before lifting | B cancels or closes |
+
+`MouseButton1Click`, `MouseButton1Down` and `Button1Down` never fire on a
+phone. `Activated` fires for every input and hands over the `InputObject` that
+caused it. `AutoButtonColor = false`, and the six states come from
+`../roblox-ui-components/references/component-states.md`.
+
+## Hit area is not the visual
+
+A 24 px icon is a 44 px button: put the icon in a transparent
+`ImageButton` or `TextButton` that owns the input, sized 44 x 44 after every
+`UIScale`. Rows are buttons across their full width. Two targets closer than
+8 px apart get mis-tapped; space them or merge them.
+
+## When a control does not respond
+
+Work down the ladder; each rung is one question with a check. Full detail,
+with the fix for each: `references/blocked-input.md`.
+
+1. **Did the handler connect?** A connection made to a template before
+   `Clone`, or to a GUI that `ResetOnSpawn` replaced after a death, is gone.
+2. **Is it a button?** A `Frame` or `ImageLabel` never fires `Activated`.
+3. **Is something on top of it?** A transparent full-screen `Frame` with
+   `Active = true`, an invisible `TextButton` scrim left behind, a sibling
+   with a higher `ZIndex`, a `ScreenGui` with a higher `DisplayOrder`.
+4. **Is it switched off?** `Interactable = false` on it or an ancestor,
+   `Visible = false` anywhere up the chain, `GuiState` reading
+   `NonInteractable`.
+5. **Is the tap outside what is drawn?** A parent with `ClipsDescendants`
+   (or a `ScrollingFrame`) stops input outside its rectangle, so the part of
+   a button hanging past it does not respond.
+6. **Is a gesture winning?** A button inside a `ScrollingFrame` loses taps
+   that move a few pixels, because the frame takes them as a scroll.
+7. **Is the game taking the input first?** `ContextActionService` bindings at
+   a higher priority, or a TextBox that still has focus.
+
+## Menus and the character
+
+Decide, per screen, what happens to the game underneath while it is open:
+
+- **An executor hub or small HUD panel**: the character keeps moving. Only
+  the panel's own controls take input.
+- **A full menu, shop or dialog**: stop movement and actions while it is
+  open. Bind a sink with `ContextActionService:BindActionAtPriority` above
+  the default controls for the movement and action inputs, return
+  `Enum.ContextActionResult.Sink`, and unbind on close.
+- **First person or a locked mouse**: a visible `TextButton` with
+  `Modal = true` inside the open menu frees the cursor while the menu is up.
+
+Keyboard shortcuts respect `gameProcessedEvent`: return when it is true, so
+typing in chat or a TextBox never fires them. Escape and gamepad B close the
+top-most panel and return focus to the control that opened it.
+
+## Gamepad
+
+Opening a menu with a gamepad selects its first control
+(`GuiService.SelectedObject`); closing restores the previous selection.
+Every control is `Selectable`, the order follows the layout (`SelectionOrder`
+where it does not), a modal keeps selection inside itself with
+`SelectionGroup`, and the focused control shows a ring that is not clipped
+(`../roblox-ui/references/clipping.md`). Details and the focus trap:
+`../roblox-ui/references/input-surfaces.md`.
+
+## Proving it
+
+Static checks catch the event and size mistakes:
+`node tools/bin/lint-roblox-ui.mjs` (`E-MOUSEONLY`, `W-TOUCH`, `W-STATES`,
+`E-AUTOBUTTON`). Behaviour needs the matrix in `references/input-matrix.md`:
+fire each control's real signals in the Luau mocks, and walk each input in
+Studio's device emulator with a controller or the keyboard's gamepad keys.
+Report which rows ran and which were not checked.
+
+| Need | File |
+|---|---|
+| a control that does not respond, rung by rung | `references/blocked-input.md` |
+| the per-input test matrix, in mocks and in Studio | `references/input-matrix.md` |
+| input models, gestures, gamepad focus trap, safe areas | `../roblox-ui/references/input-surfaces.md` |
+| the six states and how each looks | `../roblox-ui-components/references/component-states.md` |
+| long press and selection tooltips | `../roblox-ui-tooltips/SKILL.md` |
+| everything on screen on every device | `../roblox-ui-viewport/SKILL.md` |
+
+---
+
+## Source: .claude/skills/roblox-ui-interaction/references/blocked-input.md
+
+# A control that does not respond
+
+Every rung is a question, the check that answers it, and the fix. Stop at the
+first rung that answers yes. Asking the user for one observation per rung
+beats re-sending the script with a guess.
+
+## 1. The handler never connected, or connected to something else
+
+| Case | Check | Fix |
+|---|---|---|
+| connected to a template, then cloned | the connect line runs before `:Clone()` | connect each clone after creating it; `Clone` copies properties and children, not connections |
+| the GUI was rebuilt after a death | `ScreenGui.ResetOnSpawn` is true; it stops working after the first respawn | `ResetOnSpawn = false` on any GUI a script builds or keeps references into |
+| the script is not running | nothing it prints appears in Output; a LocalScript placed where it never runs, such as `Workspace` or `ServerStorage` | `StarterPlayerScripts` for LocalScripts that build UI |
+| two copies of the GUI | an executor script rerun without unloading; a second GUI sits on the first | the rerun unloads the previous session first (`roblox-executor/references/technique/lifecycle.md`) |
+| the connection was cleaned up | a Trove or unload ran early | check what calls `Destroy` or `Disconnect`, and when |
+
+## 2. It is not a button
+
+`Activated` exists on `GuiButton` only: `TextButton` and `ImageButton`. A
+`Frame`, `TextLabel` or `ImageLabel` with a click handler never fires. Make
+the clickable area a button, with the visuals inside it.
+
+## 3. Something is on top of it
+
+Input goes to the top-most element under the pointer that takes input.
+
+| On top | How it takes input | Fix |
+|---|---|---|
+| a transparent `Frame` covering the screen or panel | `Active = true`, or it is an invisible `TextButton` | `Visible = false` whenever the overlay is not in use, not `BackgroundTransparency = 1` |
+| a dimming scrim left after closing a modal | the scrim is a button that was faded out, not hidden | hide or destroy the scrim when the modal closes |
+| a sibling with a higher `ZIndex` | overlapping boxes, even where the sibling draws nothing | move it, shrink it, or lower its `ZIndex` |
+| another `ScreenGui` with a higher `DisplayOrder` | a full-screen frame in the other GUI | the same fixes, in that GUI |
+| a tooltip or toast | it sits over the control while shown | tooltips and toasts do not take input (`Active = false`, and labels rather than buttons) |
+
+Two probes find the element in the way, without guessing:
+
+```lua
+-- lint: fragment
+local hits = playerGui:GetGuiObjectsAtPosition(x, y)
+for _, hit in hits do
+	print(hit:GetFullName(), hit.ZIndex, hit.Active)
+end
+```
+
+`BasePlayerGui:GetGuiObjectsAtPosition` lists every GUI object under a screen
+point; anything in that list besides the control and its own children is a
+candidate for rung 3. `GuiObject.GuiState` reads `Idle`, `Hover`, `Press` or
+`NonInteractable`; a control that never leaves `Idle` under the pointer is not
+receiving the hover at all.
+
+## 4. It is switched off
+
+- `Interactable = false` on the control or any ancestor stops every input
+  below it. It is the right way to disable a control, and the usual reason a
+  control that should be enabled is not.
+- `Visible = false` anywhere up the chain hides it and stops input.
+- A disabled state built by greying the colours only, with no
+  `Interactable = false`, looks disabled and still fires. The reverse, a
+  control left non-interactable after the reason went away, looks enabled
+  and does nothing.
+
+## 5. The press lands outside what can take it
+
+An ancestor with `ClipsDescendants = true`, a `ScrollingFrame` or a
+`CanvasGroup` stops input outside its rectangle. The part of a button that
+hangs past the edge is drawn nowhere and receives nothing. A `UICorner`
+clips its own element's input to the rounded shape, so the very corner of a
+rounded button does not respond; keep hit areas large enough that it does
+not matter.
+
+## 6. A gesture takes it
+
+- **Scroll versus tap.** In a `ScrollingFrame`, a touch that moves before
+  lifting becomes a scroll and the button's `Activated` does not fire. Rows
+  must be tall enough to tap without moving (44 px), and swipe actions on a
+  row need their own handling.
+- **Drag versus tap.** A draggable window's title bar is also its close
+  button's parent; a drag detector or `InputBegan` drag handler on the bar
+  can swallow the close tap. Keep the close button outside the drag region,
+  or start a drag only after the pointer moves several pixels.
+- **Long press versus tap.** A long press that opens a tooltip must not also
+  activate the control on release.
+
+## 7. The game takes the input first
+
+- **`ContextActionService`** bindings at a higher priority sink the key or
+  button before the UI's handler sees it. Check with the game's actions
+  unbound, or bind the UI's action at a higher priority while it is open.
+- **A focused TextBox** takes every key. Keyboard shortcuts that fire while
+  a field is focused are the opposite bug: check `gameProcessedEvent`.
+- **The first-person mouse lock** keeps the cursor centred, so nothing can
+  be clicked. A visible `TextButton` with `Modal = true` frees it while the
+  menu is open.
+
+## Executor interfaces
+
+A hub parented to `gethui()` competes with the game's own GUIs. A game's
+full-screen loading or menu frame with a higher `DisplayOrder` covers the hub
+and takes its clicks: set the hub's `DisplayOrder` high, and check rung 3
+with `GetGuiObjectsAtPosition` on the game's `PlayerGui` as well as on the
+hub's container.
+
+---
+
+## Source: .claude/skills/roblox-ui-interaction/references/input-matrix.md
+
+# Input matrix
+
+Which input paths each kind of control must pass, how to exercise each in the
+Luau mocks (`library/tests/stubs.luau`), and what to do in Studio for the
+paths the mocks cannot model.
+
+## Rows every control passes
+
+| Path | Mock | Studio |
+|---|---|---|
+| act with the mouse | `button.Activated:Fire(input, 1)` | click |
+| act by touch | the same `Activated`, with `UserInputType.Touch` in the input | device emulator, tap |
+| act by gamepad | the same `Activated` after `SelectionGained:Fire()` | controller A, or the emulator's gamepad |
+| pressed look on touch | `InputBegan:Fire({ UserInputType = Enum.UserInputType.Touch })` then `InputEnded` | hold a finger on it |
+| press cancelled | `InputBegan` then `InputEnded` with no `Activated` | press, drag off, release |
+| focus look | `SelectionGained:Fire()`, then `SelectionLost:Fire()` | move selection onto it and away |
+| disabled | set the disabled state, fire `Activated`: nothing changes | tap it while disabled |
+| twice in a row | fire `Activated` twice: the second does the second thing, or nothing if pending | double-tap |
+
+`Activated` is the one signal that carries the action, so firing it with each
+input type proves the handler does not branch on the device. The pressed and
+focus looks are separate signals and need their own rows.
+
+## Rows by control
+
+| Control | Extra rows |
+|---|---|
+| toggle | the state flips on each `Activated`; the knob, colour and label all follow; the value reaches the feature (`Features.Fly.set`) |
+| slider | a touch drag moves the value; the readout (H3, H4 or H5) follows; the value is rounded to the step; gamepad left and right move one step |
+| dropdown | opens on `Activated`; a choice closes it and updates the field; B or Escape closes without choosing; the list is not clipped by its panel |
+| text field | focus and `FocusLost(enterPressed)`; shortcuts do not fire while focused; the field is above the on-screen keyboard |
+| tab bar | each tab selects on `Activated`; selection persists; gamepad bumpers or left and right change tabs |
+| modal | opening selects its first control; selection cannot leave it; B closes; focus returns to the opener |
+| draggable window | dragging by touch and mouse; the close button still activates; the window stays on screen after a resize |
+| list row | a tap without movement activates; a moving touch scrolls instead |
+
+## A mock test, in the shape the recipe tests use
+
+```lua
+-- lint: fragment
+local results = {}
+local function check(name, ok) table.insert(results, (ok and "PASS " or "FAIL ") .. name) end
+
+local touch = { UserInputType = Enum.UserInputType.Touch }
+toggle.InputBegan:Fire(touch)
+check("a finger on it shows the pressed look", toggle.BackgroundColor3 == THEME.press)
+toggle.InputEnded:Fire(touch)
+toggle.Activated:Fire(touch, 1)
+check("a tap turns it on", state.on == true and knob.Position == ON_POSITION)
+toggle.SelectionGained:Fire()
+check("gamepad focus shows the ring", ring.Enabled == true)
+toggle.Activated:Fire({ UserInputType = Enum.UserInputType.Gamepad1 }, 1)
+check("A turns it off again", state.on == false)
+```
+
+Fire the file's own connected signals; never copy its handler into the test.
+`../../roblox-ui/references/functional-proof.md` covers the rest of the
+behaviour cases (failed requests, reopening, respawn, rerun, unload).
+
+## What the mocks cannot show
+
+The stubs model signals and property writes, not rendering or hit testing.
+They cannot show a frame on top of a button, a clipped hit area, a scroll
+stealing a tap, or the on-screen keyboard covering a field. Those rows are
+Studio rows: walk them in the device emulator and say which were walked.
 
 ---
 
@@ -4100,6 +5866,121 @@ function afk.unload()
 end
 
 features.AntiAfk = afk
+```
+
+---
+
+## Asset: .claude/skills/roblox-executor-features/assets/camera-unlock.luau
+
+```lua
+local TOGGLE_KEY = Enum.KeyCode.Z
+local MAX_ZOOM = 1000
+local MIN_ZOOM = 0.5
+local FIELD_OF_VIEW = 80
+
+local Players = game:GetService("Players")
+local UserInputService = game:GetService("UserInputService")
+local Workspace = game:GetService("Workspace")
+
+local getgenv = getgenv
+assert(getgenv, "needs getgenv")
+
+local features = getgenv().Features or {}
+getgenv().Features = features
+if features.CameraUnlock then
+	features.CameraUnlock.unload()
+end
+
+type Hold = {
+	target: Instance,
+	property: string,
+	original: any,
+	watcher: RBXScriptConnection,
+}
+
+local player = Players.LocalPlayer
+local unlock = { on = false, alive = true, zoom = MAX_ZOOM, fov = FIELD_OF_VIEW }
+local connections: { RBXScriptConnection } = {}
+local holds: { Hold } = {}
+
+local function release()
+	for index = #holds, 1, -1 do
+		local held = holds[index]
+		held.watcher:Disconnect()
+		held.target[held.property] = held.original
+	end
+	table.clear(holds)
+end
+
+-- Games that lock first person, cap the zoom or zoom the FOV for sprinting
+-- write these back; each watcher restores the unlocked value.
+local function hold()
+	release()
+	local camera = Workspace.CurrentCamera
+	local unlocked = {
+		{ player, "CameraMaxZoomDistance", unlock.zoom },
+		{ player, "CameraMinZoomDistance", MIN_ZOOM },
+		{ player, "CameraMode", Enum.CameraMode.Classic },
+		{ camera, "FieldOfView", unlock.fov },
+	}
+	for _, entry in unlocked do
+		local target, property, value = entry[1], entry[2], entry[3]
+		local original = target[property]
+		target[property] = value
+		table.insert(holds, {
+			target = target,
+			property = property,
+			original = original,
+			watcher = target:GetPropertyChangedSignal(property):Connect(function()
+				if target[property] ~= value then
+					target[property] = value
+				end
+			end),
+		})
+	end
+end
+
+function unlock.set(on: boolean)
+	unlock.on = on
+	if on then
+		hold()
+	else
+		release()
+	end
+end
+
+function unlock.unload()
+	unlock.alive = false
+	unlock.set(false)
+	for _, connection in connections do
+		connection:Disconnect()
+	end
+	table.clear(connections)
+	if features.CameraUnlock == unlock then
+		features.CameraUnlock = nil
+	end
+end
+
+table.insert(
+	connections,
+	UserInputService.InputBegan:Connect(function(input, processed)
+		if not processed and input.KeyCode == TOGGLE_KEY then
+			unlock.set(not unlock.on)
+		end
+	end)
+)
+
+table.insert(
+	connections,
+	Workspace:GetPropertyChangedSignal("CurrentCamera"):Connect(function()
+		if unlock.alive and unlock.on then
+			hold()
+		end
+	end)
+)
+
+features.CameraUnlock = unlock
+unlock.set(true)
 ```
 
 ---
@@ -4354,6 +6235,153 @@ esp.set(true)
 
 ---
 
+## Asset: .claude/skills/roblox-executor-features/assets/feature-doctor.luau
+
+```lua
+-- Run after a feature "does nothing" and send back what it prints. It reads
+-- only; nothing in the game or in the features is changed.
+local WATCH_SECONDS = 5
+
+local Lighting = game:GetService("Lighting")
+local Players = game:GetService("Players")
+local Workspace = game:GetService("Workspace")
+
+local getgenv = getgenv
+assert(getgenv, "needs getgenv")
+
+-- Optional: without them the report says "unknown" and is printed only.
+local identifyexecutor, setclipboard = identifyexecutor, setclipboard
+
+-- Features that cannot both act at once, and what the player sees.
+local CONFLICTS = {
+	{ "Fly", "Freecam", "freecam anchors the body; fly moves it again once freecam is off" },
+	{ "Spectate", "Freecam", "freecam owns the camera; spectating shows again once it is off" },
+	{ "Speed", "Fly", "fly sets its own speed; the walk speed applies again after landing" },
+	{ "ClickTeleport", "Freecam", "teleports move the anchored body; the camera stays put" },
+}
+
+local WATCHED = {
+	Humanoid = { "WalkSpeed", "JumpPower", "JumpHeight", "PlatformStand", "Sit" },
+	HumanoidRootPart = { "Anchored", "CanCollide" },
+	Camera = { "CameraType", "CameraSubject", "FieldOfView" },
+	Player = { "CameraMaxZoomDistance", "CameraMode" },
+	Lighting = { "ClockTime", "Brightness", "FogEnd" },
+}
+
+local player = Players.LocalPlayer
+local features = getgenv().Features or {}
+local report: { string } = {}
+local writes: { [string]: number } = {}
+local watchers: { RBXScriptConnection } = {}
+
+local function add(line: string)
+	table.insert(report, line)
+end
+
+local executor = if identifyexecutor then table.concat({ identifyexecutor() }, " ") else "unknown"
+add(`feature doctor  PlaceId {game.PlaceId}  executor {executor}`)
+
+add("== features")
+local names = {}
+for name in features do
+	table.insert(names, name)
+end
+table.sort(names)
+if #names == 0 then
+	add("none loaded: run the feature script first, then this")
+end
+for _, name in names do
+	local session = features[name]
+	local state = if session.on then "on" else "off"
+	if session.alive == false then
+		state = "unloaded but still registered"
+	end
+	add(`{name}: {state}`)
+end
+for _, pair in CONFLICTS do
+	local first, second = features[pair[1]], features[pair[2]]
+	if first and second and first.on and second.on then
+		add(`{pair[1]} and {pair[2]} are both on: {pair[3]}`)
+	end
+end
+
+add("== character")
+local character = player.Character
+local humanoid = character and character:FindFirstChildOfClass("Humanoid")
+local root = humanoid and humanoid.RootPart
+if humanoid == nil or root == nil then
+	add("no character with a Humanoid and a root part: features apply on the next spawn")
+else
+	add(`health {humanoid.Health}, state {humanoid:GetState()}`)
+	if humanoid.SeatPart then
+		add("seated: fly, noclip and teleports move the seat or nothing until you jump out")
+	end
+	if root.Anchored then
+		add("the root is anchored, by freecam or by the game (a lobby, cutscene or stun)")
+	end
+	if humanoid.PlatformStand and not (features.Fly and features.Fly.on) then
+		add("PlatformStand is on and fly is not: the game set it, so walking is disabled")
+	end
+end
+if Workspace.StreamingEnabled then
+	add("StreamingEnabled: distant parts and players are not loaded, so ESP and teleports see less")
+end
+
+local targets = {
+	Humanoid = humanoid,
+	HumanoidRootPart = root,
+	Camera = Workspace.CurrentCamera,
+	Player = player,
+	Lighting = Lighting,
+}
+for label, properties in WATCHED do
+	local target = targets[label]
+	if target == nil then
+		continue
+	end
+	for _, property in properties do
+		local key = `{label}.{property}`
+		writes[key] = 0
+		table.insert(
+			watchers,
+			target:GetPropertyChangedSignal(property):Connect(function()
+				writes[key] += 1
+			end)
+		)
+	end
+end
+
+task.delay(WATCH_SECONDS, function()
+	for _, watcher in watchers do
+		watcher:Disconnect()
+	end
+	add(`== changes in {WATCH_SECONDS} s (more than 2: something keeps writing it)`)
+	local changed = {}
+	for key, count in writes do
+		if count > 0 then
+			table.insert(changed, key)
+		end
+	end
+	table.sort(changed)
+	for _, key in changed do
+		add(`{key}: {writes[key]}`)
+	end
+	if #changed == 0 then
+		add("nothing changed")
+	end
+	if setclipboard then
+		add("(this report is on the clipboard)")
+	end
+	local text = table.concat(report, "\n")
+	print(text)
+	if setclipboard then
+		setclipboard(text)
+	end
+end)
+```
+
+---
+
 ## Asset: .claude/skills/roblox-executor-features/assets/fly.luau
 
 ```lua
@@ -4511,6 +6539,238 @@ table.insert(
 
 features.Fly = fly
 fly.set(true)
+```
+
+---
+
+## Asset: .claude/skills/roblox-executor-features/assets/freecam.luau
+
+```lua
+local TOGGLE_KEY = Enum.KeyCode.X
+local SPEED = 40
+local LOOK_DEGREES_PER_PIXEL = 0.25
+local STICK_DEGREES_PER_SECOND = 180
+local STICK_DEAD_ZONE = 0.15
+local MAX_PITCH = math.rad(80)
+local CLIMB_KEYS = {
+	[Enum.KeyCode.E] = 1,
+	[Enum.KeyCode.Q] = -1,
+}
+
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+local UserInputService = game:GetService("UserInputService")
+local Workspace = game:GetService("Workspace")
+
+local getgenv = getgenv
+assert(getgenv, "needs getgenv")
+
+local features = getgenv().Features or {}
+getgenv().Features = features
+if features.Freecam then
+	features.Freecam.unload()
+end
+
+type Saved = {
+	cameraType: Enum.CameraType,
+	mouseBehavior: Enum.MouseBehavior,
+}
+
+local player = Players.LocalPlayer
+local freecam = { on = false, alive = true, speed = SPEED }
+local connections: { RBXScriptConnection } = {}
+local watchers: { RBXScriptConnection } = {}
+local held: { [Enum.KeyCode]: number } = {}
+local saved: Saved? = nil
+local frozen: { root: BasePart, anchored: boolean }? = nil
+local position = Vector3.zero
+local yaw, pitch = 0, 0
+local dragging = false
+local stick = Vector3.zero
+
+-- The body stays where it was: anchoring the root stops it walking off while
+-- the movement keys drive the camera instead.
+local function freeze()
+	local character = player.Character
+	local root = character and character:FindFirstChild("HumanoidRootPart") :: BasePart?
+	if root == nil then
+		return
+	end
+	frozen = { root = root, anchored = root.Anchored }
+	root.Anchored = true
+end
+
+local function thaw()
+	if frozen == nil then
+		return
+	end
+	frozen.root.Anchored = frozen.anchored
+	frozen = nil
+end
+
+local function facing(): Vector3
+	local level = math.cos(pitch)
+	return Vector3.new(-math.sin(yaw) * level, math.sin(pitch), -math.cos(yaw) * level)
+end
+
+local function turn(degreesRight: number, degreesUp: number)
+	yaw -= math.rad(degreesRight)
+	pitch = math.clamp(pitch + math.rad(degreesUp), -MAX_PITCH, MAX_PITCH)
+end
+
+-- MoveDirection comes from the keyboard, the gamepad stick and the touch
+-- thumbstick alike, relative to the camera; split along the camera it steers
+-- like fly, including climbing where the camera looks.
+local function glide(deltaTime: number)
+	if not freecam.on then
+		return
+	end
+	if stick.Magnitude > STICK_DEAD_ZONE then
+		local degrees = STICK_DEGREES_PER_SECOND * deltaTime
+		turn(stick.X * degrees, stick.Y * degrees)
+	end
+	local view = CFrame.lookAlong(position, facing())
+	local character = player.Character
+	local humanoid = character and character:FindFirstChildOfClass("Humanoid")
+	local move = if humanoid then humanoid.MoveDirection else Vector3.zero
+	local ahead = Vector3.yAxis:Cross(view.RightVector)
+	local climb = 0
+	for _, amount in held do
+		climb += amount
+	end
+	local forward = view.LookVector * move:Dot(ahead)
+	local sideways = view.RightVector * move:Dot(view.RightVector)
+	local direction = forward + sideways + Vector3.yAxis * math.clamp(climb, -1, 1)
+	if direction.Magnitude > 1 then
+		direction = direction.Unit
+	end
+	position += direction * freecam.speed * deltaTime
+	Workspace.CurrentCamera.CFrame = CFrame.lookAlong(position, facing())
+end
+
+local function detach()
+	local camera = Workspace.CurrentCamera
+	saved = { cameraType = camera.CameraType, mouseBehavior = UserInputService.MouseBehavior }
+	local look = camera.CFrame.LookVector
+	position = camera.CFrame.Position
+	yaw = math.atan2(-look.X, -look.Z)
+	pitch = math.clamp(math.asin(math.clamp(look.Y, -1, 1)), -MAX_PITCH, MAX_PITCH)
+	camera.CameraType = Enum.CameraType.Scriptable
+	-- The camera scripts put the type back on respawn.
+	table.insert(
+		watchers,
+		camera:GetPropertyChangedSignal("CameraType"):Connect(function()
+			if camera.CameraType ~= Enum.CameraType.Scriptable then
+				camera.CameraType = Enum.CameraType.Scriptable
+			end
+		end)
+	)
+	freeze()
+end
+
+local function attach()
+	for _, watcher in watchers do
+		watcher:Disconnect()
+	end
+	table.clear(watchers)
+	table.clear(held)
+	dragging = false
+	stick = Vector3.zero
+	thaw()
+	if saved then
+		Workspace.CurrentCamera.CameraType = saved.cameraType
+		UserInputService.MouseBehavior = saved.mouseBehavior
+		saved = nil
+	end
+end
+
+function freecam.set(on: boolean)
+	if on == freecam.on then
+		return
+	end
+	freecam.on = on
+	if on then
+		detach()
+	else
+		attach()
+	end
+end
+
+function freecam.unload()
+	freecam.alive = false
+	freecam.set(false)
+	for _, connection in connections do
+		connection:Disconnect()
+	end
+	table.clear(connections)
+	if features.Freecam == freecam then
+		features.Freecam = nil
+	end
+end
+
+table.insert(connections, RunService.PreRender:Connect(glide))
+
+table.insert(
+	connections,
+	UserInputService.InputBegan:Connect(function(input, processed)
+		if processed then
+			return
+		end
+		if input.KeyCode == TOGGLE_KEY then
+			freecam.set(not freecam.on)
+		elseif freecam.on and CLIMB_KEYS[input.KeyCode] then
+			held[input.KeyCode] = CLIMB_KEYS[input.KeyCode]
+		elseif freecam.on and input.UserInputType == Enum.UserInputType.MouseButton2 then
+			dragging = true
+			UserInputService.MouseBehavior = Enum.MouseBehavior.LockCurrentPosition
+		end
+	end)
+)
+
+table.insert(
+	connections,
+	UserInputService.InputEnded:Connect(function(input)
+		held[input.KeyCode] = nil
+		if dragging and input.UserInputType == Enum.UserInputType.MouseButton2 then
+			dragging = false
+			if saved then
+				UserInputService.MouseBehavior = saved.mouseBehavior
+			end
+		end
+	end)
+)
+
+-- Right mouse drag, a finger dragged anywhere the game's buttons are not, and
+-- the right stick all turn the view.
+table.insert(
+	connections,
+	UserInputService.InputChanged:Connect(function(input, processed)
+		if not freecam.on then
+			return
+		end
+		if input.KeyCode == Enum.KeyCode.Thumbstick2 then
+			stick = input.Position
+		elseif input.UserInputType == Enum.UserInputType.MouseMovement and dragging then
+			turn(input.Delta.X * LOOK_DEGREES_PER_PIXEL, -input.Delta.Y * LOOK_DEGREES_PER_PIXEL)
+		elseif input.UserInputType == Enum.UserInputType.Touch and not processed then
+			turn(input.Delta.X * LOOK_DEGREES_PER_PIXEL, -input.Delta.Y * LOOK_DEGREES_PER_PIXEL)
+		end
+	end)
+)
+
+table.insert(
+	connections,
+	player.CharacterAdded:Connect(function(character)
+		character:WaitForChild("HumanoidRootPart")
+		if freecam.alive and freecam.on and player.Character == character then
+			thaw()
+			freeze()
+		end
+	end)
+)
+
+features.Freecam = freecam
+freecam.set(true)
 ```
 
 ---
@@ -4757,6 +7017,168 @@ table.insert(
 
 features.Noclip = noclip
 noclip.set(true)
+```
+
+---
+
+## Asset: .claude/skills/roblox-executor-features/assets/spectate.luau
+
+```lua
+local TOGGLE_KEY = Enum.KeyCode.P
+local NEXT_KEY = Enum.KeyCode.RightBracket
+local PREVIOUS_KEY = Enum.KeyCode.LeftBracket
+
+local Players = game:GetService("Players")
+local UserInputService = game:GetService("UserInputService")
+local Workspace = game:GetService("Workspace")
+
+local getgenv = getgenv
+assert(getgenv, "needs getgenv")
+
+local features = getgenv().Features or {}
+getgenv().Features = features
+if features.Spectate then
+	features.Spectate.unload()
+end
+
+local player = Players.LocalPlayer
+local spectate = { on = false, alive = true, target = nil :: Player? }
+local connections: { RBXScriptConnection } = {}
+local watchers: { RBXScriptConnection } = {}
+
+local function others(leaving: Player?): { Player }
+	local list = {}
+	for _, other in Players:GetPlayers() do
+		if other ~= player and other ~= leaving then
+			table.insert(list, other)
+		end
+	end
+	return list
+end
+
+local function ownHumanoid(): Humanoid?
+	local character = player.Character
+	return character and character:FindFirstChildOfClass("Humanoid")
+end
+
+local function unwatch()
+	for _, watcher in watchers do
+		watcher:Disconnect()
+	end
+	table.clear(watchers)
+end
+
+-- The camera script points the camera back at our own body whenever we
+-- respawn, and the target's respawn makes a new Humanoid; both are re-aimed.
+local function aim()
+	unwatch()
+	local target = spectate.target
+	if target == nil then
+		return
+	end
+	table.insert(
+		watchers,
+		target.CharacterAdded:Connect(function(body)
+			body:WaitForChild("Humanoid")
+			if spectate.alive and spectate.target == target then
+				aim()
+			end
+		end)
+	)
+	local character = target.Character
+	local humanoid = character and character:FindFirstChildOfClass("Humanoid")
+	if humanoid == nil then
+		return
+	end
+	local camera = Workspace.CurrentCamera
+	camera.CameraSubject = humanoid
+	table.insert(
+		watchers,
+		camera:GetPropertyChangedSignal("CameraSubject"):Connect(function()
+			if camera.CameraSubject ~= humanoid then
+				camera.CameraSubject = humanoid
+			end
+		end)
+	)
+end
+
+-- Back to our current body, not the one captured at the start: that one may
+-- have died since.
+local function release()
+	unwatch()
+	local humanoid = ownHumanoid()
+	if humanoid then
+		Workspace.CurrentCamera.CameraSubject = humanoid
+	end
+end
+
+function spectate.follow(target: Player?)
+	spectate.target = target
+	spectate.on = target ~= nil
+	if target then
+		aim()
+	else
+		release()
+	end
+end
+
+function spectate.step(offset: number, leaving: Player?)
+	local list = others(leaving)
+	if #list == 0 then
+		spectate.follow(nil)
+		return
+	end
+	local index = table.find(list, spectate.target) or (if offset > 0 then 0 else 1)
+	spectate.follow(list[(index - 1 + offset) % #list + 1])
+end
+
+function spectate.set(on: boolean)
+	if on then
+		spectate.step(1)
+	else
+		spectate.follow(nil)
+	end
+end
+
+function spectate.unload()
+	spectate.alive = false
+	spectate.follow(nil)
+	for _, connection in connections do
+		connection:Disconnect()
+	end
+	table.clear(connections)
+	if features.Spectate == spectate then
+		features.Spectate = nil
+	end
+end
+
+table.insert(
+	connections,
+	UserInputService.InputBegan:Connect(function(input, processed)
+		if processed then
+			return
+		end
+		if input.KeyCode == TOGGLE_KEY then
+			spectate.set(not spectate.on)
+		elseif spectate.on and input.KeyCode == NEXT_KEY then
+			spectate.step(1)
+		elseif spectate.on and input.KeyCode == PREVIOUS_KEY then
+			spectate.step(-1)
+		end
+	end)
+)
+
+table.insert(
+	connections,
+	Players.PlayerRemoving:Connect(function(leaving)
+		if leaving == spectate.target then
+			spectate.step(1, leaving)
+		end
+	end)
+)
+
+features.Spectate = spectate
+spectate.set(true)
 ```
 
 ---

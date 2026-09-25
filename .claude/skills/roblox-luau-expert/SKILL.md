@@ -14,6 +14,10 @@ corrections and acceptance checks together. Load all relevant specialists: an
 executor interface requires both executor and UI workflows. Reading unrelated
 skills is not a substitute for applying the ones the task needs.
 
+Before any repair, retry or redesign, read the project's attempt ledger and
+`plan` the approach (`roblox-attempt-memory`): an approach that already failed
+is not tried again without new evidence, and every fix becomes a check.
+
 ## Question zero — is the request buildable yet?
 
 If the request is vague, non-technical, emotional, or written by someone who
@@ -144,6 +148,10 @@ varies per executor and per update.
 | "make me a shop / hub / settings / HUD" with no layout given | `roblox-ui` → `roblox-ui/references/screen-archetypes.md` |
 | "improve my UI", "it looks off", tab layout, sizes | `roblox-ui` → `roblox-ui/references/layout-ux.md` |
 | blurry UI, cut-off dropdown, "the UI is bugged" | `roblox-ui` → `roblox-ui/references/crisp-ui.md` |
+| "make me a gui" and nothing else; a one-line UI request | `roblox-ui` → `roblox-ui/references/weak-prompt.md` |
+| outline, focus ring or shadow cut off at an edge | `roblox-ui` → `roblox-ui/references/clipping.md` |
+| "cut off", "off the screen", "too big on mobile", "tiny on my monitor", any resolution | `roblox-ui-viewport` |
+| "the button does nothing", "can't click it on mobile", "controller can't select it" | `roblox-ui-interaction` |
 | a screenshot of a UI to recreate | `roblox-ui` → `roblox-ui/references/image-to-ui.md` |
 | a pasted `roblox-ui-design` export or `ui-design.json` | `roblox-ui` → `roblox-ui/references/design-spec.md` |
 | labels, descriptions, subtitles too long or too "AI" | `roblox-ui` → `roblox-ui/references/ui-copy.md` |
@@ -171,7 +179,9 @@ varies per executor and per update.
 | "the formatting is clustered", breaks on lines that do not need them | `roblox-code-craft` → `roblox-code-craft/references/formatting.md` |
 | a draft buried in capability checks, `pcall`s and prose errors | `roblox-code-craft` → `roblox-code-craft/references/anti-slop-code.md` |
 | executor, sUNC, `hookfunction`, `getgc`, script hub | `roblox-executor` |
-| fly, noclip, speed, infinite jump, ESP, click teleport, anti-AFK, fullbright | `roblox-executor-features` (tested assets) |
+| fly, noclip, speed, infinite jump, ESP, click teleport, anti-AFK, fullbright, spectate, max zoom, FOV, freecam | `roblox-executor-features` (tested assets) |
+| an executor feature "doesn't work", "works then resets", "broke after respawn", "broke my other feature" | `roblox-executor-reliability` |
+| "you didn't fix it", "same problem again", "we already tried that", a new chat continuing old work | `roblox-attempt-memory` |
 | "it resets when I change it" (client-side) | `roblox-executor` → `roblox-executor/references/technique/value-persistence.md` |
 | "where is this game's anti-cheat" | `roblox-executor` → `roblox-executor/references/recon/anticheat-recon.md` |
 | user pasted decompiled source, a dump, or the game's scripts | `roblox-executor` → `roblox-executor/references/technique/decompiled-source.md` |
@@ -248,6 +258,7 @@ actually gone wrong.
 10. **Run the counter on every Luau file, do not estimate it.**
 
     ```powershell
+    node tools/bin/check-file.mjs <file.luau>         # all of the below, plus viewport fit and the ledger
     node tools/bin/lint-luau-slop.mjs <file.luau>     # always
     node tools/bin/lint-luau-format.mjs <file.luau>   # always
     node tools/bin/lint-roblox-ui.mjs <file.luau>     # if it draws UI

@@ -115,7 +115,7 @@ or the next build overwrites it.
 
 Custom GPTs retire on 11 December 2026. [`openai-plugin.md`](openai-plugin.md)
 covers the built-in migration and the full plugin built by
-`node tools/bin/build-openai-plugin.mjs`, which carries all twenty-one skills.
+`node tools/bin/build-openai-plugin.mjs`, which carries all twenty-five skills.
 
 ## A custom GPT
 

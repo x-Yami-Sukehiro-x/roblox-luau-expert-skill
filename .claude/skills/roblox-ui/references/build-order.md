@@ -199,7 +199,7 @@ selected value. Loading is additional state for asynchronous work.
 | rest | the baseline |
 | hover | background one step up |
 | press | background one step down, plus a `UIScale` of about `0.97` |
-| focus | a visible ring — `UIStroke` with `BorderStrokePosition = Outer` |
+| focus | a visible ring — `UIStroke` with `BorderStrokePosition = Outer` on a panel, `Inner` inside anything that clips (`clipping.md`) |
 | disabled | `Interactable = false`, muted text, reduced background |
 | selected | accent applied, and a shape or weight change as well as colour |
 

@@ -435,3 +435,20 @@ than which file is reached.
 | 205 | "my hub is fly, noclip and ESP with T1 toggles" | Pastes the three assets and the T1 recipe; toggles call `getgenv().Features.<Name>.set(on)`; the hub's unload calls every `unload` |
 | 206 | "why does it take so long to answer" | `roblox-reply-craft` → `fast-path.md`. `recipe.py` for codes, `check-file.mjs` for checks, at most three references |
 | 207 | "T21 + M28 + N22 + H3" | `python tools/py/recipe.py T21 M28 N22 H3`: the four rows and the four files to paste, once each |
+
+## v5.7: memory, reliability, fit and input
+
+| # | Prompt | Must reach |
+|---|---|---|
+| 208 | "you didn't fix it, same problem" | `roblox-attempt-memory`. The previous attempt recorded as failed with what was seen; `plan` on the next approach; one question that separates two causes |
+| 209 | "we already tried that" | `attempt-ledger.mjs search` on the symptom; the reply names the failed entry and what differs this time, or a different layer |
+| 210 | a new chat: "continuing my hub from yesterday" | `recovering-context.md`. Asks for `PROJECT_CONTEXT.md`, the current file and the last result; claims no memory of the old chat |
+| 211 | "make me a gui" and nothing else | `weak-prompt.md`: archetype, content from the user's files, Slate, the picker question with the brief beside it; the ship bar before delivery |
+| 212 | "my menu is cut off on my phone" | `roblox-ui-viewport`. `viewport_fit.py` on the file; scale size with a minimum inside 640 x 300; no `UIScale` below 1 |
+| 213 | "the outline on my list items is cut off" | `clipping.md`. `E-STROKECLIP`; `BorderStrokePosition = Inner` or padding on the list |
+| 214 | "the buttons work on PC but not on mobile" | `roblox-ui-interaction`. `Activated`, not `MouseButton1Click` or `Button1Down`; a 44 px hit area; the input matrix |
+| 215 | "my button does nothing" | `blocked-input.md`, rung by rung: connected, a button, covered, switched off, clipped, a gesture, sunk; `GetGuiObjectsAtPosition` |
+| 216 | "my fly worked then stopped after I died" | `roblox-executor-reliability`. Respawn row of the matrix; `CharacterAdded` re-apply; no file-scope root (K4) |
+| 217 | "the speed script does nothing in this game" | `diagnosis.md`: did it run, then `feature-doctor.luau`; reads the write counts before changing code |
+| 218 | "freecam" or "spectate other players" | `assets/freecam.luau` or `assets/spectate.luau` pasted whole; says both are local-only |
+| 219 | "add ESP to my hub without breaking fly" | `composition.md`: separate properties, the regression matrix re-run for every feature, not only ESP |

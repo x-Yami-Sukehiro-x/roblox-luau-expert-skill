@@ -31,7 +31,7 @@ than that means the router row was skipped.
 | Time sink | Instead |
 |---|---|
 | opening a whole pack for one style | `recipe.py <code>` prints the row and the file |
-| six checks run one after another | `check-file.mjs` runs them together in half a second |
+| eight checks run one after another | `check-file.mjs` runs them together in about a second |
 | writing a component from nothing | paste the tested recipe or asset |
 | a first draft, then "an improved version" | work it out, write the file once |
 | a clarifying question with a default available | decide, state the default, build |

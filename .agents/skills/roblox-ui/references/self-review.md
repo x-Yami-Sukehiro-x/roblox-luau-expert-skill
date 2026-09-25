@@ -30,7 +30,7 @@ produces a visible defect a player will hit.
 | # | Gate | How to check |
 |---|---|---|
 | H1 | No colour literal outside the token block | Search `Color3.fromRGB`. One block, or zero |
-| H2 | Root has a `UISizeConstraint` with min and max | Search `UISizeConstraint` |
+| H2 | Root has a `UISizeConstraint` with min and max, and its smallest size fits 640 x 300 | Search `UISizeConstraint`; `E-MINFIT` |
 | H3 | Nothing is positioned by hand inside a container of siblings | Search for sibling frames with explicit `Position` and no layout |
 | H4 | Every tappable element is at least 44 px on its smallest side | Read the sizes and the `UISizeConstraint` minimums |
 | H5 | `Activated` is used, not `MouseButton1Click` | Search both |
@@ -72,7 +72,7 @@ count above and still be full of numbers that nothing reads.
 | L3 | Text-bearing elements parented before their `Text` is set | 0 |
 | L4 | Font glyphs used as icons; asset ids nobody has verified | 0 |
 | L5 | Notification lifetimes under 1.5 s; `ScreenInsets` and `IgnoreGuiInset` both set | 0 |
-| L6 | Opaque children reaching the edge of a rounded container that is not a `CanvasGroup`; `UICorner` on a `ScrollingFrame` | 0 |
+| L6 | Opaque children reaching the edge of a rounded container that is not a `CanvasGroup`; `UICorner` on a `ScrollingFrame`; an Outer `UIStroke` cut off by a clipping parent | 0 |
 
 Every L row is a **dead decision** — a value written into the file that the
 engine ignores, or one that contradicts a value beside it. They matter for the
@@ -111,7 +111,7 @@ The rubric is diagnostic. Each row maps to the step that produces it.
 | L1, L2 | step 3 — structure. One thing decides each number |
 | L3 | step 9 — the state before the data arrives is a state |
 | L4 | `roblox-ui-components/references/icons.md` |
-| L6 | `roblox-ui-components/references/outlines-and-dividers.md` |
+| L6 | `roblox-ui-components/references/outlines-and-dividers.md`, `clipping.md` |
 | L5 | `roblox-ui-components/references/toasts.md` |
 
 ---

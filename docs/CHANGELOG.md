@@ -1,5 +1,80 @@
 # Changelog
 
+## 5.7.0 — 2026-09-25
+
+Four new skills: an attempt ledger that stops an agent retrying what already
+failed, executor features that keep working in the user's game, and UI that
+fits every screen and answers every input. Three new executor features and a
+diagnostic script, and two new UI lint rules.
+
+### Added — skills
+
+- **`roblox-attempt-memory`**: every attempt is recorded in the Attempts
+  section of `PROJECT_CONTEXT.md` (tried, saw, cause, instead, patterns to
+  avoid, the check that proves a fix). `tools/bin/attempt-ledger.mjs` and its
+  Python port `plan` a new approach against failed ones, `check` a file for a
+  recorded mistake, `search` by symptom and `lint` the ledger, including two
+  failed entries that describe the same approach. `known-failures.md` holds
+  eighteen failures the stack has seen repeatedly (body movers, CFrame flight,
+  keybinds that fire in chat, character parts read once, hooks without
+  `checkcaller`, hover-only help, outer outlines in scrolling lists and more),
+  checked on every file.
+- **`roblox-executor-reliability`**: naming the effect and its owner, listing
+  every writer of the value, holding it with the right mechanism, a
+  regression matrix every feature passes, which feature owns which property
+  so any combination loads in any order, and the order of questions when a
+  feature "does nothing".
+- **`roblox-ui-viewport`**: sizing that fits a 640 x 360 landscape phone
+  after the topbar and stays bounded on 4K and ultrawide, a device matrix,
+  and the fixes for content that leaves its box (long lists, long labels,
+  popups at the edge, dragged windows, the on-screen keyboard, toast stacks,
+  grids).
+- **`roblox-ui-interaction`**: one input contract for mouse, touch and
+  gamepad, hit areas, menus and the character underneath, and the ladder for
+  a control that does not respond, with `GetGuiObjectsAtPosition` to find what
+  covers it.
+- `roblox-ui/references/weak-prompt.md`: the decisions to make from a
+  one-line UI request and a twelve-row ship bar; `clipping.md`: what clips,
+  what draws outside its box, and the fix for each.
+
+### Added — executor assets
+
+- `spectate.luau` (P, then [ and ]): follows another player's Humanoid,
+  re-aimed after either player respawns, back to your current body on exit.
+- `camera-unlock.luau` (Z): max and min zoom, third person in first-person
+  games, and a field of view, each held against the game; a replaced camera
+  is followed.
+- `freecam.luau` (X): a scriptable camera steered by `MoveDirection`, so
+  keyboard, gamepad and the touch thumbstick all move it; right-drag,
+  touch-drag or the right stick to look; the body is anchored where it stood
+  and its previous state restored.
+- `feature-doctor.luau`: read-only. Prints the executor, each loaded feature
+  and its state, interacting pairs, a seated or anchored body, streaming, and
+  how often each watched property changed in five seconds.
+- Recipe tests: 1,249 assertions over 23 files, up from 1,172 over 19.
+
+### Added — checks
+
+- `lint-roblox-ui.mjs` and `ui_lint.py`: `E-STROKECLIP`, an Outer or Center
+  stroke cut off by a `ScrollingFrame`, `CanvasGroup` or `ClipsDescendants`
+  parent it reaches the edge of; `E-MINFIT`, a top-level panel whose smallest
+  size is larger than 640 x 300. Both count in existing rows (L6, H2), so
+  scores stay out of 32.
+- `tools/py/viewport_fit.py`: each top-level panel's size, the smallest text
+  and the smallest button on eleven device profiles, after any `UIScale`.
+- `check-file.mjs` and `check_file.py` run the viewport and ledger checks too.
+
+### Fixed
+
+- The scaling formula in `scaling-and-dpi.md` clamped `UIScale` at 0.7, which
+  renders 12 px text at 8.4 px and 44 px buttons at 31 px on every phone. The
+  floor is now 1: the interface grows on large screens, and phones fit through
+  scale sizes and constraints.
+- The hub blueprint, window sizes and examples used a 320 px minimum height,
+  18 px taller than a landscape phone leaves under the topbar. They use 260.
+- A focus ring is `Outer` on a panel and `Inner` inside anything that clips;
+  the build order and outline reference said `Outer` everywhere.
+
 ## 5.6.2 — 2026-09-25
 
 Style picker demos that were hidden or cut off now show in full.

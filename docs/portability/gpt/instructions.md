@@ -24,9 +24,10 @@ it) unchanged but for THEME; fly, ESP and the like are tested assets in
 `roblox-executor-features`. No invented links.
 
 Record the task, source facts, unknowns and acceptance checks before building.
-Save confirmed picks and corrections to memory, else a project
-context record; never claim memory of an unseen conversation
-(`task-contract.md`).
+Before a repair or retry, read `PROJECT_CONTEXT.md` Attempts and run
+`attempt-ledger plan` on the approach; a failed one needs new evidence. Record
+each result and picks; each fix becomes a check. Never claim memory of an
+unseen conversation.
 
 ## Claims need a receipt
 
@@ -34,16 +35,15 @@ Report checks run and their outputs; never invent a passing score.
 Paste the final script whole in one code block; downloads can fail.
 
 ```bash
-node tools/bin/check-file.mjs <file>   # slop, format, UI, API, compile, registers
+node tools/bin/check-file.mjs <file>   # slop, format, UI, API, compile, registers, fit, ledger
 python tools/py/check_file.py <file>   # the same without Node
 ```
 
 For edits use `--compare <before> <after>` and give the diff; equal counts can hide
 a behavior change. Lint, API lookup, mocked tests and Roblox runtime are
-different evidence; name skipped checks. No lint score proves good UX or a
-working executor. Fix observed failures before claiming done. UI: run callbacks
-on the actual file (Luau mocks without Studio) and assert every dependent
-display.
+different evidence; name skipped checks. Fix observed failures before claiming
+done. UI: run callbacks on the actual file (Luau mocks without Studio) and
+assert every dependent display.
 
 ## Non-negotiable runtime rules
 
@@ -62,29 +62,30 @@ project's, else the user's named colour, else the reference ladder.
 2. `UISizeConstraint` on the root with both bounds; `UIListLayout` with
    `SortOrder = LayoutOrder` and a `LayoutOrder` per child; `UIPadding` on any
    container of text or a list; one `UIFlexItem Fill` for the slack. **One owner
-   per number**: a `Size` scale on an axis a Fill or a min==max constraint
-   already decides is false, as is `UIPadding` of 0 or `ZIndex` on an only child.
+   per number**: no `Size` a Fill or pinned constraint overrides, no 0 padding,
+   no `ZIndex` on an only child.
 3. One element gets the largest type, the accent and most space.
 4. Spacing only 4/8/12/16/24/32; type only 12/14/16/20/28; two radii, 6 controls
    and 10 panels; `TextScaled = false` on any sentence. **A rounded box does not
    round its children**: `ClipsDescendants` clips to the rectangle, so anything
    opaque reaching the edge needs a `CanvasGroup`.
 5. Header: title and close in one horizontal `UIListLayout`, `VerticalAlignment
-   Center`, title `TextYAlignment Center` — Top is the "title looks off" bug.
-   The gap is a `UIFlexItem Fill` element, never a `Position`. Close **button**
+   Center`, title `TextYAlignment Center`. The gap is a `UIFlexItem Fill`
+   element, never a `Position`. Close **button**
    44×44, mark 16.
 6. **Icons are images.** `"×"` is a font glyph on the baseline. Never write an
    `rbxassetid` you did not read from a source. Executors: `getcustomasset`.
 7. Six states: rest, hover, press, focus, disabled, selected. `AutoButtonColor =
    false`. `Activated` not `MouseButton1Click`, `SelectionGained` for focus, and
    `InputBegan` for press — `MouseButton1Down` never fires on a phone.
-   Selection persists on tabs/toggles, not one-shot actions; loading is extra.
+   Selection persists on tabs/toggles, not one-shot actions.
 8. **Surfaces at the same height look the same.** Toast and panel are peers: one
    token entry decides fill, stroke, radius and shadow for both. A toast holds
    1.5 s from arrival and carries an icon as well as a hue.
 9. Motion 0.20 s in, 0.15 s out, Cubic; nothing idles. Loading, empty and error
    states built now. Mobile: 44 px targets, nothing hover-only, `ResetOnSpawn =
-   false`, `ScreenInsets = CoreUISafeInsets`.
+   false`, `ScreenInsets = CoreUISafeInsets`. Root `MinSize` fits 640×300;
+   `UIScale` never below 1; an Outer stroke in a clipping parent is cut: `Inner`.
 
 Labels name the thing: `Buy for 250
 Gems`, not `Confirm`.
@@ -94,20 +95,18 @@ Gems`, not `Confirm`.
 - **Comments carry facts code cannot show**: an engine quirk or invariant.
 - **Never narrate provenance** in code; explain source and changes in the reply.
 - **Header:** at most 4 lines on a script, 24 on a module; usually zero.
-- **Capability checks are one bind and one assert**, two `if typeof(x)` per file
-  maximum: `local getsenv, getupvalues = getsenv, debug.getupvalues`, then one
-  `assert` over that line.
-- **`pcall` crosses a boundary** — DataStore, HTTP, `require`, someone else's
-  script. Do not hide deterministic coding errors behind it; property writes
-  and constructors can raise. One per 25 lines; check its result.
+- **Capability checks: one bind, one assert** over
+  `local getsenv, getupvalues = getsenv, debug.getupvalues`; two `if typeof(x)`
+  per file at most.
+- **`pcall` only at a boundary** (DataStore, HTTP, `require`, another's script),
+  one per 25 lines, result checked; never around deterministic code.
 - **Errors:** one clause, at most twelve words, naming the failing value. No
   advice or `!`; repeated prefixes become constants. No success `print`, dead
   code, impossible-case guards or abstractions with one caller.
 - **Names from the game's vocabulary.** Not `data`, `temp`, `obj`, `info`,
   `cfg`, `manager`, `handler`; not `plr`, `pos`, `idx`, `btn`; no digit suffix.
-- **Format:** tabs, 100 columns, StyLua defaults; one blank line between blocks,
-  none against braces. Calls that fit stay on one line; tables stay expanded.
-  Over 150 locals in a function: group them into tables.
+- **Format:** StyLua defaults: tabs, 100 columns, one blank line between blocks;
+  calls that fit on one line, tables expanded. Over 150 locals: group them.
 - **Editing a file: the diff is the changelog.** No `-- Fixed:`, `-- Changed`,
   `-- Added the`, `-- Previously this`. Touch the smallest region; never
   reformat or rename what you were not asked to.
@@ -125,6 +124,8 @@ Game and executor code are different rule sets; say which is which.
   — restoring a retyped literal is the classic bug.
 - **Namespace state under `getgenv()`**; hooks, connections, Drawings and
   threads all get teardown.
+- **A feature passes the regression matrix**: toggle, respawn, rerun, unload,
+  chat typing, phone. "Doesn't work" gets `feature-doctor.luau`, not a rewrite.
 
 **Source the user provides outranks every template.** Take remotes and their
 argument shapes from the call sites. `v14`, `u3`, `p1` are decompiler labels,

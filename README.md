@@ -23,7 +23,7 @@
   <a href="#install">Install</a>
 </p>
 
-Twenty-one skills that cover ordinary Roblox game development and
+Twenty-five skills that cover ordinary Roblox game development and
 client/executor scripting. They run natively in Claude Code, and the same rules
 are generated for Codex, Cursor, a custom GPT and an OpenAI plugin from one
 source. Pinned to Roblox API dump `0.739.0.7390687`.
@@ -42,11 +42,20 @@ source. Pinned to Roblox API dump `0.739.0.7390687`.
   [UI designer](https://x-yami-sukehiro-x.github.io/roblox-luau-expert-skill/designer.html)
   lays out a whole screen and copies it for an exact rebuild.
 - **Executor scripts that clean up after themselves.** Fly, noclip, speed,
-  ESP, click teleport, anti-AFK and fullbright ship as behaviour-tested files
-  that survive respawn and rerun and restore what they changed.
+  ESP, click teleport, anti-AFK, fullbright, spectate, camera unlock and
+  freecam ship as behaviour-tested files that survive respawn and rerun and
+  restore what they changed. When one does nothing in a game, a read-only
+  doctor script reports what is fighting it.
+- **UI that fits every screen and every input.** Panel sizes are computed for
+  eleven devices from a 640 x 360 phone to 4K, outlines cut off by a
+  scrolling parent are a lint error, and every control is held to one
+  contract for mouse, touch and gamepad.
+- **A memory of what failed.** Each attempt goes into a ledger in the
+  project's `PROJECT_CONTEXT.md`; `attempt-ledger plan` refuses an approach
+  that already failed, and `check` finds a recorded mistake back in the code.
 - **Counted checks, not advice.** Linters count the ceremony budget, the UI
   rubric, format, API use and compiler register headroom on the final file;
-  `check-file.mjs` runs them all in about half a second.
+  `check-file.mjs` runs them all in about a second.
 
 ## Install
 
@@ -126,14 +135,18 @@ matches their description.
 | **roblox-ui-components** | Tested recipes for every picker code, notifications, outlines, 9-slice panels, the six interaction states, which icon means what |
 | **roblox-ui-motion** | Easing by intent, duration bands, `SmoothDamp` springs, choreography, reduced motion |
 | **roblox-ui-tooltips** | Tooltips, info buttons, helper lines, locked reasons, coach marks, slider value readouts; touch and gamepad access |
+| **roblox-ui-viewport** | Every screen from a 640 x 360 phone to 4K and ultrawide: panel sizing, a grow-only `UIScale`, insets, overflow, per-device sizes computed |
+| **roblox-ui-interaction** | One input contract for mouse, touch and gamepad, hit areas, menus and the character, and the ladder for "the button does nothing" |
 | **roblox-vfx-animation** | `AnimationTrack` lifecycle, priority and blending, markers, particles, beams, trails, highlights |
 | **roblox-audio** | `Sound` versus the `AudioPlayer` and `Wire` graph, mixing, rolloff, preloading |
 | **roblox-monetization** | Idempotent `ProcessReceipt` with a PurchaseId ledger, passes versus products, `PolicyService` |
 | **roblox-game-security** | The client threat model, remote hardening, sanity checks, detection versus enforcement |
 | **roblox-executor** | The sUNC surface, hooking, memory search, thread identity, anti-cheat recon, RakNet, working from decompiled source |
-| **roblox-executor-features** | Tested fly, noclip, speed, infinite jump, ESP, click teleport, anti-AFK and fullbright scripts, and the quality bar for any other |
+| **roblox-executor-features** | Tested fly, noclip, speed, infinite jump, ESP, click teleport, anti-AFK, fullbright, spectate, camera unlock and freecam scripts, a feature doctor, and the quality bar for any other |
+| **roblox-executor-reliability** | Making a requested feature work in the user's game: who owns the value, what else writes it, the regression matrix, combining features, reading the doctor |
 | **roblox-code-craft** | Naming, error messages, `pcall` discipline, comment policy, matching an existing file, AI-generated tells |
 | **roblox-reply-craft** | Fast replies, code blocks that paste cleanly, short file names, no filler around the code |
+| **roblox-attempt-memory** | The attempt ledger: what was tried, seen and learned, carried across chats and hosts; refuses repeats and reintroduced bugs |
 | **roblox-toolchain** | Rojo, Rokit, Wally, selene, StyLua, luau-lsp, Lune, jest-roblox, CI, Studio MCP |
 
 `roblox-game-security` and `roblox-executor` are deliberate mirrors: knowing
@@ -146,7 +159,7 @@ ports for hosts without Node, such as a GPT's Code Interpreter, and
 `lint-parity.mjs` fails on any difference between the two.
 
 ```bash
-node tools/bin/check-file.mjs <file.luau>          # slop, format, UI, API, compile, registers at once
+node tools/bin/check-file.mjs <file.luau>          # slop, format, UI, API, compile, registers, fit, ledger at once
 python tools/py/check_file.py <file.luau>          # the same without Node
 node tools/bin/verify-api.mjs <Name>               # a Roblox API, against the dump
 node tools/bin/verify-executor-api.mjs <name>      # an executor function, against sUNC
@@ -159,6 +172,8 @@ node tools/bin/check-all.mjs                       # every gate in the repositor
 
 ```bash
 node tools/bin/lint-roblox-ui.mjs <file.luau>     # the UI rubric, counted
+python tools/py/viewport_fit.py <file.luau>       # each panel's size, text and targets on eleven devices
+node tools/bin/attempt-ledger.mjs plan "<idea>"   # does this approach repeat a failed attempt?
 node tools/bin/check-registers.mjs <file.luau>    # headroom under the local-register limit
 node tools/bin/verify-asset-ids.mjs <file.luau>   # asks Roblox whether each asset id is a real image
 node tools/bin/lint-prose.mjs                     # every API claim in the skills, against the dump
