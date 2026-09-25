@@ -1,5 +1,12 @@
 # Changelog
 
+## 5.6.1 — 2026-09-25
+
+A Roblox-flavoured plugin icon: a yellow blocky head with a simple face,
+tilted, with the green check badge. It is an original drawing, not the Roblox
+logo, which is a trademark and stays out of this project. `logo.svg` is the
+source; `logo.png` and `icon.png` are rendered from it.
+
 ## 5.6.0 — 2026-09-25
 
 The plugin gets a logo and gallery screenshots, the README is reorganised

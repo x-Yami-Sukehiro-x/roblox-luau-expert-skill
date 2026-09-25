@@ -10,7 +10,7 @@
       "source": ".",
       "displayName": "Roblox Luau Expert",
       "description": "21-skill Roblox and Luau stack with API-dump-backed verification, tested UI recipes for 215 style codes including tooltips, tested fly, ESP and other executor feature scripts, contrast-verified design directions, a gated UI build order, vague-request intake, and a decompiled-source workflow. Counts its own anti-slop and UI rules over real files, in Node or in Python, and proves a rewrite with a before/after diff. Generates matching AGENTS.md, Cursor and custom-GPT rule files from one source.",
-      "version": "5.6.0",
+      "version": "5.6.1",
       "license": "LicenseRef-PolyForm-Strict-1.0.0",
       "category": "development",
       "keywords": [

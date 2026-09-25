@@ -2,9 +2,14 @@
   <title>Roblox Luau Expert</title>
   <rect x="16" y="16" width="480" height="480" rx="108" fill="#13151A"/>
   <rect x="20" y="20" width="472" height="472" rx="104" fill="none" stroke="#2C3039" stroke-width="8"/>
-  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M180 132 C140 132 136 156 136 192 L136 222 C136 244 124 256 100 256 C124 256 136 268 136 290 L136 320 C136 356 140 380 180 380" stroke="#CDD2DB" stroke-width="28"/>
-    <path d="M332 132 C372 132 376 156 376 192 L376 222 C376 244 388 256 412 256 C388 256 376 268 376 290 L376 320 C376 356 372 380 332 380" stroke="#CDD2DB" stroke-width="28"/>
-    <path d="M200 262 L240 302 L314 210" stroke="#48C9A2" stroke-width="36"/>
+  <g transform="rotate(-8 256 256) translate(-12 10)" stroke-linejoin="round">
+    <path d="M148 176 L192 136 L384 136 L340 176 Z" fill="#F7D862" stroke="#F7D862" stroke-width="20"/>
+    <path d="M340 176 L384 136 L384 328 L340 368 Z" fill="#CFA215" stroke="#CFA215" stroke-width="20"/>
+    <path d="M148 176 L340 176 L340 368 L148 368 Z" fill="#F2C230" stroke="#F2C230" stroke-width="20"/>
+    <ellipse cx="210" cy="246" rx="14" ry="24" fill="#1B1D22"/>
+    <ellipse cx="278" cy="246" rx="14" ry="24" fill="#1B1D22"/>
+    <path d="M200 300 Q244 338 288 300" fill="none" stroke="#1B1D22" stroke-width="14" stroke-linecap="round"/>
   </g>
+  <circle cx="376" cy="372" r="74" fill="#2EA07F" stroke="#13151A" stroke-width="18"/>
+  <path d="M340 374 L366 400 L412 348" fill="none" stroke="#F3F5F8" stroke-width="22" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>
