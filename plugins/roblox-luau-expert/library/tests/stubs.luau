@@ -130,7 +130,7 @@ Enum = {
     TextYAlignment = enumOf("TextYAlignment", { "Center", "Top", "Bottom" }),
     UIFlexMode = enumOf("UIFlexMode", { "None", "Grow", "Shrink", "Fill", "Custom" }),
     ScaleType = enumOf("ScaleType", { "Slice", "Stretch" }),
-    UserInputType = enumOf("UserInputType", { "MouseButton1", "Touch" }),
+    UserInputType = enumOf("UserInputType", { "MouseButton1", "MouseButton2", "Touch", "Gamepad1" }),
     PlaybackState = enumOf("PlaybackState", { "Completed", "Cancelled", "Playing" }),
     EasingStyle = enumOf("EasingStyle", { "Linear", "Quad", "Cubic", "Sine" }),
     EasingDirection = enumOf("EasingDirection", { "In", "Out", "InOut" }),
@@ -142,9 +142,13 @@ Enum = {
     ScrollingDirection = enumOf("ScrollingDirection", { "X", "Y", "XY" }),
     KeyCode = enumOf("KeyCode", {
         "Left", "Right", "Up", "Down", "Escape", "DPadLeft", "DPadRight", "ButtonB",
-        "F", "G", "H", "J", "E", "Q", "V", "X", "Z", "Space", "LeftControl", "LeftShift", "RightShift",
+        "F", "G", "H", "J", "E", "Q", "V", "X", "Z", "P", "Space", "LeftControl", "LeftShift", "RightShift",
+        "LeftBracket", "RightBracket", "Thumbstick2", "Unknown",
     }),
-    HumanoidStateType = enumOf("HumanoidStateType", { "Jumping", "Freefall", "Running", "Physics", "Dead" }),
+    CameraType = enumOf("CameraType", { "Custom", "Scriptable", "Fixed" }),
+    CameraMode = enumOf("CameraMode", { "Classic", "LockFirstPerson" }),
+    MouseBehavior = enumOf("MouseBehavior", { "Default", "LockCenter", "LockCurrentPosition" }),
+    HumanoidStateType = enumOf("HumanoidStateType", { "Jumping", "Freefall", "Running", "Physics", "Dead", "Seated" }),
     VelocityConstraintMode = enumOf("VelocityConstraintMode", { "Line", "Plane", "Vector" }),
     ActuatorRelativeTo = enumOf("ActuatorRelativeTo", { "Attachment0", "Attachment1", "World" }),
     OrientationAlignmentMode = enumOf("OrientationAlignmentMode", { "OneAttachment", "TwoAttachment" }),
@@ -374,10 +378,12 @@ function HARNESS.world()
         humanoid.WalkSpeed, humanoid.JumpPower, humanoid.JumpHeight = 16, 50, 7.2
         humanoid.UseJumpPower, humanoid.MoveDirection, humanoid.Health = false, Vector3.zero, 100
         humanoid.ChangeState = function(self, state) self.lastState = state end
+        humanoid.GetState = function(self) return self.lastState or Enum.HumanoidStateType.Running end
+        humanoid.PlatformStand, humanoid.Sit = false, false
         humanoid.Parent = model
         local root = Instance.new("Part")
         root.Name = "HumanoidRootPart"
-        root.CanCollide, root.Position = true, Vector3.new(0, 3, 0)
+        root.CanCollide, root.Anchored, root.Position = true, false, Vector3.new(0, 3, 0)
         root.Parent = model
         humanoid.RootPart = root
         local head = Instance.new("Part")
@@ -389,13 +395,22 @@ function HARNESS.world()
         model.WaitForChild = function(self, childName) return self:FindFirstChild(childName) end
         return model, humanoid, root
     end
-    local player = { Name = "Player1", DisplayName = "Player1", UserId = 1, CharacterAdded = newSignal(), Idled = newSignal() }
+    -- The local player and the camera are instances, so a feature can watch
+    -- their properties the way it would in the game.
+    local player = Instance.new("Player")
+    player.Name, player.DisplayName, player.UserId = "Player1", "Player1", 1
+    player.CharacterAdded, player.Idled = newSignal(), newSignal()
+    player.CameraMaxZoomDistance, player.CameraMinZoomDistance = 128, 0.5
+    player.CameraMode = Enum.CameraMode.Classic
     player.Character = character("Player1")
-    local camera = { CFrame = CFrame.identity, ViewportSize = Vector2.new(1280, 720) }
+    local camera = Instance.new("Camera")
+    camera.CFrame, camera.ViewportSize, camera.FieldOfView = CFrame.identity, Vector2.new(1280, 720), 70
+    camera.CameraType, camera.CameraSubject = Enum.CameraType.Custom, player.Character.Humanoid
     camera.ViewportPointToRay = function(_, x, y) return Ray.new(Vector3.new(x, 50, y), Vector3.new(0, -1, 0)) end
     local workspace = Instance.new("Workspace")
     workspace.CurrentCamera = camera
     workspace.Gravity = 196.2
+    workspace.StreamingEnabled = false
     workspace.Raycast = function(_, origin, direction)
         return workspace.hit and { Position = workspace.hit, Instance = Instance.new("Part") } or nil
     end
@@ -416,6 +431,7 @@ function HARNESS.world()
     services.Workspace = workspace
     services.Lighting = lighting
     services.RunService.PreSimulation = newSignal()
+    services.RunService.PreRender = newSignal()
     services.RunService.Stepped = newSignal()
     services.UserInputService = {
         InputBegan = newSignal(),
@@ -426,6 +442,7 @@ function HARNESS.world()
         TouchEnabled = false,
         MouseEnabled = true,
         IsKeyDown = function(self, key) return self.down == key end,
+        MouseBehavior = Enum.MouseBehavior.Default,
         GetMouseLocation = function() return Vector2.new(640, 360) end,
     }
     services.VirtualUser = {
@@ -448,6 +465,8 @@ function HARNESS.world()
     function world.respawn(who)
         local model = character(who.Name)
         who.Character = model
+        -- The engine's camera script follows the local player's new body.
+        if who == player then camera.CameraSubject = model.Humanoid end
         who.CharacterAdded:Fire(model)
         return model
     end

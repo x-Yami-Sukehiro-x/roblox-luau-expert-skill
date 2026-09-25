@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 // Every file-level check on a Luau file, in one call, run in parallel.
 //
-// A reply that runs six checks one after another spends most of its wait on
-// process start-up and on reading six outputs. This runs them together and
+// A reply that runs eight checks one after another spends most of its wait on
+// process start-up and on reading eight outputs. This runs them together and
 // prints one line per check, with the full output only for a check that failed.
 //
 // Usage:
@@ -33,6 +33,8 @@ function checksFor(file, before) {
     ["api", python("verify_api.py", "--scan", file)],
     ["compile", python("check_luau.py", file)],
     ["registers", node("check-registers.mjs", file)],
+    ["viewport", drawn ? python("viewport_fit.py", file) : null],
+    ["ledger", node("attempt-ledger.mjs", "check", file)],
   ];
 }
 
@@ -54,6 +56,7 @@ function headline(name, output) {
   if (name === "registers") return lines.find((line) => / ok; highest/.test(line))?.replace(/^.*ok; /, "") ?? "";
   if (name === "api") return lines.find((line) => /every resolved member/.test(line)) ?? "";
   if (name === "compile") return "compiles; not executed";
+  if (name === "viewport" || name === "ledger") return lines.filter(Boolean).at(-1) ?? "";
   return "";
 }
 

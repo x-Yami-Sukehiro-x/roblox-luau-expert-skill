@@ -36,7 +36,7 @@ const FEATURE_ASSETS = join(REPO_ROOT, ".claude", "skills", "roblox-executor-fea
 const GATES = [
   {
     name: "portable package and verdict tests",
-    argv: ["--test", ...["check-all", "portable-package", "install", "luau-compile", "register-budget", "dump-index"].map((name) => join(REPO_ROOT, "tools", "tests", `${name}.test.mjs`))],
+    argv: ["--test", ...["check-all", "portable-package", "install", "luau-compile", "register-budget", "dump-index", "attempt-ledger"].map((name) => join(REPO_ROOT, "tools", "tests", `${name}.test.mjs`))],
   },
   {
     name: "prose vs the API dump",

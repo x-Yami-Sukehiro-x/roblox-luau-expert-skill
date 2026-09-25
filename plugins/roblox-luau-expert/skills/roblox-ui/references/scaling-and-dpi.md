@@ -73,7 +73,7 @@ local GuiService = game:GetService("GuiService")
 local RunService = game:GetService("RunService")
 
 local REFERENCE = Vector2.new(1280, 720)   -- what the design was drawn at
-local MIN_SCALE, MAX_SCALE = 0.7, 1.6
+local MIN_SCALE, MAX_SCALE = 1, 1.6
 
 local camera = workspace.CurrentCamera
 
@@ -104,8 +104,13 @@ Three things make this correct rather than a formula someone pasted:
 
 - **`math.min` of the two ratios, not `max`.** Taking the larger one overflows
   the short edge, which is how UI ends up cropped in landscape on a tablet.
-- **Clamps at both ends.** Unclamped, a 4K monitor gets 3x UI and an old phone
-  gets 0.4x. Neither is readable.
+- **Clamps at both ends, and the bottom clamp is 1.** Unclamped, a 4K monitor
+  gets 3x UI and an old phone gets 0.4x. A floor below 1 is the same mistake
+  made quietly: at 0.7, 12 px text renders at 8.4 px and a 44 px button at
+  31 px on every phone. Let `UIScale` grow the interface on large screens and
+  let scale sizes with a `UISizeConstraint` fit the phone
+  (`../../roblox-ui-viewport/SKILL.md`); `python tools/py/viewport_fit.py`
+  prints both numbers per device.
 - **Reacts to `ViewportSize`, not to a one-time read at startup.** Players
   resize windows, rotate phones, and open Studio's device emulator.
 

@@ -21,7 +21,7 @@ with the body absorbing whatever is left.
 
 ```
 ScreenGui                    ResetOnSpawn = false, ScreenInsets = CoreUISafeInsets
-└── Root            Frame    fromScale(0.5, 0.65), Anchor 0.5, UISizeConstraint 300..720 / 320..820
+└── Root            Frame    fromScale(0.5, 0.65), Anchor 0.5, UISizeConstraint 300..720 / 260..820
     ├── UIPadding            16 on all sides
     ├── UIListLayout         Vertical, Padding 12, SortOrder LayoutOrder
     ├── Header      Frame    LayoutOrder 1, height 44 offset
@@ -33,7 +33,7 @@ ScreenGui                    ResetOnSpawn = false, ScreenInsets = CoreUISafeInse
 |---|---|---|
 | `Root.Size` | `UDim2.fromScale(0.5, 0.65)` | grows with the screen |
 | `Root.AnchorPoint` | `Vector2.new(0.5, 0.5)` | centres without arithmetic |
-| `UISizeConstraint.MinSize` | `Vector2.new(300, 320)` | still usable on a 390 px phone |
+| `UISizeConstraint.MinSize` | `Vector2.new(300, 260)` | fits a 640 x 360 landscape phone once the topbar takes 58 px |
 | `UISizeConstraint.MaxSize` | `Vector2.new(720, 820)` | not absurd on ultrawide |
 | `Header` height | `44` offset | matches the minimum touch target |
 | `Body` | `UIFlexItem` `FlexMode = Fill` | no height arithmetic anywhere |
@@ -67,7 +67,7 @@ root.Position = UDim2.fromScale(0.5, 0.5)
 root.Parent = screenGui
 
 local bounds = Instance.new("UISizeConstraint")
-bounds.MinSize = Vector2.new(300, 320)
+bounds.MinSize = Vector2.new(300, 260)
 bounds.MaxSize = Vector2.new(720, 820)
 bounds.Parent = root
 

@@ -75,8 +75,11 @@ Use these fields, omitting empty ones:
   ownership, reset triggers. Link evidence; label inferences separately.
 - **UI decisions:** audience, primary action, palette/type/spacing tokens,
   component behavior, target devices, user-approved design choices.
-- **Corrections:** symptom, observed cause, smallest repair, regression case,
-  result. A complaint is evidence of a symptom, not proof of a guessed cause.
+- **Attempts:** every attempt and correction as a ledger entry (symptom,
+  what was tried, what was seen, cause when evidenced, what instead, the
+  regression check), in the shape `attempt-ledger.mjs` reads
+  (`../../roblox-attempt-memory/references/ledger-format.md`). A complaint is
+  evidence of a symptom, not proof of a guessed cause.
 - **Validation:** command and output or runtime action, date and revision,
   skipped checks, current unresolved issues and next step.
 

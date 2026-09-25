@@ -29,7 +29,7 @@ panel.Position = UDim2.fromScale(0.5, 0.5)
 panel.Size = UDim2.fromScale(0.5, 0.7)
 
 local bounds = Instance.new("UISizeConstraint")
-bounds.MinSize = Vector2.new(280, 320)
+bounds.MinSize = Vector2.new(280, 260)
 bounds.MaxSize = Vector2.new(720, 900)
 bounds.Parent = panel
 ```

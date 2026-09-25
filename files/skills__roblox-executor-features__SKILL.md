@@ -1,11 +1,11 @@
 ---
 name: roblox-executor-features
-description: Tested, ready-to-paste executor feature scripts for the local character and view — fly, noclip, walk speed and jump height, infinite jump, ESP, click teleport, anti-AFK and fullbright — and the quality bar every such script must meet. Modern physics (LinearVelocity and AlignOrientation, never BodyVelocity), camera-relative movement that works on keyboard, gamepad and touch, respawn handling, one getgenv namespace, rerun-safe unload that restores what it changed, keybinds, and a set() API a hub toggle can call. Use when asked for fly, noclip, speed, jump, ESP, teleport, anti-AFK, fullbright or any "universal" script, when combining features into a hub, or when an executor script's quality, mobile support or cleanup is poor.
+description: Tested, ready-to-paste executor feature scripts for the local character and view — fly, noclip, walk speed and jump height, infinite jump, ESP, click teleport, anti-AFK, fullbright, spectate, camera unlock (zoom, FOV, third person) and freecam — plus a feature doctor that reports why a feature is not working, and the quality bar every such script must meet. Modern physics (LinearVelocity and AlignOrientation, never BodyVelocity), camera-relative movement that works on keyboard, gamepad and touch, respawn handling, one getgenv namespace, rerun-safe unload that restores what it changed, keybinds, and a set() API a hub toggle can call. Use when asked for fly, noclip, speed, jump, ESP, teleport, anti-AFK, fullbright, spectate, max zoom, FOV, freecam or any "universal" script, when combining features into a hub, or when an executor script's quality, mobile support or cleanup is poor.
 ---
 
 # Executor features
 
-These eight scripts act on things the local client already owns: its own
+These eleven scripts act on things the local client already owns: its own
 character's physics, its own camera, its own lighting and its own view of
 other players. That is why they can be generic. Anything that touches a
 game's own values, remotes or systems is not generic, and follows
@@ -24,10 +24,20 @@ use on accounts and servers you control; any executor use can be banned.
 | click teleport | `assets/click-teleport.luau` | Ctrl+click, tap on a phone | `PivotTo` the clicked ground, facing kept |
 | anti-AFK | `assets/anti-afk.luau` | none | a `VirtualUser` click when `Idled` fires |
 | fullbright | `assets/fullbright.luau` | B | six `Lighting` properties, held against day and night scripts |
+| spectate | `assets/spectate.luau` | P, then [ and ] | `Camera.CameraSubject`, re-aimed after either player respawns |
+| camera unlock | `assets/camera-unlock.luau` | Z | max and min zoom, `CameraMode` Classic, `FieldOfView`, held against the game |
+| freecam | `assets/freecam.luau` | X, E/Q, right-drag or touch-drag | a scriptable camera driven by `MoveDirection`; the body anchored where it stood |
 
-Each asset is behaviour-tested in `library/tests/recipes/` (every one covers
-the effect, the toggle key, chat typing, respawn, rerun and a double unload)
-and scores full marks on the slop, format, API and register gates.
+When a feature "does nothing", send `assets/feature-doctor.luau`: it changes
+nothing, and prints the executor, each loaded feature's state, conflicting
+pairs, a seated or anchored body, and every watched property something
+rewrote in five seconds. `../roblox-executor-reliability/SKILL.md` reads its
+output.
+
+Each asset is behaviour-tested in `library/tests/recipes/` (every feature
+covers the effect, the toggle key, chat typing, respawn, rerun and a double
+unload; the doctor covers its report and that it changes nothing) and scores
+full marks on the slop, format, API and register gates.
 
 ---
 
@@ -47,7 +57,9 @@ and scores full marks on the slop, format, API and register gates.
    (no Node: `python tools/py/check_file.py <file>`).
 
 A request for a feature not in the table still meets the bar in
-`references/feature-quality.md`; start from the closest asset's shape.
+`references/feature-quality.md`; start from the closest asset's shape, and
+pass the regression matrix in
+`../roblox-executor-reliability/references/regression-matrix.md`.
 
 ---
 
@@ -58,7 +70,8 @@ noclip, speed and teleport **replicate to everyone**. That is also why they
 are the features anti-cheats watch. A server that checks distance per second,
 raycasts between positions, or runs Server Authority physics corrects or
 kicks; nothing in these scripts hides that. ESP, fullbright and anti-AFK are
-local-only and change nothing another player sees.
+local-only and change nothing another player sees; so are spectate, camera
+unlock and freecam, though freecam's anchored body stands still for everyone.
 → `../roblox-executor/references/technique/replication-exploitation.md`
 
 ---
@@ -71,3 +84,4 @@ local-only and change nothing another player sees.
 | how each feature works, its variants and why these choices | `references/feature-catalog.md` |
 | lifetime, unload and rerun rules in full | `../roblox-executor/references/technique/lifecycle.md` |
 | game-specific features from a dump | `../roblox-executor/references/technique/feature-search.md` |
+| making a feature work in this game, and not breaking others | `../roblox-executor-reliability/SKILL.md` |

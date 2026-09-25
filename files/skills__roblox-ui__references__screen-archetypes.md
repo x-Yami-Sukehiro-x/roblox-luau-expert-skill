@@ -17,7 +17,7 @@ copy follows `ui-copy.md`; icons follow `icon-meaning.md`.
 content is the point, so the window stays quiet and small.
 
 ```text
-Window 560 x 380 (scale 0.5 x 0.65, 300..720 x 320..820), draggable header
+Window 560 x 380 (scale 0.5 x 0.65, 300..720 x 260..820), draggable header
 ├── Header 44: title 20 Bold · badge · minimise · close        (B1a)
 ├── Sidebar 140: tabs with icons, S4 or S5                      (B6)
 └── Page: search (D11 or a search box), section headings,

@@ -38,7 +38,10 @@ declared size — which is almost always true inside a layout.
 `Center` straddles, splitting the thickness.
 
 For a focus ring that should sit *outside* without disturbing layout, `Outer` is
-correct. For a card border in a list, `Inner`.
+correct, unless an ancestor clips: inside a `ScrollingFrame`, a `CanvasGroup` or
+a `ClipsDescendants` parent the outside half is cut off
+(`../../roblox-ui/references/clipping.md`, lint code `E-STROKECLIP`). For a card
+border in a list, `Inner`.
 
 ### `ApplyStrokeMode`
 
@@ -314,6 +317,7 @@ ambiguous gets one back. Usually that is one or two places, not fifteen.
 |---|---|
 | Text has an unwanted outline | `ApplyStrokeMode` left `Contextual` on a text element |
 | Element misaligns with siblings in a list | `BorderStrokePosition = Outer` growing it past its `Size` |
+| Outline or focus ring cut off at a list's edge | an `Outer` stroke inside a clipping parent; `Inner`, or pad the parent by the thickness |
 | Border looks thick on desktop, invisible on mobile | thickness in scale, or radius in scale where offset was needed |
 | Shadow looks like a grey rectangle | stretched `Frame` instead of a 9-slice image |
 | Border on the divider | `BorderSizePixel` left at its default |

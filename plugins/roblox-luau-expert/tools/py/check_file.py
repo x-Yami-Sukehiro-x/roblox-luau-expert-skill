@@ -2,8 +2,8 @@
 """Every file-level check on a Luau file, in one call, run in parallel.
 
 The Python twin of tools/bin/check-file.mjs, for a host with no Node such as a
-custom GPT's Code Interpreter. Six checks one after another cost six start-ups
-and six outputs to read; this runs them together and prints one line each, with
+custom GPT's Code Interpreter. Eight checks one after another cost eight start-ups
+and eight outputs to read; this runs them together and prints one line each, with
 the full output only for a check that failed.
 
 Usage:
@@ -42,6 +42,8 @@ def checks_for(path, before):
         ("api", tool("verify_api.py", "--scan", path)),
         ("compile", tool("check_luau.py", path)),
         ("registers", tool("register_budget.py", path)),
+        ("viewport", tool("viewport_fit.py", path) if drawn else None),
+        ("ledger", tool("attempt_ledger.py", "check", path)),
     ]
 
 
@@ -64,6 +66,8 @@ def headline(name, output):
         return next((line for line in lines if "every resolved member" in line), "")
     if name == "compile":
         return "compiles; not executed"
+    if name in ("viewport", "ledger"):
+        return next((line for line in reversed(lines) if line), "")
     return ""
 
 

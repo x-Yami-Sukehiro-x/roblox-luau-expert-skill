@@ -25,6 +25,7 @@ Exit 1 on any E-* finding. W-* are reported and do not fail.
 """
 
 import json
+import math
 import os
 import re
 import sys
@@ -47,6 +48,10 @@ SPACING_SCALE = {0, 2, 4, 8, 12, 16, 24, 32}
 TYPE_SCALE = {12, 13, 14, 16, 17, 20, 22, 28, 30, 32, 34}
 MIN_TEXT_SIZE = 12
 MIN_TOUCH_TARGET = 44
+FIT_WIDTH = 640
+FIT_HEIGHT = 300
+CLIPPING_CLASSES = {"ScrollingFrame", "CanvasGroup"}
+TEXT_CLASSES = {"TextLabel", "TextButton", "TextBox"}
 MAX_DISTINCT_TEXT_SIZES = 5
 MAX_DISTINCT_RADII = 2
 MAX_COLOUR_LITERALS = 14
@@ -737,6 +742,30 @@ def analyse(raw_source, rel, gui):
                 "ScreenInsets and IgnoreGuiInset both set - ScreenInsets supersedes it, "
                 "so one of these is a guess")
 
+        screen_scaled = any(m.cls == "UIScale" for m in modifiers(root))
+        for panel in drawables:
+            if panel.parent != root.variable or panel.cls not in gui["GuiObject"]:
+                continue
+            scaled = screen_scaled or any(m.cls == "UIScale" for m in modifiers(panel))
+            constraint = next((m for m in modifiers(panel) if m.cls == "UISizeConstraint"), None)
+            minimum = vector2_of(prop(constraint, "MinSize")) if constraint else None
+            maximum = vector2_of(prop(constraint, "MaxSize")) if constraint else None
+            scale = scale_of(prop(panel, "Size"))
+            offset = offset_of(prop(panel, "Size"))
+            smallest = minimum
+            if not scaled and offset and scale and scale["x"] == 0 and scale["y"] == 0:
+                smallest = {
+                    axis: max(minimum[axis] if minimum else 0,
+                              min(offset[axis], maximum[axis] if maximum else float("inf")))
+                    for axis in ("x", "y")
+                }
+            if not smallest or (smallest["x"] <= FIT_WIDTH and smallest["y"] <= FIT_HEIGHT):
+                continue
+            add("E-MINFIT", constraint.line if constraint else panel.line,
+                "%s cannot shrink below %sx%spx - a 640x360 phone leaves %dx%d under the topbar, "
+                "so it runs off the screen"
+                % (panel.variable or panel.cls, smallest["x"], smallest["y"], FIT_WIDTH, FIT_HEIGHT))
+
     # --- touch targets ----------------------------------------------------
     for button in buttons:
         constraint = next((m for m in modifiers(button) if m.cls == "UISizeConstraint"), None)
@@ -916,6 +945,48 @@ def analyse(raw_source, rel, gui):
                    else "and has no rounding of its own"))
             break
 
+    # --- L6  an outline cut off by the parent that clips it ---------------
+    def padding_sides(container):
+        padding = next((m for m in modifiers(container) if m.cls == "UIPadding"), None)
+        sides = []
+        for side in ("PaddingTop", "PaddingBottom", "PaddingLeft", "PaddingRight"):
+            value = udim_offset(resolve(padding.props.get(side))) if padding else None
+            sides.append(value if value is not None else 0)
+        return sides
+
+    for stroke in elements:
+        if stroke.cls != "UIStroke":
+            continue
+        outlined = by_variable.get(stroke.parent)
+        container = by_variable.get(outlined.parent) if outlined else None
+        if outlined is None or container is None or outlined.cls not in gui["GuiObject"]:
+            continue
+        clips = (container.cls in CLIPPING_CLASSES
+                 or (container.props.get("ClipsDescendants") or "").strip() == "true")
+        if not clips:
+            continue
+        mode = stroke.props.get("ApplyStrokeMode") or ""
+        if outlined.cls in TEXT_CLASSES and not re.search(r"Border", mode):
+            continue
+        position = stroke.props.get("BorderStrokePosition") or ""
+        if re.search(r"Inner", position):
+            continue
+        thickness = number(resolve(stroke.props.get("Thickness") or "1"))
+        if thickness is None or thickness <= 0:
+            continue
+        overflow = thickness / 2 if re.search(r"Center", position) else thickness
+        stacked = any(c.cls in layouts for c in children.get(container.variable, []))
+        scale = scale_of(resolve(outlined.props.get("Size")))
+        touches = stacked or (scale is not None and (scale["x"] == 1 or scale["y"] == 1))
+        if not touches or all(side >= overflow for side in padding_sides(container)):
+            continue
+        add("E-STROKECLIP", stroke.line,
+            "%s's %spx outline draws outside it, inside %s, a %s - the edge is cut off. "
+            "Use BorderStrokePosition Inner or pad the parent %dpx"
+            % (outlined.variable or outlined.cls, thickness, container.variable or container.cls,
+               container.cls if container.cls in CLIPPING_CLASSES else "ClipsDescendants parent",
+               int(math.ceil(overflow))))
+
     # --- L5  a notification anyone can read -------------------------------
     for match in re.finditer(r"^[^\S\n]*local\s+([A-Z][A-Z0-9_,\s]*?)\s*=\s*([^\n]+)$", code, re.M):
         names = [name.strip() for name in match.group(1).split(",")]
@@ -981,7 +1052,7 @@ def score(counts, findings):
         ("C5 spacing values on the scale", none("E-SPACING")),
         ("C8 interaction states present", none("W-STATES", "E-AUTOBUTTON")),
         ("H1 colours come from tokens", none("W-TOKENS")),
-        ("H2 root is bounded", none("E-UNBOUNDED")),
+        ("H2 root is bounded and fits a phone", none("E-UNBOUNDED", "E-MINFIT")),
         ("H4 touch targets", none("W-TOUCH")),
         ("H5 Activated, not MouseButton1Click", none("E-MOUSEONLY")),
         ("H7 connections torn down", none("E-LEAK")),
@@ -990,7 +1061,7 @@ def score(counts, findings):
         ("L3 text set where the element is built", none("E-DEFAULTTEXT", "W-DEFAULTTEXT")),
         ("L4 icons are assets, not glyphs", none("W-GLYPHICON", "W-ASSETLOOSE")),
         ("L5 notifications can be read", none("E-TOASTFAST", "W-INSETBOTH")),
-        ("L6 nothing square inside a rounded box", none("E-CORNERBLEED", "E-SCROLLCORNER")),
+        ("L6 nothing poking out or clipped off", none("E-CORNERBLEED", "E-SCROLLCORNER", "E-STROKECLIP")),
     ]
     passed = len([row for row in rows if row[1]])
     return {"rows": rows, "passed": passed, "total": len(rows), "points": passed * 2}

@@ -1,17 +1,17 @@
 {
   "repository": "x-Yami-Sukehiro-x/roblox-luau-expert-skill",
-  "source": "de3511a56ac0bd9685bf240702baf5e96184fb9e",
-  "version": "5.6.2+gde3511a",
+  "source": "0c910861ac27acfe3d13b50cd4c841babc6cc050",
+  "version": "5.7.0+g0c91086",
   "files": [
     {
       "name": "AGENTS.md",
       "path": "AGENTS.md",
-      "bytes": 27674
+      "bytes": 31880
     },
     {
       "name": "docs__CHANGELOG.md",
       "path": "docs/CHANGELOG.md",
-      "bytes": 74345
+      "bytes": 78493
     },
     {
       "name": "docs__SOURCES.md",
@@ -159,6 +159,11 @@
       "bytes": 917
     },
     {
+      "name": "library__tests__recipes__camera-unlock.luau",
+      "path": "library/tests/recipes/camera-unlock.luau",
+      "bytes": 2720
+    },
+    {
       "name": "library__tests__recipes__checkboxes.luau",
       "path": "library/tests/recipes/checkboxes.luau",
       "bytes": 9136
@@ -179,9 +184,19 @@
       "bytes": 3492
     },
     {
+      "name": "library__tests__recipes__feature-doctor.luau",
+      "path": "library/tests/recipes/feature-doctor.luau",
+      "bytes": 3226
+    },
+    {
       "name": "library__tests__recipes__fly.luau",
       "path": "library/tests/recipes/fly.luau",
       "bytes": 4050
+    },
+    {
+      "name": "library__tests__recipes__freecam.luau",
+      "path": "library/tests/recipes/freecam.luau",
+      "bytes": 4987
     },
     {
       "name": "library__tests__recipes__fullbright.luau",
@@ -219,6 +234,11 @@
       "bytes": 5119
     },
     {
+      "name": "library__tests__recipes__spectate.luau",
+      "path": "library/tests/recipes/spectate.luau",
+      "bytes": 3230
+    },
+    {
       "name": "library__tests__recipes__speed.luau",
       "path": "library/tests/recipes/speed.luau",
       "bytes": 1982
@@ -246,7 +266,7 @@
     {
       "name": "library__tests__stubs.luau",
       "path": "library/tests/stubs.luau",
-      "bytes": 19533
+      "bytes": 20825
     },
     {
       "name": "skills__roblox-architecture__SKILL.md",
@@ -257,6 +277,26 @@
       "name": "skills__roblox-architecture__references__ui-state.md",
       "path": "skills/roblox-architecture/references/ui-state.md",
       "bytes": 7618
+    },
+    {
+      "name": "skills__roblox-attempt-memory__SKILL.md",
+      "path": "skills/roblox-attempt-memory/SKILL.md",
+      "bytes": 6729
+    },
+    {
+      "name": "skills__roblox-attempt-memory__references__known-failures.md",
+      "path": "skills/roblox-attempt-memory/references/known-failures.md",
+      "bytes": 7609
+    },
+    {
+      "name": "skills__roblox-attempt-memory__references__ledger-format.md",
+      "path": "skills/roblox-attempt-memory/references/ledger-format.md",
+      "bytes": 4231
+    },
+    {
+      "name": "skills__roblox-attempt-memory__references__recovering-context.md",
+      "path": "skills/roblox-attempt-memory/references/recovering-context.md",
+      "bytes": 3348
     },
     {
       "name": "skills__roblox-audio__SKILL.md",
@@ -336,12 +376,17 @@
     {
       "name": "skills__roblox-executor-features__SKILL.md",
       "path": "skills/roblox-executor-features/SKILL.md",
-      "bytes": 4398
+      "bytes": 5643
     },
     {
       "name": "skills__roblox-executor-features__assets__anti-afk.luau",
       "path": "skills/roblox-executor-features/assets/anti-afk.luau",
       "bytes": 828
+    },
+    {
+      "name": "skills__roblox-executor-features__assets__camera-unlock.luau",
+      "path": "skills/roblox-executor-features/assets/camera-unlock.luau",
+      "bytes": 2525
     },
     {
       "name": "skills__roblox-executor-features__assets__click-teleport.luau",
@@ -354,9 +399,19 @@
       "bytes": 4456
     },
     {
+      "name": "skills__roblox-executor-features__assets__feature-doctor.luau",
+      "path": "skills/roblox-executor-features/assets/feature-doctor.luau",
+      "bytes": 4293
+    },
+    {
       "name": "skills__roblox-executor-features__assets__fly.luau",
       "path": "skills/roblox-executor-features/assets/fly.luau",
       "bytes": 3980
+    },
+    {
+      "name": "skills__roblox-executor-features__assets__freecam.luau",
+      "path": "skills/roblox-executor-features/assets/freecam.luau",
+      "bytes": 6364
     },
     {
       "name": "skills__roblox-executor-features__assets__fullbright.luau",
@@ -374,6 +429,11 @@
       "bytes": 1842
     },
     {
+      "name": "skills__roblox-executor-features__assets__spectate.luau",
+      "path": "skills/roblox-executor-features/assets/spectate.luau",
+      "bytes": 3609
+    },
+    {
       "name": "skills__roblox-executor-features__assets__speed.luau",
       "path": "skills/roblox-executor-features/assets/speed.luau",
       "bytes": 2807
@@ -381,12 +441,37 @@
     {
       "name": "skills__roblox-executor-features__references__feature-catalog.md",
       "path": "skills/roblox-executor-features/references/feature-catalog.md",
-      "bytes": 4313
+      "bytes": 6535
     },
     {
       "name": "skills__roblox-executor-features__references__feature-quality.md",
       "path": "skills/roblox-executor-features/references/feature-quality.md",
       "bytes": 3051
+    },
+    {
+      "name": "skills__roblox-executor-reliability__SKILL.md",
+      "path": "skills/roblox-executor-reliability/SKILL.md",
+      "bytes": 6128
+    },
+    {
+      "name": "skills__roblox-executor-reliability__references__composition.md",
+      "path": "skills/roblox-executor-reliability/references/composition.md",
+      "bytes": 3713
+    },
+    {
+      "name": "skills__roblox-executor-reliability__references__diagnosis.md",
+      "path": "skills/roblox-executor-reliability/references/diagnosis.md",
+      "bytes": 3064
+    },
+    {
+      "name": "skills__roblox-executor-reliability__references__failure-modes.md",
+      "path": "skills/roblox-executor-reliability/references/failure-modes.md",
+      "bytes": 4197
+    },
+    {
+      "name": "skills__roblox-executor-reliability__references__regression-matrix.md",
+      "path": "skills/roblox-executor-reliability/references/regression-matrix.md",
+      "bytes": 3650
     },
     {
       "name": "skills__roblox-executor__SKILL.md",
@@ -531,7 +616,7 @@
     {
       "name": "skills__roblox-luau-expert__SKILL.md",
       "path": "skills/roblox-luau-expert/SKILL.md",
-      "bytes": 19909
+      "bytes": 20998
     },
     {
       "name": "skills__roblox-luau-expert__references__common-mistakes.md",
@@ -546,7 +631,7 @@
     {
       "name": "skills__roblox-luau-expert__references__task-contract.md",
       "path": "skills/roblox-luau-expert/references/task-contract.md",
-      "bytes": 5998
+      "bytes": 6182
     },
     {
       "name": "skills__roblox-luau-expert__references__verified__class-hierarchy.txt",
@@ -656,7 +741,7 @@
     {
       "name": "skills__roblox-reply-craft__references__fast-path.md",
       "path": "skills/roblox-reply-craft/references/fast-path.md",
-      "bytes": 2582
+      "bytes": 2585
     },
     {
       "name": "skills__roblox-reply-craft__references__fast-replies.md",
@@ -796,7 +881,7 @@
     {
       "name": "skills__roblox-ui-components__references__outlines-and-dividers.md",
       "path": "skills/roblox-ui-components/references/outlines-and-dividers.md",
-      "bytes": 12279
+      "bytes": 12618
     },
     {
       "name": "skills__roblox-ui-components__references__scrolling-and-virtualisation.md",
@@ -822,6 +907,21 @@
       "name": "skills__roblox-ui-components__references__windows-and-drag.md",
       "path": "skills/roblox-ui-components/references/windows-and-drag.md",
       "bytes": 7962
+    },
+    {
+      "name": "skills__roblox-ui-interaction__SKILL.md",
+      "path": "skills/roblox-ui-interaction/SKILL.md",
+      "bytes": 5951
+    },
+    {
+      "name": "skills__roblox-ui-interaction__references__blocked-input.md",
+      "path": "skills/roblox-ui-interaction/references/blocked-input.md",
+      "bytes": 5486
+    },
+    {
+      "name": "skills__roblox-ui-interaction__references__input-matrix.md",
+      "path": "skills/roblox-ui-interaction/references/input-matrix.md",
+      "bytes": 3654
     },
     {
       "name": "skills__roblox-ui-motion__SKILL.md",
@@ -859,9 +959,24 @@
       "bytes": 3495
     },
     {
+      "name": "skills__roblox-ui-viewport__SKILL.md",
+      "path": "skills/roblox-ui-viewport/SKILL.md",
+      "bytes": 5240
+    },
+    {
+      "name": "skills__roblox-ui-viewport__references__device-matrix.md",
+      "path": "skills/roblox-ui-viewport/references/device-matrix.md",
+      "bytes": 3633
+    },
+    {
+      "name": "skills__roblox-ui-viewport__references__overflow.md",
+      "path": "skills/roblox-ui-viewport/references/overflow.md",
+      "bytes": 4892
+    },
+    {
       "name": "skills__roblox-ui__SKILL.md",
       "path": "skills/roblox-ui/SKILL.md",
-      "bytes": 13705
+      "bytes": 14130
     },
     {
       "name": "skills__roblox-ui__references__anti-slop-catalog.md",
@@ -871,12 +986,17 @@
     {
       "name": "skills__roblox-ui__references__blueprints.md",
       "path": "skills/roblox-ui/references/blueprints.md",
-      "bytes": 23600
+      "bytes": 23630
     },
     {
       "name": "skills__roblox-ui__references__build-order.md",
       "path": "skills/roblox-ui/references/build-order.md",
-      "bytes": 10608
+      "bytes": 10671
+    },
+    {
+      "name": "skills__roblox-ui__references__clipping.md",
+      "path": "skills/roblox-ui/references/clipping.md",
+      "bytes": 3834
     },
     {
       "name": "skills__roblox-ui__references__crisp-ui.md",
@@ -936,7 +1056,7 @@
     {
       "name": "skills__roblox-ui__references__scaling-and-dpi.md",
       "path": "skills/roblox-ui/references/scaling-and-dpi.md",
-      "bytes": 9120
+      "bytes": 9480
     },
     {
       "name": "skills__roblox-ui__references__screen-archetypes.md",
@@ -946,7 +1066,7 @@
     {
       "name": "skills__roblox-ui__references__self-review.md",
       "path": "skills/roblox-ui/references/self-review.md",
-      "bytes": 8912
+      "bytes": 9027
     },
     {
       "name": "skills__roblox-ui__references__typography.md",
@@ -962,6 +1082,11 @@
       "name": "skills__roblox-ui__references__ui-rewrite.md",
       "path": "skills/roblox-ui/references/ui-rewrite.md",
       "bytes": 6894
+    },
+    {
+      "name": "skills__roblox-ui__references__weak-prompt.md",
+      "path": "skills/roblox-ui/references/weak-prompt.md",
+      "bytes": 5055
     },
     {
       "name": "skills__roblox-vfx-animation__SKILL.md",
