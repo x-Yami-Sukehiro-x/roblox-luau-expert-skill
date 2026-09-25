@@ -1,5 +1,25 @@
 # Changelog
 
+## 5.6.2 — 2026-09-25
+
+Style picker demos that were hidden or cut off now show in full.
+
+- T30 (mini switch) showed no switch: its `mini` class also matched the menu
+  demo's hidden `.mini` panel. It is now `tiny`.
+- C15's progress bar took the fixed bottom **picks bar** styling through the
+  shared `bar` class and vanished; it is now `meter`.
+- H12's coach bubble ran 28 px past the bottom of its card and hid **Got it**.
+  Tooltip cards are now the taller size, with the H12 target raised.
+- S15's step circles overlapped the tab names; step tabs now size to their
+  content with smaller circles.
+- C17's chosen stars are filled, so the rating reads by shape as well as colour.
+- D16 no longer draws an empty list strip under the field behind its sheet.
+
+Every card was measured at rest, with tooltips shown and dropdowns open, and
+while notifications and menus play, at 1440 and 390 px wide. What still
+reaches past a card edge does so by design: D16's sheet waiting below the card,
+S12's scrolling strip, and toasts sliding in from the edge.
+
 ## 5.6.1 — 2026-09-25
 
 A Roblox-flavoured plugin icon: a yellow blocky head with a simple face,

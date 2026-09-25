@@ -1,7 +1,7 @@
 {
   "repository": "x-Yami-Sukehiro-x/roblox-luau-expert-skill",
-  "source": "60efb4daacaa69a871a086b78f80ceceef7d1ea0",
-  "version": "5.6.1+g60efb4d",
+  "source": "de3511a56ac0bd9685bf240702baf5e96184fb9e",
+  "version": "5.6.2+gde3511a",
   "files": [
     {
       "name": "AGENTS.md",
@@ -11,7 +11,7 @@
     {
       "name": "docs__CHANGELOG.md",
       "path": "docs/CHANGELOG.md",
-      "bytes": 73294
+      "bytes": 74345
     },
     {
       "name": "docs__SOURCES.md",
@@ -986,7 +986,7 @@
     },
     {
       "path": "docs/visual-guide/index.html",
-      "bytes": 193676
+      "bytes": 193939
     },
     {
       "path": "skills/roblox-luau-expert/references/verified/api-index.txt",
@@ -1002,7 +1002,7 @@
     },
     {
       "path": "skills/roblox-request-intake/assets/roblox-ui-style-picker.html",
-      "bytes": 193676
+      "bytes": 193939
     },
     {
       "path": "skills/roblox-ui-components/references/icon-ids.txt",
