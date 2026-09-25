@@ -1,6 +1,6 @@
 {
   "format": 1,
-  "archiveSha256": "85867b7067af4873f8ddc4787b3c5696ac42c3d6c71a2c19164927b7caedff96",
+  "archiveSha256": "7a281a1336c8f88f185039f6d4b5d29dbb31be19d689ba0d1896e2ec249ba9e7",
   "files": [
     {
       "path": ".claude/skills/roblox-architecture/SKILL.md",
@@ -774,8 +774,8 @@
     },
     {
       "path": "docs/CHANGELOG.md",
-      "bytes": 73294,
-      "sha256": "ad41fdaa893136c652cea096267d8a6ea35588c040b335274732b7517596422b"
+      "bytes": 74345,
+      "sha256": "12c1a1158d0018610ccfa68a83fe0466fce81f4125064551019ec21a770b2ccf"
     },
     {
       "path": "docs/SOURCES.md",
@@ -839,8 +839,8 @@
     },
     {
       "path": "docs/portability/gpt/README.md",
-      "bytes": 6763,
-      "sha256": "22e03620b54b1e8693df1415d78fc23dd75201fc93f3ee179492953adee05b50"
+      "bytes": 6776,
+      "sha256": "1a4e1a122e609668bce44a1e1a48fc3fe3c08386fc94acd2e8b0671e7979c8c4"
     },
     {
       "path": "docs/portability/gpt/UIs/README.md",
@@ -909,8 +909,8 @@
     },
     {
       "path": "docs/portability/gpt/knowledge/roblox-ui-style-picker.html",
-      "bytes": 193676,
-      "sha256": "c4ec0a100656b9d56e535491e94133e16a54400a6518a0d41227cbb2d329b401"
+      "bytes": 193939,
+      "sha256": "a6b1eded3a3e2caea6d2dd3190dd7193fc2218c5a20e6ed7e4d9f3bbeca60564"
     },
     {
       "path": "docs/portability/gpt/knowledge/style-pack.md",
@@ -954,8 +954,8 @@
     },
     {
       "path": "docs/visual-guide/index.html",
-      "bytes": 193676,
-      "sha256": "c4ec0a100656b9d56e535491e94133e16a54400a6518a0d41227cbb2d329b401"
+      "bytes": 193939,
+      "sha256": "a6b1eded3a3e2caea6d2dd3190dd7193fc2218c5a20e6ed7e4d9f3bbeca60564"
     },
     {
       "path": "evals/executor-evidence.md",

@@ -193,9 +193,9 @@ svg.i{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;stroke
 .r-statpill{min-width:52px;height:24px;border-radius:12px;background:var(--s-overlay);color:var(--s-muted);font:700 12px/24px var(--roblox);text-align:center;flex:none;transition:background-color .12s var(--quad),color .12s var(--quad)}
 [aria-checked="true"] .r-statpill{background:var(--r-accent);color:var(--s-text)}
 .r-keychip{height:24px;padding:0 8px;border-radius:4px;background:var(--s-deep);color:var(--s-muted);font:700 12px/24px var(--roblox);flex:none}
-.r-track.mini{width:32px;height:18px;border-radius:9px}
-.r-track.mini .r-knob{top:2px;left:2px;width:14px;height:14px;border-radius:7px}
-[aria-checked="true"] .r-track.mini .r-knob{transform:translateX(14px)}
+.r-track.tiny{width:32px;height:18px;border-radius:9px}
+.r-track.tiny .r-knob{top:2px;left:2px;width:14px;height:14px;border-radius:7px}
+[aria-checked="true"] .r-track.tiny .r-knob{transform:translateX(14px)}
 [aria-checked="true"] .lead-icon{color:var(--r-accent)}
 /* Checkboxes */
 .r-box.draw svg{opacity:1;transform:none;clip-path:inset(0 100% 0 0);transition:clip-path .16s var(--quad)}
@@ -215,8 +215,8 @@ svg.i{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;stroke
 .r-box.big svg{width:20px;height:20px}
 .progress-head{display:grid;gap:8px;padding:0 4px 4px}
 .progress-head small{font:500 12px var(--roblox);color:var(--s-muted)}
-.progress-head .bar{height:4px;border-radius:2px;background:var(--s-overlay);overflow:hidden}
-.progress-head .bar i{display:block;height:100%;background:var(--r-accent);transition:width .2s var(--out)}
+.progress-head .meter{height:4px;border-radius:2px;background:var(--s-overlay);overflow:hidden}
+.progress-head .meter i{display:block;height:100%;background:var(--r-accent);transition:width .2s var(--out)}
 .joined{display:flex;border-radius:6px;overflow:hidden;background:var(--s-overlay);gap:1px}
 .seg-btn{height:36px;border:0;background:var(--s-panel);color:var(--s-text);font:500 14px var(--roblox);padding:0 12px;display:flex;align-items:center;gap:6px;transition:background-color .12s var(--quad)}
 .seg-btn svg{display:none;width:16px;height:16px;color:var(--r-bright)}
@@ -226,6 +226,7 @@ svg.i{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;stroke
 .star{width:44px;height:44px;border:0;background:transparent;display:grid;place-items:center;color:var(--s-overlay);transition:color .12s var(--quad),transform .12s var(--quad)}
 .star svg{width:24px;height:24px}
 .star.lit{color:#d69e3e}
+.star.lit svg{fill:currentColor}
 .star:hover{transform:scale(1.1)}
 .dots{display:flex;gap:8px}
 .dot-pick{width:44px;height:44px;border-radius:22px;border:0;display:grid;place-items:center;box-shadow:inset 0 0 0 0 #fff;transition:box-shadow .12s var(--quad)}
@@ -478,6 +479,8 @@ svg.i{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;stroke
 .tabbar button[aria-selected="true"] .step,.tabbar button.done .step{background:var(--r-accent)}
 .tabbar button.done .step b{display:none}
 .tabbar button.done .step svg{display:block}
+.tabbar.steps button{flex:auto;font-size:12px;white-space:nowrap;padding:0 2px}
+.tabbar.steps .step{width:18px;height:18px;border-radius:9px;font-size:10px}
 .tabbar[data-mark="folder"] .mark{background:var(--s-panel);border-radius:6px 6px 0 0;height:calc(100% + 12px)}
 .tabs.folder .tabpage{border-radius:0 6px 6px 6px}
 .tabbar.expand{justify-content:flex-start;gap:4px}
@@ -837,7 +840,7 @@ footer{padding-block:0 120px;color:var(--muted);font-size:13px}
     <div><h2 id="tooltips-h">Tooltips</h2><p>Small explanations: over buttons, on sliders, behind an info mark, under a field. Hover, hold or drag each one.</p></div>
     <p>None of them needs a mouse: a long press, a tap on the info mark, or keyboard focus opens every one, because phones have no hover.</p>
   </div>
-  <div class="grid" id="tooltip-grid"></div>
+  <div class="grid tall" id="tooltip-grid"></div>
 </section>
 
 <section class="picks" id="picks" aria-labelledby="picks-h">
@@ -951,7 +954,7 @@ const TOGGLES=[
   ['T27','Rocker switch',['I and O switch','power strip switch'],'A two-sided rocker marked O and I; the pressed side sinks.',sw('Server lights','<span class="r-rocker"><span class="cap"></span><b class="o">O</b><b class="i">I</b></span>')],
   ['T28','Status pill',['little ON OFF pill','tag that says ON'],'A small pill that says ON or OFF. Fits long, dense lists.',sw('Aimbot','<span class="r-statpill" data-state>ON</span>')],
   ['T29','Switch with hotkey',['switch with its key','shows the keybind'],'The feature’s hotkey sits in a chip beside the switch.',sw('Fly',`<span class="r-keychip">F</span>${track()}`)],
-  ['T30','Mini switch',['small switch','tiny toggle'],'A smaller switch for long lists; the row stays easy to tap.',sw('Auto farm',track('mini'))]
+  ['T30','Mini switch',['small switch','tiny toggle'],'A smaller switch for long lists; the row stays easy to tap.',sw('Auto farm',track('tiny'))]
 ];
 const toggleGrid=document.getElementById('toggle-grid');
 toggleGrid.innerHTML=TOGGLES.map(([code,title,words,use,stage])=>card(code,title,words,use,stage)).join('');
@@ -973,7 +976,7 @@ const CHECKS=[
   ['C12','Box with a count',['checkbox with a number','shows how many'],'A tick box with a count at the end, such as how many items match.',sw('Coins','<span class="count">12</span>',{role:'checkbox',before:box()})],
   ['C13','Cross box',['X box','ignore list'],'For lists of things to leave out: the box fills red with a cross.',sw('Ignore Red team','',{role:'checkbox',cls:'exclude',before:`<span class="r-box x">${icon('x')}</span>`})],
   ['C14','Big tick box',['large checkbox','easy to tap'],'A thumb-sized box for phones and touch screens.',sw('Auto collect','',{role:'checkbox',before:box('big')})],
-  ['C15','Checklist with progress',['quest list with a bar','shows how many are done'],'A checklist that counts what is done and fills a bar.',`<div class="checklist" data-progress><div class="progress-head"><small data-count>1 of 3 done</small><span class="bar"><i style="width:33%"></i></span></div>${['Collect 10 eggs','Sell a pet','Rebirth once'].map((n,i)=>`<button class="r-row todo" type="button" role="checkbox" aria-checked="${i===0}" data-toggle>${box()}<span class="label">${n}</span></button>`).join('')}</div>`],
+  ['C15','Checklist with progress',['quest list with a bar','shows how many are done'],'A checklist that counts what is done and fills a bar.',`<div class="checklist" data-progress><div class="progress-head"><small data-count>1 of 3 done</small><span class="meter"><i style="width:33%"></i></span></div>${['Collect 10 eggs','Sell a pet','Rebirth once'].map((n,i)=>`<button class="r-row todo" type="button" role="checkbox" aria-checked="${i===0}" data-toggle>${box()}<span class="label">${n}</span></button>`).join('')}</div>`],
   ['C16','Joined buttons',['buttons stuck together','pick several in a bar'],'A bar of joined buttons; tap several and each one ticks.',`<div class="joined">${['Sword','Bow','Staff'].map((n,i)=>`<button class="seg-btn" type="button" role="checkbox" aria-checked="${i===1}" data-toggle>${icon('check')}${n}</button>`).join('')}</div>`],
   ['C17','Star rating',['stars','rate it out of five'],'Pick one to five stars; every star up to your pick lights.',`<div class="stars" role="radiogroup" aria-label="Rating">${[1,2,3,4,5].map(n=>`<button class="star${n<=4?' lit':''}" type="button" role="radio" aria-checked="${n===4}" aria-label="${n} stars" data-star="${n}">${icon('star')}</button>`).join('')}</div>`],
   ['C18','Colour dots',['colour circles','pick a colour'],'Round colour dots; the chosen one gets a ring and a tick.',`<div class="dots" role="radiogroup" aria-label="Team colour">${[['Red','#d05852'],['Gold','#d69e3e'],['Green','#48b270'],['Blue','#588dd6']].map(([n,c],i)=>`<button class="dot-pick" type="button" role="radio" aria-checked="${i===2}" aria-label="${n}" style="background:${c}" data-radio>${icon('check')}</button>`).join('')}</div>`],
@@ -985,7 +988,7 @@ document.getElementById('check-grid').innerHTML=CHECKS.map(([code,title,words,us
 document.addEventListener('click',e=>{
   const list=e.target.closest('[data-progress]');
   if(list){const items=[...list.querySelectorAll('[role="checkbox"]')];const done=items.filter(i=>i.getAttribute('aria-checked')==='true').length;
-    list.querySelector('[data-count]').textContent=`${done} of ${items.length} done`;list.querySelector('.bar i').style.width=`${Math.round(done/items.length*100)}%`}
+    list.querySelector('[data-count]').textContent=`${done} of ${items.length} done`;list.querySelector('.meter i').style.width=`${Math.round(done/items.length*100)}%`}
   const star=e.target.closest('[data-star]');
   if(star){const n=+star.dataset.star;star.parentElement.querySelectorAll('[data-star]').forEach(s=>{s.classList.toggle('lit',+s.dataset.star<=n);s.setAttribute('aria-checked',String(s===star))})}
 });
@@ -1064,7 +1067,7 @@ function setupDropdown(root){
   }else if(spec.split){
     root.innerHTML=`<div class="dd-field dd-split"><button class="dd-run" type="button" data-run><span class="dd-value"></span></button><button class="dd-more" type="button" aria-label="More places" aria-haspopup="listbox" aria-expanded="false" data-more>${icon('down','dd-chev')}</button></div><div class="dd-list" role="listbox"></div>`;
   }else{
-    root.innerHTML=`<button class="dd-field" type="button" aria-haspopup="listbox" aria-expanded="false"><span class="dd-lead"></span>${spec.chips?'<span class="dd-chips"></span>':'<span class="dd-value"></span>'}${icon('down','dd-chev')}</button><div class="dd-list${spec.grid?' grid':''}" role="listbox"></div>${spec.inline?'<div class="dd-below">The next setting moves down</div>':''}`;
+    root.innerHTML=`<button class="dd-field" type="button" aria-haspopup="listbox" aria-expanded="false"><span class="dd-lead"></span>${spec.chips?'<span class="dd-chips"></span>':'<span class="dd-value"></span>'}${icon('down','dd-chev')}</button>${spec.sheet?'':`<div class="dd-list${spec.grid?' grid':''}" role="listbox"></div>`}${spec.inline?'<div class="dd-below">The next setting moves down</div>':''}`;
     if(spec.sheet)root.parentElement.insertAdjacentHTML('beforeend',`<div class="dd-dim"></div><div class="dd-sheet" role="listbox" aria-label="${spec.label}"><div class="dd-sheet-title">${spec.label}</div><div class="dd-rows"></div></div>`);
   }
   const stage=root.parentElement;
@@ -1692,7 +1695,7 @@ for(const [code,title,words,use,spec] of TABSTYLES){
     const inner=spec.steps?`<i class="step"><b>${i+1}</b>${icon('check')}</i>${name}`:spec.expand?`${icon(TAB_ICONS[name])}<span class="lbl">${name}</span>`:`${spec.icons||spec.rail?icon(TAB_ICONS[name]):''}${spec.rail?'':name}`;
     const count=spec.counts?.[name]?`<span class="count">${spec.counts[name]}</span>`:'';
     return `${head}<button type="button" role="tab" aria-selected="${i===0}" data-tab="${name}"${spec.rail||spec.expand?` aria-label="${name}"`:''}>${inner}${count}</button>`}).join('');
-  const cls=['tabbar',spec.vertical?'vertical':'',spec.rail?'rail':'',spec.icons?'icons':'',spec.seg?'seg':'',spec.scroll?'scroll':'',spec.expand?'expand':''].join(' ');
+  const cls=['tabbar',spec.vertical?'vertical':'',spec.rail?'rail':'',spec.icons?'icons':'',spec.seg?'seg':'',spec.scroll?'scroll':'',spec.expand?'expand':'',spec.steps?'steps':''].join(' ');
   const bar=`<div class="${cls}" role="tablist" aria-label="Demo tabs" data-style="${code}" data-mark="${spec.mark}"${spec.pages?` data-pages="${spec.pages}"`:''}><span class="mark"></span>${buttons}</div>`;
   const page=`<div class="tabpage" role="tabpanel"><div class="page-text">${Object.values(pages)[0]}</div></div>`;
   tabGrid.insertAdjacentHTML('beforeend',card(code,title,words,use,spec.vertical?`<div class="vtabs">${bar}${page}</div>`:`<div class="tabs${spec.bottom?' bottom':''}${spec.folder?' folder':''}">${bar}${page}</div>`));
@@ -1746,7 +1749,7 @@ const TIPS=[
   ['H9','Why it is locked',['tells me why I can’t press it','locked reason'],'Hover or tap a locked button to see what unlocks it.',`<span class="tip-hold" data-tip="hover" style="position:relative;display:inline-block"><button class="tip-target off" type="button" aria-disabled="true">${icon('lock')}Rebirth</button>${tipBubble('Unlocks at level 10','below locked','<span class="lock">'+icon('lock')+'</span>')}</span>`],
   ['H10','Press and hold',['hold to see','peek while pressing'],'Nothing on hover: press and hold to read, let go to hide.',`<button class="tip-target" type="button" data-tip="hold">Hold me${tipBubble('Shows while you hold')}</button>`],
   ['H11','Helper line',['text under the box','hint under the field'],'A short hint under a field turns into the error when the entry is wrong. Type <b>admin</b>.',`<div class="field-demo"><input type="text" placeholder="Pet name" aria-label="Pet name" data-helper><span class="help">${icon('err')}<span>3 to 20 letters</span></span></div>`],
-  ['H12','First-time pointer',['points at something new','Got it tip'],'Shown once to point at something new; Got it closes it for good.',`<div style="position:relative;display:inline-block"><button class="tip-target" type="button">Auto sell</button><span class="coach-ring on"></span><span class="tipb below coach on" role="dialog" aria-label="New feature">New: sells items when your bag is full<br><button type="button" data-coach>Got it</button></span></div>`]
+  ['H12','First-time pointer',['points at something new','Got it tip'],'Shown once to point at something new; Got it closes it for good.',`<div style="position:relative;display:inline-block;margin-bottom:64px"><button class="tip-target" type="button">Auto sell</button><span class="coach-ring on"></span><span class="tipb below coach on" role="dialog" aria-label="New feature">New: sells items when your bag is full<br><button type="button" data-coach>Got it</button></span></div>`]
 ];
 for(const [code,title,words,use,stage] of TIPS)tipGrid.insertAdjacentHTML('beforeend',card(code,title,words,use,stage,code==='H12'?'<button class="btn" type="button" data-coach-replay>Replay</button>':''));
 {
