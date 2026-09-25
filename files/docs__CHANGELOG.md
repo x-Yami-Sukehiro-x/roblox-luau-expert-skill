@@ -1,5 +1,37 @@
 # Changelog
 
+## 5.6.0 — 2026-09-25
+
+The plugin gets a logo and gallery screenshots, the README is reorganised
+around installing and using the stack, and published commits say what changed.
+
+### Added
+
+- `docs/assets/`: the logo (`logo.svg`, `logo.png`), the plugin icon and two
+  screenshots, of the style picker and the UI designer. The OpenAI plugin
+  manifest points `composerIcon`, `logo` and `screenshots` at copies in the
+  plugin's `assets/` folder.
+- The README opens with the logo, star, version, build and licence badges and
+  links to the picker and designer, then install steps for every host, the
+  style code table and the skills; background moves lower. A star-history chart
+  sits above the licence.
+- The plugin's path note names `check-file.mjs` and `recipe.py`.
+
+### Changed
+
+- `publish-github.mjs` no longer titles every snapshot `Working tree after
+  "<last local commit>"`. A message written to `.git/publish-message` is used
+  once; otherwise the subject names the areas that changed, and a version bump
+  becomes `Release <version>` with the changelog entry's opening paragraph.
+- The picker's toggle and checkbox introductions give the current counts.
+
+### Known issue
+
+Two uploads named `roblox-luau-expert` exist on chatgpt.com/plugins, so every
+**Upload new version** is refused with "A plugin named `roblox-luau-expert`
+already exists". Removing the unused copy lets the scheduled upload task
+install new versions.
+
 ## 5.5.0 — 2026-09-24
 
 Ninety-two more picker styles and a new tooltip group, tested executor

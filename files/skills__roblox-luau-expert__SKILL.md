@@ -328,7 +328,10 @@ as not run, never as passed. `python tools/py/dump_index.py <dump> --feature
 "<words>"` searches a decompiled dump for a feature, and `--inventory` lists
 what the dump shows for feature ideas. `node tools/bin/check-registers.mjs
 <file>` (no Node: `python tools/py/register_budget.py`) compiles a script and
-reports how close each function is to the local-register limit. The style
+reports how close each function is to the local-register limit.
+`node tools/bin/check-file.mjs <file>` (no Node: `python tools/py/check_file.py`)
+runs every file-level check in one call, and `python tools/py/recipe.py T2 M4
+fly` names the recipe file for a picked code or feature. The style
 picker page is `skills/roblox-request-intake/assets/roblox-ui-style-picker.html`;
 attach it when the hosted link does not open. The UI designer is
 `docs/visual-guide/designer.html`, hosted beside the picker as `designer.html`.
