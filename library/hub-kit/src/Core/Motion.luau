@@ -5,9 +5,9 @@
 	(hover, press, on and off) take 0.12 s. With the player's Reduce Motion
 	setting on, every change lands in one frame instead.
 
-	`onDone` runs only when the tween completes. A tween cancelled by a newer
-	one on the same property also fires Completed, and acting on that would
-	hide a window the player has just reopened.
+	`onDone` waits for PlaybackState.Completed. A newer tween on the same
+	property stops this one and still fires Completed, and acting on that
+	would hide a window the player has just reopened.
 --]]
 
 local GuiService = game:GetService("GuiService")
@@ -19,7 +19,12 @@ local Motion = {
 	state = TweenInfo.new(0.12, Enum.EasingStyle.Cubic, Enum.EasingDirection.Out),
 }
 
-function Motion.play(instance: Instance, info: TweenInfo, goals: { [string]: any }, onDone: (() -> ())?)
+function Motion.play(
+	instance: Instance,
+	info: TweenInfo,
+	goals: { [string]: any },
+	onDone: (() -> ())?
+)
 	if GuiService.ReducedMotionEnabled then
 		for property, value in goals do
 			instance[property] = value

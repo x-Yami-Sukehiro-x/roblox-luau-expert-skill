@@ -32,7 +32,10 @@ Config.__index = Config
 Config.available = HAS_FILES
 
 local function validName(name: string): boolean
-	return type(name) == "string" and #name > 0 and #name <= 32 and string.find(name, "^[%w _%-]+$") ~= nil
+	return type(name) == "string"
+		and #name > 0
+		and #name <= 32
+		and string.find(name, "^[%w _%-]+$") ~= nil
 end
 
 function Config.new(folder: string)

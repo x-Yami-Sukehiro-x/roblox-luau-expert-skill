@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // Run every gate in this repository, in order, and report one verdict.
 //
-// There are twenty-eight of them now. Remembering sixteen commands is how seven get
+// There are thirty-one of them now. Remembering sixteen commands is how seven get
 // run and four get skipped, and the ones that get skipped are the ones that
 // were added most recently - which is to say the ones nobody has habits about
 // yet.
@@ -33,10 +33,14 @@ const EXECUTOR_ASSETS = join(REPO_ROOT, ".claude", "skills", "roblox-executor", 
 // The feature scripts (fly, ESP, ...) a reply pastes whole.
 const FEATURE_ASSETS = join(REPO_ROOT, ".claude", "skills", "roblox-executor-features", "assets");
 
+// HubKit, the hub UI library roblox-hub-library points at, and its example.
+const HUB_KIT = join(REPO_ROOT, "library", "hub-kit", "src");
+const HUB_EXAMPLE = join(REPO_ROOT, "library", "hub-kit", "example");
+
 const GATES = [
   {
     name: "portable package and verdict tests",
-    argv: ["--test", ...["check-all", "portable-package", "install", "luau-compile", "register-budget", "dump-index", "attempt-ledger"].map((name) => join(REPO_ROOT, "tools", "tests", `${name}.test.mjs`))],
+    argv: ["--test", ...["check-all", "portable-package", "install", "luau-compile", "register-budget", "dump-index", "attempt-ledger", "hub-kit"].map((name) => join(REPO_ROOT, "tools", "tests", `${name}.test.mjs`))],
   },
   {
     name: "prose vs the API dump",
@@ -133,12 +137,33 @@ const GATES = [
     argv: [bin("lint-roblox-ui.mjs"), FEATURE_ASSETS],
   },
   {
+    name: "UI rubric over the hub kit",
+    argv: [bin("lint-roblox-ui.mjs"), HUB_KIT, HUB_EXAMPLE],
+  },
+  {
+    name: "slop rubric over the hub kit",
+    argv: [bin("lint-luau-slop.mjs"), HUB_KIT, HUB_EXAMPLE],
+  },
+  {
+    name: "format rubric over the hub kit",
+    argv: [bin("lint-luau-format.mjs"), HUB_KIT, HUB_EXAMPLE],
+  },
+  {
     name: "register and local headroom",
-    argv: [bin("check-registers.mjs"), join(REPO_ROOT, "library", "src"), EXEMPLARS, RECIPES, EXECUTOR_ASSETS, FEATURE_ASSETS],
+    argv: [
+      bin("check-registers.mjs"),
+      join(REPO_ROOT, "library", "src"),
+      EXEMPLARS,
+      RECIPES,
+      EXECUTOR_ASSETS,
+      FEATURE_ASSETS,
+      HUB_KIT,
+      join(REPO_ROOT, "library", "hub-kit", "dist"),
+    ],
   },
   {
     name: "asset ids are real images",
-    argv: [bin("verify-asset-ids.mjs"), join(REPO_ROOT, "library", "src"), EXEMPLARS, RECIPES],
+    argv: [bin("verify-asset-ids.mjs"), join(REPO_ROOT, "library", "src"), EXEMPLARS, RECIPES, HUB_KIT],
     slow: true,
   },
   {
