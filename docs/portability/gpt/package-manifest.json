@@ -1,6 +1,6 @@
 {
   "format": 1,
-  "archiveSha256": "657770b807f5684d6b7d3de45fe47a81c04df9b558d98e6dc2d4d8f4ae9b772b",
+  "archiveSha256": "717e0a59f8bbb9fd42eaaea56e3586eb76b2197d697a4a6416ade82da7aa145f",
   "files": [
     {
       "path": ".claude/skills/roblox-architecture/SKILL.md",
@@ -944,8 +944,8 @@
     },
     {
       "path": "docs/portability/gpt/README.md",
-      "bytes": 6776,
-      "sha256": "1a4e1a122e609668bce44a1e1a48fc3fe3c08386fc94acd2e8b0671e7979c8c4"
+      "bytes": 6910,
+      "sha256": "cc0172c641135732aa89fada0bc5d6259386c67202028d146dea2ec2e4038d10"
     },
     {
       "path": "docs/portability/gpt/UIs/README.md",
