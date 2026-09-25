@@ -140,16 +140,22 @@ try {
             $wrapper = @'
 ---
 name: roblox-luau-expert-skill
-description: Develop, debug, and review Roblox Luau scripts using bundled API verification tools and specialist guidance for language, architecture, engine APIs, networking, UI, performance, security, and client/executor scripting. Use for Roblox or Luau implementation and troubleshooting.
+description: Roblox and Luau work of any kind - scripts, UI that fits every device, executor features, DataStores, networking, performance, security, game design and Studio checks - through 27 bundled skills and API verification tools. Use for any Roblox or Luau task.
 ---
 
 # Roblox Luau Expert Skill
 
-Read [.claude/skills/roblox-luau-expert/SKILL.md](.claude/skills/roblox-luau-expert/SKILL.md) first. Load the task contract and the specialists relevant to the current task.
+Read [.claude/skills/roblox-luau-expert/SKILL.md](.claude/skills/roblox-luau-expert/SKILL.md) first, then open the skills its Skill map lists for the task; each skill names the partners it works with.
 
 This directory is the installed bundle root. Resolve each specialist's reference paths relative to that specialist. Read the local skill files directly; Claude-specific skill commands are not required in Codex. Preserve the user's requested scope and use tools available in the current session.
 '@
             Add-Text ($wrapper + $pathsNote) (Join-Path $bundleRoot 'SKILL.md') $hostFolder
+            # Codex reads user skills from ~/.agents/skills; the bundle stays
+            # where an existing clone of it may live, and this entry points there.
+            $agentsFolder = Join-Path $profilePath '.agents'
+            $router = "$bundleDisplay/.claude/skills/roblox-luau-expert/SKILL.md"
+            $entry = $wrapper.Replace('(.claude/skills/roblox-luau-expert/SKILL.md)', "($router)")
+            Add-Text ($entry + $pathsNote) (Join-Path $agentsFolder 'skills\roblox-luau-expert-skill\SKILL.md') $agentsFolder
         }
         if ($hostNameEntry -eq 'Cursor') {
             $rule = [IO.File]::ReadAllText((Join-Path $PSScriptRoot '.cursor\rules\roblox-luau-expert.mdc'))

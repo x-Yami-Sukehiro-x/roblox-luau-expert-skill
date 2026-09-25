@@ -1,6 +1,6 @@
 {
   "format": 1,
-  "archiveSha256": "e736f0039780842462ff87cceb3927da19da8406079a3a48110e2206dee188e3",
+  "archiveSha256": "11d4dc56cdff3ac4a797d12273beccba59735630f1bdc05f16c17d6a0664675a",
   "files": [
     {
       "path": ".claude/skills/roblox-architecture/SKILL.md",
@@ -929,8 +929,8 @@
     },
     {
       "path": "docs/CHANGELOG.md",
-      "bytes": 83762,
-      "sha256": "6d8f24f16bee328a484e1a7a0185590cb01f54f5c51bfa4138bf10abbb57c203"
+      "bytes": 84121,
+      "sha256": "f666d400c90fa48dc699589b92f0d17a0fd74a6df065c70b1df623f01845c361"
     },
     {
       "path": "docs/ROADMAP.md",
@@ -1969,8 +1969,8 @@
     },
     {
       "path": "tools/tests/install.test.mjs",
-      "bytes": 4865,
-      "sha256": "3717f1fde9f3cd73154bb0dd52f035614979a4f5079b216dbab9d10bbe9cf867"
+      "bytes": 5260,
+      "sha256": "e2c7f218c53ba82d546ab740a021867e79107981c601ae1b790375e072cf5d37"
     },
     {
       "path": "tools/tests/luau-compile.test.mjs",
