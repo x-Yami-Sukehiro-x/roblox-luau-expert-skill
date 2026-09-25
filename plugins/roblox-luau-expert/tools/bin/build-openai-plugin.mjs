@@ -4,7 +4,7 @@
 // OpenAI retires custom GPTs on 11 December 2026. Its built-in "Migrate to
 // plugin" turns the GPT's 8,000-character instructions into one skill and copies
 // the knowledge files beside it. This builds the better replacement: all
-// twenty-five skills with their references, each loaded in full when its
+// twenty-seven skills with their references, each loaded in full when its
 // description matches, plus the tools, library and guide the skills point at.
 //
 // Output (gitignored, rebuilt from source):
@@ -17,6 +17,7 @@
 
 import { cpSync, existsSync, mkdirSync, readFileSync, rmSync, writeFileSync, readdirSync } from "node:fs";
 import { join, relative } from "node:path";
+import { spawnSync } from "node:child_process";
 import { REPO_ROOT } from "./lib/dump.mjs";
 import { collectPackageFiles, writePackage } from "./lib/portable-package.mjs";
 
@@ -55,23 +56,17 @@ const PATHS_NOTE = `
 
 ## Plugin paths
 
-This skill is installed as the \`${NAME}\` plugin. \`tools/\`, \`library/\` and
-\`docs/\` sit at the plugin root, two folders above this file (\`../../\`), and
-the other Roblox skills are its siblings under \`skills/\`. Resolve a path such
-as \`tools/py/roblox_lint.py\` or \`.claude/skills/roblox-ui/...\` from there:
-\`.claude/skills/<name>/\` in this repository is \`skills/<name>/\` here. Run the
-Python checkers when Node is unavailable; a checker that cannot run is reported
-as not run, never as passed. \`python tools/py/dump_index.py <dump> --feature
-"<words>"\` searches a decompiled dump for a feature, and \`--inventory\` lists
-what the dump shows for feature ideas. \`node tools/bin/check-registers.mjs
-<file>\` (no Node: \`python tools/py/register_budget.py\`) compiles a script and
-reports how close each function is to the local-register limit.
-\`node tools/bin/check-file.mjs <file>\` (no Node: \`python tools/py/check_file.py\`)
-runs every file-level check in one call, and \`python tools/py/recipe.py T2 M4
-fly\` names the recipe file for a picked code or feature. The style
-picker page is \`skills/roblox-request-intake/assets/roblox-ui-style-picker.html\`;
-attach it when the hosted link does not open. The UI designer is
-\`docs/visual-guide/designer.html\`, hosted beside the picker as \`designer.html\`.
+Installed as the \`${NAME}\` plugin: \`tools/\`, \`library/\` and \`docs/\` sit
+two folders above this file (\`../../\`), and the other skills are siblings
+under \`skills/\`, so \`.claude/skills/<name>/\` in this repository is
+\`skills/<name>/\` here. Without Node run the Python checkers:
+\`python tools/py/check_file.py <file>\` for every file check,
+\`python tools/py/recipe.py T2 M4 fly\` for a picked code's recipe file,
+\`python tools/py/attempt_ledger.py plan "<approach>"\` before a retry, and
+\`python tools/py/dump_index.py <dump> --feature "<words>"\` for a decompiled
+dump. A checker that cannot run is reported as not run, never as passed. The
+style picker is \`skills/roblox-request-intake/assets/roblox-ui-style-picker.html\`
+and the UI designer \`docs/visual-guide/designer.html\`.
 `;
 
 function version() {
@@ -126,7 +121,7 @@ function main() {
           displayName: "Roblox Luau Expert",
           shortDescription: "Roblox scripts, clean UI and executor work, checked rather than guessed",
           longDescription:
-            "Twenty-five Roblox skills in one plugin. UI requests start from a playable style picker with " +
+            "Twenty-seven Roblox skills in one plugin. UI requests start from a playable style picker with " +
             "labeled toggles, checkboxes, dropdowns, menu animations, notifications and tooltips, and every " +
             "picked code has a tested recipe; a drag-and-drop UI designer copies whole screens for exact " +
             "rebuilds, sized for every screen from a 640 x 360 phone to 4K and held to one input contract " +
@@ -153,6 +148,17 @@ function main() {
     },
   };
   writeFileSync(join(PLUGIN, "plugin.json"), JSON.stringify(manifest, null, 2) + "\n", "utf8");
+
+  // The copies the host loads must meet the same limits as the sources,
+  // including the router with the path note appended.
+  const lint = spawnSync(process.execPath, [join(REPO_ROOT, "tools", "bin", "lint-skills.mjs"), join(PLUGIN, "skills")], {
+    encoding: "utf8",
+  });
+  if (lint.status !== 0) {
+    console.error(`${lint.stdout}${lint.stderr}`.trim());
+    process.exit(1);
+  }
+  console.log(lint.stdout.trim().split("\n").at(-1));
 
   const files = collectPackageFiles(OUT_ROOT, [NAME]);
   const zip = writePackage(

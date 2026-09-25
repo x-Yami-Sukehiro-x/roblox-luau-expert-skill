@@ -32,7 +32,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 button{cursor:pointer}
 :focus-visible{outline:2px solid var(--focus);outline-offset:2px}
 a{color:var(--pick)}
-.app{display:grid;grid-template-rows:auto minmax(0,1fr);height:100%}
+.app{display:grid;grid-template-rows:auto minmax(0,1fr);height:100%;height:100dvh;padding:0 env(safe-area-inset-right,0px) env(safe-area-inset-bottom,0px) env(safe-area-inset-left,0px)}
 .appbar{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:8px 12px;background:var(--panel);border-bottom:1px solid var(--line)}
 .brand{font:700 16px var(--body);margin-right:8px;white-space:nowrap}
 .brand small{display:block;font-weight:400;font-size:12px;color:var(--muted)}
@@ -71,7 +71,7 @@ a{color:var(--pick)}
 .overlay{position:absolute;inset:0;pointer-events:none}
 .sel{position:absolute;border:1.5px solid var(--pick);box-shadow:0 0 0 1px #0008}
 .sel .tag{position:absolute;left:-1px;top:-20px;background:var(--pick);color:var(--pick-ink);font:700 11px/18px var(--body);padding:0 6px;border-radius:4px 4px 0 0;white-space:nowrap}
-.handle{position:absolute;width:10px;height:10px;margin:-5px 0 0 -5px;background:#fff;border:1.5px solid var(--pick);border-radius:2px;pointer-events:auto;touch-action:none}
+.handle{--h:10px;--s:calc(var(--h) * var(--inv,1));position:absolute;width:var(--s);height:var(--s);margin:calc(var(--s) / -2) 0 0 calc(var(--s) / -2);background:#fff;border:calc(1.5px * var(--inv,1)) solid var(--pick);border-radius:calc(2px * var(--inv,1));pointer-events:auto;touch-action:none}
 .hover-box{position:absolute;border:1px dashed #ffffff99}
 .guide{position:absolute;background:#ff4fa3}
 .guide.v{width:1px;top:0;bottom:0}.guide.h{height:1px;left:0;right:0}
@@ -152,9 +152,9 @@ input[type=range]{accent-color:var(--pick)}
 .layers svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 
 /* Dialogs */
-dialog{border:1px solid var(--line-strong);border-radius:12px;background:var(--panel);color:var(--ink);padding:0;width:min(920px,calc(100vw - 32px));max-height:calc(100vh - 48px)}
+dialog{border:1px solid var(--line-strong);border-radius:12px;background:var(--panel);color:var(--ink);padding:0;width:min(920px,calc(100vw - 32px));max-height:calc(100vh - 48px);max-height:calc(100dvh - 48px)}
 dialog::backdrop{background:#000a}
-.dlg{display:flex;flex-direction:column;max-height:calc(100vh - 50px)}
+.dlg{display:flex;flex-direction:column;max-height:calc(100vh - 50px);max-height:calc(100dvh - 50px)}
 .dlg header{display:flex;align-items:center;gap:12px;padding:14px 16px;border-bottom:1px solid var(--line)}
 .dlg header h2{margin:0;font-size:18px;flex:1}
 .dlg .body{padding:16px;overflow:auto}
@@ -178,15 +178,44 @@ dialog::backdrop{background:#000a}
 .status.show{opacity:1}
 .narrow-note{display:none}
 @media (max-width:1280px){.brand small{display:none}}
+@media (max-width:1180px){.work{grid-template-columns:232px minmax(0,1fr) 272px}}
 @media (max-width:980px){
   body{overflow:auto}
   .app{height:auto}
   .work{grid-template-columns:minmax(0,1fr)}
   .side{border-right:0;border-bottom:1px solid var(--line);max-height:420px}
   .side.right{border-left:0;max-height:none}
-  .stagewrap{min-height:60vh;order:-1}
+  .stagewrap{min-height:60vh;min-height:62svh;order:-1}
   .side.right{order:1}
   .narrow-note{display:block;padding:8px 12px;background:var(--pick-soft);font-size:13px}
+}
+/* Phones: one scrolling row of controls, so the screen keeps the height. */
+@media (max-width:640px),(max-height:500px){
+  .appbar{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;gap:6px;padding:8px 10px}
+  .appbar::-webkit-scrollbar{display:none}
+  .appbar>*{flex:none}
+  .appbar .spacer{display:none}
+  .brand{font-size:15px}
+}
+@media (max-height:500px) and (orientation:landscape){
+  .narrow-note{display:none}
+  .stagewrap{min-height:calc(100svh - 64px)}
+}
+/* Fingers, not a cursor: 44 px targets, and 16 px fields so iOS does not zoom in. */
+@media (pointer:coarse){
+  input,select,textarea{font-size:16px}
+  .ctl,.btn{height:44px}
+  .btn.icon{width:44px}
+  .field{height:40px}
+  .small-btn{height:36px}
+  .tabs button{height:44px}
+  .stagebar label{min-height:40px}
+  .anchor-grid{grid-template-columns:repeat(3,32px)}
+  .anchor-grid button,.swatches button{width:32px;height:32px}
+  .layers li{min-height:40px}
+  .layers .mini{width:36px;height:36px}
+  .handle{--h:22px}
+  #import-text{font-size:16px}
 }
 </style>
 
@@ -241,7 +270,7 @@ dialog::backdrop{background:#000a}
     <a class="btn" href="index.html" style="display:inline-grid;place-items:center;text-decoration:none">Style picker</a>
     <button class="btn primary" id="open-export" type="button">Copy for AI</button>
   </header>
-  <div class="narrow-note">Built for a computer or tablet. On a phone you can still build; the screen is first, the parts are below it.</div>
+  <div class="narrow-note">On a phone the screen comes first and the parts are below it. Drag to move; drag a white square to resize.</div>
   <div class="work">
     <aside class="side" aria-label="Add and layers">
       <div class="tabs" role="tablist"><button type="button" role="tab" aria-selected="true" data-left="add">Add</button><button type="button" role="tab" aria-selected="false" data-left="layers">Layers</button></div>
@@ -378,7 +407,7 @@ function node(kind,props={}){
 }
 const textOf=(value,size=14,weight='Medium',color='text',extra={})=>({value,font:'Gotham',weight,size,color,ax:'Left',ay:'Center',wrap:false,truncate:true,...extra});
 const KIND={
-  window:{name:'Window',cls:'Frame',make:()=>({size:{xs:0,xo:480,ys:0,yo:360},bg:'base',corner:'panel',stroke:{c:'overlay',t:1},layout:{type:'list',dir:'V',gap:12,ha:'Left',va:'Top',wraps:false},pad:[16,16,16,16],clip:true,limits:{minW:280,minH:200,maxW:720,maxH:640}})},
+  window:{name:'Window',cls:'Frame',make:()=>({size:{xs:.4,xo:0,ys:.55,yo:0},bg:'base',corner:'panel',stroke:{c:'overlay',t:1},layout:{type:'list',dir:'V',gap:12,ha:'Left',va:'Top',wraps:false},pad:[16,16,16,16],clip:true,limits:{minW:280,minH:200,maxW:720,maxH:640}})},
   frame:{name:'Frame',cls:'Frame',make:()=>({size:{xs:0,xo:200,ys:0,yo:120},bg:'raised',corner:'control'})},
   card:{name:'Card',cls:'Frame',make:()=>({size:{xs:1,xo:0,ys:0,yo:96},bg:'raised',corner:'panel',pad:[12,12,12,12],layout:{type:'list',dir:'V',gap:8,ha:'Left',va:'Top',wraps:false}})},
   row:{name:'Row',cls:'Frame',make:()=>({size:{xs:1,xo:0,ys:0,yo:44},layout:{type:'list',dir:'H',gap:8,ha:'Left',va:'Center',wraps:false}})},
@@ -530,7 +559,7 @@ function fit(){
   const bar=wrap.querySelector('.stagebar').offsetHeight;
   scale=zoom==='fit'?Math.min(1,(wrap.clientWidth-48)/w,(wrap.clientHeight-bar-48)/h):Number(zoom);
   scale=Math.max(scale,.2);
-  const devEl=$('device-el');devEl.style.transform=`scale(${scale})`;devEl.style.width=`${w}px`;
+  const devEl=$('device-el');devEl.style.transform=`scale(${scale})`;devEl.style.width=`${w}px`;devEl.style.setProperty('--inv',String(1/scale));
   devEl.parentElement.style.width=`${w*scale+48}px`;devEl.parentElement.style.height=`${h*scale+48}px`;
 }
 function elOf(id){return $('screen').querySelector(`.el[data-id="${id}"]`)}
@@ -829,7 +858,7 @@ function checksHTML(){
     if(n.text&&n.text.value.length>60&&!n.text.wrap)add(`“${esc(n.name)}” has ${n.text.value.length} characters on one line: shorten it or let it wrap.`,()=>n.text.wrap=true);
     if(n.text&&/\b(seamless|effortless|elevate|unleash|ultimate|experience the|unlock the power|enhance your)\w*/i.test(n.text.value))add(`“${esc(n.name)}” sounds like filler (“${esc(n.text.value.match(/\b(seamless|effortless|elevate|unleash|ultimate|experience the|unlock the power|enhance your)\w*/i)[0])}”). Say what it does in plain words.`);
     if(!parent&&rect&&(rect.x<0||rect.y<0||rect.x+rect.w>area.w+1||rect.y+rect.h>area.h+1))add(`“${esc(n.name)}” goes off the screen on this device.`);
-    if(!parent&&isContainer(n)&&n.size.xs===0&&n.size.ys===0&&!n.limits&&(n.size.xo>360||n.size.yo>300))add(`“${esc(n.name)}” is sized in pixels only: on a phone it may not fit. Give it % size with min/max limits.`,()=>{n.size={xs:.5,xo:0,ys:.7,yo:0};n.limits={minW:280,minH:200,maxW:Math.max(360,Math.round(rect?.w??480)),maxH:Math.max(240,Math.round(rect?.h??360))}});
+    if(!parent&&isContainer(n)&&n.size.xs===0&&n.size.ys===0&&(n.size.xo>360||n.size.yo>300))add(`“${esc(n.name)}” is sized in pixels only: on a phone it may not fit. Give it % size with min/max limits.`,()=>{n.size={xs:.5,xo:0,ys:.7,yo:0};n.limits={minW:Math.min(n.limits?.minW??280,300),minH:Math.min(n.limits?.minH??200,260),maxW:Math.max(360,Math.round(rect?.w??480)),maxH:Math.max(240,Math.round(rect?.h??360))}});
     if(n.pad)for(const v of n.pad)if(!SPACING.includes(v))add(`“${esc(n.name)}” uses ${v} px inner space; stick to 4, 8, 12, 16, 24 or 32.`);
     if(n.image&&!n.image.id)add(`“${esc(n.name)}” has no image yet.`,null);
   });
@@ -995,7 +1024,7 @@ $('do-import').addEventListener('click',()=>{
 
 /* ---------- templates ---------- */
 const T={
-  hub:()=>{const w=node('window',{name:'Hub',size:{xs:0,xo:560,ys:0,yo:380},layout:{type:'list',dir:'V',gap:0,ha:'Left',va:'Top',wraps:false},pad:null,limits:{minW:320,minH:260,maxW:640,maxH:480}});
+  hub:()=>{const w=node('window',{name:'Hub',size:{xs:.45,xo:0,ys:.6,yo:0},layout:{type:'list',dir:'V',gap:0,ha:'Left',va:'Top',wraps:false},pad:null,limits:{minW:320,minH:260,maxW:640,maxH:480}});
     const head=node('row',{name:'Header',size:{xs:1,xo:0,ys:0,yo:48},pad:[0,4,0,16],layout:{type:'list',dir:'H',gap:8,ha:'Left',va:'Center',wraps:false}});
     head.children.push(node('label',{name:'Title',fill:true,size:{xs:0,xo:120,ys:1,yo:0},text:textOf('Blox Hub',16,'Bold')}),node('iconbutton',{name:'Minimise',image:{icon:'minus',id:iconId('minus'),color:'textSecondary',ink:16},does:'Hides the hub; the launcher brings it back'}),node('iconbutton',{name:'Close',image:{icon:'x',id:iconId('x'),color:'textSecondary',ink:16},does:'Closes the hub'}));
     const body=node('row',{name:'Body',fill:true,size:{xs:1,xo:0,ys:0,yo:300},layout:{type:'list',dir:'H',gap:0,ha:'Left',va:'Top',wraps:false}});
@@ -1004,11 +1033,11 @@ const T={
     main.children.push(node('search',{name:'Search'}),node('heading',{name:'Section',text:textOf('Farming',12,'Bold','textMuted')}),node('toggle',{name:'AutoFarm',control:{kind:'toggle',code:'T1',label:'Auto farm',on:true},does:'Turns auto farm on and off'}),node('slider',{name:'WalkSpeed',does:'Sets my walk speed'}),node('dropdown',{name:'Target',does:'Chooses which enemy auto farm attacks'}),node('keybind',{name:'MenuKey',does:'Changes the key that opens the hub'}),node('button',{name:'Teleport',size:{xs:1,xo:0,ys:0,yo:44},text:textOf('Teleport to spawn',14,'Bold','page',{ax:'Center'}),does:'Teleports me to spawn'}));
     body.children.push(side,main);w.children.push(head,node('divider',{name:'HeaderLine'}),body);
     return [w,node('toast',{name:'Notice',pos:{xs:1,xo:-16,ys:1,yo:-16},anchor:[1,1]})]},
-  settings:()=>{const w=node('window',{name:'Settings',size:{xs:0,xo:420,ys:0,yo:420},limits:{minW:300,minH:300,maxW:520,maxH:560}});
+  settings:()=>{const w=node('window',{name:'Settings',size:{xs:.35,xo:0,ys:.64,yo:0},limits:{minW:300,minH:300,maxW:520,maxH:560}});
     const head=node('row',{name:'Header',layout:{type:'list',dir:'H',gap:8,ha:'Left',va:'Center',wraps:false}});head.children.push(node('label',{name:'Title',fill:true,size:{xs:0,xo:100,ys:1,yo:0},text:textOf('Settings',20,'Bold')}),node('iconbutton',{name:'Close',does:'Closes settings'}));
     w.children.push(head,node('tabs',{name:'Tabs',control:{kind:'tabs',code:'S1',options:['Audio','Controls','Graphics'],value:'Audio'}}),node('slider',{name:'Music',control:{kind:'slider',label:'Music',min:0,max:100,value:60},does:'Sets music volume'}),node('slider',{name:'Effects',control:{kind:'slider',label:'Effects',min:0,max:100,value:80},does:'Sets sound effect volume'}),node('toggle',{name:'Shadows',control:{kind:'toggle',code:'T1',label:'Shadows',on:false},does:'Turns shadows on or off'}),node('dropdown',{name:'Quality',control:{kind:'dropdown',code:'D1',label:'Graphics quality',options:['Low','Medium','High'],value:'Medium'},does:'Sets graphics quality'}));
     return [w]},
-  shop:()=>{const w=node('window',{name:'Shop',size:{xs:0,xo:560,ys:0,yo:420},limits:{minW:320,minH:300,maxW:720,maxH:560}});
+  shop:()=>{const w=node('window',{name:'Shop',size:{xs:.45,xo:0,ys:.64,yo:0},limits:{minW:320,minH:300,maxW:720,maxH:560}});
     const head=node('row',{name:'Header',layout:{type:'list',dir:'H',gap:8,ha:'Left',va:'Center',wraps:false}});head.children.push(node('label',{name:'Title',fill:true,size:{xs:0,xo:100,ys:1,yo:0},text:textOf('Shop',20,'Bold')}),node('icon',{name:'CoinIcon',image:{icon:'coins',id:iconId('coins'),color:'warning',ink:20}}),node('label',{name:'Coins',size:{xs:0,xo:64,ys:1,yo:0},text:textOf('1,250',16,'Bold')}),node('iconbutton',{name:'Close',does:'Closes the shop'}));
     const grid=node('grid',{name:'Items',fill:true,size:{xs:1,xo:0,ys:0,yo:300},layout:{type:'grid',cellW:120,cellH:152,gap:8,ha:'Left',va:'Top'}});
     for(const [nm,ic,price] of [['Sword','sword','250'],['Shield','shield','400'],['Speed Coil','zap','600'],['Pet Egg','egg','900'],['Jump Boots','footprints','300'],['Gravity Coil','feather','750'],['Rocket','rocket','1,200'],['Crown','crown','2,500']]){const card=node('card',{name:nm,size:{xs:1,xo:0,ys:1,yo:0},layout:{type:'list',dir:'V',gap:8,ha:'Center',va:'Top',wraps:false}});card.children.push(node('icon',{name:'Icon',size:{xs:0,xo:40,ys:0,yo:40},image:{icon:ic,id:iconId(ic),color:'accentBright',ink:0}}),node('label',{name:'Name',text:textOf(nm,14,'Bold','text',{ax:'Center'})}),node('button',{name:'Buy',size:{xs:1,xo:0,ys:0,yo:44},text:textOf(`${price} coins`,14,'Bold','page',{ax:'Center'}),does:`Buys the ${nm} if I have enough coins`}));grid.children.push(card)}
@@ -1023,7 +1052,7 @@ const T={
   menu:()=>{const col=node('column',{name:'MainMenu',pos:{xs:.5,xo:0,ys:.5,yo:0},anchor:[.5,.5],size:{xs:0,xo:320,ys:0,yo:260},layout:{type:'list',dir:'V',gap:12,ha:'Center',va:'Center',wraps:false}});
     col.children.push(node('title',{name:'GameTitle',size:{xs:1,xo:0,ys:0,yo:44},text:textOf('Blox Quest',28,'Heavy','text',{ax:'Center'})}),node('button',{name:'Play',size:{xs:1,xo:0,ys:0,yo:52},text:textOf('Play',16,'Bold','page',{ax:'Center'}),does:'Starts the game'}),node('button',{name:'Settings',size:{xs:1,xo:0,ys:0,yo:44},bg:'raised',text:textOf('Settings',14,'Bold','text',{ax:'Center'}),does:'Opens settings'}),node('button',{name:'Credits',size:{xs:1,xo:0,ys:0,yo:44},bg:'raised',text:textOf('Credits',14,'Bold','text',{ax:'Center'}),does:'Shows the credits'}));
     return [col]},
-  daily:()=>{const w=node('window',{name:'DailyReward',size:{xs:0,xo:520,ys:0,yo:236},layout:{type:'list',dir:'V',gap:16,ha:'Center',va:'Top',wraps:false},limits:{minW:320,minH:220,maxW:640,maxH:420}});
+  daily:()=>{const w=node('window',{name:'DailyReward',size:{xs:.42,xo:0,ys:.36,yo:0},layout:{type:'list',dir:'V',gap:16,ha:'Center',va:'Top',wraps:false},limits:{minW:320,minH:220,maxW:640,maxH:420}});
     w.children.push(node('title',{name:'Title',size:{xs:1,xo:0,ys:0,yo:28},text:textOf('Daily reward',20,'Bold','text',{ax:'Center'})}));
     const row=node('row',{name:'Days',size:{xs:1,xo:0,ys:0,yo:96},layout:{type:'list',dir:'H',gap:8,ha:'Center',va:'Center',wraps:true}});
     for(let d=1;d<=7;d++){const tile=node('card',{name:`Day${d}`,size:{xs:0,xo:60,ys:0,yo:88},bg:d<=3?'accentDim':'raised',pad:[8,4,8,4],layout:{type:'list',dir:'V',gap:4,ha:'Center',va:'Center',wraps:false}});tile.children.push(node('caption',{name:'Label',text:textOf(`Day ${d}`,12,'Bold',d<=3?'text':'textSecondary',{ax:'Center'})}),node('icon',{name:'Reward',size:{xs:0,xo:24,ys:0,yo:24},image:{icon:d===7?'gem':'coins',id:iconId(d===7?'gem':'coins'),color:d===7?'accentBright':'warning',ink:0}}));row.children.push(tile)}
@@ -1049,7 +1078,12 @@ addEventListener('resize',()=>{fit();drawOverlay()});
 /* ---------- start ---------- */
 renderPalette();
 try{const saved=localStorage.getItem('rbx-ui-designer-v1');if(saved){const data=JSON.parse(saved);doc=data.doc;nextId=data.nextId}}catch{}
-if(!doc||!Array.isArray(doc.root)){doc={device:'desktop',direction:'Slate',name:'HubUI',root:[]};doc.root=T.hub().map(n=>{if(n.kind==='window'){n.pos={xs:.5,xo:0,ys:.5,yo:0};n.anchor=[.5,.5]}return n})}
+function nearestDevice(){
+  if(!matchMedia('(pointer:coarse)').matches)return 'desktop';
+  if(Math.min(innerWidth,innerHeight)>=700)return 'tablet';
+  return innerWidth>innerHeight?'phone-wide':'phone';
+}
+if(!doc||!Array.isArray(doc.root)){doc={device:nearestDevice(),direction:'Slate',name:'HubUI',root:[]};doc.root=T.hub().map(n=>{if(n.kind==='window'){n.pos={xs:.5,xo:0,ys:.5,yo:0};n.anchor=[.5,.5]}return n})}
 lastSaved=snapshot();syncBar();updateUndo();render();
 </script>
 </html>

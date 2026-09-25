@@ -1,6 +1,6 @@
 ---
 name: roblox-networking
-description: Client-server communication in Roblox — RemoteEvent, RemoteFunction, UnreliableRemoteEvent, BindableEvent, what actually replicates across the boundary, network ownership, remote argument validation and rate limiting, buffer serialization and bandwidth, latency compensation, BanAsync, and cross-server work with MessagingService, TeleportService and MemoryStoreService including the TeleportData trust boundary. Use for "doesn't show for other players", "it resets", remote design, replication questions, or reducing network traffic.
+description: Client-server communication - RemoteEvent and RemoteFunction, UnreliableRemoteEvent, what replicates, network ownership, bandwidth, lag compensation, MessagingService and teleports. Use for "others can't see it" and remote design.
 ---
 
 # Networking and replication
@@ -258,3 +258,9 @@ covers alts; `Player:Kick` does not and is a speed bump at best.
 Ban on evidence you would be comfortable showing the player, and log the
 `PrivateReason` with enough detail to review a false positive later. See
 `roblox-game-security` for what evidence is actually reliable.
+
+## Works with
+
+- `roblox-game-security`: validating every remote argument.
+- `roblox-engine-api`: network ownership of parts and characters.
+- `roblox-performance`: bandwidth and update rates.

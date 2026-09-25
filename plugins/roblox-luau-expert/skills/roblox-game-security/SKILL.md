@@ -1,6 +1,6 @@
 ---
 name: roblox-game-security
-description: Defending a Roblox game against exploiters — the realistic client threat model, server authority, remote hardening and validation, token-bucket rate limiting, payload size bounds, honeypot remotes, replay resistance, movement and combat sanity checks, what client-side anti-cheat can and cannot do, detection versus enforcement, false positives, telemetry design, BanAsync, and secrets that must not live in ReplicatedStorage. Use for "exploiters are doing X", anti-cheat design, securing remotes, or auditing a game for exploitability.
+description: Defending a Roblox game from exploiters - the client threat model, remote validation and rate limits, server authority, sanity checks, auditing Toolbox and Creator Store assets for backdoors. Use for "exploiters are doing X".
 ---
 
 # Defending your game
@@ -13,6 +13,7 @@ can actually do, not from what feels risky.
 | Need | File |
 |---|---|
 | rate limiting, payload bounds, honeypots, replay, movement authority | `references/remote-hardening.md` |
+| Toolbox or Creator Store models, backdoors, sandboxing an asset | `references/audit-imported-assets.md` |
 
 ---
 
@@ -281,3 +282,10 @@ For the offensive detail behind any of these — how a value is actually located
 and changed on the client, what anti-cheat reconnaissance looks like, what
 detection surface a hook leaves — see `roblox-executor`. Knowing the technique
 is what makes the defence proportionate instead of superstitious.
+
+## Works with
+
+- `roblox-networking`: remote design that the validation protects.
+- `roblox-monetization`: purchases granted once, on the server.
+- `roblox-executor`: what a client can actually do, the threat model's source.
+- `roblox-studio-mcp`: grepping imported assets for backdoors.

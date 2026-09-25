@@ -1,6 +1,6 @@
 ---
 name: roblox-audio
-description: Sound in Roblox — the legacy Sound instance versus the modern AudioPlayer/Wire graph, 2D versus 3D positional audio and what parenting decides, SoundGroup mixing and bus structure, rolloff and attenuation, PlayOnRemove for fire-and-forget one-shots, preloading to avoid first-play stutter, effects like reverb and compression, and where audio should be created so it replicates correctly. Use for playing sounds, music systems, footsteps and impacts, mixing and volume sliders, "the sound plays for everyone", or audio that stutters the first time.
+description: Roblox sound - Sound versus AudioPlayer and Wire graphs, music, effects, volume sliders, mixing, rolloff, preloading, footsteps. Use for any audio, music or volume question.
 ---
 
 # Audio
@@ -133,3 +133,9 @@ hears everyone's menu clicks.
    `[Deprecated]` `MinDistance` / `MaxDistance` / `Pitch`.
 8. **Respect the player.** Provide volume controls and honour muting; audio that
    cannot be turned down gets the game closed.
+
+## Works with
+
+- `roblox-ui-components`: volume sliders and mute toggles from the tested recipes.
+- `roblox-performance`: preloading and how many sounds play at once.
+- `roblox-networking`: which side plays a sound so others hear it.

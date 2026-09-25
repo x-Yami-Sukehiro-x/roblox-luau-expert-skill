@@ -1,6 +1,6 @@
 ---
 name: roblox-executor
-description: Client-side and executor scripting for Roblox — the sUNC API surface (closures, environment, debug, drawing, filesystem, signals, instances), hooking with hookfunction and hookmetamethod, memory search with getgc and filtergc, upvalue and constant manipulation, thread identity and capabilities, anti-cheat reconnaissance and detection surface, Actor and parallel VM injection, RakNet packet work, saveinstance and decompilation, and script-hub UI libraries. Use for executor scripts, sUNC functions, "it resets when I change it", finding a game's anti-cheat, any question about what is possible from a Roblox client, picking the one API a dump's evidence points at instead of a fallback chain, and whenever the user pastes decompiled source, a saveinstance dump or a game's own scripts to build against.
+description: Client-side and executor scripting - the sUNC API, hooking, getgc and upvalues, decompiled game source, anti-cheat recon, value persistence, script hubs. Use for executor, sUNC, hookfunction, a pasted dump, or which call reaches a value.
 ---
 
 # Executor and client-side scripting
@@ -235,3 +235,10 @@ craft rules matter more here, not less:
 `roblox-code-craft` applies unchanged. `roblox-luau-language` applies to the
 Luau itself — including the 200-local and 200-upvalue limits, which large hub
 scripts hit routinely.
+
+## Works with
+
+- `roblox-executor-features`: tested scripts for anything the local client owns.
+- `roblox-executor-reliability`: making a game-specific feature hold and not regress.
+- `roblox-ui`: the hub around the features.
+- `roblox-attempt-memory`: failed layers recorded so the next attempt differs.

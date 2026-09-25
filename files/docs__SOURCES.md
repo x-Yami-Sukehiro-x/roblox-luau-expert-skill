@@ -305,3 +305,16 @@ severity, honour reduced motion.
 **Motion principles** — Material Design 3 and M1 for the intent→direction
 mapping: ease-out entering, ease-in leaving, ease-in-out between states, exits
 shorter than entries.
+
+## Added for 5.8, checked 2026-09-25
+
+| Source | Licence | Used for |
+|---|---|---|
+| [OpenAI: build skills](https://learn.chatgpt.com/docs/build-skills) and [plugins](https://developers.openai.com/plugins/build/plugins) | — | The start-up skill list is capped at 2% of the context window or 8,000 characters; descriptions are shortened and then skills dropped when it runs over. Plugins discover skills from `skills/`. Basis for `lint-skills.mjs` and the rewritten descriptions |
+| [Agent Skills specification](https://agentskills.io/specification) | — | Name and description limits (64 and 1,024 characters), SKILL.md under 500 lines and about 5,000 tokens, references one level deep |
+| [Claude Code skills](https://code.claude.com/docs/en/skills) | — | The skill listing shares about 1% of the context window with every installed skill |
+| [Roblox Studio MCP](https://create.roblox.com/docs/studio/mcp) | — | The documented tool list, `studio_id`, `datamodel_type`, search limits; `roblox-studio-mcp` |
+| [MSayib/roblox-dev-skill](https://github.com/MSayib/roblox-dev-skill) | MIT | Studio MCP argument shapes, Roblox's first-party `rbx-*` skills, the drifting `script_grep` line numbers and the agent-to-Studio safety rules, each re-checked against Roblox's page. Facts only; the prose here is original |
+| [Roblox: third-party vulnerabilities](https://create.roblox.com/docs/scripting/security/third-party-vulnerabilities) | — | Imported-asset audits, sandboxing and capabilities |
+| [AshExplained/roblox-skills](https://github.com/AshExplained/roblox-skills) | MIT | Coverage gaps: imported-asset audits, economy, retention and genre topics for `roblox-game-design`. Its `set_active_studio` step does not exist in Roblox's tool list and was not carried over |
+| [web.dev and MDN on viewport units](https://developer.mozilla.org/en-US/docs/Web/CSS/length#relative_length_units_based_on_viewport) | — | `dvh` and `svh` for the designer's full-height layout on phones whose browser bars change the viewport |

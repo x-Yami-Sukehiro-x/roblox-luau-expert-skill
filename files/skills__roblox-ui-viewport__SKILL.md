@@ -1,6 +1,6 @@
 ---
 name: roblox-ui-viewport
-description: Making a Roblox UI fully visible and usable on every screen - small landscape phones, notched phones, portrait, tablets, laptops, 1080p to 4K monitors, ultrawide and console TVs. Panel sizing that fits 640 x 360 after the topbar, a grow-only UIScale, safe-area insets, content that scrolls instead of running off, popups and dragged windows kept on screen, text and touch targets that stay above their floors after scaling, orientation and resize handling, and a per-device size calculator. Use when building or fixing any ScreenGui, when UI is "cut off", "off the screen", "too big on mobile", "tiny on my monitor", "doesn't fit", or when checking a UI across resolutions.
+description: Fitting Roblox UI on every screen from a 640 x 360 phone to 4K and ultrawide - bounded scale sizes, safe insets, a grow-only UIScale, scrolling overflow, popups kept on screen. Use for UI that is cut off, off screen or does not fit.
 ---
 
 # Every screen, all of the UI
@@ -92,3 +92,10 @@ is on screen; it does not show that the layout inside it looks right.
 | outlines, shadows and rings cut off by a parent | `../roblox-ui/references/clipping.md` |
 | the scale formula and text-size preference | `../roblox-ui/references/scaling-and-dpi.md` |
 | buttons that do not respond on touch or gamepad | `../roblox-ui-interaction/SKILL.md` |
+
+## Works with
+
+- `roblox-ui`: the sizing rules in the build order.
+- `roblox-ui-interaction`: targets that stay 44 px after scaling.
+- `roblox-studio-mcp`: screen captures on emulated devices.
+- `roblox-ui-components`: popups drawn above the panel that would clip them.

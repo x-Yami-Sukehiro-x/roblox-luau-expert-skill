@@ -1,6 +1,6 @@
 ---
 name: roblox-ui
-description: Roblox UI layout, responsiveness and design taste — recognising and removing generic AI-generated UI, ScreenGui and GuiObject layout, scale versus offset, UIListLayout with Wraps and flex alignment, UIFlexItem, StyleSheet cascade, safe areas and the GUI inset, design tokens for re-skinnable UI, config persistence for feature-heavy menus, viewport and DPI scaling with UIScale, typography and rich text, gradients including radial and conical, input across mouse, touch, gamepad and console, the three surfaces (game HUD, executor hub, Studio plugin), whole-screen defaults (shop, hub, settings, HUD, inventory), sizes and tab layouts, blurry or broken UI, rebuilding a UI from a screenshot, building from a UI designer export, and short UI copy. Use for building, reviewing or improving any GUI, menu, HUD, hub or script UI, when UI breaks on mobile or looks blurry, when the user sends a UI picture or a roblox-ui-design export, or when a design "looks AI-generated".
+description: Roblox UI layout and design taste - build order, palettes, blueprints, screen archetypes, scale versus offset, flex layouts, typography, the countable rubric and anti-slop review. Use for any GUI, menu, HUD or hub, and UI that looks AI-made.
 ---
 
 # Roblox UI
@@ -276,3 +276,11 @@ The states that get skipped and then reported as bugs:
 
 Designing only the happy path is the most common UI defect, and it is always
 found by a player rather than by you.
+
+## Works with
+
+- `roblox-ui-components`: the tested recipe for each control.
+- `roblox-ui-viewport`: the screen fits every device.
+- `roblox-ui-interaction`: every control answers mouse, touch and gamepad.
+- `roblox-ui-motion`: opening, closing and press feedback.
+- `roblox-ui-tooltips`: the words around each control.

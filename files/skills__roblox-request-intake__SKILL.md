@@ -1,6 +1,6 @@
 ---
 name: roblox-request-intake
-description: Turn vague or non-technical Roblox requests into buildable work. Translate everyday words and names for UI parts, choose technical defaults, link the labeled style picker (toggles, menu animations, notifications, button feel, tabs) for unresolved UI preferences, explain Studio placement and triage errors. Use for vague requests, UI style choices, picked codes such as T2 or N4, or reports that something does not work.
+description: Turning vague or non-technical Roblox requests into buildable work - defaults for every decision, the style picker question for UI, plain-language replies, error triage. Use for "make me a gui", "it's broken", "make it better".
 ---
 
 # Request intake
@@ -142,3 +142,10 @@ which one line to point at real data.
 Intake is a doorway. Once the request is concrete, load the skill that owns it
 via the router in `roblox-luau-expert`. Intake stays loaded for the write-back:
 the answer still has to be readable by the person who asked.
+
+## Works with
+
+- `roblox-ui`: weak-prompt.md turns a one-line UI request into a shippable screen.
+- `roblox-game-design`: defaults for "make me a game" once the genre is known.
+- `roblox-attempt-memory`: "it's broken again" starts from the ledger.
+- `roblox-reply-craft`: the reply shape.

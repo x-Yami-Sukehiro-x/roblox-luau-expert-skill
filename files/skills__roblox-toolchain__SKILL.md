@@ -1,6 +1,6 @@
 ---
 name: roblox-toolchain
-description: Roblox development tooling outside Studio — Rojo project sync, Rokit toolchain management, Wally package management, selene linting, StyLua formatting, luau-lsp with sourcemaps for real type checking, .luaurc language mode and lint configuration and require aliases, Lune for scripting and CI, jest-roblox testing, continuous integration, and the built-in Studio MCP server. Use for project setup, "how do I use VS Code with Roblox", linting, formatting, dependency management, or CI configuration.
+description: Roblox tooling outside Studio - Rojo, Rokit, Wally, selene, StyLua, luau-lsp, Lune, tests and CI. Use for project setup, linting, formatting, packages and continuous integration.
 ---
 
 # Toolchain
@@ -336,3 +336,9 @@ mygame/
 ```
 
 `Packages/`, `sourcemap.json` and `build.rbxlx` go in `.gitignore`.
+
+## Works with
+
+- `roblox-studio-mcp`: driving the open Studio place from an agent.
+- `roblox-architecture`: the folder layout Rojo maps.
+- `roblox-luau-language`: strict types checked by luau-lsp.

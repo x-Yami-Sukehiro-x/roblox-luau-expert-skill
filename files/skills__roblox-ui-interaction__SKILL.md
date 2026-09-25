@@ -1,6 +1,6 @@
 ---
 name: roblox-ui-interaction
-description: Making every Roblox UI control respond on PC, phone, tablet and gamepad - Activated instead of mouse-only events, press states that work on touch, 44 px hit areas, long press instead of hover, gamepad selection and focus that never dead-ends, keyboard shortcuts that ignore typing, first-person mouse release, menus that stop or pass character input on purpose, drag versus scroll, text fields and the on-screen keyboard. Also the diagnosis ladder for "the button does nothing", "can't click it on mobile", "clicks go through the menu", "controller can't select it": invisible frames on top, ZIndex and DisplayOrder, Interactable and Active, clipped hit areas, connections lost on respawn or clone. Use when building any clickable UI, when a control does not respond on some device, or when reviewing a UI's input.
+description: Making every Roblox UI control respond on PC, phone and gamepad - Activated, touch press states, 44 px hit areas, selection and focus, menus versus character input. Use for "the button does nothing" or "can't click on mobile".
 ---
 
 # Every control, every input
@@ -98,3 +98,10 @@ Report which rows ran and which were not checked.
 | the six states and how each looks | `../roblox-ui-components/references/component-states.md` |
 | long press and selection tooltips | `../roblox-ui-tooltips/SKILL.md` |
 | everything on screen on every device | `../roblox-ui-viewport/SKILL.md` |
+
+## Works with
+
+- `roblox-ui-viewport`: controls reachable on every screen size.
+- `roblox-ui-components`: state visuals for each input.
+- `roblox-ui-tooltips`: long press and selection instead of hover.
+- `roblox-studio-mcp`: clicking the real controls in a playtest.

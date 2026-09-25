@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // Run every gate in this repository, in order, and report one verdict.
 //
-// There are twenty-four of them now. Remembering sixteen commands is how seven get
+// There are twenty-eight of them now. Remembering sixteen commands is how seven get
 // run and four get skipped, and the ones that get skipped are the ones that
 // were added most recently - which is to say the ones nobody has habits about
 // yet.
@@ -50,6 +50,10 @@ const GATES = [
   {
     name: "file references resolve",
     argv: [bin("lint-links.mjs")],
+  },
+  {
+    name: "skills load within host limits",
+    argv: [bin("lint-skills.mjs")],
   },
   {
     name: "stated contrast ratios",

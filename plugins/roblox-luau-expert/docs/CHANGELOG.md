@@ -1,5 +1,71 @@
 # Changelog
 
+## 5.8.0 — 2026-09-25
+
+Every skill now reaches the model on every host, the skills hand work to
+each other, two gaps are filled from vetted public sources, and the style
+picker and designer fit phones, tablets and notched screens.
+
+### Fixed — skills that could be dropped
+
+OpenAI caps the start-up skill list at 2% of the context window or 8,000
+characters and shortens descriptions, then drops skills, when it runs over;
+Claude Code shares about 1% of its context the same way. The 25 descriptions
+totalled 15,787 characters, and `roblox-ui-components` broke the Agent Skills
+limit of 1,024 on its own.
+
+- Every description rewritten with its trigger words first: 27 skills now
+  total 6,474 characters.
+- `tools/bin/lint-skills.mjs`, a new gate: frontmatter to the specification,
+  a 7,000-character budget, SKILL.md under 500 lines, a **Works with**
+  section naming at least two real skills, and a router that names them all.
+  The plugin build runs it on the copies it packs.
+- The router gains a skill map: which skills to open together for each kind
+  of task, and every skill's path, so a host that trims the list still
+  reaches every skill. Its API-verification detail moved to
+  `references/verifying-apis.md` and its delivery pass was condensed,
+  bringing it from 22,787 to 18,729 characters.
+
+### Added
+
+- **`roblox-studio-mcp`**: checking work in real Studio through its built-in
+  MCP server. The `studio_id` and `datamodel_type` rules, the
+  read-edit-playtest-console loop, what each other skill can verify there
+  (screen captures on emulated devices, clicking real controls, reading live
+  state on both sides), and the safety rules for an agent with command-bar
+  privilege. Sourced from Roblox's MCP page and MSayib/roblox-dev-skill (MIT).
+- **`roblox-game-design`**: loops at a minute, an hour and a week for eight
+  genres, the first session, economy sources and sinks with cost curves and
+  pacing checks, retention systems, and `AnalyticsService` onboarding,
+  economy and progression events with their dump signatures.
+- `roblox-game-security/references/audit-imported-assets.md`: quarantining
+  Toolbox and Creator Store models, the patterns that mark a backdoor, and
+  sandboxing with capabilities.
+- A **Works with** section in every skill.
+- `docs/ROADMAP.md`: gaps found while researching, with sources, and the
+  public skills reviewed and why they were or were not used.
+
+### Fixed — the style picker and designer on phones and tablets
+
+- The designer opens on the device preset nearest the visitor's own screen
+  (phone upright, phone sideways, tablet or computer), instead of a
+  1280 x 720 computer screen shrunk to 366 px wide.
+- Its templates and new windows are sized by percentage with min and max
+  limits, so the starter hub fits every preset; it ran off both sides of a
+  phone before. Its checks now flag any pixel-only window, with or without
+  limits, since limits never shrink a pixel size.
+- On phones the toolbar is one scrolling row instead of four, heights use
+  `dvh` and `svh` so browser bars do not hide the bottom, content respects
+  notch safe areas, controls are 44 px for fingers, fields use 16 px text so
+  iOS does not zoom in, and resize handles stay 22 px at any zoom.
+- The style picker pads for notches in landscape, its cards no longer force
+  a 287 px minimum on narrow phones, the hub demo's "BETA" and "RightShift"
+  labels no longer clip, and its fields use 16 px text on touch screens.
+
+Measured at 280, 360, 375, 390 and 430 px wide, phone landscape, tablet in
+both orientations and desktop: no horizontal overflow on either page, every
+designer template inside every device preset.
+
 ## 5.7.0 — 2026-09-25
 
 Four new skills: an attempt ledger that stops an agent retrying what already
