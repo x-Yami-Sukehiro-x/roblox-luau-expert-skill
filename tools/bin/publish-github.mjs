@@ -17,6 +17,12 @@
 //   node tools/bin/publish-github.mjs --dry-run    say what would be pushed
 //   node tools/bin/publish-github.mjs --adopt      accept GitHub's current main
 //                                                  as the parent (after a merge)
+//
+// A release deserves a written message: put it in .git/publish-message and the
+// next publish, including the scheduled one, uses it once and removes it.
+// Without one, the subject names the areas that changed, and a version bump in
+// .claude-plugin/plugin.json becomes "Release <version>" with the changelog
+// entry's opening paragraph as the body.
 
 import { existsSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
@@ -74,18 +80,86 @@ function credentialHits(tree) {
   return found.out ? found.out.split("\n").map((line) => line.slice(tree.length + 1)) : [];
 }
 
-function message(tree, changes, committed) {
-  const head = git(["log", "-1", "--format=%s%n%n%b"]).out;
-  if (committed || tree === git(["rev-parse", "HEAD^{tree}"]).out) return head + "\n";
+const SUBJECT_WIDTH = 72;
+
+// What a path belongs to, in the words a reader of the history would use.
+function areaOf(path) {
+  const parts = path.split("/");
+  if (parts[0] === ".claude" && parts[1] === "skills") return `${parts[2]} skill`;
+  if (path === "docs/visual-guide/designer.html") return "UI designer";
+  if (path.startsWith("docs/visual-guide/")) return "style picker";
+  if (path.startsWith("docs/portability/gpt/")) return "GPT package";
+  if (path.startsWith("docs/portability/")) return "portability docs";
+  if (path.startsWith("docs/assets/")) return "images";
+  if (path === "docs/CHANGELOG.md") return "changelog";
+  if (path.startsWith("library/tests/")) return "tests";
+  if (parts[0] === "library") return "library";
+  if (parts[0] === "tools") return "tools";
+  if (parts[0] === ".claude-plugin") return "plugin manifest";
+  if (parts[0] === ".github") return "CI";
+  if (path === "AGENTS.md" || parts[0] === ".agents" || parts[0] === ".cursor") return "generated host rules";
+  return parts.length > 1 ? parts[0] : path.replace(/\.md$/, "");
+}
+
+// Regenerated files follow their sources; they name the change only when alone.
+const DERIVED = new Set(["generated host rules", "GPT package"]);
+
+function joined(items) {
+  return items.length < 2 ? items.join("") : `${items.slice(0, -1).join(", ")} and ${items.at(-1)}`;
+}
+
+function versionIn(tree) {
+  const file = git(["show", `${tree}:.claude-plugin/plugin.json`], { allowFailure: true });
+  return file.ok ? JSON.parse(file.out).version : null;
+}
+
+function releaseNotes(tree, version) {
+  const changelog = git(["show", `${tree}:docs/CHANGELOG.md`], { allowFailure: true });
+  if (!changelog.ok) return "";
+  const entry = changelog.out.split(/^## /m).find((section) => section.startsWith(`${version} `));
+  const paragraph = entry?.split("\n\n")[1] ?? "";
+  return paragraph.startsWith("#") ? "" : paragraph.trim();
+}
+
+function subjectFor(changes) {
+  const counts = new Map();
+  for (const line of changes) {
+    const area = areaOf(line.split("\t").pop());
+    counts.set(area, (counts.get(area) ?? 0) + 1);
+  }
+  const ranked = [...counts.keys()].sort((a, b) => counts.get(b) - counts.get(a));
+  const named = ranked.filter((area) => !DERIVED.has(area));
+  const areas = named.length ? named : ranked;
+  for (let shown = Math.min(3, areas.length); shown >= 1; shown--) {
+    const rest = areas.length - shown;
+    const list = rest ? [...areas.slice(0, shown), `${rest} other area${rest > 1 ? "s" : ""}`] : areas;
+    const subject = `Update ${joined(list)}`;
+    if (subject.length <= SUBJECT_WIDTH || shown === 1) return subject;
+  }
+  return "Update";
+}
+
+function message(tree, changes, committed, remoteTree, pending) {
+  if (pending) return pending.trim() + "\n";
+  if (committed || tree === git(["rev-parse", "HEAD^{tree}"]).out) {
+    return git(["log", "-1", "--format=%s%n%n%b"]).out + "\n";
+  }
+  const version = versionIn(tree);
+  const released = version && remoteTree && version !== versionIn(remoteTree);
+  const subject = released ? `Release ${version}` : subjectFor(changes);
+  const notes = released ? releaseNotes(tree, version) : "";
   const listed = changes.slice(0, 30).join("\n");
   const more = changes.length > 30 ? `\n... and ${changes.length - 30} more` : "";
-  return `Working tree after "${head.split("\n")[0]}"\n\n${changes.length} path(s) changed:\n${listed}${more}\n`;
+  const files = `${changes.length} file(s):\n${listed}${more}`;
+  return `${subject}\n\n${notes ? `${notes}\n\n` : ""}${files}\n`;
 }
 
 export function publish(flags = new Set()) {
   const committed = flags.has("--committed");
   const gitDir = git(["rev-parse", "--absolute-git-dir"]).out;
   const stateFile = join(gitDir, "publish-github-last");
+  const pendingFile = join(gitDir, "publish-message");
+  const pending = existsSync(pendingFile) ? readFileSync(pendingFile, "utf8") : null;
 
   if (!git(["remote", "get-url", GITHUB.remote], { allowFailure: true }).ok) {
     git(["remote", "add", GITHUB.remote, GITHUB_URL]);
@@ -120,7 +194,7 @@ export function publish(flags = new Set()) {
   const parents = remoteTip ? ["-p", remoteTip] : [];
   const commit = git(["commit-tree", tree, ...parents, "-F", "-"], {
     env: identity,
-    input: message(tree, changes, committed),
+    input: message(tree, changes, committed, remoteTree, pending),
   }).out;
 
   const target = `github.com/${GITHUB.owner}/${GITHUB.repo} ${GITHUB.sourceBranch}`;
@@ -129,6 +203,7 @@ export function publish(flags = new Set()) {
   }
   git(["push", "--quiet", GITHUB.remote, `${commit}:refs/heads/${GITHUB.sourceBranch}`]);
   writeFileSync(stateFile, commit + "\n", "utf8");
+  if (pending) rmSync(pendingFile);
   return { commit, report: `pushed ${commit.slice(0, 7)} to ${target}: ${changes.length} path(s) changed` };
 }
 

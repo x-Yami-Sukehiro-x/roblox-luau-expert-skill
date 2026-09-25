@@ -1,6 +1,6 @@
 {
   "format": 1,
-  "archiveSha256": "190f974401058ee404a286c4d94d4ad079f1e4a663d1c2212c84dfde02dd3be5",
+  "archiveSha256": "2519146b2727876d3103283952c49d053790ca4fa10be79ee15ae1f84c13689e",
   "files": [
     {
       "path": ".claude/skills/roblox-architecture/SKILL.md",
@@ -769,18 +769,43 @@
     },
     {
       "path": "README.md",
-      "bytes": 19322,
-      "sha256": "43d81519f4c00c6360415b0618d95b681851898890571e527125e6505d135352"
+      "bytes": 15553,
+      "sha256": "56b4f8644089e63fac4b40a7013a6bfcee68b433fbe648be35b534b3e014cad3"
     },
     {
       "path": "docs/CHANGELOG.md",
-      "bytes": 72957,
-      "sha256": "c01137ddf15d97a5a686f7916afbc6dceb826933b8b499f0e0a93f4cacb27e9d"
+      "bytes": 74423,
+      "sha256": "c4de1965bd56d1077398bb0cf3786e17d562c56383c68fca39defc0573e7527e"
     },
     {
       "path": "docs/SOURCES.md",
       "bytes": 17321,
       "sha256": "4617633cc32a31fef46168b4f8f2b3d5e85a6a52a4954ba912021269b049a7df"
+    },
+    {
+      "path": "docs/assets/icon.png",
+      "bytes": 6993,
+      "sha256": "f41d6677b720a7779833459cbd11e8299560abebb7e0e01f6ef0429793f187df"
+    },
+    {
+      "path": "docs/assets/logo.png",
+      "bytes": 14975,
+      "sha256": "21ddce2f98333fe69275ee435e0565df1c4b29a6503d4e1206cae4cd1d4c8cac"
+    },
+    {
+      "path": "docs/assets/logo.svg",
+      "bytes": 814,
+      "sha256": "0514feed94e773a257a09100051ae9119249807cbfddf81b30d615936f00544b"
+    },
+    {
+      "path": "docs/assets/screenshot-designer.png",
+      "bytes": 114390,
+      "sha256": "bcae5a2bab30bd5c0092815a65b5bace782d8b500b5cf1dd0e28fb2a728dd5f0"
+    },
+    {
+      "path": "docs/assets/screenshot-picker.png",
+      "bytes": 78807,
+      "sha256": "b1928e1440904a51548242eda0764eb32878f9821852611c04a684322e104fe9"
     },
     {
       "path": "docs/maintenance.md",
@@ -884,8 +909,8 @@
     },
     {
       "path": "docs/portability/gpt/knowledge/roblox-ui-style-picker.html",
-      "bytes": 193653,
-      "sha256": "f063ba1b45cfc146e9bc755ac768b1a82fda430276def6772d6206b7381c5552"
+      "bytes": 193676,
+      "sha256": "c4ec0a100656b9d56e535491e94133e16a54400a6518a0d41227cbb2d329b401"
     },
     {
       "path": "docs/portability/gpt/knowledge/style-pack.md",
@@ -929,8 +954,8 @@
     },
     {
       "path": "docs/visual-guide/index.html",
-      "bytes": 193653,
-      "sha256": "f063ba1b45cfc146e9bc755ac768b1a82fda430276def6772d6206b7381c5552"
+      "bytes": 193676,
+      "sha256": "c4ec0a100656b9d56e535491e94133e16a54400a6518a0d41227cbb2d329b401"
     },
     {
       "path": "evals/executor-evidence.md",
@@ -1464,8 +1489,8 @@
     },
     {
       "path": "tools/bin/build-openai-plugin.mjs",
-      "bytes": 6684,
-      "sha256": "29e7777749907f1051085d08da2571db39b788bf060213b5738e221b7e5a05b5"
+      "bytes": 7471,
+      "sha256": "da3e8bbe93d082cb97e49de115d69451e8e69036e80ec071dcc0c4422274491e"
     },
     {
       "path": "tools/bin/build-plugin-branch.mjs",
@@ -1579,8 +1604,8 @@
     },
     {
       "path": "tools/bin/publish-github.mjs",
-      "bytes": 6318,
-      "sha256": "aae65e3c2e800405c9961328a04fe231b62f2671919c741df6266c6eeb95a53c"
+      "bytes": 9832,
+      "sha256": "3d3a8b049339dcd4c3b0de9490f0b6bcecac98dc6c0803540cf2b124e5483997"
     },
     {
       "path": "tools/bin/run-library-tests.mjs",
