@@ -51,6 +51,14 @@ const TYPE_SCALE = new Set([12, 13, 14, 16, 17, 20, 22, 28, 30, 32, 34]);
 
 const MIN_TEXT_SIZE = 12;
 const MIN_TOUCH_TARGET = 44;
+
+// The smallest screen a top-level panel must fit: a 640 x 360 landscape phone
+// after the topbar's 58 px. A panel that cannot shrink below this runs off it.
+const FIT_WIDTH = 640;
+const FIT_HEIGHT = 300;
+
+const CLIPPING_CLASSES = new Set(["ScrollingFrame", "CanvasGroup"]);
+const TEXT_CLASSES = new Set(["TextLabel", "TextButton", "TextBox"]);
 const MAX_DISTINCT_TEXT_SIZES = 5;
 const MAX_DISTINCT_RADII = 2;
 const MAX_COLOUR_LITERALS = 14;
@@ -275,6 +283,33 @@ function analyse(rawSource, rel) {
         "W-INSETBOTH",
         root.line,
         "ScreenInsets and IgnoreGuiInset both set - ScreenInsets supersedes it, so one of these is a guess"
+      );
+    }
+
+    // A top-level panel whose smallest possible size is larger than a phone.
+    // A UIScale on the screen or the panel resizes it; one inside is press feedback.
+    const screenScaled = modifiers(root).some((m) => m.class === "UIScale");
+    for (const panel of drawables) {
+      if (panel.parent !== root.variable || !GUI_OBJECTS.has(panel.class)) continue;
+      const scaled = screenScaled || modifiers(panel).some((m) => m.class === "UIScale");
+      const constraint = modifiers(panel).find((m) => m.class === "UISizeConstraint");
+      const min = constraint ? vector2Of(prop(constraint, "MinSize")) : null;
+      const max = constraint ? vector2Of(prop(constraint, "MaxSize")) : null;
+      const scale = scaleOf(prop(panel, "Size"));
+      const offset = offsetOf(prop(panel, "Size"));
+      let smallest = min;
+      if (!scaled && offset && scale && scale.x === 0 && scale.y === 0) {
+        smallest = {
+          x: Math.max(min?.x ?? 0, Math.min(offset.x, max?.x ?? Infinity)),
+          y: Math.max(min?.y ?? 0, Math.min(offset.y, max?.y ?? Infinity)),
+        };
+      }
+      if (!smallest || (smallest.x <= FIT_WIDTH && smallest.y <= FIT_HEIGHT)) continue;
+      add(
+        "E-MINFIT",
+        constraint?.line ?? panel.line,
+        `${panel.variable ?? panel.class} cannot shrink below ${smallest.x}x${smallest.y}px - a 640x360 phone ` +
+          `leaves ${FIT_WIDTH}x${FIT_HEIGHT} under the topbar, so it runs off the screen`
       );
     }
   }
@@ -514,6 +549,47 @@ function analyse(rawSource, rel) {
     }
   }
 
+  // --- L6  an outline cut off by the parent that clips it -----------------
+  //
+  // An Outer stroke (the default) draws outside its element's bounds. Inside a
+  // ScrollingFrame, a CanvasGroup or a ClipsDescendants parent, the part past
+  // the parent's edge is not drawn: the focus ring on the first row loses its
+  // top, a full-width card loses both sides. Inner, or padding at least the
+  // thickness, keeps the whole outline inside.
+  const paddingSides = (container) => {
+    const padding = modifiers(container).find((m) => m.class === "UIPadding");
+    return ["PaddingTop", "PaddingBottom", "PaddingLeft", "PaddingRight"].map((side) =>
+      padding ? (udimOffset(resolve(padding.props.get(side))) ?? 0) : 0
+    );
+  };
+  for (const stroke of elements) {
+    if (stroke.class !== "UIStroke") continue;
+    const outlined = byVariable.get(stroke.parent);
+    const container = outlined && byVariable.get(outlined.parent);
+    if (!outlined || !container || !GUI_OBJECTS.has(outlined.class)) continue;
+    const clips =
+      CLIPPING_CLASSES.has(container.class) || /^true$/.test(container.props.get("ClipsDescendants") ?? "");
+    if (!clips) continue;
+    const mode = stroke.props.get("ApplyStrokeMode") ?? "";
+    if (TEXT_CLASSES.has(outlined.class) && !/\bBorder\b/.test(mode)) continue;
+    const position = stroke.props.get("BorderStrokePosition") ?? "";
+    if (/\bInner\b/.test(position)) continue;
+    const thickness = Number(resolve(stroke.props.get("Thickness") ?? "1"));
+    if (!Number.isFinite(thickness) || thickness <= 0) continue;
+    const overflow = /\bCenter\b/.test(position) ? thickness / 2 : thickness;
+    const laidOut = (children.get(container.variable) ?? []).some((c) => LAYOUTS.has(c.class));
+    const scale = scaleOf(resolve(outlined.props.get("Size")));
+    const touches = laidOut || scale?.x === 1 || scale?.y === 1;
+    if (!touches || paddingSides(container).every((side) => side >= overflow)) continue;
+    add(
+      "E-STROKECLIP",
+      stroke.line,
+      `${outlined.variable ?? outlined.class}'s ${thickness}px outline draws outside it, inside ` +
+        `${container.variable ?? container.class}, a ${CLIPPING_CLASSES.has(container.class) ? container.class : "ClipsDescendants parent"} ` +
+        `- the edge is cut off. Use BorderStrokePosition Inner or pad the parent ${Math.ceil(overflow)}px`
+    );
+  }
+
   // --- L5  a notification anyone can read ---------------------------------
   for (const match of code.matchAll(/^[^\S\n]*local\s+([A-Z][A-Z0-9_,\s]*?)\s*=\s*([^\n]+)$/gm)) {
     const names = match[1].split(",").map((name) => name.trim());
@@ -593,7 +669,7 @@ function score(counts, findings) {
     ["C5 spacing values on the scale", none("E-SPACING")],
     ["C8 interaction states present", none("W-STATES", "E-AUTOBUTTON")],
     ["H1 colours come from tokens", none("W-TOKENS")],
-    ["H2 root is bounded", none("E-UNBOUNDED")],
+    ["H2 root is bounded and fits a phone", none("E-UNBOUNDED", "E-MINFIT")],
     ["H4 touch targets", none("W-TOUCH")],
     ["H5 Activated, not MouseButton1Click", none("E-MOUSEONLY")],
     ["H7 connections torn down", none("E-LEAK")],
@@ -602,7 +678,7 @@ function score(counts, findings) {
     ["L3 text set where the element is built", none("E-DEFAULTTEXT", "W-DEFAULTTEXT")],
     ["L4 icons are assets, not glyphs", none("W-GLYPHICON", "W-ASSETLOOSE")],
     ["L5 notifications can be read", none("E-TOASTFAST", "W-INSETBOTH")],
-    ["L6 nothing square inside a rounded box", none("E-CORNERBLEED", "E-SCROLLCORNER")],
+    ["L6 nothing poking out or clipped off", none("E-CORNERBLEED", "E-SCROLLCORNER", "E-STROKECLIP")],
   ];
   const passed = rows.filter(([, ok]) => ok).length;
   return { rows, passed, total: rows.length, points: passed * 2 };
