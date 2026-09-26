@@ -6,6 +6,10 @@
 // at sign-in. Each pass appends one line to auto-update.log in the .git folder,
 // which is where to look when an update did not arrive.
 //
+// A long release would otherwise go out in half-finished snapshots. While
+// .git/publish-hold exists, passes skip the publish and still sync the plugin;
+// delete the file, or publish by hand, when the tree is ready.
+//
 // Usage:
 //   node tools/bin/auto-update.mjs              publish, wait, install
 //   node tools/bin/auto-update.mjs --no-publish install the newest build only
@@ -47,7 +51,9 @@ async function main() {
   const gitDir = git(["rev-parse", "--absolute-git-dir"]).out;
   const steps = [];
   try {
-    if (!process.argv.includes("--no-publish")) {
+    if (existsSync(join(gitDir, "publish-hold"))) {
+      steps.push("publish held by .git/publish-hold");
+    } else if (!process.argv.includes("--no-publish")) {
       const published = publish();
       steps.push(published.report);
       if (published.commit && !(await waitForBuild(published.commit))) {

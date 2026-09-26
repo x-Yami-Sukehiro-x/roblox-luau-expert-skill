@@ -1,6 +1,6 @@
 ---
 name: roblox-luau-expert
-description: Router for every Roblox or Luau task - .lua/.luau, Studio, Rojo, remotes, DataStores, UI, executor scripts. Opens the right skills together, checks APIs against the dump, runs the delivery checks.
+description: Router for every Roblox or Luau task - scripts, Studio, remotes, DataStores, UI, executors. Opens the right skills together and runs the checks.
 ---
 
 # Roblox Luau Expert — router
@@ -98,27 +98,23 @@ varies per executor and per update.
 |---|---|
 | "attempt to index nil", crashes, `WaitForChild` hangs | `roblox-engine-api` |
 | types, `--!strict`, generics, `buffer`, metatables, OOP | `roblox-luau-language` |
-| "out of local registers", won't compile, or a long single-file script | `roblox-luau-language` → `roblox-luau-language/references/compiler-limits.md`; `tools/bin/check-registers.mjs` |
+| "out of local registers", won't compile, or a long single-file script | `roblox-register-budget`, then `roblox-luau-language`; check the final bundle |
 | raycasting, CFrame, Humanoid, tweens, camera, input | `roblox-engine-api` |
 | module layout, "where does this code go", frameworks | `roblox-architecture` |
 | DataStore, saving, data loss, ProfileService, session lock | `roblox-data-persistence` |
 | RemoteEvent, replication, "doesn't show for other players" | `roblox-networking` |
 | lag, memory climbing, MicroProfiler, parallel Luau | `roblox-performance` |
-| GUI, ScreenGui, responsive, mobile, hub menu | `roblox-ui` → `roblox-ui/references/build-order.md` |
-| "what colours / font / radius should I use" | `roblox-ui` → `roblox-ui/references/design-directions.md` |
-| "build me a menu / shop / inventory / modal / HUD" | `roblox-ui` → `roblox-ui/references/blueprints.md` |
-| "my UI looks AI-generated" / design review | `roblox-ui` → `roblox-ui/references/anti-slop-catalog.md` then `self-review.md` |
-| "make it look better" (no other detail) | `roblox-request-intake` → `roblox-ui/references/build-order.md` |
-| "make me a shop / hub / settings / HUD" with no layout given | `roblox-ui` → `roblox-ui/references/screen-archetypes.md` |
-| "improve my UI", "it looks off", tab layout, sizes | `roblox-ui` → `roblox-ui/references/layout-ux.md` |
+| GUI, ScreenGui, mobile, hub menu; colours, fonts, radius | `roblox-ui` → `references/build-order.md`, `design-directions.md` |
+| "build me a menu / shop / inventory / HUD", no layout given | `roblox-ui` → `roblox-ui/references/screen-archetypes.md`, `blueprints.md` |
+| "my UI looks AI-generated", "improve my UI", "it looks off" | `roblox-ui` → `anti-slop-catalog.md`, `layout-ux.md`, then `self-review.md` |
 | blurry UI, cut-off dropdown, "the UI is bugged" | `roblox-ui` → `roblox-ui/references/crisp-ui.md` |
-| "make me a gui" and nothing else; a one-line UI request | `roblox-ui` → `roblox-ui/references/weak-prompt.md` |
-| outline, focus ring or shadow cut off at an edge | `roblox-ui` → `roblox-ui/references/clipping.md` |
+| "make me a gui" and nothing else, "make it look better" | `roblox-ui-from-scratch`, then the UI bundle |
+| "it feels confusing", flows, outline or popup cut off, designing so nothing clips | `roblox-ux-design`; `roblox-ui/references/clipping.md` |
 | "cut off", "off the screen", "too big on mobile", "tiny on my monitor", any resolution | `roblox-ui-viewport` |
 | "the button does nothing", "can't click it on mobile", "controller can't select it" | `roblox-ui-interaction` |
 | a screenshot of a UI to recreate | `roblox-ui` → `roblox-ui/references/image-to-ui.md` |
 | a pasted `roblox-ui-design` export or `ui-design.json` | `roblox-ui` → `roblox-ui/references/design-spec.md` |
-| labels, descriptions, subtitles too long or too "AI" | `roblox-ui` → `roblox-ui/references/ui-copy.md` |
+| labels, descriptions, notices, names or commit messages that read as AI-written | `roblox-copy-craft` |
 | which icon for a tab or feature | `roblox-ui-components/references/icon-meaning.md` |
 | animating UI, tweens, springs, janky motion | `roblox-ui-motion` |
 | toast, notification, popup, button, slider, modal, divider, outline | `roblox-ui-components` |
@@ -135,15 +131,15 @@ varies per executor and per update.
 | "exploiters are doing X", securing remotes, anti-cheat design | `roblox-game-security` |
 | Rojo, Wally, selene, StyLua, luau-lsp, tests, CI | `roblox-toolchain` |
 | naming, error messages, "this looks AI-generated", review | `roblox-code-craft` |
-| a comment whose first line is real and whose next three restate the code | `roblox-code-craft` → `roblox-code-craft/references/anti-slop-code.md` §3a |
-| `v14`, `u3`, `p1` still in a script built from a dump | `roblox-code-craft` → `roblox-code-craft/references/anti-slop-code.md` §6 |
+| comments that restate the code; `v14`, `u3` left from a dump | `roblox-code-craft` → `anti-slop-code.md` §3a, §6 |
 | "you said you redesigned it and you didn't" | this file, the delivery pass, step 9 |
 | picking a UI library, or "my UI looks like every other script hub" | `docs/portability/gpt/UIs/catalog.md` |
-| "too many comments", "stop over-explaining", obvious comments | `roblox-code-craft` → `roblox-code-craft/references/anti-slop-code.md` |
-| "the formatting is clustered", breaks on lines that do not need them | `roblox-code-craft` → `roblox-code-craft/references/formatting.md` |
-| a draft buried in capability checks, `pcall`s and prose errors | `roblox-code-craft` → `roblox-code-craft/references/anti-slop-code.md` |
+| "too many comments", a draft buried in capability checks and `pcall`s | `roblox-code-craft` → `roblox-code-craft/references/anti-slop-code.md` |
+| "the formatting is clustered", odd line breaks | `roblox-code-craft` → `roblox-code-craft/references/formatting.md` |
 | executor, sUNC, `hookfunction`, `getgc` | `roblox-executor` |
 | a new executor script, a multi-game hub, a loader, "write me a script for this game" | `roblox-executor-scripting` |
+| "make it premium", "polish my script", a paid-hub quality bar | `roblox-executor-quality` |
+| a script about to be delivered; "you keep making the same mistakes" | `roblox-ai-mistakes` |
 | a script hub's UI, "make a UI library like WindUI", "improve my hub" | `roblox-hub-library` → `library/hub-kit/` |
 | fly, noclip, speed, infinite jump, ESP, click teleport, anti-AFK, fullbright, spectate, max zoom, FOV, freecam | `roblox-executor-features` (tested assets) |
 | an executor feature "doesn't work", "works then resets", "broke after respawn", "broke my other feature" | `roblox-executor-reliability` |
@@ -159,7 +155,11 @@ varies per executor and per update.
 | "it resets when I change it" (client-side) | `roblox-executor` → `roblox-executor/references/technique/value-persistence.md` |
 | "where is this game's anti-cheat" | `roblox-executor` → `roblox-executor/references/recon/anticheat-recon.md` |
 | user pasted decompiled source, a dump, or the game's scripts | `roblox-executor` → `roblox-executor/references/technique/decompiled-source.md` |
-| "what features can I add from this dump", "add everything possible" | `roblox-executor` → `roblox-executor/references/technique/feature-ideas.md` |
+| "what features can I add from this dump", "add everything possible" | `roblox-feature-recommendations`, `roblox-decompiled-features` |
+| "make an OP feature from these scripts", a game-specific executor feature | `roblox-executor-planning`, `roblox-decompiled-features` |
+| the dump is missing a function, ambiguous matches, "write a probe" | `roblox-runtime-probes` |
+| "recommend formatting, UI or UX fixes", clipped controls, confusing flow | `roblox-ui-ux-review`, `roblox-code-craft` |
+| when to add notifications, save configs, restore toggles or report progress | `roblox-script-feedback` |
 | "which executor call reaches this", a draft with fallback chains | `roblox-executor` → `roblox-executor/references/technique/source-to-api.md` |
 | vague, non-technical, or "it doesn't work" with no detail | `roblox-request-intake` |
 | a pasted error message and nothing else | `roblox-request-intake` → `roblox-request-intake/references/error-triage.md` |
@@ -176,10 +176,15 @@ the task by path; each skill's **Works with** section names its partners.
 
 | Task | Open together |
 |---|---|
-| any code you hand over | `roblox-code-craft`, `roblox-reply-craft` |
+| any code you hand over | `roblox-code-craft`, `roblox-reply-craft`, `roblox-ai-mistakes`; `roblox-register-budget` before a script passes 150 lines |
 | any repair, retry or "still broken" | `roblox-attempt-memory` first, then the area's skills |
-| a UI, game or hub | `roblox-ui`, `roblox-ui-components`, `roblox-ui-viewport`, `roblox-ui-interaction`; `roblox-ui-motion` and `roblox-ui-tooltips` when used |
-| an executor feature or script | `roblox-executor-scripting` first, then `roblox-executor-features`, `roblox-executor-reliability`, `roblox-executor` |
+| a UI, game or hub | `roblox-ui`, `roblox-ui-components`, `roblox-ui-viewport`, `roblox-ui-interaction`, `roblox-ux-design`, `roblox-copy-craft`; `roblox-ui-motion` and `roblox-ui-tooltips` when used |
+| an executor feature or script | `roblox-executor-scripting` first, then `roblox-executor-features`, `roblox-executor-reliability`, `roblox-executor`; `roblox-executor-quality` for the finished bar |
+| a game-specific executor build | `roblox-executor-planning`; `roblox-decompiled-features` for source contracts, `roblox-runtime-probes` for unknowns |
+| feature ideas from decompiled source | `roblox-feature-recommendations`, `roblox-decompiled-features`; no implementation unless requested |
+| a new UI with little direction | `roblox-ui-from-scratch`, `roblox-request-intake`, then the UI row |
+| formatting or UI/UX recommendations | `roblox-ui-ux-review`, `roblox-improve`, `roblox-code-craft` |
+| notifications, configs or persistent status | `roblox-script-feedback`, plus the relevant component and lifecycle skills |
 | a script hub or hub library | `roblox-hub-library`, `roblox-executor-scripting`, plus the UI row |
 | a bug, an error, "it does nothing" | `roblox-debugging`, `roblox-attempt-memory`, then the area's skills |
 | review, "improve it", feature ideas | `roblox-improve`, `roblox-code-craft`, plus the area's skills |
@@ -190,7 +195,7 @@ the task by path; each skill's **Works with** section names its partners.
 | "make me a game" | `roblox-request-intake`, `roblox-game-design`, `roblox-architecture`, then `roblox-combat` or `roblox-npc-ai` as the genre needs |
 | Studio is connected | `roblox-studio-mcp` to check the change in a real playtest |
 
-Every skill is `../<name>/SKILL.md` from this folder: `roblox-architecture`, `roblox-attempt-memory`, `roblox-audio`, `roblox-chat`, `roblox-code-craft`, `roblox-combat`, `roblox-data-persistence`, `roblox-debugging`, `roblox-engine-api`, `roblox-executor`, `roblox-executor-features`, `roblox-executor-reliability`, `roblox-executor-scripting`, `roblox-game-design`, `roblox-game-security`, `roblox-hub-library`, `roblox-improve`, `roblox-luau-language`, `roblox-monetization`, `roblox-networking`, `roblox-npc-ai`, `roblox-performance`, `roblox-reply-craft`, `roblox-request-intake`, `roblox-studio-mcp`, `roblox-toolchain`, `roblox-ui`, `roblox-ui-components`, `roblox-ui-interaction`, `roblox-ui-motion`, `roblox-ui-tooltips`, `roblox-ui-viewport`, `roblox-vfx-animation`.
+Every skill named in these tables is `../<name>/SKILL.md` from this folder.
 
 ### Always available here
 
@@ -238,7 +243,8 @@ detail: `references/delivery-checklist.md`.
 5. No dead code; comments say why, never what.
 6. Checked against `references/common-mistakes.md` and the ledger
    (`roblox-attempt-memory`).
-7. **Counted, not estimated**, on the final file:
+7. **Counted, not estimated**, on the final file, and on the assembled output
+   when scripts are bundled: separate files that fit can overflow together.
 
     ```powershell
     node tools/bin/check-file.mjs <file.luau>      # slop, format, UI, API, compile, registers, fit, ledger
@@ -256,12 +262,10 @@ detail: `references/delivery-checklist.md`.
 
 ## Scope note on the executor half
 
-`roblox-executor` documents client-side scripting: the sUNC API surface,
-hooking, memory search, anti-cheat reconnaissance, packet manipulation. It is
-written for private and educational use on accounts and servers the reader
-controls, and it states ban risk plainly rather than pretending it away.
-Detection and enforcement are separate things — "it worked and I was not
-banned" is not evidence of being undetected.
+`roblox-executor` documents client-side scripting: the sUNC API, hooking,
+memory search, anti-cheat reconnaissance, packets. It is written for private
+and educational use on accounts the reader controls, and states ban risk
+plainly: "it worked and I was not banned" is not evidence of being undetected.
 
 `roblox-game-security` is the mirror: the same knowledge pointed at defending
 a place you own. Neither skill invents capabilities the other side does not

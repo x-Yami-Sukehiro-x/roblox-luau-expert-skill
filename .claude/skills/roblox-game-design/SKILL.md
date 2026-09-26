@@ -1,6 +1,6 @@
 ---
 name: roblox-game-design
-description: Roblox games that keep players - genre loops, first session, progression and economy math, rewards, retention, analytics. Use for make me a game, balancing and pricing.
+description: Roblox games that keep players - genre loops, first session, progression and economy math, retention. Use for make me a game, balancing.
 ---
 
 # Game design for Roblox

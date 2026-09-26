@@ -1,6 +1,6 @@
 ---
 name: roblox-executor-reliability
-description: Making an executor feature hold in the user's game - value ownership, what rewrites it, the regression matrix, combining features. Use for doesn't work, stops after respawn.
+description: Making an executor feature hold - who rewrites it, respawn, rerun, unload, combined features. Use for doesn't work, stops after respawn.
 ---
 
 # Executor features that work

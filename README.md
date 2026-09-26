@@ -23,7 +23,7 @@
   <a href="#install">Install</a>
 </p>
 
-Thirty-four skills that cover Roblox game development and client/executor
+Forty-six skills that cover Roblox game development and client/executor
 scripting, plus HubKit, a tested UI library for script hubs. They run natively in Claude Code, and the same rules
 are generated for Codex, Cursor, a custom GPT and an OpenAI plugin from one
 source. Pinned to Roblox API dump `0.739.0.7390687`.
@@ -32,6 +32,20 @@ source. Pinned to Roblox API dump `0.739.0.7390687`.
 
 ## What you get
 
+- **Long scripts that still compile.** A function holds 200 live locals and
+  the main chunk counts, which is where generated hubs fail. Scripts are
+  written to a register-safe shape from the start; the compiler check names
+  the families of locals to move (`I-LOCALS`) and catches a local that a fix
+  left outside its scope, which compiles and is nil at runtime (`W-SCOPE`).
+- **Executor features from the game's own code.** A plan and a pre-mortem
+  before code, seven feature archetypes with the evidence each needs, a
+  tested action loop paced at the game's cooldown, tested probe scripts (a
+  remote spy and a table finder) when the dump lacks a fact, and a premium
+  bar with a feature registry that shows real status.
+- **Words and UX that do not read as generated.** Labels, notices, names and
+  commit messages checked for marketing words (`W-HYPE`); flows and a UI
+  structure where nothing gets clipped; a catalogue of the mistakes models
+  make, each with the check that catches it.
 - **API answers from ground truth.** A vendored API dump and datatype index
   back `verify-api`; a name it cannot find exits 1, which is the signal an
   agent was about to invent one.
@@ -140,6 +154,7 @@ matches their description.
 |---|---|
 | **roblox-luau-expert** | Router: hard accuracy rules, symptom table, delivery checklist, the generated `verified/` tables and the common-mistakes catalog |
 | **roblox-luau-language** | Types, strict mode, generics, metatables and OOP, `buffer`, `vector`, GC, compiler limits and the register budget |
+| **roblox-register-budget** | The 200-local limit: the register-safe shape for long scripts and hubs, a measured hub rewrite (206 to 16 registers), fixing the error without scope bugs |
 | **roblox-engine-api** | Instance lifecycle, attributes and tags, the frame pipeline, raycasts, CFrame, Humanoid, animation, tweens, camera, streaming, input |
 | **roblox-architecture** | DataModel layout, module patterns, startup, Trove and Janitor, Promise and Signal, frameworks, testing seams |
 | **roblox-data-persistence** | DataStore semantics and budgets, session locking, ProfileStore and Lyra, MemoryStore, migrations, loss and duplication |
@@ -151,6 +166,10 @@ matches their description.
 | **roblox-ui-components** | Tested recipes for every picker code, notifications, outlines, 9-slice panels, the six interaction states, which icon means what |
 | **roblox-ui-motion** | Easing by intent, duration bands, `SmoothDamp` springs, choreography, reduced motion |
 | **roblox-ui-tooltips** | Tooltips, info buttons, helper lines, locked reasons, coach marks, slider value readouts; touch and gamepad access |
+| **roblox-ui-from-scratch** | A whole UI from a one-line request: real content, the flow, every state, worked briefs |
+| **roblox-ux-design** | Flows, feedback timing, error prevention, thumb reach and a structure where nothing gets clipped |
+| **roblox-ui-ux-review** | Ranked formatting, UI and UX fixes with evidence, clipping traced to its owner, linter codes translated |
+| **roblox-script-feedback** | When a script needs notifications, status and saved settings; a tested settings file for scripts without a hub |
 | **roblox-ui-viewport** | Every screen from a 640 x 360 phone to 4K and ultrawide: panel sizing, a grow-only `UIScale`, insets, overflow, per-device sizes computed |
 | **roblox-ui-interaction** | One input contract for mouse, touch and gamepad, hit areas, menus and the character, and the ladder for "the button does nothing" |
 | **roblox-vfx-animation** | `AnimationTrack` lifecycle, priority and blending, markers, particles, beams, trails, highlights |
@@ -164,10 +183,17 @@ matches their description.
 | **roblox-executor-features** | Tested fly, noclip, speed, infinite jump, ESP, click teleport, anti-AFK, fullbright, spectate, camera unlock and freecam scripts, a feature doctor, and the quality bar for any other |
 | **roblox-executor-scripting** | The order an expert works in: effect and owner, evidence, one layer, every writer, tested asset, matrix; a GameId loader, remotes from call sites, cross-executor checks |
 | **roblox-hub-library** | Building, extending or auditing a hub UI library, with HubKit as the worked example: registry, shared row, theme roles, one trove, bundling |
+| **roblox-executor-planning** | The plan before code: effect, evidence, mechanism, writers, check, and a pre-mortem of how it fails |
+| **roblox-decompiled-features** | Decompiled source to working features: seven archetypes, call contracts, one live target, a tested paced action loop |
+| **roblox-feature-recommendations** | What a dump makes possible, ranked by evidence and payoff: source signals, genre search words, combinations |
+| **roblox-runtime-probes** | Probe scripts for missing facts: a tested remote spy and table finder, bounded, with a report contract |
+| **roblox-executor-quality** | The premium bar in twelve checks, a tested feature registry with honest status, surviving game updates |
 | **roblox-executor-reliability** | Making a requested feature work in the user's game: who owns the value, what else writes it, the regression matrix, combining features, reading the doctor |
 | **roblox-improve** | Evidence-first reviews: measure, read by category, a four-part gate against false alarms, severity, and feature ideas grounded in the loop |
 | **roblox-debugging** | Exact error, reproduce, which side runs it, one probe per hypothesis; an error catalogue and the does-nothing tree |
 | **roblox-code-craft** | Naming, error messages, `pcall` discipline, comment policy, matching an existing file, AI-generated tells |
+| **roblox-copy-craft** | Words without generated phrasing on every surface: labels, notices, errors, names, comments, commits |
+| **roblox-ai-mistakes** | The mistakes models make in Roblox and executor code, each with the linter code or test that catches it |
 | **roblox-reply-craft** | Fast replies, code blocks that paste cleanly, short file names, no filler around the code |
 | **roblox-attempt-memory** | The attempt ledger: what was tried, seen and learned, carried across chats and hosts; refuses repeats and reintroduced bugs |
 | **roblox-toolchain** | Rojo, Rokit, Wally, selene, StyLua, luau-lsp, Lune, jest-roblox, CI |

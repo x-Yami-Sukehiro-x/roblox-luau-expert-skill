@@ -1,6 +1,6 @@
 ---
 name: roblox-ui-interaction
-description: Making Roblox UI respond on PC, phone and gamepad - Activated, touch press, 44 px targets, selection and focus. Use for the button does nothing or can't click on mobile.
+description: Making Roblox UI respond on PC, phone and gamepad - Activated, touch press, 44 px targets, focus. Use for the button does nothing.
 ---
 
 # Every control, every input

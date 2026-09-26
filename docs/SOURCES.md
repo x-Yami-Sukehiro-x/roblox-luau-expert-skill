@@ -332,3 +332,11 @@ shorter than entries.
 | [brockmartin/roblox-game-skill](https://github.com/brockmartin/roblox-game-skill), [zilibobi/roblox-skills](https://github.com/zilibobi/roblox-skills) | none stated | Not used |
 | [afrxo/roblox-agent-skills](https://github.com/afrxo/roblox-agent-skills) | MIT | Reviewed; its Luau types, Fusion and toolchain material overlaps skills here already checked against the dump |
 
+
+## Added for 5.10, checked 2026-09-26
+
+| Source | Licence | Used for |
+|---|---|---|
+| [OpenAI: build skills](https://learn.chatgpt.com/docs/build-skills) | — | Re-checked: the start-up list uses at most 2% of the model's context window, or 8,000 characters when the window is unknown; descriptions are shortened first, then skills omitted with a warning; trigger words go first. 46 skills now total 6,976 characters |
+| [Luau 0.739 compiler](https://github.com/luau-lang/luau/releases/tag/0.739), vendored in `tools/runtime/` | MIT | The `-O0` listing's `GETGLOBAL` and `SETGLOBAL` operands behind `W-SCOPE`; the measured hub (199 top-level locals compile at 206 registers, the 201st fails); a test in which `-O2` inlining did not raise a caller's register use |
+| [sUNC documentation](https://docs.sunc.io/), as summarised in `roblox-executor/references/api/` | — | `hookmetamethod`, `getnamecallmethod`, `checkcaller` and `newcclosure` for `remote-spy.luau`; `filtergc` table options for `table-finder.luau`; `getconnections` fields for archetype 7; `restorefunction`'s whole-chain behaviour, which is why the spy leaves a pass-through hook instead |

@@ -1,6 +1,6 @@
 ---
 name: roblox-reply-craft
-description: How a Roblox reply is delivered - fast, short, whole scripts in one paste-ready block, no filler. Use for every reply that contains code.
+description: How a Roblox reply is delivered - whole scripts in one paste-ready block, placement, honest receipts. Use for every reply with code.
 ---
 
 # Reply craft

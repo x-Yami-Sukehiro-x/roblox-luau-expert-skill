@@ -1,6 +1,6 @@
 ---
 name: roblox-ui-tooltips
-description: Roblox tooltips and the words around controls - hover and long-press tips, helper lines, locked reasons, slider readouts (H codes). Use for hover text and why is it locked.
+description: Roblox tooltips and helper text - hover and long-press tips, locked reasons, slider readouts (H codes). Use for hover text, why is it locked.
 ---
 
 # Tooltips and slider values

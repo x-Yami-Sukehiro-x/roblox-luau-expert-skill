@@ -1,6 +1,6 @@
 ---
 name: roblox-request-intake
-description: Turning vague Roblox requests into buildable work - defaults for every decision, the style picker question, plain-language replies. Use for make me a gui, it's broken, make it better.
+description: Turning vague Roblox requests into buildable work - defaults, the style picker question, plain words. Use for make me a gui, it's broken.
 ---
 
 # Request intake
@@ -151,3 +151,4 @@ the answer still has to be readable by the person who asked.
 - `roblox-reply-craft`: the reply shape.
 - `roblox-improve`: for make it better, a ranked list instead of a rewrite.
 - `roblox-hub-library`: when the vague request is a script hub.
+- `roblox-ui-from-scratch`: real controls and testable behavior from a short UI request.

@@ -9,8 +9,8 @@
       "name": "roblox-luau-expert",
       "source": ".",
       "displayName": "Roblox Luau Expert",
-      "description": "34-skill Roblox and Luau stack with API-dump-backed verification, tested UI recipes for 215 style codes including tooltips, tested fly, ESP and other executor feature scripts, HubKit (a tested script hub UI library), contrast-verified design directions, a gated UI build order, vague-request intake, and a decompiled-source workflow. Counts its own anti-slop and UI rules over real files, in Node or in Python, and proves a rewrite with a before/after diff. Generates matching AGENTS.md, Cursor and custom-GPT rule files from one source.",
-      "version": "5.9.0",
+      "description": "46 Roblox and Luau skills: game scripting, UI and UX, executor scripts from decompiled source, probe scripts, premium-script checks and the 200-local register limit, each with tested assets and checkers. Includes HubKit, style recipes, an attempt ledger and API verification, and builds matching Claude, Codex, Cursor and custom-GPT bundles.",
+      "version": "5.10.0",
       "license": "LicenseRef-PolyForm-Strict-1.0.0",
       "category": "development",
       "keywords": [

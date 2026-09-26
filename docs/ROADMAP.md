@@ -8,12 +8,48 @@ Two limits shape every addition:
 
 - **Skill metadata budget.** Hosts show every skill's name and description
   from a shared list of about 8,000 characters and drop skills when it runs
-  over. `node tools/bin/lint-skills.mjs` holds this stack to 7,000; at 6,496
-  with 34 skills, a new skill needs a description of about 180 characters
-  and probably a trim elsewhere, or belongs as a reference inside an
-  existing skill. The router is at 18,737 characters of a 20,000 warning.
+  over. `node tools/bin/lint-skills.mjs` holds this stack to 7,000; at 6,976
+  with 46 skills there is no room for another skill without trimming others,
+  so new material should arrive as references inside an existing skill. The
+  router is at about 18,700 characters of a 20,000 warning.
 - **Evidence before advice.** New API claims are checked against the dump by
   `lint-prose.mjs`; new code ships with a behaviour test.
+
+## Executor scripting
+
+- **Exact register counts from the bytecode header.** The checker reads the
+  `-O0` listing, which gives the line where a function peaks but can
+  undercount unused parameters and call ranges by a few registers. A reader
+  for the function header's stack size, kept beside the listing's peak line,
+  would give both. A draft parser was written during 5.10 and set aside
+  because it dropped the peak lines and had no tests of its own.
+- **More tested probes**: a property-writer finder (loop connections whose
+  constants name the property), a loaded-module inventory by keys, and an
+  attribute watcher, each with a behaviour test like `remote-spy.luau`.
+- **A request and result action loop**: `action-loop.luau` paces by interval;
+  games that answer each request with an event need a variant that waits for
+  the matching result, with a timeout reported as unconfirmed, never resent.
+- **HubKit wired to the feature registry**: an example whose toggles take
+  their state and failure reasons from `feature-registry.luau`.
+- **Genre templates from fixture dumps**: collect, sell and rebirth for a
+  simulator, collectors for a tycoon, built only from dumps committed under
+  `evals/fixtures/` so every call site in them is real.
+- **Probe reports across a game update**: compare two reports of the same
+  feature and say which targets were renamed, removed, unloaded or became
+  ambiguous, without treating a new name as permission to write to it.
+
+## Evaluations
+
+- **Run the case files against fresh models**: `evals/design-decisions.md`,
+  `evals/executor-planning.md`, `evals/executor-evidence.md` and
+  `evals/ui-behavior.md`, recording model, skill revision, files read, raw
+  output and observed results; rerun unchanged cases after each release.
+- **Which skills loaded**: for vague UI, clipping, register failure and
+  incomplete-source prompts, record which skills each host actually opened,
+  and fix discovery gaps in the router rather than in longer descriptions.
+- **A Studio UI regression set**: the same screens captured at phone
+  landscape, portrait, desktop and large desktop, with the last row, popups
+  near edges, long labels and larger text checked in each.
 
 ## New areas
 
@@ -44,6 +80,14 @@ Two limits shape every addition:
   the check runs where only Node is available.
 - **Trigger evals run against a fresh model**, recording which skill each
   prompt in `evals/triggers.md` actually loaded.
+- **`W-HYPE` for positional strings**: the rule reads `Title = "..."` style
+  fields; a notice passed as `Notify("...")` or `SetCore` arguments is not
+  read yet.
+- **A popup clip rule**: a dropdown list or tooltip built inside a
+  `ScrollingFrame` or `ClipsDescendants` parent, found by following the
+  parent chain the way `E-STROKECLIP` does.
+- **An early local-count warning**: past 120 top-level `local` lines, before
+  the compiler fails, for hosts that cannot run the compiler.
 - **`E-HOVERONLY` lint rule**: a `MouseEnter` that shows information with no
   `SelectionGained` or long-press path in the same file, once it can tell a
   hover tint from hidden content without false alarms.

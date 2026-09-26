@@ -1,6 +1,6 @@
 ---
 name: roblox-vfx-animation
-description: Roblox animation and effects - AnimationTrack lifecycle, priority, markers, particles, beams, trails, Highlights. Use when an animation does not play and for effects.
+description: Roblox animation and effects - AnimationTrack lifecycle, priority, markers, particles, beams, Highlights. Use when an animation won't play.
 ---
 
 # Animation and visual effects

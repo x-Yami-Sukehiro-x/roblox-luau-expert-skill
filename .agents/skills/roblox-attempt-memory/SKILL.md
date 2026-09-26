@@ -1,6 +1,6 @@
 ---
 name: roblox-attempt-memory
-description: Never repeating a failed fix - the attempt ledger in PROJECT_CONTEXT.md with plan, check and search. Use for you didn't fix it, same problem again, any retry, a new chat on old work.
+description: Never repeating a failed fix - the attempt ledger, known failures, plan and check. Use for you didn't fix it, same problem again, a new chat.
 ---
 
 # Attempt memory

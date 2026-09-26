@@ -1,8 +1,8 @@
 {
   "name": "roblox-luau-expert",
   "displayName": "Roblox Luau Expert",
-  "version": "5.9.0",
-  "description": "Expert Roblox and Luau skill stack, 34 skills: engine APIs, type system, networking, DataStores, monetization, performance, UI and UX, animation and audio, anti-exploit, toolchain, and client/executor scripting. Ships tested recipes for every style-picker code (toggles, checkboxes, dropdowns, menu motion, notifications, tooltips and more), tested executor feature scripts such as fly, ESP, spectate and freecam with a feature doctor, HubKit (a tested script hub UI library in the shape of WindUI) with a multi-game loader, combat, NPC and chat skills, evidence-first debugging and code reviews, an attempt ledger that refuses to repeat failed approaches, per-device UI fit and input checks, game design defaults, Studio MCP verification, fully specified design directions, a gated UI build order, an intake skill for vague non-technical requests, and a decompiled-source workflow. Verifies every Roblox API against a vendored API dump, recomputes every stated contrast ratio, and lints its own prose against both. Ships Python ports of its linters, parity-gated against the Node originals, so the rules still run in hosts without Node.",
+  "version": "5.10.0",
+  "description": "46 Roblox and Luau skills: game scripting, UI and UX, executor scripts from decompiled source, probe scripts, premium-script checks and the 200-local register limit, each with tested assets and checkers. Includes HubKit, style recipes, an attempt ledger and API verification, and builds matching Claude, Codex, Cursor and custom-GPT bundles.",
   "author": {
     "name": "x-Yami-Sukehiro-x"
   },

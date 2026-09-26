@@ -20,6 +20,11 @@ from ignoring one of those three words.
 
 ## First: is a toast the right pattern?
 
+For the decision across an entire script, use
+`../../roblox-script-feedback/SKILL.md`. A toggle's visible selected state or a
+slider's live value often supplies all the feedback needed; no toast is added
+merely because a callback ran.
+
 | Use | Pattern |
 |---|---|
 | Confirming something that happened | **toast** |

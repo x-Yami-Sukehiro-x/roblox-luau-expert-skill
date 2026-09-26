@@ -1,6 +1,6 @@
 ---
 name: roblox-executor-features
-description: Tested executor features - fly, noclip, speed, infinite jump, ESP, click teleport, anti-AFK, fullbright, spectate, freecam - and a feature doctor. Use for any universal feature.
+description: Tested executor features - fly, noclip, speed, ESP, teleport, anti-AFK, freecam - plus a feature doctor. Use for universal features.
 ---
 
 # Executor features

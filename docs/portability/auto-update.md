@@ -46,6 +46,9 @@ installed, or which step failed.
   run `node tools/bin/publish-github.mjs --adopt` once.
 - **Something that looks like a credential**, or the local git email address,
   anywhere in the tree. The message names the file.
+- **A hold.** While `.git/publish-hold` exists, scheduled passes skip the
+  publish and only sync the plugin, so a release spanning several passes does
+  not go out as half-finished snapshots. Delete the file when the tree is ready.
 - **Machine-local files** are never published: this checkout's Claude
   permission file, settings.local.json, and everything `.gitignore` excludes,
   including `dist/`.

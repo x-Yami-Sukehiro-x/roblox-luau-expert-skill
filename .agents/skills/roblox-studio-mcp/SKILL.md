@@ -1,6 +1,6 @@
 ---
 name: roblox-studio-mcp
-description: Testing in real Roblox Studio through its MCP server - edit scripts, run Luau, playtest, read the console, screenshots, simulated input, safely. Use when Studio is connected.
+description: Testing in real Roblox Studio over MCP - edits, playtests, console, screenshots, simulated input. Use when Studio is connected.
 ---
 
 # Roblox Studio through MCP

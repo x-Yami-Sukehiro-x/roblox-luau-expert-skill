@@ -1,6 +1,6 @@
 ---
 name: roblox-ui-components
-description: Roblox UI controls - the tested recipe for every style picker code (toggles, dropdowns, menus, notifications, tabs), outlines, shadows, icons, six states. Use when a code like T2 is picked.
+description: Roblox UI controls - tested recipes for every style code (toggles, dropdowns, menus, notices), six states, icons. Use when a code is picked.
 ---
 
 # UI components
@@ -12,6 +12,7 @@ and the details that make them feel built rather than assembled.
 |---|---|
 | **a user picked a code such as T2, M4 or N4** | `references/style-recipes.md` |
 | notifications, toasts, popups | `references/toasts.md` |
+| deciding whether an action needs a notification or saved preference | `../roblox-script-feedback/SKILL.md` |
 | icons, lucide asset ids, `getcustomasset`, drawing a glyph without one | `references/icons.md` |
 | which icon means Combat, Visuals, Shop, Teleports; icon ids for 1,559 Lucide icons | `references/icon-meaning.md`, `references/icon-ids.txt` |
 | borders, strokes, shadows, dividers, separation | `references/outlines-and-dividers.md` |
@@ -133,9 +134,10 @@ The same component behaves differently depending on where it lives.
 **Game UI** — must not cover the topbar or mobile controls; obeys `ScreenInsets` and
 `GuiService:GetGuiInset()`; needs gamepad focus for console players.
 
-**Executor hub UI** — dense lists of toggles and keybinds, every control bound to a
-persisted flag so state survives re-execution, and parented via `gethui()` rather than
-`PlayerGui`. See `roblox-executor/references/ui/ui-libraries.md`.
+**Executor hub UI** — lists of toggles and keybinds, with one state owner per
+control. Persist useful preferences under stable flags; active operations need
+an explicit restore policy (`../roblox-script-feedback/SKILL.md`). Parent using
+the executor surface established in `roblox-executor/references/ui/ui-libraries.md`.
 
 **Studio plugin UI** — lives in a `DockWidgetPluginGui` and must match the user's
 Studio theme via `Enum.StudioStyleGuideColor`, or it looks broken in light mode.
@@ -149,3 +151,4 @@ Per-surface detail: `roblox-ui/references/responsive-and-surfaces.md`.
 - `roblox-ui-motion`: the tweens each recipe uses.
 - `roblox-ui-tooltips`: slider values and hints.
 - `roblox-hub-library`: the same controls inside a hub library's element contract.
+- `roblox-script-feedback`: when feedback or saved state is needed at all.

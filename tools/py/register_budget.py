@@ -6,6 +6,10 @@ same findings. The file is compiled at -O0, where every local keeps its own
 register, and the bytecode listing is read for the highest register and
 upvalue each function touches.
 
+Two findings come from the source beside the listing: W-SCOPE, a name declared
+local in the file but read or written as a global elsewhere (nil at runtime),
+and I-LOCALS, the families of top-level locals when the main chunk is full.
+
 Usage: python tools/py/register_budget.py [--budget N] [--json] <file.luau|directory> [...]
 Exit 1 when a file does not compile or a function is over budget; exit 2 when
 no Luau compiler is available.
@@ -86,6 +90,143 @@ def measure(listing):
     return functions
 
 
+IDENTIFIER = re.compile(r"^[A-Za-z_][A-Za-z0-9_]*")
+# A line ending in one of these continues the statement on the next line.
+CONTINUES = re.compile(r"(=|,|\(|\{|\.\.|\band|\bor|[-+*/])\s*$")
+
+
+def without_comment(text):
+    at = text.find("--")
+    return text if at == -1 else text[:at]
+
+
+def names_declared(text):
+    named = re.match(r"^\s*local\s+function\s+([A-Za-z_][A-Za-z0-9_]*)", text)
+    if named:
+        return [named.group(1)]
+    listed = re.match(r"^\s*local\s+([^=]+)", without_comment(text))
+    if not listed:
+        return []
+    depth = 0
+    piece = ""
+    pieces = []
+    for char in listed.group(1):
+        if char in "<({[":
+            depth += 1
+        if char in ">)}]":
+            depth -= 1
+        if char == "," and depth == 0:
+            pieces.append(piece)
+            piece = ""
+        else:
+            piece += char
+    pieces.append(piece)
+    names = []
+    for part in pieces:
+        match = IDENTIFIER.match(part.strip())
+        if match:
+            names.append(match.group(0))
+    return names
+
+
+def declarations(source):
+    lines = re.split(r"\r?\n", source)
+    found = []
+    for index, text in enumerate(lines):
+        names = names_declared(text)
+        if not names:
+            continue
+        last = index
+        while last + 1 < len(lines) and CONTINUES.search(without_comment(lines[last])):
+            last += 1
+        found.append({"names": names, "first": index + 1, "last": last + 1,
+                      "top": bool(re.match(r"^local\s", text)), "text": text})
+    return found
+
+
+def scope_leaks(listing, source):
+    declared = {}
+    for entry in declarations(source):
+        for name in entry["names"]:
+            declared.setdefault(name, []).append(entry)
+    leaks = {}
+    line = 0
+    for text in re.split(r"\r?\n", listing):
+        at = re.match(r"^\s+(\d+):", text)
+        if at:
+            line = int(at.group(1))
+            continue
+        found = re.match(r"^(?:GETGLOBAL|SETGLOBAL) R\d+ K\d+ \['([A-Za-z_][A-Za-z0-9_]*)'\]", text)
+        if not found or found.group(1) not in declared:
+            continue
+        name = found.group(1)
+        owners = declared[name]
+        if any(entry["first"] <= line <= entry["last"] for entry in owners):
+            continue
+        if name in leaks:
+            if line not in leaks[name]["lines"]:
+                leaks[name]["lines"].append(line)
+        else:
+            leaks[name] = {"name": name, "declaredAt": owners[0]["first"], "lines": [line]}
+    findings = []
+    for leak in leaks.values():
+        leak["lines"].sort()
+        extra = len(leak["lines"]) - 1
+        more = f" ({extra} more use{'s' if extra > 1 else ''})" if extra else ""
+        findings.append({
+            "code": "W-SCOPE",
+            "line": leak["lines"][0],
+            "message": f"`{leak['name']}` is declared local at line {leak['declaredAt']} but used here outside that scope, "
+            f"so it reads a global that is nil{more}; keep it in a table both places can see",
+        })
+    return findings
+
+
+FAMILIES = [
+    ("library elements", re.compile(r":\s*(?:Create|Add|New|Make)[A-Za-z0-9_]*\s*\("), "drop `local name =` from the unused ones"),
+    ("instances", re.compile(r"\bInstance\.new\s*\("), "put them in one ui table"),
+    ("services", re.compile(r":GetService\s*\("), None),
+    ("child lookups", re.compile(r":(?:WaitForChild|FindFirstChild)\s*\("), "put them in one table named for what they are, such as remotes"),
+    ("literal settings", re.compile(r"""^\s*(?:-?[0-9][0-9_.]*|"[^"]*"|'[^']*'|true|false)\s*$"""), "put them in one CONFIG table"),
+]
+FAMILY_MINIMUM = 60
+
+
+def local_families(source):
+    lines = re.split(r"\r?\n", source)
+    top = [entry for entry in declarations(source) if entry["top"]]
+    counts = {}
+    names = 0
+    unused_elements = 0
+    for entry in top:
+        names += len(entry["names"])
+        family = "local functions"
+        if not re.match(r"^local\s+function\s", entry["text"]):
+            value = "=".join(without_comment(entry["text"]).split("=")[1:])
+            family = next((name for name, pattern, _ in FAMILIES if pattern.search(value)), "other")
+            if family == "library elements" and len(entry["names"]) == 1:
+                rest = "\n".join(lines[entry["last"]:])
+                use = re.compile(r"(?<![A-Za-z0-9_.:])" + entry["names"][0] + r"(?![A-Za-z0-9_])")
+                if not use.search(rest):
+                    unused_elements += 1
+        counts[family] = counts.get(family, 0) + len(entry["names"])
+    advice = {name: hint for name, _, hint in FAMILIES}
+    advice["local functions"] = "make them fields of one table"
+    parts = []
+    for family, count in sorted(counts.items(), key=lambda item: (-item[1], item[0])):
+        unused = f", {unused_elements} never used again" if family == "library elements" and unused_elements else ""
+        hint = advice.get(family)
+        parts.append(f"{count} {family}{unused}{f' ({hint})' if hint else ''}")
+    return names, ", ".join(parts)
+
+
+def family_finding(source):
+    names, summary = local_families(source)
+    if names < FAMILY_MINIMUM:
+        return []
+    return [{"code": "I-LOCALS", "line": 1, "message": f"the main chunk declares {names} top-level locals: {summary}"}]
+
+
 def describe(entry):
     return "main chunk" if entry["name"] == "main chunk" else f"{entry['name']} (line {entry['first']})"
 
@@ -103,8 +244,12 @@ def check(file, budget):
             at, kind, message = "0", "Error", output.strip().split("\n")[0]
         cause = next((entry for entry in CAUSES if re.search(entry[0], message)), None)
         explained = f" - {cause[1]}; {cause[2]}" if cause else ""
-        return {"findings": [{"code": "E-COMPILE", "line": int(at), "message": f"{kind}: {message.strip()}{explained}"}], "functions": []}
+        findings = [{"code": "E-COMPILE", "line": int(at), "message": f"{kind}: {message.strip()}{explained}"}]
+        if re.search(r"Out of (?:local )?registers", message):
+            findings.extend(family_finding(Path(file).read_text(encoding="utf-8")))
+        return {"findings": findings, "functions": []}
 
+    source = Path(file).read_text(encoding="utf-8")
     functions = measure(listed.stdout)
     findings = []
     for entry in functions:
@@ -115,12 +260,15 @@ def check(file, budget):
                 "message": f"{describe(entry)} peaks at {entry['registers']} of {REGISTER_LIMIT} registers "
                 f"(locals stop at {LOCAL_LIMIT}); move locals into tables or functions now",
             })
+            if entry["name"] == "main chunk":
+                findings.extend(family_finding(source))
         if entry["upvalues"] >= min(budget, UPVALUE_LIMIT):
             findings.append({
                 "code": "W-UPVALUES",
                 "line": entry["first"],
                 "message": f"{describe(entry)} uses {entry['upvalues']} of {UPVALUE_LIMIT} upvalues; pass a context table instead",
             })
+    findings.extend(scope_leaks(listed.stdout, source))
     return {"findings": findings, "functions": functions}
 
 

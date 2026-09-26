@@ -1,6 +1,6 @@
 ---
 name: roblox-npc-ai
-description: Roblox NPCs and enemy AI - PathfindingService, blocked paths, MoveTo timeouts, state machines, sight checks, server-owned movement, many NPCs cheaply. Use for mobs, chase and patrol.
+description: NPCs and enemy AI - pathfinding, MoveTo timeouts, state machines, sight checks, many NPCs cheaply. Use for mobs, chase, patrol.
 ---
 
 # NPCs and enemy AI

@@ -1,6 +1,6 @@
 ---
 name: roblox-debugging
-description: Finding the real cause of a Roblox or executor bug - exact error, reproduce, which side runs it, one probe per hypothesis, error catalogue. Use for errors, it does nothing, works in Studio only.
+description: Finding a bug's real cause - exact error, which side runs it, one probe per hypothesis. Use for errors, it does nothing, works in Studio only.
 ---
 
 # Debugging Roblox and executor code

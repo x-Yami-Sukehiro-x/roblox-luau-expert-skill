@@ -483,3 +483,22 @@ than which file is reached.
 | 238 | "a script hub for several games" | `roblox-executor-scripting` → `assets/hub-loader.luau` routing by `game.GameId` |
 | 239 | "call this remote to get coins" with a dump | `remotes-from-evidence.md`: the call site's name, method and argument shapes; the server is the judge |
 
+
+## v5.10: registers, executor evidence, premium bar, words and UX
+
+| # | Prompt | Must reach |
+|---|---|---|
+| 240 | "Out of local registers when trying to allocate Toggle: exceeded limit 200" | `roblox-register-budget`: `check-registers` read for `I-LOCALS`, unused element locals dropped, a builder per tab, `W-SCOPE` read after; both counts reported |
+| 241 | "make me a hub with 120 toggles" | the register-safe shape from the first line: families in tables, no local per toggle |
+| 242 | "my loadstring script says attempt to call a nil value" | `assert(loadstring(source))()` to see the compile error before touching the script's logic |
+| 243 | "make OP features from these decompiled scripts" | `roblox-executor-planning` then `roblox-decompiled-features`: an archetype per feature, call-site arguments, `action-loop.luau` at the source's cooldown; nothing server-owned promised |
+| 244 | "what can I make for this game?" with a dump | `roblox-feature-recommendations`: `dump_index.py --inventory`, `source-signals.md`, a ranked shortlist with evidence and what the dump cannot show; no code unless asked |
+| 245 | "I don't know what the remote takes, can you find out?" | `roblox-runtime-probes` → `assets/remote-spy.luau`, and the reply says the pass-through hook stays installed |
+| 246 | "which table holds SprintSpeed?" | `assets/table-finder.luau` with the keys from the source; a feature only after exactly one match |
+| 247 | "make my script premium" | `roblox-executor-quality`: the twelve checks, the feature registry, idle cost, surviving updates |
+| 248 | "should this script have notifications and a config?" | `roblox-script-feedback`: notices for failures and background results only; `settings-file.luau` without a hub |
+| 249 | "make me a gui" with nothing else | `roblox-ui-from-scratch` → `worked-briefs.md`: a brief, real content or an honest shell, every state |
+| 250 | "my dropdown gets cut off inside the list" | `roblox-ux-design`: popups in their own `ScreenGui`, placed from the anchor and clamped |
+| 251 | "fix the formatting and UI of this script" | `roblox-ui-ux-review`: ranked findings with evidence, lint codes translated, reformatting only the touched region |
+| 252 | "the descriptions in my hub sound like AI" | `roblox-copy-craft`: `W-HYPE` findings and rewrites that name the effect |
+| 253 | any script about to be delivered | `roblox-ai-mistakes`: `check-file` read finding by finding, the five questions, what did not run said |

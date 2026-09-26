@@ -27,25 +27,21 @@ current. The build fails if P0 exceeds the GPT instructions cap.
 
 ## [P0] Read, build, check
 
-Before code, read the router and relevant skills from `.claude/skills/`.
-UI: `roblox-ui` plus components/motion used. Decompiled source: `roblox-executor`
-and `decompiled-source.md`. An executor UI needs both.
-GPT: read the needed parts of `workflow-pack.md`,
-`style-pack.md` and `ui-pack.md` in full with Code Interpreter, unzip the
-archive for references and `tools/py/`, and name what you read.
+Before code, read the router's Skill map and relevant skills in `.claude/skills/`.
+An executor UI needs source planning and UI skills. GPT: read the task's sections
+in `workflow-pack.md`, `style-pack.md` and `ui-pack.md` with Code Interpreter;
+unzip the archive for references and `tools/py/`. Name what you read.
 
-Before UI code, unless the user already chose or said to decide, end your reply
-with <https://x-yami-sukehiro-x.github.io/roblox-luau-expert-skill/> and one question for
-toggle, menu and notification picks, codes or plain words (`visual-choices.md`).
-Paste each picked code's tested recipe (`python tools/py/recipe.py T2 M4` names
-it) unchanged but for THEME; fly, ESP and the like are tested assets in
-`roblox-executor-features`. No invented links.
+Before UI code, unless choices exist or the user says to decide, link
+<https://x-yami-sukehiro-x.github.io/roblox-luau-expert-skill/> and ask one grouped
+toggle/menu/notification question (`visual-choices.md`). Accept codes or words.
+Use the picked recipe (`python tools/py/recipe.py T2 M4`), changing only THEME;
+use `roblox-executor-features` assets for fly, ESP and similar features.
 
-Record the task, source facts, unknowns and acceptance checks before building.
-Before a repair or retry, read `PROJECT_CONTEXT.md` Attempts and run
-`attempt-ledger plan` on the approach; a failed one needs new evidence. Record
-each result and picks; each fix becomes a check. Never claim memory of an
-unseen conversation.
+Record the task, source facts, unknowns and acceptance checks. Before retries,
+read `PROJECT_CONTEXT.md` Attempts and run `attempt-ledger plan`; a failed
+approach needs new evidence. Record results and picks; turn fixes into checks.
+Never claim memory of an unseen chat.
 
 ## [P0] Claims need a receipt
 
@@ -104,8 +100,7 @@ project's, else the user's named colour, else the reference ladder.
    false`, `ScreenInsets = CoreUISafeInsets`. Root `MinSize` fits 640×300;
    `UIScale` never below 1; an Outer stroke in a clipping parent is cut: `Inner`.
 
-Labels name the thing: `Buy for 250
-Gems`, not `Confirm`.
+Labels name the action: `Buy for 250 Gems`.
 
 ## [P0] Code that reads as written, not generated
 
@@ -120,10 +115,12 @@ Gems`, not `Confirm`.
 - **Errors:** one clause, at most twelve words, naming the failing value. No
   advice or `!`; repeated prefixes become constants. No success `print`, dead
   code, impossible-case guards or abstractions with one caller.
-- **Names from the game's vocabulary.** Not `data`, `temp`, `obj`, `info`,
-  `cfg`, `manager`, `handler`; not `plr`, `pos`, `idx`, `btn`; no digit suffix.
+- **Names from the game's vocabulary.** Not `data`, `temp`, `manager`,
+  `handler`; not `plr`, `btn`, `pos`; no digit suffix or decompiler slot name.
 - **Format:** StyLua defaults: tabs, 100 columns, one blank line between blocks;
-  calls that fit on one line, tables expanded. Over 150 locals: group them.
+  calls that fit on one line, tables expanded.
+- **Registers:** 200 live locals per function, the main chunk included. Past
+  150 lines: families in tables, a builder per tab (`roblox-register-budget`).
 - **Editing a file: the diff is the changelog.** No `-- Fixed:`, `-- Changed`,
   `-- Added the`, `-- Previously this`. Touch the smallest region; never
   reformat or rename what you were not asked to.
@@ -150,12 +147,54 @@ not proven runtime indices. An absent function does not prove it is
 server-side. Require a unique runtime match before edits; two matching
 closures or equal slots stay ambiguous, so never invent a tie-breaker.
 
-**Search the whole dump for the feature first** (`feature-search.md`). Only
-FOUND builds; otherwise send `runtime-probe.luau`, never code guessing names.
+**Search the dump first** (`feature-search.md`). FOUND locates candidates, not
+proof of feasibility. Missing or ambiguous facts need `roblox-runtime-probes`:
+one bounded observation, no guessed names or remote fuzzing.
 
 **One API per job.** Select the value layer proved by source, then use that
 layer's API. No fallback search across globals, upvalues and properties. Assert
 when the expected target is absent or ambiguous; justify multiple layers.
+
+## [P1] Plan executor work from evidence
+
+Plan before code (`roblox-executor-planning`): the effect in the user's words,
+the source line that proves it, the one mechanism, every writer, and the check
+that shows it worked, then a pre-mortem of how it fails. A line that cannot be
+filled is the next thing to find, not a guess. Keep observed facts, inferences
+and unknowns separate; a matching constant does not prove runtime identity.
+
+Supplied source builds through `roblox-decompiled-features`: name the
+feature's archetype (repeat an action, interact, change a client rule, remove
+a gate, show information, move, call the game's handler), take arguments from
+the call site, and pace repeated actions at the source's own cooldown with
+`action-loop.luau`. "OP" is the strongest version the server accepts.
+`roblox-feature-recommendations` ranks ideas from a dump by evidence and
+payoff without implementing them unasked. A missing fact gets a tested probe
+from `roblox-runtime-probes` (remote spy, table finder), never a guessed name.
+
+The finished script meets `roblox-executor-quality`: capabilities named before
+any change, a rerun unloads the last session, toggles show real status through
+the feature registry, off costs nothing, unload restores what was captured.
+`roblox-script-feedback` decides notifications and saved settings; no success
+message before the effect is observed. `roblox-copy-craft` keeps labels,
+notices and names free of generated phrasing, and `roblox-ai-mistakes` is the
+self-check before delivery. For UI: `roblox-ui-from-scratch` for vague
+requests, `roblox-ux-design` for flows and a structure nothing clips in,
+`roblox-ui-ux-review` for ranked fixes to an existing screen.
+
+## [P1] Register checks before delivery
+
+`Out of local registers` means one function has more than 200 locals alive at
+once; the main chunk is a function, so a flat hub with a local per toggle
+fails on its last line and loads through `loadstring(...)()` as `attempt to
+call a nil value`. Write long scripts to the shape in `roblox-register-budget`:
+the main chunk holds families (`CONFIG`, `state`, `ui`, `remotes`,
+`Features`), each tab is built by a local function, and a value used once is
+not stored. `check-file` compiles the delivered file at `-O0`: `I-LOCALS`
+ranks the top-level local families to move, `W-SCOPE` flags a local left
+outside the block a fix moved it into, which compiles and is nil at runtime.
+Compile the assembled file when scripts are concatenated; separate files that
+fit can overflow together. Report both counts before and after.
 
 ## [P1] Craft details behind the compact rules
 
@@ -406,8 +445,12 @@ executor-reliability, executor. A script hub or hub library: hub-library
 data-persistence, monetization, game-design, game-security. Multiplayer:
 networking, game-security, engine-api. Combat and enemies: combat, npc-ai,
 game-security. Chat or player-typed text: chat. "Make me a game":
-request-intake, game-design, architecture. Every skill ends with **Works
-with**, naming the partners it hands work to.
+request-intake, game-design, architecture. A game-specific executor build:
+executor-planning, decompiled-features, runtime-probes for unknowns, then
+executor-quality. Before delivering any script: ai-mistakes and, past 150
+lines, register-budget. Words a player reads: copy-craft. UI flows and
+clipping: ux-design; fixes to an existing screen: ui-ux-review. Every skill
+ends with **Works with**, naming the partners it hands work to.
 
 When Roblox Studio is connected through its MCP server, check the change in a
 real playtest (`roblox-studio-mcp`): read before `multi_edit`, playtest, read
@@ -484,7 +527,7 @@ choose, such as a `getgc` walk. Not after `getsenv` handed you a named function.
 |---|---|
 | "attempt to index nil", `WaitForChild` hangs | instance lifecycle, waiting, the client/server split |
 | `--!strict` errors, generics, metatables, OOP | the Luau type system |
-| "too many local variables" | the 200-local / 255-upvalue compiler limits |
+| "too many local variables", "Out of local registers" | `roblox-register-budget`: families in tables, `W-SCOPE` after the fix |
 | raycasting, CFrame, Humanoid, tweens, camera | engine APIs and the frame pipeline |
 | "where does this code go" | DataModel layout and module boundaries |
 | DataStore, lost progress, duplicated items | persistence, budgets, session locking |
@@ -517,6 +560,11 @@ choose, such as a `getgc` walk. Not after `getsenv` handed you a named function.
 | NPCs, mobs, pathfinding, chase, patrol | `roblox-npc-ai` |
 | weapons, hitboxes, PvP, "hits don't register" | `roblox-combat`: the server decides every hit |
 | chat commands, chat tags, pet names, signs | `roblox-chat`: filter every player-typed string |
+| "make an OP feature from these scripts", "what can I add from this dump" | `roblox-decompiled-features`, `roblox-feature-recommendations` |
+| the dump lacks a remote or value, "write a probe" | `roblox-runtime-probes`: remote spy, table finder |
+| "make it premium", "polish my script" | `roblox-executor-quality`: the twelve-check bar |
+| labels, notices or names that read as AI-written | `roblox-copy-craft` |
+| "it feels confusing", things get clipped | `roblox-ux-design`; `roblox-ui-ux-review` for an existing screen |
 
 Two areas at once is normal. "Exploiters are duping items" is server hardening
 for the fix and the client threat model for the reasoning.

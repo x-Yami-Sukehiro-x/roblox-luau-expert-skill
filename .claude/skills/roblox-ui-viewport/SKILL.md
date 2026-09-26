@@ -1,6 +1,6 @@
 ---
 name: roblox-ui-viewport
-description: Fitting Roblox UI on every screen, phone to 4K - bounded scale sizes, safe insets, grow-only UIScale, scrolling, popups kept on screen. Use for UI cut off or not fitting.
+description: Fitting Roblox UI phone to 4K - bounded sizes, safe insets, scrolling, popups kept on screen. Use for UI cut off or too big.
 ---
 
 # Every screen, all of the UI
@@ -99,3 +99,4 @@ is on screen; it does not show that the layout inside it looks right.
 - `roblox-ui-interaction`: targets that stay 44 px after scaling.
 - `roblox-studio-mcp`: screen captures on emulated devices.
 - `roblox-ui-components`: popups drawn above the panel that would clip them.
+- `roblox-ui-ux-review`: trace an observed clipping defect before choosing its fix.

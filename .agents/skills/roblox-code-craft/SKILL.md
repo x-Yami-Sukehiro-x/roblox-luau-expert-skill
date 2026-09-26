@@ -1,6 +1,6 @@
 ---
 name: roblox-code-craft
-description: How Roblox Luau should read - names, errors, comments, pcall discipline, formatting, the ceremony budget, removing AI slop. Use when writing or reviewing any Luau.
+description: How Roblox Luau should read - names, comments, errors, pcall discipline, formatting, the ceremony budget. Use when writing or reviewing Luau.
 ---
 
 # Code craft
@@ -88,6 +88,24 @@ the comment policy" above a thirteen-line provenance header.
 
 Full rules, with the reasoning and the counter-examples, in
 `references/anti-slop-code.md`.
+
+## Meaning before polish
+
+For source-derived code, name a value only after its callers and uses establish
+what it holds. If `u3` might be either a cooldown or a retry delay, keep that
+uncertainty in the working notes and resolve it before claiming either meaning.
+An elegant invented name is still a false claim about the program.
+
+Review comments and labels with the code beside them. Delete a comment that
+only translates the next statement; retain ordering constraints, engine quirks
+and invariants the statement cannot express. Describe the actual effect in UI
+copy: "Hide fog locally" has a checkable scope; "Unlock ultimate visuals" does
+not. Error text names the failed operation and preserves its diagnostic detail.
+
+For a register-pressure refactor, group values by lifetime or feature, not into
+an unexplained bag of abbreviations. Read `../roblox-register-budget/SKILL.md`
+and compile the assembled file after the change. A lower line count or a perfect
+style score does not establish equivalent callbacks, cleanup or behavior.
 
 ---
 

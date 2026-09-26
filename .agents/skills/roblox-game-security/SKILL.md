@@ -1,6 +1,6 @@
 ---
 name: roblox-game-security
-description: Defending a Roblox game from exploiters - threat model, remote validation, rate limits, server authority, Toolbox backdoor audits, admin commands and bans. Use for exploiters are doing X.
+description: Defending a Roblox game - remote validation, rate limits, server authority, Toolbox backdoor audits, bans. Use for exploiters are doing X.
 ---
 
 # Defending your game

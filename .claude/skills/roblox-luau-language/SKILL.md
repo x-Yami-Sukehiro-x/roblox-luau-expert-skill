@@ -1,6 +1,6 @@
 ---
 name: roblox-luau-language
-description: The Luau language - types and --!strict, generics, metatables and OOP, buffer, closures, garbage collection, register limits. Use for type errors and very long scripts.
+description: The Luau language - types, --!strict, generics, metatables, OOP, buffer, closures, compiler limits. Use for type errors.
 ---
 
 # Luau — the language
@@ -14,7 +14,7 @@ not are where the bugs live.
 | Question | File |
 |---|---|
 | type errors, generics, refinements, `--!strict` | `references/type-system.md` |
-| "too many local variables", "Out of local registers", won't compile, or a script growing past a few hundred lines | `references/compiler-limits.md`; measure with `node tools/bin/check-registers.mjs` |
+| "too many local variables", "Out of local registers", won't compile, or a script growing past a few hundred lines | `references/compiler-limits.md`; measure with `node tools/bin/check-registers.mjs`; write long scripts to the shape in `roblox-register-budget` |
 | classes, inheritance, `__index`, `setmetatable` | `references/oop-and-metatables.md` |
 | `table.*`, `string.*`, `buffer`, `vector`, `os.clock` | `references/stdlib.md` |
 
@@ -303,3 +303,4 @@ Full standard-library detail including `buffer` and `vector`:
 - `roblox-code-craft`: how typed code should read.
 - `roblox-toolchain`: luau-lsp and strict checking outside Studio.
 - `roblox-performance`: native code generation and allocation.
+- `roblox-register-budget`: long scripts written under the 200-local limit, and the scope check after a fix.

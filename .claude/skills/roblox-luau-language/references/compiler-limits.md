@@ -8,7 +8,9 @@ Six **different** compile errors, six **different** fixes. Identify which one yo
 node tools/bin/check-registers.mjs <file.luau>     # no Node: python tools/py/register_budget.py <file.luau>
 ```
 
-It compiles the file at `-O0` and prints each function's peak register use and the line where it peaks, and exits 1 on a compile error or any function at 160 registers or more.
+It compiles the file at `-O0` and prints each function's peak register use and the line where it peaks, and exits 1 on a compile error or any function at 160 registers or more. When the main chunk is the full function, `I-LOCALS` breaks its top-level locals into families (library elements never used again, settings, lookups, local functions), largest first. `W-SCOPE` flags a local used outside its scope after a refactor, which compiles and is nil at runtime.
+
+Writing long scripts under budget from the start, and the measured hub rewrite, are in `roblox-register-budget`. This file is the reference for all six limits.
 
 ---
 
@@ -160,7 +162,7 @@ Editing a script at 170 locals: **do not add another top-level local.** Put the 
 2. Pick the largest family of related top-level locals: usually UI references or settings.
 3. Create one table where the first of them was declared and move the whole family in one pass: `local shopFrame = ...` becomes `ui.shopFrame = ...`, and every use of `shopFrame` becomes `ui.shopFrame`. Search for each name, whole word, before and after; a missed use is a nil at runtime, not a compile error.
 4. Move each self-contained section (a tab's rows, a feature's connections) into a `local function` that takes the tables it needs.
-5. Compile, run `check-registers` again, and report both counts: `main chunk 187 → 64 registers`.
+5. Compile, run `check-registers` again, read every `W-SCOPE` (a use left outside the block the local moved into), and report both counts: `main chunk 187 → 64 registers`.
 
 Keep names unchanged apart from the table prefix, so the diff stays readable and nothing else is renamed.
 
