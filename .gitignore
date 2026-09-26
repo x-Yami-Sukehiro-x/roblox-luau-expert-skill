@@ -33,7 +33,7 @@ toastharness.luau
 docs/portability/gpt/knowledge/*.zip
 
 # Generated: the OpenAI plugin, rebuilt by tools/bin/build-openai-plugin.mjs.
-dist/
+/dist/
 
 # Machine-local: this checkout's Claude permissions and dev-server config.
 .claude/settings.local.json
