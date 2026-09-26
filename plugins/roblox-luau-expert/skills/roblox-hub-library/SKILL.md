@@ -1,6 +1,6 @@
 ---
 name: roblox-hub-library
-description: Building or improving a script hub UI library like WindUI, Rayfield or Obsidian - windows, tabs, elements, themes, configs, mobile - from the tested HubKit. Use for any hub UI.
+description: Script hub UI libraries like WindUI or Rayfield - windows, tabs, elements, themes, configs, mobile - from HubKit. Use for any hub UI.
 ---
 
 # Building a script hub UI library

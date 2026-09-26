@@ -1,5 +1,83 @@
 # Changelog
 
+## 5.10.0 — 2026-09-26
+
+Twelve new skills, a register checker that names what to move and catches
+the bug its own fix tends to cause, five tested assets and a copy rule. The
+skill list still fits the hosts' start-up budget: 46 skills in 6,976 of 7,000
+characters.
+
+### The register limit
+
+- **`check-registers`** (and its Python port) reports two new findings.
+  `I-LOCALS`: when the main chunk is the function that is full, its
+  top-level locals by family, largest first, including how many library
+  elements are never used again. `W-SCOPE`: a name declared `local` in the
+  file but read or written as a global elsewhere, which is what a local
+  moved into a `do` block turns into; it compiles and is nil at runtime.
+  Both ports agree on every Luau file in the repository.
+- **`roblox-register-budget`**: why generated scripts hit the 200-local
+  limit (a local per toggle, per setting, per remote, per feature), the
+  shape to write from the first line, counting without a compiler, the fix
+  in order, and why `loadstring(source)()` reports the compile error as
+  `attempt to call a nil value`. `references/hub-rewrite.md` is measured:
+  a 224-line hub with 199 top-level locals peaks at 206 registers and fails
+  two toggles later; the rewrite has 9 top-level locals and peaks at 16.
+- Known failures K19, K20 and K24 in the attempt ledger's shared list.
+
+### Executor scripts from the game's code
+
+- **`roblox-executor-planning`**: the plan in five lines before code
+  (effect, evidence, mechanism, writers, check) and a pre-mortem table.
+- **`roblox-decompiled-features`**: seven feature archetypes, each with the
+  evidence it needs, the one call, pacing, stop and the check that proves
+  it; `assets/action-loop.luau` repeats a game action at the source's own
+  cooldown (8 behaviour assertions).
+- **`roblox-feature-recommendations`**: code shapes in a dump and what each
+  suggests, genre words as searches rather than suggestions, and the
+  combinations of proven facts that make the strongest features.
+- **`roblox-runtime-probes`**: `assets/remote-spy.luau` logs the game's own
+  remote calls for a window through one pass-through hook that a rerun
+  reuses (12 assertions); `assets/table-finder.luau` prints every table
+  holding the source's keys without running a metamethod (14 assertions).
+- **`roblox-executor-quality`**: the premium bar in twelve checks, each with
+  a way to see it; `assets/feature-registry.luau` refuses two owners of one
+  property, reports a failed start with its reason and stops what it began
+  (10 assertions); resolving targets so a game update fails loudly.
+
+### UI, UX and words
+
+- **`roblox-ui-from-scratch`**: a whole screen from a one-line request, with
+  three worked briefs.
+- **`roblox-ux-design`**: flows written before layout, and a structure in
+  which nothing is built where clipping happens; common flows written out.
+- **`roblox-ui-ux-review`**: ranked formatting, UI and UX fixes, with each
+  linter code translated into the player's consequence and the smallest fix.
+- **`roblox-script-feedback`**: when a script needs notices, status and saved
+  settings; `assets/settings-file.luau` for scripts without a hub (13
+  assertions: types checked per field, an unreadable file kept aside, a
+  failed write reported, session-only without file access).
+- **`roblox-copy-craft`**: words on every surface, from labels to commit
+  messages. `lint-luau-slop` and `roblox_lint.py` add `W-HYPE` for marketing
+  words in `Text`, `Title`, `Description`, `Content`, `Subtitle`,
+  `PlaceholderText` and `Name` strings.
+- **`roblox-ai-mistakes`**: where models' mistakes come from, the ten that
+  cost most, and a catalogue by area with the linter code or test for each.
+- Known failures K21 to K23.
+
+### Loading and tooling
+
+- Every description rewritten with trigger words first; the router's
+  symptom table and skill map name all 46 skills and fell from 20,031 to
+  about 18,700 characters.
+- `run-recipe-tests`, `check-all` and `build-portable` find each skill's
+  assets by folder, so a new skill's scripts are tested, linted and packed
+  without being listed.
+- `auto-update.mjs` skips the publish while `.git/publish-hold` exists, so a
+  release spanning several scheduled passes is not published half-finished.
+- `docs/ROADMAP.md` lists what comes next, including a bytecode-header
+  register count to sit beside the listing's peak line.
+
 ## 5.9.0 — 2026-09-26
 
 Seven new skills, HubKit (a tested UI library for script hubs), and new

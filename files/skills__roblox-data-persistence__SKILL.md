@@ -1,6 +1,6 @@
 ---
 name: roblox-data-persistence
-description: Saving player data safely - DataStore budgets, UpdateAsync, session locking, ProfileStore and Lyra, migrations, BindToClose. Use for saves, leaderboards, lost or duplicated items.
+description: Saving player data safely - UpdateAsync, session locks, ProfileStore, migrations, BindToClose. Use for saves, lost or duplicated items.
 ---
 
 # Data persistence

@@ -50,6 +50,10 @@ Save the complete output file before running checks against that exact file.
 Run `python tools/py/check_luau.py <file>` after the last edit, before delivery.
 The bundled official Luau compiler catches syntax errors that regex linters miss.
 It compiles without executing the script; a syntax pass is not a behavior pass.
+Run `python tools/py/register_budget.py <file>` on the final assembled script
+as well, and read its `W-SCOPE` and `I-LOCALS` lines. Successful compilation of
+separate recipes does not prove their concatenation fits. Record the exact
+output artifact and compiler used.
 Fix findings, rerun affected checks, and report the final result plus remaining
 limits. A comparison with unchanged counts does not imply unchanged behavior;
 read the diff. Screenshots establish appearance, while activating controls

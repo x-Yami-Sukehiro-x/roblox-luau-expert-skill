@@ -1,6 +1,6 @@
 ---
 name: roblox-executor-scripting
-description: How an expert writes executor scripts - evidence before code, one layer per value, multi-game loaders by GameId, remotes from call sites, cross-executor checks. Use for any new executor script.
+description: How an expert writes executor scripts - evidence first, one layer per value, GameId loaders, remotes from call sites. Use for any new script.
 ---
 
 # Writing executor scripts like an expert

@@ -1,6 +1,6 @@
 ---
 name: roblox-networking
-description: Client-server communication - remotes, UnreliableRemoteEvent, replication, network ownership, bandwidth, MessagingService, teleports. Use for others can't see it and remote design.
+description: Client-server communication - remotes, replication, network ownership, bandwidth, teleports. Use for others can't see it.
 ---
 
 # Networking and replication

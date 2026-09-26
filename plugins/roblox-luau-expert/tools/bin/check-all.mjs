@@ -13,6 +13,7 @@
 // Exit 1 if any gate fails. Output is one line per gate plus the failures.
 
 import { spawnSync } from "node:child_process";
+import { existsSync, readdirSync } from "node:fs";
 import { join } from "node:path";
 import { pathToFileURL } from "node:url";
 import { REPO_ROOT } from "./lib/dump.mjs";
@@ -27,13 +28,17 @@ const EXEMPLARS = join(REPO_ROOT, "docs", "portability", "gpt", "UIs", "exemplar
 // when the user answers "T2 + M4", so they are held to the exemplars' bar.
 const RECIPES = join(REPO_ROOT, ".claude", "skills", "roblox-ui-components", "assets");
 
-// Scripts a reply hands to the user unchanged, such as the runtime probe and
-// the multi-game hub loader.
-const EXECUTOR_ASSETS = join(REPO_ROOT, ".claude", "skills", "roblox-executor", "assets");
-const SCRIPTING_ASSETS = join(REPO_ROOT, ".claude", "skills", "roblox-executor-scripting", "assets");
-
 // The feature scripts (fly, ESP, ...) a reply pastes whole.
 const FEATURE_ASSETS = join(REPO_ROOT, ".claude", "skills", "roblox-executor-features", "assets");
+
+// Every other skill's assets: scripts a reply hands to the user unchanged, such
+// as the runtime probe, the hub loader and the feature registry. Found by
+// folder, so a new skill's assets are gated without being listed here.
+const SKILLS = join(REPO_ROOT, ".claude", "skills");
+const SCRIPT_ASSETS = readdirSync(SKILLS)
+  .sort()
+  .map((skill) => join(SKILLS, skill, "assets"))
+  .filter((dir) => existsSync(dir) && dir !== RECIPES && dir !== FEATURE_ASSETS);
 
 // HubKit, the hub UI library roblox-hub-library points at, and its example.
 const HUB_KIT = join(REPO_ROOT, "library", "hub-kit", "src");
@@ -119,12 +124,12 @@ const GATES = [
     argv: [bin("lint-luau-format.mjs"), RECIPES],
   },
   {
-    name: "slop rubric over the executor assets",
-    argv: [bin("lint-luau-slop.mjs"), EXECUTOR_ASSETS, SCRIPTING_ASSETS],
+    name: "slop rubric over the script assets",
+    argv: [bin("lint-luau-slop.mjs"), ...SCRIPT_ASSETS],
   },
   {
-    name: "format rubric over the executor assets",
-    argv: [bin("lint-luau-format.mjs"), EXECUTOR_ASSETS, SCRIPTING_ASSETS],
+    name: "format rubric over the script assets",
+    argv: [bin("lint-luau-format.mjs"), ...SCRIPT_ASSETS],
   },
   {
     name: "slop rubric over the feature assets",
@@ -157,8 +162,7 @@ const GATES = [
       join(REPO_ROOT, "library", "src"),
       EXEMPLARS,
       RECIPES,
-      EXECUTOR_ASSETS,
-      SCRIPTING_ASSETS,
+      ...SCRIPT_ASSETS,
       FEATURE_ASSETS,
       HUB_KIT,
       join(REPO_ROOT, "library", "hub-kit", "dist"),

@@ -77,17 +77,25 @@ Two things follow:
 
 ---
 
-## 3. Config persistence — "execute once, everything is already on"
+## 3. Config persistence — remembered choices and deliberate restart
 
-The goal: a user runs the script and their previous toggles, sliders, keybinds and dropdowns are already applied — no re-toggling.
+The goal is to retain useful choices across sessions. Decide whether a script
+needs disk persistence using `../../roblox-script-feedback/SKILL.md` first.
+Preferences and running operations are different: saving a color does not
+imply restarting a farm, held key or pending action on the next execution.
 
 Rayfield, WindUI and Linoria's SaveManager converge on the same architecture. Take the architecture, not any one API.
 
 ### a) State lives in a registry, not on the widget
 
-Every stateful element gets a unique **flag** (Rayfield calls it `Flag`, Linoria the index name). State is stored in a global registry keyed by that flag — Linoria's `Toggles` / `Options`, Rayfield's `Rayfield.Flags`.
+Every persisted preference gets a unique **flag** (Rayfield calls it `Flag`,
+Linoria the index name). State is stored in a registry keyed by that flag —
+Linoria's `Toggles` / `Options`, Rayfield's `Rayfield.Flags`. Runtime state can
+have an owner without belonging in that saved registry.
 
-**Why this matters:** state that lives in a registry survives UI rebuilds, tab switches, and re-execution, because it was never stored in the UI in the first place. State stored on the Frame dies with the Frame.
+**Why this matters:** a registry kept outside the view can survive UI rebuilds
+and tab switches. Re-execution needs an explicit handoff, and a new session
+needs persisted storage; a table by itself guarantees neither.
 
 Flags must be unique. Duplicates silently overwrite each other in the saved file.
 
@@ -98,9 +106,15 @@ element:OnChanged(fn)   -- user changed it → run the feature
 element:SetValue(v)     -- code changed it → UI updates AND the callback fires
 ```
 
-This pair is the entire mechanism behind "features re-enable themselves". Loading a config is nothing more than iterating saved flags and calling `SetValue` on each. Because `SetValue` fires the callback, the feature turns itself back on as a side effect. No separate "apply config" code path exists — which means it cannot drift out of sync with the toggles.
+Preserve the library's setter contract. In HubKit, `Set` redraws and invokes
+the callback, even for the same value. A saved flag for an active feature
+therefore starts work on restore; include it only when that restart policy is
+intended. Keep one-shot actions and non-restoring operations out of saved flags.
 
-Design the registry so this holds. If `SetValue` does not fire callbacks, config loading silently restores the *visual* state without re-enabling anything, which is the most common bug in home-rolled config systems.
+Do not suppress callbacks while displaying an enabled toggle for a stopped
+feature. Restore validated preferences after construction; start requested
+operations once their dependencies exist. Reapply must not duplicate loops or
+connections. Failed starts leave accurate state and an actionable reason.
 
 ### c) Autoload marker
 
@@ -134,22 +148,15 @@ JSON via `HttpService:JSONEncode` / `JSONDecode` with `writefile` / `readfile`. 
 {Executor}/workspace/<Hub>/settings/autoload.txt
 ```
 
-Guard every filesystem call — see `roblox-executor/references/api/misc.md`:
+Feature-detect the filesystem capabilities used and check each read/write
+boundary result — see `roblox-executor/references/api/misc.md`. Decode is also
+a fallible boundary. Validate field types and ranges before applying anything;
+successful JSON decoding alone does not establish a valid config.
 
-```lua
-if not isfolder(dir) then makefolder(dir) end
-
-local data
-if isfile(path) then
-    local ok, decoded = pcall(function()
-        return game:GetService("HttpService"):JSONDecode(readfile(path))
-    end)
-    data = ok and decoded or nil
-end
-data = data or defaults   -- corrupt file falls back, never errors out
-```
-
-A corrupt config must degrade to defaults, not throw. Users delete files, executors truncate writes, and a config crash on startup makes the whole script look broken.
+A missing file can use defaults. For a corrupt file, preserve the original,
+show that defaults are in use and leave a recovery path. Do not immediately
+autosave defaults over the unreadable file. A failed write leaves visible
+unsaved state; no success notice is emitted before a checked write succeeds.
 
 ### g) Load order
 
@@ -224,7 +231,7 @@ Usually the difference between a GUI that feels finished and one that does not. 
 | **Loading** | Skeleton or spinner while the script initialises — never a blank frame |
 | **Empty search** | "No features match X" + clear action |
 | **Empty list** | Why it is empty and what to do about it |
-| **Config load failed** | Silent fallback to defaults **plus** a notification that it happened |
+| **Config load failed** | Defaults with a persistent reason and recovery action; preserve the unreadable file |
 | **Feature unsupported here** | Disable the control and say why — do not hide it silently, and do not let it fail on click |
 | **Executor missing a function** | Feature-detect at build time; disable with a reason (see `roblox-executor/references/technique/function-selection.md`) |
 | **Awaiting the game** | Character not spawned, remote not found — show the wait, do not appear frozen |
@@ -246,7 +253,7 @@ The last two matter especially in executor scripts. A toggle that does nothing b
 
 1. How many features? → decides tabs vs tabs+search vs search+categories.
 2. Which values must persist? → flags, registry, config folder scoped to the place.
-3. Is `SetValue` wired to fire callbacks? → if not, config loading will not re-enable anything.
+3. Which saved flags invoke callbacks on restore? → preserve the library contract; start only operations covered by the restore policy.
 4. Is the token spine in place before any widget is styled? → retrofitting it later is the expensive path.
 5. Are the non-happy states designed? → loading, empty, failed, unsupported.
 6. Is there an unload path? → written now, not later.

@@ -1,6 +1,6 @@
 ---
 name: roblox-improve
-description: Reviewing Roblox code, features or UI and ranking improvements by impact, each with evidence and the exact fix. Use for review this, improve it, what should I add.
+description: Reviewing Roblox code, features or UI and ranking changes by impact, with evidence and the fix. Use for review this, improve it.
 ---
 
 # Reviewing and suggesting improvements
@@ -66,8 +66,9 @@ Checked: check-file (0 errors, 2 warnings, quoted), lint-roblox-ui (26/32).
 Not checked: a live server with real latency.
 ```
 
-Then offer to apply them. When the user says yes, apply in severity order,
-smallest region each, and repost whole files.
+For a review-only request, give recommendations. When the user asked for fixes
+or improvements, apply the supported changes in severity order, smallest region
+each, and repost whole files; do not ask again for work already requested.
 
 ## What not to do
 
@@ -90,6 +91,10 @@ then the checks no linter can count, in
 for every action, the six states, copy that names things, the phone pass,
 and how an action *feels* (hit feedback, timing, sound).
 
+Use `../roblox-ui-ux-review/SKILL.md` to distinguish screenshot, source,
+computed-fit and runtime evidence, trace clipping to its owner, and compare
+the same state before and after a change.
+
 ## Works with
 
 - `roblox-code-craft`: what well-written Luau looks like, and the slop tells to remove.
@@ -102,3 +107,5 @@ and how an action *feels* (hit feedback, timing, sound).
 - `roblox-executor-reliability`: the regression matrix behind executor feature findings.
 - `roblox-debugging`: when a review turns into finding one specific bug.
 - `roblox-attempt-memory`: recording which suggestions were applied and what happened.
+- `roblox-ui-ux-review`: useful formatting, UI and UX findings with specific evidence.
+- `roblox-script-feedback`: whether notifications and configs improve the actual flow.

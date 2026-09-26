@@ -1,6 +1,6 @@
 ---
 name: roblox-performance
-description: Roblox performance and memory - MicroProfiler, ScriptProfiler, leaks, per-frame cost, instance churn, streaming, parallel Luau. Use for lag, low FPS or climbing memory.
+description: Roblox performance and memory - MicroProfiler, leaks, per-frame cost, instance churn, streaming. Use for lag, low FPS or climbing memory.
 ---
 
 # Performance and memory

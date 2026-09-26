@@ -113,6 +113,16 @@ SUCCESS_NARRATION = rx(
     r"installed|injected|executing|running|active|attached)\b", True
 )
 
+# Text a player reads: labels, descriptions, notices, placeholders.
+PLAYER_TEXT = re.compile(
+    r"""\b(Text|Title|Description|Content|Subtitle|PlaceholderText|Name)\s*=\s*(?:"((?:[^"\\]|\\.)*)"|'((?:[^'\\]|\\.)*)')"""
+)
+HYPE_WORDS = re.compile(
+    r"\b(seamless(?:ly)?|effortless(?:ly)?|unleash(?:es|ed)?|elevate[sd]?|powerful|cutting-edge|next-level|"
+    r"supercharge[sd]?|blazing(?:ly)?|lightning-fast|successfully|the power of|experience the)\b",
+    re.IGNORECASE,
+)
+
 PROSE_IN_MESSAGE = rx(
     r"\b(refusing to|please|make sure|you should|you can|try again|likely|probably|appears to|seems to|it looks like|"
     r"in order to|so that|because of this|for some reason)\b", True
@@ -617,6 +627,14 @@ def analyse(source, rel):
                 '"%s" is typed into %d messages. Declare it once as a constant and concatenate.'
                 % (prefix, count))
 
+    # --- words a player reads ---------------------------------------------
+    for match in PLAYER_TEXT.finditer(code):
+        text = match.group(2) if match.group(2) is not None else (match.group(3) or "")
+        hype = HYPE_WORDS.search(text)
+        if hype:
+            add("W-HYPE", line_of(code, match.start()),
+                '"%s" says "%s", which no player can check. Name the effect.' % (text[:48], hype.group(1)))
+
     # --- naming -----------------------------------------------------------
     for declaration in LOCAL_DECLARATION.finditer(code):
         rhs = declaration.group(3) or ""
@@ -730,7 +748,7 @@ def score(findings):
         ("restatement", none("E-RESTATE", "W-LABEL", "E-CLAUSE")),
         ("capability checks", none("E-CAPCHECK")),
         ("pcall discipline", none("E-PCALL-INFALLIBLE", "W-PCALL-DENSITY")),
-        ("message wording", none("E-ERRPROSE", "W-EMOJI")),
+        ("message wording", none("E-ERRPROSE", "W-EMOJI", "W-HYPE")),
         ("repeated prefix", none("E-PREFIX")),
         ("naming", none("W-GENERIC", "W-ABBREV", "W-NUMSUFFIX", "E-DECOMPNAME")),
         ("noise", none("W-SUCCESSPRINT", "W-MAGIC", "W-BANNER", "W-DENSITY", "E-TODO")),

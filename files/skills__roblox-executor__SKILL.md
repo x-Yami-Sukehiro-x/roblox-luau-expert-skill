@@ -1,6 +1,6 @@
 ---
 name: roblox-executor
-description: Executor and sUNC reference - hooking, getgc and upvalues, decompiled source, anti-cheat recon, value persistence. Use for executor functions, a pasted dump, or which call reaches a value.
+description: Executor and sUNC reference - hooking, getgc, upvalues, decompiled source, anti-cheat recon. Use for executor functions and value layers.
 ---
 
 # Executor and client-side scripting

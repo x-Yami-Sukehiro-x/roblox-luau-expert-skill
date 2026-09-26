@@ -1,6 +1,6 @@
 ---
 name: roblox-combat
-description: Fair Roblox combat that feels good - server-validated hits, shapecast hitboxes, cooldowns, damage, projectiles, lag tolerance, hit feedback. Use for weapons, abilities and PvP.
+description: Server-validated Roblox combat - hitboxes, weapons, projectiles, cooldowns, hit feedback. Use for weapons, PvP, hits don't register.
 ---
 
 # Combat

@@ -4,7 +4,7 @@
 // OpenAI retires custom GPTs on 11 December 2026. Its built-in "Migrate to
 // plugin" turns the GPT's 8,000-character instructions into one skill and copies
 // the knowledge files beside it. This builds the better replacement: all
-// thirty-four skills with their references, each loaded in full when its
+// forty-six skills with their references, each loaded in full when its
 // description matches, plus the tools, library and guide the skills point at.
 //
 // Output (gitignored, rebuilt from source):
@@ -114,14 +114,19 @@ function main() {
       "recipes, decompiled-source to executor scripts, networking, DataStores, performance and security.",
     author: { name: "x-Yami-Sukehiro-x" },
     license: "LicenseRef-PolyForm-Strict-1.0.0",
-    keywords: ["roblox", "luau", "ui", "ux", "executor", "hub", "combat", "npc", "decompiled", "anti-slop"],
+    keywords: ["roblox", "luau", "ui", "ux", "executor", "hub", "decompiled", "probe", "registers", "anti-slop"],
     extensions: {
       "com.openai": {
         interface: {
           displayName: "Roblox Luau Expert",
           shortDescription: "Roblox scripts, clean UI and executor work, checked rather than guessed",
           longDescription:
-            "Thirty-four Roblox skills in one plugin. UI requests start from a playable style picker with " +
+            "Forty-six Roblox skills in one plugin. Long scripts are written under the 200-local limit " +
+            "and checked with the Luau compiler, which also catches a local left outside its scope by a " +
+            "fix. Executor work is planned before it is coded, built from the decompiled source's own call " +
+            "sites with a paced action loop, held to a premium bar with honest feature status, and backed " +
+            "by tested probe scripts (a remote spy and a table finder) when the source is missing a fact. " +
+            "UI requests start from a playable style picker with " +
             "labeled toggles, checkboxes, dropdowns, menu animations, notifications and tooltips, and every " +
             "picked code has a tested recipe; a drag-and-drop UI designer copies whole screens for exact " +
             "rebuilds, sized for every screen from a 640 x 360 phone to 4K and held to one input contract " +

@@ -123,3 +123,38 @@ test, or only by reading; their `Check` line says which.
 - Saw: the user opened it and it looked the same
 - Instead: change hierarchy, surfaces and layout, and report the structural rows
 - Check: node tools/bin/lint-roblox-ui.mjs --compare before.luau after.luau
+
+## Long scripts and hubs
+
+### K19 failed: keeping every hub element in a top-level local
+- Tried: `local SpeedToggle = Tab:CreateToggle({...})` for every element of a hub, all in the main chunk
+- Saw: past 200 top-level locals the script does not compile; loaded through loadstring it fails as "attempt to call a nil value"
+- Instead: drop `local X =` where nothing reads the element, and build each tab in a local function (roblox-register-budget)
+- Check: node tools/bin/check-registers.mjs, I-LOCALS
+
+### K20 failed: freeing registers with a do block that hides a later use
+- Tried: wrap a section's locals in `do ... end` to get under the local limit
+- Saw: it compiles, and a use after `end` reads a global that is nil at runtime
+- Instead: move the family into a table both places can see
+- Check: node tools/bin/check-registers.mjs, W-SCOPE
+
+### K21 failed: a toggle that shows on when its feature failed to start
+- Tried: flip the toggle, start the feature, and let a start error print to the console
+- Saw: the switch is lit and nothing happens; the player reports that it does nothing
+- Instead: a registry that marks the feature failed with its reason and turns the toggle off (roblox-executor-quality/assets/feature-registry.luau)
+
+### K22 failed: repeating a game action as fast as the loop can run
+- Tried: an auto farm that fires the game's remote every frame, or after a bare task.wait()
+- Saw: the server refuses most requests, rate limits them, or kicks
+- Instead: the cooldown the game's own code uses as the interval (roblox-decompiled-features/assets/action-loop.luau)
+
+### K23 failed: a notification for every toggle
+- Tried: a success toast in every toggle callback, such as "Fly enabled!"
+- Saw: notices stack over the game and repeat what the switch already shows
+- Instead: notices for failures, background results and changes the player did not make (roblox-script-feedback)
+
+### K24 failed: reading "attempt to call a nil value" from a loader as the bug
+- Tried: debug a `loadstring(source)()` loader by changing the loaded script's logic
+- Saw: loadstring had returned nil and a compile error, which the trailing call hid
+- Instead: `assert(loadstring(source))()` shows the compile message itself
+- Check: roblox-register-budget, "In an executor"

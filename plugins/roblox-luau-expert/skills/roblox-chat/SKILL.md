@@ -1,6 +1,6 @@
 ---
 name: roblox-chat
-description: Roblox chat and player text - TextChatService commands, channels, tags and bubbles, and filtering every player-typed string. Use for chat, slash commands, pet names, signs.
+description: Roblox chat - TextChatService commands, channels, tags, and filtering every player-typed string. Use for chat commands, pet names.
 ---
 
 # Chat and player text

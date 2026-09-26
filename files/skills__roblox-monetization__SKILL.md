@@ -1,6 +1,6 @@
 ---
 name: roblox-monetization
-description: Robux monetization - game passes, developer products, idempotent ProcessReceipt, subscriptions, pricing, PolicyService and paid random items. Use for shops and purchase bugs.
+description: Robux monetization - game passes, developer products, idempotent ProcessReceipt, PolicyService. Use for shops and purchase bugs.
 ---
 
 # Monetization

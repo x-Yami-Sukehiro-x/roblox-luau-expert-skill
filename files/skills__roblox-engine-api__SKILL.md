@@ -1,6 +1,6 @@
 ---
 name: roblox-engine-api
-description: Roblox engine APIs - instances, attributes, tags, CFrame, raycasts, Humanoid, physics, tweens, camera, input, streaming, frame order. Use whenever code touches the engine.
+description: Roblox engine APIs - instances, CFrame, raycasts, Humanoid, physics, tweens, camera, input, streaming. Use when code touches the engine.
 ---
 
 # Roblox engine APIs

@@ -1,6 +1,6 @@
 ---
 name: roblox-ui
-description: Roblox UI layout and taste - build order, palettes, blueprints, flex layouts, typography, the countable rubric, localization and accessibility. Use for any GUI or HUD, and UI that looks AI-made.
+description: Roblox UI layout and taste - build order, palettes, blueprints, typography, the counted rubric. Use for any GUI, and UI that looks AI-made.
 ---
 
 # Roblox UI
@@ -20,7 +20,7 @@ This skill owns **layout, responsiveness and taste**. Two siblings own the rest:
 
 | Need | File |
 |---|---|
-| **a one-line request ("make me a gui") to a shippable screen** | `references/weak-prompt.md` |
+| **a one-line request ("make me a gui") to a useful working screen** | `../roblox-ui-from-scratch/SKILL.md`, `references/weak-prompt.md` |
 | **building any UI — start here** | `references/build-order.md` |
 | **which palette, which font, which radius** | `references/design-directions.md` |
 | **a layout recipe for a menu, list, grid, modal, HUD** | `references/blueprints.md` |
@@ -30,6 +30,8 @@ This skill owns **layout, responsiveness and taste**. Two siblings own the rest:
 | icons, lucide asset ids, `getcustomasset`, no more `"×"` | `../roblox-ui-components/references/icons.md` |
 | the notification does not match the panel | `../roblox-ui-components/references/shadows-and-elevation.md` |
 | "this looks AI-generated" / design review | `references/anti-slop-catalog.md` |
+| ranked formatting, UI and UX fixes with observed causes | `../roblox-ui-ux-review/SKILL.md` |
+| whether to add notifications, persistent status or saved settings | `../roblox-script-feedback/SKILL.md` |
 | scale vs offset, flex, safe areas, game vs hub vs plugin | `references/responsive-and-surfaces.md` |
 | structure that survives a re-skin — tokens, cascade, config persistence, search and changelog thresholds | `references/gui-architecture.md` |
 | visual craft — spacing, contrast, style directions | `references/gui-design.md` |
@@ -288,3 +290,6 @@ found by a player rather than by you.
 - `roblox-ui-tooltips`: the words around each control.
 - `roblox-hub-library`: the tested hub library when the UI is an executor hub.
 - `roblox-improve`: ranking what to fix first when reviewing a UI.
+- `roblox-ui-from-scratch`: selecting real content and a useful flow from a vague request.
+- `roblox-ui-ux-review`: evidence for recommendations and clipping repairs.
+- `roblox-script-feedback`: notifications and configurations that earn their place.

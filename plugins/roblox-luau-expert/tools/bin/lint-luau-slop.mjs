@@ -136,6 +136,13 @@ const FALLIBLE_HINT =
 const SUCCESS_NARRATION =
   /\b(enabled|loaded|unloaded|initiali[sz]ed|success|successfully|ready|complete|completed|done|started|starting|installed|injected|executing|running|active|attached)\b/i;
 
+// Text a player reads: labels, descriptions, notices, placeholders.
+const PLAYER_TEXT =
+  /\b(Text|Title|Description|Content|Subtitle|PlaceholderText|Name)\s*=\s*(?:"((?:[^"\\]|\\.)*)"|'((?:[^'\\]|\\.)*)')/g;
+
+const HYPE_WORDS =
+  /\b(seamless(?:ly)?|effortless(?:ly)?|unleash(?:es|ed)?|elevate[sd]?|powerful|cutting-edge|next-level|supercharge[sd]?|blazing(?:ly)?|lightning-fast|successfully|the power of|experience the)\b/i;
+
 const PROSE_IN_MESSAGE =
   /\b(refusing to|please|make sure|you should|you can|try again|likely|probably|appears to|seems to|it looks like|in order to|so that|because of this|for some reason)\b/i;
 
@@ -619,6 +626,17 @@ function analyse(rawSource, rel) {
     }
   }
 
+  // --- words a player reads ------------------------------------------------
+  // A label, description or notice that praises itself claims what no player
+  // can check; naming the effect in the game's words is the text's whole job.
+  for (const match of code.matchAll(PLAYER_TEXT)) {
+    const text = match[2] ?? match[3] ?? "";
+    const hype = HYPE_WORDS.exec(text);
+    if (hype) {
+      add("W-HYPE", lineOf(code, match.index), `"${text.slice(0, 48)}" says "${hype[1]}", which no player can check. Name the effect.`);
+    }
+  }
+
   // --- naming -------------------------------------------------------------
   for (const declaration of code.matchAll(/\blocal\s+([A-Za-z_][\w]*)\s*(?:,\s*([A-Za-z_][\w]*)\s*)?=\s*([^\n]*)/g)) {
     const rhs = declaration[3] ?? "";
@@ -806,7 +824,7 @@ function score(findings) {
     ["restatement", !has("E-RESTATE", "W-LABEL", "E-CLAUSE")],
     ["capability checks", !has("E-CAPCHECK")],
     ["pcall discipline", !has("E-PCALL-INFALLIBLE", "W-PCALL-DENSITY")],
-    ["message wording", !has("E-ERRPROSE", "W-EMOJI")],
+    ["message wording", !has("E-ERRPROSE", "W-EMOJI", "W-HYPE")],
     ["repeated prefix", !has("E-PREFIX")],
     ["naming", !has("W-GENERIC", "W-ABBREV", "W-NUMSUFFIX", "E-DECOMPNAME")],
     ["noise", !has("W-SUCCESSPRINT", "W-MAGIC", "W-BANNER", "W-DENSITY", "E-TODO")],

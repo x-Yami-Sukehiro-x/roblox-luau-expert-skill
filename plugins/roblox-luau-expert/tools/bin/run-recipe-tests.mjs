@@ -11,19 +11,20 @@
 // Usage:
 //   node tools/bin/run-recipe-tests.mjs [--keep]
 
-import { readFileSync, writeFileSync, rmSync, readdirSync, mkdtempSync } from "node:fs";
+import { existsSync, readFileSync, writeFileSync, rmSync, readdirSync, mkdtempSync } from "node:fs";
 import { join, basename } from "node:path";
 import { tmpdir } from "node:os";
 import { execFileSync } from "node:child_process";
 import { REPO_ROOT } from "./lib/dump.mjs";
 import { luauRuntime } from "./lib/luau-runtime.mjs";
 
-const RECIPE_DIRS = [
-  join(REPO_ROOT, ".claude", "skills", "roblox-ui-components", "assets"),
-  join(REPO_ROOT, ".claude", "skills", "roblox-executor", "assets"),
-  join(REPO_ROOT, ".claude", "skills", "roblox-executor-features", "assets"),
-  join(REPO_ROOT, ".claude", "skills", "roblox-executor-scripting", "assets"),
-];
+// Every skill's assets folder: a new skill that ships Luau is tested without
+// anyone remembering to list it here.
+const SKILLS = join(REPO_ROOT, ".claude", "skills");
+const RECIPE_DIRS = readdirSync(SKILLS)
+  .sort()
+  .map((skill) => join(SKILLS, skill, "assets"))
+  .filter((dir) => existsSync(dir));
 const TESTS = join(REPO_ROOT, "library", "tests", "recipes");
 const STUBS = join(REPO_ROOT, "library", "tests", "stubs.luau");
 

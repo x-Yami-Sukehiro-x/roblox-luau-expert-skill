@@ -1,6 +1,6 @@
 ---
 name: roblox-audio
-description: Roblox sound - Sound versus AudioPlayer and Wire graphs, music, effects, volume sliders, mixing, rolloff, footsteps. Use for any audio question.
+description: Roblox sound - Sound and AudioPlayer, music, effects, volume sliders, mixing, footsteps. Use for any audio question.
 ---
 
 # Audio
