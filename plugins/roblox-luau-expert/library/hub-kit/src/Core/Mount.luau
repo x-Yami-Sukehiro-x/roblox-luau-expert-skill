@@ -8,9 +8,11 @@
 
 local Players = game:GetService("Players")
 
-return function(): Instance
+local function mount(): Instance
 	if typeof(gethui) == "function" then
 		return gethui()
 	end
 	return Players.LocalPlayer:WaitForChild("PlayerGui")
 end
+
+return mount

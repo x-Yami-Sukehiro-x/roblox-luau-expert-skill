@@ -1,6 +1,6 @@
 ---
 name: roblox-audio
-description: Roblox sound - Sound versus AudioPlayer and Wire graphs, music, effects, volume sliders, mixing, rolloff, preloading, footsteps. Use for any audio, music or volume question.
+description: Roblox sound - Sound versus AudioPlayer and Wire graphs, music, effects, volume sliders, mixing, rolloff, footsteps. Use for any audio question.
 ---
 
 # Audio
@@ -139,3 +139,4 @@ hears everyone's menu clicks.
 - `roblox-ui-components`: volume sliders and mute toggles from the tested recipes.
 - `roblox-performance`: preloading and how many sounds play at once.
 - `roblox-networking`: which side plays a sound so others hear it.
+- `roblox-combat`: layered hit sounds scaled by how big the moment is.

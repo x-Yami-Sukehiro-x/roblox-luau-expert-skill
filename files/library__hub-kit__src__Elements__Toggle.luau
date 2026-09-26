@@ -1,7 +1,11 @@
 --[[
 	Toggle - an on/off switch across the whole row.
 
-	    local fly = Tab:Toggle({ Title = "Fly", Flag = "Fly", Callback = function(on) ... end })
+	    local fly = Tab:Toggle({
+	        Title = "Fly",
+	        Flag = "Fly",
+	        Callback = function(on) ... end,
+	    })
 
 	The knob moves as well as changing colour, so on and off differ for a
 	player who cannot tell the two colours apart. A toggle built with

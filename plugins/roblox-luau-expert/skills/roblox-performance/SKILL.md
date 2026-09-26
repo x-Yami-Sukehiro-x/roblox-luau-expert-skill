@@ -1,6 +1,6 @@
 ---
 name: roblox-performance
-description: Roblox performance and memory - MicroProfiler, ScriptProfiler, leaks, per-frame cost, instance churn, streaming, parallel Luau, native code. Use for lag, stutter, low FPS or climbing memory.
+description: Roblox performance and memory - MicroProfiler, ScriptProfiler, leaks, per-frame cost, instance churn, streaming, parallel Luau. Use for lag, low FPS or climbing memory.
 ---
 
 # Performance and memory
@@ -292,3 +292,4 @@ common wasted effort in Roblox performance work.
 - `roblox-engine-api`: the frame pipeline the costs sit in.
 - `roblox-ui-components`: virtualised lists instead of thousands of rows.
 - `roblox-studio-mcp`: Roblox's profiling skill during a playtest.
+- `roblox-npc-ai`: one scheduler and budgets for many NPCs.

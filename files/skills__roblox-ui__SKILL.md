@@ -1,6 +1,6 @@
 ---
 name: roblox-ui
-description: Roblox UI layout and design taste - build order, palettes, blueprints, screen archetypes, scale versus offset, flex layouts, typography, the countable rubric and anti-slop review. Use for any GUI, menu, HUD or hub, and UI that looks AI-made.
+description: Roblox UI layout and taste - build order, palettes, blueprints, flex layouts, typography, the countable rubric, localization and accessibility. Use for any GUI or HUD, and UI that looks AI-made.
 ---
 
 # Roblox UI
@@ -47,6 +47,8 @@ This skill owns **layout, responsiveness and taste**. Two siblings own the rest:
 | labels, row descriptions, subtitles, button text, empty states | `references/ui-copy.md` |
 | a pasted `roblox-ui-design` export from the UI designer | `references/design-spec.md` |
 | which icon fits a tab or feature | `../roblox-ui-components/references/icon-meaning.md` |
+| translation, text that grows, larger text, colour-blind safety, reduced motion | `references/localization-and-accessibility.md` |
+| a script hub's window, tabs, elements, themes and configs | `../roblox-hub-library/SKILL.md` |
 
 ## The four files that decide the outcome
 
@@ -284,3 +286,5 @@ found by a player rather than by you.
 - `roblox-ui-interaction`: every control answers mouse, touch and gamepad.
 - `roblox-ui-motion`: opening, closing and press feedback.
 - `roblox-ui-tooltips`: the words around each control.
+- `roblox-hub-library`: the tested hub library when the UI is an executor hub.
+- `roblox-improve`: ranking what to fix first when reviewing a UI.

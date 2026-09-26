@@ -1,6 +1,6 @@
 ---
 name: roblox-game-security
-description: Defending a Roblox game from exploiters - the client threat model, remote validation and rate limits, server authority, sanity checks, auditing Toolbox and Creator Store assets for backdoors. Use for "exploiters are doing X".
+description: Defending a Roblox game from exploiters - threat model, remote validation, rate limits, server authority, Toolbox backdoor audits, admin commands and bans. Use for exploiters are doing X.
 ---
 
 # Defending your game
@@ -14,6 +14,7 @@ can actually do, not from what feels risky.
 |---|---|
 | rate limiting, payload bounds, honeypots, replay, movement authority | `references/remote-hardening.md` |
 | Toolbox or Creator Store models, backdoors, sandboxing an asset | `references/audit-imported-assets.md` |
+| admin commands, kicks and bans that last, without a backdoor | `references/admin-commands.md` |
 
 ---
 
@@ -289,3 +290,5 @@ is what makes the defence proportionate instead of superstitious.
 - `roblox-monetization`: purchases granted once, on the server.
 - `roblox-executor`: what a client can actually do, the threat model's source.
 - `roblox-studio-mcp`: grepping imported assets for backdoors.
+- `roblox-combat`: validating every hit, cooldown and projectile on the server.
+- `roblox-chat`: command permissions and filtering player text.

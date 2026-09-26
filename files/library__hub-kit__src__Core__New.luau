@@ -9,7 +9,7 @@
 
 local Theme = require(script.Parent.Theme)
 
-return function(className: string, properties: { [string]: any }, parent: Instance?): any
+local function New(className: string, properties: { [string]: any }, parent: Instance?): any
 	local instance = Instance.new(className)
 	for property, value in properties do
 		if property == "Theme" then
@@ -23,3 +23,5 @@ return function(className: string, properties: { [string]: any }, parent: Instan
 	instance.Parent = parent
 	return instance
 end
+
+return New

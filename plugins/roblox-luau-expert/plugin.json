@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "roblox-luau-expert",
-  "version": "5.8.0+g8ebe708",
+  "version": "5.9.0+g1d244dd",
   "description": "Roblox and Luau expertise: verified engine APIs, clean UI with a labeled style picker and tested recipes, decompiled-source to executor scripts, networking, DataStores, performance and security.",
   "author": {
     "name": "x-Yami-Sukehiro-x"
@@ -13,6 +13,9 @@
     "ui",
     "ux",
     "executor",
+    "hub",
+    "combat",
+    "npc",
     "decompiled",
     "anti-slop"
   ],
@@ -21,7 +24,7 @@
       "interface": {
         "displayName": "Roblox Luau Expert",
         "shortDescription": "Roblox scripts, clean UI and executor work, checked rather than guessed",
-        "longDescription": "Twenty-seven Roblox skills in one plugin. UI requests start from a playable style picker with labeled toggles, checkboxes, dropdowns, menu animations, notifications and tooltips, and every picked code has a tested recipe; a drag-and-drop UI designer copies whole screens for exact rebuilds, sized for every screen from a 640 x 360 phone to 4K and held to one input contract for mouse, touch and gamepad. Fly, noclip, ESP, spectate, freecam and other character features ship as tested scripts, with a read-only doctor that reports why one does nothing. An attempt ledger records what failed so it is not tried again. Decompiled source is searched for the requested feature; when it is missing, a read-only runtime probe collects the evidence instead of guessed names. Every Roblox API is checked against a vendored API dump, and bundled Python checkers count the anti-slop and UI rules on the final file.",
+        "longDescription": "Thirty-four Roblox skills in one plugin. UI requests start from a playable style picker with labeled toggles, checkboxes, dropdowns, menu animations, notifications and tooltips, and every picked code has a tested recipe; a drag-and-drop UI designer copies whole screens for exact rebuilds, sized for every screen from a 640 x 360 phone to 4K and held to one input contract for mouse, touch and gamepad. Fly, noclip, ESP, spectate, freecam and other character features ship as tested scripts, with a read-only doctor that reports why one does nothing, and HubKit, a tested hub UI library in the shape of WindUI, is the base for any script hub. An attempt ledger records what failed so it is not tried again. Decompiled source is searched for the requested feature; when it is missing, a read-only runtime probe collects the evidence instead of guessed names. Every Roblox API is checked against a vendored API dump, and bundled Python checkers count the anti-slop and UI rules on the final file.",
         "developerName": "x-Yami-Sukehiro-x",
         "category": "Coding",
         "brandColor": "#2EA07F",

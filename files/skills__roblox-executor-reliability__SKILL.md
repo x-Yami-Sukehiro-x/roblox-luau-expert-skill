@@ -1,6 +1,6 @@
 ---
 name: roblox-executor-reliability
-description: Making an executor feature work in the user's game without regressions - value ownership, what rewrites it, the regression matrix, combining features. Use for "doesn't work", "stops after respawn", "broke my other feature".
+description: Making an executor feature hold in the user's game - value ownership, what rewrites it, the regression matrix, combining features. Use for doesn't work, stops after respawn.
 ---
 
 # Executor features that work
@@ -111,3 +111,5 @@ game. Run `node tools/bin/check-file.mjs <file>` and report it.
 - `roblox-executor-features`: the closest tested asset to start from.
 - `roblox-executor`: the layer-to-call map for game-owned values.
 - `roblox-attempt-memory`: each failed attempt recorded before the next.
+- `roblox-debugging`: the error catalogue and one-probe-per-hypothesis method.
+- `roblox-executor-scripting`: evidence and layer choice before a feature is built.

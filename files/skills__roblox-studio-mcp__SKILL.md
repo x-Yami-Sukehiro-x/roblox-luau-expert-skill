@@ -1,6 +1,6 @@
 ---
 name: roblox-studio-mcp
-description: Driving Roblox Studio through its built-in MCP server - read and edit scripts, run Luau, playtest, read the console, capture the screen, simulate input, and do it safely. Use to test a change in real Studio instead of guessing.
+description: Testing in real Roblox Studio through its MCP server - edit scripts, run Luau, playtest, read the console, screenshots, simulated input, safely. Use when Studio is connected.
 ---
 
 # Roblox Studio through MCP
@@ -83,3 +83,4 @@ Full rules and the tool reference: `references/safety.md`,
   passes their mocks cannot do.
 - `roblox-toolchain`: Rojo keeps files as the source of truth; a Studio edit
   in a Rojo project can be overwritten on the next sync, so edit the files there.
+- `roblox-debugging`: which probe to run in the playtest.

@@ -1,7 +1,11 @@
 --[[
 	Button - a whole row that runs its Callback once per press.
 
-	    Tab:Button({ Title = "Rejoin server", Description = "Same place, new server", Callback = rejoin })
+	    Tab:Button({
+	        Title = "Rejoin server",
+	        Description = "Same place, new server",
+	        Callback = rejoin,
+	    })
 
 	The chevron marks the row as something to press, since the row itself looks
 	like every other row until the pointer or selection reaches it.

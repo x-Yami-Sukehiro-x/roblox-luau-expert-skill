@@ -59,8 +59,10 @@ function Drag.attach(trove: any, handle: GuiObject, target: GuiObject)
 		-- origin its ScreenInsets give AbsolutePosition.
 		local layer = target:FindFirstAncestorWhichIsA("LayerCollector")
 		local corner, screen, size = layer.AbsolutePosition, layer.AbsoluteSize, target.AbsoluteSize
-		local left = math.clamp(startCorner.X + delta.X, corner.X, corner.X + math.max(screen.X - size.X, 0))
-		local top = math.clamp(startCorner.Y + delta.Y, corner.Y, corner.Y + math.max(screen.Y - size.Y, 0))
+		local roomX = math.max(screen.X - size.X, 0)
+		local roomY = math.max(screen.Y - size.Y, 0)
+		local left = math.clamp(startCorner.X + delta.X, corner.X, corner.X + roomX)
+		local top = math.clamp(startCorner.Y + delta.Y, corner.Y, corner.Y + roomY)
 		target.Position = UDim2.new(
 			startPosition.X.Scale,
 			startPosition.X.Offset + left - startCorner.X,

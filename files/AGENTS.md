@@ -387,11 +387,15 @@ counts before changing anything.
 Hosts may shorten or drop skill descriptions when many skills are installed,
 so the router's **Skill map** decides what to open, not luck. Any code you
 hand over: code craft and reply craft. Any repair or retry: attempt memory
-first. A UI, game or hub: ui, ui-components, ui-viewport, ui-interaction (and
-motion or tooltips when used). An executor feature: executor-features,
-executor-reliability, executor, plus the UI bundle for a hub. Saving, currency
-or shops: data-persistence, monetization, game-design, game-security.
-Multiplayer: networking, game-security, engine-api. "Make me a game":
+first. A bug or error: debugging, then attempt memory. A review or "improve
+it": improve and code craft. A UI, game or hub: ui, ui-components,
+ui-viewport, ui-interaction (and motion or tooltips when used). An executor
+script: executor-scripting first, then executor-features,
+executor-reliability, executor. A script hub or hub library: hub-library
+(HubKit in `library/hub-kit/`) plus the UI bundle. Saving, currency or shops:
+data-persistence, monetization, game-design, game-security. Multiplayer:
+networking, game-security, engine-api. Combat and enemies: combat, npc-ai,
+game-security. Chat or player-typed text: chat. "Make me a game":
 request-intake, game-design, architecture. Every skill ends with **Works
 with**, naming the partners it hands work to.
 
@@ -496,6 +500,13 @@ choose, such as a `getgc` walk. Not after `getsenv` handed you a named function.
 | "make me a game", balancing, retention, daily rewards | `roblox-game-design` |
 | "test it in Studio", playtest, a connected Studio MCP server | `roblox-studio-mcp` |
 | a Toolbox model, "is this model safe", backdoors | `audit-imported-assets.md` in `roblox-game-security` |
+| an error, "it does nothing", "works in Studio, not in game" | `roblox-debugging`: exact text, which side, one probe per hypothesis |
+| "review this", "improve it", "what should I add" | `roblox-improve`: ranked findings with evidence |
+| a new executor script, a multi-game hub, a loader | `roblox-executor-scripting` |
+| a hub's UI, "a library like WindUI", "improve my hub" | `roblox-hub-library` and HubKit |
+| NPCs, mobs, pathfinding, chase, patrol | `roblox-npc-ai` |
+| weapons, hitboxes, PvP, "hits don't register" | `roblox-combat`: the server decides every hit |
+| chat commands, chat tags, pet names, signs | `roblox-chat`: filter every player-typed string |
 
 Two areas at once is normal. "Exploiters are duping items" is server hardening
 for the fix and the client threat model for the reasoning.
@@ -562,33 +573,40 @@ the rules above.
 
 | Skill | Covers |
 |---|---|
-| `roblox-architecture` | Structuring a Roblox codebase - where code goes, ModuleScript boundaries, services and controllers, startup order, Trove and Janitor cleanup, Signa... |
-| `roblox-attempt-memory` | Remembers past attempts so failed fixes are never repeated - an attempt ledger in PROJECT_CONTEXT.md with plan, check and search tools and known fa... |
-| `roblox-audio` | Roblox sound - Sound versus AudioPlayer and Wire graphs, music, effects, volume sliders, mixing, rolloff, preloading, footsteps |
-| `roblox-code-craft` | How Roblox Luau code should read - names, errors, comments, pcall discipline, formatting, the ceremony budget, removing AI-generated slop, matching... |
-| `roblox-data-persistence` | Saving player data safely - DataStore budgets, UpdateAsync, session locking, ProfileStore and Lyra, migrations, BindToClose, data loss and item dup... |
-| `roblox-engine-api` | Roblox engine APIs and lifecycles - instances, attributes, tags, CFrame, raycasts, Humanoid, physics, tweens, camera, input, streaming, frame order... |
-| `roblox-executor` | Client-side and executor scripting - the sUNC API, hooking, getgc and upvalues, decompiled game source, anti-cheat recon, value persistence, script... |
-| `roblox-executor-features` | Tested paste-ready executor features - fly, noclip, speed, infinite jump, ESP, click teleport, anti-AFK, fullbright, spectate, camera unlock, freec... |
-| `roblox-executor-reliability` | Making an executor feature work in the user's game without regressions - value ownership, what rewrites it, the regression matrix, combining features |
-| `roblox-game-design` | Designing Roblox games that keep players - genre loops, the first session, progression and economy math, rewards, retention, live ops and analytics... |
-| `roblox-game-security` | Defending a Roblox game from exploiters - the client threat model, remote validation and rate limits, server authority, sanity checks, auditing Too... |
-| `roblox-luau-expert` | Router for every Roblox or Luau task - .lua/.luau files, Roblox Studio, Rojo, RemoteEvent, DataStore, UI, executor or sUNC scripts |
-| `roblox-luau-language` | The Luau language - types and --!strict, generics, metatables and OOP, buffer, vector, closures, garbage collection, compiler limits and out-of-reg... |
-| `roblox-monetization` | Robux monetization - game passes, developer products, idempotent ProcessReceipt with a PurchaseId ledger, subscriptions, pricing, PolicyService |
-| `roblox-networking` | Client-server communication - RemoteEvent and RemoteFunction, UnreliableRemoteEvent, what replicates, network ownership, bandwidth, lag compensatio... |
-| `roblox-performance` | Roblox performance and memory - MicroProfiler, ScriptProfiler, leaks, per-frame cost, instance churn, streaming, parallel Luau, native code |
-| `roblox-reply-craft` | How a Roblox reply is delivered - fast, short, whole scripts in one paste-ready block, short file names, no filler |
-| `roblox-request-intake` | Turning vague or non-technical Roblox requests into buildable work - defaults for every decision, the style picker question for UI, plain-language ... |
-| `roblox-studio-mcp` | Driving Roblox Studio through its built-in MCP server - read and edit scripts, run Luau, playtest, read the console, capture the screen, simulate i... |
+| `roblox-architecture` | Where Roblox code goes - ModuleScript boundaries, services and controllers, startup order, Trove and Janitor, Signal and Promise, frameworks |
+| `roblox-attempt-memory` | Never repeating a failed fix - the attempt ledger in PROJECT_CONTEXT.md with plan, check and search |
+| `roblox-audio` | Roblox sound - Sound versus AudioPlayer and Wire graphs, music, effects, volume sliders, mixing, rolloff, footsteps |
+| `roblox-chat` | Roblox chat and player text - TextChatService commands, channels, tags and bubbles, and filtering every player-typed string |
+| `roblox-code-craft` | How Roblox Luau should read - names, errors, comments, pcall discipline, formatting, the ceremony budget, removing AI slop |
+| `roblox-combat` | Fair Roblox combat that feels good - server-validated hits, shapecast hitboxes, cooldowns, damage, projectiles, lag tolerance, hit feedback |
+| `roblox-data-persistence` | Saving player data safely - DataStore budgets, UpdateAsync, session locking, ProfileStore and Lyra, migrations, BindToClose |
+| `roblox-debugging` | Finding the real cause of a Roblox or executor bug - exact error, reproduce, which side runs it, one probe per hypothesis, error catalogue |
+| `roblox-engine-api` | Roblox engine APIs - instances, attributes, tags, CFrame, raycasts, Humanoid, physics, tweens, camera, input, streaming, frame order |
+| `roblox-executor` | Executor and sUNC reference - hooking, getgc and upvalues, decompiled source, anti-cheat recon, value persistence |
+| `roblox-executor-features` | Tested executor features - fly, noclip, speed, infinite jump, ESP, click teleport, anti-AFK, fullbright, spectate, freecam - and a feature doctor |
+| `roblox-executor-reliability` | Making an executor feature hold in the user's game - value ownership, what rewrites it, the regression matrix, combining features |
+| `roblox-executor-scripting` | How an expert writes executor scripts - evidence before code, one layer per value, multi-game loaders by GameId, remotes from call sites, cross-exe... |
+| `roblox-game-design` | Roblox games that keep players - genre loops, first session, progression and economy math, rewards, retention, analytics |
+| `roblox-game-security` | Defending a Roblox game from exploiters - threat model, remote validation, rate limits, server authority, Toolbox backdoor audits, admin commands a... |
+| `roblox-hub-library` | Building or improving a script hub UI library like WindUI, Rayfield or Obsidian - windows, tabs, elements, themes, configs, mobile - from the teste... |
+| `roblox-improve` | Reviewing Roblox code, features or UI and ranking improvements by impact, each with evidence and the exact fix |
+| `roblox-luau-expert` | Router for every Roblox or Luau task - .lua/.luau, Studio, Rojo, remotes, DataStores, UI, executor scripts |
+| `roblox-luau-language` | The Luau language - types and --!strict, generics, metatables and OOP, buffer, closures, garbage collection, register limits |
+| `roblox-monetization` | Robux monetization - game passes, developer products, idempotent ProcessReceipt, subscriptions, pricing, PolicyService and paid random items |
+| `roblox-networking` | Client-server communication - remotes, UnreliableRemoteEvent, replication, network ownership, bandwidth, MessagingService, teleports |
+| `roblox-npc-ai` | Roblox NPCs and enemy AI - PathfindingService, blocked paths, MoveTo timeouts, state machines, sight checks, server-owned movement, many NPCs cheaply |
+| `roblox-performance` | Roblox performance and memory - MicroProfiler, ScriptProfiler, leaks, per-frame cost, instance churn, streaming, parallel Luau |
+| `roblox-reply-craft` | How a Roblox reply is delivered - fast, short, whole scripts in one paste-ready block, no filler |
+| `roblox-request-intake` | Turning vague Roblox requests into buildable work - defaults for every decision, the style picker question, plain-language replies |
+| `roblox-studio-mcp` | Testing in real Roblox Studio through its MCP server - edit scripts, run Luau, playtest, read the console, screenshots, simulated input, safely |
 | `roblox-toolchain` | Roblox tooling outside Studio - Rojo, Rokit, Wally, selene, StyLua, luau-lsp, Lune, tests and CI |
-| `roblox-ui` | Roblox UI layout and design taste - build order, palettes, blueprints, screen archetypes, scale versus offset, flex layouts, typography, the counta... |
-| `roblox-ui-components` | Building Roblox UI controls - the tested recipe for every style picker code (toggles, checkboxes, dropdowns, menus, notifications, buttons, tabs), ... |
-| `roblox-ui-interaction` | Making every Roblox UI control respond on PC, phone and gamepad - Activated, touch press states, 44 px hit areas, selection and focus, menus versus... |
-| `roblox-ui-motion` | Animating Roblox UI - easing and durations, TweenService, springs and SmoothDamp, choreography, reduced motion, janky or idle animation |
-| `roblox-ui-tooltips` | Roblox tooltips and the words around a control - hover and long-press tooltips, info buttons, helper lines, locked reasons, coach marks, slider val... |
-| `roblox-ui-viewport` | Fitting Roblox UI on every screen from a 640 x 360 phone to 4K and ultrawide - bounded scale sizes, safe insets, a grow-only UIScale, scrolling ove... |
-| `roblox-vfx-animation` | Roblox animation and visual effects - AnimationTrack lifecycle, priority and blending, markers, particles, beams, trails, Highlights |
+| `roblox-ui` | Roblox UI layout and taste - build order, palettes, blueprints, flex layouts, typography, the countable rubric, localization and accessibility |
+| `roblox-ui-components` | Roblox UI controls - the tested recipe for every style picker code (toggles, dropdowns, menus, notifications, tabs), outlines, shadows, icons, six ... |
+| `roblox-ui-interaction` | Making Roblox UI respond on PC, phone and gamepad - Activated, touch press, 44 px targets, selection and focus |
+| `roblox-ui-motion` | Animating Roblox UI - easing, durations, TweenService, springs, choreography, reduced motion |
+| `roblox-ui-tooltips` | Roblox tooltips and the words around controls - hover and long-press tips, helper lines, locked reasons, slider readouts (H codes) |
+| `roblox-ui-viewport` | Fitting Roblox UI on every screen, phone to 4K - bounded scale sizes, safe insets, grow-only UIScale, scrolling, popups kept on screen |
+| `roblox-vfx-animation` | Roblox animation and effects - AnimationTrack lifecycle, priority, markers, particles, beams, trails, Highlights |
 
 ## Verification tools
 

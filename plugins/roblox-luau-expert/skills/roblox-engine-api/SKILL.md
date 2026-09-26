@@ -1,6 +1,6 @@
 ---
 name: roblox-engine-api
-description: Roblox engine APIs and lifecycles - instances, attributes, tags, CFrame, raycasts, Humanoid, physics, tweens, camera, input, streaming, frame order, and errors like "attempt to index nil". Use whenever code touches the engine.
+description: Roblox engine APIs - instances, attributes, tags, CFrame, raycasts, Humanoid, physics, tweens, camera, input, streaming, frame order. Use whenever code touches the engine.
 ---
 
 # Roblox engine APIs
@@ -376,3 +376,6 @@ script start, and `GetService` creates it; dot access errors.
 - `roblox-performance`: what each call costs per frame.
 - `roblox-vfx-animation`: animation tracks and effects on the same instances.
 - `roblox-studio-mcp`: reading live state on server and client in a playtest.
+- `roblox-npc-ai`: pathfinding and Humanoid movement for NPCs.
+- `roblox-combat`: shapecasts and spatial queries used as hitboxes.
+- `roblox-chat`: TextChatService commands, channels and filtering.

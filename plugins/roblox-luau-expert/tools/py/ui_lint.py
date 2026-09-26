@@ -660,7 +660,9 @@ def analyse(raw_source, rel, gui):
             "TextScaled without a UITextSizeConstraint - unbounded on small and huge screens")
 
     # --- corner radii -----------------------------------------------------
-    radii = set()
+    # A dict keeps first-seen order, as the Node Set does, so the two ports
+    # list the same radii in the same order.
+    radii = {}
     for element in elements:
         for key in ("CornerRadius", "TopLeftRadius", "TopRightRadius",
                     "BottomLeftRadius", "BottomRightRadius"):
@@ -669,11 +671,11 @@ def analyse(raw_source, rel, gui):
                 continue
             offset = udim_offset(expression)
             if offset is not None:
-                radii.add(offset)
+                radii[offset] = True
             elif re.search(r"UDim\.new\(\s*0?\.5", expression):
-                radii.add("pill")
+                radii["pill"] = True
             else:
-                radii.add(re.sub(r"\s+", "", expression))
+                radii[re.sub(r"\s+", "", expression)] = True
     if len(radii) > MAX_DISTINCT_RADII:
         add("E-RADII", 1,
             "%d distinct corner radii (%s) - two is the whole language (build-order.md step 7)"

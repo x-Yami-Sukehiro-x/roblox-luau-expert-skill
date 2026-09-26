@@ -1,6 +1,6 @@
 ---
 name: roblox-architecture
-description: Structuring a Roblox codebase - where code goes, ModuleScript boundaries, services and controllers, startup order, Trove and Janitor cleanup, Signal and Promise, frameworks. Use for "where does this code go" and project layout.
+description: Where Roblox code goes - ModuleScript boundaries, services and controllers, startup order, Trove and Janitor, Signal and Promise, frameworks. Use for project layout.
 ---
 
 # Architecture

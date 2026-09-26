@@ -1,22 +1,22 @@
 {
   "repository": "x-Yami-Sukehiro-x/roblox-luau-expert-skill",
-  "source": "8ebe708e50681905cb72b9eb384bd6f679a2727a",
-  "version": "5.8.0+g8ebe708",
+  "source": "1d244dda7bd69f62ec721b0137c3f7ce90a901a0",
+  "version": "5.9.0+g1d244dd",
   "files": [
     {
       "name": "AGENTS.md",
       "path": "AGENTS.md",
-      "bytes": 35714
+      "bytes": 37283
     },
     {
       "name": "docs__CHANGELOG.md",
       "path": "docs/CHANGELOG.md",
-      "bytes": 82509
+      "bytes": 87489
     },
     {
       "name": "docs__SOURCES.md",
       "path": "docs/SOURCES.md",
-      "bytes": 19347
+      "bytes": 21497
     },
     {
       "name": "docs__mcp.md",
@@ -69,14 +69,69 @@
       "bytes": 7049
     },
     {
+      "name": "library__hub-kit__README.md",
+      "path": "library/hub-kit/README.md",
+      "bytes": 8470
+    },
+    {
+      "name": "library__hub-kit__default.project.json",
+      "path": "library/hub-kit/default.project.json",
+      "bytes": 59
+    },
+    {
+      "name": "library__hub-kit__example__Example.luau",
+      "path": "library/hub-kit/example/Example.luau",
+      "bytes": 5270
+    },
+    {
+      "name": "library__hub-kit__src__Components__Dialog.luau",
+      "path": "library/hub-kit/src/Components/Dialog.luau",
+      "bytes": 6730
+    },
+    {
+      "name": "library__hub-kit__src__Components__Notifications.luau",
+      "path": "library/hub-kit/src/Components/Notifications.luau",
+      "bytes": 7002
+    },
+    {
+      "name": "library__hub-kit__src__Components__OpenButton.luau",
+      "path": "library/hub-kit/src/Components/OpenButton.luau",
+      "bytes": 3404
+    },
+    {
+      "name": "library__hub-kit__src__Components__Popup.luau",
+      "path": "library/hub-kit/src/Components/Popup.luau",
+      "bytes": 3579
+    },
+    {
+      "name": "library__hub-kit__src__Components__Section.luau",
+      "path": "library/hub-kit/src/Components/Section.luau",
+      "bytes": 3859
+    },
+    {
+      "name": "library__hub-kit__src__Components__SettingsTab.luau",
+      "path": "library/hub-kit/src/Components/SettingsTab.luau",
+      "bytes": 3614
+    },
+    {
+      "name": "library__hub-kit__src__Components__Tab.luau",
+      "path": "library/hub-kit/src/Components/Tab.luau",
+      "bytes": 4897
+    },
+    {
+      "name": "library__hub-kit__src__Components__Window.luau",
+      "path": "library/hub-kit/src/Components/Window.luau",
+      "bytes": 13629
+    },
+    {
       "name": "library__hub-kit__src__Core__Config.luau",
       "path": "library/hub-kit/src/Core/Config.luau",
-      "bytes": 4605
+      "bytes": 4611
     },
     {
       "name": "library__hub-kit__src__Core__Drag.luau",
       "path": "library/hub-kit/src/Core/Drag.luau",
-      "bytes": 2673
+      "bytes": 2717
     },
     {
       "name": "library__hub-kit__src__Core__Icons.luau",
@@ -86,17 +141,17 @@
     {
       "name": "library__hub-kit__src__Core__Motion.luau",
       "path": "library/hub-kit/src/Core/Motion.luau",
-      "bytes": 1337
+      "bytes": 1343
     },
     {
       "name": "library__hub-kit__src__Core__Mount.luau",
       "path": "library/hub-kit/src/Core/Mount.luau",
-      "bytes": 478
+      "bytes": 497
     },
     {
       "name": "library__hub-kit__src__Core__New.luau",
       "path": "library/hub-kit/src/Core/New.luau",
-      "bytes": 793
+      "bytes": 808
     },
     {
       "name": "library__hub-kit__src__Core__Signal.luau",
@@ -116,7 +171,12 @@
     {
       "name": "library__hub-kit__src__Elements__Button.luau",
       "path": "library/hub-kit/src/Elements/Button.luau",
-      "bytes": 1055
+      "bytes": 1088
+    },
+    {
+      "name": "library__hub-kit__src__Elements__ColorPicker.luau",
+      "path": "library/hub-kit/src/Elements/ColorPicker.luau",
+      "bytes": 7084
     },
     {
       "name": "library__hub-kit__src__Elements__Divider.luau",
@@ -124,9 +184,24 @@
       "bytes": 698
     },
     {
+      "name": "library__hub-kit__src__Elements__Dropdown.luau",
+      "path": "library/hub-kit/src/Elements/Dropdown.luau",
+      "bytes": 7834
+    },
+    {
+      "name": "library__hub-kit__src__Elements__Input.luau",
+      "path": "library/hub-kit/src/Elements/Input.luau",
+      "bytes": 2467
+    },
+    {
+      "name": "library__hub-kit__src__Elements__Keybind.luau",
+      "path": "library/hub-kit/src/Elements/Keybind.luau",
+      "bytes": 3657
+    },
+    {
       "name": "library__hub-kit__src__Elements__Paragraph.luau",
       "path": "library/hub-kit/src/Elements/Paragraph.luau",
-      "bytes": 862
+      "bytes": 851
     },
     {
       "name": "library__hub-kit__src__Elements__Row.luau",
@@ -134,9 +209,19 @@
       "bytes": 7358
     },
     {
+      "name": "library__hub-kit__src__Elements__Slider.luau",
+      "path": "library/hub-kit/src/Elements/Slider.luau",
+      "bytes": 6467
+    },
+    {
       "name": "library__hub-kit__src__Elements__Toggle.luau",
       "path": "library/hub-kit/src/Elements/Toggle.luau",
-      "bytes": 2425
+      "bytes": 2458
+    },
+    {
+      "name": "library__hub-kit__src__Elements__init.luau",
+      "path": "library/hub-kit/src/Elements/init.luau",
+      "bytes": 2416
     },
     {
       "name": "library__hub-kit__src__Themes__Daylight.luau",
@@ -157,6 +242,26 @@
       "name": "library__hub-kit__src__Themes__init.luau",
       "path": "library/hub-kit/src/Themes/init.luau",
       "bytes": 168
+    },
+    {
+      "name": "library__hub-kit__src__init.luau",
+      "path": "library/hub-kit/src/init.luau",
+      "bytes": 1998
+    },
+    {
+      "name": "library__hub-kit__tests__example.luau",
+      "path": "library/hub-kit/tests/example.luau",
+      "bytes": 2561
+    },
+    {
+      "name": "library__hub-kit__tests__hub-kit.luau",
+      "path": "library/hub-kit/tests/hub-kit.luau",
+      "bytes": 17276
+    },
+    {
+      "name": "library__hub-kit__tests__stubs-extra.luau",
+      "path": "library/hub-kit/tests/stubs-extra.luau",
+      "bytes": 7418
     },
     {
       "name": "library__src__Components__Button.luau",
@@ -294,6 +399,11 @@
       "bytes": 1557
     },
     {
+      "name": "library__tests__recipes__hub-loader.luau",
+      "path": "library/tests/recipes/hub-loader.luau",
+      "bytes": 1887
+    },
+    {
       "name": "library__tests__recipes__infinite-jump.luau",
       "path": "library/tests/recipes/infinite-jump.luau",
       "bytes": 1702
@@ -361,7 +471,7 @@
     {
       "name": "skills__roblox-architecture__SKILL.md",
       "path": "skills/roblox-architecture/SKILL.md",
-      "bytes": 10827
+      "bytes": 10765
     },
     {
       "name": "skills__roblox-architecture__references__ui-state.md",
@@ -371,7 +481,7 @@
     {
       "name": "skills__roblox-attempt-memory__SKILL.md",
       "path": "skills/roblox-attempt-memory/SKILL.md",
-      "bytes": 6703
+      "bytes": 6701
     },
     {
       "name": "skills__roblox-attempt-memory__references__known-failures.md",
@@ -391,7 +501,7 @@
     {
       "name": "skills__roblox-audio__SKILL.md",
       "path": "skills/roblox-audio/SKILL.md",
-      "bytes": 5061
+      "bytes": 5103
     },
     {
       "name": "skills__roblox-audio__references__audio-graph.md",
@@ -399,9 +509,24 @@
       "bytes": 8291
     },
     {
+      "name": "skills__roblox-chat__SKILL.md",
+      "path": "skills/roblox-chat/SKILL.md",
+      "bytes": 4083
+    },
+    {
+      "name": "skills__roblox-chat__references__commands-and-channels.md",
+      "path": "skills/roblox-chat/references/commands-and-channels.md",
+      "bytes": 3284
+    },
+    {
+      "name": "skills__roblox-chat__references__filtering.md",
+      "path": "skills/roblox-chat/references/filtering.md",
+      "bytes": 2761
+    },
+    {
       "name": "skills__roblox-code-craft__SKILL.md",
       "path": "skills/roblox-code-craft/SKILL.md",
-      "bytes": 12224
+      "bytes": 12233
     },
     {
       "name": "skills__roblox-code-craft__references__anti-slop-code.md",
@@ -434,9 +559,29 @@
       "bytes": 7635
     },
     {
+      "name": "skills__roblox-combat__SKILL.md",
+      "path": "skills/roblox-combat/SKILL.md",
+      "bytes": 4323
+    },
+    {
+      "name": "skills__roblox-combat__references__game-feel.md",
+      "path": "skills/roblox-combat/references/game-feel.md",
+      "bytes": 2751
+    },
+    {
+      "name": "skills__roblox-combat__references__hit-detection.md",
+      "path": "skills/roblox-combat/references/hit-detection.md",
+      "bytes": 3711
+    },
+    {
+      "name": "skills__roblox-combat__references__weapons-and-projectiles.md",
+      "path": "skills/roblox-combat/references/weapons-and-projectiles.md",
+      "bytes": 2336
+    },
+    {
       "name": "skills__roblox-data-persistence__SKILL.md",
       "path": "skills/roblox-data-persistence/SKILL.md",
-      "bytes": 12282
+      "bytes": 12317
     },
     {
       "name": "skills__roblox-data-persistence__references__profilestore-and-lyra.md",
@@ -444,9 +589,29 @@
       "bytes": 8538
     },
     {
+      "name": "skills__roblox-debugging__SKILL.md",
+      "path": "skills/roblox-debugging/SKILL.md",
+      "bytes": 5141
+    },
+    {
+      "name": "skills__roblox-debugging__references__error-catalogue.md",
+      "path": "skills/roblox-debugging/references/error-catalogue.md",
+      "bytes": 4565
+    },
+    {
+      "name": "skills__roblox-debugging__references__probes.md",
+      "path": "skills/roblox-debugging/references/probes.md",
+      "bytes": 2646
+    },
+    {
+      "name": "skills__roblox-debugging__references__silent-failures.md",
+      "path": "skills/roblox-debugging/references/silent-failures.md",
+      "bytes": 2913
+    },
+    {
       "name": "skills__roblox-engine-api__SKILL.md",
       "path": "skills/roblox-engine-api/SKILL.md",
-      "bytes": 14154
+      "bytes": 14297
     },
     {
       "name": "skills__roblox-engine-api__references__character-and-physics.md",
@@ -466,7 +631,7 @@
     {
       "name": "skills__roblox-executor-features__SKILL.md",
       "path": "skills/roblox-executor-features/SKILL.md",
-      "bytes": 5212
+      "bytes": 5316
     },
     {
       "name": "skills__roblox-executor-features__assets__anti-afk.luau",
@@ -541,7 +706,7 @@
     {
       "name": "skills__roblox-executor-reliability__SKILL.md",
       "path": "skills/roblox-executor-reliability/SKILL.md",
-      "bytes": 5846
+      "bytes": 5959
     },
     {
       "name": "skills__roblox-executor-reliability__references__composition.md",
@@ -564,9 +729,34 @@
       "bytes": 3650
     },
     {
+      "name": "skills__roblox-executor-scripting__SKILL.md",
+      "path": "skills/roblox-executor-scripting/SKILL.md",
+      "bytes": 5690
+    },
+    {
+      "name": "skills__roblox-executor-scripting__assets__hub-loader.luau",
+      "path": "skills/roblox-executor-scripting/assets/hub-loader.luau",
+      "bytes": 1484
+    },
+    {
+      "name": "skills__roblox-executor-scripting__references__compatibility.md",
+      "path": "skills/roblox-executor-scripting/references/compatibility.md",
+      "bytes": 2091
+    },
+    {
+      "name": "skills__roblox-executor-scripting__references__remotes-from-evidence.md",
+      "path": "skills/roblox-executor-scripting/references/remotes-from-evidence.md",
+      "bytes": 2394
+    },
+    {
+      "name": "skills__roblox-executor-scripting__references__script-architecture.md",
+      "path": "skills/roblox-executor-scripting/references/script-architecture.md",
+      "bytes": 2789
+    },
+    {
       "name": "skills__roblox-executor__SKILL.md",
       "path": "skills/roblox-executor/SKILL.md",
-      "bytes": 11914
+      "bytes": 12103
     },
     {
       "name": "skills__roblox-executor__assets__runtime-probe.luau",
@@ -691,12 +881,12 @@
     {
       "name": "skills__roblox-executor__references__ui__ui-libraries.md",
       "path": "skills/roblox-executor/references/ui/ui-libraries.md",
-      "bytes": 6434
+      "bytes": 6699
     },
     {
       "name": "skills__roblox-game-design__SKILL.md",
       "path": "skills/roblox-game-design/SKILL.md",
-      "bytes": 3749
+      "bytes": 3875
     },
     {
       "name": "skills__roblox-game-design__references__economy-math.md",
@@ -716,7 +906,12 @@
     {
       "name": "skills__roblox-game-security__SKILL.md",
       "path": "skills/roblox-game-security/SKILL.md",
-      "bytes": 11810
+      "bytes": 12014
+    },
+    {
+      "name": "skills__roblox-game-security__references__admin-commands.md",
+      "path": "skills/roblox-game-security/references/admin-commands.md",
+      "bytes": 3122
     },
     {
       "name": "skills__roblox-game-security__references__audit-imported-assets.md",
@@ -729,9 +924,59 @@
       "bytes": 8858
     },
     {
+      "name": "skills__roblox-hub-library__SKILL.md",
+      "path": "skills/roblox-hub-library/SKILL.md",
+      "bytes": 7929
+    },
+    {
+      "name": "skills__roblox-hub-library__references__architecture.md",
+      "path": "skills/roblox-hub-library/references/architecture.md",
+      "bytes": 5637
+    },
+    {
+      "name": "skills__roblox-hub-library__references__element-contract.md",
+      "path": "skills/roblox-hub-library/references/element-contract.md",
+      "bytes": 4083
+    },
+    {
+      "name": "skills__roblox-hub-library__references__hub-anti-slop.md",
+      "path": "skills/roblox-hub-library/references/hub-anti-slop.md",
+      "bytes": 2631
+    },
+    {
+      "name": "skills__roblox-hub-library__references__improve-existing-hub.md",
+      "path": "skills/roblox-hub-library/references/improve-existing-hub.md",
+      "bytes": 3886
+    },
+    {
+      "name": "skills__roblox-improve__SKILL.md",
+      "path": "skills/roblox-improve/SKILL.md",
+      "bytes": 5258
+    },
+    {
+      "name": "skills__roblox-improve__references__false-positives.md",
+      "path": "skills/roblox-improve/references/false-positives.md",
+      "bytes": 2863
+    },
+    {
+      "name": "skills__roblox-improve__references__feature-suggestions.md",
+      "path": "skills/roblox-improve/references/feature-suggestions.md",
+      "bytes": 2896
+    },
+    {
+      "name": "skills__roblox-improve__references__review-checklist.md",
+      "path": "skills/roblox-improve/references/review-checklist.md",
+      "bytes": 3427
+    },
+    {
+      "name": "skills__roblox-improve__references__ux-review.md",
+      "path": "skills/roblox-improve/references/ux-review.md",
+      "bytes": 2503
+    },
+    {
       "name": "skills__roblox-luau-expert__SKILL.md",
       "path": "skills/roblox-luau-expert/SKILL.md",
-      "bytes": 19629
+      "bytes": 19638
     },
     {
       "name": "skills__roblox-luau-expert__references__common-mistakes.md",
@@ -786,7 +1031,7 @@
     {
       "name": "skills__roblox-luau-language__SKILL.md",
       "path": "skills/roblox-luau-language/SKILL.md",
-      "bytes": 10389
+      "bytes": 10334
     },
     {
       "name": "skills__roblox-luau-language__references__compiler-limits.md",
@@ -811,7 +1056,12 @@
     {
       "name": "skills__roblox-monetization__SKILL.md",
       "path": "skills/roblox-monetization/SKILL.md",
-      "bytes": 6005
+      "bytes": 6078
+    },
+    {
+      "name": "skills__roblox-monetization__references__policy-compliance.md",
+      "path": "skills/roblox-monetization/references/policy-compliance.md",
+      "bytes": 2466
     },
     {
       "name": "skills__roblox-monetization__references__products-and-passes.md",
@@ -826,7 +1076,7 @@
     {
       "name": "skills__roblox-networking__SKILL.md",
       "path": "skills/roblox-networking/SKILL.md",
-      "bytes": 10585
+      "bytes": 10669
     },
     {
       "name": "skills__roblox-networking__references__cross-server.md",
@@ -839,9 +1089,29 @@
       "bytes": 6370
     },
     {
+      "name": "skills__roblox-npc-ai__SKILL.md",
+      "path": "skills/roblox-npc-ai/SKILL.md",
+      "bytes": 4073
+    },
+    {
+      "name": "skills__roblox-npc-ai__references__behaviour.md",
+      "path": "skills/roblox-npc-ai/references/behaviour.md",
+      "bytes": 3467
+    },
+    {
+      "name": "skills__roblox-npc-ai__references__pathfinding.md",
+      "path": "skills/roblox-npc-ai/references/pathfinding.md",
+      "bytes": 4607
+    },
+    {
+      "name": "skills__roblox-npc-ai__references__scale.md",
+      "path": "skills/roblox-npc-ai/references/scale.md",
+      "bytes": 2080
+    },
+    {
       "name": "skills__roblox-performance__SKILL.md",
       "path": "skills/roblox-performance/SKILL.md",
-      "bytes": 10687
+      "bytes": 10725
     },
     {
       "name": "skills__roblox-performance__references__parallel-luau.md",
@@ -851,7 +1121,7 @@
     {
       "name": "skills__roblox-reply-craft__SKILL.md",
       "path": "skills/roblox-reply-craft/SKILL.md",
-      "bytes": 3243
+      "bytes": 3256
     },
     {
       "name": "skills__roblox-reply-craft__references__code-output.md",
@@ -881,7 +1151,7 @@
     {
       "name": "skills__roblox-request-intake__SKILL.md",
       "path": "skills/roblox-request-intake/SKILL.md",
-      "bytes": 6848
+      "bytes": 6944
     },
     {
       "name": "skills__roblox-request-intake__references__defaults.md",
@@ -916,7 +1186,7 @@
     {
       "name": "skills__roblox-studio-mcp__SKILL.md",
       "path": "skills/roblox-studio-mcp/SKILL.md",
-      "bytes": 4462
+      "bytes": 4467
     },
     {
       "name": "skills__roblox-studio-mcp__references__safety.md",
@@ -936,7 +1206,7 @@
     {
       "name": "skills__roblox-toolchain__SKILL.md",
       "path": "skills/roblox-toolchain/SKILL.md",
-      "bytes": 10199
+      "bytes": 10163
     },
     {
       "name": "skills__roblox-toolchain__references__luaurc.md",
@@ -946,7 +1216,7 @@
     {
       "name": "skills__roblox-ui-components__SKILL.md",
       "path": "skills/roblox-ui-components/SKILL.md",
-      "bytes": 5884
+      "bytes": 5909
     },
     {
       "name": "skills__roblox-ui-components__assets__announcements.luau",
@@ -1051,7 +1321,7 @@
     {
       "name": "skills__roblox-ui-interaction__SKILL.md",
       "path": "skills/roblox-ui-interaction/SKILL.md",
-      "bytes": 5632
+      "bytes": 5667
     },
     {
       "name": "skills__roblox-ui-interaction__references__blocked-input.md",
@@ -1066,7 +1336,7 @@
     {
       "name": "skills__roblox-ui-motion__SKILL.md",
       "path": "skills/roblox-ui-motion/SKILL.md",
-      "bytes": 7248
+      "bytes": 7205
     },
     {
       "name": "skills__roblox-ui-motion__references__choreography.md",
@@ -1086,7 +1356,7 @@
     {
       "name": "skills__roblox-ui-tooltips__SKILL.md",
       "path": "skills/roblox-ui-tooltips/SKILL.md",
-      "bytes": 4516
+      "bytes": 4460
     },
     {
       "name": "skills__roblox-ui-tooltips__references__slider-values.md",
@@ -1101,7 +1371,7 @@
     {
       "name": "skills__roblox-ui-viewport__SKILL.md",
       "path": "skills/roblox-ui-viewport/SKILL.md",
-      "bytes": 5070
+      "bytes": 5008
     },
     {
       "name": "skills__roblox-ui-viewport__references__device-matrix.md",
@@ -1116,7 +1386,7 @@
     {
       "name": "skills__roblox-ui__SKILL.md",
       "path": "skills/roblox-ui/SKILL.md",
-      "bytes": 13720
+      "bytes": 14048
     },
     {
       "name": "skills__roblox-ui__references__anti-slop-catalog.md",
@@ -1189,6 +1459,11 @@
       "bytes": 6823
     },
     {
+      "name": "skills__roblox-ui__references__localization-and-accessibility.md",
+      "path": "skills/roblox-ui/references/localization-and-accessibility.md",
+      "bytes": 2896
+    },
+    {
       "name": "skills__roblox-ui__references__responsive-and-surfaces.md",
       "path": "skills/roblox-ui/references/responsive-and-surfaces.md",
       "bytes": 9749
@@ -1231,7 +1506,7 @@
     {
       "name": "skills__roblox-vfx-animation__SKILL.md",
       "path": "skills/roblox-vfx-animation/SKILL.md",
-      "bytes": 3924
+      "bytes": 3974
     },
     {
       "name": "skills__roblox-vfx-animation__references__animation.md",
@@ -1252,6 +1527,10 @@
     {
       "path": "docs/visual-guide/index.html",
       "bytes": 194439
+    },
+    {
+      "path": "library/hub-kit/dist/HubKit.luau",
+      "bytes": 111899
     },
     {
       "path": "skills/roblox-luau-expert/references/verified/api-index.txt",

@@ -1,7 +1,7 @@
 --[[
 	Paragraph - a titled block of text: instructions, credits, a status line.
 
-	    local status = Tab:Paragraph({ Title = "Status", Content = "Waiting for the round to start" })
+	    local status = Tab:Paragraph({ Title = "Status", Content = "Waiting for players" })
 	    status:Set({ Content = "Round 3 of 5" })
 
 	`Content` uses the description line, so it wraps and stays readable on a

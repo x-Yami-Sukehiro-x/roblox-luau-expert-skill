@@ -1,6 +1,6 @@
 ---
 name: roblox-attempt-memory
-description: Remembers past attempts so failed fixes are never repeated - an attempt ledger in PROJECT_CONTEXT.md with plan, check and search tools and known failures. Use for "you didn't fix it", "same problem again", any retry, and a new chat continuing old work.
+description: Never repeating a failed fix - the attempt ledger in PROJECT_CONTEXT.md with plan, check and search. Use for you didn't fix it, same problem again, any retry, a new chat on old work.
 ---
 
 # Attempt memory
@@ -129,3 +129,4 @@ each attempt.
 - `roblox-executor-reliability`: the feature doctor's output names the layer to record.
 - `roblox-ui-interaction`: its ladder lists the layers a UI fix can miss.
 - `roblox-code-craft`: the diff is the changelog; the ledger holds the story.
+- `roblox-debugging`: the probe that turns a Saw line into a Cause.

@@ -1,5 +1,94 @@
 # Changelog
 
+## 5.9.0 — 2026-09-26
+
+Seven new skills, HubKit (a tested UI library for script hubs), and new
+references in four existing skills. The skill list still fits the hosts'
+start-up budget: 34 skills in 6,496 of 7,000 characters.
+
+### Added — HubKit and `roblox-hub-library`
+
+- **`library/hub-kit/`**, a script hub UI library in the shape of WindUI,
+  written for this stack: `Core/` (New, Theme, Trove, Signal, Motion, Drag,
+  Config, Mount, Icons), `Themes/` (Midnight, Daylight, Ember),
+  `Components/` (Window, Tab, Section, Popup, Dialog, Notifications,
+  OpenButton, SettingsTab) and `Elements/` (a registry, a shared Row, and
+  Button, Toggle, Slider, Dropdown, Input, Keybind, ColorPicker, Paragraph,
+  Divider). Windows are scale-sized between 300 x 240 and 760 x 540 with a
+  compact mode, a draggable Open chip replaces the menu key on touch
+  screens, configs detect `writefile` and say when saving is off, and one
+  trove per window makes unload complete.
+- `example/Example.luau` builds a demo hub with every element; it runs in an
+  executor from the repository or in Studio from a pasted ModuleScript.
+- `tools/bin/build-hub-kit.mjs` bundles the folder into `dist/HubKit.luau`,
+  resolving each `require(script...)` the way Rojo lays the folder out and
+  refusing any it cannot resolve. `--check` keeps the bundle from trailing
+  the sources.
+- `tools/tests/hub-kit.test.mjs`: the bundle is current and compiles, every
+  theme's text pairs meet 4.5:1, every icon id is one already verified, 95
+  behaviour assertions on the kit (elements, popups, search, configs,
+  themes, notifications, drag clamping, compact mode, and input connections
+  counted back to zero after unload) and 12 on the example (respawn, rerun,
+  unload restoring what it changed). Two deliberate breakages were run
+  against it; both failed the suite.
+- **`roblox-hub-library`**: when to use HubKit, WindUI, Rayfield or no
+  library; the four decisions that make a library (registry, shared row,
+  theme roles, one trove); eight things every hub gets right; an audit for
+  improving an existing hub; the hub-specific tells of generated UI.
+
+### Added — skills
+
+- **`roblox-executor-scripting`**: the order an expert works in, from the
+  effect and its owner to the regression matrix; script shapes; a tested
+  multi-game loader that routes by `game.GameId` and survives a start that
+  errors (`assets/hub-loader.luau`, 8 behaviour assertions); remote calls
+  from call sites and what survives serialisation; cross-executor checks.
+- **`roblox-improve`**: evidence-first reviews of code, features and UI,
+  with a four-part gate against false alarms, three severities, and feature
+  suggestions grounded in the game's loop or the hub's purpose.
+- **`roblox-debugging`**: exact error, reproduce, which side runs it, one
+  probe per hypothesis; an error catalogue, the does-nothing tree and probe
+  snippets.
+- **`roblox-npc-ai`**: PathfindingService followers that handle blocked
+  paths, jump waypoints and the 8-second `MoveTo` timeout, server ownership,
+  state machines, sight checks, and one budgeted scheduler for many NPCs.
+- **`roblox-combat`**: client intent, server decision; hit tests by weapon
+  type with shapecasts and spatial queries, bounded lag tolerance, one
+  damage path, projectile stepping, and hit feedback by tier.
+- **`roblox-chat`**: TextChatService commands, channels, tags, system
+  messages and bubbles, and filtering every string a player types.
+
+### Added — references in existing skills
+
+- `roblox-game-security/references/admin-commands.md`: admin commands
+  without a backdoor, and `Players:BanAsync` from Roblox's reference.
+- `roblox-ui/references/localization-and-accessibility.md`: translatable
+  text, growing containers, larger text, colour and motion.
+- `roblox-monetization/references/policy-compliance.md`: which
+  `PolicyService` fields gate paid random items, trading, ads and
+  subscriptions, failing closed.
+- `roblox-executor/references/ui/ui-libraries.md` points at HubKit.
+
+### Changed
+
+- Every description rewritten again to fit seven more skills; the router's
+  skill map, symptom table and path list name all 34, and every existing
+  skill's Works with section names the new partners.
+- `check-all.mjs` runs 31 gates: the kit's UI, slop and format rubrics, its
+  tests, and the loader's recipe test are new.
+- `build-portable.mjs` carries the new skills and the loader into the GPT's
+  workflow pack.
+
+### Sources reviewed
+
+`nonlooped/roblox-suite` (MIT) and `andrian-syh/roblox-best-practices-skill`
+(MIT) were used as leads for NPC and review material, re-checked against the
+dump and Roblox's creator-docs; one claimed API (`Path.CalculationSecondsTimeout`)
+is not in the dump and was left out. `gamedev-skills/awesome-gamedev-agent-skills`
+(Apache-2.0) contributed the feedback-tier model. WindUI (MIT) informed the
+folder layout only. `brockmartin/roblox-game-skill` and `zilibobi/roblox-skills`
+state no licence and were not used.
+
 ## 5.8.0 — 2026-09-25
 
 Every skill now reaches the model on every host, the skills hand work to
