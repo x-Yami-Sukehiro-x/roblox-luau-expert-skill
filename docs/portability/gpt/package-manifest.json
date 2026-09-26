@@ -1,6 +1,6 @@
 {
   "format": 1,
-  "archiveSha256": "f1ac89e3dc611010a0aa539783a08045b36cba34922906f699c39fa1a8329800",
+  "archiveSha256": "1f753a50f33c3c063302289ed2e2c1f7cdcd800c47cae4d17c0772252731dc01",
   "files": [
     {
       "path": ".claude/skills/roblox-architecture/SKILL.md",
@@ -1099,8 +1099,8 @@
     },
     {
       "path": "docs/ROADMAP.md",
-      "bytes": 5535,
-      "sha256": "bd369bc273391455808b62928adc1c38716dc91c8ccbd0e9ca8b0f4d7a6e3970"
+      "bytes": 5529,
+      "sha256": "e36eb593aabddf8d6bc629c96f430d359cd2dd2ecc4fa102f6fd0eca9ccfdb83"
     },
     {
       "path": "docs/SOURCES.md",
@@ -2284,8 +2284,8 @@
     },
     {
       "path": "tools/py/ui_lint.py",
-      "bytes": 51613,
-      "sha256": "60cfbc3e99eea268aa7409e6a01c439e2ae0455c78ba22980ada568b5672e07c"
+      "bytes": 50521,
+      "sha256": "1a8680e3e3fbdb45fa214a21b14d9f2d1b9e95c2245e178503dc662ebca9b023"
     },
     {
       "path": "tools/py/verify_api.py",

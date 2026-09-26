@@ -23,7 +23,7 @@ Two limits shape every addition:
 | Physics and vehicles | constraints-based cars and boats, ragdolls, collision groups for gameplay | `roblox-engine-api` reference or a new skill | Roblox creator-docs; `nonlooped/roblox-suite` `roblox-physics` (MIT) |
 | Publishing and discovery | icons, thumbnails, names and descriptions that get clicked | `roblox-game-design` reference | `AshExplained/roblox-skills` `roblox-publishing-discovery` (MIT) |
 | Inventory and trading | item ids, stacking, server-owned trades with two-sided confirmation | `roblox-data-persistence` or `roblox-game-design` reference | the combat and data cases in `andrian-syh/roblox-best-practices-skill` (MIT) |
-| Proximity and voice chat | `ShouldDeliverCallback` by distance, voice settings | `roblox-chat` reference | Roblox creator-docs `chat/examples/proximity-chat.md` |
+| Proximity and voice chat | `ShouldDeliverCallback` by distance, voice settings | `roblox-chat` reference | Roblox creator-docs, the proximity chat example |
 | Legacy migration | replacing deprecated APIs across a whole place with Studio MCP | `roblox-studio-mcp` reference | `MSayib/roblox-dev-skill`, its legacy migration reference (MIT) |
 
 ## HubKit
