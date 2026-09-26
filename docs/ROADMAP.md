@@ -106,6 +106,12 @@ Two limits shape every addition:
 
 - **Custom GPT retirement on 2026-12-11**: the ChatGPT plugin replaces it;
   move any remaining GPT-only instructions into the router before then.
+- **The uploaded plugin's legacy manifest**: the release on chatgpt.com
+  keeps a compatibility `plugin.json` under `.codex-plugin` from an earlier
+  upload, which a new zip does not replace, so it can go on naming the
+  previous version. Plugin Creator synced it to 5.10.0 during the upload.
+  `build-openai-plugin.mjs` could write that file from the same metadata so
+  every upload replaces it.
 - **Scheduled plugin updates**: the four-hourly task still uses "Upload new
   version", which fails while a duplicate plugin named `roblox-luau-expert`
   exists. The Plugin Creator chat route works; switching the task to it sends

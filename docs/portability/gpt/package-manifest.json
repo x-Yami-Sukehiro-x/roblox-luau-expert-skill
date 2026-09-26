@@ -1,6 +1,6 @@
 {
   "format": 1,
-  "archiveSha256": "f4bf02bb7311ee4ddddea2822b6f6f4a0f6af461506320af629a08e832f61fb1",
+  "archiveSha256": "10a00538e375cbf51d51456b0a80abefabd85bb60e48c2d191cdfc5f5098b0dc",
   "files": [
     {
       "path": ".claude/skills/roblox-ai-mistakes/SKILL.md",
@@ -1249,8 +1249,8 @@
     },
     {
       "path": "docs/ROADMAP.md",
-      "bytes": 8218,
-      "sha256": "ccc9affbe37c5b73a4a0a30eeed308be98ed8e3dac32a106913db37b0bada541"
+      "bytes": 8615,
+      "sha256": "a70e8f1bb8714279513213f6c9c7fe1736d0d7c8d805fc46b0a8becbf5184689"
     },
     {
       "path": "docs/SOURCES.md",
@@ -1314,8 +1314,8 @@
     },
     {
       "path": "docs/portability/gpt/README.md",
-      "bytes": 6828,
-      "sha256": "e07d4cdf3b39de8c97ca40096ba58e08e356abb761d69ce97d4380a8861bb02a"
+      "bytes": 6845,
+      "sha256": "63f8ac5354f5ba64eca78e22546069cb1142e9deadcb4bab6a68d40d166ea2a0"
     },
     {
       "path": "docs/portability/gpt/UIs/README.md",
