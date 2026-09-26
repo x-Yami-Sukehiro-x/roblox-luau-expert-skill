@@ -73,8 +73,9 @@ The Action reads current files live from the repository's `plugin` branch, so
 the GPT is not limited to the snapshot in Knowledge. It is imported from URL
 (`docs/portability/gpt-github-action.json` on the public repository's `main`),
 authentication None; operations `listSkillFiles` and `getSkillFile`. Setup and
-limits: `../auto-update.md`. Last recorded state, 25 September 2026 (5.8.0,
-skill bundles, Studio MCP, game design, mobile-ready picker): instructions 7,961
+limits: `../auto-update.md`. Last recorded state, 26 September 2026 (5.9.0,
+HubKit, seven new skills including hub library, review, debugging, combat, NPCs
+and chat): instructions 7,961
 characters, SHA-256 prefix `d0208da9ccdfab39`, seven knowledge files matching
 the build byte for byte, the
 Action on `raw.githubusercontent.com`, access invite-only. Read back through the

@@ -1,6 +1,6 @@
 {
   "format": 1,
-  "archiveSha256": "1f753a50f33c3c063302289ed2e2c1f7cdcd800c47cae4d17c0772252731dc01",
+  "archiveSha256": "9c8a3a0ef085571283a53eb381048a43207501c5ff3719cc27cfa2a87b21906d",
   "files": [
     {
       "path": ".claude/skills/roblox-architecture/SKILL.md",
@@ -1164,8 +1164,8 @@
     },
     {
       "path": "docs/portability/gpt/README.md",
-      "bytes": 6919,
-      "sha256": "50b5a6279000ab7179682d4a13d87893a18a4018daafc4401b7263c946b78e40"
+      "bytes": 6828,
+      "sha256": "e07d4cdf3b39de8c97ca40096ba58e08e356abb761d69ce97d4380a8861bb02a"
     },
     {
       "path": "docs/portability/gpt/UIs/README.md",
@@ -2344,8 +2344,8 @@
     },
     {
       "path": "tools/tests/hub-kit.test.mjs",
-      "bytes": 5188,
-      "sha256": "f6620fc53ad47f440ab50b8568d4ed152b5fc924a7dc53547e51b5cd4a6ba199"
+      "bytes": 5124,
+      "sha256": "7600cbce2d5775eb9f3f9a7b07046d134306c9238033e6d6517a185b2584bcf1"
     },
     {
       "path": "tools/tests/install.test.mjs",

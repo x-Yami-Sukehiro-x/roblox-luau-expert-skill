@@ -33,11 +33,11 @@ test("the committed bundle is built from the current sources", () => {
   assert.equal(read(BUNDLE), bundle(), "run node tools/bin/build-hub-kit.mjs");
 });
 
-test("the bundle compiles", { skip: process.platform !== "win32" && process.platform !== "linux" }, () => {
-  const host = process.platform === "win32" ? "windows-x64" : "linux-x64";
-  const compiler = join(REPO_ROOT, "tools", "runtime", host, process.platform === "win32" ? "luau-compile.exe" : "luau-compile");
-  const result = spawnSync(compiler, ["--null", BUNDLE], { encoding: "utf8" });
-  assert.equal(result.status, 0, result.stderr);
+// Through check_luau.py, which finds the bundled compiler for this platform
+// and marks it executable; a checkout does not keep the Linux file's mode.
+test("the bundle compiles", () => {
+  const result = spawnSync("python", [join(REPO_ROOT, "tools", "py", "check_luau.py"), BUNDLE], { encoding: "utf8" });
+  assert.equal(result.status, 0, `${result.stdout}${result.stderr}`);
 });
 
 test("every theme's text meets 4.5:1 and its accents 3:1", () => {
